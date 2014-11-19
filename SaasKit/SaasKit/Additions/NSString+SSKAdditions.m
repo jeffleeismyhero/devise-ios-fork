@@ -10,6 +10,8 @@
 
 @implementation NSString (SSKAdditions)
 
+#pragma mark - Public Methods
+
 - (BOOL)hasValidEmailSyntax {
     
     BOOL stricterFilter = YES; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
@@ -38,5 +40,7 @@
         string = [string stringByReplacingCharactersInRange:r withString:@""];
     return string;
 }
+
+#pragma mark - Private Methods
 
 @end

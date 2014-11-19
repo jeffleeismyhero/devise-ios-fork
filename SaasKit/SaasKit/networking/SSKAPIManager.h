@@ -13,6 +13,7 @@
 
 @interface SSKAPIManager : NSObject
 
-+ (void)loginUser:(SSKUser *)user withSuccess:(SSKUserBlock)success failure:(SSKErrorBlock)failure;
++ (void)loginUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
++ (void)remindPasswordForUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 
 @end

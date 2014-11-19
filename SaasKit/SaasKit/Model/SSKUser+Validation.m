@@ -14,6 +14,8 @@
 
 @implementation SSKUser (Validation)
 
+#pragma mark - Public Methods
+
 - (BOOL)loginValidationWithError:(SSKError *__autoreleasing*)error {
     
     if ([self.password isEmpty]) {
@@ -50,5 +52,7 @@
     }
     return YES;
 }
+
+#pragma mark - Private Methods
 
 @end

@@ -12,16 +12,30 @@
 
 @implementation SSKAPIManager
 
+#pragma mark - Public Methods
 
-+ (void)loginUser:(SSKUser *)user withSuccess:(SSKUserBlock)success failure:(SSKErrorBlock)failure {
++ (void)loginUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
     SSKWorkInProgress("Configuration needed - waiting for endpoints");
     
     [SSKNetworkManager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(user);
+        success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error);
     }];
 }
+
++ (void)remindPasswordForUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
+    
+    SSKWorkInProgress("Configuration needed - waiting for endpoints");
+    
+    [SSKNetworkManager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error);
+    }];
+}
+
+#pragma mark - Private Methods
 
 @end

@@ -10,6 +10,8 @@
 
 @implementation SSKErrorTranslate
 
+#pragma mark - Public Methods
+
 + (NSString *)translateErrorCode:(SSKErrorCode)code {
     
     switch (code) {
@@ -23,5 +25,7 @@
             return NSLocalizedString(@"username cannot be empty",  @"error localized description");
     }
 }
+
+#pragma mark - Private Methods
 
 @end

@@ -12,10 +12,14 @@
 
 @implementation SSKError
 
+#pragma mark - Public Methods
+
 + (instancetype)errorWithCode:(SSKErrorCode)code {
     return [self errorWithDomain:SSKErrorDomain code:code
                         userInfo:@{NSLocalizedDescriptionKey:[SSKErrorTranslate translateErrorCode:code]}];
 
 }
+
+#pragma mark - Private Methods
 
 @end

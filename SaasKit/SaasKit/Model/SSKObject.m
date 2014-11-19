@@ -10,4 +10,9 @@
 
 @implementation SSKObject
 
+#pragma mark - Public Methods
+
+
+#pragma mark - Private Methods
+
 @end

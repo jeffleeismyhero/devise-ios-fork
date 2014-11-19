@@ -12,6 +12,8 @@
 
 @implementation SSKUser
 
+#pragma mark - Public Methods
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -20,19 +22,38 @@
     return self;
 }
 
-- (instancetype)user {
++ (instancetype)user {
     return [[[self class] alloc] init];
 }
 
-- (void)loginWithSuccess:(SSKUserBlock)success failure:(SSKErrorBlock)failure {
+- (void)loginWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
     NSError *error;
-    if ([self loginValidationWithError:&error]) {
+    if (![self loginValidationWithError:&error]) {
         failure(error);
         return;
     }
     
     [SSKAPIManager loginUser:self withSuccess:success failure:failure];
 }
+
+- (void)remindPasswordWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
+    
+    NSError *error;
+    if (![self remindPasswordValidationWithError:&error]) {
+        failure(error);
+        return;
+    }
+    [SSKAPIManager remindPasswordForUser:self withSuccess:success failure:failure];
+}
+
++ (void)remindPasswordWithEmail:(NSString *)email success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
+    
+    SSKUser *user = [SSKUser user];
+    user.email = email;
+    [user remindPasswordWithSuccess:success failure:failure];
+}
+
+#pragma mark - Private Methods
 
 @end

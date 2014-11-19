@@ -22,12 +22,18 @@ typedef NS_ENUM(NSInteger, SSKLoginMethod) {
 @property (nonatomic, assign) SSKLoginMethod loginMethod; //default SSKLoginUsingEmail
 
 ///designed initializer
-- (instancetype)user;
++ (instancetype)user;
 
-- (void)loginWithSuccess:(SSKUserBlock)success
-                 failure:(SSKErrorBlock)failure;
+#pragma mark - login methods:
 
-- (void)remindPasswordWithSuccess:(SSKBooleanBlock)success
-                          failure:(SSKErrorBlock)failure;
+- (void)loginWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
+
+#pragma mark - remind password methods:
+
+- (void)remindPasswordWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
+
++ (void)remindPasswordWithEmail:(NSString *)email success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
+
+#pragma mark - register methods:
 
 @end

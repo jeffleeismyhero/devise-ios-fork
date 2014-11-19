@@ -16,6 +16,7 @@
     typedef void (^SSKUserBlock)(SSKUser *user);
     typedef void (^SSKErrorBlock)(NSError *error);
     typedef void (^SSKBooleanBlock)(BOOL success);
+    typedef void (^SSKVoidBlock)();
 
     #endif
 
