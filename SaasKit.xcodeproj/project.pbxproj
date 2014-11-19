@@ -13,10 +13,14 @@
 		5E1E7B161A1C9E130021F34C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E1E7B141A1C9E130021F34C /* LaunchScreen.xib */; };
 		5E1E7B221A1C9E130021F34C /* SaasKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B211A1C9E130021F34C /* SaasKitTests.m */; };
 		5E1E7B341A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B331A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m */; };
-		5E1E7B381A1CA6C70021F34C /* SSKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B371A1CA6C70021F34C /* SSKObject.m */; };
 		5E1E7B3C1A1CADE70021F34C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B3B1A1CADE70021F34C /* LoginViewController.m */; };
 		5E1E7B3F1A1CADFB0021F34C /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B3E1A1CADFB0021F34C /* RegistrationViewController.m */; };
 		5E1E7B421A1CAEBF0021F34C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1E7B411A1CAEBF0021F34C /* Main.storyboard */; };
+		5E1E7B451A1CBD850021F34C /* SSKAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B441A1CBD850021F34C /* SSKAPIManager.m */; };
+		5E1E7B481A1CBE060021F34C /* SSKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B471A1CBE060021F34C /* SSKUser.m */; };
+		5E1E7B511A1CCC020021F34C /* NSString+SSKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B501A1CCC020021F34C /* NSString+SSKAdditions.m */; };
+		5E1E7B551A1CD3880021F34C /* SSKUser+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B541A1CD3880021F34C /* SSKUser+Validation.m */; };
+		5E1E7B5A1A1CD9C30021F34C /* SSKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B591A1CD9C30021F34C /* SSKObject.m */; };
 		7CD6534A1A1CB7CB007346E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7CD653491A1CB7CB007346E8 /* Podfile */; };
 		7CD6534B1A1CB7CB007346E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7CD653491A1CB7CB007346E8 /* Podfile */; };
 		C63282489C82196C5AE94A23 /* libPods-SaasKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB2105159DA735CE5E5B02D /* libPods-SaasKitTests.a */; };
@@ -47,14 +51,23 @@
 		5E1E7B211A1C9E130021F34C /* SaasKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaasKitTests.m; sourceTree = "<group>"; };
 		5E1E7B321A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKHTTPReqeustOperationManager.h; path = SaasKit/networking/SSKHTTPReqeustOperationManager.h; sourceTree = "<group>"; };
 		5E1E7B331A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKHTTPReqeustOperationManager.m; path = SaasKit/networking/SSKHTTPReqeustOperationManager.m; sourceTree = "<group>"; };
-		5E1E7B361A1CA6C70021F34C /* SSKObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKObject.h; path = SaasKit/SSKObject.h; sourceTree = "<group>"; };
-		5E1E7B371A1CA6C70021F34C /* SSKObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKObject.m; path = SaasKit/SSKObject.m; sourceTree = "<group>"; };
-		5E1E7B391A1CA7D50021F34C /* SSKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKMacros.h; sourceTree = "<group>"; };
 		5E1E7B3A1A1CADE70021F34C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Controllers/LoginViewController.h; sourceTree = "<group>"; };
 		5E1E7B3B1A1CADE70021F34C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Controllers/LoginViewController.m; sourceTree = "<group>"; };
 		5E1E7B3D1A1CADFB0021F34C /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationViewController.h; path = Controllers/RegistrationViewController.h; sourceTree = "<group>"; };
 		5E1E7B3E1A1CADFB0021F34C /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationViewController.m; path = Controllers/RegistrationViewController.m; sourceTree = "<group>"; };
 		5E1E7B411A1CAEBF0021F34C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5E1E7B431A1CBD850021F34C /* SSKAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKAPIManager.h; path = SaasKit/networking/SSKAPIManager.h; sourceTree = "<group>"; };
+		5E1E7B441A1CBD850021F34C /* SSKAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKAPIManager.m; path = SaasKit/networking/SSKAPIManager.m; sourceTree = "<group>"; };
+		5E1E7B461A1CBE060021F34C /* SSKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKUser.h; path = SaasKit/Model/SSKUser.h; sourceTree = "<group>"; };
+		5E1E7B471A1CBE060021F34C /* SSKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKUser.m; path = SaasKit/Model/SSKUser.m; sourceTree = "<group>"; };
+		5E1E7B4F1A1CCC020021F34C /* NSString+SSKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SSKAdditions.h"; path = "SaasKit/Additions/NSString+SSKAdditions.h"; sourceTree = "<group>"; };
+		5E1E7B501A1CCC020021F34C /* NSString+SSKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SSKAdditions.m"; path = "SaasKit/Additions/NSString+SSKAdditions.m"; sourceTree = "<group>"; };
+		5E1E7B531A1CD3880021F34C /* SSKUser+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SSKUser+Validation.h"; path = "SaasKit/Model/SSKUser+Validation.h"; sourceTree = "<group>"; };
+		5E1E7B541A1CD3880021F34C /* SSKUser+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SSKUser+Validation.m"; path = "SaasKit/Model/SSKUser+Validation.m"; sourceTree = "<group>"; };
+		5E1E7B561A1CD9B40021F34C /* SSKDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKDefines.h; path = SaasKit/SSKDefines.h; sourceTree = "<group>"; };
+		5E1E7B571A1CD9B40021F34C /* SSKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKMacros.h; path = SaasKit/SSKMacros.h; sourceTree = "<group>"; };
+		5E1E7B581A1CD9C30021F34C /* SSKObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKObject.h; path = SaasKit/Model/SSKObject.h; sourceTree = "<group>"; };
+		5E1E7B591A1CD9C30021F34C /* SSKObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKObject.m; path = SaasKit/Model/SSKObject.m; sourceTree = "<group>"; };
 		6A7378E0810CEBC1CA07075B /* Pods-SaasKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7CD653491A1CB7CB007346E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		801957178660E68FB68C1D2E /* Pods-SaasKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,9 +195,10 @@
 		5E1E7B2E1A1CA50E0021F34C /* SaasKit */ = {
 			isa = PBXGroup;
 			children = (
-				5E1E7B391A1CA7D50021F34C /* SSKMacros.h */,
-				5E1E7B361A1CA6C70021F34C /* SSKObject.h */,
-				5E1E7B371A1CA6C70021F34C /* SSKObject.m */,
+				5E1E7B561A1CD9B40021F34C /* SSKDefines.h */,
+				5E1E7B571A1CD9B40021F34C /* SSKMacros.h */,
+				5E1E7B521A1CCC060021F34C /* UIKit Additions */,
+				5E1E7B491A1CBE090021F34C /* Model */,
 				5E1E7B351A1CA6830021F34C /* Networking */,
 			);
 			name = SaasKit;
@@ -195,6 +209,8 @@
 			children = (
 				5E1E7B321A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.h */,
 				5E1E7B331A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m */,
+				5E1E7B431A1CBD850021F34C /* SSKAPIManager.h */,
+				5E1E7B441A1CBD850021F34C /* SSKAPIManager.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -206,6 +222,36 @@
 				5E1E7B3E1A1CADFB0021F34C /* RegistrationViewController.m */,
 			);
 			name = Registration;
+			sourceTree = "<group>";
+		};
+		5E1E7B491A1CBE090021F34C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5E1E7B4E1A1CC5AA0021F34C /* Additions */,
+				5E1E7B581A1CD9C30021F34C /* SSKObject.h */,
+				5E1E7B591A1CD9C30021F34C /* SSKObject.m */,
+				5E1E7B461A1CBE060021F34C /* SSKUser.h */,
+				5E1E7B471A1CBE060021F34C /* SSKUser.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5E1E7B4E1A1CC5AA0021F34C /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				5E1E7B531A1CD3880021F34C /* SSKUser+Validation.h */,
+				5E1E7B541A1CD3880021F34C /* SSKUser+Validation.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		5E1E7B521A1CCC060021F34C /* UIKit Additions */ = {
+			isa = PBXGroup;
+			children = (
+				5E1E7B4F1A1CCC020021F34C /* NSString+SSKAdditions.h */,
+				5E1E7B501A1CCC020021F34C /* NSString+SSKAdditions.m */,
+			);
+			name = "UIKit Additions";
 			sourceTree = "<group>";
 		};
 		96697A163C70A127E27F946E /* Pods */ = {
@@ -390,11 +436,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E1E7B381A1CA6C70021F34C /* SSKObject.m in Sources */,
+				5E1E7B5A1A1CD9C30021F34C /* SSKObject.m in Sources */,
+				5E1E7B551A1CD3880021F34C /* SSKUser+Validation.m in Sources */,
 				5E1E7B3F1A1CADFB0021F34C /* RegistrationViewController.m in Sources */,
 				5E1E7B341A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m in Sources */,
 				5E1E7B0B1A1C9E130021F34C /* AppDelegate.m in Sources */,
+				5E1E7B481A1CBE060021F34C /* SSKUser.m in Sources */,
 				5E1E7B081A1C9E130021F34C /* main.m in Sources */,
+				5E1E7B511A1CCC020021F34C /* NSString+SSKAdditions.m in Sources */,
+				5E1E7B451A1CBD850021F34C /* SSKAPIManager.m in Sources */,
 				5E1E7B3C1A1CADE70021F34C /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  SSKObject.h
+//  NSString+SSKAdditions.h
 //  SaasKit
 //
 //  Created by Patryk Kaczmarek on 19.11.2014.
@@ -7,8 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SSKMacros.h"
 
-@interface SSKObject : NSObject
+@interface NSString (SSKAdditions)
+
+- (BOOL)isEmpty;
+- (BOOL)hasValidEmailSyntax;
+- (BOOL)isDigit;
+- (NSString *)stringByStripHTMLTags;
 
 @end
