@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		5E1E7B081A1C9E130021F34C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B071A1C9E130021F34C /* main.m */; };
 		5E1E7B0B1A1C9E130021F34C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B0A1A1C9E130021F34C /* AppDelegate.m */; };
-		5E1E7B0E1A1C9E130021F34C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B0D1A1C9E130021F34C /* LoginViewController.m */; };
-		5E1E7B111A1C9E130021F34C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1E7B0F1A1C9E130021F34C /* Main.storyboard */; };
 		5E1E7B131A1C9E130021F34C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E1E7B121A1C9E130021F34C /* Images.xcassets */; };
 		5E1E7B161A1C9E130021F34C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E1E7B141A1C9E130021F34C /* LaunchScreen.xib */; };
 		5E1E7B221A1C9E130021F34C /* SaasKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B211A1C9E130021F34C /* SaasKitTests.m */; };
 		5E1E7B341A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B331A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m */; };
 		5E1E7B381A1CA6C70021F34C /* SSKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B371A1CA6C70021F34C /* SSKObject.m */; };
+		5E1E7B3C1A1CADE70021F34C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B3B1A1CADE70021F34C /* LoginViewController.m */; };
+		5E1E7B3F1A1CADFB0021F34C /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B3E1A1CADFB0021F34C /* RegistrationViewController.m */; };
+		5E1E7B421A1CAEBF0021F34C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E1E7B411A1CAEBF0021F34C /* Main.storyboard */; };
 		C63282489C82196C5AE94A23 /* libPods-SaasKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB2105159DA735CE5E5B02D /* libPods-SaasKitTests.a */; };
 		FB1B4E488A184D2337620D64 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEA59AC0DB368130E690C18 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -37,9 +38,6 @@
 		5E1E7B071A1C9E130021F34C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5E1E7B091A1C9E130021F34C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5E1E7B0A1A1C9E130021F34C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5E1E7B0C1A1C9E130021F34C /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		5E1E7B0D1A1C9E130021F34C /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		5E1E7B101A1C9E130021F34C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E1E7B121A1C9E130021F34C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5E1E7B151A1C9E130021F34C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5E1E7B1B1A1C9E130021F34C /* SaasKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SaasKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +48,11 @@
 		5E1E7B361A1CA6C70021F34C /* SSKObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKObject.h; path = SaasKit/SSKObject.h; sourceTree = "<group>"; };
 		5E1E7B371A1CA6C70021F34C /* SSKObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKObject.m; path = SaasKit/SSKObject.m; sourceTree = "<group>"; };
 		5E1E7B391A1CA7D50021F34C /* SSKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKMacros.h; sourceTree = "<group>"; };
+		5E1E7B3A1A1CADE70021F34C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Controllers/LoginViewController.h; sourceTree = "<group>"; };
+		5E1E7B3B1A1CADE70021F34C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Controllers/LoginViewController.m; sourceTree = "<group>"; };
+		5E1E7B3D1A1CADFB0021F34C /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationViewController.h; path = Controllers/RegistrationViewController.h; sourceTree = "<group>"; };
+		5E1E7B3E1A1CADFB0021F34C /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegistrationViewController.m; path = Controllers/RegistrationViewController.m; sourceTree = "<group>"; };
+		5E1E7B411A1CAEBF0021F34C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6A7378E0810CEBC1CA07075B /* Pods-SaasKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		801957178660E68FB68C1D2E /* Pods-SaasKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		9BB2105159DA735CE5E5B02D /* libPods-SaasKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SaasKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,7 +151,8 @@
 		5E1E7B2B1A1CA4780021F34C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5E1E7B0F1A1C9E130021F34C /* Main.storyboard */,
+				5E1E7B411A1CAEBF0021F34C /* Main.storyboard */,
+				5E1E7B401A1CADFD0021F34C /* Registration */,
 				5E1E7B2C1A1CA4810021F34C /* LoginViewController */,
 			);
 			name = Controller;
@@ -157,8 +161,8 @@
 		5E1E7B2C1A1CA4810021F34C /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5E1E7B0C1A1C9E130021F34C /* LoginViewController.h */,
-				5E1E7B0D1A1C9E130021F34C /* LoginViewController.m */,
+				5E1E7B3A1A1CADE70021F34C /* LoginViewController.h */,
+				5E1E7B3B1A1CADE70021F34C /* LoginViewController.m */,
 			);
 			name = LoginViewController;
 			sourceTree = "<group>";
@@ -190,6 +194,15 @@
 				5E1E7B331A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		5E1E7B401A1CADFD0021F34C /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				5E1E7B3D1A1CADFB0021F34C /* RegistrationViewController.h */,
+				5E1E7B3E1A1CADFB0021F34C /* RegistrationViewController.m */,
+			);
+			name = Registration;
 			sourceTree = "<group>";
 		};
 		96697A163C70A127E27F946E /* Pods */ = {
@@ -256,6 +269,7 @@
 				TargetAttributes = {
 					5E1E7B011A1C9E130021F34C = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = SK8PDF7SG9;
 					};
 					5E1E7B1A1A1C9E130021F34C = {
 						CreatedOnToolsVersion = 6.1;
@@ -287,7 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E1E7B111A1C9E130021F34C /* Main.storyboard in Resources */,
+				5E1E7B421A1CAEBF0021F34C /* Main.storyboard in Resources */,
 				5E1E7B161A1C9E130021F34C /* LaunchScreen.xib in Resources */,
 				5E1E7B131A1C9E130021F34C /* Images.xcassets in Resources */,
 			);
@@ -371,10 +385,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E1E7B381A1CA6C70021F34C /* SSKObject.m in Sources */,
-				5E1E7B0E1A1C9E130021F34C /* LoginViewController.m in Sources */,
+				5E1E7B3F1A1CADFB0021F34C /* RegistrationViewController.m in Sources */,
 				5E1E7B341A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m in Sources */,
 				5E1E7B0B1A1C9E130021F34C /* AppDelegate.m in Sources */,
 				5E1E7B081A1C9E130021F34C /* main.m in Sources */,
+				5E1E7B3C1A1CADE70021F34C /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,14 +412,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5E1E7B0F1A1C9E130021F34C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5E1E7B101A1C9E130021F34C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5E1E7B141A1C9E130021F34C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -499,9 +506,11 @@
 			baseConfigurationReference = 05FF2AA42CB3A87EDF4DB575 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SaasKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -510,9 +519,11 @@
 			baseConfigurationReference = C065B2621C3C5B6BEF7D321F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SaasKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
