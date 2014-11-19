@@ -15,7 +15,7 @@
 
 + (void)loginUser:(SSKUser *)user withSuccess:(SSKUserSuccessBlock)success failure:(SSKFailureBlock)failure {
     
-    SSKWorkInProgress("Configuration needed");
+    SSKWorkInProgress("Configuration needed - waiting for endpoints");
     
     [SSKNetworkManager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
         success(user);

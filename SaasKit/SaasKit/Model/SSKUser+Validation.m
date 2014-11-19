@@ -8,41 +8,38 @@
 
 #import "SSKUser+Validation.h"
 #import "NSString+SSKAdditions.h"
+
 #import "SSKDefines.h"
 #import "SSKMacros.h"
 
 @implementation SSKUser (Validation)
 
-- (BOOL)validateWithError:(NSError *__autoreleasing*)error {
-    
-    SSKWorkInProgress("sublass nserror to improve performance");
+- (BOOL)validateWithError:(SSKError *__autoreleasing*)error {
     
     if ([self.password isEmpty]) {
-        *error = [self errorWithMessage:@"password empty"];
+        *error = [SSKError errorWithCode:SSKErrorPasswordEmpty];
         return NO;
     }
     
     switch (self.loginMethod) {
         case SSKLoginUsingEmail:
-            if ([self.email isEmpty] || [self.email hasValidEmailSyntax]) {
-                *error = [self errorWithMessage:@"wrong email"];
+            if ([self.email isEmpty]) {
+                *error = [SSKError errorWithCode:SSKErrorEmailEmpty];
+                return NO;
+            } else if (![self.email hasValidEmailSyntax]) {
+                *error = [SSKError errorWithCode:SSKErrorEmailSyntaxError];
                 return NO;
             }
             break;
             
         case SSKLoginUsingUsername:
             if ([self.username isEmpty]) {
-                *error = [self errorWithMessage:@"username empty"];
+                *error = [SSKError errorWithCode:SSKErrorUsernameEmpty];
                 return NO;
             }
             break;
     }
-    
     return YES;
-}
-
-- (NSError *)errorWithMessage:(NSString *)message {
-    return [NSError errorWithDomain:SSKErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
 }
 
 @end

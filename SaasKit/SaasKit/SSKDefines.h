@@ -13,8 +13,6 @@
 
     #ifdef __OBJC__
 
-    #define SSKErrorDomain @"com.netguru.saaskit.error.domain"
-
     typedef void (^SSKUserSuccessBlock)(SSKUser *user);
     typedef void (^SSKFailureBlock)(NSError *error);
 

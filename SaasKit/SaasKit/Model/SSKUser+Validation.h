@@ -7,9 +7,10 @@
 //
 
 #import "SSKUser.h"
+#import "SSKError.h"
 
 @interface SSKUser (Validation)
 
-- (BOOL)validateWithError:(NSError **)error;
+- (BOOL)validateWithError:(SSKError **)error;
 
 @end

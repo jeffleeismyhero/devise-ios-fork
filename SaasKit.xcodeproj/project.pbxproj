@@ -21,6 +21,8 @@
 		5E1E7B511A1CCC020021F34C /* NSString+SSKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B501A1CCC020021F34C /* NSString+SSKAdditions.m */; };
 		5E1E7B551A1CD3880021F34C /* SSKUser+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B541A1CD3880021F34C /* SSKUser+Validation.m */; };
 		5E1E7B5A1A1CD9C30021F34C /* SSKObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B591A1CD9C30021F34C /* SSKObject.m */; };
+		5E1E7B5D1A1CE1600021F34C /* SSKError.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B5C1A1CE1600021F34C /* SSKError.m */; };
+		5E1E7B611A1CE2F90021F34C /* SSKErrorTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B601A1CE2F90021F34C /* SSKErrorTranslate.m */; };
 		7CD6534A1A1CB7CB007346E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7CD653491A1CB7CB007346E8 /* Podfile */; };
 		7CD6534B1A1CB7CB007346E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7CD653491A1CB7CB007346E8 /* Podfile */; };
 		C63282489C82196C5AE94A23 /* libPods-SaasKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB2105159DA735CE5E5B02D /* libPods-SaasKitTests.a */; };
@@ -68,6 +70,10 @@
 		5E1E7B571A1CD9B40021F34C /* SSKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKMacros.h; path = SaasKit/SSKMacros.h; sourceTree = "<group>"; };
 		5E1E7B581A1CD9C30021F34C /* SSKObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKObject.h; path = SaasKit/Model/SSKObject.h; sourceTree = "<group>"; };
 		5E1E7B591A1CD9C30021F34C /* SSKObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKObject.m; path = SaasKit/Model/SSKObject.m; sourceTree = "<group>"; };
+		5E1E7B5B1A1CE1600021F34C /* SSKError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKError.h; path = SaasKit/Common/SSKError.h; sourceTree = "<group>"; };
+		5E1E7B5C1A1CE1600021F34C /* SSKError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKError.m; path = SaasKit/Common/SSKError.m; sourceTree = "<group>"; };
+		5E1E7B5F1A1CE2F90021F34C /* SSKErrorTranslate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKErrorTranslate.h; path = SaasKit/Common/SSKErrorTranslate.h; sourceTree = "<group>"; };
+		5E1E7B601A1CE2F90021F34C /* SSKErrorTranslate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKErrorTranslate.m; path = SaasKit/Common/SSKErrorTranslate.m; sourceTree = "<group>"; };
 		6A7378E0810CEBC1CA07075B /* Pods-SaasKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7CD653491A1CB7CB007346E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		801957178660E68FB68C1D2E /* Pods-SaasKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,7 +203,8 @@
 			children = (
 				5E1E7B561A1CD9B40021F34C /* SSKDefines.h */,
 				5E1E7B571A1CD9B40021F34C /* SSKMacros.h */,
-				5E1E7B521A1CCC060021F34C /* UIKit Additions */,
+				5E1E7B5E1A1CE1640021F34C /* Common */,
+				5E1E7B521A1CCC060021F34C /* Foundation Additions */,
 				5E1E7B491A1CBE090021F34C /* Model */,
 				5E1E7B351A1CA6830021F34C /* Networking */,
 			);
@@ -245,13 +252,24 @@
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		5E1E7B521A1CCC060021F34C /* UIKit Additions */ = {
+		5E1E7B521A1CCC060021F34C /* Foundation Additions */ = {
 			isa = PBXGroup;
 			children = (
 				5E1E7B4F1A1CCC020021F34C /* NSString+SSKAdditions.h */,
 				5E1E7B501A1CCC020021F34C /* NSString+SSKAdditions.m */,
 			);
-			name = "UIKit Additions";
+			name = "Foundation Additions";
+			sourceTree = "<group>";
+		};
+		5E1E7B5E1A1CE1640021F34C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5E1E7B5B1A1CE1600021F34C /* SSKError.h */,
+				5E1E7B5C1A1CE1600021F34C /* SSKError.m */,
+				5E1E7B5F1A1CE2F90021F34C /* SSKErrorTranslate.h */,
+				5E1E7B601A1CE2F90021F34C /* SSKErrorTranslate.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		96697A163C70A127E27F946E /* Pods */ = {
@@ -446,6 +464,8 @@
 				5E1E7B511A1CCC020021F34C /* NSString+SSKAdditions.m in Sources */,
 				5E1E7B451A1CBD850021F34C /* SSKAPIManager.m in Sources */,
 				5E1E7B3C1A1CADE70021F34C /* LoginViewController.m in Sources */,
+				5E1E7B5D1A1CE1600021F34C /* SSKError.m in Sources */,
+				5E1E7B611A1CE2F90021F34C /* SSKErrorTranslate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
