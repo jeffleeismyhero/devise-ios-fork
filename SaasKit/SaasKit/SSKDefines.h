@@ -13,8 +13,9 @@
 
     #ifdef __OBJC__
 
-    typedef void (^SSKUserSuccessBlock)(SSKUser *user);
-    typedef void (^SSKFailureBlock)(NSError *error);
+    typedef void (^SSKUserBlock)(SSKUser *user);
+    typedef void (^SSKErrorBlock)(NSError *error);
+    typedef void (^SSKBooleanBlock)(BOOL success);
 
     #endif
 

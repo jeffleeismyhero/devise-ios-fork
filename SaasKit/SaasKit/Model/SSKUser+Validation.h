@@ -11,6 +11,7 @@
 
 @interface SSKUser (Validation)
 
-- (BOOL)validateWithError:(SSKError **)error;
+- (BOOL)loginValidationWithError:(SSKError **)error;
+- (BOOL)remindPasswordValidationWithError:(SSKError **)error;
 
 @end

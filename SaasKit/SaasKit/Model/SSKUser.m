@@ -24,10 +24,10 @@
     return [[[self class] alloc] init];
 }
 
-- (void)loginWithSuccessBlock:(SSKUserSuccessBlock)success failureBlock:(SSKFailureBlock)failure {
+- (void)loginWithSuccess:(SSKUserBlock)success failure:(SSKErrorBlock)failure {
     
     NSError *error;
-    if ([self validateWithError:&error]) {
+    if ([self loginValidationWithError:&error]) {
         failure(error);
         return;
     }

@@ -24,7 +24,10 @@ typedef NS_ENUM(NSInteger, SSKLoginMethod) {
 ///designed initializer
 - (instancetype)user;
 
-- (void)loginWithSuccessBlock:(SSKUserSuccessBlock)success
-                 failureBlock:(SSKFailureBlock)failure;
+- (void)loginWithSuccess:(SSKUserBlock)success
+                 failure:(SSKErrorBlock)failure;
+
+- (void)remindPasswordWithSuccess:(SSKBooleanBlock)success
+                          failure:(SSKErrorBlock)failure;
 
 @end

@@ -14,7 +14,7 @@
 
 @implementation SSKUser (Validation)
 
-- (BOOL)validateWithError:(SSKError *__autoreleasing*)error {
+- (BOOL)loginValidationWithError:(SSKError *__autoreleasing*)error {
     
     if ([self.password isEmpty]) {
         *error = [SSKError errorWithCode:SSKErrorPasswordEmpty];
@@ -38,6 +38,15 @@
                 return NO;
             }
             break;
+    }
+    return YES;
+}
+
+- (BOOL)remindPasswordValidationWithError:(SSKError *__autoreleasing *)error {
+    
+    if ([self.password isEmpty]) {
+        *error = [SSKError errorWithCode:SSKErrorPasswordEmpty];
+        return NO;
     }
     return YES;
 }
