@@ -1,15 +1,14 @@
 //
-//  ViewController.h
+//  SSKObject.h
 //  SaasKit
 //
 //  Created by Patryk Kaczmarek on 19.11.2014.
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "SSKMacros.h"
 
-@interface ViewController : UIViewController
-
+@interface SSKObject : NSObject
 
 @end
-
