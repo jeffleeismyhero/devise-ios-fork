@@ -37,7 +37,7 @@
 
     #define SSKPragma(pragma) _Pragma(#pragma)
     #define SSKDeprecated(msg) SSKPragma(message "[Deprecated] " msg " (to be removed ASAP)")
-    #define SSKWorkInProgress(msg) SSKPragma(message "[WIP] " msg)
+    #define SSKWorkInProgress(msg) SSKPragma(message "[TODO] " msg)
     #define SSKTemporary(msg) SSKPragma(message "[Temporary] " msg " (to be fixed ASAP)")
 
     #define NSLocalizedFormatString(fmt, ...) [NSString stringWithFormat:NSLocalizedString(fmt, nil), __VA_ARGS__]

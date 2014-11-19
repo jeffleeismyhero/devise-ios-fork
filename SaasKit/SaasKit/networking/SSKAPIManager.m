@@ -14,6 +14,17 @@
 
 #pragma mark - Public Methods
 
++ (void)registerUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
+    
+    SSKWorkInProgress("Configuration needed - waiting for endpoints");
+    
+    [SSKNetworkManager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error);
+    }];
+}
+
 + (void)loginUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
     SSKWorkInProgress("Configuration needed - waiting for endpoints");

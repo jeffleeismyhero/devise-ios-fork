@@ -26,6 +26,10 @@
     return [[[self class] alloc] init];
 }
 
+- (void)signUpWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
+    [SSKAPIManager registerUser:self withSuccess: success failure: failure];
+}
+
 - (void)loginWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
     NSError *error;
