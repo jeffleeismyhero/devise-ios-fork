@@ -44,7 +44,7 @@
     return YES;
 }
 
-- (BOOL)remindPasswordValidationWithError:(SSKError *__autoreleasing *)error {
+- (BOOL)remindPasswordValidationWithError:(SSKError *__autoreleasing*)error {
     
     if ([self.password isEmpty]) {
         *error = [SSKError errorWithCode:SSKErrorPasswordEmpty];

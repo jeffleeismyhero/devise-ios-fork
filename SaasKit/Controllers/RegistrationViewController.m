@@ -7,7 +7,7 @@
 //
 
 #import "RegistrationViewController.h"
-#import "SSKUser.h"
+#import "SaasKit.h"
 
 @interface RegistrationViewController ()
 
