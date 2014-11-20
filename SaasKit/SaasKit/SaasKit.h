@@ -11,7 +11,7 @@
 
 typedef NS_ENUM(NSInteger, SSKRoute) {
     //default route: login
-    SSKRouteLogin,
+    SSKRouteLogin = 0,
     //default route: register
     SSKRouteRegister,
     //default route: forgotPassword
@@ -27,9 +27,10 @@ typedef NS_ENUM(NSInteger, SSKRoute) {
  @param serverPath Path of server for application.
  */
 + (void)initializeKitWithServerPath:(NSString *)serverPath;
-+ (instancetype)kit;
++ (SaasKit *)kit;
 
 + (void)setPath:(NSString *)path forRoute:(SSKRoute)route;
 + (NSString *)pathForRoute:(SSKRoute)route;
++ (NSDictionary *)allRoutes;
 
 @end

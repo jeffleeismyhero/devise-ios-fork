@@ -41,7 +41,7 @@
 
 #pragma mark - Public Methods
 
-+ (instancetype)kit {
++ (SaasKit *)kit {
     return [self sharedInstanceWithServerPath:nil];
 }
 
@@ -57,6 +57,10 @@
 + (NSString *)pathForRoute:(SSKRoute)route {
     SaasKit *kit = [self kit];
     return kit.routes[[kit keyForRoute:route]];
+}
+
++ (NSDictionary *)allRoutes {
+    return [self kit].routes;
 }
 
 #pragma mark - Private Methods
