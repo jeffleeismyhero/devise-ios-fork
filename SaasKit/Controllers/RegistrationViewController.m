@@ -8,8 +8,6 @@
 
 #import "RegistrationViewController.h"
 #import "SaasKit.h"
-#import "SSKUser.h"
-#import "UIView+SSKAdditions.h"
 
 #define SSKEnterSegue @"enter"
 

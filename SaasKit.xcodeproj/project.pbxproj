@@ -24,7 +24,6 @@
 		5E1E7B611A1CE2F90021F34C /* SSKErrorTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B601A1CE2F90021F34C /* SSKErrorTranslate.m */; };
 		5E61F30D1A1E15ED00BD088E /* SSKUser+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F30C1A1E15ED00BD088E /* SSKUser+Query.m */; };
 		5EA83D461A1E2ED5002219EC /* SaasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA83D451A1E2ED5002219EC /* SaasKit.m */; };
-		7C64436A1A1DF15D003C441C /* UIView+SSKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6443691A1DF15D003C441C /* UIView+SSKAdditions.m */; };
 		7C6443751A1E274E003C441C /* PasswordReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6443741A1E274E003C441C /* PasswordReminderViewController.m */; };
 		7C6443781A1E2762003C441C /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6443771A1E2762003C441C /* PasswordChangeViewController.m */; };
 		7C64437D1A1E3740003C441C /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C64437C1A1E3740003C441C /* WelcomeViewController.m */; };
@@ -84,8 +83,6 @@
 		5EA83D441A1E2ED5002219EC /* SaasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaasKit.h; path = SaasKit/SaasKit.h; sourceTree = "<group>"; };
 		5EA83D451A1E2ED5002219EC /* SaasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaasKit.m; path = SaasKit/SaasKit.m; sourceTree = "<group>"; };
 		6A7378E0810CEBC1CA07075B /* Pods-SaasKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7C6443681A1DF15D003C441C /* UIView+SSKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SSKAdditions.h"; sourceTree = "<group>"; };
-		7C6443691A1DF15D003C441C /* UIView+SSKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SSKAdditions.m"; sourceTree = "<group>"; };
 		7C6443731A1E274E003C441C /* PasswordReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordReminderViewController.h; sourceTree = "<group>"; };
 		7C6443741A1E274E003C441C /* PasswordReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordReminderViewController.m; sourceTree = "<group>"; };
 		7C6443761A1E2762003C441C /* PasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordChangeViewController.h; sourceTree = "<group>"; };
@@ -283,8 +280,6 @@
 			children = (
 				5E1E7B4F1A1CCC020021F34C /* NSString+SSKAdditions.h */,
 				5E1E7B501A1CCC020021F34C /* NSString+SSKAdditions.m */,
-				7C6443681A1DF15D003C441C /* UIView+SSKAdditions.h */,
-				7C6443691A1DF15D003C441C /* UIView+SSKAdditions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -526,7 +521,6 @@
 				5E1E7B341A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m in Sources */,
 				5E1E7B0B1A1C9E130021F34C /* AppDelegate.m in Sources */,
 				7C6443751A1E274E003C441C /* PasswordReminderViewController.m in Sources */,
-				7C64436A1A1DF15D003C441C /* UIView+SSKAdditions.m in Sources */,
 				7C6443801A1E3DA1003C441C /* HomeViewController.m in Sources */,
 				5E1E7B481A1CBE060021F34C /* SSKUser.m in Sources */,
 				5E1E7B081A1C9E130021F34C /* main.m in Sources */,

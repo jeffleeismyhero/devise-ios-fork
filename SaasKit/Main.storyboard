@@ -44,9 +44,6 @@
                                 <rect key="frame" x="8" y="186" width="304" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <segue destination="bLm-eR-XjY" kind="show" identifier="remind password" id="MMU-LU-wuV"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vbm-wL-Xab">
                                 <rect key="frame" x="8" y="224" width="304" height="30"/>
@@ -90,6 +87,7 @@
                         <outlet property="password" destination="JiM-40-WXP" id="sRo-tb-LCy"/>
                         <outlet property="username" destination="tqS-Dg-b1p" id="11u-DL-F8y"/>
                         <segue destination="zOZ-MF-GrP" kind="show" identifier="enter" id="EiM-Vf-zu4"/>
+                        <segue destination="bLm-eR-XjY" kind="show" identifier="remind password" id="8pP-Li-dyc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pf0-Sz-z65" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -503,6 +501,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EiM-Vf-zu4"/>
+        <segue reference="GHH-7m-cTX"/>
     </inferredMetricsTieBreakers>
 </document>
