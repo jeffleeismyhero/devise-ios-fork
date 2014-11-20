@@ -7,21 +7,24 @@
 //
 
 #import "LoginViewController.h"
+#define SSKEnterSegue @"enter"
+#define SSKRemindPasswordSegue @"remind password"
 
 @interface LoginViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UITextField *password;
 
 @end
 
 @implementation LoginViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (IBAction)remindButtonTouched:(UIButton *)sender {
+    [self performSegueWithIdentifier: SSKRemindPasswordSegue sender:self];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)logInTouched:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier: SSKEnterSegue sender:self];
 }
 
 @end

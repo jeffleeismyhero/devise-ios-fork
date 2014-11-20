@@ -8,6 +8,10 @@
 
 #import "RegistrationViewController.h"
 #import "SaasKit.h"
+#import "SSKUser.h"
+#import "UIView+SSKAdditions.h"
+
+#define SSKEnterSegue @"enter"
 
 @interface RegistrationViewController ()
 
@@ -17,32 +21,35 @@
 
 @implementation RegistrationViewController
 
-- (void) viewDidLoad
+- (void) viewWillAppear:(BOOL)animated
 {
-    self.scrollView.contentSize = self.contentView.bounds.size;
-    
+    [super viewWillAppear: animated];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardSizeChanged:)
                                                  name: UIKeyboardWillShowNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardSizeChanged:)
                                                  name: UIKeyboardWillHideNotification object: nil];
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear: animated];
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
 - (void) viewDidLayoutSubviews
 {
+    [super viewDidLayoutSubviews];
     [self.scrollView setContentSize: self.contentView.bounds.size];
 }
 
 - (void) keyboardSizeChanged: (NSNotification*) notification
 {
-    CGRect keyboardEndFrame = [[notification.userInfo objectForKey: UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGRect keyboardBeginFrame = [[notification.userInfo objectForKey: UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect keyboardEndFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect keyboardBeginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     
-    if ( keyboardBeginFrame.origin.y>keyboardEndFrame.origin.y )
-    {
+    if ( keyboardBeginFrame.origin.y>keyboardEndFrame.origin.y ) {
         self.scrollViewBottomConstraint.constant = keyboardBeginFrame.size.height;
-    }
-    else
-    {
+    } else {
         self.scrollViewBottomConstraint.constant = 0;
     }
 }
@@ -57,10 +64,10 @@
     newUser.phone = self.phone.text;
     [newUser signUpWithSuccess:^{
         SSKWorkInProgress( "Proceed further" );
+        [self performSegueWithIdentifier: SSKEnterSegue sender:self];
     } failure:^(NSError *error) {
         [[[UIAlertView alloc] initWithTitle: @"Error" message: error.localizedDescription delegate:nil cancelButtonTitle: @"Close" otherButtonTitles: nil] show];
     }];
-    
 }
 
 @end
