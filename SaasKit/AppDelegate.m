@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "SSKUser.h"
+#import "SaasKit.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +20,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [SaasKit initializeKitWithServerPath:@"http://www.wp.pl"];
+
     return YES;
 }
 

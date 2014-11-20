@@ -13,6 +13,8 @@
 
 @interface SSKAPIManager : NSObject
 
+@property (strong, nonatomic) NSString *lol;
+
 + (void)registerUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 + (void)loginUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 + (void)remindPasswordForUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;

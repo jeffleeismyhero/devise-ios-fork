@@ -17,7 +17,7 @@
         #define SSK_CLS_LOG(__TAG__,__FORMAT__, ...) CLSLog((@"[" __TAG__ @"][%@]" __FORMAT__), NSStringFromClass([self class]), ##__VA_ARGS__)
     #endif
 
-    #define NSLog(...) CLS_LOG(__VA_ARGS__)
+//    #define NSLog(...) CLS_LOG(__VA_ARGS__)
 
     // these macros print on console during debug and send to crashylitycs in release build
     // SSKLog(tag, msg) prints ['tag'][Class name] selectorName msg
@@ -39,6 +39,7 @@
     #define SSKDeprecated(msg) SSKPragma(message "[Deprecated] " msg " (to be removed ASAP)")
     #define SSKWorkInProgress(msg) SSKPragma(message "[TODO] " msg)
     #define SSKTemporary(msg) SSKPragma(message "[Temporary] " msg " (to be fixed ASAP)")
+    #define SSKBackendIssue(msg) SSKPragma(message "[Temporary] " msg " (waiting for backend to fix)")
 
     #define NSLocalizedFormatString(fmt, ...) [NSString stringWithFormat:NSLocalizedString(fmt, nil), __VA_ARGS__]
 

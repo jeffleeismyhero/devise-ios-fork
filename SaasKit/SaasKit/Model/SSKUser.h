@@ -28,15 +28,19 @@ typedef NS_ENUM(NSInteger, SSKLoginMethod) {
 ///designed initializer
 + (instancetype)user;
 
+- (NSDictionary *)extraLoginParams;
+
 #pragma mark - login methods:
 
 - (void)signUpWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
+
+
 - (void)loginWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
+- (void)loginWithExtraParams:(SSKExtraParamsBlock)params success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 
 #pragma mark - remind password methods:
 
 - (void)remindPasswordWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
-
 + (void)remindPasswordWithEmail:(NSString *)email success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 
 #pragma mark - register methods:

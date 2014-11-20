@@ -29,16 +29,8 @@
     return range.location == NSNotFound;
 }
 
-- (BOOL)isEmpty {
-    return !self.length > 0;
-}
-
-- (NSString *)stringByStripHTMLTags {
-    NSRange r;
-    NSString *string = [self copy];
-    while ((r = [string rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
-        string = [string stringByReplacingCharactersInRange:r withString:@""];
-    return string;
+- (BOOL)isNotEmpty {
+    return self.length > 0;
 }
 
 #pragma mark - Private Methods

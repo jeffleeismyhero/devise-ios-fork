@@ -9,6 +9,8 @@
 #import "SSKAPIManager.h"
 #import "SSKHTTPReqeustOperationManager.h"
 #import "SSKMacros.h"
+#import "SSKUser+Query.h"
+#import "SaasKit.h"
 
 @implementation SSKAPIManager
 
@@ -18,9 +20,9 @@
     
     SSKWorkInProgress("Configuration needed - waiting for endpoints");
     
-    [SSKNetworkManager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [SSKNetworkManager requestWithPOST:[user registerPOST] path:[SaasKit pathForRoute:SSKRouteRegister] success:^(id object) {
         success();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         failure(error);
     }];
 }
@@ -29,9 +31,15 @@
     
     SSKWorkInProgress("Configuration needed - waiting for endpoints");
     
-    [SSKNetworkManager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//    [SSKNetworkManager requestWithPOST:[user loginPOST] path:[SaasKit pathForRoute:SSKRouteLogin] success:^(id object) {
+//        success();
+//    } failure:^(NSError *error) {
+//        failure(error);
+//    }];
+    
+    [SSKNetworkManager requestWithGET:[user loginQuery] path:[SaasKit pathForRoute:SSKRouteLogin] success:^(id object) {
         success();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         failure(error);
     }];
 }
@@ -40,9 +48,9 @@
     
     SSKWorkInProgress("Configuration needed - waiting for endpoints");
     
-    [SSKNetworkManager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [SSKNetworkManager requestWithPOST:[user remindPasswordPOST] path:[SaasKit pathForRoute:SSKRouteForgotPassword] success:^(id object) {
         success();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         failure(error);
     }];
 }

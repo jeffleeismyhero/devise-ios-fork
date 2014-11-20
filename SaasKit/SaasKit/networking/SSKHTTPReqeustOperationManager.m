@@ -8,6 +8,7 @@
 
 #import "SSKHTTPReqeustOperationManager.h"
 #import "SSKMacros.h"
+#import "SaasKit.h"
 
 @implementation SSKHTTPReqeustOperationManager
 
@@ -20,19 +21,65 @@
         
         SSKHTTPReqeustOperationManager *manager = [SSKHTTPReqeustOperationManager manager];
     
-//        //request serializer:
-//        AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-//        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Typxe"];
-//        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//        [manager setRequestSerializer:requestSerializer];
-//
-//        AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
-//        [manager setResponseSerializer:responseSerializer];
+        //request serializer:
+        AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Typxe"];
+        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [manager setRequestSerializer:requestSerializer];
+
+        AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
+        [manager setResponseSerializer:responseSerializer];
         
         sharedInstance = manager;
     });
     
     return sharedInstance;
+}
+
+- (void)requestWithPOST:(NSDictionary *)parameters path:(NSString *)path success:(SSKObjectBlock)success failure:(SSKErrorBlock)failure {
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [self POST:[self urlWithPath:path query:nil] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        success(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        failure(error);
+    }];
+}
+
+- (void)requestWithGET:(NSString *)query path:(NSString *)path success:(SSKObjectBlock)success failure:(SSKErrorBlock)failure {
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self GET:[self urlWithPath:path query:query] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        success(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        failure(error);
+    }];
+}
+
+#pragma Private Methods
+
+- (NSString *)urlWithPath:(NSString *)path query:(NSString *)query {
+    
+    BOOL hasInvalidSyntax = (query && !path);
+    NSAssert2(!hasInvalidSyntax, @"Query (%@) cannot exists without specified path(%@)", query, path);
+    NSAssert([SaasKit kit].serverPath, @"You have to specify serverURLPath to send request");
+    
+    NSMutableString *url = [[SaasKit kit].serverPath mutableCopy];
+    if (path) {
+        [url appendFormat:@"/%@", path];
+    }
+    if (query) {
+        [url appendFormat:@"?%@", query];
+    }
+    return [url copy]; //make it immutable
 }
 
 @end

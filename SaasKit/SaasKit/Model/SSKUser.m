@@ -10,6 +10,13 @@
 #import "SSKAPIManager.h"
 #import "SSKUser+Validation.h"
 
+
+@interface SSKUser ()
+
+@property (strong, nonatomic) NSDictionary *extraLoginParameters;
+
+@end
+
 @implementation SSKUser
 
 #pragma mark - Public Methods
@@ -41,6 +48,12 @@
     [SSKAPIManager loginUser:self withSuccess:success failure:failure];
 }
 
+- (void)loginWithExtraParams:(SSKExtraParamsBlock)params success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
+    
+    self.extraLoginParameters = params();
+    [self loginWithSuccess:success failure:failure];
+}
+
 - (void)remindPasswordWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
     NSError *error;
@@ -56,6 +69,10 @@
     SSKUser *user = [SSKUser user];
     user.email = email;
     [user remindPasswordWithSuccess:success failure:failure];
+}
+
+- (NSDictionary *)extraLoginParams {
+    return self.extraLoginParameters;
 }
 
 #pragma mark - Private Methods

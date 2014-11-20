@@ -18,14 +18,14 @@
 
 - (BOOL)loginValidationWithError:(SSKError *__autoreleasing*)error {
     
-    if ([self.password isEmpty]) {
+    if (![self.password isNotEmpty]) {
         *error = [SSKError errorWithCode:SSKErrorPasswordEmpty];
         return NO;
     }
     
     switch (self.loginMethod) {
         case SSKLoginUsingEmail:
-            if ([self.email isEmpty]) {
+            if (![self.email isNotEmpty]) {
                 *error = [SSKError errorWithCode:SSKErrorEmailEmpty];
                 return NO;
             } else if (![self.email hasValidEmailSyntax]) {
@@ -35,7 +35,7 @@
             break;
             
         case SSKLoginUsingUsername:
-            if ([self.username isEmpty]) {
+            if (![self.username isNotEmpty]) {
                 *error = [SSKError errorWithCode:SSKErrorUsernameEmpty];
                 return NO;
             }
@@ -46,7 +46,7 @@
 
 - (BOOL)remindPasswordValidationWithError:(SSKError *__autoreleasing*)error {
     
-    if ([self.password isEmpty]) {
+    if (![self.password isNotEmpty]) {
         *error = [SSKError errorWithCode:SSKErrorPasswordEmpty];
         return NO;
     }

@@ -16,13 +16,13 @@
     
     switch (code) {
         case SSKErrorEmailEmpty:
-            return NSLocalizedString(@"email cannot be empty", @"error localized description");
+            return NSLocalizedString(@"email cannot be nil or empty", @"error localized description");
         case SSKErrorEmailSyntaxError:
             return NSLocalizedString(@"email has invalid syntax",  @"error localized description");
         case SSKErrorPasswordEmpty:
-            return NSLocalizedString(@"password cannot be empty",  @"error localized description");
+            return NSLocalizedString(@"password cannot be nil or empty",  @"error localized description");
         case SSKErrorUsernameEmpty:
-            return NSLocalizedString(@"username cannot be empty",  @"error localized description");
+            return NSLocalizedString(@"username cannot be nil or empty",  @"error localized description");
     }
 }
 

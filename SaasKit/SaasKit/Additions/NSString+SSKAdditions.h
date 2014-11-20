@@ -10,9 +10,8 @@
 
 @interface NSString (SSKAdditions)
 
-- (BOOL)isEmpty;
+- (BOOL)isNotEmpty;
 - (BOOL)hasValidEmailSyntax;
 - (BOOL)isDigit;
-- (NSString *)stringByStripHTMLTags;
 
 @end

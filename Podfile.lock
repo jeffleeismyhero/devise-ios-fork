@@ -20,14 +20,20 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Bolts (1.1.3)
   - Kiwi (2.3.1)
+  - Parse (1.3.0.1):
+    - Bolts (~> 1.1.2)
 
 DEPENDENCIES:
   - AFNetworking
   - Kiwi
+  - Parse (~> 1.3.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
+  Parse: 0297c37bae4c6ffbc9235bd592b9c9844b91dd28
 
 COCOAPODS: 0.35.0.rc2
