@@ -60,7 +60,7 @@
     newUser.firstName = self.firstName.text;
     newUser.lastName = self.lastName.text;
     newUser.phone = self.phone.text;
-    [newUser signUpWithSuccess:^{
+    [newUser registerWithSuccess:^{
         SSKWorkInProgress( "Proceed further" );
         [self performSegueWithIdentifier: SSKEnterSegue sender:self];
     } failure:^(NSError *error) {

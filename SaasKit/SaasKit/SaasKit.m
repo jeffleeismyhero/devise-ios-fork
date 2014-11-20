@@ -31,11 +31,9 @@
     static SaasKit *sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
         SaasKit *saasKit = [[SaasKit alloc] initWithServerPath:serverPath];
         sharedInstance = saasKit;
     });
-    
     return sharedInstance;
 }
 
@@ -64,6 +62,7 @@
 }
 
 #pragma mark - Private Methods
+
 - (NSString *)keyForRoute:(SSKRoute)route {
     return [NSString stringWithFormat:@"%d", route];
 }

@@ -23,26 +23,34 @@ typedef NS_ENUM(NSInteger, SSKLoginMethod) {
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *phone;
 
-@property (nonatomic, assign) SSKLoginMethod loginMethod; //default SSKLoginUsingEmail
+@property (assign, nonatomic) SSKLoginMethod loginMethod; //default SSKLoginUsingEmail
 
-///designed initializer
-+ (instancetype)user;
+/*!
+ Designed initializer for SSKUser class. Sets whole bunch of defaulft behaviours. Use it instead of [[alloc] init] method
+ */
++ (SSKUser *)user;
 
+/*!
+ Additional parameters provided to improve configurability
+ */
 - (NSDictionary *)extraLoginParams;
+- (NSDictionary *)extraRegistrationParams;
+- (NSDictionary *)extraRemindPasswordParams;
 
-#pragma mark - login methods:
-
-- (void)signUpWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
-
+#pragma mark - Login methods:
 
 - (void)loginWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 - (void)loginWithExtraParams:(SSKExtraParamsBlock)params success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 
-#pragma mark - remind password methods:
+#pragma mark - Remind password methods:
 
 - (void)remindPasswordWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
+- (void)remindPasswordWithExtraParams:(SSKExtraParamsBlock)params success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 + (void)remindPasswordWithEmail:(NSString *)email success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 
-#pragma mark - register methods:
+#pragma mark - Register methods:
+
+- (void)registerWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
+- (void)registerWithExtraParams:(SSKExtraParamsBlock)params success:(SSKVoidBlock)success failure:(SSKErrorBlock)failure;
 
 @end

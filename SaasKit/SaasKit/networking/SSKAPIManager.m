@@ -31,12 +31,6 @@
     
     SSKWorkInProgress("Configuration needed - waiting for endpoints");
     
-//    [SSKNetworkManager requestWithPOST:[user loginPOST] path:[SaasKit pathForRoute:SSKRouteLogin] success:^(id object) {
-//        success();
-//    } failure:^(NSError *error) {
-//        failure(error);
-//    }];
-    
     [SSKNetworkManager requestWithGET:[user loginQuery] path:[SaasKit pathForRoute:SSKRouteLogin] success:^(id object) {
         success();
     } failure:^(NSError *error) {

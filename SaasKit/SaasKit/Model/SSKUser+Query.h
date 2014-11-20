@@ -11,6 +11,7 @@
 @interface SSKUser (Query)
 
 - (NSString *)loginQuery;
+
 - (NSDictionary *)loginPOST;
 
 - (NSDictionary *)remindPasswordPOST;

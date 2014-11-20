@@ -32,14 +32,12 @@
         
         sharedInstance = manager;
     });
-    
     return sharedInstance;
 }
 
 - (void)requestWithPOST:(NSDictionary *)parameters path:(NSString *)path success:(SSKObjectBlock)success failure:(SSKErrorBlock)failure {
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
     [self POST:[self urlWithPath:path query:nil] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -55,6 +53,7 @@
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self GET:[self urlWithPath:path query:query] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         success(responseObject);
         
