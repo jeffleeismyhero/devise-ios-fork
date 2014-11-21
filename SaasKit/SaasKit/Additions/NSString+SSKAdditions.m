@@ -33,6 +33,10 @@
     return self.length > 0;
 }
 
+- (NSString *)stringByEscapingDiacritics {
+    return [self stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
 #pragma mark - Private Methods
 
 @end

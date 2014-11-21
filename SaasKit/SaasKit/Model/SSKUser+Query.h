@@ -11,11 +11,14 @@
 @interface SSKUser (Query)
 
 - (NSString *)loginQuery;
-
 - (NSDictionary *)loginPOST;
 
+- (NSString *)remindPasswordQuery;
 - (NSDictionary *)remindPasswordPOST;
 
+- (NSString *)registerQuery;
 - (NSDictionary *)registerPOST;
+
+- (SSKRequestType)requestTypeForSelector:(SEL)selector;
 
 @end

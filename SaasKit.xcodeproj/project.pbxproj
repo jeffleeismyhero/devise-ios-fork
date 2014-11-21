@@ -24,10 +24,10 @@
 		5E1E7B611A1CE2F90021F34C /* SSKErrorTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B601A1CE2F90021F34C /* SSKErrorTranslate.m */; };
 		5E61F30D1A1E15ED00BD088E /* SSKUser+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F30C1A1E15ED00BD088E /* SSKUser+Query.m */; };
 		5EA83D461A1E2ED5002219EC /* SaasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA83D451A1E2ED5002219EC /* SaasKit.m */; };
-		7C6443751A1E274E003C441C /* PasswordReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6443741A1E274E003C441C /* PasswordReminderViewController.m */; };
-		7C6443781A1E2762003C441C /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6443771A1E2762003C441C /* PasswordChangeViewController.m */; };
-		7C64437D1A1E3740003C441C /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C64437C1A1E3740003C441C /* WelcomeViewController.m */; };
-		7C6443801A1E3DA1003C441C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C64437F1A1E3DA1003C441C /* HomeViewController.m */; };
+		5EE401F71A1F4660000EA9B8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE401F61A1F4660000EA9B8 /* HomeViewController.m */; };
+		5EE401FA1A1F466F000EA9B8 /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE401F91A1F466F000EA9B8 /* PasswordChangeViewController.m */; };
+		5EE401FD1A1F4678000EA9B8 /* PasswordReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE401FC1A1F4678000EA9B8 /* PasswordReminderViewController.m */; };
+		5EE402001A1F467F000EA9B8 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE401FF1A1F467F000EA9B8 /* WelcomeViewController.m */; };
 		7CD6534A1A1CB7CB007346E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7CD653491A1CB7CB007346E8 /* Podfile */; };
 		7CD6534B1A1CB7CB007346E8 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7CD653491A1CB7CB007346E8 /* Podfile */; };
 		C63282489C82196C5AE94A23 /* libPods-SaasKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB2105159DA735CE5E5B02D /* libPods-SaasKitTests.a */; };
@@ -80,17 +80,18 @@
 		5E1E7B601A1CE2F90021F34C /* SSKErrorTranslate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKErrorTranslate.m; path = SaasKit/Common/SSKErrorTranslate.m; sourceTree = "<group>"; };
 		5E61F30B1A1E15ED00BD088E /* SSKUser+Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SSKUser+Query.h"; path = "SaasKit/Model/SSKUser+Query.h"; sourceTree = "<group>"; };
 		5E61F30C1A1E15ED00BD088E /* SSKUser+Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SSKUser+Query.m"; path = "SaasKit/Model/SSKUser+Query.m"; sourceTree = "<group>"; };
+		5EA325021A1F824E0053FCF4 /* SSKUserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKUserDataSource.h; path = SaasKit/Protocols/SSKUserDataSource.h; sourceTree = "<group>"; };
 		5EA83D441A1E2ED5002219EC /* SaasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaasKit.h; path = SaasKit/SaasKit.h; sourceTree = "<group>"; };
 		5EA83D451A1E2ED5002219EC /* SaasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaasKit.m; path = SaasKit/SaasKit.m; sourceTree = "<group>"; };
+		5EE401F51A1F4660000EA9B8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controllers/HomeViewController.h; sourceTree = "<group>"; };
+		5EE401F61A1F4660000EA9B8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controllers/HomeViewController.m; sourceTree = "<group>"; };
+		5EE401F81A1F466F000EA9B8 /* PasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordChangeViewController.h; path = Controllers/PasswordChangeViewController.h; sourceTree = "<group>"; };
+		5EE401F91A1F466F000EA9B8 /* PasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasswordChangeViewController.m; path = Controllers/PasswordChangeViewController.m; sourceTree = "<group>"; };
+		5EE401FB1A1F4678000EA9B8 /* PasswordReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasswordReminderViewController.h; path = Controllers/PasswordReminderViewController.h; sourceTree = "<group>"; };
+		5EE401FC1A1F4678000EA9B8 /* PasswordReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasswordReminderViewController.m; path = Controllers/PasswordReminderViewController.m; sourceTree = "<group>"; };
+		5EE401FE1A1F467F000EA9B8 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = Controllers/WelcomeViewController.h; sourceTree = "<group>"; };
+		5EE401FF1A1F467F000EA9B8 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = Controllers/WelcomeViewController.m; sourceTree = "<group>"; };
 		6A7378E0810CEBC1CA07075B /* Pods-SaasKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7C6443731A1E274E003C441C /* PasswordReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordReminderViewController.h; sourceTree = "<group>"; };
-		7C6443741A1E274E003C441C /* PasswordReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordReminderViewController.m; sourceTree = "<group>"; };
-		7C6443761A1E2762003C441C /* PasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordChangeViewController.h; sourceTree = "<group>"; };
-		7C6443771A1E2762003C441C /* PasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordChangeViewController.m; sourceTree = "<group>"; };
-		7C64437B1A1E3740003C441C /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
-		7C64437C1A1E3740003C441C /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
-		7C64437E1A1E3DA1003C441C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		7C64437F1A1E3DA1003C441C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		7CD653491A1CB7CB007346E8 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		801957178660E68FB68C1D2E /* Pods-SaasKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaasKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaasKitTests/Pods-SaasKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		9BB2105159DA735CE5E5B02D /* libPods-SaasKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SaasKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,6 +256,7 @@
 		5E1E7B491A1CBE090021F34C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5EA325001A1F79D90053FCF4 /* Protocols */,
 				5E1E7B4E1A1CC5AA0021F34C /* Additions */,
 				5E1E7B581A1CD9C30021F34C /* SSKObject.h */,
 				5E1E7B591A1CD9C30021F34C /* SSKObject.m */,
@@ -295,11 +297,19 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		5EA325001A1F79D90053FCF4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5EA325021A1F824E0053FCF4 /* SSKUserDataSource.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		7C64436E1A1E2719003C441C /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
-				7C64437B1A1E3740003C441C /* WelcomeViewController.h */,
-				7C64437C1A1E3740003C441C /* WelcomeViewController.m */,
+				5EE401FE1A1F467F000EA9B8 /* WelcomeViewController.h */,
+				5EE401FF1A1F467F000EA9B8 /* WelcomeViewController.m */,
 			);
 			name = Welcome;
 			sourceTree = "<group>";
@@ -307,8 +317,8 @@
 		7C6443721A1E2735003C441C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				7C64437E1A1E3DA1003C441C /* HomeViewController.h */,
-				7C64437F1A1E3DA1003C441C /* HomeViewController.m */,
+				5EE401F51A1F4660000EA9B8 /* HomeViewController.h */,
+				5EE401F61A1F4660000EA9B8 /* HomeViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -316,8 +326,8 @@
 		7C6443791A1E277A003C441C /* Password Reminder */ = {
 			isa = PBXGroup;
 			children = (
-				7C6443731A1E274E003C441C /* PasswordReminderViewController.h */,
-				7C6443741A1E274E003C441C /* PasswordReminderViewController.m */,
+				5EE401FB1A1F4678000EA9B8 /* PasswordReminderViewController.h */,
+				5EE401FC1A1F4678000EA9B8 /* PasswordReminderViewController.m */,
 			);
 			name = "Password Reminder";
 			sourceTree = "<group>";
@@ -325,8 +335,8 @@
 		7C64437A1A1E2786003C441C /* Password Change */ = {
 			isa = PBXGroup;
 			children = (
-				7C6443761A1E2762003C441C /* PasswordChangeViewController.h */,
-				7C6443771A1E2762003C441C /* PasswordChangeViewController.m */,
+				5EE401F81A1F466F000EA9B8 /* PasswordChangeViewController.h */,
+				5EE401F91A1F466F000EA9B8 /* PasswordChangeViewController.m */,
 			);
 			name = "Password Change";
 			sourceTree = "<group>";
@@ -513,21 +523,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EA83D461A1E2ED5002219EC /* SaasKit.m in Sources */,
+				5EE401FA1A1F466F000EA9B8 /* PasswordChangeViewController.m in Sources */,
 				5E1E7B5A1A1CD9C30021F34C /* SSKObject.m in Sources */,
 				5E61F30D1A1E15ED00BD088E /* SSKUser+Query.m in Sources */,
 				5E1E7B551A1CD3880021F34C /* SSKUser+Validation.m in Sources */,
-				7C6443781A1E2762003C441C /* PasswordChangeViewController.m in Sources */,
 				5E1E7B3F1A1CADFB0021F34C /* RegistrationViewController.m in Sources */,
 				5E1E7B341A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m in Sources */,
 				5E1E7B0B1A1C9E130021F34C /* AppDelegate.m in Sources */,
-				7C6443751A1E274E003C441C /* PasswordReminderViewController.m in Sources */,
-				7C6443801A1E3DA1003C441C /* HomeViewController.m in Sources */,
 				5E1E7B481A1CBE060021F34C /* SSKUser.m in Sources */,
+				5EE401F71A1F4660000EA9B8 /* HomeViewController.m in Sources */,
 				5E1E7B081A1C9E130021F34C /* main.m in Sources */,
+				5EE402001A1F467F000EA9B8 /* WelcomeViewController.m in Sources */,
 				5E1E7B511A1CCC020021F34C /* NSString+SSKAdditions.m in Sources */,
 				5E1E7B451A1CBD850021F34C /* SSKAPIManager.m in Sources */,
-				7C64437D1A1E3740003C441C /* WelcomeViewController.m in Sources */,
 				5E1E7B3C1A1CADE70021F34C /* LoginViewController.m in Sources */,
+				5EE401FD1A1F4678000EA9B8 /* PasswordReminderViewController.m in Sources */,
 				5E1E7B5D1A1CE1600021F34C /* SSKError.m in Sources */,
 				5E1E7B611A1CE2F90021F34C /* SSKErrorTranslate.m in Sources */,
 			);

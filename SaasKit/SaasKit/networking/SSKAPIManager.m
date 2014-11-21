@@ -18,37 +18,74 @@
 
 + (void)registerUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
-    SSKWorkInProgress("Configuration needed - waiting for endpoints");
+    DLog(@"\nRegistration:\n\nGET: %@\n\nPOST: %@", [user registerQuery], [user registerPOST]);
     
-    [SSKNetworkManager requestWithPOST:[user registerPOST] path:[SaasKit pathForRoute:SSKRouteRegister] success:^(id object) {
-        success();
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    SSKRequestType requestType = [user requestTypeForSelector:@selector(requestTypeForUserRegistration:)];
+    NSString *path = [SaasKit pathForRoute:SSKRouteRegister];
+    
+    if (requestType == SSKRequestPOST) {
+        
+        [SSKNetworkManager requestWithPOST:[user registerPOST] path:path success:^(id object) {
+            success();
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
+    } else {
+        
+        [SSKNetworkManager requestWithGET:[user registerQuery] path:path success:^(id object) {
+            success();
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
+    }
 }
 
 + (void)loginUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
-    SSKWorkInProgress("Configuration needed - waiting for endpoints");
+    DLog(@"\nLogin:\n\nGET: %@\n\nPOST: %@", [user loginQuery], [user loginPOST]);
     
-    [SSKNetworkManager requestWithGET:[user loginQuery] path:[SaasKit pathForRoute:SSKRouteLogin] success:^(id object) {
-        success();
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    SSKRequestType requestType = [user requestTypeForSelector:@selector(requestTypeForUserLogin:)];
+    NSString *path = [SaasKit pathForRoute:SSKRouteLogin];
+    
+    if (requestType == SSKRequestPOST) {
+        
+        [SSKNetworkManager requestWithPOST:[user loginPOST] path:path success:^(id object) {
+            success();
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
+    } else {
+        
+        [SSKNetworkManager requestWithGET:[user loginQuery] path:path success:^(id object) {
+            success();
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
+    }
 }
 
 + (void)remindPasswordForUser:(SSKUser *)user withSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
-    SSKWorkInProgress("Configuration needed - waiting for endpoints");
+    DLog(@"\nRemind Password:\n\nGET: %@\n\nPOST: %@", [user remindPasswordQuery], [user remindPasswordPOST]);
     
-    [SSKNetworkManager requestWithPOST:[user remindPasswordPOST] path:[SaasKit pathForRoute:SSKRouteForgotPassword] success:^(id object) {
-        success();
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    SSKRequestType requestType = [user requestTypeForSelector:@selector(requestTypeForUserRemindPassword:)];
+    NSString *path = [SaasKit pathForRoute:SSKRouteForgotPassword];
+    
+    if (requestType == SSKRequestPOST) {
+        
+        [SSKNetworkManager requestWithPOST:[user remindPasswordPOST] path:[SaasKit pathForRoute:SSKRouteForgotPassword] success:^(id object) {
+            success();
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
+    } else {
+        
+        [SSKNetworkManager requestWithGET:[user remindPasswordQuery] path:path success:^(id object) {
+            success();
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
+    }
 }
-
-#pragma mark - Private Methods
-
+     
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "SaasKit.h"
+#import "SSKMacros.h"
 
 @interface SaasKit ()
 
@@ -59,6 +60,32 @@
 
 + (NSDictionary *)allRoutes {
     return [self kit].routes;
+}
+
++ (void)setLogLevel:(SSKLogLevel)level {
+    [self kit].logLevel = level;
+}
+
++ (void)log:(NSString *)message function:(NSString *)function level:(SSKLogLevel)level {
+    if (!function) function = @"";
+    switch (level) {
+        case SSKLogLevelNone:
+            break;
+        case SSKLogLevelWarning:
+            NSLog(@"[WARNING] %@ %@", function, message);
+            break;
+        case SSKLogLevelAssert:
+            NSAssert2(NO, @"%@ %@", function, message);
+            break;
+    }
+}
+
++ (void)log:(NSString *)message function:(NSString *)function {
+    [self log:message function:function level:[self kit].logLevel];
+}
+
++ (void)log:(NSString *)message {
+    [self log:message function:nil level:[self kit].logLevel];
 }
 
 #pragma mark - Private Methods

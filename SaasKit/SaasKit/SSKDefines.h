@@ -19,6 +19,7 @@
     typedef void (^SSKObjectBlock)(id object);
     typedef void (^SSKVoidBlock)(void);
     typedef NSDictionary *(^SSKExtraParamsBlock)(void);
+
     #endif
 
 #endif

@@ -7,10 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
 #import "SaasKit.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <SSKUserDataSource>
 
 @end
 
@@ -21,8 +20,36 @@
     // Override point for customization after application launch.
     
     [SaasKit initializeKitWithServerPath:@"http://www.wp.pl"];
-
+    [SaasKit setLogLevel:SSKLogLevelWarning];
+    
+    SSKUser *user = [SSKUser user];
+    user.loginMethod = SSKLoginUsingUsername;
+    user.email = @"asdsaf@o2.pl";
+    user.username = @"7oorum";
+    user.password = @"pass";
+    user.dataSource = self;
+    
+    [user loginWithExtraParams:^NSDictionary *{
+        return @{@(10) : @"asdas"};
+    } success:^{
+        NSLog(@"success");
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
     return YES;
+}
+
+- (SSKRequestType)requestTypeForUserLogin:(SSKUser *)user {
+    return SSKRequestGET;
+}
+
+- (NSString *)nameForUsernameInUserLogin:(SSKUser *)user {
+    return @"użytkownik";
+}
+
+- (NSString *)nameForEmailInUserLogin:(SSKUser *)user {
+    return @"poczta";
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

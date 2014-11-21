@@ -7,6 +7,7 @@
 //
 
 #import "SSKObject.h"
+#import "SSKUserDataSource.h"
 
 typedef NS_ENUM(NSInteger, SSKLoginMethod) {
     SSKLoginUsingEmail,
@@ -24,14 +25,17 @@ typedef NS_ENUM(NSInteger, SSKLoginMethod) {
 @property (strong, nonatomic) NSString *phone;
 
 @property (assign, nonatomic) SSKLoginMethod loginMethod; //default SSKLoginUsingEmail
+@property (weak, nonatomic) id <SSKUserDataSource> dataSource;
 
-/*!
- Designed initializer for SSKUser class. Sets whole bunch of defaulft behaviours. Use it instead of [[alloc] init] method
+/**
+ *  Designed initializer for SSKUser class. Sets whole bunch of defaulft behaviours. Use it instead of [[alloc] init] method.
+ *  @return Instance of SSKUser.
  */
 + (SSKUser *)user;
 
-/*!
- Additional parameters provided to improve configurability
+/**
+ *  Additional parameters provided to improve configurability.
+ *  @return NSDictionary with remembered parameters if any.
  */
 - (NSDictionary *)extraLoginParams;
 - (NSDictionary *)extraRegistrationParams;

@@ -69,7 +69,7 @@
     
     BOOL hasInvalidSyntax = (query && !path);
     NSAssert2(!hasInvalidSyntax, @"Query (%@) cannot exists without specified path(%@)", query, path);
-    NSAssert([SaasKit kit].serverPath, @"You have to specify serverURLPath to send request");
+    NSAssert([SaasKit kit].serverPath, @"You have to specify serverURLPath. Initialize SaasKit using [SaasKit initializeKitWithServerPath:#yourServerPath#]");
     
     NSMutableString *url = [[SaasKit kit].serverPath mutableCopy];
     if (path) {

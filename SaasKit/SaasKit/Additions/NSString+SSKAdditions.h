@@ -13,5 +13,6 @@
 - (BOOL)isNotEmpty;
 - (BOOL)hasValidEmailSyntax;
 - (BOOL)isDigit;
+- (NSString *)stringByEscapingDiacritics;
 
 @end
