@@ -14,9 +14,10 @@
 
 #pragma mark - Public Methods
 
-+ (instancetype)errorWithCode:(SSKErrorCode)code {
++ (instancetype)errorWithCode:(SSKErrorCode)code param:(NSString *)param {
+    NSString *description = [NSString stringWithFormat:@"Param '%@' %@", param, [SSKErrorTranslate translateErrorCode:code]];
     return [self errorWithDomain:SSKErrorDomain code:code
-                        userInfo:@{NSLocalizedDescriptionKey:[SSKErrorTranslate translateErrorCode:code]}];
+                        userInfo:@{NSLocalizedDescriptionKey:description}];
 
 }
 

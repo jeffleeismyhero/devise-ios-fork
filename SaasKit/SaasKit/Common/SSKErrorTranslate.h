@@ -9,10 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, SSKErrorCode) {
-    SSKErrorEmailEmpty = 20001,
-    SSKErrorEmailSyntaxError,
-    SSKErrorPasswordEmpty,
-    SSKErrorUsernameEmpty
+    SSKErrorParamEmpty = 20001,
+    SSKErrorInvalidSyntax
 };
 
 @interface SSKErrorTranslate : NSObject

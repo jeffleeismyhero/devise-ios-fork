@@ -11,6 +11,12 @@
 #import "SSKErrorTranslate.h"
 #import "SSKAPIManager.h"
 
+NSString * const kEmail = @"test@gmail.com";
+NSString * const kUsername = @"ZeusTheGod";
+NSString * const kPassword = @"MyVeRYStrongPassWoRd";
+
+static NSString * const kIncorrectEmail = @"test@";
+
 SPEC_BEGIN(SSKUserSpec)
 
 describe(@"User", ^{
@@ -20,13 +26,11 @@ describe(@"User", ^{
     __block SSKAPIManager *apiManager;
     
     beforeAll(^{
-        [SaasKit initializeKitWithServerPath:@"www.wp.pl"];
+        [SaasKit initializeKitWithServerPath:@"www.google.com"];
     });
     
     beforeEach(^{
         user = [SSKUser user];
-        user.username = @"username";
-        user.password = @"password";
     });
     
     afterEach(^{
@@ -42,24 +46,24 @@ describe(@"User", ^{
     context(@"when trying remind password", ^{
         beforeEach(^{
             [SSKAPIManager stub:@selector(remindPasswordForUser:withSuccess:failure:) withBlock:^id(NSArray *params) {
-                SSKVoidBlock successBlock = params[1];
-                successBlock();
+                SSKVoidBlock success = params[1];
+                success();
                 return nil;
             }];
         });
         
-        it(@"with wrong email syntax, should return error with correct code", ^{
-            user.email = @"email";
+        it([NSString stringWithFormat:@"with wrong email syntax, should return error with code %d", SSKErrorInvalidSyntax], ^{
+            user.email = kIncorrectEmail;
             [user remindPasswordWithSuccess:^{
                 testError = nil;
             } failure:^(NSError *error) {
                 testError = error;
             }];
-            [[expectFutureValue (theValue (testError.code)) shouldEventually] equal:(theValue(SSKErrorEmailSyntaxError))];
+            [[expectFutureValue(theValue (testError.code)) shouldEventually] equal:(theValue(SSKErrorInvalidSyntax))];
         });
         
         it(@"with correct email syntax, should not return error", ^{
-            user.email = @"email@gmail.com";
+            user.email = kEmail;
             [user remindPasswordWithSuccess:^{
                 testError = nil;
             } failure:^(NSError *error) {
@@ -68,6 +72,63 @@ describe(@"User", ^{
             [[expectFutureValue(testError) shouldEventually] beNil];
         });
     });
+    
+    context(@"when trying to login", ^{
+        beforeEach(^{
+            [SSKAPIManager stub:@selector(loginUser:withSuccess:failure:) withBlock:^id(NSArray *params) {
+                SSKVoidBlock success = params[1];
+                success();
+                return nil;
+            }];
+            
+            //predefine properties to reduce single test declaration above
+            user.password = kPassword;
+            user.username = kUsername;
+            user.email = kEmail;
+        });
+        
+        it([NSString stringWithFormat:@"with wrong email syntax, should return error with code %d", SSKErrorInvalidSyntax], ^{
+            user.email = kIncorrectEmail;
+            [user loginWithSuccess:^{
+                testError = nil;
+            } failure:^(NSError *error) {
+                testError = error;
+            }];
+            [[expectFutureValue(theValue (testError.code)) shouldEventually] equal:(theValue(SSKErrorInvalidSyntax))];
+        });
+        
+        it([NSString stringWithFormat:@"with empty username, should return error with code %d", SSKErrorParamEmpty], ^{
+            user.username = nil;
+            user.loginMethod = SSKLoginUsingUsername;
+            [user loginWithSuccess:^{
+                testError = nil;
+            } failure:^(NSError *error) {
+                testError = error;
+            }];
+            [[expectFutureValue(theValue (testError.code)) shouldEventually] equal:(theValue(SSKErrorParamEmpty))];
+        });
+        
+        it([NSString stringWithFormat:@"with empty password, should return error with code %d", SSKErrorParamEmpty], ^{
+            user.password = nil;
+            [user loginWithSuccess:^{
+                testError = nil;
+            } failure:^(NSError *error) {
+                testError = error;
+            }];
+            [[expectFutureValue(theValue (testError.code)) shouldEventually] equal:(theValue(SSKErrorParamEmpty))];
+        });
+        
+        it(@"with correct data, should not return error", ^{
+            [user loginWithSuccess:^{
+                testError = nil;
+            } failure:^(NSError *error) {
+                testError = error;
+            }];
+            [[expectFutureValue(testError) shouldEventually] beNil];
+        });
+        
+    });
 });
+
 
 SPEC_END

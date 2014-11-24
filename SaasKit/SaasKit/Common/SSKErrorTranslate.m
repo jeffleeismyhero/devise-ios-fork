@@ -15,14 +15,10 @@
 + (NSString *)translateErrorCode:(SSKErrorCode)code {
     
     switch (code) {
-        case SSKErrorEmailEmpty:
-            return NSLocalizedString(@"email cannot be nil or empty", @"error localized description");
-        case SSKErrorEmailSyntaxError:
-            return NSLocalizedString(@"email has invalid syntax",  @"error localized description");
-        case SSKErrorPasswordEmpty:
-            return NSLocalizedString(@"password cannot be nil or empty",  @"error localized description");
-        case SSKErrorUsernameEmpty:
-            return NSLocalizedString(@"username cannot be nil or empty",  @"error localized description");
+        case SSKErrorInvalidSyntax:
+            return NSLocalizedString(@"has invalid syntax",  @"error localized description");
+        case SSKErrorParamEmpty:
+            return NSLocalizedString(@"cannot be nil or empty",  @"error localized description");
     }
 }
 

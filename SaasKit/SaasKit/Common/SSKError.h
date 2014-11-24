@@ -11,6 +11,6 @@
 
 @interface SSKError : NSError
 
-+ (instancetype)errorWithCode:(SSKErrorCode)code;
++ (instancetype)errorWithCode:(SSKErrorCode)code param:(NSString *)param;
 
 @end
