@@ -10,7 +10,6 @@
 		5E1E7B081A1C9E130021F34C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B071A1C9E130021F34C /* main.m */; };
 		5E1E7B0B1A1C9E130021F34C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B0A1A1C9E130021F34C /* AppDelegate.m */; };
 		5E1E7B131A1C9E130021F34C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E1E7B121A1C9E130021F34C /* Images.xcassets */; };
-		5E1E7B221A1C9E130021F34C /* SaasKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B211A1C9E130021F34C /* SaasKitTests.m */; };
 		5E1E7B341A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B331A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m */; };
 		5E1E7B3C1A1CADE70021F34C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B3B1A1CADE70021F34C /* LoginViewController.m */; };
 		5E1E7B3F1A1CADFB0021F34C /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B3E1A1CADFB0021F34C /* RegistrationViewController.m */; };
@@ -23,6 +22,7 @@
 		5E1E7B5D1A1CE1600021F34C /* SSKError.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B5C1A1CE1600021F34C /* SSKError.m */; };
 		5E1E7B611A1CE2F90021F34C /* SSKErrorTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1E7B601A1CE2F90021F34C /* SSKErrorTranslate.m */; };
 		5E61F30D1A1E15ED00BD088E /* SSKUser+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F30C1A1E15ED00BD088E /* SSKUser+Query.m */; };
+		5EA325071A2337190053FCF4 /* SSKUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA325061A2337190053FCF4 /* SSKUserSpec.m */; };
 		5EA83D461A1E2ED5002219EC /* SaasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA83D451A1E2ED5002219EC /* SaasKit.m */; };
 		5EE401F71A1F4660000EA9B8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE401F61A1F4660000EA9B8 /* HomeViewController.m */; };
 		5EE401FA1A1F466F000EA9B8 /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE401F91A1F466F000EA9B8 /* PasswordChangeViewController.m */; };
@@ -54,7 +54,6 @@
 		5E1E7B121A1C9E130021F34C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5E1E7B1B1A1C9E130021F34C /* SaasKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SaasKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1E7B201A1C9E130021F34C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5E1E7B211A1C9E130021F34C /* SaasKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaasKitTests.m; sourceTree = "<group>"; };
 		5E1E7B321A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKHTTPReqeustOperationManager.h; path = SaasKit/networking/SSKHTTPReqeustOperationManager.h; sourceTree = "<group>"; };
 		5E1E7B331A1CA67F0021F34C /* SSKHTTPReqeustOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKHTTPReqeustOperationManager.m; path = SaasKit/networking/SSKHTTPReqeustOperationManager.m; sourceTree = "<group>"; };
 		5E1E7B3A1A1CADE70021F34C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Controllers/LoginViewController.h; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		5E61F30B1A1E15ED00BD088E /* SSKUser+Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SSKUser+Query.h"; path = "SaasKit/Model/SSKUser+Query.h"; sourceTree = "<group>"; };
 		5E61F30C1A1E15ED00BD088E /* SSKUser+Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SSKUser+Query.m"; path = "SaasKit/Model/SSKUser+Query.m"; sourceTree = "<group>"; };
 		5EA325021A1F824E0053FCF4 /* SSKUserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKUserDataSource.h; path = SaasKit/Protocols/SSKUserDataSource.h; sourceTree = "<group>"; };
+		5EA325061A2337190053FCF4 /* SSKUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKUserSpec.m; path = UnitTests/SSKUserSpec.m; sourceTree = "<group>"; };
 		5EA83D441A1E2ED5002219EC /* SaasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaasKit.h; path = SaasKit/SaasKit.h; sourceTree = "<group>"; };
 		5EA83D451A1E2ED5002219EC /* SaasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaasKit.m; path = SaasKit/SaasKit.m; sourceTree = "<group>"; };
 		5EE401F51A1F4660000EA9B8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controllers/HomeViewController.h; sourceTree = "<group>"; };
@@ -157,6 +157,7 @@
 				5E1E7B2B1A1CA4780021F34C /* Controller */,
 				5E1E7B2D1A1CA4D70021F34C /* Resources */,
 				5E1E7B051A1C9E130021F34C /* Supporting Files */,
+				5EA325081A23371D0053FCF4 /* Unit tests */,
 			);
 			path = SaasKit;
 			sourceTree = "<group>";
@@ -173,7 +174,6 @@
 		5E1E7B1E1A1C9E130021F34C /* SaasKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				5E1E7B211A1C9E130021F34C /* SaasKitTests.m */,
 				5E1E7B1F1A1C9E130021F34C /* Supporting Files */,
 			);
 			path = SaasKitTests;
@@ -303,6 +303,14 @@
 				5EA325021A1F824E0053FCF4 /* SSKUserDataSource.h */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		5EA325081A23371D0053FCF4 /* Unit tests */ = {
+			isa = PBXGroup;
+			children = (
+				5EA325061A2337190053FCF4 /* SSKUserSpec.m */,
+			);
+			name = "Unit tests";
 			sourceTree = "<group>";
 		};
 		7C64436E1A1E2719003C441C /* Welcome */ = {
@@ -547,7 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E1E7B221A1C9E130021F34C /* SaasKitTests.m in Sources */,
+				5EA325071A2337190053FCF4 /* SSKUserSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

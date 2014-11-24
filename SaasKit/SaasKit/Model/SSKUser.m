@@ -9,7 +9,7 @@
 #import "SSKUser.h"
 #import "SSKAPIManager.h"
 #import "SSKUser+Validation.h"
-
+#import "SSKAPIManager.h"
 
 @interface SSKUser ()
 
@@ -94,6 +94,12 @@
 #pragma mark - Register methods:
 
 - (void)registerWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
+    
+    NSError *error;
+    if (![self remindPasswordValidationWithError:&error]) {
+        failure(error);
+        return;
+    }
     [SSKAPIManager registerUser:self withSuccess:success failure:failure];
 }
 

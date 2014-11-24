@@ -13,5 +13,6 @@
 
 - (BOOL)loginValidationWithError:(SSKError **)error;
 - (BOOL)remindPasswordValidationWithError:(SSKError **)error;
+- (BOOL)registrationValidationWithError:(SSKError **)error;
 
 @end

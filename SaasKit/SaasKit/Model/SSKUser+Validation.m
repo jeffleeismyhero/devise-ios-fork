@@ -14,6 +14,9 @@
 
 @implementation SSKUser (Validation)
 
+
+SSKWorkInProgress("Improve validation to be more flexible and pro");
+
 #pragma mark - Public Methods
 
 - (BOOL)loginValidationWithError:(SSKError *__autoreleasing*)error {
@@ -45,6 +48,15 @@
 }
 
 - (BOOL)remindPasswordValidationWithError:(SSKError *__autoreleasing*)error {
+    
+    if (![self.email hasValidEmailSyntax]) {
+        *error = [SSKError errorWithCode:SSKErrorEmailSyntaxError];
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)registrationValidationWithError:(SSKError *__autoreleasing *)error {
     
     if (![self.password isNotEmpty]) {
         *error = [SSKError errorWithCode:SSKErrorPasswordEmpty];
