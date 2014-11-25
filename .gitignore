@@ -1,78 +1,46 @@
 #
 #  .gitignore
 #
-#  Created by Patryk Kaczmarek on 18.11.2014.
 #  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 #
 
-#####
-# OS X temporary files that should never be committed
-#
-# note: c.f. http://www.westwind.com/reference/os-x/invisibles.html
-####
-
+# OS X
 .DS_Store
-.Trashes
-*.swp
+.localized
 
-####
-# Xcode temporary files that should never be committed
-#
-# note: NB: NIB/XIB files still exist even on Storyboard projects, so we want this...
-####
-
-*~.nib
-
-####
-# Xcode build files:
-####
-
-DerivedData/
-build/
-output/
-xcodebuild.log
-xcodebuild_error.log
-
-#####
-# Xcode private settings (window sizes, bookmarks, breakpoints, custom executables, smart groups):
-#####
-
-*.pbxuser
+# Xcode user-specific files
 *.mode1v3
 *.mode2v3
 *.perspectivev3
+*.pbxuser
 *.xccheckout
 *.moved-aside
-*ipa
-*.lock
+*.hmap
+*.ipa
 
-####
-# Xcode semi-personal settings:
-#####
-
+# Xcode user-specific directories
 xcuserdata
 profile
 
-####
-# COCOAPODS:
-#
-# note: http://guides.cocoapods.org/using/using-cocoapods.html#what-is-a-podfilelock
-# note: http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-####
+# Xcode build directories
+build
+output
+DerivedData
 
-Pods/
-!Podfile.lock
-
-####
-# RUBY:
-#
-# note: http://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
-####
-
-!Gemfile.lock
-
-####
-# IDEA:
-####
-
+# AppCode files
 .idea
+
+# Raw logs
+xcodebuild.log
+xcodebuild_error.log
+
+# CocoaPods files
+Pods
+
+# Carthage files
+Carthage.build
+Carthage.checkout
+
+# Bundler files
+.bundle
+vendor
