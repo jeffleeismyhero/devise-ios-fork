@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, SSKLogLevel) {
 /// The root URL of the server backend.
 @property (strong, nonatomic) NSURL *serverURL;
 
-/// The logging level of the frameword (default: SSKLogLevelNone).
+/// The logging level of the framework (default: SSKLogLevelNone).
 @property (assign, nonatomic) SSKLogLevel logLevel;
 
 // /////////////////////////////////////////////////////////////////////////////

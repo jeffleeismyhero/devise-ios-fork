@@ -15,7 +15,7 @@ SSKWorkInProgress("Improve validation to be more flexible and pro");
 
 - (BOOL)validateForLoginWithError:(NSError * __autoreleasing *)error {
 
-    if (self.password.ssk_isEmpty) {
+    if ([self.password ssk_isEmpty]) {
         if (error != NULL) *error = [NSError ssk_errorWithCode:SSKErrorParamEmpty parameter:@"password"];
         return NO;
     }
@@ -23,17 +23,17 @@ SSKWorkInProgress("Improve validation to be more flexible and pro");
     switch (self.loginMethod) {
 
         case SSKLoginMethodEmail:
-            if (self.email.ssk_isEmpty) {
+            if ([self.email ssk_isEmpty]) {
                 if (error != NULL) *error = [NSError ssk_errorWithCode:SSKErrorParamEmpty parameter:@"email"];
                 return NO;
-            } else if (!self.email.ssk_isEmail) {
+            } else if (![self.email ssk_isEmail]) {
                 if (error != NULL) *error = [NSError ssk_errorWithCode:SSKErrorParamSyntaxInvalid parameter:@"email"];
                 return NO;
             }
             break;
 
         case SSKLoginMethodUsername:
-            if (self.username.ssk_isEmpty) {
+            if ([self.username ssk_isEmpty]) {
                 if (error != NULL) *error = [NSError ssk_errorWithCode:SSKErrorParamEmpty parameter:@"username"];
                 return NO;
             }
@@ -49,7 +49,7 @@ SSKWorkInProgress("Improve validation to be more flexible and pro");
 
 - (BOOL)validateForRegisterWithError:(NSError * __autoreleasing *)error {
 
-    if (self.password.ssk_isEmpty) {
+    if ([self.password ssk_isEmpty]) {
         if (error != NULL) *error = [NSError ssk_errorWithCode:SSKErrorParamEmpty parameter:@"password"];
         return NO;
     }
@@ -59,10 +59,10 @@ SSKWorkInProgress("Improve validation to be more flexible and pro");
 
 - (BOOL)validateForForgotPasswordWithError:(NSError * __autoreleasing *)error {
 
-    if (self.email.ssk_isEmpty) {
+    if ([self.email ssk_isEmpty]) {
         if (error != NULL) *error = [NSError ssk_errorWithCode:SSKErrorParamEmpty parameter:@"email"];
         return NO;
-    } else if (!self.email.ssk_isEmail) {
+    } else if (![self.email ssk_isEmail]) {
         if (error != NULL) *error = [NSError ssk_errorWithCode:SSKErrorParamSyntaxInvalid parameter:@"email"];
         return NO;
     }
