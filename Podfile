@@ -13,7 +13,6 @@ inhibit_all_warnings!
 
 # Framework dependencies
 pod 'AFNetworking', '~> 2.5'
-pod 'Parse', '~> 1.5'
 
 # Unit tests exclusive dependencies
 target 'Tests', exclusive: true do link_with 'SaasKit Tests'

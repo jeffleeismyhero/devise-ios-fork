@@ -20,29 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts (1.1.3)
   - Kiwi (2.3.1)
-  - Parse (1.5.0):
-    - Bolts (~> 1.1.3)
-  - SaasKit (0.1.0):
-    - AFNetworking (~> 2.5.0)
-    - Parse (~> 1.5.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - Kiwi (~> 2.3)
-  - Parse (~> 1.5)
-  - SaasKit (from `./`)
-
-EXTERNAL SOURCES:
-  SaasKit:
-    :path: ./
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
-  Parse: 7de25b6f70f0b233e5d25835f62eabfa91e4f9d7
-  SaasKit: ef2c49f7f5b60d91568fe37a36f1f669d45b6424
 
 COCOAPODS: 0.35.0

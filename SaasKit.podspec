@@ -22,6 +22,5 @@ Pod::Spec.new do |spec|
   spec.requires_arc  = true
 
   spec.dependency      'AFNetworking', '~> 2.5.0'
-  spec.dependency      'Parse', '~> 1.5.0'
 
 end
