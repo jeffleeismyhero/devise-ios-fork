@@ -1,7 +1,7 @@
 //
 //  SaasKit.h
 //  
-//  Copyright (c) 2014 Adrian Kashivskyy. All rights reserved.
+//  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -10,12 +10,8 @@
 
     #define _SAASKIT_H_
 
-    /// The build number of the framework.
-    double const SSKSaasKitVersionNumber = 100;
-
-    /// The string version number of the framework.
-    unsigned char const SSKSaasKitVersionString[] = "0.1.0";
-
     #import <SaasKit/SSKConfiguration.h>
+    #import <SaasKit/SSKUser.h>
+    #import <SaasKit/SSKTypedefs.h>
 
 #endif
