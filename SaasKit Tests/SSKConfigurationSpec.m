@@ -43,30 +43,34 @@ describe(@"SSKConfiguration", ^{
         configuration = [[SSKConfiguration alloc] initWithServerURL:serverURL];
     });
 
-    context(@"when log level is set to warning", ^{
+    describe(@"logging", ^{
 
-        beforeEach(^{
-            configuration.logLevel = SSKLogLevelWarning;
+        context(@"when log level is set to warning", ^{
+
+            beforeEach(^{
+                configuration.logLevel = SSKLogLevelWarning;
+            });
+
+            it(@"should not raise an exception", ^{
+                [[theBlock(^{
+                    [configuration logMessage:@"foo"];
+                }) shouldNot] raise];
+            });
+
         });
 
-        it(@"should not raise an exception", ^{
-            [[theBlock(^{
-                [configuration logMessage:@"foo"];
-            }) shouldNot] raise];
-        });
-        
-    });
+        context(@"when log level is set to assert", ^{
 
-    context(@"when log level is set to assert", ^{
+            beforeEach(^{
+                configuration.logLevel = SSKLogLevelAssert;
+            });
 
-        beforeEach(^{
-            configuration.logLevel = SSKLogLevelAssert;
-        });
-
-        it(@"should raise an exception", ^{
-            [[theBlock(^{
-                [configuration logMessage:@"baz"];
-            }) should] raiseWithName:NSInternalInconsistencyException];
+            it(@"should raise an exception", ^{
+                [[theBlock(^{
+                    [configuration logMessage:@"baz"];
+                }) should] raiseWithName:NSInternalInconsistencyException];
+            });
+            
         });
 
     });
