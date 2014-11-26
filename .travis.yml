@@ -9,6 +9,9 @@ osx_image: xcode6.1
 
 xcode_workspace: SaasKit.xcworkspace
 xcode_scheme: SaasKit
+xcode_sdk: iphonesimulator
+
+install: bundle exec pod install
 
 notifications:
   email: false
