@@ -30,4 +30,5 @@ script:
 
 notifications:
   email: false
-  slack: $SLACK_API_TOKEN
+  slack:
+    secure: JCsk79VCfndQRBqz3P4xj1ydQRcQzqvcv9iXVlwIfMKCrf0/s+Z7ZN+KBmP7k05EyVyzyZEBX16V4KfNF9xd7gQLME/89lKLHqPd4PXsqF9fB9v40XhiqBRtO7CPzUzPHymmDlzkVT/U0kqBW5bvQ411Cv3n6VHoD8nO4OE0RZM=
