@@ -11,7 +11,13 @@
 #endif
 
 #ifdef __OBJC__
+
     #import <Foundation/Foundation.h>
     #import <Kiwi/Kiwi.h>
+    #import <OHHTTPStubs/OHHTTPStubs.h>
+
     #import <SaasKit/SaasKit.h>
+
+    #import "OHHTTPStubs+SaasKitTests.h"
+
 #endif
