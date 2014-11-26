@@ -18,17 +18,19 @@
 - (NSDictionary *)loginPOST {
 
     NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
-    NSMutableDictionary *post = [@{password : self.password} mutableCopy];
+    NSMutableDictionary *post = [NSMutableDictionary dictionaryWithCapacity:2];
+
+    if (self.password != nil) post[password] = self.password;
 
     switch (self.loginMethod) {
         case SSKLoginMethodEmail: {
             NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserLogin:) withDefaultName:@"email"];
-            [post addEntriesFromDictionary:@{email : self.email}];
+            if (self.email != nil) post[email] = self.email;
             break;
         }
         case SSKLoginMethodUsername: {
             NSString *username = [self paramNameForSelector:@selector(nameForUsernameInUserLogin:) withDefaultName:@"username"];
-            [post addEntriesFromDictionary:@{username : self.username}];
+            if (self.username != nil) post[username] = self.username;
             break;
         }
     }
