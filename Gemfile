@@ -8,6 +8,3 @@ source 'https://rubygems.org'
 
 # Development tools
 gem 'cocoapods', '~> 0.35'
-
-# Continious integration tools
-gem 'xcpretty', '~> 0.1'

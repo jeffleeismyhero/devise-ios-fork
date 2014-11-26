@@ -9,7 +9,7 @@ osx_image: xcode6.1
 
 xcode_workspace: SaasKit.xcworkspace
 xcode_scheme: SaasKit
-xcode_sdk: iphonesimulator8.0
+xcode_sdk: iphonesimulator8.1
 
 before_install:
   - bundle install --without development --deployment --jobs=3 --retry=3
