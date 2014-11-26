@@ -1,0 +1,14 @@
+#
+#  .travis.yml
+#
+#  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
+#
+
+language: objective-c
+osx_image: xcode6.1
+
+xcode_workspace: SaasKit.xcworkspace
+xcode_scheme: SaasKit
+
+notifications:
+  email: false
