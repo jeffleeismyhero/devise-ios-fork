@@ -18,8 +18,6 @@
 		3AA22E2B1A2514DD00FE04D1 /* NSString+SassKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E291A2514DD00FE04D1 /* NSString+SassKit.m */; };
 		3AA22E2F1A251B1400FE04D1 /* SSKUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E2D1A251B1400FE04D1 /* SSKUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA22E301A251B1400FE04D1 /* SSKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E2E1A251B1400FE04D1 /* SSKUser.m */; };
-		3AA22E341A252D7400FE04D1 /* SSKUser+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E321A252D7400FE04D1 /* SSKUser+Validation.h */; };
-		3AA22E351A252D7400FE04D1 /* SSKUser+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E331A252D7400FE04D1 /* SSKUser+Validation.m */; };
 		3AA22E381A252FD700FE04D1 /* SSKUser+Querying.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E361A252FD700FE04D1 /* SSKUser+Querying.h */; };
 		3AA22E391A252FD700FE04D1 /* SSKUser+Querying.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E371A252FD700FE04D1 /* SSKUser+Querying.m */; };
 		3AA22E3B1A2530EA00FE04D1 /* SSKTypedefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E3A1A2530EA00FE04D1 /* SSKTypedefs.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,6 +44,12 @@
 		3AD4C7141A24FA2A00F0AE67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */; };
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* SaasKit-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* SaasKit-Demo-Assets.xcassets */; };
+		5E7E166E1A264F6900684A60 /* SSKPropertyValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166A1A264F6900684A60 /* SSKPropertyValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E7E166F1A264F6900684A60 /* SSKPropertyValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166B1A264F6900684A60 /* SSKPropertyValidator.m */; };
+		5E7E16701A264F6900684A60 /* SSKValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166C1A264F6900684A60 /* SSKValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E7E16711A264F6900684A60 /* SSKValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166D1A264F6900684A60 /* SSKValidator.m */; };
+		5EF5E6DA1A2667D80049BEA6 /* NSArray+SaasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF5E6D81A2667D80049BEA6 /* NSArray+SaasKit.h */; };
+		5EF5E6DB1A2667D80049BEA6 /* NSArray+SaasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5E6D91A2667D80049BEA6 /* NSArray+SaasKit.m */; };
 		7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -93,8 +97,6 @@
 		3AA22E291A2514DD00FE04D1 /* NSString+SassKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SassKit.m"; sourceTree = "<group>"; };
 		3AA22E2D1A251B1400FE04D1 /* SSKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKUser.h; sourceTree = "<group>"; };
 		3AA22E2E1A251B1400FE04D1 /* SSKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKUser.m; sourceTree = "<group>"; };
-		3AA22E321A252D7400FE04D1 /* SSKUser+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SSKUser+Validation.h"; sourceTree = "<group>"; };
-		3AA22E331A252D7400FE04D1 /* SSKUser+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SSKUser+Validation.m"; sourceTree = "<group>"; };
 		3AA22E361A252FD700FE04D1 /* SSKUser+Querying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SSKUser+Querying.h"; sourceTree = "<group>"; };
 		3AA22E371A252FD700FE04D1 /* SSKUser+Querying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SSKUser+Querying.m"; sourceTree = "<group>"; };
 		3AA22E3A1A2530EA00FE04D1 /* SSKTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKTypedefs.h; sourceTree = "<group>"; };
@@ -154,6 +156,12 @@
 		3AD4C7191A24FA6A00F0AE67 /* SaasKit-Demo-Main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SaasKit-Demo-Main.m"; sourceTree = "<group>"; };
 		3AD4C71A1A24FA6A00F0AE67 /* SaasKit-Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SaasKit-Demo-Prefix.pch"; sourceTree = "<group>"; };
 		3AD4C7251A24FC5800F0AE67 /* SaasKit-Demo-Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "SaasKit-Demo-Assets.xcassets"; sourceTree = "<group>"; };
+		5E7E166A1A264F6900684A60 /* SSKPropertyValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKPropertyValidator.h; sourceTree = "<group>"; };
+		5E7E166B1A264F6900684A60 /* SSKPropertyValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKPropertyValidator.m; sourceTree = "<group>"; };
+		5E7E166C1A264F6900684A60 /* SSKValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKValidator.h; sourceTree = "<group>"; };
+		5E7E166D1A264F6900684A60 /* SSKValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKValidator.m; sourceTree = "<group>"; };
+		5EF5E6D81A2667D80049BEA6 /* NSArray+SaasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SaasKit.h"; sourceTree = "<group>"; };
+		5EF5E6D91A2667D80049BEA6 /* NSArray+SaasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SaasKit.m"; sourceTree = "<group>"; };
 		D520EAD6431B24AD4B00819C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68076C37469F69754581011 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -216,6 +224,8 @@
 				3AA22E251A25112800FE04D1 /* NSError+SassKit.m */,
 				3AA22E281A2514DD00FE04D1 /* NSString+SassKit.h */,
 				3AA22E291A2514DD00FE04D1 /* NSString+SassKit.m */,
+				5EF5E6D81A2667D80049BEA6 /* NSArray+SaasKit.h */,
+				5EF5E6D91A2667D80049BEA6 /* NSArray+SaasKit.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -233,8 +243,6 @@
 			children = (
 				3AA22E2D1A251B1400FE04D1 /* SSKUser.h */,
 				3AA22E2E1A251B1400FE04D1 /* SSKUser.m */,
-				3AA22E321A252D7400FE04D1 /* SSKUser+Validation.h */,
-				3AA22E331A252D7400FE04D1 /* SSKUser+Validation.m */,
 				3AA22E361A252FD700FE04D1 /* SSKUser+Querying.h */,
 				3AA22E371A252FD700FE04D1 /* SSKUser+Querying.m */,
 			);
@@ -313,6 +321,7 @@
 		3AD4C6821A24DB1700F0AE67 /* SaasKit */ = {
 			isa = PBXGroup;
 			children = (
+				5E7E16721A264F6C00684A60 /* Validator */,
 				3AA22E191A2502FE00FE04D1 /* Configuration */,
 				3AA22E3C1A25327F00FE04D1 /* Networking */,
 				3AA22E231A25110200FE04D1 /* Categories */,
@@ -459,6 +468,17 @@
 			name = "SaasKit Demo";
 			sourceTree = "<group>";
 		};
+		5E7E16721A264F6C00684A60 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				5E7E166A1A264F6900684A60 /* SSKPropertyValidator.h */,
+				5E7E166B1A264F6900684A60 /* SSKPropertyValidator.m */,
+				5E7E166C1A264F6900684A60 /* SSKValidator.h */,
+				5E7E166D1A264F6900684A60 /* SSKValidator.m */,
+			);
+			name = Validator;
+			sourceTree = "<group>";
+		};
 		6DAEEC2DE19FB85AF8F5BCE5 /* CocoaPods */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,15 +508,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AA22E341A252D7400FE04D1 /* SSKUser+Validation.h in Headers */,
 				3AA22E411A25330C00FE04D1 /* SSKAPIManager.h in Headers */,
+				5E7E166E1A264F6900684A60 /* SSKPropertyValidator.h in Headers */,
 				3AA22E261A25112800FE04D1 /* NSError+SassKit.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* SSKTypedefs.h in Headers */,
+				5E7E16701A264F6900684A60 /* SSKValidator.h in Headers */,
 				3AA22E431A25330C00FE04D1 /* SSKHTTPReqeustOperationManager.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* SaasKit-Prefix.pch in Headers */,
 				3AA22E2A1A2514DD00FE04D1 /* NSString+SassKit.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* SSKConfiguration.h in Headers */,
 				3AA22E2F1A251B1400FE04D1 /* SSKUser.h in Headers */,
+				5EF5E6DA1A2667D80049BEA6 /* NSArray+SaasKit.h in Headers */,
 				3AA22E381A252FD700FE04D1 /* SSKUser+Querying.h in Headers */,
 				3AD4C6841A24DB1700F0AE67 /* SaasKit.h in Headers */,
 				3AA22E5F1A2535BC00FE04D1 /* SSKMacros.h in Headers */,
@@ -716,10 +738,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA22E301A251B1400FE04D1 /* SSKUser.m in Sources */,
-				3AA22E351A252D7400FE04D1 /* SSKUser+Validation.m in Sources */,
+				5E7E166F1A264F6900684A60 /* SSKPropertyValidator.m in Sources */,
+				5EF5E6DB1A2667D80049BEA6 /* NSArray+SaasKit.m in Sources */,
 				3AA22E441A25330C00FE04D1 /* SSKHTTPReqeustOperationManager.m in Sources */,
 				3AA22E391A252FD700FE04D1 /* SSKUser+Querying.m in Sources */,
 				3AA22E271A25112800FE04D1 /* NSError+SassKit.m in Sources */,
+				5E7E16711A264F6900684A60 /* SSKValidator.m in Sources */,
 				3AA22E2B1A2514DD00FE04D1 /* NSString+SassKit.m in Sources */,
 				3AA22E421A25330C00FE04D1 /* SSKAPIManager.m in Sources */,
 				3AA22E1D1A25031300FE04D1 /* SSKConfiguration.m in Sources */,

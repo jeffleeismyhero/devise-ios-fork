@@ -6,6 +6,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SSKTypedefs.h"
+#import "SSKValidator.h"
 
 typedef NS_ENUM(NSInteger, SSKLoginMethod) {
     SSKLoginMethodEmail,

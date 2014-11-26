@@ -24,7 +24,15 @@ NSString * const SSKErrorDomain = @"co.netguru.lib.sasskit.error";
             return @"cannot be nil or empty";
         case SSKErrorParamSyntaxInvalid:
             return @"has invalid syntax";
+        case SSKErrorValidationFailed:
+            return @"";
     }
+}
+
++ (instancetype)ssk_errorWithDescription:(NSString *)description code:(NSInteger)code {
+    return [[self alloc] initWithDomain:SSKErrorDomain code:code userInfo:@{
+                                                                            NSLocalizedDescriptionKey: description,
+                                                                            }];
 }
 
 @end

@@ -10,6 +10,7 @@
 typedef NS_ENUM(NSInteger, SSKErrorCode) {
     SSKErrorParamEmpty = 20001,
     SSKErrorParamSyntaxInvalid = 20002,
+    SSKErrorValidationFailed = 20003
 };
 
 /// The error domain used by the framework.
@@ -27,5 +28,7 @@ extern NSString * const SSKErrorDomain;
 ///
 /// @param code The error code.
 + (NSString *)ssk_descriptionForErrorCode:(SSKErrorCode)code;
+
++ (instancetype)ssk_errorWithDescription:(NSString *)description code:(NSInteger)code;
 
 @end

@@ -5,7 +5,6 @@
 //
 
 #import "SSKUser.h"
-#import "SSKUser+Validation.h"
 #import "SSKAPIManager.h"
 
 @interface SSKUser ()
@@ -47,13 +46,17 @@
 #pragma mark - Login methods:
 
 - (void)loginWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
-
+    
     NSError *error;
-    if (![self validateForLoginWithError:&error]) {
+    BOOL validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+        return @[validate(@"email").required().lengthRange(2, 100).syntax(SSKSyntaxEmail),
+                 validate(@"password").required()];
+    }];
+    
+    if (!validated) {
         failure(error);
         return;
     }
-
     [SSKAPIManager loginUser:self withSuccess:success failure:failure];
 }
 
@@ -68,10 +71,15 @@
 - (void)remindPasswordWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
 
     NSError *error;
-    if (![self validateForForgotPasswordWithError:&error]) {
+    BOOL validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+        return @[validate(@"email").required().syntax(SSKSyntaxEmail)];
+    }];
+    
+    if (!validated) {
         failure(error);
         return;
     }
+    
     [SSKAPIManager remindPasswordForUser:self withSuccess:success failure:failure];
 }
 
@@ -93,7 +101,15 @@
 - (void)registerWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
 
     NSError *error;
-    if (![self validateForRegisterWithError:&error]) {
+    BOOL validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+        return @[validate(@"password").required(),
+                 validate(@"firstName").required().lengthRange(2, 50),
+                 validate(@"lastName").required().lengthRange(2, 50),
+                 validate(@"username").required().lengthRange(2, 50),
+                 validate(@"email").required().lengthRange(2, 100).syntax(SSKSyntaxEmail)];
+    }];
+    
+    if (!validated) {
         failure(error);
         return;
     }
