@@ -11,79 +11,265 @@ SPEC_BEGIN(SSKUserSpec)
 describe(@"SSKUser", ^{
 
     __block SSKConfiguration *configuration = nil;
-    __block SSKUser *user = nil;
 
     beforeEach(^{
-
-        NSURL *serverURL = [NSURL URLWithString:@"http://httpbin.org"];
-        configuration = [[SSKConfiguration alloc] initWithServerURL:serverURL];
+        configuration = [[SSKConfiguration alloc] initWithServerURL:[OHHTTPStubs ssk_stubURL]];
         [SSKConfiguration stub:@selector(sharedConfiguration) andReturn:configuration];
-
-        user = [SSKUser user];
-        user.username = @"foo";
-        user.password = @"bar";
-        
     });
 
-    specify(^{
-        [[user shouldNot] beNil];
-    });
+    describe(@"logging in", ^{
 
-    context(@"when reminding password", ^{
+        __block SSKUser *user = nil;
+        __block id<OHHTTPStubsDescriptor> routeStub = nil;
 
-        beforeEach(^{
-            SEL selector = @selector(remindPasswordForUser:withSuccess:failure:);
-            [SSKAPIManager stub:selector withBlock:^id(NSArray *params) {
-                if (params.count >= 2) {
-                    SSKVoidBlock successBlock = params[1];
-                    successBlock();
-                }
-                return nil;
-            }];
-        });
+        NSString *validUsername = @"jappleseed";
+        NSString *validEmail = @"john.appleseed@apple.com";
+        NSString *validPassword = @"$ecr3t";
 
-        void (^performRemindPassword)(BOOL *, NSError **) = ^(BOOL *success, NSError **error) {
-            __block BOOL blockSuccess = NO;
-            __block NSError *blockError = nil;
-            [user remindPasswordWithSuccess:^{
-                blockSuccess = YES;
-                blockError = nil;
+        void (^performLogin)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
+            [user loginWithSuccess:^{
+                if (completion != nil) completion(YES, nil);
             } failure:^(NSError *error) {
-                blockSuccess = NO;
-                blockError = error;
+                if (completion != nil) completion(NO, error);
             }];
-            if (success != NULL) *success = blockSuccess;
-            if (error != NULL) *error = blockError;
         };
 
-        context(@"when email is incorrect", ^{
+        void (^assertLoginShouldSucceed)() = ^{
+            __block BOOL success = NO; __block NSError *error = nil;
+            performLogin(^(BOOL inputSuccess, NSError *inputError) {
+                success = inputSuccess;
+                error = inputError;
+            });
+            [[expectFutureValue(theValue(success)) shouldEventually] beYes];
+            [[expectFutureValue(error) shouldEventually] beNil];
+        };
+
+        void (^assertLoginShouldFail)() = ^{
+            __block BOOL success = NO; __block NSError *error = nil;
+            performLogin(^(BOOL inputSuccess, NSError *inputError) {
+                success = inputSuccess;
+                error = inputError;
+            });
+            [[expectFutureValue(theValue(success)) shouldEventually] beNo];
+            [[expectFutureValue(error) shouldEventually] beNonNil];
+        };
+
+        beforeAll(^{
+            routeStub = [OHHTTPStubs ssk_stubLoginRouteWithOptions:@{
+                @"allowedUsername": validUsername,
+                @"allowedEmail": validEmail,
+                @"allowedPassword": validPassword,
+            }];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeStub:routeStub];
+        });
+
+        beforeEach(^{
+            user = [SSKUser user];
+        });
+
+        context(@"using email with incorrect syntax", ^{
 
             beforeEach(^{
-                user.email = @"baz";
+                user.loginMethod = SSKLoginMethodEmail;
+                user.email = @"qux";
+                user.password = validPassword;
             });
 
-            it(@"should fail to remind password", ^{
-                __block NSError *error = nil;
-                __block BOOL success = NO;
-                performRemindPassword(&success, &error);
-                [[expectFutureValue(theValue(success)) should] beNo];
-                [[expectFutureValue(error) shouldNot] beNil];
+            it(@"should fail", ^{
+                assertLoginShouldFail();
             });
 
         });
 
-        context(@"when email is correct", ^{
+        context(@"using no email or username", ^{
 
             beforeEach(^{
-                user.email = @"john.appleseed@example.com";
+                user.password = validPassword;
             });
 
-            it(@"should fail to remind password", ^{
-                __block NSError *error = nil;
-                __block BOOL success = NO;
-                performRemindPassword(&success, &error);
-                [[expectFutureValue(theValue(success)) should] beYes];
-                [[expectFutureValue(error) should] beNil];
+            it(@"should fail", ^{
+                assertLoginShouldFail();
+            });
+
+        });
+
+        context(@"using no password", ^{
+
+            beforeEach(^{
+                user.username = validUsername;
+                user.email = validEmail;
+            });
+
+            it(@"should fail", ^{
+                assertLoginShouldFail();
+            });
+
+        });
+
+        context(@"using incorrect username", ^{
+
+            beforeEach(^{
+                user.loginMethod = SSKLoginMethodUsername;
+                user.username = @"foo";
+                user.password = validPassword;
+            });
+
+            it(@"should fail", ^{
+                assertLoginShouldFail();
+            });
+
+        });
+
+        context(@"using incorrect email", ^{
+
+            beforeEach(^{
+                user.loginMethod = SSKLoginMethodEmail;
+                user.email = @"john.smith@apple.com";
+                user.password = validPassword;
+            });
+
+            it(@"should fail", ^{
+                assertLoginShouldFail();
+            });
+            
+        });
+
+        context(@"using incorrect password", ^{
+
+            beforeEach(^{
+                user.username = validUsername;
+                user.email = validEmail;
+                user.password = @"baz";
+            });
+
+            it(@"should fail", ^{
+                assertLoginShouldFail();
+            });
+            
+        });
+
+        context(@"using correct username and password", ^{
+
+            beforeEach(^{
+                user.loginMethod = SSKLoginMethodUsername;
+                user.username = validUsername;
+                user.password = validPassword;
+            });
+
+            it(@"should succeed", ^{
+                assertLoginShouldSucceed();
+            });
+
+        });
+
+        context(@"using correct email and password", ^{
+
+            beforeEach(^{
+                user.loginMethod = SSKLoginMethodEmail;
+                user.email = validEmail;
+                user.password = validPassword;
+            });
+
+            it(@"should succeed", ^{
+                assertLoginShouldSucceed();
+            });
+            
+        });
+
+    });
+
+    describe(@"reminding password", ^{
+
+        __block SSKUser *user = nil;
+        __block id<OHHTTPStubsDescriptor> routeStub = nil;
+
+        NSString *validEmail = @"john.appleseed@apple.com";
+
+        void (^performForgotPassword)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
+            [user remindPasswordWithSuccess:^{
+                if (completion != nil) completion(YES, nil);
+            } failure:^(NSError *error) {
+                if (completion != nil) completion(NO, error);
+            }];
+        };
+
+        void (^assertRemindPasswordShouldSucceed)() = ^{
+            __block BOOL success = NO; __block NSError *error = nil;
+            performForgotPassword(^(BOOL inputSuccess, NSError *inputError) {
+                success = inputSuccess;
+                error = inputError;
+            });
+            [[expectFutureValue(theValue(success)) shouldEventually] beYes];
+            [[expectFutureValue(error) shouldEventually] beNil];
+        };
+
+        void (^assertRemindPasswordShouldFail)() = ^{
+            __block BOOL success = NO; __block NSError *error = nil;
+            performForgotPassword(^(BOOL inputSuccess, NSError *inputError) {
+                success = inputSuccess;
+                error = inputError;
+            });
+            [[expectFutureValue(theValue(success)) shouldEventually] beNo];
+            [[expectFutureValue(error) shouldEventually] beNonNil];
+        };
+
+        beforeAll(^{
+            routeStub = [OHHTTPStubs ssk_stubForgotPasswordRouteWithOptions:@{
+                @"allowedEmail": validEmail,
+            }];
+        });
+        
+        afterAll(^{
+            [OHHTTPStubs removeStub:routeStub];
+        });
+        
+        beforeEach(^{
+            user = [SSKUser user];
+        });
+
+        context(@"using no email", ^{
+
+            it(@"should fail", ^{
+                assertRemindPasswordShouldFail();
+            });
+
+        });
+
+        context(@"using email with invalid syntax", ^{
+
+            beforeEach(^{
+                user.email = @"fox";
+            });
+
+            it(@"should fail", ^{
+                assertRemindPasswordShouldFail();
+            });
+            
+        });
+
+        context(@"using incorrect email", ^{
+
+            beforeEach(^{
+                user.email = @"john.smith@apple.com";
+            });
+
+            it(@"should fail", ^{
+                assertRemindPasswordShouldFail();
+            });
+            
+        });
+
+        context(@"using valid email", ^{
+
+            beforeEach(^{
+                user.email = validEmail;
+            });
+
+            it(@"should succeed", ^{
+                assertRemindPasswordShouldSucceed();
             });
             
         });
