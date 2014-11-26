@@ -48,10 +48,23 @@
 - (void)loginWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
     NSError *error;
-    BOOL validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
-        return @[validate(@"email").required().lengthRange(2, 100).syntax(SSKSyntaxEmail),
-                 validate(@"password").required()];
-    }];
+    BOOL validated = NO;
+
+    if (self.loginMethod == SSKLoginMethodUsername) {
+        validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+            return @[
+                validate(@"username").required().lengthRange(2, 50),
+                validate(@"password").required()
+            ];
+        }];
+    } else if (self.loginMethod == SSKLoginMethodEmail) {
+        validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+            return @[
+                validate(@"email").required().lengthRange(2, 100).syntax(SSKSyntaxEmail),
+                validate(@"password").required()
+            ];
+        }];
+    }
     
     if (!validated) {
         failure(error);
