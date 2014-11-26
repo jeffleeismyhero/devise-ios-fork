@@ -3,19 +3,30 @@
 #
 #  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 #
+#  Currently, xctool is unable to build project with custom frameworks.
+#  Until facebook/xctool#415 is fixed, we'll have to use xcpretty.
+#
 
 language: objective-c
 osx_image: xcode6.1
 
-xcode_workspace: SaasKit.xcworkspace
-xcode_scheme: SaasKit
-xcode_sdk: iphonesimulator8.1
+env:
+  global:
+    - XCODE_WORKSPACE="SaasKit.xcworkspace"
+    - XCODE_SCHEME="SaasKit"
+    - XCODE_SDK="iphonesimulator8.1"
 
 before_install:
   - bundle install --without development --deployment --jobs=3 --retry=3
 
 install:
-  - bundle exec pod install --no-integrate
+  - bundle exec rake install
+
+before_script:
+  - bundle exec rake review
+
+script:
+  - bundle exec rake test
 
 notifications:
   email: false
