@@ -30,3 +30,6 @@ script:
 
 notifications:
   email: false
+
+  slack:
+    secure: $(SLACK_API_TOKEN)
