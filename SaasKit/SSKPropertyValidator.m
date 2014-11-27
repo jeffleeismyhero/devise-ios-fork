@@ -12,7 +12,9 @@
 #import "NSDate+SaasKit.h"
 #import "SSKTypedefs.h"
 
-#define intToString(x) [NSString stringWithFormat:@"%lu", x]
+static inline NSString * intToString(NSUInteger x) {
+    return [NSString stringWithFormat:@"%lu", (unsigned long)x];
+}
 
 NSString * const ssk_attribute = @"{attribute}";
 
