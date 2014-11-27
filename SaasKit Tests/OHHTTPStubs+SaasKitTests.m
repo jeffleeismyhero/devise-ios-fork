@@ -62,6 +62,22 @@
     }];
 }
 
++ (id<OHHTTPStubsDescriptor>)ssk_stubRegisterRouteWithOptions:(NSDictionary *)options {
+    return [self ssk_stubRequestsForPath:@"/register" withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        BOOL valid = (^BOOL() {
+            NSDictionary *input = [self ssk_retrievePostDataOfRequest:request];
+            if (input[@"username"] == nil && input[@"email"] == nil) {
+                return NO;
+            } if (input[@"password"] == nil) {
+                return NO;
+            }
+            return YES;
+        })();
+        int statusCode = (valid) ? 200 : 400;
+        return [self ssk_responseWithData:nil statusCode:statusCode];
+    }];
+}
+
 #pragma mark Convenience methods
 
 + (NSDictionary *)ssk_retrievePostDataOfRequest:(NSURLRequest *)request {

@@ -37,4 +37,14 @@
 /// @returns A description uniquely identifying the stub.
 + (id<OHHTTPStubsDescriptor>)ssk_stubForgotPasswordRouteWithOptions:(NSDictionary *)options;
 
+/// Stubs the register route.
+///
+/// Options dictionary doesn't recognize any keys for now.
+///
+///
+/// @param options An optional options dictionary.
+///
+/// @returns A description uniquely identifying the stub.
++ (id<OHHTTPStubsDescriptor>)ssk_stubRegisterRouteWithOptions:(NSDictionary *)options;
+
 @end

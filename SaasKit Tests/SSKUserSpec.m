@@ -12,6 +12,12 @@ describe(@"SSKUser", ^{
 
     __block SSKConfiguration *configuration = nil;
 
+    NSString *validFirstName = @"John";
+    NSString *validLastName = @"Appleseed";
+    NSString *validUsername = @"jappleseed";
+    NSString *validEmail = @"john.appleseed@apple.com";
+    NSString *validPassword = @"$ecr3t";
+
     beforeEach(^{
         configuration = [[SSKConfiguration alloc] initWithServerURL:[OHHTTPStubs ssk_stubURL]];
         [SSKConfiguration stub:@selector(sharedConfiguration) andReturn:configuration];
@@ -21,10 +27,6 @@ describe(@"SSKUser", ^{
 
         __block SSKUser *user = nil;
         __block id<OHHTTPStubsDescriptor> routeStub = nil;
-
-        NSString *validUsername = @"jappleseed";
-        NSString *validEmail = @"john.appleseed@apple.com";
-        NSString *validPassword = @"$ecr3t";
 
         void (^performLogin)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
             [user loginWithSuccess:^{
@@ -186,8 +188,6 @@ describe(@"SSKUser", ^{
         __block SSKUser *user = nil;
         __block id<OHHTTPStubsDescriptor> routeStub = nil;
 
-        NSString *validEmail = @"john.appleseed@apple.com";
-
         void (^performForgotPassword)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
             [user remindPasswordWithSuccess:^{
                 if (completion != nil) completion(YES, nil);
@@ -270,6 +270,160 @@ describe(@"SSKUser", ^{
 
             it(@"should succeed", ^{
                 assertRemindPasswordShouldSucceed();
+            });
+            
+        });
+
+    });
+
+    describe(@"registration", ^{
+
+        __block SSKUser *user = nil;
+        __block id<OHHTTPStubsDescriptor> routeStub = nil;
+
+        void (^performRegisterPassword)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
+            [user registerWithSuccess:^{
+                if (completion != nil) completion(YES, nil);
+            } failure:^(NSError *error) {
+                if (completion != nil) completion(NO, error);
+            }];
+        };
+
+        void (^assertRegisterShouldSucceed)() = ^{
+            __block BOOL success = NO; __block NSError *error = nil;
+            performRegisterPassword(^(BOOL inputSuccess, NSError *inputError) {
+                success = inputSuccess;
+                error = inputError;
+            });
+            [[expectFutureValue(theValue(success)) shouldEventually] beYes];
+            [[expectFutureValue(error) shouldEventually] beNil];
+        };
+
+        void (^assertRegisterShouldFail)() = ^{
+            __block BOOL success = NO; __block NSError *error = nil;
+            performRegisterPassword(^(BOOL inputSuccess, NSError *inputError) {
+                success = inputSuccess;
+                error = inputError;
+            });
+            [[expectFutureValue(theValue(success)) shouldEventually] beNo];
+            [[expectFutureValue(error) shouldEventually] beNonNil];
+        };
+
+        beforeAll(^{
+            routeStub = [OHHTTPStubs ssk_stubRegisterRouteWithOptions:nil];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeStub:routeStub];
+        });
+
+        beforeEach(^{
+            user = [SSKUser user];
+        });
+
+        context(@"using no first name", ^{
+
+            beforeEach(^{
+                user.lastName = validLastName;
+                user.email = validEmail;
+                user.username = validUsername;
+                user.password = validPassword;
+            });
+
+            it(@"should fail", ^{
+                assertRegisterShouldFail();
+            });
+
+        });
+
+        context(@"using no last name", ^{
+
+            beforeEach(^{
+                user.firstName = validFirstName;
+                user.email = validEmail;
+                user.username = validUsername;
+                user.password = validPassword;
+            });
+
+            it(@"should fail", ^{
+                assertRegisterShouldFail();
+            });
+            
+        });
+
+        context(@"using no email", ^{
+
+            beforeEach(^{
+                user.firstName = validFirstName;
+                user.lastName = validLastName;
+                user.username = validUsername;
+                user.password = validPassword;
+            });
+
+            it(@"should fail", ^{
+                assertRegisterShouldFail();
+            });
+            
+        });
+
+        context(@"using email with invalid syntax", ^{
+
+            beforeEach(^{
+                user.firstName = validFirstName;
+                user.lastName = validLastName;
+                user.email = @"dog";
+                user.username = validUsername;
+                user.password = validPassword;
+            });
+
+            it(@"should fail", ^{
+                assertRegisterShouldFail();
+            });
+            
+        });
+
+        context(@"using no username", ^{
+
+            beforeEach(^{
+                user.firstName = validFirstName;
+                user.lastName = validLastName;
+                user.email = validEmail;
+                user.password = validPassword;
+            });
+
+            it(@"should fail", ^{
+                assertRegisterShouldFail();
+            });
+            
+        });
+
+        context(@"using no password", ^{
+
+            beforeEach(^{
+                user.firstName = validFirstName;
+                user.lastName = validLastName;
+                user.email = validEmail;
+                user.username = validUsername;
+            });
+
+            it(@"should fail", ^{
+                assertRegisterShouldFail();
+            });
+            
+        });
+
+        context(@"using correct data", ^{
+
+            beforeEach(^{
+                user.firstName = validFirstName;
+                user.lastName = validLastName;
+                user.email = validEmail;
+                user.username = validUsername;
+                user.password = validPassword;
+            });
+
+            it(@"should succeed", ^{
+                assertRegisterShouldSucceed();
             });
             
         });
