@@ -37,8 +37,6 @@
     
     for (SSKPropertyValidator *validator in array) {
         
-        NSLog(@"%@", validator.propertyName);
-        
         if (![properties ssk_containsString:validator.propertyName]) {
             NSString *message = [NSString stringWithFormat:@"Property named '%@' wasn't found in %@ class. Property validation skipped.", validator.propertyName, [model class]];
             [[SSKConfiguration sharedConfiguration] logMessage:message];
