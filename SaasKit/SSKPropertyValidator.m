@@ -9,15 +9,21 @@
 #import "NSError+SassKit.h"
 #import "SSKTypedefs.h"
 #import "NSString+SassKit.h"
+#import "SSKConfiguration.h"
+
+typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
+    SSKValidatorMessageTypeTooShort,
+    SSKValidatorMessageTypeTooLong,
+    SSKValidatorMessageTypeRequired,
+    SSKValidatorMessageTypePropertyName,
+    SSKValidatorMessageTypeSyntaxEmail,
+    SSKValidatorMessageTypeLocalizedPropertyName,
+};
 
 @interface SSKPropertyValidator ()
 
 @property (strong, nonatomic) NSMutableArray *validators;
-@property (strong, nonatomic) NSMutableDictionary *syntaxMessages;
-@property (strong, nonatomic) NSString *tooShortMessage;
-@property (strong, nonatomic) NSString *tooLongMessage;
-@property (strong, nonatomic) NSString *nilMessage;
-@property (strong, nonatomic) NSString *localizedName;
+@property (strong, nonatomic) NSMutableDictionary *validatorMessages;
 
 @end
 
@@ -30,11 +36,14 @@
     if (self) {
         NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"@\""];
         _propertyName = [propertyName stringByTrimmingCharactersInSet:set];
+
         _validators = [NSMutableArray array];
-        _tooShortMessage = @"is too short";
-        _tooLongMessage = @"is too long";
-        _nilMessage = @"cannot be nil";
-        [self setMessage:@"has invalid syntax" forInvalidSyntax:SSKSyntaxEmail];
+        _validatorMessages = [NSMutableDictionary dictionary];
+        [self setMessage:@"is too short" forMessageType:SSKValidatorMessageTypeTooShort];
+        [self setMessage:@"is too long" forMessageType:SSKValidatorMessageTypeTooLong];
+        [self setMessage:@"cannot be nil or empty" forMessageType:SSKValidatorMessageTypeRequired];
+        [self setMessage:@"has invalid syntax" forMessageType:SSKValidatorMessageTypeSyntaxEmail];
+        [self setMessage:_propertyName forMessageType:SSKValidatorMessageTypeLocalizedPropertyName];
     }
     return self;
 }
@@ -43,7 +52,7 @@
     return [[[self class] alloc] initWithPropertyName:propertyName];
 }
 
-#pragma mark - public methods
+#pragma mark - Public Methods
 
 - (NSError *)validateValue:(id)value {
     for (SSKValidationBlock block in self.validators) {
@@ -59,35 +68,43 @@
 
 - (SSKPropertyValidator *(^)(NSString *))tooShort {
     return ^(NSString *message) {
-        self.tooShortMessage = message;
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeTooShort];
         return self;
     };
 }
 
 - (SSKPropertyValidator *(^)(NSString *))tooLong {
     return ^(NSString *message) {
-        self.tooLongMessage = message;
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeTooLong];
         return self;
     };
 }
 
-- (SSKPropertyValidator *(^)(NSString *))isNil {
+- (SSKPropertyValidator *(^)(NSString *))nilOrEmpty {
     return ^(NSString *message) {
-        self.nilMessage = message;
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeRequired];
         return self;
     };
 }
 
-- (SSKPropertyValidator *(^)(SSKSyntax, NSString *))syntaxMsg {
+- (SSKPropertyValidator *(^)(SSKSyntax, NSString *))invalidSyntax {
     return ^(SSKSyntax syntax, NSString *message) {
-        [self setMessage:message forInvalidSyntax:syntax];
+        
+        SSKValidatorMessageType type;
+        switch (syntax) {
+            case SSKSyntaxEmail:
+                type = SSKValidatorMessageTypeSyntaxEmail;
+                break;
+                
+        }
+        [self setMessage:message forMessageType:type];
         return self;
     };
 }
 
 - (SSKPropertyValidator *(^)(NSString *))localizedPropertyName {
     return ^(NSString *name) {
-        self.localizedName = name;
+        [self setMessage:name forMessageType:SSKValidatorMessageTypeLocalizedPropertyName];
         return self;
     };
 }
@@ -100,7 +117,7 @@
     return ^() {
         [self.validators addObject:^(NSObject *value) {
             if (!value) {
-                return [weakSelf errorWithMessage:weakSelf.nilMessage];
+                return [weakSelf errorWithMessageType:SSKValidatorMessageTypeRequired];
             }
             return (NSError *)nil;
         }];
@@ -114,11 +131,12 @@
     return ^(NSUInteger min, NSUInteger max) {
         [self.validators addObject:^(NSString *value) {
             
-            [weakSelf requiredClass:[NSString class] ofObject:value];
-            if (value.length < min) {
-                return [weakSelf errorWithMessage:weakSelf.tooShortMessage];
+            if (![weakSelf hasObject:value requiredClaas:[NSString class]]) {
+                return (NSError *)nil;
+            } else if (value.length < min) {
+                return [weakSelf errorWithMessageType:SSKValidatorMessageTypeTooShort];
             } else if (value.length > max) {
-                return [weakSelf errorWithMessage:weakSelf.tooLongMessage];
+                return [weakSelf errorWithMessageType:SSKValidatorMessageTypeTooLong];
             }
             return (NSError *)nil;
         }];
@@ -126,17 +144,19 @@
     };
 }
 
-- (SSKPropertyValidator *(^)(SSKSyntax))syntax {
+- (SSKPropertyValidator *(^)(SSKSyntax))hasSyntax {
     __weak typeof(self)weakSelf = self;
     
     return ^(SSKSyntax syntax) {
         [self.validators addObject:^(NSString *value) {
             
-            [weakSelf requiredClass:[NSString class] ofObject:value];
             switch (syntax) {
                 case SSKSyntaxEmail:
+                    if (![weakSelf hasObject:value requiredClaas:[NSString class]]) {
+                        break;
+                    }
                     if (![value ssk_isEmail]) {
-                        return [weakSelf errorWithMessage:[weakSelf messageForInvalidSyntax:syntax]];
+                        return [weakSelf errorWithMessageType:SSKValidatorMessageTypeSyntaxEmail];
                     }
                     break;
             }
@@ -146,30 +166,39 @@
     };
 }
 
+#pragma mark - Messages
+
+- (NSDictionary *)messages {
+    return [self.validatorMessages copy];
+}
+
+- (NSString *)messageForMessageType:(SSKValidatorMessageType)messageType {
+    return self.validatorMessages[@(messageType)];
+}
+
+- (void)setMessage:(NSString *)message forMessageType:(SSKValidatorMessageType)messageType {
+    self.validatorMessages[@(messageType)] = message;
+}
+
 #pragma mark - private methods
 
-- (NSError *)errorWithMessage:(NSString *)message {
-    NSString *description = [NSString stringWithFormat:@"%@ %@", self.localizedName ?: self.propertyName, message];
+- (NSError *)errorWithMessageType:(SSKValidatorMessageType)type {
+    NSString *propertyName = [self messageForMessageType:SSKValidatorMessageTypeLocalizedPropertyName];
+    NSString *description = [NSString stringWithFormat:@"%@ %@", propertyName, [self messageForMessageType:type]];
     return [NSError ssk_errorWithDescription:description code:SSKErrorValidationFailed];
 }
 
-- (NSString *)messageForInvalidSyntax:(SSKSyntax)syntax {
-    return self.syntaxMessages[@(syntax)];
-}
-
-- (void)setMessage:(NSString *)message forInvalidSyntax:(SSKSyntax)syntax {
-    self.syntaxMessages[@(syntax)] = message;
-}
-
-- (NSMutableDictionary *)syntaxMessages {
-    if (_syntaxMessages != nil) return _syntaxMessages;
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    _syntaxMessages = dictionary;
-    return _syntaxMessages;
-}
-
-- (void)requiredClass:(Class)class ofObject:(NSObject *)object {
-    NSAssert3([object isKindOfClass:class], @"Parameter %@(%@ class) is not kind of class %@", object, [object class], class);
+- (BOOL)hasObject:(NSObject *)object requiredClaas:(Class)class {
+    
+    if (object == nil) {
+        NSString *message = [NSString stringWithFormat:@"Cannot validate %@ property when is nil. Validation skipped", self.propertyName];
+        [[SSKConfiguration sharedConfiguration] logMessage:message];
+        return NO;
+        
+    } else if (![object isKindOfClass:class]) {
+        NSAssert3(YES, @"Parameter %@(%@ class) is not kind of class %@", object, [object class], class);
+    }
+    return YES;
 }
 
 @end
