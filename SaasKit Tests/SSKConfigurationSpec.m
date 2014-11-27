@@ -23,42 +23,24 @@ describe(@"SSKConfiguration", ^{
         it(@"should have the lowest log level", ^{
             [[theValue(configuration.logLevel) should] equal:theValue(SSKLogLevelNone)];
         });
+
+        it(@"should not accept invalid server url", ^{
+            configuration.logLevel = SSKLogLevelAssert;
+            [[theBlock(^{
+                configuration.serverURL = [NSURL URLWithString:@"http:/foo"];
+            }) should] raiseWithName:NSInternalInconsistencyException];
+        });
+
     });
 
     context(@"when using a shared instance", ^{
-        
-        __block SSKConfiguration *sharedInstance = nil;
-        __block NSURL *invalidURL = [NSURL URLWithString:@"http:/ww.bin"];
 
         it(@"should return the same instance", ^{
-            sharedInstance = [SSKConfiguration sharedConfiguration];
-            SSKConfiguration *secondSharedInstance = [SSKConfiguration sharedConfiguration];
-            [[sharedInstance should] beIdenticalTo:secondSharedInstance];
+            SSKConfiguration *first = [SSKConfiguration sharedConfiguration];
+            SSKConfiguration *second = [SSKConfiguration sharedConfiguration];
+            [[first should] beIdenticalTo:second];
         });
         
-        context(@"when log level is set to warning", ^{
-            beforeEach(^{
-                sharedInstance.logLevel = SSKLogLevelWarning;
-            });
-            
-            it(@"should not raise an exception when setting invalid URL", ^{
-                [[theBlock(^{
-                    [sharedInstance setServerURL:invalidURL];
-                }) shouldNot] raise];
-            });
-        });
-        
-        context(@"when log level is set to assert", ^{
-            beforeEach(^{
-                sharedInstance.logLevel = SSKLogLevelAssert;
-            });
-            
-            it(@"should raise an exception when setting invalid URL", ^{
-                [[theBlock(^{
-                    [sharedInstance setServerURL:invalidURL];
-                }) should] raiseWithName:NSInternalInconsistencyException];
-            });
-        });
     });
 
     __block SSKConfiguration *configuration = nil;
