@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A49C2721A25D60D0041406B /* SSKUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A49C2711A25D60D0041406B /* SSKUserSpec.m */; };
 		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m */; };
-		3AA22E181A24FEE900FE04D1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA22E171A24FEE900FE04D1 /* libPods.a */; };
 		3AA22E1C1A25031300FE04D1 /* SSKConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E1A1A25031300FE04D1 /* SSKConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA22E1D1A25031300FE04D1 /* SSKConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1B1A25031300FE04D1 /* SSKConfiguration.m */; };
 		3AA22E1F1A2509AF00FE04D1 /* SSKConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1E1A2509AF00FE04D1 /* SSKConfigurationSpec.m */; };
@@ -89,7 +88,6 @@
 		3A49C2711A25D60D0041406B /* SSKUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKUserSpec.m; sourceTree = "<group>"; };
 		3A6E03FC1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+SaasKitTests.h"; sourceTree = "<group>"; };
 		3A6E03FD1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+SaasKitTests.m"; sourceTree = "<group>"; };
-		3AA22E171A24FEE900FE04D1 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		3AA22E1A1A25031300FE04D1 /* SSKConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKConfiguration.h; sourceTree = "<group>"; };
 		3AA22E1B1A25031300FE04D1 /* SSKConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKConfiguration.m; sourceTree = "<group>"; };
 		3AA22E1E1A2509AF00FE04D1 /* SSKConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKConfigurationSpec.m; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AA22E181A24FEE900FE04D1 /* libPods.a in Frameworks */,
 				3AD4C6AE1A24F38000F0AE67 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,7 +502,6 @@
 		E318EA28A05EB87D9168576A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3AA22E171A24FEE900FE04D1 /* libPods.a */,
 				3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */,
 				3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */,
 				D520EAD6431B24AD4B00819C /* libPods.a */,
