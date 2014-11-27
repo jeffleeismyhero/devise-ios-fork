@@ -23,7 +23,7 @@
 - (instancetype)initWithServerURL:(NSURL *)serverURL {
     self = [super init];
     if (self == nil) return nil;
-    [self setServerURL:serverURL];
+    self.serverURL = serverURL;
     self.logLevel = SSKLogLevelNone;
     [self setPath:@"login" forRoute:SSKRouteLogin];
     [self setPath:@"register" forRoute:SSKRouteRegister];

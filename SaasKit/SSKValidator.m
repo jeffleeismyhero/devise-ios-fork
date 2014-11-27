@@ -37,6 +37,8 @@
     
     for (SSKPropertyValidator *validator in array) {
         
+        NSLog(@"%@", validator.propertyName);
+        
         if (![properties ssk_containsString:validator.propertyName]) {
             NSString *message = [NSString stringWithFormat:@"Property named '%@' wasn't found in %@ class. Property validation skipped.", validator.propertyName, [model class]];
             [[SSKConfiguration sharedConfiguration] logMessage:message];
@@ -60,7 +62,7 @@
     
     for (uint i = 0; i < count ; i++) {
         const char *propertyName = property_getName(properties[i]);
-        [propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
+        [propertyArray addObject:[NSString stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
     }
     free(properties);
     return [propertyArray copy];

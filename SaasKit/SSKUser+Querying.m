@@ -48,7 +48,7 @@
 
     NSMutableDictionary *post = [NSMutableDictionary dictionary];
     NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRemindPassword:) withDefaultName:@"email"];
-    [post addEntriesFromDictionary:@{email : self.email}];
+    if (self.email != nil) post[email] = self.email;
 
     if ([self extraRemindPasswordParams]) {
         [post addEntriesFromDictionary:[self extraRegistrationParams]];
@@ -67,13 +67,13 @@
     NSMutableDictionary *post = [NSMutableDictionary dictionary];
 
     NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRegistration:) withDefaultName:@"email"];
-    [post addEntriesFromDictionary:@{email : self.email}];
+    if (self.email != nil) post[email] = self.email;
 
     NSString *username = [self paramNameForSelector:@selector(nameForUsernameInUserLogin:) withDefaultName:@"username"];
-    [post addEntriesFromDictionary:@{username : self.username}];
+    if (self.username != nil) post[username] = self.username;
 
     NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
-    [post addEntriesFromDictionary:@{password : self.password}];
+    if (self.password != nil) post[password] = self.password;
 
     if ([self extraRegistrationParams]) {
         [post addEntriesFromDictionary:[self extraRegistrationParams]];

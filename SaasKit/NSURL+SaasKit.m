@@ -11,7 +11,7 @@
 @implementation NSURL (SaasKit)
 
 - (BOOL)ssk_hasValidSyntax {
-    return (self && self.scheme && self.host);
+    return (self.scheme && self.host);
 }
 
 @end

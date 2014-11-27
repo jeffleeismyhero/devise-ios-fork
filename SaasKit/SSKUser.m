@@ -53,14 +53,14 @@
     if (self.loginMethod == SSKLoginMethodUsername) {
         validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
             return @[
-                validate(@"username").lengthRange(2, 50).nilOrEmpty(@"jest puste. Uzupełnij draniu!").localizedPropertyName(@"pole użytkownik"),
+                validate(@"username").required().lengthRange(2, 50),
                 validate(@"password").required()
             ];
         }];
     } else if (self.loginMethod == SSKLoginMethodEmail) {
         validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
             return @[
-                validate(@"email").required().lengthRange(2, 100).hasSyntax(SSKSyntaxEmail),
+                validate(@"email").required().emailSyntax().lengthRange(2, 100),
                 validate(@"password").required()
             ];
         }];
@@ -70,6 +70,7 @@
         failure(error);
         return;
     }
+    
     [SSKAPIManager loginUser:self withSuccess:success failure:failure];
 }
 
@@ -85,7 +86,7 @@
 
     NSError *error;
     BOOL validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
-        return @[validate(@"email").required().hasSyntax(SSKSyntaxEmail)];
+        return @[validate(@"email").required().emailSyntax()];
     }];
     
     if (!validated) {
@@ -119,7 +120,7 @@
                  validate(@"firstName").required().lengthRange(2, 50),
                  validate(@"lastName").required().lengthRange(2, 50),
                  validate(@"username").required().lengthRange(2, 50),
-                 validate(@"email").required().lengthRange(2, 100).hasSyntax(SSKSyntaxEmail)];
+                 validate(@"email").required().lengthRange(2, 100).emailSyntax()];
     }];
     
     if (!validated) {
