@@ -6,6 +6,7 @@
 
 #import "SSKConfiguration.h"
 #import "SSKMacros.h"
+#import "NSURL+SaasKit.h"
 
 @interface SSKConfiguration ()
 
@@ -17,12 +18,12 @@
 
 @implementation SSKConfiguration
 
-#pragma mark Initialization
+#pragma mark - Initialization
 
 - (instancetype)initWithServerURL:(NSURL *)serverURL {
     self = [super init];
     if (self == nil) return nil;
-    self.serverURL = serverURL;
+    [self setServerURL:serverURL];
     self.logLevel = SSKLogLevelNone;
     [self setPath:@"login" forRoute:SSKRouteLogin];
     [self setPath:@"register" forRoute:SSKRouteRegister];
@@ -39,7 +40,7 @@
     return sharedConfiguration;
 }
 
-#pragma mark Routes
+#pragma mark - Routes
 
 - (NSMutableDictionary *)mutableRoutePaths {
     if (_mutableRoutePaths != nil) return _mutableRoutePaths;
@@ -60,7 +61,7 @@
     self.mutableRoutePaths[@(route)] = path;
 }
 
-#pragma mark Logging
+#pragma mark - Logging
 
 - (void)logMessage:(NSString *)message {
     switch (self.logLevel) {
@@ -73,6 +74,15 @@
             NSAssert1(NO, @"[SAASKIT] %@", message);
             break;
     }
+}
+
+#pragma mark - Setters / Getters
+
+- (void)setServerURL:(NSURL *)serverURL {
+    if (![serverURL ssk_hasValidSyntax]) {
+        [self logMessage:[NSString stringWithFormat:@"URL \"%@\" has invalid syntax", serverURL]];
+    }
+    _serverURL = serverURL;
 }
 
 @end
