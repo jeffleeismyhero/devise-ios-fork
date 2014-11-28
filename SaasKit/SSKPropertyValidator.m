@@ -66,7 +66,8 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 
 #pragma mark - Public Methods
 
-- (NSError *)validateValue:(id)value {
+- (NSError *)simpleValidationOfValue:(id)value {
+    
     for (SSKValidationBlock block in self.validators) {
         NSError *error = block(value);
         if (error) {
@@ -74,6 +75,18 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
         }
     }
     return nil;
+}
+
+- (NSArray *)complexValidationOfValue:(id)value {
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (SSKValidationBlock block in self.validators) {
+        NSError *error = block(value);
+        if (error) {
+            [array addObject:error];
+        }
+    }
+    return array;
 }
 
 #pragma mark - Messages

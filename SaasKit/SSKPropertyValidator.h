@@ -97,7 +97,10 @@
 /// Name of validated property
 @property (strong, readonly, nonatomic) NSString *propertyName;
 
-/// 
-- (NSError *)validateValue:(id)value;
+/// Validates value to first error
+- (NSError *)simpleValidationOfValue:(id)value;
+
+/// Validates value and gather all possible errors
+- (NSArray *)complexValidationOfValue:(id)value;
 
 @end

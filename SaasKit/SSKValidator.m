@@ -18,6 +18,8 @@
 
 @implementation SSKValidator
 
+#pragma mark - Initializers
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -30,12 +32,38 @@
     return [[[self class] alloc] init];
 }
 
+#pragma mark - Public Methods
+
 + (BOOL)validateModel:(NSObject *)model withError:(NSError **)error rules:(NSArray *(^)())rules {
+
+    NSError *validationError = [self valideModel:model withRules:rules returnTypeClass:[NSError class]];
+    if (validationError && *error == NULL) {
+        *error = validationError;
+        return NO;
+    }
+    return YES;
+}
+
++ (NSArray *)validateModel:(NSObject *)model withRules:(NSArray *(^)())rules {
+    return [self valideModel:model withRules:rules returnTypeClass:[NSArray class]];
+}
+
+#pragma mark - Private Methods
+
++ (id)valideModel:(NSObject *)model withRules:(NSArray *(^)())rules returnTypeClass:(Class)class {
+    
+    BOOL throwFirstError = NO;
+    if (class == [NSArray class]) throwFirstError = NO;
+    else if (class == [NSError class]) throwFirstError = YES;
+    else NSAssert(NO, @"Allowed class: NSArray or NSError");
     
     NSArray *array = rules();
     NSArray *properties = [self propertiesOfModel:model];
+    NSMutableArray *errors = [NSMutableArray array];
     
     for (SSKPropertyValidator *validator in array) {
+        
+        [self validatePropertyInValidator:validator ofModel:model];
         
         if (![properties ssk_containsString:validator.propertyName]) {
             NSString *message = [NSString stringWithFormat:@"Property named '%@' wasn't found in %@ class. Property validation skipped.", validator.propertyName, [model class]];
@@ -43,14 +71,30 @@
             
         } else {
             id value = [model valueForKey:validator.propertyName];
-            NSError *validationError = [validator validateValue:value];
-            if (validationError && *error == NULL) {
-                *error = validationError;
-                return NO;
+            
+            if (throwFirstError) {
+                NSError *validationError = [validator simpleValidationOfValue:value];
+                if (validationError) {
+                    return validationError;
+                }
+            } else {
+                [errors addObjectsFromArray:[validator complexValidationOfValue:value]];
             }
         }
     }
-    return YES;
+    return throwFirstError ? nil : [errors copy];
+}
+
++ (void)validatePropertyInValidator:(SSKPropertyValidator *)validator ofModel:(NSObject *)model {
+    // Tricky part:
+    // Compiler doesn't show warnings if any validation block call isn't ended with parentheses
+    // Catch an exception and inform user about possible reason
+    @try {
+        (void)validator.propertyName;
+    }
+    @catch (NSException *exception) {
+        NSAssert1(NO, @"An exception appear during parameter from %@ model validation. Did you remember to use parentheses in block call?", [model class]);
+    }
 }
 
 + (NSArray *)propertiesOfModel:(NSObject *)model {
