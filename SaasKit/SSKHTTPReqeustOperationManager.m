@@ -27,7 +27,7 @@
         [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [manager setRequestSerializer:requestSerializer];
 
-        AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
+        AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
         [manager setResponseSerializer:responseSerializer];
         
         sharedInstance = manager;
