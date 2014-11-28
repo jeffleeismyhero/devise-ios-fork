@@ -1,124 +1,110 @@
 //
 //  SSKValidatorSpec.m
-//  SaasKit
 //
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "SSKSampleValidateModel.h"
+#import "SSKValidator.h"
+
+@interface SSKValidationTestModel : NSObject
+@property (unsafe_unretained, nonatomic) id value;
+@end @implementation SSKValidationTestModel @end
+
+// /////////////////////////////////////////////////////////////////////////////
 
 SPEC_BEGIN(SSKValidatorSpec)
 
 describe(@"SSKValidator", ^{
-    
-    __block SSKSampleValidateModel *model = nil;
-    
-    context(@"when newly instantiated", ^{
-        __block SSKValidator *validator = nil;
-        
-        beforeEach(^{
-            validator = [[SSKValidator alloc] init];
-        });
-        
-        it(@"should not be nil", ^{
-            [[validator shouldNot] beNil];
-        });
-    });
-    
-    context(@"when model has been initialized", ^{
-        
-        beforeEach(^{
-            model = [[SSKSampleValidateModel alloc] init];
-        });
-        
-        it(@"should not be nil", ^{
-            [[model shouldNot] beNil];
-        });
-        
-        it(@"all properties should be nil", ^{
-            [[model.string should] beNil];
-            [[model.stringToCompare should] beNil];
-            [[model.number should] beNil];
-            [[model.numberToCompare should] beNil];
-        });
-    });
-    
-    context(@"validate model to first error", ^{
-        
-        __block NSArray *(^rules)(void) = nil;
-        
-        void (^performValidation)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
-            NSError *validationError;
-            BOOL success = [SSKValidator validateModel:model error:&validationError usingRules:rules];
-            completion(success, validationError);
-        };
-        
-        void (^assertValidationShouldPass)() = ^{
-            __block BOOL success = NO; __block NSError *error = nil;
-            performValidation(^(BOOL inputSuccess, NSError *inputError) {
-                success = inputSuccess;
-                error = inputError;
-            });
-            [[expectFutureValue(theValue(success)) shouldEventually] beYes];
-            [[expectFutureValue(error) shouldEventually] beNil];
-        };
-        
-        void (^assertValidationShouldFail)() = ^{
-            __block BOOL success = NO; __block NSError *error = nil;
-            performValidation(^(BOOL inputSuccess, NSError *inputError) {
-                success = inputSuccess;
-                error = inputError;
-            });
-            [[expectFutureValue(theValue(success)) shouldEventually] beNo];
-            [[expectFutureValue(error) shouldEventually] beNonNil];
-        };
-        
-        beforeEach(^{
-            model = [[SSKSampleValidateModel alloc] init];
-            rules = nil;
-        });
-        
-        context(@"using no email", ^{
-            
+
+    typedef void (^SSKValidationTestBlock)(NSString *, NSArray *, void(^)(SSKPropertyValidator *));
+    SSKValidationTestBlock testValidation = ^(NSString *name, NSArray *rules, void(^configureBlock)(SSKPropertyValidator *)) {
+
+        describe([NSString stringWithFormat:@"%@ validator", name], ^{
+
+            __block SSKPropertyValidator *validator = nil;
+            __block SSKValidationTestModel *model = nil;
+
             beforeEach(^{
-                rules = ^{
-                    return @[validate(@"string").required()];
-                };
+                model = [[SSKValidationTestModel alloc] init];
+                validator = [SSKPropertyValidator validatorForPropertyName:@"value"];
             });
 
-            it(@"should fail", ^{
-                assertValidationShouldFail();
+            specify(^{
+                [[validator shouldNot] beNil];
             });
+
+            for (NSDictionary *rule in rules) {
+
+                context([NSString stringWithFormat:@"using %@", rule[@"name"]], ^{
+
+                    beforeEach(^{
+                        configureBlock(validator);
+                        model.value = rule[@"value"];
+                    });
+
+                    NSArray *(^rulesBlock)() = ^NSArray *{
+                        return @[ validator ];
+                    };
+
+                    if ([rule[@"valid"] isEqualToNumber:@YES]) {
+
+                        it(@"should succeed", ^{
+                            BOOL success = NO; NSError *error = nil;
+                            success = [SSKValidator validateModel:model error:&error usingRules:rulesBlock];
+                            [[theValue(success) should] beYes];
+                            [[error should] beNil];
+                        });
+
+                    } else {
+
+                        it(@"should fail", ^{
+                            BOOL success = NO; NSError *error = nil;
+                            success = [SSKValidator validateModel:model error:&error usingRules:rulesBlock];
+                            [[theValue(success) should] beNo];
+                            [[error shouldNot] beNil];
+                        });
+
+                    }
+
+                });
+
+            }
+
         });
-        
-        context(@"using wrong email syntax", ^{
-            
-            beforeEach(^{
-                model.string = @"jappleseed@";
-                rules = ^{
-                    return @[validate(@"string").emailSyntax()];
-                };
-            });
-            
-            it(@"should fail", ^{
-                assertValidationShouldFail();
-            });
-        });
-        
-        context(@"using correct email syntax", ^{
-            
-            beforeEach(^{
-                model.string = @"jappleseed@apple.com";
-                rules = ^{
-                    return @[validate(@"string").emailSyntax()];
-                };
-            });
-            
-            it(@"should pass", ^{
-                assertValidationShouldPass();
-            });
-        });
+
+    };
+
+    // /////////////////////////////////////////////////////////////////////////
+
+    testValidation(@"required", @[
+        @{
+            @"name": @"no value",
+            @"valid": @NO,
+        },
+        @{
+            @"name": @"any value",
+            @"value": @"qux",
+            @"valid": @YES,
+        },
+    ], ^(SSKPropertyValidator *validator) {
+        validator.required();
     });
+
+    testValidation(@"emailSyntax", @[
+        @{
+            @"name": @"email with invalid syntax",
+            @"value": @"foo~bar",
+            @"valid": @NO,
+        },
+        @{
+            @"name": @"email with valid syntax",
+            @"value": @"john.appleseed@apple.com",
+            @"valid": @YES,
+        },
+    ], ^(SSKPropertyValidator *validator) {
+        validator.required().emailSyntax();
+    });
+
 });
 
 SPEC_END
