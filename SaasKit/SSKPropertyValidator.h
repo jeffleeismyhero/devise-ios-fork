@@ -7,6 +7,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
+    SSKComparisionOperatorEqual,
+    SSKComparisionOperatorIdentical,
+    SSKComparisionOperatorNotEqual,
+    SSKComparisionOperatorNotIdentical,
+    SSKComparisionOperatorLessThan,
+    SSKComparisionOperatorGreaterThan,
+    SSKComparisionOperatorLessThanOrEqualTo,
+    SSKComparisionOperatorGreaterThanOrEqualTo
+};
+
 @interface SSKPropertyValidator : NSObject
 
 + (SSKPropertyValidator *)validatorForPropertyName:(NSString *)propertyName;
@@ -15,6 +26,8 @@
 #pragma mark NSObject:
 
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^required)();
+
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^compareTo)(NSObject *compareObject, SSKComparisionOperator comparisionOperator);
 
 #pragma mark NSString:
 
@@ -64,11 +77,14 @@
 /// User-defined localized property name. Used in error localized description (default: same as propertyName).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^localizedPropertyName)(NSString *name);
 
-/// User-defined error message used when the property has invalid email syntax (default: has invalid email syntax).
+/// User-defined error message used when the string property has invalid email syntax (default: has invalid email syntax).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntEmail)(NSString *name);
 
-/// User-defined error message used when the property isn't decimal (default: isn't decimal).
+/// User-defined error message used when the string property isn't decimal (default: isn't decimal).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntDecimal)(NSString *name);
+
+/// User-defined error message used when the string property isn't equal to another string (default: isn't ).
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntIndentical)(NSString *name);
 
 /// User-defined error message used when the property length is too short (default: is too short. Should be min {attribute} signs.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^tooShort)(NSString *message);

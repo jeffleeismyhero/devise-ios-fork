@@ -49,7 +49,7 @@
     
     NSError *error;
     BOOL validated = NO;
-
+    
     if (self.loginMethod == SSKLoginMethodUsername) {
         validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
             return @[

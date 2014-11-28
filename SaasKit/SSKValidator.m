@@ -61,6 +61,11 @@
     NSArray *properties = [self propertiesOfModel:model];
     NSMutableArray *errors = [NSMutableArray array];
     
+    if (array.count == 0) {
+        NSString *message = [NSString stringWithFormat:@"Lack of validation rules. Are you sure you don't want to define rules for %@ model", [model class]];
+        [[SSKConfiguration sharedConfiguration] logMessage:message];
+    }
+    
     for (SSKPropertyValidator *validator in array) {
         
         [self validatePropertyInValidator:validator ofModel:model];

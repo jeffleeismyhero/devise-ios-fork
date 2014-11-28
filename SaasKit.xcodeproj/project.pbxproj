@@ -53,6 +53,10 @@
 		5EF381D51A2756BB006875D4 /* NSURL+SaasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+SaasKit.m */; };
 		5EF381DC1A279998006875D4 /* NSDate+SaasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381DA1A279998006875D4 /* NSDate+SaasKit.h */; };
 		5EF381DD1A279998006875D4 /* NSDate+SaasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381DB1A279998006875D4 /* NSDate+SaasKit.m */; };
+		5EF381F01A287458006875D4 /* NSNumber+SaasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381EE1A287458006875D4 /* NSNumber+SaasKit.h */; };
+		5EF381F11A287458006875D4 /* NSNumber+SaasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381EF1A287458006875D4 /* NSNumber+SaasKit.m */; };
+		5EF381F31A287749006875D4 /* SSKValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381F21A287749006875D4 /* SSKValidatorSpec.m */; };
+		5EF381F61A287E15006875D4 /* SSKSampleValidateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381F51A287E15006875D4 /* SSKSampleValidateModel.m */; };
 		5EF5E6DA1A2667D80049BEA6 /* NSArray+SaasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF5E6D81A2667D80049BEA6 /* NSArray+SaasKit.h */; };
 		5EF5E6DB1A2667D80049BEA6 /* NSArray+SaasKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5E6D91A2667D80049BEA6 /* NSArray+SaasKit.m */; };
 		7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
@@ -171,6 +175,11 @@
 		5EF381D31A2756BB006875D4 /* NSURL+SaasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+SaasKit.m"; sourceTree = "<group>"; };
 		5EF381DA1A279998006875D4 /* NSDate+SaasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SaasKit.h"; sourceTree = "<group>"; };
 		5EF381DB1A279998006875D4 /* NSDate+SaasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SaasKit.m"; sourceTree = "<group>"; };
+		5EF381EE1A287458006875D4 /* NSNumber+SaasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SaasKit.h"; sourceTree = "<group>"; };
+		5EF381EF1A287458006875D4 /* NSNumber+SaasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SaasKit.m"; sourceTree = "<group>"; };
+		5EF381F21A287749006875D4 /* SSKValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKValidatorSpec.m; sourceTree = "<group>"; };
+		5EF381F41A287E15006875D4 /* SSKSampleValidateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKSampleValidateModel.h; sourceTree = "<group>"; };
+		5EF381F51A287E15006875D4 /* SSKSampleValidateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKSampleValidateModel.m; sourceTree = "<group>"; };
 		5EF5E6D81A2667D80049BEA6 /* NSArray+SaasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SaasKit.h"; sourceTree = "<group>"; };
 		5EF5E6D91A2667D80049BEA6 /* NSArray+SaasKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SaasKit.m"; sourceTree = "<group>"; };
 		D520EAD6431B24AD4B00819C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +259,8 @@
 				5EF381D31A2756BB006875D4 /* NSURL+SaasKit.m */,
 				5EF381DA1A279998006875D4 /* NSDate+SaasKit.h */,
 				5EF381DB1A279998006875D4 /* NSDate+SaasKit.m */,
+				5EF381EE1A287458006875D4 /* NSNumber+SaasKit.h */,
+				5EF381EF1A287458006875D4 /* NSNumber+SaasKit.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -358,9 +369,12 @@
 		3AD4C6851A24DB1C00F0AE67 /* SaasKit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				5EF381F41A287E15006875D4 /* SSKSampleValidateModel.h */,
+				5EF381F51A287E15006875D4 /* SSKSampleValidateModel.m */,
 				3A6E03F31A263588006ECA3E /* Additions */,
 				3AA22E1E1A2509AF00FE04D1 /* SSKConfigurationSpec.m */,
 				3A49C2711A25D60D0041406B /* SSKUserSpec.m */,
+				5EF381F21A287749006875D4 /* SSKValidatorSpec.m */,
 			);
 			path = "SaasKit Tests";
 			sourceTree = "<group>";
@@ -535,6 +549,7 @@
 			files = (
 				5EF381DC1A279998006875D4 /* NSDate+SaasKit.h in Headers */,
 				3AA22E411A25330C00FE04D1 /* SSKAPIManager.h in Headers */,
+				5EF381F01A287458006875D4 /* NSNumber+SaasKit.h in Headers */,
 				5E7E166E1A264F6900684A60 /* SSKPropertyValidator.h in Headers */,
 				3AA22E261A25112800FE04D1 /* NSError+SassKit.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* SSKTypedefs.h in Headers */,
@@ -764,6 +779,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EF381F11A287458006875D4 /* NSNumber+SaasKit.m in Sources */,
 				3AA22E301A251B1400FE04D1 /* SSKUser.m in Sources */,
 				5E7E166F1A264F6900684A60 /* SSKPropertyValidator.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+SaasKit.m in Sources */,
@@ -785,7 +801,9 @@
 			files = (
 				3AA22E1F1A2509AF00FE04D1 /* SSKConfigurationSpec.m in Sources */,
 				3A49C2721A25D60D0041406B /* SSKUserSpec.m in Sources */,
+				5EF381F61A287E15006875D4 /* SSKSampleValidateModel.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m in Sources */,
+				5EF381F31A287749006875D4 /* SSKValidatorSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

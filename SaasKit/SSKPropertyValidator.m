@@ -8,6 +8,7 @@
 #import "SSKPropertyValidator.h"
 #import "SSKConfiguration.h"
 #import "NSString+SassKit.h"
+#import "NSNumber+SaasKit.h"
 #import "NSError+SassKit.h"
 #import "NSDate+SaasKit.h"
 #import "SSKTypedefs.h"
@@ -28,12 +29,22 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     SSKValidatorMessageTypeTooLong,
     SSKValidatorMessageTypeExactLength,
     SSKValidatorMessageTypeDecimal,
+    SSKValidatorMessageTypeIdenticalTo,
     //NSNumber messages:
     SSKValidatorMessageTypeIsntFalse,
     SSKValidatorMessageTypeIsntTrue,
     SSKValidatorMessageTypeTooSmall,
     SSKValidatorMessageTypeTooBig,
-    SSKValidatorMessageTypeExact
+    SSKValidatorMessageTypeExact,
+    //
+    SSKValidatorMessageTypeIdentical,
+    SSKValidatorMessageTypeEqual,
+    SSKValidatorMessageTypeNotEqual,
+    SSKValidatorMessageTypeNotIdentical,
+    SSKValidatorMessageTypeLessThan,
+    SSKValidatorMessageTypeGreaterThan,
+    SSKValidatorMessageTypeLessThanOrEqualTo,
+    SSKValidatorMessageTypeGreaterThanOrEqualTo
 };
 
 @interface SSKPropertyValidator ()
@@ -190,6 +201,60 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
         [self.validators addObject:^(NSObject *value) {
             if (!value) {
                 return [weakSelf errorWithMessageType:SSKValidatorMessageTypeRequired];
+            }
+            return (NSError *)nil;
+        }];
+        return self;
+    };
+}
+
+- (SSKPropertyValidator *(^)(NSObject *, SSKComparisionOperator))compareTo {
+    __weak typeof(self)weakSelf = self;
+    
+    return ^(NSObject *compareObject, SSKComparisionOperator comparisionOperator) {
+        [self.validators addObject:^(NSObject *value) {
+            
+            if ([value isKindOfClass:[NSNumber class]]) {
+                NSNumber *number = (NSNumber *)value;
+                NSNumber *compareNumber = (NSNumber *)compareObject;
+                NSString *attribute = @"number";
+                
+                switch (comparisionOperator) {
+                    case SSKComparisionOperatorEqual:
+                        if (![number isEqualToNumber:compareNumber]) {
+                            return [weakSelf errorWithMessageType:SSKValidatorMessageTypeEqual attribute:attribute];
+                        } break;
+                    case SSKComparisionOperatorIdentical:
+                        if (![number isEqual:compareNumber]) {
+                            return [weakSelf errorWithMessageType:SSKValidatorMessageTypeIdentical attribute:attribute];
+                        } break;
+                    case SSKComparisionOperatorNotEqual:
+                        if ([number isEqualToNumber:compareNumber]) {
+                            return [weakSelf errorWithMessageType:SSKValidatorMessageTypeNotEqual attribute:attribute];
+                        } break;
+                    case SSKComparisionOperatorNotIdentical:
+                        if ([number isEqual:compareNumber]) {
+                            return [weakSelf errorWithMessageType:SSKValidatorMessageTypeNotIdentical attribute:attribute];
+                        } break;
+                    case SSKComparisionOperatorLessThan:
+                        if (![number ssk_isLessThan:compareNumber]) {
+                            return [weakSelf errorWithMessageType:SSKValidatorMessageTypeLessThan attribute:attribute];
+                        } break;
+                    case SSKComparisionOperatorGreaterThan:
+                        if (![number ssk_isGreaterThan:compareNumber]) {
+                            return [weakSelf errorWithMessageType:SSKValidatorMessageTypeGreaterThan attribute:attribute];
+                        } break;
+                    case SSKComparisionOperatorLessThanOrEqualTo:
+                        if (![number ssk_isLessThanOrEqualTo:compareNumber]) {
+                            return [weakSelf errorWithMessageType:SSKValidatorMessageTypeLessThanOrEqualTo attribute:attribute];
+                        } break;
+                    case SSKComparisionOperatorGreaterThanOrEqualTo:
+                        if (![number ssk_isGreaterThanOrEqualTo:compareNumber]) {
+                            return [weakSelf errorWithMessageType:SSKValidatorMessageTypeGreaterThanOrEqualTo attribute:attribute];
+                        } break;
+                }
+            } else {
+                [weakSelf assertComparisionError];
             }
             return (NSError *)nil;
         }];
@@ -444,19 +509,36 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     return YES;
 }
 
+- (void)assertComparisionError {
+    NSAssert(NO, @"Object of given class can not be comparised");
+}
+
 - (void)initializeValidatorMessages {
+    [self setMessage:@"cannot be nil or empty" forMessageType:SSKValidatorMessageTypeRequired];
+    [self setMessage:_propertyName forMessageType:SSKValidatorMessageTypeLocalizedPropertyName];
+    // NSString:
     [self setMessage:@"is too short. Should be min {attribute} signs." forMessageType:SSKValidatorMessageTypeTooShort];
     [self setMessage:@"is too long. Should be max {attribute} signs." forMessageType:SSKValidatorMessageTypeTooLong];
+    [self setMessage:@"hasn't exact length. Should has {attribute} signs." forMessageType:SSKValidatorMessageTypeExactLength];
+    [self setMessage:@"has invalid email syntax" forMessageType:SSKValidatorMessageTypeSyntaxEmail];
+    [self setMessage:@"isn't decimal" forMessageType:SSKValidatorMessageTypeDecimal];
+    
+    // NSNumber:
     [self setMessage:@"is too small. Should be min {attribute}." forMessageType:SSKValidatorMessageTypeTooSmall];
     [self setMessage:@"is too big. Should be max {attribute}." forMessageType:SSKValidatorMessageTypeTooBig];
     [self setMessage:@"should be true." forMessageType:SSKValidatorMessageTypeIsntTrue];
     [self setMessage:@"should be false." forMessageType:SSKValidatorMessageTypeIsntFalse];
-    [self setMessage:@"hasn't exact length. Should has {attribute} signs." forMessageType:SSKValidatorMessageTypeExactLength];
     [self setMessage:@"isn't exact. Should be {attribute}." forMessageType:SSKValidatorMessageTypeExact];
-    [self setMessage:@"cannot be nil or empty" forMessageType:SSKValidatorMessageTypeRequired];
-    [self setMessage:@"has invalid email syntax" forMessageType:SSKValidatorMessageTypeSyntaxEmail];
-    [self setMessage:@"isn't decimal" forMessageType:SSKValidatorMessageTypeDecimal];
-    [self setMessage:_propertyName forMessageType:SSKValidatorMessageTypeLocalizedPropertyName];
+    
+    // Two NSObjects comparision:
+    [self setMessage:@"isn't identical to compared {attribute}" forMessageType:SSKValidatorMessageTypeIdentical];
+    [self setMessage:@"isn't equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeEqual];
+    [self setMessage:@"is identical to compared {attribute}" forMessageType:SSKValidatorMessageTypeNotIdentical];
+    [self setMessage:@"is equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeNotEqual];
+    [self setMessage:@"is greater than or equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeLessThan];
+    [self setMessage:@"is less than or equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeGreaterThan];
+    [self setMessage:@"is greater than compared {attribute}" forMessageType:SSKValidatorMessageTypeLessThanOrEqualTo];
+    [self setMessage:@"is less than compared {attribute}" forMessageType:SSKValidatorMessageTypeGreaterThanOrEqualTo];
 }
 
 @end
