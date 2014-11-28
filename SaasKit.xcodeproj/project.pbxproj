@@ -708,7 +708,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n#touch \"$GCC_PREFIX_HEADER\"\n";
+			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"\n";
 		};
 		3ACA0FCA1A28A73B00C98B59 /* Touch Precompiled Header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -722,7 +722,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n#touch \"$GCC_PREFIX_HEADER\"";
+			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"";
 		};
 		3ACA0FCB1A28A75600C98B59 /* Touch Precompiled Header */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -736,7 +736,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n#touch \"$GCC_PREFIX_HEADER\"";
+			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"";
 		};
 		3AD4C68D1A24DC1500F0AE67 /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
