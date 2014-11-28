@@ -102,7 +102,7 @@ describe(@"SSKValidator", ^{
             @"valid": @YES,
         },
     ], ^(SSKPropertyValidator *validator) {
-        validator.required().emailSyntax();
+        validator.emailSyntax();
     });
 
 });
