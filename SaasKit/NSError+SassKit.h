@@ -10,7 +10,9 @@
 typedef NS_ENUM(NSInteger, SSKErrorCode) {
     SSKErrorParamEmpty = 20001,
     SSKErrorParamSyntaxInvalid = 20002,
-    SSKErrorValidationFailed = 20003
+    SSKErrorValidationFailed = 20003,
+    SSKErrorRequestError = 20004,
+    SSKErrorResponseEmpty = 20005
 };
 
 /// The error domain used by the framework.
@@ -30,5 +32,11 @@ extern NSString * const SSKErrorDomain;
 + (NSString *)ssk_descriptionForErrorCode:(SSKErrorCode)code;
 
 + (instancetype)ssk_errorWithDescription:(NSString *)description code:(NSInteger)code;
+
+/* Creates an error object when some response object was expected but nothing was returned */
++ (instancetype)ssk_errorForEmptyResponse;
+
+/* Creates an error object described by http response error */
++ (instancetype)ssk_errorFromDictionary: (NSDictionary*) dictionary;
 
 @end

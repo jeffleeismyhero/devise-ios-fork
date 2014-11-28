@@ -124,7 +124,7 @@ describe(@"SSKValidator", ^{
         rule(@"email with invalid syntax", @"foo~", @NO, @(1)),
         rule(@"email with valid syntax", @"john.appleseed@apple.com", @YES, @(0))
     ], ^(SSKPropertyValidator *validator) {
-        validator.required().emailSyntax();
+        validator.emailSyntax();
     });
     
     testValidation(@"decimal", @[

@@ -5,6 +5,7 @@
 //
 
 #import "OHHTTPStubs+SaasKitTests.h"
+#import <OHHTTPStubs/OHHTTPStubsResponse+JSON.h>
 
 @implementation OHHTTPStubs (SaasKitTests)
 
@@ -40,7 +41,8 @@
             return YES;
         })();
         int statusCode = (valid) ? 200 : 400;
-        return [self ssk_responseWithData:nil statusCode:statusCode];
+        NSDictionary *json = (valid) ? @{ @"user": @{} } : @{ @"error": @{} };
+        return [self ssk_responseWithJSON:json statusCode:statusCode];
     }];
 }
 
@@ -103,6 +105,12 @@
 
 + (OHHTTPStubsResponse *)ssk_responseWithData:(NSData *)data statusCode:(int)statusCode {
     return [OHHTTPStubsResponse responseWithData:data statusCode:statusCode headers:@{
+        @"Content-Type": @"application/json",
+    }];
+}
+
++ (OHHTTPStubsResponse *)ssk_responseWithJSON:(id)object statusCode:(int)statusCode {
+    return [OHHTTPStubsResponse responseWithJSONObject:object statusCode:statusCode headers:@{
         @"Content-Type": @"application/json",
     }];
 }

@@ -47,6 +47,11 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 @property (weak, nonatomic) id <SSKUserDataSource> dataSource;
 
 + (SSKUser *)user;
++ (SSKUser *)currentUser;
+
+/* Configures user with data from server and sets the user as the current user */
+- (void) setupWithDictionary: (NSDictionary*) dictionary;
+
 
 - (NSDictionary *)extraLoginParams;
 - (NSDictionary *)extraRegistrationParams;

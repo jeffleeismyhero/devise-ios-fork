@@ -17,6 +17,8 @@
 
 @implementation SSKUser
 
+static SSKUser * _currentUser;
+
 #pragma mark - Public Methods
 
 - (instancetype)init {
@@ -29,6 +31,43 @@
 
 + (instancetype)user {
     return [[[self class] alloc] init];
+}
+
++ (SSKUser *)currentUser {
+    return _currentUser;
+}
+
+- (void) setupWithDictionary: (NSDictionary*) dictionary
+{
+    if (dictionary) {
+        
+        NSString * usernameValue = dictionary[@"username"];
+        if (usernameValue) {
+            self.username = usernameValue;
+        }
+        
+        NSString * emailValue = dictionary[@"email"];
+        if (emailValue) {
+            self.email = emailValue;
+        }
+        
+        NSString * firstNameValue = dictionary[@"firstName"];
+        if (firstNameValue) {
+            self.firstName = firstNameValue;
+        }
+        
+        NSString * lastNameValue = dictionary[@"lastName"];
+        if (lastNameValue) {
+            self.lastName = lastNameValue;
+        }
+        
+        NSString * phoneNumberValue = dictionary[@"phoneNumber"];
+        if (phoneNumberValue) {
+            self.phoneNumber = phoneNumberValue;
+        }
+        
+        _currentUser = self;
+    }
 }
 
 - (NSDictionary *)extraLoginParams {
