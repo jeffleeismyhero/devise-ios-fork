@@ -893,10 +893,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/SaasKit-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/SaasKit-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
 			};
 			name = Debug;
 		};
