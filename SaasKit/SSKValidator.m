@@ -34,9 +34,9 @@
 
 #pragma mark - Public Methods
 
-+ (BOOL)validateModel:(NSObject *)model withError:(NSError **)error rules:(NSArray *(^)())rules {
++ (BOOL)validateModel:(NSObject *)model error:(NSError **)error usingRules:(NSArray *(^)())rules {
 
-    NSError *validationError = [self valideModel:model withRules:rules returnTypeClass:[NSError class]];
+    NSError *validationError = [self valideModel:model usingRules:rules returnTypeClass:[NSError class]];
     if (validationError && *error == NULL) {
         *error = validationError;
         return NO;
@@ -44,13 +44,13 @@
     return YES;
 }
 
-+ (NSArray *)validateModel:(NSObject *)model withRules:(NSArray *(^)())rules {
-    return [self valideModel:model withRules:rules returnTypeClass:[NSArray class]];
++ (NSArray *)validateModel:(NSObject *)model usingRules:(NSArray *(^)())rules {
+    return [self valideModel:model usingRules:rules returnTypeClass:[NSArray class]];
 }
 
 #pragma mark - Private Methods
 
-+ (id)valideModel:(NSObject *)model withRules:(NSArray *(^)())rules returnTypeClass:(Class)class {
++ (id)valideModel:(NSObject *)model usingRules:(NSArray *(^)())rules returnTypeClass:(Class)class {
     
     BOOL throwFirstError = NO;
     if (class == [NSArray class]) throwFirstError = NO;

@@ -12,24 +12,24 @@
 
 @interface SSKValidator : NSObject
 /**
- *  Specify a first validation error and return NO if any error appear or YES if validation will pass
+ *  Validates given model with selected rules. Returns YES when validation succeeded, NO otherwise.
  *
  *  @param model Model within properties are validated
- *  @param error Validation error with description. Possibe NULL if all validation will pass
+ *  @param error Validation error with decription, nil when validation will pass
  *  @param rules An array of validation rules. Every property within a model is validated separately
  *
- *  @return result of validation. YES if all validation will pass. Otherwise NO.
+ *  @return result of validation. YES if validation will pass, NO otherwise.
  */
-+ (BOOL)validateModel:(NSObject *)model withError:(NSError **)error rules:(NSArray *(^)())rules;
++ (BOOL)validateModel:(NSObject *)model error:(NSError **)error usingRules:(NSArray *(^)())rules;
 
 /**
- *  Gather all validation errors and return them as an array.
+ *  Validates given model with selected rules. Returns empty array when validation succeeded. If not, array will contains errors.
  *
  *  @param model Model within properties are validated
  *  @param rules An array of validation rules. Every property within a model is validated separately
  *
  *  @return an array of errors. If validation will pass then array is empty.
  */
-+ (NSArray *)validateModel:(NSObject *)model withRules:(NSArray *(^)())rules;
++ (NSArray *)validateModel:(NSObject *)model usingRules:(NSArray *(^)())rules;
 
 @end

@@ -49,7 +49,7 @@ describe(@"SSKValidator", ^{
         
         void (^performValidation)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
             NSError *validationError;
-            BOOL success = [SSKValidator validateModel:model withError:&validationError rules:rules];
+            BOOL success = [SSKValidator validateModel:model error:&validationError usingRules:rules];
             completion(success, validationError);
         };
         

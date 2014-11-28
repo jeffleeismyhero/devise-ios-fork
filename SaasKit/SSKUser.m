@@ -51,14 +51,14 @@
     BOOL validated = NO;
     
     if (self.loginMethod == SSKLoginMethodUsername) {
-        validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+        validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
             return @[
                 validate(@"username").required().lengthRange(2, 50),
                 validate(@"password").required()
             ];
         }];
     } else if (self.loginMethod == SSKLoginMethodEmail) {
-        validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+        validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
             return @[
                 validate(@"email").required().emailSyntax().lengthRange(2, 100),
                 validate(@"password").required()
@@ -85,7 +85,7 @@
 - (void)remindPasswordWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
 
     NSError *error;
-    BOOL validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+    BOOL validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
         return @[validate(@"email").required().emailSyntax()];
     }];
     
@@ -115,7 +115,7 @@
 - (void)registerWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
 
     NSError *error;
-    BOOL validated = [SSKValidator validateModel:self withError:&error rules:^NSArray *{
+    BOOL validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
         return @[validate(@"password").required(),
                  validate(@"firstName").required().lengthRange(2, 50),
                  validate(@"lastName").required().lengthRange(2, 50),
