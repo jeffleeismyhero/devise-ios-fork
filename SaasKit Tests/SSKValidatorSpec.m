@@ -147,16 +147,6 @@ describe(@"SSKValidator", ^{
      ], ^(SSKPropertyValidator *validator) {
          validator.required().maxLength(20);
      });
-    
-    NSNumber *valueA = [NSNumber numberWithInt:1];
-    NSNumber *valueB = [NSNumber numberWithInt:1];
-    
-    testValidation(@"compare", @[
-                                 rule(@"compareToEqual", valueA, @NO, @(1)),
-                                 //         rule(@"are equal", @"veryShoryString", @YES, @(0)),
-                                 ], ^(SSKPropertyValidator *validator) {
-                                     validator.required().compareTo(valueB, SSKComparisionOperatorIdentical);
-                                     });
 });
 
 SPEC_END
