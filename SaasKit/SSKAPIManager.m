@@ -9,6 +9,7 @@
 #import "SSKConfiguration.h"
 #import "SSKUser+Querying.h"
 #import "SSKMacros.h"
+#import "NSError+SassKit.h"
 
 @implementation SSKAPIManager
 
@@ -48,7 +49,24 @@
     if (requestType == SSKRequestPOST) {
         
         [SSKNetworkManager requestWithPOST:[user loginPOST] path:path success:^(id object) {
-            success();
+            
+            if ( [object isKindOfClass: [NSDictionary class]]) {
+                
+                NSDictionary * responseDictionary = (NSDictionary*)object;
+                NSDictionary * errorDictionary = [responseDictionary objectForKey: @"error"];
+                NSDictionary * userDictionary = [responseDictionary objectForKey: @"user"];
+                
+                if (errorDictionary) {
+                    failure( [NSError ssk_errorFromDictionary: errorDictionary] );
+                } else if (userDictionary) {
+                    [user setupWithDictionary: userDictionary];
+                    success();
+                } else {
+                    failure( [NSError ssk_errorForEmptyResponse] );
+                }
+            } else {
+                failure( [NSError ssk_errorForEmptyResponse] );
+            }
         } failure:^(NSError *error) {
             failure(error);
         }];

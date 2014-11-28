@@ -23,7 +23,7 @@
     
         //request serializer:
         AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Typxe"];
+        [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [manager setRequestSerializer:requestSerializer];
 

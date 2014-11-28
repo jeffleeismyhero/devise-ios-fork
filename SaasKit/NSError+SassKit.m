@@ -26,13 +26,24 @@ NSString * const SSKErrorDomain = @"co.netguru.lib.sasskit.error";
             return @"has invalid syntax";
         case SSKErrorValidationFailed:
             return @"";
+        case SSKErrorRequestError:
+            return @"request error";
+        case SSKErrorResponseEmpty:
+            return @"response cannot be empty";
     }
 }
 
 + (instancetype)ssk_errorWithDescription:(NSString *)description code:(NSInteger)code {
-    return [[self alloc] initWithDomain:SSKErrorDomain code:code userInfo:@{
-                                                                            NSLocalizedDescriptionKey: description,
-                                                                            }];
+    return [[self alloc] initWithDomain:SSKErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey: description}];
+}
+
++ (instancetype)ssk_errorForEmptyResponse {
+    return [[self alloc] initWithDomain: SSKErrorDomain code: SSKErrorResponseEmpty userInfo: @{
+                            NSLocalizedDescriptionKey: [NSError ssk_descriptionForErrorCode: SSKErrorResponseEmpty]} ];
+}
+
++ (instancetype)ssk_errorFromDictionary: (NSDictionary*) dictionary {
+    return [[self alloc] initWithDomain: SSKErrorDomain code: SSKErrorRequestError userInfo: dictionary ];
 }
 
 @end
