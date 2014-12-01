@@ -17,7 +17,6 @@
 #define kName @"name"
 #define kErrorsNumber @"errorsNumber"
 #define kExpectedClass @"expectedClass"
-#define kNULL [NSNull null]
 
 SPEC_BEGIN(SSKValidatorSpec)
 
@@ -112,7 +111,7 @@ describe(@"SSKValidator", ^{
      });
     
     testValidation(@"required", @[
-        rule(@"no value", kNULL, NO, 1, [NSNull class]),
+        rule(@"no value", [NSNull null], NO, 1, [NSNull class]),
         rule(@"any value", @"qux", YES, 0, [NSString class])
     ], ^(SSKPropertyValidator *validator) {
         validator.required();
