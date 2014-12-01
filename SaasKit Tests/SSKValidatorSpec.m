@@ -16,6 +16,7 @@
 #define kValid @"valid"
 #define kName @"name"
 #define kErrorsNumber @"errorsNumber"
+#define kExpectedClass @"expectedClass"
 #define kNULL [NSNull null]
 
 SPEC_BEGIN(SSKValidatorSpec)
@@ -45,52 +46,50 @@ describe(@"SSKValidator", ^{
 
                 context([NSString stringWithFormat:@"using %@", rule[kName]], ^{
                     
+                    __block BOOL success; __block  NSError *error; __block NSArray *array;
+                    
                     beforeEach(^{
                         configureBlock(validator);
                         model.value = rule[kValue];
+                        success = NO; error = nil; array = nil;
                     });
 
                     NSArray *(^rulesBlock)() = ^NSArray *{
                         return @[validator];
                     };
-
-                    if ([rule[kValid] isEqualToNumber:@YES]) {
+                    
+                    if(![rule[kValue] isKindOfClass:rule[kExpectedClass]]) {
                         
-                        context(@"should success", ^{
+                        it(@"should not accept class other than specified", ^{
+                            [[theBlock(^{
+                                [SSKValidator validateModel:model error:&error usingRules:rulesBlock];
+                            }) should] raiseWithName:NSInternalInconsistencyException];
                             
-                            it(@"using [validateModel:error:usingRules:] method", ^{
-                                
-                                BOOL success = NO; NSError *error = nil;
-                                success = [SSKValidator validateModel:model error:&error usingRules:rulesBlock];
-                                [[theValue(success) should] beYes];
-                                [[error should] beNil];
-                            });
-                            
-                            it(@"using [validateModel:usingRules:] method", ^{
-                                NSArray *array = nil;
-                                array = [SSKValidator validateModel:model usingRules:rulesBlock];
-                                [[array should] haveCountOf:[rule[kErrorsNumber] integerValue]];
-                            });
-                            
+                            [[theBlock(^{
+                                [SSKValidator validateModel:model usingRules:rulesBlock];
+                            }) should] raiseWithName:NSInternalInconsistencyException];
                         });
-
+                        
+                    } else if ([rule[kValid] isEqualToNumber:@YES]) {
+                        
+                        it(@"should succeed", ^{
+                            success = [SSKValidator validateModel:model error:&error usingRules:rulesBlock];
+                            array = [SSKValidator validateModel:model usingRules:rulesBlock];
+                            
+                            [[theValue(success) should] beYes];
+                            [[error should] beNil];
+                            [[array should] haveCountOf:[rule[kErrorsNumber] integerValue]];
+                        });
+                        
                     } else {
                         
-                        context(@"should fail", ^{
+                        it(@"should fail", ^{
+                            success = [SSKValidator validateModel:model error:&error usingRules:rulesBlock];
+                            array = [SSKValidator validateModel:model usingRules:rulesBlock];
                             
-                            it(@"using [validateModel:error:usingRules:] method", ^{
-                                BOOL success = NO; NSError *error = nil;
-                                success = [SSKValidator validateModel:model error:&error usingRules:rulesBlock];
-                                [[theValue(success) should] beNo];
-                                [[error shouldNot] beNil];
-                            });
-                            
-                            it(@"using [validateModel:usingRules:] method", ^{
-                                NSArray *array = nil;
-                                array = [SSKValidator validateModel:model usingRules:rulesBlock];
-                                [[array should] haveCountOf:[rule[kErrorsNumber] integerValue]];
-                            });
-                            
+                            [[theValue(success) should] beNo];
+                            [[error shouldNot] beNil];
+                            [[array should] haveCountOf:[rule[kErrorsNumber] integerValue]];
                         });
                     }
                 });
@@ -98,52 +97,51 @@ describe(@"SSKValidator", ^{
         });
     };
     
-    typedef NSDictionary * (^SSKValidationRulesBlock)(NSString *, NSObject *, NSNumber *, NSNumber *);
-    SSKValidationRulesBlock rule = ^(NSString *name, NSObject * value, NSNumber *valid, NSNumber *errors) {
-        NSMutableDictionary *dictionary = [@{kName : name, kValid : valid, kErrorsNumber : errors} mutableCopy];
-        if(![value isKindOfClass:[NSNull class]]) dictionary[kValue] = value;
-        return [dictionary copy];
+    typedef NSDictionary * (^SSKValidationRulesBlock)(NSString *, NSObject *, BOOL, NSUInteger, Class);
+    SSKValidationRulesBlock rule = ^(NSString *name, NSObject * value, BOOL valid, NSUInteger errors, Class expectedClass) {
+        return @{kValue : value, kName : name, kValid : @(valid), kErrorsNumber : @(errors), kExpectedClass : expectedClass};
     };
     
 #pragma mark - Actual tests:
     
-    testValidation(@"any non-required", @[
-         rule(@"no value", kNULL, @YES, @(0)),
+    testValidation(@"any string", @[
+         rule(@"incorrect defined class", @123, NO, 1, [NSString class]),
+         rule(@"correct defined class", @"123", YES, 0, [NSString class]),
      ], ^(SSKPropertyValidator *validator) {
          validator.decimal();
      });
     
     testValidation(@"required", @[
-        rule(@"no value", kNULL, @NO, @(1)),
-        rule(@"any value", @"qux", @YES, @(0))
+        rule(@"no value", kNULL, NO, 1, [NSNull class]),
+        rule(@"any value", @"qux", YES, 0, [NSString class])
     ], ^(SSKPropertyValidator *validator) {
         validator.required();
     });
 
     testValidation(@"emailSyntax", @[
-        rule(@"email with invalid syntax", @"foo~", @NO, @(1)),
-        rule(@"email with valid syntax", @"john.appleseed@apple.com", @YES, @(0))
+        rule(@"email with invalid syntax", @"foo~", NO, 1, [NSString class]),
+        rule(@"email with valid syntax", @"john.appleseed@apple.com", YES, 0, [NSString class])
     ], ^(SSKPropertyValidator *validator) {
         validator.emailSyntax();
     });
     
     testValidation(@"decimal", @[
-         rule(@"invalid decimal", @"123ewq", @NO, @(1)),
-         rule(@"valid decimal", @"123567", @YES, @(0)),
+         rule(@"invalid decimal", @"123ewq", NO, 1, [NSString class]),
+         rule(@"valid decimal", @"123567", YES, 0, [NSString class]),
      ], ^(SSKPropertyValidator *validator) {
          validator.required().decimal();
      });
     
     testValidation(@"minLength", @[
-         rule(@"too short string", @"veryShoryString", @NO, @(1)),
-         rule(@"string with required length", @"this_string_should_pass_the_test", @YES, @(0)),
+         rule(@"too short string", @"veryShoryString", NO, 1, [NSString class]),
+         rule(@"string with required length", @"this_string_should_pass_the_test", YES, 0, [NSString class]),
      ], ^(SSKPropertyValidator *validator) {
          validator.required().minLength(20);
      });
     
     testValidation(@"maxLength", @[
-         rule(@"string with required length", @"this_string_should_not_pass_the_test", @NO, @(1)),
-         rule(@"too long string", @"veryShoryString", @YES, @(0)),
+         rule(@"string with required length", @"this_string_should_not_pass_the_test", NO, 1, [NSString class]),
+         rule(@"too long string", @"veryShoryString", YES, 0, [NSString class]),
      ], ^(SSKPropertyValidator *validator) {
          validator.required().maxLength(20);
      });

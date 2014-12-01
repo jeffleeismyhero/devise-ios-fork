@@ -199,7 +199,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     
     return ^() {
         [self.validators addObject:^(NSObject *value) {
-            if (!value) {
+            if (!value || [value isKindOfClass:[NSNull class]]) {
                 return [weakSelf errorWithMessageType:SSKValidatorMessageTypeRequired];
             }
             return (NSError *)nil;
