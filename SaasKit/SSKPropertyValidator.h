@@ -9,9 +9,7 @@
 
 typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
     SSKComparisionOperatorEqual,
-    SSKComparisionOperatorIdentical,
     SSKComparisionOperatorNotEqual,
-    SSKComparisionOperatorNotIdentical,
     SSKComparisionOperatorLessThan,
     SSKComparisionOperatorGreaterThan,
     SSKComparisionOperatorLessThanOrEqualTo,
@@ -23,10 +21,11 @@ typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
 + (SSKPropertyValidator *)validatorForPropertyName:(NSString *)propertyName;
 
 #pragma mark - Validators Rules:
-#pragma mark NSObject:
 
+/// Validates that the NSObject is not nil
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^required)();
 
+/// Validates 2 object by comparing them to eachother. Compare operation is specified by SSKComparisionOperator. Use only to compare NSDates or NSNumbers objects.
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^compareTo)(NSObject *compareObject, SSKComparisionOperator comparisionOperator);
 
 #pragma mark NSString:
@@ -83,9 +82,6 @@ typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
 /// User-defined error message used when the string property isn't decimal (default: isn't decimal).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntDecimal)(NSString *name);
 
-/// User-defined error message used when the string property isn't equal to another string (default: isn't ).
-@property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntIndentical)(NSString *name);
-
 /// User-defined error message used when the property length is too short (default: is too short. Should be min {attribute} signs.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^tooShort)(NSString *message);
 
@@ -110,6 +106,19 @@ typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
 /// User-defined error message usesd when the property value isn't exact (default: isn't exact. Should be {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^notExact)(NSString *message);
 
+//
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntEqual)(NSString *message);
+
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^isEqual)(NSString *message);
+
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntGreater)(NSString *message);
+
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntLess)(NSString *message);
+
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntGreaterOrEqual)(NSString *message);
+
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntLessOrEqual)(NSString *message);
+
 /// Name of validated property
 @property (strong, readonly, nonatomic) NSString *propertyName;
 
@@ -118,5 +127,7 @@ typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
 
 /// Validates value and gather all possible errors
 - (NSArray *)complexValidationOfValue:(id)value;
+
+- (NSDictionary *)messages;
 
 @end

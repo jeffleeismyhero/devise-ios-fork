@@ -37,10 +37,8 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     SSKValidatorMessageTypeTooBig,
     SSKValidatorMessageTypeExact,
     //
-    SSKValidatorMessageTypeIdentical,
     SSKValidatorMessageTypeEqual,
     SSKValidatorMessageTypeNotEqual,
-    SSKValidatorMessageTypeNotIdentical,
     SSKValidatorMessageTypeLessThan,
     SSKValidatorMessageTypeGreaterThan,
     SSKValidatorMessageTypeLessThanOrEqualTo,
@@ -63,7 +61,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     if (self) {
         NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"@\""];
         _propertyName = [propertyName stringByTrimmingCharactersInSet:set];
-
+        
         _validators = [NSMutableArray array];
         _validatorMessages = [NSMutableDictionary dictionary];
         [self initializeValidatorMessages];
@@ -98,6 +96,10 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
         }
     }
     return array;
+}
+
+- (NSDictionary *)messages {
+    return [self.validatorMessages copy];
 }
 
 #pragma mark - Messages
@@ -191,6 +193,50 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     };
 }
 
+#pragma mark Compare messages:
+
+- (SSKPropertyValidator *(^)(NSString *))isntEqual {
+    return ^(NSString *message) {
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeEqual];
+        return self;
+    };
+}
+
+- (SSKPropertyValidator *(^)(NSString *))isEqual {
+    return ^(NSString *message) {
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeNotEqual];
+        return self;
+    };
+}
+
+- (SSKPropertyValidator *(^)(NSString *))isntGreater {
+    return ^(NSString *message) {
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeGreaterThan];
+        return self;
+    };
+}
+
+- (SSKPropertyValidator *(^)(NSString *))isntLess {
+    return ^(NSString *message) {
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeLessThan];
+        return self;
+    };
+}
+
+- (SSKPropertyValidator *(^)(NSString *))isntGreaterOrEqual {
+    return ^(NSString *message) {
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeGreaterThanOrEqualTo];
+        return self;
+    };
+}
+
+- (SSKPropertyValidator *(^)(NSString *))isntLessOrEqual {
+    return ^(NSString *message) {
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeLessThanOrEqualTo];
+        return self;
+    };
+}
+
 #pragma mark - Rules
 #pragma mark Overall rules:
 
@@ -220,6 +266,9 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
             } else if ([value isKindOfClass:[NSDate class]]) {
                 return [weakSelf compareDate:(NSDate *)value toDate:(NSDate *)compareObject usingOperator:comparisionOperator];
                 
+            } else {
+                NSString *description = [NSString stringWithFormat:@"Only NSDate and NSNumber objects can be compared to eachoter. Given parameter is kind of %@ class", [value class]];
+                [weakSelf assertWithDescription:description];
             }
             return (NSError *)nil;
         }];
@@ -442,8 +491,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 - (NSError *)compareNumber:(NSNumber *)number toNumber:(NSNumber *)compareNumber usingOperator:(SSKComparisionOperator)comparisionOperator {
     NSString *attribute = @"number";
     
-    if (![self isObject:number kindOfClass:[NSNumber class]] &&
-        ![self isObject:compareNumber kindOfClass:[NSNumber class]]) {
+    if (![self isObject:compareNumber kindOfClass:[NSNumber class]]) {
         return nil;
     }
     
@@ -452,17 +500,9 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
             if (![number isEqualToNumber:compareNumber]) {
                 return [self errorWithMessageType:SSKValidatorMessageTypeEqual attribute:attribute];
             } break;
-        case SSKComparisionOperatorIdentical:
-            if (![number isEqual:compareNumber]) {
-                return [self errorWithMessageType:SSKValidatorMessageTypeIdentical attribute:attribute];
-            } break;
         case SSKComparisionOperatorNotEqual:
             if ([number isEqualToNumber:compareNumber]) {
                 return [self errorWithMessageType:SSKValidatorMessageTypeNotEqual attribute:attribute];
-            } break;
-        case SSKComparisionOperatorNotIdentical:
-            if ([number isEqual:compareNumber]) {
-                return [self errorWithMessageType:SSKValidatorMessageTypeNotIdentical attribute:attribute];
             } break;
         case SSKComparisionOperatorLessThan:
             if (![number ssk_isLessThan:compareNumber]) {
@@ -487,27 +527,18 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 - (NSError *)compareDate:(NSDate *)date toDate:(NSDate *)compareDate usingOperator:(SSKComparisionOperator)comparisionOperator {
     NSString *attribute = @"date";
     
-    if (![self isObject:date kindOfClass:[NSDate class]] &&
-        ![self isObject:compareDate kindOfClass:[NSDate class]]) {
+    if (![self isObject:compareDate kindOfClass:[NSDate class]]) {
         return nil;
     }
     
     switch (comparisionOperator) {
         case SSKComparisionOperatorEqual:
-            if (![date isEqualToDate:compareDate]) {
-                return [self errorWithMessageType:SSKValidatorMessageTypeEqual attribute:attribute];
-            } break;
-        case SSKComparisionOperatorIdentical:
             if (![date isEqual:compareDate]) {
-                return [self errorWithMessageType:SSKValidatorMessageTypeIdentical attribute:attribute];
+                return [self errorWithMessageType:SSKValidatorMessageTypeEqual attribute:attribute];
             } break;
         case SSKComparisionOperatorNotEqual:
             if ([date isEqualToDate:compareDate]) {
                 return [self errorWithMessageType:SSKValidatorMessageTypeNotEqual attribute:attribute];
-            } break;
-        case SSKComparisionOperatorNotIdentical:
-            if ([date isEqual:compareDate]) {
-                return [self errorWithMessageType:SSKValidatorMessageTypeNotIdentical attribute:attribute];
             } break;
         case SSKComparisionOperatorLessThan:
             if (![date ssk_isEarlierThan:compareDate]) {
@@ -564,6 +595,10 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     return YES;
 }
 
+- (void)assertWithDescription:(NSString *)description {
+    NSAssert(NO, description);
+}
+
 - (void)initializeValidatorMessages {
     [self setMessage:@"cannot be nil or empty" forMessageType:SSKValidatorMessageTypeRequired];
     [self setMessage:_propertyName forMessageType:SSKValidatorMessageTypeLocalizedPropertyName];
@@ -582,10 +617,8 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     [self setMessage:@"isn't exact. Should be {attribute}." forMessageType:SSKValidatorMessageTypeExact];
     
     // Two NSObjects comparision:
-    [self setMessage:@"isn't identical to compared {attribute}" forMessageType:SSKValidatorMessageTypeIdentical];
-    [self setMessage:@"isn't equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeEqual];
-    [self setMessage:@"is identical to compared {attribute}" forMessageType:SSKValidatorMessageTypeNotIdentical];
-    [self setMessage:@"is equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeNotEqual];
+    [self setMessage:@"isn't equal to {attribute}" forMessageType:SSKValidatorMessageTypeEqual];
+    [self setMessage:@"is equal to {attribute}" forMessageType:SSKValidatorMessageTypeNotEqual];
     [self setMessage:@"is greater than or equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeLessThan];
     [self setMessage:@"is less than or equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeGreaterThan];
     [self setMessage:@"is greater than compared {attribute}" forMessageType:SSKValidatorMessageTypeLessThanOrEqualTo];
