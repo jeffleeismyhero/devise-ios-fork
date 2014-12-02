@@ -50,16 +50,12 @@
         
         [SSKNetworkManager requestWithPOST:[user loginPOST] path:path success:^(NSDictionary *response) {
             
-            if (response[@"error"]) {
-                failure([NSError ssk_errorWithErrorResponse:response[@"error"]]);
-                
-            } else if (response[@"user"]) {
+            if (response[@"user"]) {
                 [user setupWithDictionary:response[@"user"]];
                 success();
                 
             } else {
-                NSError *error = [NSError ssk_errorForEmptyResponse];
-                failure(error);
+                failure([NSError ssk_errorWithErrorResponse:response]);
             }
 
         } failure:^(NSError *error) {

@@ -24,7 +24,7 @@ NSString * const SSKErrorDomain = @"co.netguru.lib.sasskit.error";
 }
 
 + (instancetype)ssk_errorWithErrorResponse:(NSDictionary *)response {
-    NSString *description = response[@"message"] ?: [self ssk_descriptionForErrorCode:SSKErrorResponseError];
+    NSString *description = response[@"error"][@"message"] ?: [self ssk_descriptionForErrorCode:SSKErrorResponseError];
     return [[self alloc] initWithDomain:SSKErrorDomain code:SSKErrorResponseError userInfo:@{NSLocalizedDescriptionKey : description}];
 }
 
