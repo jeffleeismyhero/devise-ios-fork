@@ -48,31 +48,26 @@
     
     if (requestType == SSKRequestPOST) {
         
-        [SSKNetworkManager requestWithPOST:[user loginPOST] path:path success:^(id object) {
+        [SSKNetworkManager requestWithPOST:[user loginPOST] path:path success:^(NSDictionary *response) {
             
-            if ( [object isKindOfClass: [NSDictionary class]]) {
+            if (response[@"error"]) {
+                failure([NSError ssk_errorWithErrorResponse:response[@"error"]]);
                 
-                NSDictionary * responseDictionary = (NSDictionary*)object;
-                NSDictionary * errorDictionary = [responseDictionary objectForKey: @"error"];
-                NSDictionary * userDictionary = [responseDictionary objectForKey: @"user"];
+            } else if (response[@"user"]) {
+                [user setupWithDictionary:response[@"user"]];
+                success();
                 
-                if (errorDictionary) {
-                    failure( [NSError ssk_errorFromDictionary: errorDictionary] );
-                } else if (userDictionary) {
-                    [user setupWithDictionary: userDictionary];
-                    success();
-                } else {
-                    failure( [NSError ssk_errorForEmptyResponse] );
-                }
             } else {
-                failure( [NSError ssk_errorForEmptyResponse] );
+                NSError *error = [NSError ssk_errorForEmptyResponse];
+                failure(error);
             }
+
         } failure:^(NSError *error) {
             failure(error);
         }];
     } else {
         
-        [SSKNetworkManager requestWithGET:[user loginQuery] path:path success:^(id object) {
+        [SSKNetworkManager requestWithGET:[user loginQuery] path:path success:^(NSDictionary *response) {
             success();
         } failure:^(NSError *error) {
             failure(error);

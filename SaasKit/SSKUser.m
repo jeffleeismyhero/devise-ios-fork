@@ -17,7 +17,7 @@
 
 @implementation SSKUser
 
-static SSKUser * _currentUser;
+static SSKUser *_currentUser;
 
 #pragma mark - Public Methods
 
@@ -37,35 +37,34 @@ static SSKUser * _currentUser;
     return _currentUser;
 }
 
-- (void) setupWithDictionary: (NSDictionary*) dictionary
-{
+- (void)setupWithDictionary:(NSDictionary *)dictionary {
+     self.password = nil;
+    
     if (dictionary) {
-        
-        NSString * usernameValue = dictionary[@"username"];
+        NSString *usernameValue = dictionary[@"username"];
         if (usernameValue) {
             self.username = usernameValue;
         }
         
-        NSString * emailValue = dictionary[@"email"];
+        NSString *emailValue = dictionary[@"email"];
         if (emailValue) {
             self.email = emailValue;
         }
         
-        NSString * firstNameValue = dictionary[@"firstName"];
+        NSString *firstNameValue = dictionary[@"firstName"];
         if (firstNameValue) {
             self.firstName = firstNameValue;
         }
         
-        NSString * lastNameValue = dictionary[@"lastName"];
+        NSString *lastNameValue = dictionary[@"lastName"];
         if (lastNameValue) {
             self.lastName = lastNameValue;
         }
         
-        NSString * phoneNumberValue = dictionary[@"phoneNumber"];
+        NSString *phoneNumberValue = dictionary[@"phoneNumber"];
         if (phoneNumberValue) {
             self.phoneNumber = phoneNumberValue;
         }
-        
         _currentUser = self;
     }
 }

@@ -8,23 +8,16 @@
 
 /// The error codes used by the framework.
 typedef NS_ENUM(NSInteger, SSKErrorCode) {
-    SSKErrorParamEmpty = 20001,
-    SSKErrorParamSyntaxInvalid = 20002,
-    SSKErrorValidationFailed = 20003,
-    SSKErrorRequestError = 20004,
-    SSKErrorResponseEmpty = 20005
+    // Model validation failed
+    SSKErrorValidationFailed = 20001,
+    // server response with an error
+    SSKErrorResponseError
 };
 
 /// The error domain used by the framework.
 extern NSString * const SSKErrorDomain;
 
 @interface NSError (SassKit)
-
-/// Creates an error instance using a code and a parameter.
-///
-/// @param code The error code.
-/// @param parameter The optional parameter.
-+ (instancetype)ssk_errorWithCode:(SSKErrorCode)code parameter:(NSString *)parameter;
 
 /// Translates an error code to a description string.
 ///
@@ -33,10 +26,7 @@ extern NSString * const SSKErrorDomain;
 
 + (instancetype)ssk_errorWithDescription:(NSString *)description code:(NSInteger)code;
 
-/* Creates an error object when some response object was expected but nothing was returned */
-+ (instancetype)ssk_errorForEmptyResponse;
-
 /* Creates an error object described by http response error */
-+ (instancetype)ssk_errorFromDictionary: (NSDictionary*) dictionary;
++ (instancetype)ssk_errorWithErrorResponse:(NSDictionary *)response;
 
 @end
