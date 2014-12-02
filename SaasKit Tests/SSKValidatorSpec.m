@@ -40,6 +40,18 @@ describe(@"SSKValidator", ^{
             specify(^{
                 [[validator shouldNot] beNil];
             });
+            
+            specify(^{
+                [[validator.dateFormatter shouldNot] beNil];
+            });
+            
+            it(@"should validator date formatter have short time style", ^{
+                [[theValue(validator.dateFormatter.timeStyle) should] equal:theValue(NSDateFormatterShortStyle)];
+            });
+            
+            it(@"should validator date formatter have short date style", ^{
+                [[theValue(validator.dateFormatter.dateStyle) should] equal:theValue(NSDateFormatterShortStyle)];
+            });
         
             for (NSDictionary *rule in rules) {
                 
@@ -189,7 +201,14 @@ describe(@"SSKValidator", ^{
     ], ^(SSKPropertyValidator *validator) {
          validator.lengthRange(15, 25).tooShort(@"Provide a string within 15 to 25 chars").tooLong(@"Provide a string within 15 to 25 chars");
     });
-
+    
+    testValidation(@"maxLength", @"Given string isn't repeated exactly", @[
+         rule(@"same strings", @"String repeated exactly", YES, 0, [NSString class]),
+         rule(@"different strings", @"StrInG whIch Wasn'T repeated exactly", NO, 1, [NSString class]),
+    ], ^(SSKPropertyValidator *validator) {
+        validator.match(@"String repeated exactly").doesntMatch(@"Given string isn't repeated exactly");
+    });
+    
     // Numbers:
     testValidation(@"falseValue", @"This field shoud be unselected", @[
          rule(@"false bool", @NO, YES, 0, [NSNumber class]),

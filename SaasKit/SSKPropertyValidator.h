@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^required)();
 
 /// Validates 2 object by comparing them to eachother. Compare operation is specified by SSKComparisionOperator. Use only to compare NSDates or NSNumbers objects.
-@property (nonatomic, readonly, copy) SSKPropertyValidator *(^compareTo)(NSObject *compareObject, SSKComparisionOperator comparisionOperator);
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^compareTo)(NSObject *comparedObject, SSKComparisionOperator comparisionOperator);
 
 #pragma mark NSString:
 
@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
 
 /// Validates that the NSString has exact length (inclusive).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^exactLength)(NSUInteger length);
+
+/// Validates that the NSString match another string
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^match)(NSString *string);
 
 #pragma mark NSNumber:
 
@@ -85,11 +88,14 @@ typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
 /// User-defined error message used when the property length is too short (default: is too short. Should be min {attribute} signs.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^tooShort)(NSString *message);
 
-/// User-defined error message usesd when the property length is too long (default: is too long. Should be max {attribute} signs.).
+/// User-defined error message used when the property length is too long (default: is too long. Should be max {attribute} signs.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^tooLong)(NSString *message);
 
-/// User-defined error message usesd when the property hasn't exact length (default: hasn't exact length. Should has {attribute} signs.).
+/// User-defined error message used when the property hasn't exact length (default: hasn't exact length. Should has {attribute} signs.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^notExactLength)(NSString *message);
+
+/// User-defined error message used when the property doesn't match another string (doesn't match {attribute}.).
+@property (nonatomic, readonly, copy) SSKPropertyValidator *(^doesntMatch)(NSString *message);
 
 /// User-defined error message used when the property value isn't false (default: should be false).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntFalse)(NSString *message);
@@ -100,34 +106,40 @@ typedef NS_ENUM(NSInteger, SSKComparisionOperator) {
 /// User-defined error message used when the property value is too small (default: is too small. Should be min {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^tooSmall)(NSString *message);
 
-/// User-defined error message usesd when the property value is too big (default: is too big. Should be max {attribute}.).
+/// User-defined error message used when the property value is too big (default: is too big. Should be max {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^tooBig)(NSString *message);
 
-/// User-defined error message usesd when the property value isn't exact (default: isn't exact. Should be {attribute}.).
+/// User-defined error message used when the property value isn't exact (default: isn't exact. Should be {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^notExact)(NSString *message);
 
-//
+/// User-defined error message used when the property value isn't equal (default: isn't equal to {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntEqual)(NSString *message);
 
+/// User-defined error message used when the property value is equal (default: is equal to {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isEqual)(NSString *message);
 
+/// User-defined error message used when the property value isn't equal (default: is less than or equal to {attribute}. Should be greater than {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntGreater)(NSString *message);
 
+/// User-defined error message used when the property value isn't equal (default: is greater than or equal to {attribute}. Should be less than {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntLess)(NSString *message);
 
+/// User-defined error message used when the property value isn't equal (default: is less than {attribute}. Should be greater or equal to {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntGreaterOrEqual)(NSString *message);
 
+/// User-defined error message used when the property value isn't equal (default: is greater than {attribute}. Should be less or equal to {attribute}.).
 @property (nonatomic, readonly, copy) SSKPropertyValidator *(^isntLessOrEqual)(NSString *message);
 
 /// Name of validated property
 @property (strong, readonly, nonatomic) NSString *propertyName;
+
+/// Date formatter used in formating date in compareTo validation (2 NSDates). Default dateStyle and timeStyle is NSDateFormatterShortStyle.
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 /// Validates value to first error
 - (NSError *)simpleValidationOfValue:(id)value;
 
 /// Validates value and gather all possible errors
 - (NSArray *)complexValidationOfValue:(id)value;
-
-- (NSDictionary *)messages;
 
 @end

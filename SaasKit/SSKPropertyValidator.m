@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     SSKValidatorMessageTypeExactLength,
     SSKValidatorMessageTypeDecimal,
     SSKValidatorMessageTypeIdenticalTo,
+    SSKValidatorMessageTypeDoesntMatch,
     //NSNumber messages:
     SSKValidatorMessageTypeIsntFalse,
     SSKValidatorMessageTypeIsntTrue,
@@ -61,10 +62,11 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     if (self) {
         NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"@\""];
         _propertyName = [propertyName stringByTrimmingCharactersInSet:set];
-        
         _validators = [NSMutableArray array];
         _validatorMessages = [NSMutableDictionary dictionary];
         [self initializeValidatorMessages];
+        
+       
     }
     return self;
 }
@@ -98,16 +100,19 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     return array;
 }
 
-- (NSDictionary *)messages {
-    return [self.validatorMessages copy];
-}
-
 #pragma mark - Messages
 #pragma mark Overall Messages
 
 - (SSKPropertyValidator *(^)(NSString *))nilOrEmpty {
     return ^(NSString *message) {
         [self setMessage:message forMessageType:SSKValidatorMessageTypeRequired];
+        return self;
+    };
+}
+
+- (SSKPropertyValidator *(^)(NSString *))localizedPropertyName {
+    return ^(NSString *name) {
+        [self setMessage:name forMessageType:SSKValidatorMessageTypeLocalizedPropertyName];
         return self;
     };
 }
@@ -149,9 +154,9 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     };
 }
 
-- (SSKPropertyValidator *(^)(NSString *))localizedPropertyName {
-    return ^(NSString *name) {
-        [self setMessage:name forMessageType:SSKValidatorMessageTypeLocalizedPropertyName];
+- (SSKPropertyValidator *(^)(NSString *))doesntMatch {
+    return ^(NSString *message) {
+        [self setMessage:message forMessageType:SSKValidatorMessageTypeDoesntMatch];
         return self;
     };
 }
@@ -382,6 +387,23 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     };
 }
 
+- (SSKPropertyValidator *(^)(NSString *))match {
+    __weak typeof(self)weakSelf = self;
+    
+    return ^(NSString *string) {
+        [self.validators addObject:^(NSString *value) {
+            
+            if (![weakSelf isObject:value kindOfClass:[NSString class]]) {
+                return (NSError *)nil;
+            } else if (![value isEqualToString:string]) {
+                return [weakSelf errorWithMessageType:SSKValidatorMessageTypeDoesntMatch attribute:string];
+            }
+            return (NSError *)nil;
+        }];
+        return self;
+    };
+}
+
 #pragma mark NSNumber rules:
 
 - (SSKPropertyValidator *(^)())falseValue {
@@ -489,12 +511,12 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 #pragma mark - Private Methods
 
 - (NSError *)compareNumber:(NSNumber *)number toNumber:(NSNumber *)compareNumber usingOperator:(SSKComparisionOperator)comparisionOperator {
-    NSString *attribute = @"number";
     
     if (![self isObject:compareNumber kindOfClass:[NSNumber class]]) {
         return nil;
     }
     
+    NSString *attribute = compareNumber.stringValue;
     switch (comparisionOperator) {
         case SSKComparisionOperatorEqual:
             if (![number isEqualToNumber:compareNumber]) {
@@ -525,12 +547,12 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (NSError *)compareDate:(NSDate *)date toDate:(NSDate *)compareDate usingOperator:(SSKComparisionOperator)comparisionOperator {
-    NSString *attribute = @"date";
     
     if (![self isObject:compareDate kindOfClass:[NSDate class]]) {
         return nil;
     }
     
+    NSString *attribute = [self.dateFormatter stringFromDate:compareDate];
     switch (comparisionOperator) {
         case SSKComparisionOperatorEqual:
             if (![date isEqual:compareDate]) {
@@ -608,6 +630,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     [self setMessage:@"hasn't exact length. Should has {attribute} signs." forMessageType:SSKValidatorMessageTypeExactLength];
     [self setMessage:@"has invalid email syntax" forMessageType:SSKValidatorMessageTypeSyntaxEmail];
     [self setMessage:@"isn't decimal" forMessageType:SSKValidatorMessageTypeDecimal];
+    [self setMessage:@"doesn't match {attribute}" forMessageType:SSKValidatorMessageTypeDoesntMatch];
     
     // NSNumber:
     [self setMessage:@"is too small. Should be min {attribute}." forMessageType:SSKValidatorMessageTypeTooSmall];
@@ -619,10 +642,20 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
     // Two NSObjects comparision:
     [self setMessage:@"isn't equal to {attribute}" forMessageType:SSKValidatorMessageTypeEqual];
     [self setMessage:@"is equal to {attribute}" forMessageType:SSKValidatorMessageTypeNotEqual];
-    [self setMessage:@"is greater than or equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeLessThan];
-    [self setMessage:@"is less than or equal to compared {attribute}" forMessageType:SSKValidatorMessageTypeGreaterThan];
-    [self setMessage:@"is greater than compared {attribute}" forMessageType:SSKValidatorMessageTypeLessThanOrEqualTo];
-    [self setMessage:@"is less than compared {attribute}" forMessageType:SSKValidatorMessageTypeGreaterThanOrEqualTo];
+    [self setMessage:@"is greater than or equal to {attribute}. Should be less than {attribute}." forMessageType:SSKValidatorMessageTypeLessThan];
+    [self setMessage:@"is less than or equal to {attribute}. Should be greater than {attribute}." forMessageType:SSKValidatorMessageTypeGreaterThan];
+    [self setMessage:@"is greater than {attribute}. Should be less or equal to {attribute}." forMessageType:SSKValidatorMessageTypeLessThanOrEqualTo];
+    [self setMessage:@"is less than {attribute}. Should be greater or equal to {attribute}." forMessageType:SSKValidatorMessageTypeGreaterThanOrEqualTo];
+}
+
+- (NSDateFormatter *)dateFormatter {
+    if(!_dateFormatter) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+        _dateFormatter = dateFormatter;
+    }
+    return _dateFormatter;
 }
 
 @end
