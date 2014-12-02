@@ -110,6 +110,7 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 
 /* Allows customization in validation during registration process. Following rules are always used:
  * - validate(@"password").required(),
+ * - validate(@"username").required(), 
  * - validate(@"email").required().emailSyntax()
  */
 - (NSArray *)additionalValidationRulesForRegistration:(SSKUser *)user;

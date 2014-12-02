@@ -169,7 +169,8 @@ static SSKUser *_currentUser;
     NSError *error;
     BOOL validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
         
-        NSMutableArray *rules = [@[validate(@"password").required(),
+        NSMutableArray *rules = [@[validate(@"username").required(),
+                                   validate(@"password").required(),
                                    validate(@"email").required().emailSyntax()] mutableCopy];
         
         if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForRegistration:)]) {

@@ -12,8 +12,6 @@ describe(@"SSKUser", ^{
 
     __block SSKConfiguration *configuration = nil;
 
-    NSString *validFirstName = @"John";
-    NSString *validLastName = @"Appleseed";
     NSString *validUsername = @"jappleseed";
     NSString *validEmail = @"john.appleseed@apple.com";
     NSString *validPassword = @"$ecr3t";
@@ -321,41 +319,9 @@ describe(@"SSKUser", ^{
             user = [SSKUser user];
         });
 
-        context(@"using no first name", ^{
-
-            beforeEach(^{
-                user.lastName = validLastName;
-                user.email = validEmail;
-                user.username = validUsername;
-                user.password = validPassword;
-            });
-
-            it(@"should fail", ^{
-                assertRegisterShouldFail();
-            });
-
-        });
-
-        context(@"using no last name", ^{
-
-            beforeEach(^{
-                user.firstName = validFirstName;
-                user.email = validEmail;
-                user.username = validUsername;
-                user.password = validPassword;
-            });
-
-            it(@"should fail", ^{
-                assertRegisterShouldFail();
-            });
-            
-        });
-
         context(@"using no email", ^{
 
             beforeEach(^{
-                user.firstName = validFirstName;
-                user.lastName = validLastName;
                 user.username = validUsername;
                 user.password = validPassword;
             });
@@ -369,8 +335,6 @@ describe(@"SSKUser", ^{
         context(@"using email with invalid syntax", ^{
 
             beforeEach(^{
-                user.firstName = validFirstName;
-                user.lastName = validLastName;
                 user.email = @"dog";
                 user.username = validUsername;
                 user.password = validPassword;
@@ -385,8 +349,6 @@ describe(@"SSKUser", ^{
         context(@"using no username", ^{
 
             beforeEach(^{
-                user.firstName = validFirstName;
-                user.lastName = validLastName;
                 user.email = validEmail;
                 user.password = validPassword;
             });
@@ -400,8 +362,6 @@ describe(@"SSKUser", ^{
         context(@"using no password", ^{
 
             beforeEach(^{
-                user.firstName = validFirstName;
-                user.lastName = validLastName;
                 user.email = validEmail;
                 user.username = validUsername;
             });
@@ -415,8 +375,6 @@ describe(@"SSKUser", ^{
         context(@"using correct data", ^{
 
             beforeEach(^{
-                user.firstName = validFirstName;
-                user.lastName = validLastName;
                 user.email = validEmail;
                 user.username = validUsername;
                 user.password = validPassword;
