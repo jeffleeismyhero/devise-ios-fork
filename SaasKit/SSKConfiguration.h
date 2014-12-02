@@ -41,6 +41,12 @@ typedef NS_ENUM(NSInteger, SSKLogLevel) {
 /// The logging level of the framework (default: SSKLogLevelNone).
 @property (assign, nonatomic) SSKLogLevel logLevel;
 
+/// The number of retries in case of connection issues (default: 0).
+@property (assign, nonatomic) NSUInteger numberOfRetries;
+
+/// The duration (in seconds) after which a next retry happens (default: 0).
+@property (assign, nonatomic) NSTimeInterval retryTresholdDuration;
+
 // /////////////////////////////////////////////////////////////////////////////
 
 /// Returns a shared instance of the configuration object.

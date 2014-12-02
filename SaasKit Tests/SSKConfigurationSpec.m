@@ -31,6 +31,10 @@ describe(@"SSKConfiguration", ^{
             }) should] raiseWithName:NSInternalInconsistencyException];
         });
 
+        it(@"should not have a positive number of retries", ^{
+            [[theValue(configuration.numberOfRetries) should] equal:theValue(0)];
+        });
+
     });
 
     context(@"when using a shared instance", ^{

@@ -20,17 +20,6 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithServerURL:(NSURL *)serverURL {
-    self = [super init];
-    if (self == nil) return nil;
-    self.serverURL = serverURL;
-    self.logLevel = SSKLogLevelNone;
-    [self setPath:@"login" forRoute:SSKRouteLogin];
-    [self setPath:@"register" forRoute:SSKRouteRegister];
-    [self setPath:@"forgotPassword" forRoute:SSKRouteForgotPassword];
-    return self;
-}
-
 + (instancetype)sharedConfiguration {
     static dispatch_once_t onceToken;
     static SSKConfiguration *sharedConfiguration = nil;
@@ -38,6 +27,23 @@
         sharedConfiguration = [[self alloc] initWithServerURL:nil];
     });
     return sharedConfiguration;
+}
+
+- (instancetype)initWithServerURL:(NSURL *)serverURL {
+    self = [super init];
+    if (self == nil) return nil;
+    self.serverURL = serverURL;
+    self.logLevel = SSKLogLevelNone;
+    self.numberOfRetries = 0;
+    self.retryTresholdDuration = 0.0;
+    [self setPath:@"login" forRoute:SSKRouteLogin];
+    [self setPath:@"register" forRoute:SSKRouteRegister];
+    [self setPath:@"forgotPassword" forRoute:SSKRouteForgotPassword];
+    return self;
+}
+
+- (instancetype)init {
+    return [self initWithServerURL:nil];
 }
 
 #pragma mark - Routes

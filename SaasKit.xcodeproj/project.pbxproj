@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3A49C2721A25D60D0041406B /* SSKUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A49C2711A25D60D0041406B /* SSKUserSpec.m */; };
 		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m */; };
+		3A93A1481A2E2F2F006827D3 /* SSKHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* SSKHTTPClient.h */; };
+		3A93A1491A2E2F2F006827D3 /* SSKHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1471A2E2F2F006827D3 /* SSKHTTPClient.m */; };
+		3A93A1511A2E5119006827D3 /* SSKHTTPClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1501A2E5119006827D3 /* SSKHTTPClientSpec.m */; };
 		3AA22E1C1A25031300FE04D1 /* SSKConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E1A1A25031300FE04D1 /* SSKConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA22E1D1A25031300FE04D1 /* SSKConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1B1A25031300FE04D1 /* SSKConfiguration.m */; };
 		3AA22E1F1A2509AF00FE04D1 /* SSKConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1E1A2509AF00FE04D1 /* SSKConfigurationSpec.m */; };
@@ -96,6 +99,9 @@
 		3A49C2711A25D60D0041406B /* SSKUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKUserSpec.m; sourceTree = "<group>"; };
 		3A6E03FC1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+SaasKitTests.h"; sourceTree = "<group>"; };
 		3A6E03FD1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+SaasKitTests.m"; sourceTree = "<group>"; };
+		3A93A1461A2E2F2F006827D3 /* SSKHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKHTTPClient.h; sourceTree = "<group>"; };
+		3A93A1471A2E2F2F006827D3 /* SSKHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKHTTPClient.m; sourceTree = "<group>"; };
+		3A93A1501A2E5119006827D3 /* SSKHTTPClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKHTTPClientSpec.m; sourceTree = "<group>"; };
 		3AA22E1A1A25031300FE04D1 /* SSKConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKConfiguration.h; sourceTree = "<group>"; };
 		3AA22E1B1A25031300FE04D1 /* SSKConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKConfiguration.m; sourceTree = "<group>"; };
 		3AA22E1E1A2509AF00FE04D1 /* SSKConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKConfigurationSpec.m; sourceTree = "<group>"; };
@@ -284,6 +290,8 @@
 		3AA22E3C1A25327F00FE04D1 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				3A93A1461A2E2F2F006827D3 /* SSKHTTPClient.h */,
+				3A93A1471A2E2F2F006827D3 /* SSKHTTPClient.m */,
 				3AA22E3D1A25330C00FE04D1 /* SSKAPIManager.h */,
 				3AA22E3E1A25330C00FE04D1 /* SSKAPIManager.m */,
 				3AA22E3F1A25330C00FE04D1 /* SSKHTTPReqeustOperationManager.h */,
@@ -368,6 +376,7 @@
 			children = (
 				3A6E03F31A263588006ECA3E /* Additions */,
 				3AA22E1E1A2509AF00FE04D1 /* SSKConfigurationSpec.m */,
+				3A93A1501A2E5119006827D3 /* SSKHTTPClientSpec.m */,
 				3A49C2711A25D60D0041406B /* SSKUserSpec.m */,
 				5EF381F21A287749006875D4 /* SSKValidatorSpec.m */,
 			);
@@ -557,6 +566,7 @@
 				3AA22E2F1A251B1400FE04D1 /* SSKUser.h in Headers */,
 				5EF5E6DA1A2667D80049BEA6 /* NSArray+SaasKit.h in Headers */,
 				3AA22E381A252FD700FE04D1 /* SSKUser+Querying.h in Headers */,
+				3A93A1481A2E2F2F006827D3 /* SSKHTTPClient.h in Headers */,
 				3AD4C6841A24DB1700F0AE67 /* SaasKit.h in Headers */,
 				3AA22E5F1A2535BC00FE04D1 /* SSKMacros.h in Headers */,
 			);
@@ -823,6 +833,7 @@
 				3AA22E301A251B1400FE04D1 /* SSKUser.m in Sources */,
 				5E7E166F1A264F6900684A60 /* SSKPropertyValidator.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+SaasKit.m in Sources */,
+				3A93A1491A2E2F2F006827D3 /* SSKHTTPClient.m in Sources */,
 				5EF5E6DB1A2667D80049BEA6 /* NSArray+SaasKit.m in Sources */,
 				3AA22E441A25330C00FE04D1 /* SSKHTTPReqeustOperationManager.m in Sources */,
 				3AA22E391A252FD700FE04D1 /* SSKUser+Querying.m in Sources */,
@@ -843,6 +854,7 @@
 				3A49C2721A25D60D0041406B /* SSKUserSpec.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m in Sources */,
 				5EF381F31A287749006875D4 /* SSKValidatorSpec.m in Sources */,
+				3A93A1511A2E5119006827D3 /* SSKHTTPClientSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
