@@ -31,15 +31,6 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 /// User's password.
 @property (strong, nonatomic) NSString *password;
 
-/// User's first name.
-@property (strong, nonatomic) NSString *firstName;
-
-/// User's last name.
-@property (strong, nonatomic) NSString *lastName;
-
-/// User's phone number.
-@property (strong, nonatomic) NSString *phoneNumber;
-
 /// Login method (default: SSKLoginMethodEmail).
 @property (assign, nonatomic) SSKLoginMethod loginMethod;
 
@@ -50,8 +41,7 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 + (SSKUser *)currentUser;
 
 /* Configures user with data from server and sets the user as the current user */
-- (void) setupWithDictionary: (NSDictionary*) dictionary;
-
+- (void)setupWithDictionary:(NSDictionary *)dictionary;
 
 - (NSDictionary *)extraLoginParams;
 - (NSDictionary *)extraRegistrationParams;
@@ -105,5 +95,23 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 
 /// Password  parameter in register route (default: "password").
 - (NSString *)nameForPasswordInRegistration:(SSKUser *)user;
+
+/* Allows customization in validation during login process. Following rules are always used:
+ * - validate(@"password").required(),
+ * - validate(@"email").required().emailSyntax() (if SSKLoginMethod is set to SSKLoginMethodEmail)
+ * - validate(@"username").required() (if SSKLoginMethod is set to SSKLoginMethodUsername)
+ */
+- (NSArray *)additionalValidationRulesForLogin:(SSKUser *)user;
+
+/* Allows customization in validation during remind password process. Following rules are always used:
+ * - validate(@"email").required().emailSyntax()
+ */
+- (NSArray *)additionalValidationRulesForRemindPassword:(SSKUser *)user;
+
+/* Allows customization in validation during registration process. Following rules are always used:
+ * - validate(@"password").required(),
+ * - validate(@"email").required().emailSyntax()
+ */
+- (NSArray *)additionalValidationRulesForRegistration:(SSKUser *)user;
 
 @end

@@ -51,20 +51,20 @@ static SSKUser *_currentUser;
             self.email = emailValue;
         }
         
-        NSString *firstNameValue = dictionary[@"firstName"];
-        if (firstNameValue) {
-            self.firstName = firstNameValue;
-        }
-        
-        NSString *lastNameValue = dictionary[@"lastName"];
-        if (lastNameValue) {
-            self.lastName = lastNameValue;
-        }
-        
-        NSString *phoneNumberValue = dictionary[@"phoneNumber"];
-        if (phoneNumberValue) {
-            self.phoneNumber = phoneNumberValue;
-        }
+//        NSString *firstNameValue = dictionary[@"firstName"];
+//        if (firstNameValue) {
+//            self.firstName = firstNameValue;
+//        }
+//        
+//        NSString *lastNameValue = dictionary[@"lastName"];
+//        if (lastNameValue) {
+//            self.lastName = lastNameValue;
+//        }
+//        
+//        NSString *phoneNumberValue = dictionary[@"phoneNumber"];
+//        if (phoneNumberValue) {
+//            self.phoneNumber = phoneNumberValue;
+//        }
         _currentUser = self;
     }
 }
@@ -90,17 +90,25 @@ static SSKUser *_currentUser;
     
     if (self.loginMethod == SSKLoginMethodUsername) {
         validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
-            return @[
-                validate(@"username").required().lengthRange(2, 50),
-                validate(@"password").required()
-            ];
+            
+            NSMutableArray *rules = [@[validate(@"password").required(),
+                                       validate(@"username").required()] mutableCopy];
+            
+            if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForLogin:)]) {
+                [rules addObjectsFromArray:[_dataSource additionalValidationRulesForLogin:self]];
+            }
+            return [rules copy];
         }];
     } else if (self.loginMethod == SSKLoginMethodEmail) {
         validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
-            return @[
-                validate(@"email").required().emailSyntax().lengthRange(2, 100),
-                validate(@"password").required()
-            ];
+            
+            NSMutableArray *rules = [@[validate(@"password").required(),
+                                       validate(@"email").required().emailSyntax()] mutableCopy];
+            
+            if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForLogin:)]) {
+                [rules addObjectsFromArray:[_dataSource additionalValidationRulesForLogin:self]];
+            }
+            return [rules copy];
         }];
     }
     
@@ -124,7 +132,13 @@ static SSKUser *_currentUser;
 
     NSError *error;
     BOOL validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
-        return @[validate(@"email").required().emailSyntax()];
+        
+        NSMutableArray *rules = [@[validate(@"email").required().emailSyntax()] mutableCopy];
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForRemindPassword:)]) {
+            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForRemindPassword:self]];
+        }
+        return [rules copy];
     }];
     
     if (!validated) {
@@ -154,11 +168,14 @@ static SSKUser *_currentUser;
 
     NSError *error;
     BOOL validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
-        return @[validate(@"password").required(),
-                 validate(@"firstName").required().lengthRange(2, 50),
-                 validate(@"lastName").required().lengthRange(2, 50),
-                 validate(@"username").required().lengthRange(2, 50),
-                 validate(@"email").required().lengthRange(2, 100).emailSyntax()];
+        
+        NSMutableArray *rules = [@[validate(@"password").required(),
+                                   validate(@"email").required().emailSyntax()] mutableCopy];
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForRegistration:)]) {
+            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForRegistration:self]];
+        }
+        return [rules copy];
     }];
     
     if (!validated) {
@@ -173,5 +190,6 @@ static SSKUser *_currentUser;
     self.localExtraRegistrationParams = params();
     [self registerWithSuccess:success failure:failure];
 }
+
 
 @end
