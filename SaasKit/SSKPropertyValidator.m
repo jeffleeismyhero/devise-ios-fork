@@ -246,7 +246,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 #pragma mark Overall rules:
 
 - (SSKPropertyValidator *(^)())required {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^() {
         [self.validators addObject:^(NSObject *value) {
@@ -260,7 +260,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSObject *, SSKComparisionOperator))compareTo {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSObject *compareObject, SSKComparisionOperator comparisionOperator) {
         [self.validators addObject:^(NSObject *value) {
@@ -284,7 +284,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 #pragma mark NSString rules:
 
 - (SSKPropertyValidator *(^)())emailSyntax {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^() {
         [self.validators addObject:^(NSString *value) {
@@ -301,7 +301,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)())decimal {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^() {
         [self.validators addObject:^(NSString *value) {
@@ -318,7 +318,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSUInteger min, NSUInteger max))lengthRange {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSUInteger min, NSUInteger max) {
         [self.validators addObject:^(NSString *value) {
@@ -337,7 +337,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSUInteger min))minLength {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSUInteger min) {
         [self.validators addObject:^(NSString *value) {
@@ -354,7 +354,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSUInteger max))maxLength {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSUInteger max) {
         [self.validators addObject:^(NSString *value) {
@@ -371,7 +371,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSUInteger length))exactLength {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSUInteger length) {
         [self.validators addObject:^(NSString *value) {
@@ -388,7 +388,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSString *))match {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSString *string) {
         [self.validators addObject:^(NSString *value) {
@@ -407,7 +407,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 #pragma mark NSNumber rules:
 
 - (SSKPropertyValidator *(^)())falseValue {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^() {
         [self.validators addObject:^(NSNumber *value) {
@@ -423,7 +423,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)())trueValue {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^() {
         [self.validators addObject:^(NSNumber *value) {
@@ -439,7 +439,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSInteger))min {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSInteger min) {
         [self.validators addObject:^(NSNumber *value) {
@@ -456,7 +456,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSInteger))max {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSInteger max) {
         [self.validators addObject:^(NSNumber *value) {
@@ -473,7 +473,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSInteger, NSInteger))range {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSInteger min, NSInteger max) {
         [self.validators addObject:^(NSString *value) {
@@ -492,7 +492,7 @@ typedef NS_ENUM(NSInteger, SSKValidatorMessageType) {
 }
 
 - (SSKPropertyValidator *(^)(NSInteger))exact {
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self) weakSelf = self;
     
     return ^(NSInteger exact) {
         [self.validators addObject:^(NSNumber *value) {
