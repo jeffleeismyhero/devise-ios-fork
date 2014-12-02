@@ -37,7 +37,7 @@ describe(@"SSKHTTPClient", ^{
             [[client should] beIdenticalTo:secondClient];
         });
 
-        it(@"should use a shared configuration", ^{
+        it(@"should use the shared configuration", ^{
             SSKConfiguration *configuration = [SSKConfiguration sharedConfiguration];
             [[client.configuration should] beIdenticalTo:configuration];
         });
@@ -106,25 +106,56 @@ describe(@"SSKHTTPClient", ^{
             });
 
             it(@"should succeed to perform a single get request", ^{
-                __block BOOL success = NO;
-                [client GET:@"get" parameters:nil completion:^(id response, NSError *error) {
-                    if (error == nil) success = YES;
+                __block id response = nil; __block NSError *error = nil;
+                [client GET:@"get" parameters:nil completion:^(id blockResponse, NSError *blockError) {
+                    response = blockResponse;
+                    error = blockError;
                 }];
-                [[expectFutureValue(theValue(success)) shouldEventually] beYes];
+                [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(2)] beNonNil];
+                [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(2)] beNil];
             });
 
             it(@"should succeed to perform a single post request", ^{
-                __block BOOL success = NO;
-                [client POST:@"post" parameters:nil completion:^(id response, NSError *error) {
-                    if (error == nil) success = YES;
+                __block id response = nil; __block NSError *error = nil;
+                [client GET:@"get" parameters:nil completion:^(id blockResponse, NSError *blockError) {
+                    response = blockResponse;
+                    error = blockError;
                 }];
-                [[expectFutureValue(theValue(success)) shouldEventually] beYes];
+                [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(2)] beNonNil];
+                [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(2)] beNil];
+            });
+
+            it(@"should correctly deliver parameters while performing a get request", ^{
+                __block id response = nil; __block NSError *error = nil; __block id args = nil;
+                NSDictionary *parameters = @{ @"foo": @"bar", @"baz": @"qux" };
+                [client GET:@"get" parameters:parameters completion:^(id blockResponse, NSError *blockError) {
+                    response = blockResponse;
+                    error = blockError;
+                    args = blockResponse[@"args"];
+                }];
+                [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(2)] beNonNil];
+                [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(2)] beNil];
+                [[expectFutureValue(args) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"bar" forKey:@"foo"];
+                [[expectFutureValue(args) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"qux" forKey:@"baz"];
+            });
+
+            it(@"should correctly deliver parameters while performing a post request", ^{
+                __block id response = nil; __block NSError *error = nil; __block id json = nil;
+                NSDictionary *parameters = @{ @"bar": @"foo", @"qux": @"baz" };
+                [client POST:@"post" parameters:parameters completion:^(id blockResponse, NSError *blockError) {
+                    response = blockResponse;
+                    error = blockError;
+                    json = blockResponse[@"json"];
+                }];
+                [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(2)] beNonNil];
+                [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(2)] beNil];
+                [[expectFutureValue(json) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"foo" forKey:@"bar"];
+                [[expectFutureValue(json) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"baz" forKey:@"qux"];
             });
 
         });
 
     });
-
 
     // please test http client extensions in dedicated specs
 
