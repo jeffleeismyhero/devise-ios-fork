@@ -12,8 +12,8 @@ osx_image: xcode6.1
 
 env:
   global:
-    - XCODE_WORKSPACE="SaasKit.xcworkspace"
-    - XCODE_SCHEME="SaasKit"
+    - XCODE_WORKSPACE="Devise.xcworkspace"
+    - XCODE_SCHEME="Devise"
     - XCODE_SDK="iphonesimulator8.1"
 
 before_install:
