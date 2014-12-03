@@ -21,14 +21,6 @@ static SSKUser *_currentUser;
 
 #pragma mark - Public Methods
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _loginMethod = SSKLoginMethodEmail;
-    }
-    return self;
-}
-
 + (instancetype)user {
     return [[[self class] alloc] init];
 }
@@ -41,30 +33,9 @@ static SSKUser *_currentUser;
      self.password = nil;
     
     if (dictionary) {
-        NSString *usernameValue = dictionary[@"username"];
-        if (usernameValue) {
-            self.username = usernameValue;
+        if (dictionary[@"email"]) {
+            self.email = dictionary[@"email"];
         }
-        
-        NSString *emailValue = dictionary[@"email"];
-        if (emailValue) {
-            self.email = emailValue;
-        }
-        
-//        NSString *firstNameValue = dictionary[@"firstName"];
-//        if (firstNameValue) {
-//            self.firstName = firstNameValue;
-//        }
-//        
-//        NSString *lastNameValue = dictionary[@"lastName"];
-//        if (lastNameValue) {
-//            self.lastName = lastNameValue;
-//        }
-//        
-//        NSString *phoneNumberValue = dictionary[@"phoneNumber"];
-//        if (phoneNumberValue) {
-//            self.phoneNumber = phoneNumberValue;
-//        }
         _currentUser = self;
     }
 }
@@ -86,31 +57,16 @@ static SSKUser *_currentUser;
 - (void)loginWithSuccess:(SSKVoidBlock)success failure:(SSKErrorBlock)failure {
     
     NSError *error;
-    BOOL validated = NO;
-    
-    if (self.loginMethod == SSKLoginMethodUsername) {
-        validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
-            
-            NSMutableArray *rules = [@[validate(@"password").required(),
-                                       validate(@"username").required()] mutableCopy];
-            
-            if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForLogin:)]) {
-                [rules addObjectsFromArray:[_dataSource additionalValidationRulesForLogin:self]];
-            }
-            return [rules copy];
-        }];
-    } else if (self.loginMethod == SSKLoginMethodEmail) {
-        validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
-            
-            NSMutableArray *rules = [@[validate(@"password").required(),
-                                       validate(@"email").required().emailSyntax()] mutableCopy];
-            
-            if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForLogin:)]) {
-                [rules addObjectsFromArray:[_dataSource additionalValidationRulesForLogin:self]];
-            }
-            return [rules copy];
-        }];
-    }
+    BOOL validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
+        
+        NSMutableArray *rules = [@[validate(@"password").required(),
+                                   validate(@"email").required().emailSyntax()] mutableCopy];
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForLogin:)]) {
+            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForLogin:self]];
+        }
+        return [rules copy];
+    }];
     
     if (!validated) {
         failure(error);
@@ -169,8 +125,7 @@ static SSKUser *_currentUser;
     NSError *error;
     BOOL validated = [SSKValidator validateModel:self error:&error usingRules:^NSArray *{
         
-        NSMutableArray *rules = [@[validate(@"username").required(),
-                                   validate(@"password").required(),
+        NSMutableArray *rules = [@[validate(@"password").required(),
                                    validate(@"email").required().emailSyntax()] mutableCopy];
         
         if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForRegistration:)]) {

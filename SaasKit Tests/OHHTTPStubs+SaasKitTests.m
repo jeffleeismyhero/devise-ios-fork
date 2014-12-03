@@ -21,19 +21,18 @@
     return [self ssk_stubRequestsForPath:@"/login" withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         BOOL valid = (^BOOL() {
             NSDictionary *input = [self ssk_retrievePostDataOfRequest:request];
-            if (input[@"username"] == nil && input[@"email"] == nil) {
+            if (input[@"email"] == nil) {
                 return NO;
-            } if (input[@"password"] == nil) {
+            }
+            if (input[@"password"] == nil) {
                 return NO;
-            } if (input[@"email"] != nil && options[@"allowedEmail"] != nil) {
+            }
+            if (input[@"email"] != nil && options[@"allowedEmail"] != nil) {
                 if (![input[@"email"] isEqualToString:options[@"allowedEmail"]]) {
                     return NO;
                 }
-            } if (input[@"username"] != nil && options[@"allowedUsername"] != nil) {
-                if (![input[@"username"] isEqualToString:options[@"allowedUsername"]]) {
-                    return NO;
-                }
-            } if (input[@"password"] != nil && options[@"allowedPassword"] != nil) {
+            }
+            if (input[@"password"] != nil && options[@"allowedPassword"] != nil) {
                 if (![input[@"password"] isEqualToString:options[@"allowedPassword"]]) {
                     return NO;
                 }
@@ -68,7 +67,7 @@
     return [self ssk_stubRequestsForPath:@"/register" withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
         BOOL valid = (^BOOL() {
             NSDictionary *input = [self ssk_retrievePostDataOfRequest:request];
-            if (input[@"username"] == nil && input[@"email"] == nil) {
+            if (input[@"email"] == nil) {
                 return NO;
             } if (input[@"password"] == nil) {
                 return NO;

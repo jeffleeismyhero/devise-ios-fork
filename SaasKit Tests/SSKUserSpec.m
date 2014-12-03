@@ -12,7 +12,6 @@ describe(@"SSKUser", ^{
 
     __block SSKConfiguration *configuration = nil;
 
-    NSString *validUsername = @"jappleseed";
     NSString *validEmail = @"john.appleseed@apple.com";
     NSString *validPassword = @"$ecr3t";
 
@@ -56,7 +55,6 @@ describe(@"SSKUser", ^{
 
         beforeAll(^{
             routeStub = [OHHTTPStubs ssk_stubLoginRouteWithOptions:@{
-                @"allowedUsername": validUsername,
                 @"allowedEmail": validEmail,
                 @"allowedPassword": validPassword,
             }];
@@ -73,7 +71,6 @@ describe(@"SSKUser", ^{
         context(@"using email with incorrect syntax", ^{
 
             beforeEach(^{
-                user.loginMethod = SSKLoginMethodEmail;
                 user.email = @"qux";
                 user.password = validPassword;
             });
@@ -84,7 +81,7 @@ describe(@"SSKUser", ^{
 
         });
 
-        context(@"using no email or username", ^{
+        context(@"using no email", ^{
 
             beforeEach(^{
                 user.password = validPassword;
@@ -99,22 +96,7 @@ describe(@"SSKUser", ^{
         context(@"using no password", ^{
 
             beforeEach(^{
-                user.username = validUsername;
                 user.email = validEmail;
-            });
-
-            it(@"should fail", ^{
-                assertLoginShouldFail();
-            });
-
-        });
-
-        context(@"using incorrect username", ^{
-
-            beforeEach(^{
-                user.loginMethod = SSKLoginMethodUsername;
-                user.username = @"foo";
-                user.password = validPassword;
             });
 
             it(@"should fail", ^{
@@ -126,7 +108,6 @@ describe(@"SSKUser", ^{
         context(@"using incorrect email", ^{
 
             beforeEach(^{
-                user.loginMethod = SSKLoginMethodEmail;
                 user.email = @"john.smith@apple.com";
                 user.password = validPassword;
             });
@@ -140,7 +121,6 @@ describe(@"SSKUser", ^{
         context(@"using incorrect password", ^{
 
             beforeEach(^{
-                user.username = validUsername;
                 user.email = validEmail;
                 user.password = @"baz";
             });
@@ -151,24 +131,9 @@ describe(@"SSKUser", ^{
             
         });
 
-        context(@"using correct username and password", ^{
-
-            beforeEach(^{
-                user.loginMethod = SSKLoginMethodUsername;
-                user.username = validUsername;
-                user.password = validPassword;
-            });
-
-            it(@"should succeed", ^{
-                assertLoginShouldSucceed();
-            });
-
-        });
-
         context(@"using correct email and password", ^{
 
             beforeEach(^{
-                user.loginMethod = SSKLoginMethodEmail;
                 user.email = validEmail;
                 user.password = validPassword;
             });
@@ -322,7 +287,6 @@ describe(@"SSKUser", ^{
         context(@"using no email", ^{
 
             beforeEach(^{
-                user.username = validUsername;
                 user.password = validPassword;
             });
 
@@ -336,20 +300,6 @@ describe(@"SSKUser", ^{
 
             beforeEach(^{
                 user.email = @"dog";
-                user.username = validUsername;
-                user.password = validPassword;
-            });
-
-            it(@"should fail", ^{
-                assertRegisterShouldFail();
-            });
-            
-        });
-
-        context(@"using no username", ^{
-
-            beforeEach(^{
-                user.email = validEmail;
                 user.password = validPassword;
             });
 
@@ -363,7 +313,6 @@ describe(@"SSKUser", ^{
 
             beforeEach(^{
                 user.email = validEmail;
-                user.username = validUsername;
             });
 
             it(@"should fail", ^{
@@ -376,7 +325,6 @@ describe(@"SSKUser", ^{
 
             beforeEach(^{
                 user.email = validEmail;
-                user.username = validUsername;
                 user.password = validPassword;
             });
 

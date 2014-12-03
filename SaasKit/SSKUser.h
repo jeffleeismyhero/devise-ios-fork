@@ -8,11 +8,6 @@
 #import "SSKTypedefs.h"
 #import "SSKValidator.h"
 
-typedef NS_ENUM(NSInteger, SSKLoginMethod) {
-    SSKLoginMethodEmail,
-    SSKLoginMethodUsername
-};
-
 typedef NS_ENUM(NSInteger, SSKRequestType) {
     SSKRequestGET,
     SSKRequestPOST
@@ -22,17 +17,11 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 
 @interface SSKUser : NSObject
 
-/// User's username.
-@property (strong, nonatomic) NSString *username;
-
 /// User's email.
 @property (strong, nonatomic) NSString *email;
 
 /// User's password.
 @property (strong, nonatomic) NSString *password;
-
-/// Login method (default: SSKLoginMethodEmail).
-@property (assign, nonatomic) SSKLoginMethod loginMethod;
 
 /// User's data source.
 @property (weak, nonatomic) id <SSKUserDataSource> dataSource;
@@ -66,9 +55,6 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 /// Request type for login route (default: POST).
 - (SSKRequestType)requestTypeForUserLogin:(SSKUser *)user;
 
-/// Username parameter in login route (default: "username").
-- (NSString *)nameForUsernameInUserLogin:(SSKUser *)user;
-
 /// Email parameter in login route (default: "email").
 - (NSString *)nameForEmailInUserLogin:(SSKUser *)user;
 
@@ -87,9 +73,6 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 /// Request type for register route (default: POST).
 - (SSKRequestType)requestTypeForUserRegistration:(SSKUser *)user;
 
-/// Username parameter in register route (default: "username").
-- (NSString *)nameForUsernameInUserRegistration:(SSKUser *)user;
-
 /// Email  parameter in register route (default: "email").
 - (NSString *)nameForEmailInUserRegistration:(SSKUser *)user;
 
@@ -98,8 +81,7 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 
 /* Allows customization in validation during login process. Following rules are always used:
  * - validate(@"password").required(),
- * - validate(@"email").required().emailSyntax() (if SSKLoginMethod is set to SSKLoginMethodEmail)
- * - validate(@"username").required() (if SSKLoginMethod is set to SSKLoginMethodUsername)
+ * - validate(@"email").required().emailSyntax()
  */
 - (NSArray *)additionalValidationRulesForLogin:(SSKUser *)user;
 
@@ -110,7 +92,6 @@ typedef NS_ENUM(NSInteger, SSKRequestType) {
 
 /* Allows customization in validation during registration process. Following rules are always used:
  * - validate(@"password").required(),
- * - validate(@"username").required(), 
  * - validate(@"email").required().emailSyntax()
  */
 - (NSArray *)additionalValidationRulesForRegistration:(SSKUser *)user;

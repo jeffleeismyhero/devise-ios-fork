@@ -16,11 +16,7 @@
 ///
 /// Options dictionary recognizes the following keys:
 /// - allowedEmail (NSString *)
-/// - allowedUsername (NSString *)
 /// - allowedPassword (NSString *)
-///
-/// If provided with both allowedEmail and allowedUsername, this method will
-/// prefer email over username.
 ///
 /// @param options An optional options dictionary.
 ///

@@ -16,24 +16,13 @@
 }
 
 - (NSDictionary *)loginPOST {
-
-    NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
     NSMutableDictionary *post = [NSMutableDictionary dictionaryWithCapacity:2];
-
+    
+    NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
     if (self.password != nil) post[password] = self.password;
-
-    switch (self.loginMethod) {
-        case SSKLoginMethodEmail: {
-            NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserLogin:) withDefaultName:@"email"];
-            if (self.email != nil) post[email] = self.email;
-            break;
-        }
-        case SSKLoginMethodUsername: {
-            NSString *username = [self paramNameForSelector:@selector(nameForUsernameInUserLogin:) withDefaultName:@"username"];
-            if (self.username != nil) post[username] = self.username;
-            break;
-        }
-    }
+    
+    NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserLogin:) withDefaultName:@"email"];
+    if (self.email != nil) post[email] = self.email;
 
     if ([self extraLoginParams]) {
         [post addEntriesFromDictionary:[self extraLoginParams]];
@@ -68,10 +57,7 @@
 
     NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRegistration:) withDefaultName:@"email"];
     if (self.email != nil) post[email] = self.email;
-
-    NSString *username = [self paramNameForSelector:@selector(nameForUsernameInUserLogin:) withDefaultName:@"username"];
-    if (self.username != nil) post[username] = self.username;
-
+    
     NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
     if (self.password != nil) post[password] = self.password;
 
