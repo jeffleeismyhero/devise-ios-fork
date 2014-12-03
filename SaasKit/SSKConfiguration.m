@@ -4,6 +4,7 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import "SSKConfiguration.h"
 #import "SSKMacros.h"
 #import "NSURL+SaasKit.h"
@@ -18,7 +19,7 @@
 
 @implementation SSKConfiguration
 
-#pragma mark - Initialization
+#pragma mark Initialization
 
 + (instancetype)sharedConfiguration {
     static dispatch_once_t onceToken;
@@ -46,7 +47,7 @@
     return [self initWithServerURL:nil];
 }
 
-#pragma mark - Routes
+#pragma mark Routes
 
 - (NSMutableDictionary *)mutableRoutePaths {
     if (_mutableRoutePaths != nil) return _mutableRoutePaths;
@@ -67,7 +68,7 @@
     self.mutableRoutePaths[@(route)] = path;
 }
 
-#pragma mark - Logging
+#pragma mark Logging
 
 - (void)logMessage:(NSString *)message {
     switch (self.logLevel) {
@@ -82,13 +83,22 @@
     }
 }
 
-#pragma mark - Setters / Getters
+#pragma mark Property accessors
 
 - (void)setServerURL:(NSURL *)serverURL {
-    if (![serverURL ssk_hasValidSyntax]) {
-        [self logMessage:[NSString stringWithFormat:@"URL \"%@\" has invalid syntax", serverURL]];
+    if (_serverURL != serverURL) {
+        if (![serverURL ssk_hasValidSyntax]) {
+            [self logMessage:[NSString stringWithFormat:@"URL \"%@\" has invalid syntax", serverURL]];
+        }
+        _serverURL = serverURL;
     }
-    _serverURL = serverURL;
+}
+
+- (void)setShowsNetworkActivityIndicator:(BOOL)shows {
+    if (_showsNetworkActivityIndicator != shows) {
+        [AFNetworkActivityIndicatorManager sharedManager].enabled = shows;
+        _showsNetworkActivityIndicator = shows;
+    }
 }
 
 @end

@@ -47,6 +47,9 @@ typedef NS_ENUM(NSInteger, SSKLogLevel) {
 /// The duration (in seconds) after which a next retry happens (default: 0).
 @property (assign, nonatomic) NSTimeInterval retryTresholdDuration;
 
+/// Whether the network activity indicator should be visible.
+@property (assign, nonatomic) BOOL showsNetworkActivityIndicator;
+
 // /////////////////////////////////////////////////////////////////////////////
 
 /// Returns a shared instance of the configuration object.
