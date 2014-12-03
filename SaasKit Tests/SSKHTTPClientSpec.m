@@ -153,6 +153,43 @@ describe(@"SSKHTTPClient", ^{
                 [[expectFutureValue(json) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"baz" forKey:@"qux"];
             });
 
+            describe(@"retrying", ^{
+
+                context(@"with a positive number of retries", ^{
+
+                    __block id<OHHTTPStubsDescriptor> stub = nil;
+
+                    beforeEach(^{
+                        configuration.numberOfRetries = 2;
+                        [OHHTTPStubs ssk_stubRequestsForPath:@"get" options:@{
+                            SSKHTTPStubsNumberOfFailuresKey: @(2),
+                        } response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+                            NSDictionary *json = @{ @"foo": @"bar" };
+                            return [OHHTTPStubsResponse responseWithJSONObject:json statusCode:200 headers:nil];
+                        }];
+                    });
+
+                    afterEach(^{
+                        [OHHTTPStubs ssk_resetRemainingNumberOfFailuresForPath:@"get"];
+                        [OHHTTPStubs removeStub:stub];
+                    });
+
+                    it(@"should retry until request succeeds", ^{
+                        __block id response = nil; __block NSError *error = nil;
+                        [client GET:@"get" parameters:nil completion:^(id blockResponse, NSError *blockError) {
+                            response = blockResponse;
+                            error = blockError;
+                        }];
+                        [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(5)] beNonNil];
+                        [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(5)] beNil];
+                        [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(5)] haveValue:@"bar" forKey:@"foo"];
+                    });
+
+                });
+
+
+            });
+
         });
 
     });
