@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A49C2721A25D60D0041406B /* SSKUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A49C2711A25D60D0041406B /* SSKUserSpec.m */; };
 		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m */; };
 		3A93A1481A2E2F2F006827D3 /* SSKHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* SSKHTTPClient.h */; };
 		3A93A1491A2E2F2F006827D3 /* SSKHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1471A2E2F2F006827D3 /* SSKHTTPClient.m */; };
@@ -851,7 +850,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA22E1F1A2509AF00FE04D1 /* SSKConfigurationSpec.m in Sources */,
-				3A49C2721A25D60D0041406B /* SSKUserSpec.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+SaasKitTests.m in Sources */,
 				5EF381F31A287749006875D4 /* SSKValidatorSpec.m in Sources */,
 				3A93A1511A2E5119006827D3 /* SSKHTTPClientSpec.m in Sources */,
