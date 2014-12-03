@@ -7,40 +7,42 @@
 #import <Foundation/Foundation.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 
+/// Acceptable login credentials, with emails as keys and passwords as values.
+extern NSString * const SSKHTTPStubsAllowedLoginCredentialsKey; // NSDictionary
+
+/// Allowed HTTP verbs of the request.
+extern NSString * const SSKHTTPStubsAllowedMethodsKey; // NSArray
+
+/// Number of server failures before a route returns a correct response.
+extern NSString * const SSKHTTPStubsNumberOfFailuresKey; // NSNumber
+
+// /////////////////////////////////////////////////////////////////////////////
+
+/// This category provides various handy additions for testing SaasKit's
+/// networking mechanisms.
 @interface OHHTTPStubs (SaasKitTests)
 
-/// The base server url which is captured and stubbed.
-+ (NSURL *)ssk_stubURL;
+/// Stubs all requests for the given path.
+///
+/// @param path The path to stub.
+/// @param options An options dictionary containing stub configuration.
+/// @param response A response-producing block.
+///
+/// @return A stub description object.
++ (id<OHHTTPStubsDescriptor>)ssk_stubRequestsForPath:(NSString *)path options:(NSDictionary *)options response:(OHHTTPStubsResponseBlock)response;
 
-/// Stubs the login route.
+/// Resets the failure counter for requests for the given path.
 ///
-/// Options dictionary recognizes the following keys:
-/// - allowedEmail (NSString *)
-/// - allowedPassword (NSString *)
-///
-/// @param options An optional options dictionary.
-///
-/// @returns A description uniquely identifying the stub.
-+ (id<OHHTTPStubsDescriptor>)ssk_stubLoginRouteWithOptions:(NSDictionary *)options;
+/// @param path The path from which to remove failure counter.
++ (void)ssk_resetRemainingNumberOfFailuresForPath:(NSString *)path;
 
-/// Stubs the forgot password route.
-///
-/// Options dictionary recognizes the following keys:
-/// - allowedEmail (NSString *)
-///
-/// @param options An optional options dictionary.
-///
-/// @returns A description uniquely identifying the stub.
-+ (id<OHHTTPStubsDescriptor>)ssk_stubForgotPasswordRouteWithOptions:(NSDictionary *)options;
+// /////////////////////////////////////////////////////////////////////////////
 
-/// Stubs the register route.
+/// Stubs all requests to the login route.
 ///
-/// Options dictionary doesn't recognize any keys for now.
+/// @param options An options dictionary containing stub configuration.
 ///
-///
-/// @param options An optional options dictionary.
-///
-/// @returns A description uniquely identifying the stub.
-+ (id<OHHTTPStubsDescriptor>)ssk_stubRegisterRouteWithOptions:(NSDictionary *)options;
+/// @returns A stub description object.
++ (id<OHHTTPStubsDescriptor>)ssk_stubLoginRequestsWithOptions:(NSDictionary *)options;
 
 @end
