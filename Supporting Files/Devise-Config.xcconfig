@@ -1,0 +1,11 @@
+//
+//  Devise-Config.xcconfig
+//
+//  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
+//
+
+#include "Configuration/iOS/iOS-Framework.xcconfig"
+#include "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"
+
+// Framework bundle compatibility version
+DYLIB_COMPATIBILITY_VERSION = 1

@@ -1,0 +1,970 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */; };
+		3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */; };
+		3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */; };
+		3A93A1511A2E5119006827D3 /* DVSHTTPClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */; };
+		3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E1A1A25031300FE04D1 /* DVSConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1B1A25031300FE04D1 /* DVSConfiguration.m */; };
+		3AA22E1F1A2509AF00FE04D1 /* DVSConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1E1A2509AF00FE04D1 /* DVSConfigurationSpec.m */; };
+		3AA22E261A25112800FE04D1 /* NSError+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E241A25112800FE04D1 /* NSError+Devise.h */; };
+		3AA22E271A25112800FE04D1 /* NSError+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E251A25112800FE04D1 /* NSError+Devise.m */; };
+		3AA22E2A1A2514DD00FE04D1 /* NSString+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E281A2514DD00FE04D1 /* NSString+Devise.h */; };
+		3AA22E2B1A2514DD00FE04D1 /* NSString+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E291A2514DD00FE04D1 /* NSString+Devise.m */; };
+		3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E2D1A251B1400FE04D1 /* DVSUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E2E1A251B1400FE04D1 /* DVSUser.m */; };
+		3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */; };
+		3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */; };
+		3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E3A1A2530EA00FE04D1 /* DVSTypedefs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3AA22E411A25330C00FE04D1 /* DVSAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E3D1A25330C00FE04D1 /* DVSAPIManager.h */; };
+		3AA22E421A25330C00FE04D1 /* DVSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E3E1A25330C00FE04D1 /* DVSAPIManager.m */; };
+		3AA22E431A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E3F1A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h */; };
+		3AA22E441A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E401A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m */; };
+		3AA22E571A25353B00FE04D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E491A25353B00FE04D1 /* AppDelegate.m */; };
+		3AA22E581A25353B00FE04D1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E4B1A25353B00FE04D1 /* HomeViewController.m */; };
+		3AA22E591A25353B00FE04D1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E4D1A25353B00FE04D1 /* LoginViewController.m */; };
+		3AA22E5A1A25353B00FE04D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA22E4E1A25353B00FE04D1 /* Main.storyboard */; };
+		3AA22E5B1A25353B00FE04D1 /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E501A25353B00FE04D1 /* PasswordChangeViewController.m */; };
+		3AA22E5C1A25353B00FE04D1 /* PasswordReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E521A25353B00FE04D1 /* PasswordReminderViewController.m */; };
+		3AA22E5D1A25353B00FE04D1 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E541A25353B00FE04D1 /* RegistrationViewController.m */; };
+		3AA22E5E1A25353B00FE04D1 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E561A25353B00FE04D1 /* WelcomeViewController.m */; };
+		3AA22E5F1A2535BC00FE04D1 /* DVSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E211A250FC300FE04D1 /* DVSMacros.h */; };
+		3AA22E601A25361200FE04D1 /* Devise-Demo-Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4C7191A24FA6A00F0AE67 /* Devise-Demo-Main.m */; };
+		3AA8B36A1A24DA0000166927 /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
+		3ABB41471A272989005B22A1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABB41461A272989005B22A1 /* libPods.a */; };
+		3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AD4C6831A24DB1700F0AE67 /* Devise.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 3AD4C6AA1A24F1D200F0AE67 /* Devise-Prefix.pch */; };
+		3AD4C6AE1A24F38000F0AE67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */; };
+		3AD4C70F1A24FA2100F0AE67 /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
+		3AD4C7101A24FA2100F0AE67 /* Devise.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3AD4C7141A24FA2A00F0AE67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */; };
+		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
+		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
+		5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */; };
+		5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166C1A264F6900684A60 /* DVSValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E7E16711A264F6900684A60 /* DVSValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166D1A264F6900684A60 /* DVSValidator.m */; };
+		5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise.h */; };
+		5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise.m */; };
+		5EF381DC1A279998006875D4 /* NSDate+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381DA1A279998006875D4 /* NSDate+Devise.h */; };
+		5EF381DD1A279998006875D4 /* NSDate+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381DB1A279998006875D4 /* NSDate+Devise.m */; };
+		5EF381F01A287458006875D4 /* NSNumber+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381EE1A287458006875D4 /* NSNumber+Devise.h */; };
+		5EF381F11A287458006875D4 /* NSNumber+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381EF1A287458006875D4 /* NSNumber+Devise.m */; };
+		5EF381F31A287749006875D4 /* DVSValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381F21A287749006875D4 /* DVSValidatorSpec.m */; };
+		5EF5E6DA1A2667D80049BEA6 /* NSArray+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF5E6D81A2667D80049BEA6 /* NSArray+Devise.h */; };
+		5EF5E6DB1A2667D80049BEA6 /* NSArray+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5E6D91A2667D80049BEA6 /* NSArray+Devise.m */; };
+		7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3AA8B36B1A24DA0000166927 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AA8B3551A24DA0000166927 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AA8B35D1A24DA0000166927;
+			remoteInfo = Devise;
+		};
+		3AD4C7111A24FA2100F0AE67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AA8B3551A24DA0000166927 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AA8B35D1A24DA0000166927;
+			remoteInfo = Devise;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3AD4C7131A24FA2200F0AE67 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3AD4C7101A24FA2100F0AE67 /* Devise.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3A49C2711A25D60D0041406B /* DVSUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserSpec.m; sourceTree = "<group>"; };
+		3A6E03FC1A263866006ECA3E /* OHHTTPStubs+DeviseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+DeviseTests.h"; sourceTree = "<group>"; };
+		3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+DeviseTests.m"; sourceTree = "<group>"; };
+		3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSHTTPClient.h; sourceTree = "<group>"; };
+		3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSHTTPClient.m; sourceTree = "<group>"; };
+		3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSHTTPClientSpec.m; sourceTree = "<group>"; };
+		3AA22E1A1A25031300FE04D1 /* DVSConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSConfiguration.h; sourceTree = "<group>"; };
+		3AA22E1B1A25031300FE04D1 /* DVSConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSConfiguration.m; sourceTree = "<group>"; };
+		3AA22E1E1A2509AF00FE04D1 /* DVSConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSConfigurationSpec.m; sourceTree = "<group>"; };
+		3AA22E211A250FC300FE04D1 /* DVSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSMacros.h; sourceTree = "<group>"; };
+		3AA22E241A25112800FE04D1 /* NSError+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSError+Devise.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		3AA22E251A25112800FE04D1 /* NSError+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSError+Devise.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3AA22E281A2514DD00FE04D1 /* NSString+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Devise.h"; sourceTree = "<group>"; };
+		3AA22E291A2514DD00FE04D1 /* NSString+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Devise.m"; sourceTree = "<group>"; };
+		3AA22E2D1A251B1400FE04D1 /* DVSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUser.h; sourceTree = "<group>"; };
+		3AA22E2E1A251B1400FE04D1 /* DVSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUser.m; sourceTree = "<group>"; };
+		3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUser+Querying.h"; sourceTree = "<group>"; };
+		3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUser+Querying.m"; sourceTree = "<group>"; };
+		3AA22E3A1A2530EA00FE04D1 /* DVSTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTypedefs.h; sourceTree = "<group>"; };
+		3AA22E3D1A25330C00FE04D1 /* DVSAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSAPIManager.h; sourceTree = "<group>"; };
+		3AA22E3E1A25330C00FE04D1 /* DVSAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSAPIManager.m; sourceTree = "<group>"; };
+		3AA22E3F1A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSHTTPReqeustOperationManager.h; sourceTree = "<group>"; };
+		3AA22E401A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSHTTPReqeustOperationManager.m; sourceTree = "<group>"; };
+		3AA22E481A25353B00FE04D1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3AA22E491A25353B00FE04D1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3AA22E4A1A25353B00FE04D1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		3AA22E4B1A25353B00FE04D1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HomeViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3AA22E4C1A25353B00FE04D1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		3AA22E4D1A25353B00FE04D1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LoginViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3AA22E4E1A25353B00FE04D1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3AA22E4F1A25353B00FE04D1 /* PasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordChangeViewController.h; sourceTree = "<group>"; };
+		3AA22E501A25353B00FE04D1 /* PasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordChangeViewController.m; sourceTree = "<group>"; };
+		3AA22E511A25353B00FE04D1 /* PasswordReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordReminderViewController.h; sourceTree = "<group>"; };
+		3AA22E521A25353B00FE04D1 /* PasswordReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordReminderViewController.m; sourceTree = "<group>"; };
+		3AA22E531A25353B00FE04D1 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
+		3AA22E541A25353B00FE04D1 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
+		3AA22E551A25353B00FE04D1 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		3AA22E561A25353B00FE04D1 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		3AA8B35E1A24DA0000166927 /* Devise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Devise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA8B3691A24DA0000166927 /* Devise Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Devise Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ABB41461A272989005B22A1 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		3AD4C6831A24DB1700F0AE67 /* Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Devise.h; sourceTree = "<group>"; };
+		3AD4C6871A24DBA700F0AE67 /* Devise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Devise-Info.plist"; sourceTree = "<group>"; };
+		3AD4C6881A24DBA700F0AE67 /* Devise-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Devise-Tests-Info.plist"; sourceTree = "<group>"; };
+		3AD4C6921A24EFC100F0AE67 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		3AD4C6941A24EFC100F0AE67 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		3AD4C6951A24EFC100F0AE67 /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
+		3AD4C6961A24EFC100F0AE67 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		3AD4C6971A24EFC100F0AE67 /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
+		3AD4C6991A24EFC100F0AE67 /* Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
+		3AD4C69A1A24EFC100F0AE67 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
+		3AD4C69B1A24EFC100F0AE67 /* StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = StaticLibrary.xcconfig; sourceTree = "<group>"; };
+		3AD4C69D1A24EFC100F0AE67 /* iOS-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS-Application.xcconfig"; sourceTree = "<group>"; };
+		3AD4C69E1A24EFC100F0AE67 /* iOS-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS-Base.xcconfig"; sourceTree = "<group>"; };
+		3AD4C69F1A24EFC100F0AE67 /* iOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS-Framework.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6A01A24EFC100F0AE67 /* iOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "iOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6A21A24EFC100F0AE67 /* Mac-Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Application.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6A31A24EFC100F0AE67 /* Mac-Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Base.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6A41A24EFC100F0AE67 /* Mac-DynamicLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-DynamicLibrary.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6A51A24EFC100F0AE67 /* Mac-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Framework.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6A61A24EFC100F0AE67 /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6A71A24EFC100F0AE67 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3AD4C6A81A24EFCC00F0AE67 /* Devise-Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Devise-Config.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Devise-Tests-Config.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6AA1A24F1D200F0AE67 /* Devise-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Devise-Prefix.pch"; sourceTree = "<group>"; };
+		3AD4C6AC1A24F22300F0AE67 /* Devise-Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Devise-Tests-Prefix.pch"; sourceTree = "<group>"; };
+		3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3AD4C6AF1A24F3E000F0AE67 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6B01A24F3E800F0AE67 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3AD4C6EB1A24F9A700F0AE67 /* Devise Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Devise Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3AD4C7171A24FA6A00F0AE67 /* Devise-Demo-Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Devise-Demo-Config.xcconfig"; sourceTree = "<group>"; };
+		3AD4C7181A24FA6A00F0AE67 /* Devise-Demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Devise-Demo-Info.plist"; sourceTree = "<group>"; };
+		3AD4C7191A24FA6A00F0AE67 /* Devise-Demo-Main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Devise-Demo-Main.m"; sourceTree = "<group>"; };
+		3AD4C71A1A24FA6A00F0AE67 /* Devise-Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Devise-Demo-Prefix.pch"; sourceTree = "<group>"; };
+		3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Devise-Demo-Assets.xcassets"; sourceTree = "<group>"; };
+		5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPropertyValidator.h; sourceTree = "<group>"; };
+		5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPropertyValidator.m; sourceTree = "<group>"; };
+		5E7E166C1A264F6900684A60 /* DVSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSValidator.h; sourceTree = "<group>"; };
+		5E7E166D1A264F6900684A60 /* DVSValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSValidator.m; sourceTree = "<group>"; };
+		5EF381D21A2756BB006875D4 /* NSURL+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Devise.h"; sourceTree = "<group>"; };
+		5EF381D31A2756BB006875D4 /* NSURL+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Devise.m"; sourceTree = "<group>"; };
+		5EF381DA1A279998006875D4 /* NSDate+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Devise.h"; sourceTree = "<group>"; };
+		5EF381DB1A279998006875D4 /* NSDate+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Devise.m"; sourceTree = "<group>"; };
+		5EF381EE1A287458006875D4 /* NSNumber+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Devise.h"; sourceTree = "<group>"; };
+		5EF381EF1A287458006875D4 /* NSNumber+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Devise.m"; sourceTree = "<group>"; };
+		5EF381F21A287749006875D4 /* DVSValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSValidatorSpec.m; sourceTree = "<group>"; };
+		5EF5E6D81A2667D80049BEA6 /* NSArray+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Devise.h"; sourceTree = "<group>"; };
+		5EF5E6D91A2667D80049BEA6 /* NSArray+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Devise.m"; sourceTree = "<group>"; };
+		D520EAD6431B24AD4B00819C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68076C37469F69754581011 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3AA8B35A1A24DA0000166927 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ABB41471A272989005B22A1 /* libPods.a in Frameworks */,
+				3AD4C6AE1A24F38000F0AE67 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA8B3661A24DA0000166927 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AA8B36A1A24DA0000166927 /* Devise.framework in Frameworks */,
+				7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD4C6E81A24F9A700F0AE67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */,
+				3AD4C7141A24FA2A00F0AE67 /* Foundation.framework in Frameworks */,
+				3AD4C70F1A24FA2100F0AE67 /* Devise.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A6E03F31A263588006ECA3E /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3A6E03FC1A263866006ECA3E /* OHHTTPStubs+DeviseTests.h */,
+				3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		3AA22E191A2502FE00FE04D1 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22E1A1A25031300FE04D1 /* DVSConfiguration.h */,
+				3AA22E1B1A25031300FE04D1 /* DVSConfiguration.m */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		3AA22E201A250F9E00FE04D1 /* Supporting Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6831A24DB1700F0AE67 /* Devise.h */,
+				3AA22E211A250FC300FE04D1 /* DVSMacros.h */,
+				3AA22E3A1A2530EA00FE04D1 /* DVSTypedefs.h */,
+			);
+			name = "Supporting Headers";
+			sourceTree = "<group>";
+		};
+		3AA22E231A25110200FE04D1 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22E241A25112800FE04D1 /* NSError+Devise.h */,
+				3AA22E251A25112800FE04D1 /* NSError+Devise.m */,
+				3AA22E281A2514DD00FE04D1 /* NSString+Devise.h */,
+				3AA22E291A2514DD00FE04D1 /* NSString+Devise.m */,
+				5EF5E6D81A2667D80049BEA6 /* NSArray+Devise.h */,
+				5EF5E6D91A2667D80049BEA6 /* NSArray+Devise.m */,
+				5EF381D21A2756BB006875D4 /* NSURL+Devise.h */,
+				5EF381D31A2756BB006875D4 /* NSURL+Devise.m */,
+				5EF381DA1A279998006875D4 /* NSDate+Devise.h */,
+				5EF381DB1A279998006875D4 /* NSDate+Devise.m */,
+				5EF381EE1A287458006875D4 /* NSNumber+Devise.h */,
+				5EF381EF1A287458006875D4 /* NSNumber+Devise.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		3AA22E2C1A251B0200FE04D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22E311A252D5000FE04D1 /* User */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3AA22E311A252D5000FE04D1 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22E2D1A251B1400FE04D1 /* DVSUser.h */,
+				3AA22E2E1A251B1400FE04D1 /* DVSUser.m */,
+				3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */,
+				3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		3AA22E3C1A25327F00FE04D1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */,
+				3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */,
+				3AA22E3D1A25330C00FE04D1 /* DVSAPIManager.h */,
+				3AA22E3E1A25330C00FE04D1 /* DVSAPIManager.m */,
+				3AA22E3F1A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h */,
+				3AA22E401A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		3AA22E451A25352100FE04D1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22E4E1A25353B00FE04D1 /* Main.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3AA22E461A25352500FE04D1 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22E4A1A25353B00FE04D1 /* HomeViewController.h */,
+				3AA22E4B1A25353B00FE04D1 /* HomeViewController.m */,
+				3AA22E4C1A25353B00FE04D1 /* LoginViewController.h */,
+				3AA22E4D1A25353B00FE04D1 /* LoginViewController.m */,
+				3AA22E4F1A25353B00FE04D1 /* PasswordChangeViewController.h */,
+				3AA22E501A25353B00FE04D1 /* PasswordChangeViewController.m */,
+				3AA22E511A25353B00FE04D1 /* PasswordReminderViewController.h */,
+				3AA22E521A25353B00FE04D1 /* PasswordReminderViewController.m */,
+				3AA22E531A25353B00FE04D1 /* RegistrationViewController.h */,
+				3AA22E541A25353B00FE04D1 /* RegistrationViewController.m */,
+				3AA22E551A25353B00FE04D1 /* WelcomeViewController.h */,
+				3AA22E561A25353B00FE04D1 /* WelcomeViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		3AA22E471A25352F00FE04D1 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22E481A25353B00FE04D1 /* AppDelegate.h */,
+				3AA22E491A25353B00FE04D1 /* AppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		3AA8B3541A24DA0000166927 = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6821A24DB1700F0AE67 /* Devise */,
+				3AD4C6851A24DB1C00F0AE67 /* Devise Tests */,
+				3AD4C71B1A24FBAB00F0AE67 /* Devise Demo */,
+				3AD4C6861A24DBA700F0AE67 /* Supporting Files */,
+				3AA8B35F1A24DA0000166927 /* Products */,
+				E318EA28A05EB87D9168576A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3AA8B35F1A24DA0000166927 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3AA8B35E1A24DA0000166927 /* Devise.framework */,
+				3AA8B3691A24DA0000166927 /* Devise Tests.xctest */,
+				3AD4C6EB1A24F9A700F0AE67 /* Devise Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3AD4C6821A24DB1700F0AE67 /* Devise */ = {
+			isa = PBXGroup;
+			children = (
+				5E7E16721A264F6C00684A60 /* Validator */,
+				3AA22E191A2502FE00FE04D1 /* Configuration */,
+				3AA22E3C1A25327F00FE04D1 /* Networking */,
+				3AA22E231A25110200FE04D1 /* Categories */,
+				3AA22E2C1A251B0200FE04D1 /* Models */,
+				3AA22E201A250F9E00FE04D1 /* Supporting Headers */,
+			);
+			path = Devise;
+			sourceTree = "<group>";
+		};
+		3AD4C6851A24DB1C00F0AE67 /* Devise Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3A6E03F31A263588006ECA3E /* Additions */,
+				3AA22E1E1A2509AF00FE04D1 /* DVSConfigurationSpec.m */,
+				3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */,
+				3A49C2711A25D60D0041406B /* DVSUserSpec.m */,
+				5EF381F21A287749006875D4 /* DVSValidatorSpec.m */,
+			);
+			path = "Devise Tests";
+			sourceTree = "<group>";
+		};
+		3AD4C6861A24DBA700F0AE67 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C68E1A24EFAF00F0AE67 /* Configuration */,
+				3AD4C7221A24FC3200F0AE67 /* Devise */,
+				3AD4C7231A24FC3A00F0AE67 /* Devise Tests */,
+				3AD4C7241A24FC4000F0AE67 /* Devise Demo */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3AD4C68E1A24EFAF00F0AE67 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6901A24EFC100F0AE67 /* External */,
+				6DAEEC2DE19FB85AF8F5BCE5 /* CocoaPods */,
+				3AD4C6A81A24EFCC00F0AE67 /* Devise-Config.xcconfig */,
+				3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */,
+				3AD4C7171A24FA6A00F0AE67 /* Devise-Demo-Config.xcconfig */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		3AD4C6901A24EFC100F0AE67 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6911A24EFC100F0AE67 /* Base */,
+				3AD4C69C1A24EFC100F0AE67 /* iOS */,
+				3AD4C6A11A24EFC100F0AE67 /* Mac OS X */,
+				3AD4C6A71A24EFC100F0AE67 /* README.md */,
+			);
+			name = External;
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		3AD4C6911A24EFC100F0AE67 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6921A24EFC100F0AE67 /* Common.xcconfig */,
+				3AD4C6931A24EFC100F0AE67 /* Configurations */,
+				3AD4C6981A24EFC100F0AE67 /* Targets */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		3AD4C6931A24EFC100F0AE67 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6941A24EFC100F0AE67 /* Debug.xcconfig */,
+				3AD4C6951A24EFC100F0AE67 /* Profile.xcconfig */,
+				3AD4C6961A24EFC100F0AE67 /* Release.xcconfig */,
+				3AD4C6971A24EFC100F0AE67 /* Test.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		3AD4C6981A24EFC100F0AE67 /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6991A24EFC100F0AE67 /* Application.xcconfig */,
+				3AD4C69A1A24EFC100F0AE67 /* Framework.xcconfig */,
+				3AD4C69B1A24EFC100F0AE67 /* StaticLibrary.xcconfig */,
+			);
+			path = Targets;
+			sourceTree = "<group>";
+		};
+		3AD4C69C1A24EFC100F0AE67 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C69D1A24EFC100F0AE67 /* iOS-Application.xcconfig */,
+				3AD4C69E1A24EFC100F0AE67 /* iOS-Base.xcconfig */,
+				3AD4C69F1A24EFC100F0AE67 /* iOS-Framework.xcconfig */,
+				3AD4C6A01A24EFC100F0AE67 /* iOS-StaticLibrary.xcconfig */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		3AD4C6A11A24EFC100F0AE67 /* Mac OS X */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6A21A24EFC100F0AE67 /* Mac-Application.xcconfig */,
+				3AD4C6A31A24EFC100F0AE67 /* Mac-Base.xcconfig */,
+				3AD4C6A41A24EFC100F0AE67 /* Mac-DynamicLibrary.xcconfig */,
+				3AD4C6A51A24EFC100F0AE67 /* Mac-Framework.xcconfig */,
+				3AD4C6A61A24EFC100F0AE67 /* Mac-StaticLibrary.xcconfig */,
+			);
+			path = "Mac OS X";
+			sourceTree = "<group>";
+		};
+		3AD4C71B1A24FBAB00F0AE67 /* Devise Demo */ = {
+			isa = PBXGroup;
+			children = (
+				3AA22E471A25352F00FE04D1 /* App Delegate */,
+				3AA22E461A25352500FE04D1 /* View Controllers */,
+				3AA22E451A25352100FE04D1 /* Resources */,
+			);
+			path = "Devise Demo";
+			sourceTree = "<group>";
+		};
+		3AD4C7221A24FC3200F0AE67 /* Devise */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6871A24DBA700F0AE67 /* Devise-Info.plist */,
+				3AD4C6AA1A24F1D200F0AE67 /* Devise-Prefix.pch */,
+			);
+			name = Devise;
+			sourceTree = "<group>";
+		};
+		3AD4C7231A24FC3A00F0AE67 /* Devise Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6881A24DBA700F0AE67 /* Devise-Tests-Info.plist */,
+				3AD4C6AC1A24F22300F0AE67 /* Devise-Tests-Prefix.pch */,
+			);
+			name = "Devise Tests";
+			sourceTree = "<group>";
+		};
+		3AD4C7241A24FC4000F0AE67 /* Devise Demo */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */,
+				3AD4C7181A24FA6A00F0AE67 /* Devise-Demo-Info.plist */,
+				3AD4C71A1A24FA6A00F0AE67 /* Devise-Demo-Prefix.pch */,
+				3AD4C7191A24FA6A00F0AE67 /* Devise-Demo-Main.m */,
+			);
+			name = "Devise Demo";
+			sourceTree = "<group>";
+		};
+		5E7E16721A264F6C00684A60 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */,
+				5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */,
+				5E7E166C1A264F6900684A60 /* DVSValidator.h */,
+				5E7E166D1A264F6900684A60 /* DVSValidator.m */,
+			);
+			name = Validator;
+			sourceTree = "<group>";
+		};
+		6DAEEC2DE19FB85AF8F5BCE5 /* CocoaPods */ = {
+			isa = PBXGroup;
+			children = (
+				3AD4C6AF1A24F3E000F0AE67 /* Pods.debug.xcconfig */,
+				3AD4C6B01A24F3E800F0AE67 /* Pods-Tests.debug.xcconfig */,
+			);
+			name = CocoaPods;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		E318EA28A05EB87D9168576A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3ABB41461A272989005B22A1 /* libPods.a */,
+				3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */,
+				3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */,
+				D520EAD6431B24AD4B00819C /* libPods.a */,
+				D68076C37469F69754581011 /* libPods-Tests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3AA8B35B1A24DA0000166927 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EF381DC1A279998006875D4 /* NSDate+Devise.h in Headers */,
+				3AA22E411A25330C00FE04D1 /* DVSAPIManager.h in Headers */,
+				5EF381F01A287458006875D4 /* NSNumber+Devise.h in Headers */,
+				5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */,
+				3AA22E261A25112800FE04D1 /* NSError+Devise.h in Headers */,
+				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
+				5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */,
+				3AA22E431A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h in Headers */,
+				5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */,
+				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
+				3AA22E2A1A2514DD00FE04D1 /* NSString+Devise.h in Headers */,
+				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
+				3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */,
+				5EF5E6DA1A2667D80049BEA6 /* NSArray+Devise.h in Headers */,
+				3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */,
+				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
+				3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */,
+				3AA22E5F1A2535BC00FE04D1 /* DVSMacros.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3AA8B35D1A24DA0000166927 /* Devise */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AA8B3741A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise" */;
+			buildPhases = (
+				847B4B66C33FBA191EB27B30 /* Check Pods Manifest.lock */,
+				3AD4C68D1A24DC1500F0AE67 /* Increment Build Number */,
+				3AC598721A28A6320008CC22 /* Touch Precompiled Header */,
+				3AA8B3591A24DA0000166927 /* Sources */,
+				3AA8B35A1A24DA0000166927 /* Frameworks */,
+				3AA8B35B1A24DA0000166927 /* Headers */,
+				3AA8B35C1A24DA0000166927 /* Resources */,
+				DAEF756E065EBB369A275B44 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Devise;
+			productName = Devise;
+			productReference = 3AA8B35E1A24DA0000166927 /* Devise.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3AA8B3681A24DA0000166927 /* Devise Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise Tests" */;
+			buildPhases = (
+				765107F6C40D4918A6DF2AD9 /* Check Pods Manifest.lock */,
+				3ACA0FCA1A28A73B00C98B59 /* Touch Precompiled Header */,
+				3AA8B3651A24DA0000166927 /* Sources */,
+				3AA8B3661A24DA0000166927 /* Frameworks */,
+				3AA8B3671A24DA0000166927 /* Resources */,
+				E7CA1D2855837A8C5895AC0C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AA8B36C1A24DA0000166927 /* PBXTargetDependency */,
+			);
+			name = "Devise Tests";
+			productName = DeviseTests;
+			productReference = 3AA8B3691A24DA0000166927 /* Devise Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3AD4C6EA1A24F9A700F0AE67 /* Devise Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AD4C70D1A24F9A700F0AE67 /* Build configuration list for PBXNativeTarget "Devise Demo" */;
+			buildPhases = (
+				3ACA0FCB1A28A75600C98B59 /* Touch Precompiled Header */,
+				3AD4C6E71A24F9A700F0AE67 /* Sources */,
+				3AD4C6E81A24F9A700F0AE67 /* Frameworks */,
+				3AD4C6E91A24F9A700F0AE67 /* Resources */,
+				3AD4C7131A24FA2200F0AE67 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AD4C7121A24FA2100F0AE67 /* PBXTargetDependency */,
+			);
+			name = "Devise Demo";
+			productName = "Devise Demo";
+			productReference = 3AD4C6EB1A24F9A700F0AE67 /* Devise Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3AA8B3551A24DA0000166927 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DVS;
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Netguru Sp. z o.o.";
+				TargetAttributes = {
+					3AA8B35D1A24DA0000166927 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					3AA8B3681A24DA0000166927 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					3AD4C6EA1A24F9A700F0AE67 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 3AA8B3581A24DA0000166927 /* Build configuration list for PBXProject "Devise" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3AA8B3541A24DA0000166927;
+			productRefGroup = 3AA8B35F1A24DA0000166927 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3AA8B35D1A24DA0000166927 /* Devise */,
+				3AA8B3681A24DA0000166927 /* Devise Tests */,
+				3AD4C6EA1A24F9A700F0AE67 /* Devise Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3AA8B35C1A24DA0000166927 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA8B3671A24DA0000166927 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD4C6E91A24F9A700F0AE67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */,
+				3AA22E5A1A25353B00FE04D1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AC598721A28A6320008CC22 /* Touch Precompiled Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Touch Precompiled Header";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"\n";
+		};
+		3ACA0FCA1A28A73B00C98B59 /* Touch Precompiled Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Touch Precompiled Header";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"";
+		};
+		3ACA0FCB1A28A75600C98B59 /* Touch Precompiled Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Touch Precompiled Header";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"";
+		};
+		3AD4C68D1A24DC1500F0AE67 /* Increment Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbundleShortVersionString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\n[[ $bundleShortVersionString =~ ([0-9]*)(.([0-9]*))?(.([0-9]*))? ]]\nbundleVersion=$(( $bundleVersion + ${BASH_REMATCH[1]} * 10000 ))\nbundleVersion=$(( $bundleVersion + $(( ${BASH_REMATCH[3]} * 100 )) ))\nbundleVersion=$(( $bundleVersion + $(( ${BASH_REMATCH[5]} )) ))\nbundleVersionString=$(printf \"%d\" $bundleVersion)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersionString\" \"$INFOPLIST_FILE\"";
+		};
+		765107F6C40D4918A6DF2AD9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		847B4B66C33FBA191EB27B30 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DAEF756E065EBB369A275B44 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7CA1D2855837A8C5895AC0C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3AA8B3591A24DA0000166927 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EF381F11A287458006875D4 /* NSNumber+Devise.m in Sources */,
+				3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */,
+				5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */,
+				5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */,
+				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
+				5EF5E6DB1A2667D80049BEA6 /* NSArray+Devise.m in Sources */,
+				3AA22E441A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m in Sources */,
+				3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */,
+				3AA22E271A25112800FE04D1 /* NSError+Devise.m in Sources */,
+				5E7E16711A264F6900684A60 /* DVSValidator.m in Sources */,
+				3AA22E2B1A2514DD00FE04D1 /* NSString+Devise.m in Sources */,
+				5EF381DD1A279998006875D4 /* NSDate+Devise.m in Sources */,
+				3AA22E421A25330C00FE04D1 /* DVSAPIManager.m in Sources */,
+				3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AA8B3651A24DA0000166927 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AA22E1F1A2509AF00FE04D1 /* DVSConfigurationSpec.m in Sources */,
+				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */,
+				5EF381F31A287749006875D4 /* DVSValidatorSpec.m in Sources */,
+				3A93A1511A2E5119006827D3 /* DVSHTTPClientSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD4C6E71A24F9A700F0AE67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AA22E571A25353B00FE04D1 /* AppDelegate.m in Sources */,
+				3AA22E5D1A25353B00FE04D1 /* RegistrationViewController.m in Sources */,
+				3AA22E601A25361200FE04D1 /* Devise-Demo-Main.m in Sources */,
+				3AA22E5B1A25353B00FE04D1 /* PasswordChangeViewController.m in Sources */,
+				3AA22E581A25353B00FE04D1 /* HomeViewController.m in Sources */,
+				3AA22E5C1A25353B00FE04D1 /* PasswordReminderViewController.m in Sources */,
+				3AA22E5E1A25353B00FE04D1 /* WelcomeViewController.m in Sources */,
+				3AA22E591A25353B00FE04D1 /* LoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3AA8B36C1A24DA0000166927 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AA8B35D1A24DA0000166927 /* Devise */;
+			targetProxy = 3AA8B36B1A24DA0000166927 /* PBXContainerItemProxy */;
+		};
+		3AD4C7121A24FA2100F0AE67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AA8B35D1A24DA0000166927 /* Devise */;
+			targetProxy = 3AD4C7111A24FA2100F0AE67 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3AA8B3721A24DA0000166927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD4C6941A24EFC100F0AE67 /* Debug.xcconfig */;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3AA8B3751A24DA0000166927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD4C6A81A24EFCC00F0AE67 /* Devise-Config.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
+				INFOPLIST_FILE = "Supporting Files/Devise-Info.plist";
+				PRODUCT_NAME = Devise;
+			};
+			name = Debug;
+		};
+		3AA8B3781A24DA0000166927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/Devise-Tests-Prefix.pch";
+				INFOPLIST_FILE = "Supporting Files/Devise-Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3AD4C70B1A24F9A700F0AE67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD4C7171A24FA6A00F0AE67 /* Devise-Demo-Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App-Icon";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Launch-Image";
+				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3AA8B3581A24DA0000166927 /* Build configuration list for PBXProject "Devise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AA8B3721A24DA0000166927 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3AA8B3741A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AA8B3751A24DA0000166927 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AA8B3781A24DA0000166927 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3AD4C70D1A24F9A700F0AE67 /* Build configuration list for PBXNativeTarget "Devise Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AD4C70B1A24F9A700F0AE67 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3AA8B3551A24DA0000166927 /* Project object */;
+}

@@ -15,7 +15,7 @@ inhibit_all_warnings!
 pod 'AFNetworking', '~> 2.5'
 
 # Unit tests exclusive dependencies
-target 'Tests', exclusive: true do link_with 'SaasKit Tests'
+target 'Tests', exclusive: true do link_with 'Devise Tests'
   pod 'Kiwi', '~> 2.3'
   pod 'OHHTTPStubs', '~> 3.1'
 end
