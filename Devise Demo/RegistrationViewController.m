@@ -56,11 +56,7 @@
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender
 {
     DVSUser * newUser = [DVSUser user];
-    newUser.username = self.userName.text;
     newUser.password = self.password.text;
-    newUser.firstName = self.firstName.text;
-    newUser.lastName = self.lastName.text;
-    newUser.phoneNumber = self.phone.text;
     [newUser registerWithSuccess:^{
         DVSWorkInProgress( "Proceed further" );
         [self performSegueWithIdentifier: DVSEnterSegue sender:self];
