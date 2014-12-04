@@ -22,5 +22,6 @@ Pod::Spec.new do |spec|
   spec.requires_arc  = true
 
   spec.dependency      'AFNetworking', '~> 2.5.0'
+  spec.dependency      'SSKeychain', '~> 1.2.2'
 
 end
