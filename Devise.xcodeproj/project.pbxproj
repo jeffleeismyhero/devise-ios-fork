@@ -48,7 +48,6 @@
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
 		5E64C17A1A30603E00A41A88 /* DVSPropertyValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */; };
-		5E64C17C1A30872B00A41A88 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E64C17B1A30872B00A41A88 /* Security.framework */; };
 		5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */; };
 		5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166C1A264F6900684A60 /* DVSValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -197,7 +196,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E64C17C1A30872B00A41A88 /* Security.framework in Frameworks */,
 				3ABB41471A272989005B22A1 /* libPods.a in Frameworks */,
 				3AD4C6AE1A24F38000F0AE67 /* Foundation.framework in Frameworks */,
 			);

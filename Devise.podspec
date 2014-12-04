@@ -24,6 +24,4 @@ Pod::Spec.new do |spec|
   spec.dependency      'AFNetworking', '~> 2.5.0'
   spec.dependency      'SSKeychain', '~> 1.2.2'
 
-  spec.framework     = 'Security'
-
 end
