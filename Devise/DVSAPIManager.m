@@ -8,6 +8,7 @@
 #import "DVSHTTPReqeustOperationManager.h"
 #import "DVSConfiguration.h"
 #import "DVSUser+Querying.h"
+#import "DVSUser+Memorize.h"
 #import "DVSMacros.h"
 #import "NSError+Devise.h"
 
@@ -24,15 +25,15 @@
     
     if (requestType == DVSRequestPOST) {
         
-        [DVSNetworkManager requestWithPOST:[user registerPOST] path:path success:^(id object) {
-            success();
+        [DVSNetworkManager requestWithPOST:[user registerPOST] path:path success:^(NSDictionary *response) {
+            [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
         } failure:^(NSError *error) {
             failure(error);
         }];
     } else {
         
-        [DVSNetworkManager requestWithGET:[user registerQuery] path:path success:^(id object) {
-            success();
+        [DVSNetworkManager requestWithGET:[user registerQuery] path:path success:^(NSDictionary *response) {
+            [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
         } failure:^(NSError *error) {
             failure(error);
         }];
@@ -49,22 +50,14 @@
     if (requestType == DVSRequestPOST) {
         
         [DVSNetworkManager requestWithPOST:[user loginPOST] path:path success:^(NSDictionary *response) {
-            
-            if (response[@"user"]) {
-                [user setupWithDictionary:response[@"user"]];
-                success();
-                
-            } else {
-                failure([NSError dvs_errorWithErrorResponse:response]);
-            }
-
+            [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
         } failure:^(NSError *error) {
             failure(error);
         }];
     } else {
         
         [DVSNetworkManager requestWithGET:[user loginQuery] path:path success:^(NSDictionary *response) {
-            success();
+            [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
         } failure:^(NSError *error) {
             failure(error);
         }];
@@ -75,24 +68,13 @@
     
     DVSDLog(@"\nRemind Password:\n\nGET: %@\n\nPOST: %@", [user forgotPasswordQuery], [user forgotPasswordPOST]);
     
-    DVSRequestType requestType = [user requestTypeForSelector:@selector(requestTypeForUserRemindPassword:)];
     NSString *path = [[DVSConfiguration sharedConfiguration] pathForRoute:DVSRouteForgotPassword];
     
-    if (requestType == DVSRequestPOST) {
-        
-        [DVSNetworkManager requestWithPOST:[user forgotPasswordPOST] path:[[DVSConfiguration sharedConfiguration] pathForRoute:DVSRouteForgotPassword] success:^(id object) {
-            success();
-        } failure:^(NSError *error) {
-            failure(error);
-        }];
-    } else {
-        
-        [DVSNetworkManager requestWithGET:[user forgotPasswordQuery] path:path success:^(id object) {
-            success();
-        } failure:^(NSError *error) {
-            failure(error);
-        }];
-    }
+    [DVSNetworkManager requestWithPOST:[user forgotPasswordPOST] path:path success:^(NSDictionary *dictionary) {
+        success();
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
 }
-     
+
 @end

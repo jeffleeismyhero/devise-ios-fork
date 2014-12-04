@@ -48,6 +48,8 @@
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
 		5E64C17A1A30603E00A41A88 /* DVSPropertyValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */; };
+		5E64C1B51A30900000A41A88 /* DVSUser+Memorize.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E64C1B31A30900000A41A88 /* DVSUser+Memorize.h */; };
+		5E64C1B61A30900000A41A88 /* DVSUser+Memorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1B41A30900000A41A88 /* DVSUser+Memorize.m */; };
 		5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */; };
 		5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166C1A264F6900684A60 /* DVSValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -174,6 +176,8 @@
 		3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Devise-Demo-Assets.xcassets"; sourceTree = "<group>"; };
 		5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPropertyValidatorSpec.m; sourceTree = "<group>"; };
 		5E64C17B1A30872B00A41A88 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5E64C1B31A30900000A41A88 /* DVSUser+Memorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUser+Memorize.h"; sourceTree = "<group>"; };
+		5E64C1B41A30900000A41A88 /* DVSUser+Memorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUser+Memorize.m"; sourceTree = "<group>"; };
 		5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPropertyValidator.h; sourceTree = "<group>"; };
 		5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPropertyValidator.m; sourceTree = "<group>"; };
 		5E7E166C1A264F6900684A60 /* DVSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSValidator.h; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 				3AA22E2E1A251B1400FE04D1 /* DVSUser.m */,
 				3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */,
 				3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */,
+				5E64C1B31A30900000A41A88 /* DVSUser+Memorize.h */,
+				5E64C1B41A30900000A41A88 /* DVSUser+Memorize.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -573,6 +579,7 @@
 				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
 				3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */,
 				3AA22E5F1A2535BC00FE04D1 /* DVSMacros.h in Headers */,
+				5E64C1B51A30900000A41A88 /* DVSUser+Memorize.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,6 +853,7 @@
 				5E7E16711A264F6900684A60 /* DVSValidator.m in Sources */,
 				3AA22E2B1A2514DD00FE04D1 /* NSString+Devise.m in Sources */,
 				5EF381DD1A279998006875D4 /* NSDate+Devise.m in Sources */,
+				5E64C1B61A30900000A41A88 /* DVSUser+Memorize.m in Sources */,
 				3AA22E421A25330C00FE04D1 /* DVSAPIManager.m in Sources */,
 				3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */,
 			);

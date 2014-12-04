@@ -6,6 +6,7 @@
 
 #import "DVSUser.h"
 #import "DVSAPIManager.h"
+#import "DVSUser+Memorize.h"
 
 @interface DVSUser ()
 
@@ -29,17 +30,6 @@ static DVSUser *_currentUser;
     return _currentUser;
 }
 
-- (void)setupWithDictionary:(NSDictionary *)dictionary {
-     self.password = nil;
-    
-    if (dictionary) {
-        if (dictionary[@"email"]) {
-            self.email = dictionary[@"email"];
-        }
-        _currentUser = self;
-    }
-}
-
 - (NSDictionary *)extraLoginParams {
     return self.localExtraLoginParams;
 }
@@ -50,6 +40,10 @@ static DVSUser *_currentUser;
 
 - (NSDictionary *)extraRemindPasswordParams {
     return self.localExtraRemindPasswordParams;
+}
+
+- (void)logout {
+    [self dvs_deleteSensitiveData];
 }
 
 #pragma mark - Login methods:
@@ -146,6 +140,5 @@ static DVSUser *_currentUser;
     self.localExtraRegistrationParams = params();
     [self registerWithSuccess:success failure:failure];
 }
-
 
 @end

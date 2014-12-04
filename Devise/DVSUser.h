@@ -29,9 +29,6 @@ typedef NS_ENUM(NSInteger, DVSRequestType) {
 + (DVSUser *)user;
 + (DVSUser *)currentUser;
 
-/* Configures user with data from server and sets the user as the current user */
-- (void)setupWithDictionary:(NSDictionary *)dictionary;
-
 - (NSDictionary *)extraLoginParams;
 - (NSDictionary *)extraRegistrationParams;
 - (NSDictionary *)extraRemindPasswordParams;
@@ -45,6 +42,8 @@ typedef NS_ENUM(NSInteger, DVSRequestType) {
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
+- (void)logout;
 
 @end
 
@@ -60,9 +59,6 @@ typedef NS_ENUM(NSInteger, DVSRequestType) {
 
 /// Password parameter in login route (default: "password").
 - (NSString *)nameForPasswordInUserLogin:(DVSUser *)user;
-
-/// Request type for forgot password route (default: POST).
-- (DVSRequestType)requestTypeForUserRemindPassword:(DVSUser *)user;
 
 /// Email parameter in forgot password route (default: "email").
 - (NSString *)nameForEmailInUserRemindPassword:(DVSUser *)user;
