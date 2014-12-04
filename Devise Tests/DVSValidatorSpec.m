@@ -40,18 +40,6 @@ describe(@"DVSValidator", ^{
             specify(^{
                 [[validator shouldNot] beNil];
             });
-            
-            specify(^{
-                [[validator.dateFormatter shouldNot] beNil];
-            });
-            
-            it(@"should validator date formatter have short time style", ^{
-                [[theValue(validator.dateFormatter.timeStyle) should] equal:theValue(NSDateFormatterShortStyle)];
-            });
-            
-            it(@"should validator date formatter have short date style", ^{
-                [[theValue(validator.dateFormatter.dateStyle) should] equal:theValue(NSDateFormatterShortStyle)];
-            });
         
             for (NSDictionary *rule in rules) {
                 

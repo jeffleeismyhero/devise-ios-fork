@@ -19,37 +19,10 @@ static inline NSString * intToString(NSUInteger x) {
 
 NSString * const dvs_attribute = @"{attribute}";
 
-typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
-    //overall messages:
-    DVSValidatorMessageTypeRequired,
-    DVSValidatorMessageTypeLocalizedPropertyName,
-    //NSString messages:
-    DVSValidatorMessageTypeSyntaxEmail,
-    DVSValidatorMessageTypeTooShort,
-    DVSValidatorMessageTypeTooLong,
-    DVSValidatorMessageTypeExactLength,
-    DVSValidatorMessageTypeDecimal,
-    DVSValidatorMessageTypeIdenticalTo,
-    DVSValidatorMessageTypeDoesntMatch,
-    //NSNumber messages:
-    DVSValidatorMessageTypeIsntFalse,
-    DVSValidatorMessageTypeIsntTrue,
-    DVSValidatorMessageTypeTooSmall,
-    DVSValidatorMessageTypeTooBig,
-    DVSValidatorMessageTypeExact,
-    //
-    DVSValidatorMessageTypeEqual,
-    DVSValidatorMessageTypeNotEqual,
-    DVSValidatorMessageTypeLessThan,
-    DVSValidatorMessageTypeGreaterThan,
-    DVSValidatorMessageTypeLessThanOrEqualTo,
-    DVSValidatorMessageTypeGreaterThanOrEqualTo
-};
-
 @interface DVSPropertyValidator ()
 
 @property (strong, nonatomic) NSMutableArray *validators;
-@property (strong, nonatomic) NSMutableDictionary *validatorMessages;
+@property (strong, nonatomic) NSMutableDictionary *descriptions;
 
 @end
 
@@ -63,10 +36,8 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
         NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"@\""];
         _propertyName = [propertyName stringByTrimmingCharactersInSet:set];
         _validators = [NSMutableArray array];
-        _validatorMessages = [NSMutableDictionary dictionary];
+        _descriptions = [NSMutableDictionary dictionary];
         [self initializeValidatorMessages];
-        
-       
     }
     return self;
 }
@@ -100,19 +71,31 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
     return array;
 }
 
+- (NSDictionary *)errorDescriptions {
+    return [self.descriptions copy];
+}
+
+- (NSString *)messageforErrorDescription:(DVSErrorDescription)errorDescription {
+    return self.descriptions[@(errorDescription)];
+}
+
+- (void)setMessage:(NSString *)message forErrorDescription:(DVSErrorDescription)errorDescription {
+    self.descriptions[@(errorDescription)] = message;
+}
+
 #pragma mark - Messages
 #pragma mark Overall Messages
 
 - (DVSPropertyValidator *(^)(NSString *))nilOrEmpty {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeRequired];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionRequired];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))localizedPropertyName {
     return ^(NSString *name) {
-        [self setMessage:name forMessageType:DVSValidatorMessageTypeLocalizedPropertyName];
+        [self setMessage:name forErrorDescription:DVSErrorDescriptionLocalizedPropertyName];
         return self;
     };
 }
@@ -121,42 +104,42 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
 
 - (DVSPropertyValidator *(^)(NSString *))isntEmail {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeSyntaxEmail];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionSyntaxEmail];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))isntDecimal {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeDecimal];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionDecimal];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))tooShort {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeTooShort];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionTooShort];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))tooLong {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeTooLong];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionTooLong];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))notExactLength {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeExactLength];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionExactLength];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))doesntMatch {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeDoesntMatch];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionDoesntMatch];
         return self;
     };
 }
@@ -165,35 +148,35 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
 
 - (DVSPropertyValidator *(^)(NSString *))isntTrue {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeIsntTrue];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionIsntTrue];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))isntFalse {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeIsntFalse];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionIsntFalse];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))tooSmall {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeTooSmall];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionTooSmall];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))tooBig {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeTooBig];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionTooBig];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))notExact {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeExact];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionExact];
         return self;
     };
 }
@@ -202,42 +185,42 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
 
 - (DVSPropertyValidator *(^)(NSString *))isntEqual {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeEqual];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionEqual];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))isEqual {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeNotEqual];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionNotEqual];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))isntGreater {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeGreaterThan];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionGreaterThan];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))isntLess {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeLessThan];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionLessThan];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))isntGreaterOrEqual {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeGreaterThanOrEqualTo];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionGreaterThanOrEqualTo];
         return self;
     };
 }
 
 - (DVSPropertyValidator *(^)(NSString *))isntLessOrEqual {
     return ^(NSString *message) {
-        [self setMessage:message forMessageType:DVSValidatorMessageTypeLessThanOrEqualTo];
+        [self setMessage:message forErrorDescription:DVSErrorDescriptionLessThanOrEqualTo];
         return self;
     };
 }
@@ -251,7 +234,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
     return ^() {
         [self.validators addObject:^(NSObject *value) {
             if (!value || [value isKindOfClass:[NSNull class]]) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeRequired];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionRequired];
             }
             return (NSError *)nil;
         }];
@@ -292,7 +275,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSString class]]) {
                 return (NSError *)nil;
             } else if (![value dvs_isEmail]) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeSyntaxEmail];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionSyntaxEmail];
             }
             return (NSError *)nil;
         }];
@@ -309,7 +292,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSString class]]) {
                 return (NSError *)nil;
             } else if (![value dvs_isDecimal]) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeDecimal];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionDecimal];
             }
             return (NSError *)nil;
         }];
@@ -326,9 +309,9 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSString class]]) {
                 return (NSError *)nil;
             } else if (value.length < min) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeTooShort attribute:intToString(min)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionTooShort attribute:intToString(min)];
             } else if (value.length > max) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeTooLong attribute:intToString(max)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionTooLong attribute:intToString(max)];
             }
             return (NSError *)nil;
         }];
@@ -345,7 +328,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSString class]]) {
                 return (NSError *)nil;
             } else if (value.length < min) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeTooShort attribute:intToString(min)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionTooShort attribute:intToString(min)];
             }
             return (NSError *)nil;
         }];
@@ -362,7 +345,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSString class]]) {
                 return (NSError *)nil;
             } else if (value.length > max) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeTooLong attribute:intToString(max)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionTooLong attribute:intToString(max)];
             }
             return (NSError *)nil;
         }];
@@ -379,7 +362,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSString class]]) {
                 return (NSError *)nil;
             } else if (value.length != length) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeExactLength attribute:intToString(length)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionExactLength attribute:intToString(length)];
             }
             return (NSError *)nil;
         }];
@@ -396,7 +379,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSString class]]) {
                 return (NSError *)nil;
             } else if (![value isEqualToString:string]) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeDoesntMatch attribute:string];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionDoesntMatch attribute:string];
             }
             return (NSError *)nil;
         }];
@@ -413,8 +396,8 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
         [self.validators addObject:^(NSNumber *value) {
             if (![weakSelf isObject:value kindOfClass:[NSNumber class]]) {
                 return (NSError *)nil;
-            } else if (![value isEqualToNumber:@(NO)]) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeIsntFalse];
+            } else if (![value isEqualToNumber:@NO]) {
+                return [weakSelf errorWithMessage:DVSErrorDescriptionIsntFalse];
             }
             return (NSError *)nil;
         }];
@@ -429,8 +412,8 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
         [self.validators addObject:^(NSNumber *value) {
             if (![weakSelf isObject:value kindOfClass:[NSNumber class]]) {
                 return (NSError *)nil;
-            } else if (![value isEqualToNumber:@(YES)]) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeIsntTrue];
+            } else if (![value isEqualToNumber:@YES]) {
+                return [weakSelf errorWithMessage:DVSErrorDescriptionIsntTrue];
             }
             return (NSError *)nil;
         }];
@@ -447,7 +430,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSNumber class]]) {
                 return (NSError *)nil;
             } else if (value.floatValue < min) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeTooSmall attribute:intToString(min)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionTooSmall attribute:intToString(min)];
             }
             return (NSError *)nil;
         }];
@@ -464,7 +447,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSNumber class]]) {
                 return (NSError *)nil;
             } else if (value.floatValue > max) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeTooBig attribute:intToString(max)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionTooBig attribute:intToString(max)];
             }
             return (NSError *)nil;
         }];
@@ -481,9 +464,9 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSNumber class]]) {
                 return (NSError *)nil;
             } else if (value.floatValue < min) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeTooSmall attribute:intToString(min)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionTooSmall attribute:intToString(min)];
             } else if (value.floatValue > max) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeTooBig attribute:intToString(max)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionTooBig attribute:intToString(max)];
             }
             return (NSError *)nil;
         }];
@@ -500,7 +483,7 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
             if (![weakSelf isObject:value kindOfClass:[NSNumber class]]) {
                 return (NSError *)nil;
             } else if (![value compare:@(exact)] == NSOrderedSame) {
-                return [weakSelf errorWithMessageType:DVSValidatorMessageTypeExact attribute:intToString(exact)];
+                return [weakSelf errorWithMessage:DVSErrorDescriptionExact attribute:intToString(exact)];
             }
             return (NSError *)nil;
         }];
@@ -520,27 +503,27 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
     switch (comparisionOperator) {
         case DVSComparisionOperatorEqual:
             if (![number isEqualToNumber:compareNumber]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeEqual attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionEqual attribute:attribute];
             } break;
         case DVSComparisionOperatorNotEqual:
             if ([number isEqualToNumber:compareNumber]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeNotEqual attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionNotEqual attribute:attribute];
             } break;
         case DVSComparisionOperatorLessThan:
             if (![number dvs_isLessThan:compareNumber]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeLessThan attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionLessThan attribute:attribute];
             } break;
         case DVSComparisionOperatorGreaterThan:
             if (![number dvs_isGreaterThan:compareNumber]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeGreaterThan attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionGreaterThan attribute:attribute];
             } break;
         case DVSComparisionOperatorLessThanOrEqualTo:
             if (![number dvs_isLessThanOrEqualTo:compareNumber]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeLessThanOrEqualTo attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionLessThanOrEqualTo attribute:attribute];
             } break;
         case DVSComparisionOperatorGreaterThanOrEqualTo:
             if (![number dvs_isGreaterThanOrEqualTo:compareNumber]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeGreaterThanOrEqualTo attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionGreaterThanOrEqualTo attribute:attribute];
             } break;
     }
     return nil;
@@ -556,52 +539,43 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
     switch (comparisionOperator) {
         case DVSComparisionOperatorEqual:
             if (![date isEqual:compareDate]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeEqual attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionEqual attribute:attribute];
             } break;
         case DVSComparisionOperatorNotEqual:
             if ([date isEqualToDate:compareDate]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeNotEqual attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionNotEqual attribute:attribute];
             } break;
         case DVSComparisionOperatorLessThan:
             if (![date dvs_isEarlierThan:compareDate]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeLessThan attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionLessThan attribute:attribute];
             } break;
         case DVSComparisionOperatorGreaterThan:
             if (![date dvs_isLaterThan:compareDate]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeGreaterThan attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionGreaterThan attribute:attribute];
             } break;
         case DVSComparisionOperatorLessThanOrEqualTo:
             if (![date dvs_isEarlierThanOrEqualTo:compareDate]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeLessThanOrEqualTo attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionLessThanOrEqualTo attribute:attribute];
             } break;
         case DVSComparisionOperatorGreaterThanOrEqualTo:
             if (![date dvs_isLaterThanOrEqualTo:compareDate]) {
-                return [self errorWithMessageType:DVSValidatorMessageTypeGreaterThanOrEqualTo attribute:attribute];
+                return [self errorWithMessage:DVSErrorDescriptionGreaterThanOrEqualTo attribute:attribute];
             } break;
     }
     return nil;
 }
 
-- (NSString *)messageForMessageType:(DVSValidatorMessageType)messageType {
-    return self.validatorMessages[@(messageType)];
-}
-
-- (void)setMessage:(NSString *)message forMessageType:(DVSValidatorMessageType)messageType {
-    self.validatorMessages[@(messageType)] = message;
-}
-
-- (NSError *)errorWithMessageType:(DVSValidatorMessageType)type attribute:(NSString *)attribute {
-    NSString *propertyName = [self messageForMessageType:DVSValidatorMessageTypeLocalizedPropertyName];
-    NSString *description = [NSString stringWithFormat:@"%@ %@", propertyName, [self messageForMessageType:type]];
+- (NSError *)errorWithMessage:(DVSErrorDescription)message attribute:(NSString *)attribute {
+    NSString *propertyName = [self messageforErrorDescription:DVSErrorDescriptionLocalizedPropertyName];
+    NSString *description = [NSString stringWithFormat:@"%@ %@", propertyName, [self messageforErrorDescription:message]];
     if (attribute) {
         description = [description stringByReplacingOccurrencesOfString:dvs_attribute withString:attribute];
     }
     return [NSError dvs_errorWithDescription:description code:DVSErrorValidationFailed];
 }
 
-
-- (NSError *)errorWithMessageType:(DVSValidatorMessageType)type {
-    return [self errorWithMessageType:type attribute:nil];
+- (NSError *)errorWithMessage:(DVSErrorDescription)message {
+    return [self errorWithMessage:message attribute:nil];
 }
 
 - (BOOL)isObject:(NSObject *)object kindOfClass:(Class)class {
@@ -622,30 +596,30 @@ typedef NS_ENUM(NSInteger, DVSValidatorMessageType) {
 }
 
 - (void)initializeValidatorMessages {
-    [self setMessage:@"cannot be nil or empty" forMessageType:DVSValidatorMessageTypeRequired];
-    [self setMessage:_propertyName forMessageType:DVSValidatorMessageTypeLocalizedPropertyName];
+    [self setMessage:@"cannot be nil or empty" forErrorDescription:DVSErrorDescriptionRequired];
+    [self setMessage:_propertyName forErrorDescription:DVSErrorDescriptionLocalizedPropertyName];
     // NSString:
-    [self setMessage:@"is too short. Should be min {attribute} signs." forMessageType:DVSValidatorMessageTypeTooShort];
-    [self setMessage:@"is too long. Should be max {attribute} signs." forMessageType:DVSValidatorMessageTypeTooLong];
-    [self setMessage:@"hasn't exact length. Should has {attribute} signs." forMessageType:DVSValidatorMessageTypeExactLength];
-    [self setMessage:@"has invalid email syntax" forMessageType:DVSValidatorMessageTypeSyntaxEmail];
-    [self setMessage:@"isn't decimal" forMessageType:DVSValidatorMessageTypeDecimal];
-    [self setMessage:@"doesn't match {attribute}" forMessageType:DVSValidatorMessageTypeDoesntMatch];
+    [self setMessage:@"is too short. Should be min {attribute} signs." forErrorDescription:DVSErrorDescriptionTooShort];
+    [self setMessage:@"is too long. Should be max {attribute} signs." forErrorDescription:DVSErrorDescriptionTooLong];
+    [self setMessage:@"hasn't exact length. Should has {attribute} signs." forErrorDescription:DVSErrorDescriptionExactLength];
+    [self setMessage:@"has invalid email syntax" forErrorDescription:DVSErrorDescriptionSyntaxEmail];
+    [self setMessage:@"isn't decimal" forErrorDescription:DVSErrorDescriptionDecimal];
+    [self setMessage:@"doesn't match {attribute}" forErrorDescription:DVSErrorDescriptionDoesntMatch];
     
     // NSNumber:
-    [self setMessage:@"is too small. Should be min {attribute}." forMessageType:DVSValidatorMessageTypeTooSmall];
-    [self setMessage:@"is too big. Should be max {attribute}." forMessageType:DVSValidatorMessageTypeTooBig];
-    [self setMessage:@"should be true." forMessageType:DVSValidatorMessageTypeIsntTrue];
-    [self setMessage:@"should be false." forMessageType:DVSValidatorMessageTypeIsntFalse];
-    [self setMessage:@"isn't exact. Should be {attribute}." forMessageType:DVSValidatorMessageTypeExact];
+    [self setMessage:@"is too small. Should be min {attribute}." forErrorDescription:DVSErrorDescriptionTooSmall];
+    [self setMessage:@"is too big. Should be max {attribute}." forErrorDescription:DVSErrorDescriptionTooBig];
+    [self setMessage:@"should be true." forErrorDescription:DVSErrorDescriptionIsntTrue];
+    [self setMessage:@"should be false." forErrorDescription:DVSErrorDescriptionIsntFalse];
+    [self setMessage:@"isn't exact. Should be {attribute}." forErrorDescription:DVSErrorDescriptionExact];
     
     // Two NSObjects comparision:
-    [self setMessage:@"isn't equal to {attribute}" forMessageType:DVSValidatorMessageTypeEqual];
-    [self setMessage:@"is equal to {attribute}" forMessageType:DVSValidatorMessageTypeNotEqual];
-    [self setMessage:@"is greater than or equal to {attribute}. Should be less than {attribute}." forMessageType:DVSValidatorMessageTypeLessThan];
-    [self setMessage:@"is less than or equal to {attribute}. Should be greater than {attribute}." forMessageType:DVSValidatorMessageTypeGreaterThan];
-    [self setMessage:@"is greater than {attribute}. Should be less or equal to {attribute}." forMessageType:DVSValidatorMessageTypeLessThanOrEqualTo];
-    [self setMessage:@"is less than {attribute}. Should be greater or equal to {attribute}." forMessageType:DVSValidatorMessageTypeGreaterThanOrEqualTo];
+    [self setMessage:@"isn't equal to {attribute}" forErrorDescription:DVSErrorDescriptionEqual];
+    [self setMessage:@"is equal to {attribute}" forErrorDescription:DVSErrorDescriptionNotEqual];
+    [self setMessage:@"is greater than or equal to {attribute}. Should be less than {attribute}." forErrorDescription:DVSErrorDescriptionLessThan];
+    [self setMessage:@"is less than or equal to {attribute}. Should be greater than {attribute}." forErrorDescription:DVSErrorDescriptionGreaterThan];
+    [self setMessage:@"is greater than {attribute}. Should be less or equal to {attribute}." forErrorDescription:DVSErrorDescriptionLessThanOrEqualTo];
+    [self setMessage:@"is less than {attribute}. Should be greater or equal to {attribute}." forErrorDescription:DVSErrorDescriptionGreaterThanOrEqualTo];
 }
 
 - (NSDateFormatter *)dateFormatter {

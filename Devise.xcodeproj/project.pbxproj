@@ -47,6 +47,7 @@
 		3AD4C7141A24FA2A00F0AE67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */; };
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
+		5E64C17A1A30603E00A41A88 /* DVSPropertyValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */; };
 		5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */; };
 		5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166C1A264F6900684A60 /* DVSValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -171,6 +172,7 @@
 		3AD4C7191A24FA6A00F0AE67 /* Devise-Demo-Main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Devise-Demo-Main.m"; sourceTree = "<group>"; };
 		3AD4C71A1A24FA6A00F0AE67 /* Devise-Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Devise-Demo-Prefix.pch"; sourceTree = "<group>"; };
 		3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Devise-Demo-Assets.xcassets"; sourceTree = "<group>"; };
+		5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPropertyValidatorSpec.m; sourceTree = "<group>"; };
 		5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPropertyValidator.h; sourceTree = "<group>"; };
 		5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPropertyValidator.m; sourceTree = "<group>"; };
 		5E7E166C1A264F6900684A60 /* DVSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSValidator.h; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */,
 				3A49C2711A25D60D0041406B /* DVSUserSpec.m */,
 				5EF381F21A287749006875D4 /* DVSValidatorSpec.m */,
+				5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */,
 			);
 			path = "Devise Tests";
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 					};
 					3AD4C6EA1A24F9A700F0AE67 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = SK8PDF7SG9;
 					};
 				};
 			};
@@ -851,6 +855,7 @@
 			files = (
 				3AA22E1F1A2509AF00FE04D1 /* DVSConfigurationSpec.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */,
+				5E64C17A1A30603E00A41A88 /* DVSPropertyValidatorSpec.m in Sources */,
 				5EF381F31A287749006875D4 /* DVSValidatorSpec.m in Sources */,
 				3A93A1511A2E5119006827D3 /* DVSHTTPClientSpec.m in Sources */,
 			);
@@ -924,6 +929,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App-Icon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Launch-Image";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
