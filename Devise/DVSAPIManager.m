@@ -22,6 +22,7 @@
     
     DVSRequestType requestType = [user requestTypeForSelector:@selector(requestTypeForUserRegistration:)];
     NSString *path = [[DVSConfiguration sharedConfiguration] pathForRoute:DVSRouteRegister];
+    [DVSNetworkManager setAuthorizationToken:[user dvs_token]];
     
     if (requestType == DVSRequestPOST) {
         
@@ -46,6 +47,7 @@
     
     DVSRequestType requestType = [user requestTypeForSelector:@selector(requestTypeForUserLogin:)];
     NSString *path = [[DVSConfiguration sharedConfiguration] pathForRoute:DVSRouteLogin];
+    [DVSNetworkManager setAuthorizationToken:[user dvs_token]];
     
     if (requestType == DVSRequestPOST) {
         
@@ -69,6 +71,7 @@
     DVSDLog(@"\nRemind Password:\n\nGET: %@\n\nPOST: %@", [user forgotPasswordQuery], [user forgotPasswordPOST]);
     
     NSString *path = [[DVSConfiguration sharedConfiguration] pathForRoute:DVSRouteForgotPassword];
+    [DVSNetworkManager setAuthorizationToken:[user dvs_token]];
     
     [DVSNetworkManager requestWithPOST:[user forgotPasswordPOST] path:path success:^(NSDictionary *dictionary) {
         success();

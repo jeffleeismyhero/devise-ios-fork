@@ -15,5 +15,6 @@
 
 - (void)requestWithPOST:(NSDictionary *)parameters path:(NSString *)path success:(DVSObjectBlock)success failure:(DVSErrorBlock)failure;
 - (void)requestWithGET:(NSString *)query path:(NSString *)path success:(DVSObjectBlock)success failure:(DVSErrorBlock)failure;
+- (void)setAuthorizationToken:(NSString *)token;
 
 @end

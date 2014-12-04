@@ -63,6 +63,10 @@
     }];
 }
 
+- (void)setAuthorizationToken:(NSString *)token {
+    [self.requestSerializer setValue:token forHTTPHeaderField:@"X-Authentication-Token"];
+}
+
 #pragma Private Methods
 
 - (NSString *)urlWithPath:(NSString *)path query:(NSString *)query {
