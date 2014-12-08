@@ -10,6 +10,7 @@ Welcome to the **SaasKit** project. Are you wondering what saas mean? It's a sho
 
 #### Configuration
 - `git clone git@github.com:netguru/saaskit.git`
+- `git submodule update --init --recursive`
 - `pod install`
 
 #### Coding guidelines
