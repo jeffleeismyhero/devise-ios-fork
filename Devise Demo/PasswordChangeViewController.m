@@ -17,7 +17,7 @@
 @implementation PasswordChangeViewController
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated: YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

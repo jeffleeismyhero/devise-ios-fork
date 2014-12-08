@@ -20,48 +20,47 @@
 
 @implementation RegistrationViewController
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardSizeChanged:)
-                                                 name: UIKeyboardWillShowNotification object: nil];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(keyboardSizeChanged:)
-                                                 name: UIKeyboardWillHideNotification object: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardSizeChanged:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardSizeChanged:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear: animated];
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
-- (void) viewDidLayoutSubviews
-{
+- (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self.scrollView setContentSize: self.contentView.bounds.size];
 }
 
-- (void) keyboardSizeChanged: (NSNotification*) notification
-{
+- (void)keyboardSizeChanged:(NSNotification*)notification {
     CGRect keyboardEndFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect keyboardBeginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     
-    if ( keyboardBeginFrame.origin.y>keyboardEndFrame.origin.y ) {
+    if (keyboardBeginFrame.origin.y>keyboardEndFrame.origin.y) {
         self.scrollViewBottomConstraint.constant = keyboardBeginFrame.size.height;
     } else {
         self.scrollViewBottomConstraint.constant = 0;
     }
 }
 
-- (IBAction)signUpTouched:(UIBarButtonItem *)sender
-{
-    DVSUser * newUser = [DVSUser user];
+- (IBAction)signUpTouched:(UIBarButtonItem *)sender {
+    DVSUser *newUser = [DVSUser user];
     newUser.password = self.password.text;
     [newUser registerWithSuccess:^{
-        DVSWorkInProgress( "Proceed further" );
+        DVSWorkInProgress("Proceed further");
         [self performSegueWithIdentifier: DVSEnterSegue sender:self];
     } failure:^(NSError *error) {
-        [[[UIAlertView alloc] initWithTitle: @"Error" message: error.localizedDescription delegate:nil cancelButtonTitle: @"Close" otherButtonTitles: nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
     }];
 }
 

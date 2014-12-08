@@ -8,8 +8,8 @@
 
 #import "WelcomeViewController.h"
 
-#define DVSRegisterSegue @"register"
-#define DVSLoginSegue @"login"
+static NSString * const DVSRegisterSegue = @"register";
+static NSString * const DVSLoginSegue = @"login";
 
 @interface WelcomeViewController ()
 
@@ -49,7 +49,7 @@ static NSString * const defaultCell = @"defaultCell";
 
 #pragma mark - Table view delegate
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
     [self performSegueWithIdentifier:dataDictionary[@"segue"] sender:self];
 }

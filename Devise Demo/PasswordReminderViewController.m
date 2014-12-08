@@ -17,7 +17,7 @@
 @implementation PasswordReminderViewController
 
 - (IBAction)sendButtonTouched:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated: YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

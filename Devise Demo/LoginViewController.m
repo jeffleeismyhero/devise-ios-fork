@@ -7,8 +7,9 @@
 //
 
 #import "LoginViewController.h"
-#define DVSEnterSegue @"enter"
-#define DVSRemindPasswordSegue @"remind password"
+
+static NSString * const DVSEnterSegue = @"enter";
+static NSString * const DVSRemindPasswordSegue = @"remind password";
 
 @interface LoginViewController ()
 
@@ -20,11 +21,11 @@
 @implementation LoginViewController
 
 - (IBAction)remindButtonTouched:(UIButton *)sender {
-    [self performSegueWithIdentifier: DVSRemindPasswordSegue sender:self];
+    [self performSegueWithIdentifier:DVSRemindPasswordSegue sender:self];
 }
 
 - (IBAction)logInTouched:(UIBarButtonItem *)sender {
-    [self performSegueWithIdentifier: DVSEnterSegue sender:self];
+    [self performSegueWithIdentifier:DVSEnterSegue sender:self];
 }
 
 @end

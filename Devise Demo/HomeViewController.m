@@ -8,7 +8,9 @@
 
 #import "HomeViewController.h"
 
-#define DVSPasswordChangeSegue @"password change"
+
+static NSString * const DVSPasswordChangeSegue = @"password change";
+static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
 @interface HomeViewController ()
 
@@ -19,12 +21,14 @@
 @implementation HomeViewController
 
 - (IBAction)logoutTouched:(UIBarButtonItem *)sender {
-    [self.navigationController popToRootViewControllerAnimated: YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (NSArray*) tableDataSource {
-    if ( !_tableDataSource) {
-        _tableDataSource = @[ @{@"title":@"Change password", @"sub":@"Do you feel your password is bad?", @"segue":DVSPasswordChangeSegue} ];
+- (NSArray*)tableDataSource {
+    if (!_tableDataSource) {
+        _tableDataSource = @[ @{@"title": @"Change password",
+                                @"sub": @"Do you feel your password is bad?",
+                                @"segue": DVSPasswordChangeSegue} ];
     }
     return _tableDataSource;
 }
@@ -39,10 +43,8 @@
     return @"Menu";
 }
 
-static NSString * const defaultCell = @"defaultCell";
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: defaultCell forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DVSHomeDefaultCell forIndexPath:indexPath];
     NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
     cell.textLabel.text = dataDictionary[@"title"];
     cell.detailTextLabel.text = dataDictionary[@"sub"];
@@ -51,7 +53,7 @@ static NSString * const defaultCell = @"defaultCell";
 
 #pragma mark - Table view delegate
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
     [self performSegueWithIdentifier:dataDictionary[@"segue"] sender:self];
 }
