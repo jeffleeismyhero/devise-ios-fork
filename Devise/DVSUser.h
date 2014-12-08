@@ -8,11 +8,6 @@
 #import "DVSTypedefs.h"
 #import "DVSValidator.h"
 
-typedef NS_ENUM(NSInteger, DVSRequestType) {
-    DVSRequestGET,
-    DVSRequestPOST
-};
-
 typedef NS_ENUM(NSInteger, DVSActionType) {
     DVSLoginAction,
     DVSRegistrationAction,
@@ -68,9 +63,6 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 @protocol DVSUserDataSource <NSObject>
 
 @optional
-
-/// Request type for login route (default: POST).
-- (DVSRequestType)requestTypeForUserLogin:(DVSUser *)user;
 
 /// Email parameter in login route (default: "email").
 - (NSString *)nameForEmailInUserLogin:(DVSUser *)user;

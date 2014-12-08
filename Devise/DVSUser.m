@@ -148,6 +148,20 @@
     [self registerWithSuccess:success failure:failure];
 }
 
+- (void)deleteAccount {
+    [self deleteAccountWithSuccess:^{} failure:^(NSError *error){}];
+}
+
+- (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    [DVSAPIManager deleteUser:self withSuccess:^{
+        [self logout];
+        success();
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
 #pragma mark - Accessors
 
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
@@ -198,20 +212,6 @@
         _localExtraRemindPasswordParams = [NSMutableDictionary dictionary];
     }
     return _localExtraRemindPasswordParams;
-}
-
-- (void)deleteAccount {
-    [self deleteAccountWithSuccess:^{} failure:^(NSError *error){}];
-}
-
-- (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
-    [DVSAPIManager deleteUser:self withSuccess:^{
-        [self logout];
-        success();
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
 }
 
 @end

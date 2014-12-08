@@ -9,15 +9,8 @@
 
 @interface DVSUser (Querying)
 
-- (NSString *)loginQuery;
 - (NSDictionary *)loginPOST;
-
-/// Forgot password is available only via POST request
 - (NSDictionary *)forgotPasswordPOST;
-
-/// Register is available only via POST request
 - (NSDictionary *)registerPOST;
-
-- (DVSRequestType)requestTypeForSelector:(SEL)selector;
 
 @end

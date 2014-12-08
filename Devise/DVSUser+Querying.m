@@ -11,10 +11,6 @@
 
 #pragma mark Login
 
-- (NSString *)loginQuery {
-    return [self queryFromDictionary:[self loginPOST]];
-}
-
 - (NSDictionary *)loginPOST {
     NSMutableDictionary *post = [NSMutableDictionary dictionaryWithCapacity:2];
     
@@ -99,19 +95,6 @@
         #pragma clang diagnostic pop
     }
     return name;
-}
-
-#pragma mark - Private Methods
-- (DVSRequestType)requestTypeForSelector:(SEL)selector {
-
-    DVSRequestType requestType = DVSRequestPOST;
-    if (self.dataSource && [self.dataSource respondsToSelector:selector]) {
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        requestType = (NSInteger)[self.dataSource performSelector:selector withObject:self];
-        #pragma clang diagnostic pop
-    }
-    return requestType;
 }
 
 @end
