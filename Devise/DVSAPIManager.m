@@ -11,6 +11,7 @@
 #import "DVSUser+Memorize.h"
 #import "DVSMacros.h"
 #import "NSError+Devise.h"
+#import "NSDictionary+Devise.h"
 
 @implementation DVSAPIManager
 
@@ -63,6 +64,21 @@
     
     [DVSNetworkManager requestWithPOST:[user forgotPasswordPOST] path:path success:^(NSDictionary *response, NSUInteger code) {
         success();
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
++ (void)deleteUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    DVSTemporary("server paths will change soon. Take care of it. Temporary hardcoded below");
+    
+    NSString *path = [NSString stringWithFormat:@"v1/users/%@", [user dvs_identifier]];
+    [DVSNetworkManager setAuthorizationToken:[user dvs_token]];
+    
+    [DVSNetworkManager requestWithDELETE:path success:^(NSDictionary *response, NSUInteger code) {
+        BOOL deleted = [[user dvs_identifier] isEqualToString:[response[@"user"] dvs_stringValueForKey:@"id"]];
+        deleted ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
     } failure:^(NSError *error) {
         failure(error);
     }];

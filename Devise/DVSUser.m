@@ -200,4 +200,18 @@
     return _localExtraRemindPasswordParams;
 }
 
+- (void)deleteAccount {
+    [self deleteAccountWithSuccess:^{} failure:^(NSError *error){}];
+}
+
+- (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    [DVSAPIManager deleteUser:self withSuccess:^{
+        [self logout];
+        success();
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
+}
+
 @end

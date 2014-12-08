@@ -11,10 +11,6 @@
 #import "DVSMacros.h"
 #import "NSError+Devise.h"
 
-inline static NSUInteger operationsCode(AFHTTPRequestOperation *operation) {
-    return operation.response.statusCode;
-}
-
 @implementation DVSHTTPReqeustOperationManager
 
 + (instancetype)sharedInstance {
@@ -44,17 +40,9 @@ inline static NSUInteger operationsCode(AFHTTPRequestOperation *operation) {
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self POST:[self urlWithPath:path query:nil] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        success(responseObject, operationsCode(operation));
-        
+        [self invokeSuccessBlock:success withOperation:operation response:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        if (operation.responseObject) {
-            error = [NSError dvs_errorWithErrorResponse:operation.responseObject];
-        }
-        failure(error);
+        [self invokeFailureBlock:failure withOperation:operation error:error];
     }];
 }
 
@@ -62,17 +50,30 @@ inline static NSUInteger operationsCode(AFHTTPRequestOperation *operation) {
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self GET:[self urlWithPath:path query:query] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        success(responseObject, operationsCode(operation));
-        
+        [self invokeSuccessBlock:success withOperation:operation response:responseObject];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        if (operation.responseObject) {
-            error = [NSError dvs_errorWithErrorResponse:operation.responseObject];
-        }
-        failure(error);
+        [self invokeFailureBlock:failure withOperation:operation error:error];
+    }];
+}
+
+- (void)requestWithDELETE:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure {
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self DELETE:[self urlWithPath:path query:nil] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self invokeSuccessBlock:success withOperation:operation response:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self invokeFailureBlock:failure withOperation:operation error:error];
+    }];
+    
+}
+
+- (void)requestWithPUT:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure {
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self PUT:[self urlWithPath:path query:nil] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self invokeSuccessBlock:success withOperation:operation response:responseObject];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self invokeFailureBlock:failure withOperation:operation error:error];
     }];
 }
 
@@ -81,6 +82,21 @@ inline static NSUInteger operationsCode(AFHTTPRequestOperation *operation) {
 }
 
 #pragma Private Methods
+
+- (void)invokeFailureBlock:(DVSErrorBlock)failure withOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    if (operation.responseObject) {
+        error = [NSError dvs_errorWithErrorResponse:operation.responseObject];
+    }
+    failure(error);
+}
+
+- (void)invokeSuccessBlock:(DVSResponseBlock)success withOperation:(AFHTTPRequestOperation *)operation response:(id)response {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    success(response, operation.response.statusCode);
+}
+
 
 - (NSString *)urlWithPath:(NSString *)path query:(NSString *)query {
     

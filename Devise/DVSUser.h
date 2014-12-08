@@ -60,6 +60,9 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 
 - (void)logout;
 
+- (void)deleteAccount;
+- (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
 @end
 
 @protocol DVSUserDataSource <NSObject>
