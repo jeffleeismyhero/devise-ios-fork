@@ -10,11 +10,21 @@
 #import <Devise/Devise.h>
 #import "DVSMacros.h"
 
-#define DVSEnterSegue @"enter"
+static NSString * const DVSEnterSegue = @"enter";
 
 @interface RegistrationViewController ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
+@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
 @end
 
@@ -55,10 +65,11 @@
 
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender {
     DVSUser *newUser = [DVSUser user];
-    newUser.password = self.password.text;
+    newUser.password = self.passwordTextField.text;
+    newUser.email = self.emailTextField.text;
     [newUser registerWithSuccess:^{
         DVSWorkInProgress("Proceed further");
-        [self performSegueWithIdentifier: DVSEnterSegue sender:self];
+        [self performSegueWithIdentifier:DVSEnterSegue sender:self];
     } failure:^(NSError *error) {
         [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
     }];
