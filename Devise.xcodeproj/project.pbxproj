@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21F690921A35CDF800DE2ABA /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690911A35CDF800DE2ABA /* DVSDemoUser.m */; };
+		21F690951A35DDB200DE2ABA /* DVSDemoUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690941A35DDB200DE2ABA /* DVSDemoUserDataSource.m */; };
 		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */; };
 		3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */; };
 		3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */; };
@@ -100,6 +102,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		21F690901A35CDF800DE2ABA /* DVSDemoUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUser.h; sourceTree = "<group>"; };
+		21F690911A35CDF800DE2ABA /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
+		21F690931A35DDB200DE2ABA /* DVSDemoUserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUserDataSource.h; sourceTree = "<group>"; };
+		21F690941A35DDB200DE2ABA /* DVSDemoUserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUserDataSource.m; sourceTree = "<group>"; };
 		3A49C2711A25D60D0041406B /* DVSUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserSpec.m; sourceTree = "<group>"; };
 		3A6E03FC1A263866006ECA3E /* OHHTTPStubs+DeviseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+DeviseTests.h"; sourceTree = "<group>"; };
 		3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+DeviseTests.m"; sourceTree = "<group>"; };
@@ -231,6 +237,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21F6908F1A35CDCA00DE2ABA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				21F690901A35CDF800DE2ABA /* DVSDemoUser.h */,
+				21F690911A35CDF800DE2ABA /* DVSDemoUser.m */,
+				21F690931A35DDB200DE2ABA /* DVSDemoUserDataSource.h */,
+				21F690941A35DDB200DE2ABA /* DVSDemoUserDataSource.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		3A6E03F31A263588006ECA3E /* Additions */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,12 +331,12 @@
 			name = Networking;
 			sourceTree = "<group>";
 		};
-		3AA22E451A25352100FE04D1 /* Resources */ = {
+		3AA22E451A25352100FE04D1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				3AA22E4E1A25353B00FE04D1 /* Main.storyboard */,
 			);
-			name = Resources;
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		3AA22E461A25352500FE04D1 /* View Controllers */ = {
@@ -491,8 +508,9 @@
 			isa = PBXGroup;
 			children = (
 				3AA22E471A25352F00FE04D1 /* App Delegate */,
+				21F6908F1A35CDCA00DE2ABA /* Model */,
+				3AA22E451A25352100FE04D1 /* Storyboards */,
 				3AA22E461A25352500FE04D1 /* View Controllers */,
-				3AA22E451A25352100FE04D1 /* Resources */,
 			);
 			path = "Devise Demo";
 			sourceTree = "<group>";
@@ -885,12 +903,14 @@
 			files = (
 				3AA22E571A25353B00FE04D1 /* AppDelegate.m in Sources */,
 				3AA22E5D1A25353B00FE04D1 /* RegistrationViewController.m in Sources */,
+				21F690951A35DDB200DE2ABA /* DVSDemoUserDataSource.m in Sources */,
 				3AA22E601A25361200FE04D1 /* Devise-Demo-Main.m in Sources */,
 				3AA22E5B1A25353B00FE04D1 /* PasswordChangeViewController.m in Sources */,
 				3AA22E581A25353B00FE04D1 /* HomeViewController.m in Sources */,
 				3AA22E5C1A25353B00FE04D1 /* PasswordReminderViewController.m in Sources */,
 				3AA22E5E1A25353B00FE04D1 /* WelcomeViewController.m in Sources */,
 				3AA22E591A25353B00FE04D1 /* LoginViewController.m in Sources */,
+				21F690921A35CDF800DE2ABA /* DVSDemoUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

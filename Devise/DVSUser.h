@@ -13,6 +13,12 @@ typedef NS_ENUM(NSInteger, DVSRequestType) {
     DVSRequestPOST
 };
 
+typedef NS_ENUM(NSInteger, DVSActionType) {
+    DVSLoginAction,
+    DVSRegistrationAction,
+    DVSRemindPasswordAction
+};
+
 @protocol DVSUserDataSource;
 
 @interface DVSUser : NSObject
@@ -38,6 +44,9 @@ typedef NS_ENUM(NSInteger, DVSRequestType) {
 - (NSDictionary *)extraLoginParams;
 - (NSDictionary *)extraRegistrationParams;
 - (NSDictionary *)extraRemindPasswordParams;
+
+- (id)objectForKey:(NSString *)key action:(DVSActionType)actionType;
+- (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType;
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;

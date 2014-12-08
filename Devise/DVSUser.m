@@ -10,9 +10,9 @@
 
 @interface DVSUser ()
 
-@property (strong, nonatomic) NSDictionary *localExtraLoginParams;
-@property (strong, nonatomic) NSDictionary *localExtraRegistrationParams;
-@property (strong, nonatomic) NSDictionary *localExtraRemindPasswordParams;
+@property (strong, nonatomic) NSMutableDictionary *localExtraLoginParams;
+@property (strong, nonatomic) NSMutableDictionary *localExtraRegistrationParams;
+@property (strong, nonatomic) NSMutableDictionary *localExtraRemindPasswordParams;
 
 @end
 
@@ -38,15 +38,15 @@
 }
 
 - (NSDictionary *)extraLoginParams {
-    return self.localExtraLoginParams;
+    return [self.localExtraLoginParams copy];
 }
 
 - (NSDictionary *)extraRegistrationParams {
-    return self.localExtraRegistrationParams;
+    return [self.localExtraRegistrationParams copy];
 }
 
 - (NSDictionary *)extraRemindPasswordParams {
-    return self.localExtraRemindPasswordParams;
+    return [self.localExtraRemindPasswordParams copy];
 }
 
 - (void)logout {
@@ -78,8 +78,8 @@
 }
 
 - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-
-    self.localExtraLoginParams = params();
+    
+    self.localExtraLoginParams = [NSMutableDictionary dictionaryWithDictionary:params()];
     [self loginWithSuccess:success failure:failure];
 }
 
@@ -108,7 +108,7 @@
 
 - (void)remindPasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
-    self.localExtraRemindPasswordParams = params;
+    self.localExtraRemindPasswordParams = [NSMutableDictionary dictionaryWithDictionary:params];
     [self remindPasswordWithSuccess:success failure:failure];
 }
 
@@ -144,8 +144,60 @@
 
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
-    self.localExtraRegistrationParams = params();
+    self.localExtraRegistrationParams = [NSMutableDictionary dictionaryWithDictionary:params()];
     [self registerWithSuccess:success failure:failure];
+}
+
+#pragma mark - Accessors
+
+- (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
+    switch (actionType) {
+        case DVSLoginAction:
+            return self.localExtraLoginParams[key];
+            
+        case DVSRegistrationAction:
+            return self.localExtraRegistrationParams[key];
+            
+        case DVSRemindPasswordAction:
+            return self.localExtraRemindPasswordParams[key];
+    }
+}
+
+- (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType {
+    switch (actionType) {
+        case DVSLoginAction:
+            self.localExtraLoginParams[key] = object;
+            break;
+            
+        case DVSRegistrationAction:
+            self.localExtraRegistrationParams[key] = object;
+            break;
+            
+        case DVSRemindPasswordAction:
+            self.localExtraRemindPasswordParams[key] = object;
+            break;
+    }
+}
+
+- (NSMutableDictionary *)localExtraLoginParams {
+    if (!_localExtraLoginParams) {
+        _localExtraLoginParams = [NSMutableDictionary dictionary];
+    }
+    return _localExtraLoginParams;
+}
+
+- (NSMutableDictionary *)localExtraRegistrationParams {
+    if (!_localExtraRegistrationParams) {
+        _localExtraRegistrationParams = [NSMutableDictionary dictionary];
+    }
+    return _localExtraRegistrationParams;
+}
+
+- (NSMutableDictionary *)localExtraRemindPasswordParams {
+    if (!_localExtraRemindPasswordParams) {
+        _localExtraRemindPasswordParams = [NSMutableDictionary dictionary];
+    }
+    return _localExtraRemindPasswordParams;
 }
 
 @end

@@ -8,7 +8,9 @@
 
 #import "RegistrationViewController.h"
 #import <Devise/Devise.h>
+
 #import "DVSMacros.h"
+#import "DVSDemoUser.h"
 
 static NSString * const DVSEnterSegue = @"enter";
 
@@ -64,14 +66,23 @@ static NSString * const DVSEnterSegue = @"enter";
 }
 
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender {
-    DVSUser *newUser = [DVSUser user];
-    newUser.password = self.passwordTextField.text;
+    DVSDemoUser *newUser = [[DVSDemoUser alloc] init];
+    
     newUser.email = self.emailTextField.text;
+    newUser.password = self.passwordTextField.text;
+    newUser.username = self.usernameTextField.text;
+    newUser.firstName = self.firstNameTextField.text;
+    newUser.lastName = self.lastNameTextField.text;
+    newUser.phone = self.phoneTextField.text;
+    
     [newUser registerWithSuccess:^{
-        DVSWorkInProgress("Proceed further");
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
     } failure:^(NSError *error) {
-        [[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:error.localizedDescription
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
     }];
 }
 
