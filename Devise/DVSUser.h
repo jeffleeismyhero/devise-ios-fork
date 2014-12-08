@@ -72,9 +72,6 @@ typedef NS_ENUM(NSInteger, DVSRequestType) {
 /// Password parameter in forgot password route (default: "password").
 - (NSString *)nameForPasswordInRemindPassword:(DVSUser *)user;
 
-/// Request type for register route (default: POST).
-- (DVSRequestType)requestTypeForUserRegistration:(DVSUser *)user;
-
 /// Email  parameter in register route (default: "email").
 - (NSString *)nameForEmailInUserRegistration:(DVSUser *)user;
 

@@ -63,10 +63,6 @@
     return post;
 }
 
-- (NSString *)registerQuery {
-    return [self queryFromDictionary:[self registerPOST]];
-}
-
 #pragma mark - private methods
 
 - (NSString *)queryFromDictionary:(NSDictionary *)dictionary {

@@ -15,7 +15,7 @@
 /// Forgot password is available only via POST request
 - (NSDictionary *)forgotPasswordPOST;
 
-- (NSString *)registerQuery;
+/// Register is available only via POST request
 - (NSDictionary *)registerPOST;
 
 - (DVSRequestType)requestTypeForSelector:(SEL)selector;

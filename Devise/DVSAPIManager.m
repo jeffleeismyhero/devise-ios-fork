@@ -18,27 +18,16 @@
 
 + (void)registerUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    DVSDLog(@"\nRegistration:\n\nGET: %@\n\nPOST: %@", [user registerQuery], [user registerPOST]);
+    DVSDLog(@"\nRegistration:\n\nPOST: %@", [user registerPOST]);
     
-    DVSRequestType requestType = [user requestTypeForSelector:@selector(requestTypeForUserRegistration:)];
     NSString *path = [[DVSConfiguration sharedConfiguration] pathForRoute:DVSRouteRegister];
     [DVSNetworkManager setAuthorizationToken:[user dvs_token]];
     
-    if (requestType == DVSRequestPOST) {
-        
-        [DVSNetworkManager requestWithPOST:[user registerPOST] path:path success:^(NSDictionary *response, NSUInteger code)  {
-            [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
-        } failure:^(NSError *error) {
-            failure(error);
-        }];
-    } else {
-        
-        [DVSNetworkManager requestWithGET:[user registerQuery] path:path success:^(NSDictionary *response, NSUInteger code)  {
-            [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
-        } failure:^(NSError *error) {
-            failure(error);
-        }];
-    }
+    [DVSNetworkManager requestWithPOST:[user registerPOST] path:path success:^(NSDictionary *response, NSUInteger code)  {
+        [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
+    } failure:^(NSError *error) {
+        failure(error);
+    }];
 }
 
 + (void)loginUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
