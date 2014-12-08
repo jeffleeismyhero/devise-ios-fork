@@ -15,7 +15,7 @@
 
 - (void)dvs_deleteToken;
 - (void)dvs_deleteEmail;
-- (void)dvs_deleteidentifier;
+- (void)dvs_deleteIdentifier;
 
 - (void)dvs_deleteSensitiveData;
 - (BOOL)dvs_saveSensitiveData:(NSDictionary *)dictionary;

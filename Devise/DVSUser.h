@@ -17,16 +17,22 @@ typedef NS_ENUM(NSInteger, DVSRequestType) {
 
 @interface DVSUser : NSObject
 
-/// User's email.
+/// User's email. Stored in keychain
 @property (strong, nonatomic) NSString *email;
 
-/// User's password.
+/// User's password. Used only in user authentication. Will be not saved at all
 @property (strong, nonatomic) NSString *password;
+
+/// User's session token. Is set by the server upon successful authentication.
+/// Stored in keychain. Is automatically added for every request which requires it.
+@property (nonatomic, strong) NSString *sessionToken;
 
 /// User's data source.
 @property (weak, nonatomic) id <DVSUserDataSource> dataSource;
 
 + (DVSUser *)user;
+
+/// Gets the currently logged in user from disk and returns an instance of it. If there is none, returns nil.
 + (DVSUser *)currentUser;
 
 - (NSDictionary *)extraLoginParams;

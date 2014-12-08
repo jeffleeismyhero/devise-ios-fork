@@ -12,7 +12,7 @@
 - (NSString *)loginQuery;
 - (NSDictionary *)loginPOST;
 
-- (NSString *)forgotPasswordQuery;
+/// Forgot password is available only via POST request
 - (NSDictionary *)forgotPasswordPOST;
 
 - (NSString *)registerQuery;

@@ -54,6 +54,8 @@
 		5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */; };
 		5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166C1A264F6900684A60 /* DVSValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E7E16711A264F6900684A60 /* DVSValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166D1A264F6900684A60 /* DVSValidator.m */; };
+		5EE295081A35C086009441E1 /* NSDictionary+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EE295061A35C086009441E1 /* NSDictionary+Devise.h */; };
+		5EE295091A35C086009441E1 /* NSDictionary+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE295071A35C086009441E1 /* NSDictionary+Devise.m */; };
 		5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise.h */; };
 		5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise.m */; };
 		5EF381DC1A279998006875D4 /* NSDate+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381DA1A279998006875D4 /* NSDate+Devise.h */; };
@@ -182,6 +184,8 @@
 		5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPropertyValidator.m; sourceTree = "<group>"; };
 		5E7E166C1A264F6900684A60 /* DVSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSValidator.h; sourceTree = "<group>"; };
 		5E7E166D1A264F6900684A60 /* DVSValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSValidator.m; sourceTree = "<group>"; };
+		5EE295061A35C086009441E1 /* NSDictionary+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Devise.h"; sourceTree = "<group>"; };
+		5EE295071A35C086009441E1 /* NSDictionary+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Devise.m"; sourceTree = "<group>"; };
 		5EF381D21A2756BB006875D4 /* NSURL+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Devise.h"; sourceTree = "<group>"; };
 		5EF381D31A2756BB006875D4 /* NSURL+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Devise.m"; sourceTree = "<group>"; };
 		5EF381DA1A279998006875D4 /* NSDate+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Devise.h"; sourceTree = "<group>"; };
@@ -270,6 +274,8 @@
 				5EF381DB1A279998006875D4 /* NSDate+Devise.m */,
 				5EF381EE1A287458006875D4 /* NSNumber+Devise.h */,
 				5EF381EF1A287458006875D4 /* NSNumber+Devise.m */,
+				5EE295061A35C086009441E1 /* NSDictionary+Devise.h */,
+				5EE295071A35C086009441E1 /* NSDictionary+Devise.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				3AA22E2A1A2514DD00FE04D1 /* NSString+Devise.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
 				3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */,
+				5EE295081A35C086009441E1 /* NSDictionary+Devise.h in Headers */,
 				5EF5E6DA1A2667D80049BEA6 /* NSArray+Devise.h in Headers */,
 				3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */,
 				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
@@ -758,7 +765,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"";
+			shellScript = "#!/bin/bash\n#touch \"$GCC_PREFIX_HEADER\"";
 		};
 		3AD4C68D1A24DC1500F0AE67 /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -843,6 +850,7 @@
 			files = (
 				5EF381F11A287458006875D4 /* NSNumber+Devise.m in Sources */,
 				3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */,
+				5EE295091A35C086009441E1 /* NSDictionary+Devise.m in Sources */,
 				5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */,
 				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
@@ -906,6 +914,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C6941A24EFC100F0AE67 /* Debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 			};

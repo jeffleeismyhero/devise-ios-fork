@@ -5,6 +5,7 @@
 //
 
 #import "NSError+Devise.h"
+#import "NSDictionary+Devise.h"
 
 NSString * const DVSErrorDomain = @"co.netguru.lib.Devise.error";
 
@@ -25,7 +26,8 @@ NSString * const DVSErrorDomain = @"co.netguru.lib.Devise.error";
 
 + (instancetype)dvs_errorWithErrorResponse:(NSDictionary *)response {
     NSString *description = response[@"error"][@"message"] ?: [self dvs_descriptionForErrorCode:DVSErrorResponseError];
-    return [[self alloc] initWithDomain:DVSErrorDomain code:DVSErrorResponseError userInfo:@{NSLocalizedDescriptionKey : description}];
+    NSInteger code = response[@"error"][@"status"] ? [response[@"error"] dvs_integerValueForKey:@"status"] : DVSErrorResponseError;
+    return [[self alloc] initWithDomain:DVSErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey : description}];
 }
 
 @end

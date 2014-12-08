@@ -9,6 +9,11 @@
 #import "DVSHTTPReqeustOperationManager.h"
 #import "DVSConfiguration.h"
 #import "DVSMacros.h"
+#import "NSError+Devise.h"
+
+inline static NSUInteger operationsCode(AFHTTPRequestOperation *operation) {
+    return operation.response.statusCode;
+}
 
 @implementation DVSHTTPReqeustOperationManager
 
@@ -35,30 +40,38 @@
     return sharedInstance;
 }
 
-- (void)requestWithPOST:(NSDictionary *)parameters path:(NSString *)path success:(DVSObjectBlock)success failure:(DVSErrorBlock)failure {
+- (void)requestWithPOST:(NSDictionary *)parameters path:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure {
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self POST:[self urlWithPath:path query:nil] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        success(responseObject);
+        success(responseObject, operationsCode(operation));
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        if (operation.responseObject) {
+            error = [NSError dvs_errorWithErrorResponse:operation.responseObject];
+        }
         failure(error);
     }];
 }
 
-- (void)requestWithGET:(NSString *)query path:(NSString *)path success:(DVSObjectBlock)success failure:(DVSErrorBlock)failure {
+- (void)requestWithGET:(NSString *)query path:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure {
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self GET:[self urlWithPath:path query:query] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        success(responseObject);
+        success(responseObject, operationsCode(operation));
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        if (operation.responseObject) {
+            error = [NSError dvs_errorWithErrorResponse:operation.responseObject];
+        }
         failure(error);
     }];
 }

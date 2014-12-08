@@ -18,8 +18,6 @@
 
 @implementation DVSUser
 
-static DVSUser *_currentUser;
-
 #pragma mark - Public Methods
 
 + (instancetype)user {
@@ -27,7 +25,16 @@ static DVSUser *_currentUser;
 }
 
 + (DVSUser *)currentUser {
-    return _currentUser;
+    DVSUser *user = [self user];
+    NSString *email = [user dvs_email];
+    NSString *token = [user dvs_token];
+
+    if (email && token) {
+        user.email = email;
+        user.sessionToken = token;
+        return user;
+    }
+    return nil;
 }
 
 - (NSDictionary *)extraLoginParams {

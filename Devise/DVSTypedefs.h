@@ -10,7 +10,7 @@
 
 typedef void (^DVSErrorBlock)(NSError *error);
 typedef void (^DVSBooleanBlock)(BOOL success);
-typedef void (^DVSObjectBlock)(id object);
+typedef void (^DVSResponseBlock)(id object, NSUInteger code);
 typedef void (^DVSVoidBlock)(void);
 typedef void (^DVSUserBlock)(DVSUser *user);
 

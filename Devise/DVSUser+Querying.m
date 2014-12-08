@@ -45,10 +45,6 @@
     return [post copy];
 }
 
-- (NSString *)forgotPasswordQuery {
-    return [self queryFromDictionary:[self forgotPasswordPOST]];
-}
-
 #pragma mark Register
 
 - (NSDictionary *)registerPOST {
