@@ -102,9 +102,10 @@
     }
 }
 
-+ (NSArray *)propertiesOfModel:(NSObject *)model {
++ (NSArray *)propertiesOfClass:(Class)aClass {
+    
     uint count;
-    objc_property_t *properties = class_copyPropertyList([model class], &count);
+    objc_property_t *properties = class_copyPropertyList(aClass, &count);
     NSMutableArray *propertyArray = [NSMutableArray arrayWithCapacity:count];
     
     for (uint i = 0; i < count ; i++) {
@@ -112,7 +113,17 @@
         [propertyArray addObject:[NSString stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
     }
     free(properties);
-    return [propertyArray copy];
+    return propertyArray;
+}
+
++ (NSArray *)propertiesOfModel:(NSObject *)model {
+    
+    NSMutableArray *array = [[self propertiesOfClass:[model class]] mutableCopy];
+    
+    if (![model.superclass isMemberOfClass:[NSObject class]]) {
+        [array addObjectsFromArray:[self propertiesOfClass:model.superclass]];
+    }
+    return [array copy];
 }
 
 @end
