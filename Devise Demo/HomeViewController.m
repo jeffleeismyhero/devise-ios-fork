@@ -29,8 +29,8 @@ static NSString * const DVSHomeDefaultCell = @"defaultCell";
 #pragma mark - Setup
 
 - (void)setupDataSource {
-    self.dataSourceArray = @[ @{DVSTableModelTitleKey: @"Change password",
-                                DVSTableModelSubtitleKey: @"Do you feel your password is bad?",
+    self.dataSourceArray = @[ @{DVSTableModelTitleKey: @"Edit profile",
+                                DVSTableModelSubtitleKey: @"Do you feel your something in your account is bad?",
                                 DVSTableModelSegueKey: DVSPasswordChangeSegue},
                               ];
 }

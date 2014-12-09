@@ -248,41 +248,41 @@
         <!--Password Change-->
         <scene sceneID="TRf-tw-FWY">
             <objects>
-                <viewController storyboardIdentifier="PasswordChangeController" title="Password Change" id="dnS-NT-iIp" customClass="PasswordChangeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordChangeController" title="Password Change" id="dnS-NT-iIp" customClass="ProfileEditorViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e2Q-C2-5eT"/>
-                        <viewControllerLayoutGuide type="bottom" id="qMg-nY-gmc"/>
+                        <viewControllerLayoutGuide type="top" id="Sqc-IU-6Rv"/>
+                        <viewControllerLayoutGuide type="bottom" id="ILZ-NL-IbW"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gmi-7E-VJJ">
+                    <view key="view" contentMode="scaleToFill" id="gaJ-mD-xhI" userLabel="Root View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knv-06-F2g" userLabel="Password label">
-                                <rect key="frame" x="8" y="72" width="304" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3s6-hR-IEm" userLabel="Fix View">
+                                <rect key="frame" x="155" y="279" width="10" height="10"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="fdb-IN-8et"/>
+                                    <constraint firstAttribute="width" constant="10" id="8Us-bc-Yvb"/>
+                                    <constraint firstAttribute="height" constant="10" id="SR8-YS-X2s"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SAC-Gk-mBl" userLabel="Password text field">
-                                <rect key="frame" x="8" y="110" width="304" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FrW-xQ-P67">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <connections>
+                                    <segue destination="A2Z-C2-qEZ" kind="embed" identifier="EmbedUserView" id="h3A-c2-nC0"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Knv-06-F2g" firstAttribute="trailing" secondItem="SAC-Gk-mBl" secondAttribute="trailing" id="2cp-io-Y3P"/>
-                            <constraint firstItem="Knv-06-F2g" firstAttribute="top" secondItem="e2Q-C2-5eT" secondAttribute="bottom" constant="8" symbolic="YES" id="3rl-eW-5nD"/>
-                            <constraint firstItem="Knv-06-F2g" firstAttribute="leading" secondItem="gmi-7E-VJJ" secondAttribute="leadingMargin" constant="-8" id="BVI-Cc-c5u"/>
-                            <constraint firstItem="SAC-Gk-mBl" firstAttribute="leading" secondItem="Knv-06-F2g" secondAttribute="leading" id="GdB-v1-0RK"/>
-                            <constraint firstItem="Knv-06-F2g" firstAttribute="centerX" secondItem="gmi-7E-VJJ" secondAttribute="centerX" id="MWG-bW-ydV"/>
-                            <constraint firstItem="SAC-Gk-mBl" firstAttribute="top" secondItem="Knv-06-F2g" secondAttribute="bottom" constant="8" symbolic="YES" id="bno-IT-SUn"/>
+                            <constraint firstItem="ILZ-NL-IbW" firstAttribute="top" secondItem="FrW-xQ-P67" secondAttribute="bottom" id="Fxd-Q5-vzt"/>
+                            <constraint firstAttribute="centerY" secondItem="3s6-hR-IEm" secondAttribute="centerY" id="GGb-KF-zTC"/>
+                            <constraint firstAttribute="centerX" secondItem="3s6-hR-IEm" secondAttribute="centerX" id="Q7b-od-77Q"/>
+                            <constraint firstItem="FrW-xQ-P67" firstAttribute="leading" secondItem="gaJ-mD-xhI" secondAttribute="leading" id="hGv-p0-Z7y"/>
+                            <constraint firstAttribute="trailing" secondItem="FrW-xQ-P67" secondAttribute="trailing" id="nKv-Se-gcp"/>
+                            <constraint firstItem="FrW-xQ-P67" firstAttribute="top" secondItem="Sqc-IU-6Rv" secondAttribute="bottom" id="oWy-Ag-naY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Password Change" id="MAu-c6-hFd">
+                    <navigationItem key="navigationItem" title="Edit Profile" id="MAu-c6-hFd">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="5uc-1N-DJL">
                             <connections>
                                 <action selector="saveButtonTouched:" destination="dnS-NT-iIp" id="BQa-o7-AMY"/>
@@ -291,7 +291,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="password" destination="SAC-Gk-mBl" id="5Dd-jr-KCK"/>
+                        <outlet property="containerViewBottomConstraint" destination="Fxd-Q5-vzt" id="pNa-8n-vh1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kv2-6v-gII" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -540,7 +540,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="GM8-jV-vZu" secondAttribute="width" id="Bme-H8-ptY"/>
                             <constraint firstAttribute="bottom" secondItem="93j-kM-agr" secondAttribute="bottom" id="Vb8-IY-IUr"/>
@@ -567,6 +567,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EiM-Vf-zu4"/>
+        <segue reference="GHH-7m-cTX"/>
+        <segue reference="h3A-c2-nC0"/>
     </inferredMetricsTieBreakers>
 </document>

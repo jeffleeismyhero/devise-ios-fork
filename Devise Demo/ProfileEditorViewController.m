@@ -1,29 +1,25 @@
 //
-//  RegistrationViewController.m
+//  ProfileEditorViewController.m
 //  Devise
 //
-//  Created by Patryk Kaczmarek on 19.11.2014.
+//  Created by Grzegorz Lesiak on 20/11/14.
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "RegistrationViewController.h"
-#import <Devise/Devise.h>
+#import "ProfileEditorViewController.h"
 
-#import "DVSMacros.h"
-#import "DVSDemoUser.h"
 #import "DVSUserViewController.h"
 
-static NSString * const DVSEnterSegue = @"DisplayHomeView";
-static NSString * const DVSUserSegue = @"EmbedUserView";
+static NSString * const DVSUserViewSegue = @"EmbedUserView";
 
-@interface RegistrationViewController ()
+@interface ProfileEditorViewController ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewBottomConstraint;
 @property (strong, nonatomic) DVSUserViewController *userViewController;
 
 @end
 
-@implementation RegistrationViewController
+@implementation ProfileEditorViewController
 
 #pragma mark - Lifecycle
 
@@ -59,31 +55,14 @@ static NSString * const DVSUserSegue = @"EmbedUserView";
 
 #pragma mark - Touch
 
-- (IBAction)signUpTouched:(UIBarButtonItem *)sender {
-    DVSDemoUser *newUser = [[DVSDemoUser alloc] init];
-    
-    newUser.email = self.userViewController.emailTextField.text;
-    newUser.password = self.userViewController.passwordTextField.text;
-    newUser.username = self.userViewController.usernameTextField.text;
-    newUser.firstName = self.userViewController.firstNameTextField.text;
-    newUser.lastName = self.userViewController.lastNameTextField.text;
-    newUser.phone = self.userViewController.phoneTextField.text;
-    
-    [newUser registerWithSuccess:^{
-        [self performSegueWithIdentifier:DVSEnterSegue sender:self];
-    } failure:^(NSError *error) {
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:error.localizedDescription
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
-    }];
+- (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:DVSUserSegue]) {
+    if ([segue.identifier isEqualToString:DVSUserViewSegue]) {
         self.userViewController = (DVSUserViewController *)segue.destinationViewController;
     }
 }

@@ -34,7 +34,7 @@
 		3AA22E581A25353B00FE04D1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E4B1A25353B00FE04D1 /* HomeViewController.m */; };
 		3AA22E591A25353B00FE04D1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E4D1A25353B00FE04D1 /* LoginViewController.m */; };
 		3AA22E5A1A25353B00FE04D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA22E4E1A25353B00FE04D1 /* Main.storyboard */; };
-		3AA22E5B1A25353B00FE04D1 /* PasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E501A25353B00FE04D1 /* PasswordChangeViewController.m */; };
+		3AA22E5B1A25353B00FE04D1 /* ProfileEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E501A25353B00FE04D1 /* ProfileEditorViewController.m */; };
 		3AA22E5C1A25353B00FE04D1 /* PasswordReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E521A25353B00FE04D1 /* PasswordReminderViewController.m */; };
 		3AA22E5D1A25353B00FE04D1 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E541A25353B00FE04D1 /* RegistrationViewController.m */; };
 		3AA22E5E1A25353B00FE04D1 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E561A25353B00FE04D1 /* WelcomeViewController.m */; };
@@ -139,8 +139,8 @@
 		3AA22E4C1A25353B00FE04D1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3AA22E4D1A25353B00FE04D1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LoginViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3AA22E4E1A25353B00FE04D1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		3AA22E4F1A25353B00FE04D1 /* PasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordChangeViewController.h; sourceTree = "<group>"; };
-		3AA22E501A25353B00FE04D1 /* PasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordChangeViewController.m; sourceTree = "<group>"; };
+		3AA22E4F1A25353B00FE04D1 /* ProfileEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditorViewController.h; sourceTree = "<group>"; };
+		3AA22E501A25353B00FE04D1 /* ProfileEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditorViewController.m; sourceTree = "<group>"; };
 		3AA22E511A25353B00FE04D1 /* PasswordReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordReminderViewController.h; sourceTree = "<group>"; };
 		3AA22E521A25353B00FE04D1 /* PasswordReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordReminderViewController.m; sourceTree = "<group>"; };
 		3AA22E531A25353B00FE04D1 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
@@ -347,8 +347,8 @@
 				3AA22E4B1A25353B00FE04D1 /* HomeViewController.m */,
 				3AA22E4C1A25353B00FE04D1 /* LoginViewController.h */,
 				3AA22E4D1A25353B00FE04D1 /* LoginViewController.m */,
-				3AA22E4F1A25353B00FE04D1 /* PasswordChangeViewController.h */,
-				3AA22E501A25353B00FE04D1 /* PasswordChangeViewController.m */,
+				3AA22E4F1A25353B00FE04D1 /* ProfileEditorViewController.h */,
+				3AA22E501A25353B00FE04D1 /* ProfileEditorViewController.m */,
 				3AA22E511A25353B00FE04D1 /* PasswordReminderViewController.h */,
 				3AA22E521A25353B00FE04D1 /* PasswordReminderViewController.m */,
 				3AA22E531A25353B00FE04D1 /* RegistrationViewController.h */,
@@ -910,7 +910,7 @@
 				3AA22E571A25353B00FE04D1 /* AppDelegate.m in Sources */,
 				3AA22E5D1A25353B00FE04D1 /* RegistrationViewController.m in Sources */,
 				3AA22E601A25361200FE04D1 /* Devise-Demo-Main.m in Sources */,
-				3AA22E5B1A25353B00FE04D1 /* PasswordChangeViewController.m in Sources */,
+				3AA22E5B1A25353B00FE04D1 /* ProfileEditorViewController.m in Sources */,
 				3AA22E581A25353B00FE04D1 /* HomeViewController.m in Sources */,
 				21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */,
 				3AA22E5C1A25353B00FE04D1 /* PasswordReminderViewController.m in Sources */,
