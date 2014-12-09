@@ -8,16 +8,12 @@
 
 #import "DVSDemoUser.h"
 
-#import "DVSDemoUserDataSource.h"
-
 NSString * const DVSDemoUserUsernameParameter = @"username";
 NSString * const DVSDemoUserFirstNameParameter = @"firstName";
 NSString * const DVSDemoUserLastNameParameter = @"lastName";
 NSString * const DVSDemoUserPhoneParameter = @"phone";
 
-@interface DVSDemoUser ()
-
-@property (strong, nonatomic) DVSDemoUserDataSource *demoUserDataSource;
+@interface DVSDemoUser () <DVSUserDataSource>
 
 @end
 
@@ -26,11 +22,12 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.demoUserDataSource = [[DVSDemoUserDataSource alloc] init];
-        self.dataSource = self.demoUserDataSource;
+        self.dataSource = self;
     }
     return self;
 }
+
+#pragma mark - Actions
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self updateExtraParamsForAction:DVSRegistrationAction];
@@ -44,5 +41,12 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
     [self setObject:self.phone forKey:DVSDemoUserPhoneParameter action:actionType];
 }
 
+#pragma mark - DVSUserDataSource
+
+- (NSArray *)additionalValidationRulesForRegistration:(DVSUser *)user {
+    return @[ validate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"Username is too short."),
+              validate(DVSDemoUserFirstNameParameter).required(),
+              validate(DVSDemoUserLastNameParameter).required() ];
+}
 
 @end
