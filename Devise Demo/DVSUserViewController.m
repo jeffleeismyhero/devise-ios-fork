@@ -10,12 +10,12 @@
 
 @interface DVSUserViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic, readwrite) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic, readwrite) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic, readwrite) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic, readwrite) IBOutlet UITextField *firstNameTextField;
+@property (weak, nonatomic, readwrite) IBOutlet UITextField *lastNameTextField;
+@property (weak, nonatomic, readwrite) IBOutlet UITextField *phoneTextField;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
