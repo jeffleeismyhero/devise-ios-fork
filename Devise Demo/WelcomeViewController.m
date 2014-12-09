@@ -10,6 +10,7 @@
 
 static NSString * const DVSRegisterSegue = @"register";
 static NSString * const DVSLoginSegue = @"login";
+static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 @interface WelcomeViewController ()
 
@@ -37,13 +38,13 @@ static NSString * const DVSLoginSegue = @"login";
     return @"Menu";
 }
 
-static NSString * const defaultCell = @"defaultCell";
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: defaultCell forIndexPath:indexPath];
-    NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DVSDefaultWelcomeCell forIndexPath:indexPath];
+    
+    NSDictionary *dataDictionary = self.tableDataSource[indexPath.row];
     cell.textLabel.text = dataDictionary[@"title"];
     cell.detailTextLabel.text = dataDictionary[@"sub"];
+    
     return cell;
 }
 
