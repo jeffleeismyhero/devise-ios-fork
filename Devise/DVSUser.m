@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSMutableDictionary *localExtraLoginParams;
 @property (strong, nonatomic) NSMutableDictionary *localExtraRegistrationParams;
 @property (strong, nonatomic) NSMutableDictionary *localExtraRemindPasswordParams;
+@property (strong, nonatomic) NSMutableDictionary *localExtraChangePasswordParams;
 
 @end
 
@@ -49,11 +50,15 @@
     return [self.localExtraRemindPasswordParams copy];
 }
 
+- (NSDictionary *)extraChangePasswordParams {
+    return [self.localExtraChangePasswordParams copy];
+}
+
 - (void)logout {
     [self dvs_deleteSensitiveData];
 }
 
-#pragma mark - Login methods:
+#pragma mark - Login Methods:
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
@@ -79,11 +84,11 @@
 
 - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    self.localExtraLoginParams = [NSMutableDictionary dictionaryWithDictionary:params()];
+    self.localExtraLoginParams = [params() mutableCopy];
     [self loginWithSuccess:success failure:failure];
 }
 
-#pragma mark - Remind password methods:
+#pragma mark - Remind Password Methods:
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
@@ -108,7 +113,7 @@
 
 - (void)remindPasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
-    self.localExtraRemindPasswordParams = [NSMutableDictionary dictionaryWithDictionary:params];
+    self.localExtraRemindPasswordParams = [params() mutableCopy];
     [self remindPasswordWithSuccess:success failure:failure];
 }
 
@@ -119,7 +124,7 @@
     [user remindPasswordWithSuccess:success failure:failure];
 }
 
-#pragma mark - Register methods:
+#pragma mark - Register Methods:
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
@@ -144,9 +149,39 @@
 
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
-    self.localExtraRegistrationParams = [NSMutableDictionary dictionaryWithDictionary:params()];
+    self.localExtraRegistrationParams = [params() mutableCopy];
     [self registerWithSuccess:success failure:failure];
 }
+
+#pragma mark - Change Password Methods:
+
+- (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    NSError *error;
+    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
+        
+        NSMutableArray *rules = [@[validate(@"password").required().match(newPassword)] mutableCopy];
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForChangePassword:)]) {
+            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForChangePassword:self]];
+        }
+        return [rules copy];
+    }];
+    
+    if (!validated) {
+        failure(error);
+        return;
+    }
+        
+    [DVSAPIManager changePasswordForUser:self withSuccess:success failure:failure];
+}
+
+- (void)changePasswordWithNewPassword:(NSString *)newPassword extraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    self.localExtraChangePasswordParams = [params() mutableCopy];
+    [self changePasswordWithNewPassword:newPassword success:success failure:failure];
+}
+
+#pragma mark - Delete Account Methods:
 
 - (void)deleteAccount {
     [self deleteAccountWithSuccess:^{} failure:^(NSError *error){}];
@@ -157,9 +192,7 @@
     [DVSAPIManager deleteUser:self withSuccess:^{
         [self logout];
         success();
-    } failure:^(NSError *error) {
-        failure(error);
-    }];
+    } failure:failure];
 }
 
 #pragma mark - Accessors
@@ -171,9 +204,12 @@
             
         case DVSRegistrationAction:
             return self.localExtraRegistrationParams[key];
-            
+
         case DVSRemindPasswordAction:
             return self.localExtraRemindPasswordParams[key];
+            
+        case DVSChangePasswordAction:
+            return self.localExtraChangePasswordParams[key];
     }
 }
 
@@ -189,6 +225,10 @@
             
         case DVSRemindPasswordAction:
             self.localExtraRemindPasswordParams[key] = object;
+            break;
+            
+        case DVSChangePasswordAction:
+            self.localExtraChangePasswordParams[key] = object;
             break;
     }
 }
@@ -212,6 +252,13 @@
         _localExtraRemindPasswordParams = [NSMutableDictionary dictionary];
     }
     return _localExtraRemindPasswordParams;
+}
+
+- (NSMutableDictionary *)localExtraChangePasswordParams {
+    if (!_localExtraChangePasswordParams) {
+        _localExtraChangePasswordParams = [NSMutableDictionary dictionary];
+    }
+    return _localExtraChangePasswordParams;
 }
 
 @end

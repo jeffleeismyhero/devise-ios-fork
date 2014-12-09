@@ -9,82 +9,111 @@
 
 @implementation DVSUser (Querying)
 
-#pragma mark Login
+#pragma mark - Public Methods
 
-- (NSDictionary *)loginPOST {
-    NSMutableDictionary *post = [NSMutableDictionary dictionaryWithCapacity:2];
+- (NSDictionary *)registerJSON {
+    
+    NSMutableDictionary *json = [NSMutableDictionary dictionary];
+    
+    NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRegistration:) withDefaultName:@"email"];
+    if (self.email != nil) json[email] = self.email;
     
     NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
-    if (self.password != nil) post[password] = self.password;
+    if (self.password != nil) json[password] = self.password;
+    
+    if ([self extraRegistrationParams]) {
+        [json addEntriesFromDictionary:[self extraRegistrationParams]];
+    }
+    return [self userDeviseLikeJSONWithJSON:[json copy]];
+}
+
+- (NSDictionary *)loginJSON {
+    NSMutableDictionary *json = [NSMutableDictionary dictionary];
+    
+    NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
+    if (self.password != nil) json[password] = self.password;
     
     NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserLogin:) withDefaultName:@"email"];
-    if (self.email != nil) post[email] = self.email;
+    if (self.email != nil) json[email] = self.email;
 
     if ([self extraLoginParams]) {
-        [post addEntriesFromDictionary:[self extraLoginParams]];
+        [json addEntriesFromDictionary:[self extraLoginParams]];
     }
 
-    return [post copy];
+    return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-#pragma mark Forgot Password
-
-- (NSDictionary *)forgotPasswordPOST {
-
-    NSMutableDictionary *post = [NSMutableDictionary dictionary];
-    NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRemindPassword:) withDefaultName:@"email"];
-    if (self.email != nil) post[email] = self.email;
-
-    if ([self extraRemindPasswordParams]) {
-        [post addEntriesFromDictionary:[self extraRegistrationParams]];
-    }
-    return [post copy];
-}
-
-#pragma mark Register
-
-- (NSDictionary *)registerPOST {
-
-    NSMutableDictionary *post = [NSMutableDictionary dictionary];
-
-    NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRegistration:) withDefaultName:@"email"];
-    if (self.email != nil) post[email] = self.email;
+- (NSDictionary *)forgotPasswordJSON {
     
-    NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
-    if (self.password != nil) post[password] = self.password;
-
-    if ([self extraRegistrationParams]) {
-        [post addEntriesFromDictionary:[self extraRegistrationParams]];
+    NSMutableDictionary *json = [NSMutableDictionary dictionary];
+    NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRemindPassword:) withDefaultName:@"email"];
+    if (self.email != nil) json[email] = self.email;
+    
+    if ([self extraRemindPasswordParams]) {
+        [json addEntriesFromDictionary:[self extraRegistrationParams]];
     }
-    return post;
+    return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-#pragma mark - private methods
+- (NSDictionary *)changePasswordJSON {
 
-- (NSString *)queryFromDictionary:(NSDictionary *)dictionary {
+    NSMutableDictionary *json = [NSMutableDictionary dictionary];
+    NSString *password = [self paramNameForSelector:@selector(nameForPasswordInRemindPassword:) withDefaultName:@"password"];
+    if (self.password != nil) json[password] = self.password;
+    
+    NSString *passwordConfirmation = [self paramNameForSelector:@selector(nameForPasswordConfirmationInChangePassword:) withDefaultName:@"passwordConfirmation"];
+    if (self.password != nil) json[passwordConfirmation] = self.password;
 
-    NSMutableString *query = [NSMutableString string];
-    [dictionary.allKeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if (idx != 0) {
-            [query appendString:@"&"];
-        }
-        id key = [self validatedValue:obj];
-        id value = [self validatedValue:dictionary[obj]];
-        [query appendFormat:@"%@=%@", key, value];
-    }];
-    return [query copy];
-}
-
-- (id)validatedValue:(id)value {
-
-    BOOL isValidClass = ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]);
-    NSAssert(isValidClass, @"Value is kind of %@ class which is not allowed when using GET request. Allowed classes: NSNumber or NSString", NSStringFromClass([value class]));
-
-    if ([value isKindOfClass:[NSString class]]) {
-        value = [(NSString *)value dvs_percentEscapedString];
+    if ([self extraChangePasswordParams]) {
+        [json addEntriesFromDictionary:[self extraChangePasswordParams]];
     }
-    return value;
+    return [self userDeviseLikeJSONWithJSON:json];
 }
+
+#pragma mark - Private Methods
+
+- (NSDictionary *)userDeviseLikeJSONWithJSON:(NSDictionary *)json {
+    return @{@"user" : json};
+}
+
+//- (NSString *)queryFromDictionary:(NSDictionary *)dictionary {
+//
+//    NSMutableString *query = [NSMutableString string];
+//    [dictionary.allKeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        if (idx != 0) {
+//            [query appendString:@"&"];
+//        }
+//        id key = [self validatedValue:obj];
+//        id value = [self validatedValue:dictionary[obj]];
+//        [query appendFormat:@"%@=%@", key, value];
+//    }];
+//    return [query copy];
+//}
+
+//- (id)validatedValue:(id)value {
+//    
+//    BOOL isValidClass = [self isValidClassForValue:value includeDictionaryClass:YES];
+//    NSAssert(isValidClass, @"Value is kind of %@ class which is not allowed when using GET request. Allowed classes: NSNumber, NSString or NSDictionary for nested queries", NSStringFromClass([value class]));
+//
+//    if ([value isKindOfClass:[NSString class]]) {
+//        value = [(NSString *)value dvs_percentEscapedString];
+//        
+//    } else if ([value isKindOfClass:[NSDictionary class]]) {
+//        user[password]=alcatraz2&user[passwordConfirmation]=alcatraz2
+//    }
+//    return value;
+//}
+
+//- (BOOL)isValidClassForValue:(id)value includeDictionaryClass:(BOOL)include {
+//    if ([value isKindOfClass:[NSString class]]) {
+//        return YES;
+//    } else if ([value isKindOfClass:[NSNumber class]]) {
+//        return YES;
+//    } else if (include && [value isKindOfClass:[NSDictionary class]]) {
+//        return YES;
+//    }
+//    return NO;
+//}
 
 - (NSString *)paramNameForSelector:(SEL)selector withDefaultName:(NSString *)name {
 

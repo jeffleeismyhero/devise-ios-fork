@@ -11,7 +11,8 @@
 typedef NS_ENUM(NSInteger, DVSActionType) {
     DVSLoginAction,
     DVSRegistrationAction,
-    DVSRemindPasswordAction
+    DVSRemindPasswordAction,
+    DVSChangePasswordAction
 };
 
 @protocol DVSUserDataSource;
@@ -39,6 +40,7 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 - (NSDictionary *)extraLoginParams;
 - (NSDictionary *)extraRegistrationParams;
 - (NSDictionary *)extraRemindPasswordParams;
+- (NSDictionary *)extraChangePasswordParams;
 
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType;
 - (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType;
@@ -53,10 +55,13 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
-- (void)logout;
+- (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)changePasswordWithNewPassword:(NSString *)newPassword extraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 - (void)deleteAccount;
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
+- (void)logout;
 
 @end
 
@@ -82,6 +87,11 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 /// Password  parameter in register route (default: "password").
 - (NSString *)nameForPasswordInRegistration:(DVSUser *)user;
 
+
+- (NSString *)nameForPasswordInChangePassword:(DVSUser *)user;
+
+- (NSString *)nameForPasswordConfirmationInChangePassword:(DVSUser *)user;
+
 /* Allows customization in validation during login process. Following rules are always used:
  * - validate(@"password").required(),
  * - validate(@"email").required().emailSyntax()
@@ -92,6 +102,11 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  * - validate(@"email").required().emailSyntax()
  */
 - (NSArray *)additionalValidationRulesForRemindPassword:(DVSUser *)user;
+
+/* Allows customization in validation during remind password process. Following rules are always used:
+ * - validate(@"password").required().match(newPassword)
+ */
+- (NSArray *)additionalValidationRulesForChangePassword:(DVSUser *)user;
 
 /* Allows customization in validation during registration process. Following rules are always used:
  * - validate(@"password").required(),

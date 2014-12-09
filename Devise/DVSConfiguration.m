@@ -34,12 +34,11 @@
     self = [super init];
     if (self == nil) return nil;
     self.serverURL = serverURL;
+    self.apiVersion = @"v1";
     self.logLevel = DVSLogLevelNone;
     self.numberOfRetries = 0;
     self.retryTresholdDuration = 0.0;
-    [self setPath:@"login" forRoute:DVSRouteLogin];
-    [self setPath:@"register" forRoute:DVSRouteRegister];
-    [self setPath:@"forgotPassword" forRoute:DVSRouteForgotPassword];
+    [self setPath:@"users" forRoute:DVSRouteUser];
     return self;
 }
 

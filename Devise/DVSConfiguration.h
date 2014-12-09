@@ -8,15 +8,7 @@
 
 /// Routes used in Devise framework.
 typedef NS_ENUM(NSInteger, DVSRoute) {
-
-    /// Login route (default: login).
-    DVSRouteLogin = 0,
-
-    /// Register route (default: register).
-    DVSRouteRegister,
-
-    /// Forgot password route (default: forgotPassword).
-    DVSRouteForgotPassword,
+    DVSRouteUser = 0 /// User route (default: users).
 };
 
 /// Logging level of the Devise framework.
@@ -37,6 +29,9 @@ typedef NS_ENUM(NSInteger, DVSLogLevel) {
 
 /// The root URL of the server backend.
 @property (strong, nonatomic) NSURL *serverURL;
+
+/// Version of API. Current is v1.
+@property (strong, nonatomic) NSString *apiVersion;
 
 /// The logging level of the framework (default: DVSLogLevelNone).
 @property (assign, nonatomic) DVSLogLevel logLevel;

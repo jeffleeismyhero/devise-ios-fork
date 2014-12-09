@@ -13,10 +13,11 @@
 
 + (instancetype)sharedInstance;
 
-- (void)requestWithDELETE:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure;
-- (void)requestWithPUT:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure;
+- (void)requestWithGET:(id)parameters path:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure;
+- (void)requestWithDELETE:(id)parameters path:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure;
+- (void)requestWithPUT:(id)parameters path:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure;
 - (void)requestWithPOST:(NSDictionary *)parameters path:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure;
-- (void)requestWithGET:(NSString *)query path:(NSString *)path success:(DVSResponseBlock)success failure:(DVSErrorBlock)failure;
-- (void)setAuthorizationToken:(NSString *)token;
+
+- (void)setupAuthorizationHeaderWithToken:(NSString *)token email:(NSString *)email;
 
 @end

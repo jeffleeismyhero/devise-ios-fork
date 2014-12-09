@@ -84,13 +84,13 @@ describe(@"DVSConfiguration", ^{
         });
     });
 
-    it(@"should have exactly three route paths", ^{
-        [[configuration.routePaths should] haveCountOf:3];
+    it(@"should have exactly one route paths", ^{
+        [[configuration.routePaths should] haveCountOf:1];
     });
 
     it(@"should save the route path", ^{
-        [configuration setPath:@"bar" forRoute:DVSRouteLogin];
-        NSString *path = [configuration pathForRoute:DVSRouteLogin];
+        [configuration setPath:@"bar" forRoute:DVSRouteUser];
+        NSString *path = [configuration pathForRoute:DVSRouteUser];
         [[path should] equal:@"bar"];
     });
 

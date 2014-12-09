@@ -9,8 +9,9 @@
 
 @interface DVSUser (Querying)
 
-- (NSDictionary *)loginPOST;
-- (NSDictionary *)forgotPasswordPOST;
-- (NSDictionary *)registerPOST;
+- (NSDictionary *)registerJSON;
+- (NSDictionary *)loginJSON;
+- (NSDictionary *)forgotPasswordJSON;
+- (NSDictionary *)changePasswordJSON;
 
 @end
