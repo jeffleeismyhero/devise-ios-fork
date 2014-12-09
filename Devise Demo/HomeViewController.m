@@ -30,7 +30,7 @@ static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
 - (void)setupDataSource {
     self.dataSourceArray = @[ @{DVSTableModelTitleKey: @"Edit profile",
-                                DVSTableModelSubtitleKey: @"Do you feel your something in your account is bad?",
+                                DVSTableModelSubtitleKey: @"Do you feel something in your account is bad?",
                                 DVSTableModelSegueKey: DVSPasswordChangeSegue},
                               ];
 }
