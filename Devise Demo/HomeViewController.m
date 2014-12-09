@@ -12,6 +12,10 @@
 static NSString * const DVSPasswordChangeSegue = @"password change";
 static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
+static NSString * const DVSHomeModelTitleKey = @"title";
+static NSString * const DVSHomeModelSubtitleKey = @"sub";
+static NSString * const DVSHomeModelSegueKey = @"segue";
+
 @interface HomeViewController ()
 
 @property (nonatomic,strong) NSArray * tableDataSource;
@@ -20,17 +24,26 @@ static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
 @implementation HomeViewController
 
-- (IBAction)logoutTouched:(UIBarButtonItem *)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+#pragma mark - Lifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupDataSource];
 }
 
-- (NSArray*)tableDataSource {
-    if (!_tableDataSource) {
-        _tableDataSource = @[ @{@"title": @"Change password",
-                                @"sub": @"Do you feel your password is bad?",
-                                @"segue": DVSPasswordChangeSegue} ];
-    }
-    return _tableDataSource;
+#pragma mark - Setup
+
+- (void)setupDataSource {
+    self.tableDataSource = @[ @{DVSHomeModelTitleKey: @"Change password",
+                                DVSHomeModelSubtitleKey: @"Do you feel your password is bad?",
+                                DVSHomeModelSegueKey: DVSPasswordChangeSegue},
+                              ];
+}
+
+#pragma mark - Button callbacks
+
+- (IBAction)logoutTouched:(UIBarButtonItem *)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source
@@ -45,9 +58,11 @@ static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DVSHomeDefaultCell forIndexPath:indexPath];
+    
     NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
-    cell.textLabel.text = dataDictionary[@"title"];
-    cell.detailTextLabel.text = dataDictionary[@"sub"];
+    cell.textLabel.text = dataDictionary[DVSHomeModelTitleKey];
+    cell.detailTextLabel.text = dataDictionary[DVSHomeModelSubtitleKey];
+    
     return cell;
 }
 
@@ -55,7 +70,7 @@ static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
-    [self performSegueWithIdentifier:dataDictionary[@"segue"] sender:self];
+    [self performSegueWithIdentifier:dataDictionary[DVSHomeModelSegueKey] sender:self];
 }
 
 @end
