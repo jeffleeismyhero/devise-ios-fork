@@ -8,13 +8,13 @@
 
 #import "LoginViewController.h"
 
-static NSString * const DVSEnterSegue = @"enter";
-static NSString * const DVSRemindPasswordSegue = @"remind password";
+static NSString * const DVSHomeSegue = @"DisplayHomeView";
+static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 
 @interface LoginViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *username;
-@property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
 
@@ -25,7 +25,7 @@ static NSString * const DVSRemindPasswordSegue = @"remind password";
 }
 
 - (IBAction)logInTouched:(UIBarButtonItem *)sender {
-    [self performSegueWithIdentifier:DVSEnterSegue sender:self];
+    [self performSegueWithIdentifier:DVSHomeSegue sender:self];
 }
 
 @end
