@@ -11,26 +11,21 @@
 
 #import "DVSMacros.h"
 #import "DVSDemoUser.h"
+#import "DVSUserViewController.h"
 
-static NSString * const DVSEnterSegue = @"enter";
+static NSString * const DVSEnterSegue = @"DisplayHomeView";
+static NSString * const DVSUserSegue = @"EmbedUserView";
 
 @interface RegistrationViewController ()
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottomConstraint;
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-
-@property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewBottomConstraint;
+@property (strong, nonatomic) DVSUserViewController *userViewController;
 
 @end
 
 @implementation RegistrationViewController
+
+#pragma mark - Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
@@ -49,31 +44,30 @@ static NSString * const DVSEnterSegue = @"enter";
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    [self.scrollView setContentSize: self.contentView.bounds.size];
-}
+#pragma mark - Notifications
 
 - (void)keyboardSizeChanged:(NSNotification*)notification {
     CGRect keyboardEndFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect keyboardBeginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     
-    if (keyboardBeginFrame.origin.y>keyboardEndFrame.origin.y) {
-        self.scrollViewBottomConstraint.constant = keyboardBeginFrame.size.height;
+    if (keyboardBeginFrame.origin.y > keyboardEndFrame.origin.y) {
+        self.containerViewBottomConstraint.constant = keyboardBeginFrame.size.height;
     } else {
-        self.scrollViewBottomConstraint.constant = 0;
+        self.containerViewBottomConstraint.constant = 0;
     }
 }
+
+#pragma mark - Touch
 
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender {
     DVSDemoUser *newUser = [[DVSDemoUser alloc] init];
     
-    newUser.email = self.emailTextField.text;
-    newUser.password = self.passwordTextField.text;
-    newUser.username = self.usernameTextField.text;
-    newUser.firstName = self.firstNameTextField.text;
-    newUser.lastName = self.lastNameTextField.text;
-    newUser.phone = self.phoneTextField.text;
+    newUser.email = self.userViewController.emailTextField.text;
+    newUser.password = self.userViewController.passwordTextField.text;
+    newUser.username = self.userViewController.usernameTextField.text;
+    newUser.firstName = self.userViewController.firstNameTextField.text;
+    newUser.lastName = self.userViewController.lastNameTextField.text;
+    newUser.phone = self.userViewController.phoneTextField.text;
     
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
@@ -84,6 +78,14 @@ static NSString * const DVSEnterSegue = @"enter";
                           cancelButtonTitle:@"Close"
                           otherButtonTitles:nil] show];
     }];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:DVSUserSegue]) {
+        self.userViewController = (DVSUserViewController *)segue.destinationViewController;
+    }
 }
 
 @end

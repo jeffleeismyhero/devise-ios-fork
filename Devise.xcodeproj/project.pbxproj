@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		21F690921A35CDF800DE2ABA /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690911A35CDF800DE2ABA /* DVSDemoUser.m */; };
 		21F690951A35DDB200DE2ABA /* DVSDemoUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690941A35DDB200DE2ABA /* DVSDemoUserDataSource.m */; };
+		21F690981A3708AD00DE2ABA /* DVSUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690971A3708AC00DE2ABA /* DVSUserViewController.m */; };
 		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */; };
 		3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */; };
 		3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */; };
@@ -106,6 +107,8 @@
 		21F690911A35CDF800DE2ABA /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
 		21F690931A35DDB200DE2ABA /* DVSDemoUserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUserDataSource.h; sourceTree = "<group>"; };
 		21F690941A35DDB200DE2ABA /* DVSDemoUserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUserDataSource.m; sourceTree = "<group>"; };
+		21F690961A3708AC00DE2ABA /* DVSUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUserViewController.h; sourceTree = "<group>"; };
+		21F690971A3708AC00DE2ABA /* DVSUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserViewController.m; sourceTree = "<group>"; };
 		3A49C2711A25D60D0041406B /* DVSUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserSpec.m; sourceTree = "<group>"; };
 		3A6E03FC1A263866006ECA3E /* OHHTTPStubs+DeviseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+DeviseTests.h"; sourceTree = "<group>"; };
 		3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+DeviseTests.m"; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				3AA22E541A25353B00FE04D1 /* RegistrationViewController.m */,
 				3AA22E551A25353B00FE04D1 /* WelcomeViewController.h */,
 				3AA22E561A25353B00FE04D1 /* WelcomeViewController.m */,
+				21F690961A3708AC00DE2ABA /* DVSUserViewController.h */,
+				21F690971A3708AC00DE2ABA /* DVSUserViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -901,6 +906,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F690981A3708AD00DE2ABA /* DVSUserViewController.m in Sources */,
 				3AA22E571A25353B00FE04D1 /* AppDelegate.m in Sources */,
 				3AA22E5D1A25353B00FE04D1 /* RegistrationViewController.m in Sources */,
 				21F690951A35DDB200DE2ABA /* DVSDemoUserDataSource.m in Sources */,
