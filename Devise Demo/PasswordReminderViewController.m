@@ -7,6 +7,7 @@
 //
 
 #import "PasswordReminderViewController.h"
+#import <Devise/Devise.h>
 
 @interface PasswordReminderViewController ()
 
@@ -17,7 +18,17 @@
 @implementation PasswordReminderViewController
 
 - (IBAction)sendButtonTouched:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [DVSUser remindPasswordWithEmail:self.emailTextField.text
+                             success:^{
+                                 [self.navigationController popViewControllerAnimated:YES];
+                             } failure:^(NSError *error) {
+                                 [[[UIAlertView alloc] initWithTitle:@"Error"
+                                                             message:error.localizedDescription
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"Close"
+                                                   otherButtonTitles:nil] show];
+                             }];
+    
 }
 
 @end

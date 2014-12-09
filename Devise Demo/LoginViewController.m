@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import <Devise/Devise.h>
 
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
@@ -25,7 +26,20 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 }
 
 - (IBAction)logInTouched:(UIBarButtonItem *)sender {
-    [self performSegueWithIdentifier:DVSHomeSegue sender:self];
+    DVSUser *user = [DVSUser user];
+    
+    user.email = self.emailTextField.text;
+    user.password = self.emailTextField.text;
+    
+    [user loginWithSuccess:^{
+        [self performSegueWithIdentifier:DVSHomeSegue sender:self];
+    } failure:^(NSError *error) {
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:error.localizedDescription
+                                   delegate:nil
+                          cancelButtonTitle:@"Close"
+                          otherButtonTitles:nil] show];
+    }];
 }
 
 @end
