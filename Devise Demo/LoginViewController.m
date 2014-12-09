@@ -31,7 +31,7 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
     DVSUser *user = [DVSUser user];
     
     user.email = self.emailTextField.text;
-    user.password = self.emailTextField.text;
+    user.password = self.passwordTextField.text;
     
     [user loginWithSuccess:^{
         [self performSegueWithIdentifier:DVSHomeSegue sender:self];
