@@ -8,51 +8,46 @@
 
 #import "WelcomeViewController.h"
 
-static NSString * const DVSRegisterSegue = @"register";
-static NSString * const DVSLoginSegue = @"login";
+static NSString * const DVSRegisterSegue = @"DisplayRegisterView";
+static NSString * const DVSLoginSegue = @"DisplayLoginView";
+
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 @interface WelcomeViewController ()
 
-@property (nonatomic,strong) NSArray * tableDataSource;
+@property (nonatomic,strong) NSArray *dataSourceArray;
 
 @end
 
 @implementation WelcomeViewController
 
-- (NSArray*) tableDataSource {
-    if ( !_tableDataSource) {
-        _tableDataSource = @[ @{@"title":@"Sign up", @"sub":@"Create new account", @"segue":DVSRegisterSegue},
-                              @{@"title":@"Log in", @"sub":@"Already registered?", @"segue":DVSLoginSegue} ];
-    }
-    return _tableDataSource;
+#pragma mark - Lifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupDataSource];
 }
 
-#pragma mark - Table view data source
+#pragma mark - Setup
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.tableDataSource count];
+- (void)setupDataSource {
+    self.dataSourceArray = @[ @{DVSTableModelTitleKey: @"Sign up",
+                                DVSTableModelSubtitleKey: @"Create new account",
+                                DVSTableModelSegueKey: DVSRegisterSegue},
+                              @{DVSTableModelTitleKey: @"Log in",
+                                DVSTableModelSubtitleKey: @"Already registered?",
+                                DVSTableModelSegueKey: DVSLoginSegue}
+                              ];
 }
 
-- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Menu";
+#pragma mark - DVSMenuTableViewController methods
+
+- (NSString *)defaultCellId {
+    return DVSDefaultWelcomeCell;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DVSDefaultWelcomeCell forIndexPath:indexPath];
-    
-    NSDictionary *dataDictionary = self.tableDataSource[indexPath.row];
-    cell.textLabel.text = dataDictionary[@"title"];
-    cell.detailTextLabel.text = dataDictionary[@"sub"];
-    
-    return cell;
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
-    [self performSegueWithIdentifier:dataDictionary[@"segue"] sender:self];
+- (NSArray *)tableDataSource {
+    return self.dataSourceArray;
 }
 
 @end

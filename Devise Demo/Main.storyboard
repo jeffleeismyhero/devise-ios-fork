@@ -310,7 +310,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="s8Z-bi-Smj" kind="relationship" relationship="rootViewController" id="Wna-ix-zfv"/>
+                        <segue destination="s8Z-bi-Smj" kind="relationship" relationship="rootViewController" id="IbK-Du-gwU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gTF-4q-l8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,13 +355,13 @@
                     <navigationItem key="navigationItem" title="Welcome" id="f7H-ls-jT4"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="CMz-fr-TiQ" kind="show" identifier="login" id="aKT-UU-hPj"/>
-                        <segue destination="8gg-yS-1a6" kind="show" identifier="register" id="7qr-Jw-YMB"/>
+                        <segue destination="CMz-fr-TiQ" kind="show" identifier="DisplayLoginView" id="CaB-4l-wNb"/>
+                        <segue destination="8gg-yS-1a6" kind="show" identifier="DisplayRegisterView" id="Dzm-Ud-bEp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJo-Q2-UoA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-26" y="-1045"/>
+            <point key="canvasLocation" x="-109" y="-1045"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="wQr-wt-ZYi">
@@ -484,7 +484,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="hE8-C2-tjW" secondAttribute="trailing" constant="8" id="1Uz-nu-Zet"/>
                                             <constraint firstItem="dgg-DC-BBv" firstAttribute="top" secondItem="J4W-Oe-Cg0" secondAttribute="bottom" constant="8" id="25p-rM-068"/>
@@ -567,6 +567,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GHH-7m-cTX"/>
+        <segue reference="EiM-Vf-zu4"/>
     </inferredMetricsTieBreakers>
 </document>

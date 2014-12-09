@@ -8,17 +8,12 @@
 
 #import "HomeViewController.h"
 
-
 static NSString * const DVSPasswordChangeSegue = @"password change";
 static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
-static NSString * const DVSHomeModelTitleKey = @"title";
-static NSString * const DVSHomeModelSubtitleKey = @"sub";
-static NSString * const DVSHomeModelSegueKey = @"segue";
-
 @interface HomeViewController ()
 
-@property (nonatomic,strong) NSArray * tableDataSource;
+@property (nonatomic,strong) NSArray * dataSourceArray;
 
 @end
 
@@ -34,10 +29,20 @@ static NSString * const DVSHomeModelSegueKey = @"segue";
 #pragma mark - Setup
 
 - (void)setupDataSource {
-    self.tableDataSource = @[ @{DVSHomeModelTitleKey: @"Change password",
-                                DVSHomeModelSubtitleKey: @"Do you feel your password is bad?",
-                                DVSHomeModelSegueKey: DVSPasswordChangeSegue},
+    self.dataSourceArray = @[ @{DVSTableModelTitleKey: @"Change password",
+                                DVSTableModelSubtitleKey: @"Do you feel your password is bad?",
+                                DVSTableModelSegueKey: DVSPasswordChangeSegue},
                               ];
+}
+
+#pragma mark - DVSMenuTableViewController methods
+
+- (NSString *)defaultCellId {
+    return DVSHomeDefaultCell;
+}
+
+- (NSArray *)tableDataSource {
+    return self.dataSourceArray;
 }
 
 #pragma mark - Button callbacks
@@ -46,31 +51,5 @@ static NSString * const DVSHomeModelSegueKey = @"segue";
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.tableDataSource count];
-}
-
-- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Menu";
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DVSHomeDefaultCell forIndexPath:indexPath];
-    
-    NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
-    cell.textLabel.text = dataDictionary[DVSHomeModelTitleKey];
-    cell.detailTextLabel.text = dataDictionary[DVSHomeModelSubtitleKey];
-    
-    return cell;
-}
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary * dataDictionary = self.tableDataSource[indexPath.row];
-    [self performSegueWithIdentifier:dataDictionary[DVSHomeModelSegueKey] sender:self];
-}
 
 @end

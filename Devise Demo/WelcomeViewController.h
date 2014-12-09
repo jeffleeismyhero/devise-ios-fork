@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WelcomeViewController : UITableViewController
+#import "DVSMenuTableViewController.h"
+
+@interface WelcomeViewController : DVSMenuTableViewController
 
 @end
