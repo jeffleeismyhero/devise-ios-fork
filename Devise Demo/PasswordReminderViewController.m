@@ -10,7 +10,7 @@
 
 @interface PasswordReminderViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *mail;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
 @end
 

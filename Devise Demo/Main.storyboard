@@ -187,7 +187,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="mail" destination="IZr-lE-X4A" id="rME-cf-Piv"/>
+                        <outlet property="emailTextField" destination="IZr-lE-X4A" id="iQl-2o-Ypk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pfx-qZ-bJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -245,10 +245,10 @@
             </objects>
             <point key="canvasLocation" x="1281" y="-1045"/>
         </scene>
-        <!--Password Change-->
+        <!--Edit Profile-->
         <scene sceneID="TRf-tw-FWY">
             <objects>
-                <viewController storyboardIdentifier="PasswordChangeController" title="Password Change" id="dnS-NT-iIp" customClass="ProfileEditorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordChangeController" title="Edit Profile" id="dnS-NT-iIp" customClass="ProfileEditorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sqc-IU-6Rv"/>
                         <viewControllerLayoutGuide type="bottom" id="ILZ-NL-IbW"/>
