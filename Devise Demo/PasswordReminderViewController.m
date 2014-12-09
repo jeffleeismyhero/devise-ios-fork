@@ -9,6 +9,8 @@
 #import "PasswordReminderViewController.h"
 #import <Devise/Devise.h>
 
+#import "UIAlertView+Devise.h"
+
 @interface PasswordReminderViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -22,11 +24,7 @@
                              success:^{
                                  [self.navigationController popViewControllerAnimated:YES];
                              } failure:^(NSError *error) {
-                                 [[[UIAlertView alloc] initWithTitle:@"Error"
-                                                             message:error.localizedDescription
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"Close"
-                                                   otherButtonTitles:nil] show];
+                                 [[UIAlertView dvs_alertViewForError:error] show];
                              }];
     
 }

@@ -44,7 +44,7 @@ NSString * const DVSTableModelSegueKey = @"segue";
     return cell;
 }
 
-- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return @"Menu";
 }
 

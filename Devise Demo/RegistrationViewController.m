@@ -12,6 +12,7 @@
 #import "DVSMacros.h"
 #import "DVSDemoUser.h"
 #import "DVSUserViewController.h"
+#import "UIAlertView+Devise.h"
 
 static NSString * const DVSEnterSegue = @"DisplayHomeView";
 static NSString * const DVSUserSegue = @"EmbedUserView";
@@ -72,11 +73,7 @@ static NSString * const DVSUserSegue = @"EmbedUserView";
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
     } failure:^(NSError *error) {
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:error.localizedDescription
-                                   delegate:nil
-                          cancelButtonTitle:@"Close"
-                          otherButtonTitles:nil] show];
+        [[UIAlertView dvs_alertViewForError:error] show];
     }];
 }
 
