@@ -13,7 +13,7 @@
 @implementation DVSDemoUserDataSource
 
 - (NSArray *)additionalValidationRulesForRegistration:(DVSUser *)user {
-    return @[ validate(DVSDemoUserUsernameParameter).required().tooShort(@"Username is too short."),
+    return @[ validate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"Username is too short."),
               validate(DVSDemoUserFirstNameParameter).required(),
               validate(DVSDemoUserLastNameParameter).required() ];
 }
