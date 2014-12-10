@@ -44,7 +44,7 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
 #pragma mark - DVSUserDataSource
 
 - (NSArray *)additionalValidationRulesForRegistration:(DVSUser *)user {
-    return @[ validate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@" is too short."),
+    return @[ validate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
               validate(DVSDemoUserFirstNameParameter).required().minLength(1),
               validate(DVSDemoUserLastNameParameter).required().minLength(1) ];
 }

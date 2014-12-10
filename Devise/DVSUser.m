@@ -181,7 +181,7 @@
             [array addObjectsFromArray:[_dataSource performSelector:selector withObject:self]];
             #pragma clang diagnostic pop
         }
-        return [rules copy];
+        return [array copy];
     }];
     validated ? success() : failure(error);
 }
