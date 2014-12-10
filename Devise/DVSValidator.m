@@ -18,6 +18,10 @@
 
 @implementation DVSValidator
 
+inline DVSPropertyValidator * validate(NSString *property) {
+    return [DVSPropertyValidator validatorForPropertyName:property];
+}
+
 #pragma mark - Initializers
 
 - (instancetype)init {

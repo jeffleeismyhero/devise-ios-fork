@@ -33,8 +33,7 @@ NSString * const dvs_attribute = @"{attribute}";
 - (instancetype)initWithPropertyName:(NSString *)propertyName {
     self = [super init];
     if (self) {
-        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"@\""];
-        _propertyName = [propertyName stringByTrimmingCharactersInSet:set];
+        _propertyName = propertyName;
         _validators = [NSMutableArray array];
         _descriptions = [NSMutableDictionary dictionary];
         [self initializeValidatorMessages];

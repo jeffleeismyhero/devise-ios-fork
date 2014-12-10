@@ -8,9 +8,17 @@
 #import <Foundation/Foundation.h>
 #import "DVSPropertyValidator.h"
 
-#define validate(property) ({[DVSPropertyValidator validatorForPropertyName:@#property];})
-
 @interface DVSValidator : NSObject
+
+/**
+ *  Defines name of validated property and initializing validation
+ *
+ *  @param NSString property name
+ *
+ *  @return instance of DVSPropertyValidator used to specify next validation rules
+ */
+extern DVSPropertyValidator * validate(NSString *);
+
 /**
  *  Validates given model with selected rules. Returns YES when validation succeeded, NO otherwise.
  *
@@ -31,5 +39,7 @@
  *  @return an array of errors. If validation will pass then array is empty.
  */
 + (NSArray *)validateModel:(NSObject *)model usingRules:(NSArray *(^)())rules;
+
+
 
 @end
