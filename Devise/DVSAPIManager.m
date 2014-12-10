@@ -38,7 +38,6 @@ NSString * const passwordPath = @"password";
     
     [DVSNetworkManager requestWithPUT:[user updateJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
         [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
-        success();
     } failure:^(NSError *error) {
         failure(error);
     }];
