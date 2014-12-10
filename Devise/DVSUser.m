@@ -170,24 +170,6 @@
     validated ? success() : failure(error);
 }
 
-- (void)validateUsingRules:(NSArray *)rules additionalRulesSelector:(SEL)selector success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
-    NSError *error;
-    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
-        
-        NSMutableArray *array = [rules mutableCopy];
-        
-        if (_dataSource && [_dataSource respondsToSelector:selector]) {
-            #pragma clang diagnostic push
-            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [array addObjectsFromArray:[_dataSource performSelector:selector withObject:self]];
-            #pragma clang diagnostic pop
-        }
-        return [array copy];
-    }];
-    validated ? success() : failure(error);
-}
-
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
     return self.additionalRequestParameters[actionType][key];
 }

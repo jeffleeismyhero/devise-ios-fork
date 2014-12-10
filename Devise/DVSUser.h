@@ -76,13 +76,13 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 
 @optional
 
-/// Email parameter in login route (default: "email").
+/// Email parameter in every request which contains email field (default: "email").
 - (NSString *)JSONKeyPathForEmail;
 
-/// Password parameter in login route (default: "password").
+/// Password parameter in every request which contains password field (default: "password").
 - (NSString *)JSONKeyPathForPassword;
 
-/// Password parameter in login route (default: "passwordConfirmation").
+/// Password parameter in every request which contains passwordConfirmation field (default: "passwordConfirmation").
 - (NSString *)JSONKeyPathForPasswordConfirmation;
 
 /// Allows customization in validation during process declared in DVSActionType.
