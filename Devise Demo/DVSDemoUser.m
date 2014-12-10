@@ -8,10 +8,7 @@
 
 #import "DVSDemoUser.h"
 
-NSString * const DVSDemoUserUsernameParameter = @"username";
-NSString * const DVSDemoUserFirstNameParameter = @"firstName";
-NSString * const DVSDemoUserLastNameParameter = @"lastName";
-NSString * const DVSDemoUserPhoneParameter = @"phone";
+#import "DVSUser+Demo.h"
 
 @interface DVSDemoUser () <DVSUserDataSource>
 
@@ -25,20 +22,6 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
         self.dataSource = self;
     }
     return self;
-}
-
-#pragma mark - Actions
-
-- (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self updateExtraParamsForAction:DVSActionRegistration];
-    [super registerWithSuccess:success failure:failure];
-}
-
-- (void)updateExtraParamsForAction:(DVSActionType)actionType {
-    [self setObject:self.username forKey:DVSDemoUserUsernameParameter action:actionType];
-    [self setObject:self.firstName forKey:DVSDemoUserFirstNameParameter action:actionType];
-    [self setObject:self.lastName forKey:DVSDemoUserLastNameParameter action:actionType];
-    [self setObject:self.phone forKey:DVSDemoUserPhoneParameter action:actionType];
 }
 
 #pragma mark - DVSUserDataSource

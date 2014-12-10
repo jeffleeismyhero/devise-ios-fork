@@ -11,6 +11,7 @@
 
 #import "DVSMacros.h"
 #import "DVSDemoUser.h"
+#import "DVSUser+Demo.h"
 #import "DVSUserViewController.h"
 #import "UIAlertView+Devise.h"
 
