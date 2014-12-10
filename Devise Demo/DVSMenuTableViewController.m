@@ -37,7 +37,8 @@ NSString * const DVSTableModelSegueKey = @"segue";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self defaultCellId] forIndexPath:indexPath];
     
-    NSDictionary * dataDictionary = [self tableDataSource][indexPath.row];
+    NSDictionary *dataDictionary = [self tableDataSource][indexPath.row];
+    
     cell.textLabel.text = dataDictionary[DVSTableModelTitleKey];
     cell.detailTextLabel.text = dataDictionary[DVSTableModelSubtitleKey];
     
@@ -51,7 +52,7 @@ NSString * const DVSTableModelSegueKey = @"segue";
 #pragma mark - TableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary * dataDictionary = [self tableDataSource][indexPath.row];
+    NSDictionary *dataDictionary = [self tableDataSource][indexPath.row];
     [self performSegueWithIdentifier:dataDictionary[DVSTableModelSegueKey] sender:self];
 }
 
