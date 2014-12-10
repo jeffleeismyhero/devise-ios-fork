@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "PasswordReminderViewController.h"
+#import "DVSPasswordReminderViewController.h"
 #import <Devise/Devise.h>
 
 #import "UIAlertView+Devise.h"
 
-@interface PasswordReminderViewController ()
+@interface DVSPasswordReminderViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
 @end
 
-@implementation PasswordReminderViewController
+@implementation DVSPasswordReminderViewController
 
 - (IBAction)sendButtonTouched:(UIBarButtonItem *)sender {
     [DVSUser remindPasswordWithEmail:self.emailTextField.text

@@ -6,20 +6,20 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "ProfileEditorViewController.h"
+#import "DVSProfileEditorViewController.h"
 
 #import "DVSUserViewController.h"
 
 static NSString * const DVSUserViewSegue = @"EmbedUserView";
 
-@interface ProfileEditorViewController ()
+@interface DVSProfileEditorViewController ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewBottomConstraint;
 @property (strong, nonatomic) DVSUserViewController *userViewController;
 
 @end
 
-@implementation ProfileEditorViewController
+@implementation DVSProfileEditorViewController
 
 #pragma mark - Lifecycle
 

@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "DVSHomeViewController.h"
 
 static NSString * const DVSPasswordChangeSegue = @"password change";
 static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
-@interface HomeViewController ()
+@interface DVSHomeViewController ()
 
 @property (nonatomic,strong) NSArray * dataSourceArray;
 
 @end
 
-@implementation HomeViewController
+@implementation DVSHomeViewController
 
 #pragma mark - Lifecycle
 

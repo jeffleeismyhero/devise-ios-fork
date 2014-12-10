@@ -8,7 +8,7 @@
         <!--Login-->
         <scene sceneID="Cm5-tc-Kbk">
             <objects>
-                <viewController storyboardIdentifier="LoginController" id="CMz-fr-TiQ" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" id="CMz-fr-TiQ" customClass="DVSLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TH1-4M-Q3S"/>
                         <viewControllerLayoutGuide type="bottom" id="MK7-Iy-Caf"/>
@@ -97,7 +97,7 @@
         <!--Registration-->
         <scene sceneID="Iiu-bG-cc7">
             <objects>
-                <viewController storyboardIdentifier="RegistrationController" automaticallyAdjustsScrollViewInsets="NO" id="8gg-yS-1a6" customClass="RegistrationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegistrationController" automaticallyAdjustsScrollViewInsets="NO" id="8gg-yS-1a6" customClass="DVSRegistrationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nrs-hC-3ER"/>
                         <viewControllerLayoutGuide type="bottom" id="Qgc-SW-cbf"/>
@@ -144,7 +144,7 @@
         <!--Password Reminder-->
         <scene sceneID="2S8-XJ-vJx">
             <objects>
-                <viewController storyboardIdentifier="PasswordReminderController" title="Password Reminder" id="bLm-eR-XjY" customClass="PasswordReminderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordReminderController" title="Password Reminder" id="bLm-eR-XjY" customClass="DVSPasswordReminderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wbq-Ef-84f"/>
                         <viewControllerLayoutGuide type="bottom" id="UGN-VB-0ar"/>
@@ -197,7 +197,7 @@
         <!--Home-->
         <scene sceneID="cRT-wd-pfL">
             <objects>
-                <tableViewController title="Home" id="zOZ-MF-GrP" customClass="HomeViewController" sceneMemberID="viewController">
+                <tableViewController title="Home" id="zOZ-MF-GrP" customClass="DVSHomeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="G24-Xz-SNH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -248,7 +248,7 @@
         <!--Edit Profile-->
         <scene sceneID="TRf-tw-FWY">
             <objects>
-                <viewController storyboardIdentifier="PasswordChangeController" title="Edit Profile" id="dnS-NT-iIp" customClass="ProfileEditorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordChangeController" title="Edit Profile" id="dnS-NT-iIp" customClass="DVSProfileEditorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sqc-IU-6Rv"/>
                         <viewControllerLayoutGuide type="bottom" id="ILZ-NL-IbW"/>
@@ -320,7 +320,7 @@
         <!--Welcome-->
         <scene sceneID="J0F-kB-0lM">
             <objects>
-                <tableViewController title="Welcome" id="s8Z-bi-Smj" customClass="WelcomeViewController" sceneMemberID="viewController">
+                <tableViewController title="Welcome" id="s8Z-bi-Smj" customClass="DVSWelcomeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="GlP-YS-3FA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

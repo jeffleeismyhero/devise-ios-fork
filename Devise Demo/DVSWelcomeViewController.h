@@ -1,5 +1,5 @@
 //
-//  ProfileEditorViewController.h
+//  WelcomeViewController.h
 //  Devise
 //
 //  Created by Grzegorz Lesiak on 20/11/14.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfileEditorViewController : UIViewController
+#import "DVSMenuTableViewController.h"
+
+@interface DVSWelcomeViewController : DVSMenuTableViewController
 
 @end

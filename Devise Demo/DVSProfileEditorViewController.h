@@ -1,5 +1,5 @@
 //
-//  PasswordReminderViewController.h
+//  ProfileEditorViewController.h
 //  Devise
 //
 //  Created by Grzegorz Lesiak on 20/11/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PasswordReminderViewController : UIViewController
+@interface DVSProfileEditorViewController : UIViewController
 
 @end

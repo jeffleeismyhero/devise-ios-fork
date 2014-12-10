@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "DVSLoginViewController.h"
 #import <Devise/Devise.h>
 
 #import "UIAlertView+Devise.h"
@@ -14,14 +14,14 @@
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 
-@interface LoginViewController ()
+@interface DVSLoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @end
 
-@implementation LoginViewController
+@implementation DVSLoginViewController
 
 - (IBAction)remindButtonTouched:(UIButton *)sender {
     [self performSegueWithIdentifier:DVSRemindPasswordSegue sender:self];

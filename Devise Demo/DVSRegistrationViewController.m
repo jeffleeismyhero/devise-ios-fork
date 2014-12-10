@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "RegistrationViewController.h"
+#import "DVSRegistrationViewController.h"
 #import <Devise/Devise.h>
 
 #import "DVSMacros.h"
@@ -17,14 +17,14 @@
 static NSString * const DVSEnterSegue = @"DisplayHomeView";
 static NSString * const DVSUserSegue = @"EmbedUserView";
 
-@interface RegistrationViewController ()
+@interface DVSRegistrationViewController ()
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewBottomConstraint;
 @property (strong, nonatomic) DVSUserViewController *userViewController;
 
 @end
 
-@implementation RegistrationViewController
+@implementation DVSRegistrationViewController
 
 #pragma mark - Lifecycle
 

@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  PasswordReminderViewController.h
 //  Devise
 //
 //  Created by Grzegorz Lesiak on 20/11/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DVSMenuTableViewController.h"
-
-@interface HomeViewController : DVSMenuTableViewController
+@interface DVSPasswordReminderViewController : UIViewController
 
 @end
