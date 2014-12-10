@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Devise.h"
+#import "DVSMacros.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    DVSWorkInProgress("For final version we will need better handling of url configuration.");
+    NSString *urlString = @"";
+    
+    [[DVSConfiguration sharedConfiguration] setServerURL:[NSURL URLWithString:urlString]];
     [[DVSConfiguration sharedConfiguration] setLogLevel:DVSLogLevelWarning];
     
     return YES;
