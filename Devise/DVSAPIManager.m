@@ -34,8 +34,9 @@ NSString * const passwordPath = @"password";
 + (void)updateUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *path = [self pathForRoute:DVSRouteUser param:nil];
+    [DVSNetworkManager setupAuthorizationHeaderWithToken:[user dvs_token] email:[user dvs_email]];
     
-    [DVSNetworkManager requestWithPUT:[user changePasswordJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
+    [DVSNetworkManager requestWithPUT:[user updateJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
         [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
         success();
     } failure:^(NSError *error) {
@@ -70,7 +71,7 @@ NSString * const passwordPath = @"password";
     NSString *path = [self pathForRoute:DVSRouteUser param:passwordPath];
     [DVSNetworkManager setupAuthorizationHeaderWithToken:[user dvs_token] email:[user dvs_email]];
     
-    [DVSNetworkManager requestWithPUT:[user updateJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
+    [DVSNetworkManager requestWithPUT:[user changePasswordJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
         [user dvs_saveSensitiveData:response] ? success () : failure([NSError dvs_errorWithErrorResponse:response]);
         success();
     } failure:^(NSError *error) {

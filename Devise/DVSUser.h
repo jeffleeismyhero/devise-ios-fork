@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 /// Password parameter in login route (default: "password").
 - (NSString *)JSONKeyPathForPassword;
 
-/// Password parameter in login route (default: "passwordConfirmtion").
+/// Password parameter in login route (default: "passwordConfirmation").
 - (NSString *)JSONKeyPathForPasswordConfirmation;
 
 /* Allows customization in validation during login process. Following rules are always used:
@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  */
 - (NSArray *)additionalValidationRulesForRegistration:(DVSUser *)user;
 
-/* Allows customization in validation during registration process. Following rules are always used:
+/* Allows customization in validation during update process. Following rules are always used:
  * - validate(@"email").required().emailSyntax()
  */
 - (NSArray *)additionalValidationRulesForUpdate:(DVSUser *)user;
