@@ -10,17 +10,24 @@
 
 @interface DVSUser ()
 
-@property (strong, nonatomic) NSMutableDictionary *localExtraLoginParams;
-@property (strong, nonatomic) NSMutableDictionary *localExtraRegistrationParams;
-@property (strong, nonatomic) NSMutableDictionary *localExtraRemindPasswordParams;
-@property (strong, nonatomic) NSMutableDictionary *localExtraChangePasswordParams;
-@property (strong, nonatomic) NSMutableDictionary *localExtraUpdateParams;
+@property (strong, nonatomic) NSMutableArray *additionalRequestParameters;
 
 @end
 
 @implementation DVSUser
 
 #pragma mark - Public Methods
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.additionalRequestParameters = [NSMutableArray array];
+        for (int i = 0; i <= DVSActionUpdate; i++) {
+            self.additionalRequestParameters[i] = [NSMutableDictionary dictionary];
+        }
+    }
+    return self;
+}
 
 + (instancetype)user {
     return [[[self class] alloc] init];
@@ -39,26 +46,6 @@
     return nil;
 }
 
-- (NSDictionary *)extraLoginParams {
-    return [self.localExtraLoginParams copy];
-}
-
-- (NSDictionary *)extraRegistrationParams {
-    return [self.localExtraRegistrationParams copy];
-}
-
-- (NSDictionary *)extraRemindPasswordParams {
-    return [self.localExtraRemindPasswordParams copy];
-}
-
-- (NSDictionary *)extraChangePasswordParams {
-    return [self.localExtraChangePasswordParams copy];
-}
-
-- (NSDictionary *)extraUpdateParams {
-    return [self.localExtraUpdateParams copy];
-}
-
 - (void)logout {
     [self dvs_deleteSensitiveData];
 }
@@ -70,14 +57,14 @@
     NSArray *rules = @[validate(@"password").required(),
                        validate(@"email").required().emailSyntax()];
     
-    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForLogin:) success:^{
+    [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [DVSAPIManager loginUser:self withSuccess:success failure:failure];
     } failure:failure];
 }
 
 - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    self.localExtraLoginParams = [params() mutableCopy];
+    [self setObjects:params() forAction:DVSActionLogin];
     [self loginWithSuccess:success failure:failure];
 }
 
@@ -87,14 +74,14 @@
 
     NSArray *rules = @[validate(@"email").required().emailSyntax()];
     
-    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForRemindPassword:) success:^{
+    [self validateUsingRules:rules forAction:DVSActionRemindPassword success:^{
         [DVSAPIManager remindPasswordForUser:self withSuccess:success failure:failure];
     } failure:failure];
 }
 
 - (void)remindPasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
-    self.localExtraRemindPasswordParams = [params() mutableCopy];
+    [self setObjects:params() forAction:DVSActionRemindPassword];
     [self remindPasswordWithSuccess:success failure:failure];
 }
 
@@ -112,14 +99,14 @@
     NSArray *rules = @[validate(@"password").required(),
                        validate(@"email").required().emailSyntax()];
     
-    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForRegistration:) success:^{
+    [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [DVSAPIManager registerUser:self withSuccess:success failure:failure];
     } failure:failure];
 }
 
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
-    self.localExtraRegistrationParams = [params() mutableCopy];
+    [self setObjects:params() forAction:DVSActionRegistration];
     [self registerWithSuccess:success failure:failure];
 }
 
@@ -129,13 +116,13 @@
     
     NSArray *rules = @[validate(@"password").required().match(newPassword)];
     
-    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForChangePassword:) success:^{
+    [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
         [DVSAPIManager changePasswordForUser:self withSuccess:success failure:failure];
     } failure:failure];
 }
 
 - (void)changePasswordWithNewPassword:(NSString *)newPassword extraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    self.localExtraChangePasswordParams = [params() mutableCopy];
+    [self setObjects:params() forAction:DVSActionChangePassword];
     [self changePasswordWithNewPassword:newPassword success:success failure:failure];
 }
 
@@ -145,14 +132,14 @@
     
     NSArray *rules = @[validate(@"email").required().emailSyntax()];
     
-    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForUpdate:) success:^{
+    [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
         [DVSAPIManager updateUser:self withSuccess:success failure:failure];
     } failure:failure];
 }
 
 - (void)updateWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    self.localExtraUpdateParams = [params() mutableCopy];
+    [self setObjects:params() forAction:DVSActionUpdate];
     [self updateWithSuccess:success failure:failure];
 }
 
@@ -167,6 +154,21 @@
 }
 
 #pragma mark - Private Methods
+
+- (void)validateUsingRules:(NSArray *)rules forAction:(DVSActionType)action success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    NSError *error;
+    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
+        
+        NSMutableArray *array = [rules mutableCopy];
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForAction:)]) {
+            [array addObjectsFromArray:[_dataSource additionalValidationRulesForAction:action]];
+        }
+        return [array copy];
+    }];
+    validated ? success() : failure(error);
+}
 
 - (void)validateUsingRules:(NSArray *)rules additionalRulesSelector:(SEL)selector success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
@@ -186,77 +188,20 @@
     validated ? success() : failure(error);
 }
 
-#pragma mark - Accessors
-
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
-    switch (actionType) {
-        case DVSLoginAction:
-            return self.localExtraLoginParams[key];
-            
-        case DVSRegistrationAction:
-            return self.localExtraRegistrationParams[key];
+    return self.additionalRequestParameters[actionType][key];
+}
 
-        case DVSRemindPasswordAction:
-            return self.localExtraRemindPasswordParams[key];
-            
-        case DVSChangePasswordAction:
-            return self.localExtraChangePasswordParams[key];
-    }
+- (NSDictionary *)objectsForAction:(DVSActionType)actionType {
+    return self.additionalRequestParameters[actionType];
 }
 
 - (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType {
-    switch (actionType) {
-        case DVSLoginAction:
-            self.localExtraLoginParams[key] = object;
-            break;
-            
-        case DVSRegistrationAction:
-            self.localExtraRegistrationParams[key] = object;
-            break;
-            
-        case DVSRemindPasswordAction:
-            self.localExtraRemindPasswordParams[key] = object;
-            break;
-            
-        case DVSChangePasswordAction:
-            self.localExtraChangePasswordParams[key] = object;
-            break;
-    }
+    self.additionalRequestParameters[actionType][key] = object;
 }
 
-- (NSMutableDictionary *)localExtraLoginParams {
-    if (!_localExtraLoginParams) {
-        _localExtraLoginParams = [NSMutableDictionary dictionary];
-    }
-    return _localExtraLoginParams;
-}
-
-- (NSMutableDictionary *)localExtraRegistrationParams {
-    if (!_localExtraRegistrationParams) {
-        _localExtraRegistrationParams = [NSMutableDictionary dictionary];
-    }
-    return _localExtraRegistrationParams;
-}
-
-- (NSMutableDictionary *)localExtraRemindPasswordParams {
-    if (!_localExtraRemindPasswordParams) {
-        _localExtraRemindPasswordParams = [NSMutableDictionary dictionary];
-    }
-    return _localExtraRemindPasswordParams;
-}
-
-- (NSMutableDictionary *)localExtraChangePasswordParams {
-    if (!_localExtraChangePasswordParams) {
-        _localExtraChangePasswordParams = [NSMutableDictionary dictionary];
-    }
-    return _localExtraChangePasswordParams;
-}
-
-- (NSMutableDictionary *)localExtraUpdateParams {
-    if (!_localExtraUpdateParams) {
-        _localExtraUpdateParams = [NSMutableDictionary dictionary];
-    }
-    return _localExtraUpdateParams;
+- (void)setObjects:(NSDictionary *)objects forAction:(DVSActionType)actionType {
+    self.additionalRequestParameters[actionType] = objects;
 }
 
 @end

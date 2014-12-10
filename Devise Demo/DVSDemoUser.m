@@ -30,7 +30,7 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
 #pragma mark - Actions
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self updateExtraParamsForAction:DVSRegistrationAction];
+    [self updateExtraParamsForAction:DVSActionRegistration];
     [super registerWithSuccess:success failure:failure];
 }
 
@@ -43,10 +43,14 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
 
 #pragma mark - DVSUserDataSource
 
-- (NSArray *)additionalValidationRulesForRegistration:(DVSUser *)user {
-    return @[ validate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
-              validate(DVSDemoUserFirstNameParameter).required().minLength(1),
-              validate(DVSDemoUserLastNameParameter).required().minLength(1) ];
+- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
+    
+    if (action == DVSActionRegistration) {
+        return @[validate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
+                 validate(DVSDemoUserFirstNameParameter).required().minLength(1),
+                 validate(DVSDemoUserLastNameParameter).required().minLength(1)];
+    }
+    return nil;
 }
 
 @end

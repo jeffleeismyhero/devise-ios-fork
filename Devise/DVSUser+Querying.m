@@ -21,9 +21,7 @@
     NSString *password = [self paramNameForSelector:@selector(JSONKeyPathForPassword) withDefaultName:@"password"];
     if (self.password != nil) json[password] = self.password;
     
-    if ([self extraRegistrationParams]) {
-        [json addEntriesFromDictionary:[self extraRegistrationParams]];
-    }
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionRegistration]];
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
@@ -36,10 +34,7 @@
     NSString *email = [self paramNameForSelector:@selector(JSONKeyPathForEmail) withDefaultName:@"email"];
     if (self.email != nil) json[email] = self.email;
 
-    if ([self extraLoginParams]) {
-        [json addEntriesFromDictionary:[self extraLoginParams]];
-    }
-
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionLogin]];
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
@@ -49,9 +44,7 @@
     NSString *email = [self paramNameForSelector:@selector(JSONKeyPathForEmail) withDefaultName:@"email"];
     if (self.email != nil) json[email] = self.email;
     
-    if ([self extraRemindPasswordParams]) {
-        [json addEntriesFromDictionary:[self extraRegistrationParams]];
-    }
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionRemindPassword]];
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
@@ -64,9 +57,7 @@
     NSString *passwordConfirmation = [self paramNameForSelector:@selector(JSONKeyPathForPasswordConfirmation) withDefaultName:@"passwordConfirmation"];
     if (self.password != nil) json[passwordConfirmation] = self.password;
 
-    if ([self extraChangePasswordParams]) {
-        [json addEntriesFromDictionary:[self extraChangePasswordParams]];
-    }
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionChangePassword]];
     return [self userDeviseLikeJSONWithJSON:json];
 }
 
@@ -75,10 +66,8 @@
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     NSString *email = [self paramNameForSelector:@selector(JSONKeyPathForEmail) withDefaultName:@"email"];
     if (self.email != nil) json[email] = self.email;
-    
-    if ([self extraUpdateParams]) {
-        [json addEntriesFromDictionary:[self extraUpdateParams]];
-    }
+
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionUpdate]];
     return [self userDeviseLikeJSONWithJSON:json];
 }
 
@@ -97,6 +86,15 @@
         #pragma clang diagnostic pop
     }
     return name;
+}
+
+- (NSDictionary *)additionalParametersForAction:(DVSActionType)action {
+    
+    NSMutableDictionary *dictionary = [[self objectsForAction:action] mutableCopy];
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalRequestParametersForAction:)]) {
+        [dictionary addEntriesFromDictionary:[self.dataSource additionalRequestParametersForAction:action]];
+    }
+    return [dictionary copy];
 }
 
 @end

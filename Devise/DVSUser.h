@@ -9,10 +9,11 @@
 #import "DVSValidator.h"
 
 typedef NS_ENUM(NSInteger, DVSActionType) {
-    DVSLoginAction,
-    DVSRegistrationAction,
-    DVSRemindPasswordAction,
-    DVSChangePasswordAction
+    DVSActionLogin,
+    DVSActionRegistration,
+    DVSActionRemindPassword,
+    DVSActionChangePassword,
+    DVSActionUpdate
 };
 
 @protocol DVSUserDataSource;
@@ -37,14 +38,17 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 /// Gets the currently logged in user from disk and returns an instance of it. If there is none, returns nil.
 + (DVSUser *)currentUser;
 
-- (NSDictionary *)extraLoginParams;
-- (NSDictionary *)extraRegistrationParams;
-- (NSDictionary *)extraRemindPasswordParams;
-- (NSDictionary *)extraChangePasswordParams;
-- (NSDictionary *)extraUpdateParams;
-
+/// Returns an object for key in given request type
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType;
+
+/// Returns dictionary of parameters for given request
+- (NSDictionary *)objectsForAction:(DVSActionType)actionType;
+
+/// Sets an object for key in given request. Used in request sending.
 - (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType;
+
+/// Sets a dictionary for given request. Used in request sending.
+- (void)setObjects:(NSDictionary *)objects forAction:(DVSActionType)actionType;
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
@@ -81,31 +85,10 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 /// Password parameter in login route (default: "passwordConfirmation").
 - (NSString *)JSONKeyPathForPasswordConfirmation;
 
-/* Allows customization in validation during login process. Following rules are always used:
- * - validate(@"password").required(),
- * - validate(@"email").required().emailSyntax()
- */
-- (NSArray *)additionalValidationRulesForLogin:(DVSUser *)user;
+/// Allows customization in validation during process declared in DVSActionType.
+- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action;
 
-/* Allows customization in validation during remind password process. Following rules are always used:
- * - validate(@"email").required().emailSyntax()
- */
-- (NSArray *)additionalValidationRulesForRemindPassword:(DVSUser *)user;
-
-/* Allows customization in validation during remind password process. Following rules are always used:
- * - validate(@"password").required().match(newPassword)
- */
-- (NSArray *)additionalValidationRulesForChangePassword:(DVSUser *)user;
-
-/* Allows customization in validation during registration process. Following rules are always used:
- * - validate(@"password").required(),
- * - validate(@"email").required().emailSyntax()
- */
-- (NSArray *)additionalValidationRulesForRegistration:(DVSUser *)user;
-
-/* Allows customization in validation during update process. Following rules are always used:
- * - validate(@"email").required().emailSyntax()
- */
-- (NSArray *)additionalValidationRulesForUpdate:(DVSUser *)user;
+/// Allows to specify additional parameters for action via protocol. Remember to set paramter only once: via this protocol or setObject:forKey:action: method
+- (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;
 
 @end
