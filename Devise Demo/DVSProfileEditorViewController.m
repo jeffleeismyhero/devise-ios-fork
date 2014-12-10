@@ -7,8 +7,10 @@
 //
 
 #import "DVSProfileEditorViewController.h"
+#import <Devise/Devise.h>
 
 #import "DVSUserViewController.h"
+#import "UIAlertView+Devise.h"
 
 static NSString * const DVSUserViewSegue = @"EmbedUserView";
 
@@ -33,6 +35,8 @@ static NSString * const DVSUserViewSegue = @"EmbedUserView";
                                              selector:@selector(keyboardSizeChanged:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    
+    [self.userViewController fillWithUser:[DVSUser currentUser]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -56,7 +60,20 @@ static NSString * const DVSUserViewSegue = @"EmbedUserView";
 #pragma mark - Touch
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    DVSUser *currentUser = [DVSUser currentUser];
+    
+    currentUser.username = self.userViewController.usernameTextField.text;
+    currentUser.password = self.userViewController.passwordTextField.text;
+    currentUser.email = self.userViewController.emailTextField.text;
+    currentUser.firstName = self.userViewController.firstNameTextField.text;
+    currentUser.lastName = self.userViewController.lastNameTextField.text;
+    currentUser.phone = self.userViewController.phoneTextField.text;
+    
+    [currentUser updateWithSuccess:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+        [UIAlertView dvs_alertViewForError:error];
+    }];
 }
 
 #pragma mark - Navigation

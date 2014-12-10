@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DVSUser+Demo.h"
+
 @interface DVSUserViewController : UIViewController
 
 @property (weak, nonatomic, readonly) UITextField *usernameTextField;
@@ -16,5 +18,7 @@
 @property (weak, nonatomic, readonly) UITextField *firstNameTextField;
 @property (weak, nonatomic, readonly) UITextField *lastNameTextField;
 @property (weak, nonatomic, readonly) UITextField *phoneTextField;
+
+- (void)fillWithUser:(DVSUser *)user;
 
 @end

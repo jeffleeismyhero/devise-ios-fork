@@ -29,4 +29,13 @@
     [self.scrollView setContentSize: self.contentView.bounds.size];
 }
 
+- (void)fillWithUser:(DVSUser *)user {
+    self.usernameTextField.text = user.username;
+    self.passwordTextField.text = user.password;
+    self.emailTextField.text = user.email;
+    self.firstNameTextField.text = user.firstName;
+    self.lastNameTextField.text = user.lastName;
+    self.phoneTextField.text = user.phone;
+}
+
 @end
