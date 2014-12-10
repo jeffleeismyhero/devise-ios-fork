@@ -142,7 +142,6 @@ static DVSUser *dvs_currentUser;
 }
 
 - (void)updateWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
     [self setObjects:params() forAction:DVSActionUpdate];
     [self updateWithSuccess:success failure:failure];
 }

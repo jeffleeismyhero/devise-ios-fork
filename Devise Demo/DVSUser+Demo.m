@@ -52,11 +52,12 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
 #pragma mark - General accessors
 
 - (void)setProperty:(id)property forKey:(NSString *)aKey {
-    [self setObject:property forKey:aKey action:DVSRegistrationAction];
+    [self setObject:property forKey:aKey action:DVSActionRegistration];
+    [self setObject:property forKey:aKey action:DVSActionUpdate];
 }
 
 - (id)propertyForKey:(NSString *)aKey {
-    return [self objectForKey:aKey action:DVSRegistrationAction];
+    return [self objectForKey:aKey action:DVSActionRegistration];
 }
 
 @end

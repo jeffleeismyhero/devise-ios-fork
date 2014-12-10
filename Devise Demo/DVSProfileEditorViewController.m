@@ -63,7 +63,6 @@ static NSString * const DVSUserViewSegue = @"EmbedUserView";
     DVSUser *currentUser = [DVSUser currentUser];
     
     currentUser.username = self.userViewController.usernameTextField.text;
-    currentUser.password = self.userViewController.passwordTextField.text;
     currentUser.email = self.userViewController.emailTextField.text;
     currentUser.firstName = self.userViewController.firstNameTextField.text;
     currentUser.lastName = self.userViewController.lastNameTextField.text;
