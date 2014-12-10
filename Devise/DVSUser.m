@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSMutableDictionary *localExtraRegistrationParams;
 @property (strong, nonatomic) NSMutableDictionary *localExtraRemindPasswordParams;
 @property (strong, nonatomic) NSMutableDictionary *localExtraChangePasswordParams;
+@property (strong, nonatomic) NSMutableDictionary *localExtraUpdateParams;
 
 @end
 
@@ -52,6 +53,10 @@
 
 - (NSDictionary *)extraChangePasswordParams {
     return [self.localExtraChangePasswordParams copy];
+}
+
+- (NSDictionary *)extraUpdateParams {
+    return [self.localExtraUpdateParams copy];
 }
 
 - (void)logout {
@@ -181,11 +186,36 @@
     [self changePasswordWithNewPassword:newPassword success:success failure:failure];
 }
 
-#pragma mark - Delete Account Methods:
+#pragma mark - Update Methods
 
-- (void)deleteAccount {
-    [self deleteAccountWithSuccess:^{} failure:^(NSError *error){}];
+- (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    NSError *error;
+    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
+        
+        NSMutableArray *rules = [@[validate(@"email").required().emailSyntax()] mutableCopy];
+        
+        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForUpdate:)]) {
+            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForUpdate:self]];
+        }
+        return [rules copy];
+    }];
+    
+    if (!validated) {
+        failure(error);
+        return;
+    }
+    
+    [DVSAPIManager updateUser:self withSuccess:success failure:failure];
 }
+
+- (void)updateWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    self.localExtraUpdateParams = [params() mutableCopy];
+    [self updateWithSuccess:success failure:failure];
+}
+
+#pragma mark - Delete Account Methods:
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
@@ -259,6 +289,13 @@
         _localExtraChangePasswordParams = [NSMutableDictionary dictionary];
     }
     return _localExtraChangePasswordParams;
+}
+
+- (NSMutableDictionary *)localExtraUpdateParams {
+    if (!_localExtraUpdateParams) {
+        _localExtraUpdateParams = [NSMutableDictionary dictionary];
+    }
+    return _localExtraUpdateParams;
 }
 
 @end

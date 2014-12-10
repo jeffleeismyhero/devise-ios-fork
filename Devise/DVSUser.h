@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 - (NSDictionary *)extraRegistrationParams;
 - (NSDictionary *)extraRemindPasswordParams;
 - (NSDictionary *)extraChangePasswordParams;
+- (NSDictionary *)extraUpdateParams;
 
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType;
 - (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType;
@@ -58,7 +59,9 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 - (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 - (void)changePasswordWithNewPassword:(NSString *)newPassword extraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
-- (void)deleteAccount;
+- (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)updateWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 - (void)logout;
@@ -70,27 +73,13 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 @optional
 
 /// Email parameter in login route (default: "email").
-- (NSString *)nameForEmailInUserLogin:(DVSUser *)user;
+- (NSString *)JSONKeyPathForEmail;
 
 /// Password parameter in login route (default: "password").
-- (NSString *)nameForPasswordInUserLogin:(DVSUser *)user;
+- (NSString *)JSONKeyPathForPassword;
 
-/// Email parameter in forgot password route (default: "email").
-- (NSString *)nameForEmailInUserRemindPassword:(DVSUser *)user;
-
-/// Password parameter in forgot password route (default: "password").
-- (NSString *)nameForPasswordInRemindPassword:(DVSUser *)user;
-
-/// Email  parameter in register route (default: "email").
-- (NSString *)nameForEmailInUserRegistration:(DVSUser *)user;
-
-/// Password  parameter in register route (default: "password").
-- (NSString *)nameForPasswordInRegistration:(DVSUser *)user;
-
-
-- (NSString *)nameForPasswordInChangePassword:(DVSUser *)user;
-
-- (NSString *)nameForPasswordConfirmationInChangePassword:(DVSUser *)user;
+/// Password parameter in login route (default: "passwordConfirmtion").
+- (NSString *)JSONKeyPathForPasswordConfirmation;
 
 /* Allows customization in validation during login process. Following rules are always used:
  * - validate(@"password").required(),
@@ -113,5 +102,10 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  * - validate(@"email").required().emailSyntax()
  */
 - (NSArray *)additionalValidationRulesForRegistration:(DVSUser *)user;
+
+/* Allows customization in validation during registration process. Following rules are always used:
+ * - validate(@"email").required().emailSyntax()
+ */
+- (NSArray *)additionalValidationRulesForUpdate:(DVSUser *)user;
 
 @end

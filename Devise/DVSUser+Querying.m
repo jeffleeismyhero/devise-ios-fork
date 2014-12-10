@@ -15,10 +15,10 @@
     
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-    NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRegistration:) withDefaultName:@"email"];
+    NSString *email = [self paramNameForSelector:@selector(JSONKeyPathForEmail) withDefaultName:@"email"];
     if (self.email != nil) json[email] = self.email;
     
-    NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
+    NSString *password = [self paramNameForSelector:@selector(JSONKeyPathForPassword) withDefaultName:@"password"];
     if (self.password != nil) json[password] = self.password;
     
     if ([self extraRegistrationParams]) {
@@ -30,10 +30,10 @@
 - (NSDictionary *)loginJSON {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-    NSString *password = [self paramNameForSelector:@selector(nameForPasswordInUserLogin:) withDefaultName:@"password"];
+    NSString *password = [self paramNameForSelector:@selector(JSONKeyPathForPassword) withDefaultName:@"password"];
     if (self.password != nil) json[password] = self.password;
     
-    NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserLogin:) withDefaultName:@"email"];
+    NSString *email = [self paramNameForSelector:@selector(JSONKeyPathForEmail) withDefaultName:@"email"];
     if (self.email != nil) json[email] = self.email;
 
     if ([self extraLoginParams]) {
@@ -46,7 +46,7 @@
 - (NSDictionary *)forgotPasswordJSON {
     
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    NSString *email = [self paramNameForSelector:@selector(nameForEmailInUserRemindPassword:) withDefaultName:@"email"];
+    NSString *email = [self paramNameForSelector:@selector(JSONKeyPathForEmail) withDefaultName:@"email"];
     if (self.email != nil) json[email] = self.email;
     
     if ([self extraRemindPasswordParams]) {
@@ -58,14 +58,26 @@
 - (NSDictionary *)changePasswordJSON {
 
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    NSString *password = [self paramNameForSelector:@selector(nameForPasswordInRemindPassword:) withDefaultName:@"password"];
+    NSString *password = [self paramNameForSelector:@selector(JSONKeyPathForPassword) withDefaultName:@"password"];
     if (self.password != nil) json[password] = self.password;
     
-    NSString *passwordConfirmation = [self paramNameForSelector:@selector(nameForPasswordConfirmationInChangePassword:) withDefaultName:@"passwordConfirmation"];
+    NSString *passwordConfirmation = [self paramNameForSelector:@selector(JSONKeyPathForPasswordConfirmation) withDefaultName:@"passwordConfirmation"];
     if (self.password != nil) json[passwordConfirmation] = self.password;
 
     if ([self extraChangePasswordParams]) {
         [json addEntriesFromDictionary:[self extraChangePasswordParams]];
+    }
+    return [self userDeviseLikeJSONWithJSON:json];
+}
+
+- (NSDictionary *)updateJSON {
+    
+    NSMutableDictionary *json = [NSMutableDictionary dictionary];
+    NSString *email = [self paramNameForSelector:@selector(JSONKeyPathForEmail) withDefaultName:@"email"];
+    if (self.email != nil) json[email] = self.email;
+    
+    if ([self extraUpdateParams]) {
+        [json addEntriesFromDictionary:[self extraUpdateParams]];
     }
     return [self userDeviseLikeJSONWithJSON:json];
 }
@@ -81,7 +93,7 @@
     if (self.dataSource && [self.dataSource respondsToSelector:selector]) {
         #pragma clang diagnostic push
         #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        name = [self.dataSource performSelector:selector withObject:self];
+        name = [self.dataSource performSelector:selector];
         #pragma clang diagnostic pop
     }
     return name;

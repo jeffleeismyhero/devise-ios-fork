@@ -13,5 +13,6 @@
 - (NSDictionary *)loginJSON;
 - (NSDictionary *)forgotPasswordJSON;
 - (NSDictionary *)changePasswordJSON;
+- (NSDictionary *)updateJSON;
 
 @end
