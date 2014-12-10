@@ -14,6 +14,8 @@
 
 @end
 
+static DVSUser *dvs_currentUser;
+
 @implementation DVSUser
 
 #pragma mark - Public Methods
@@ -34,19 +36,21 @@
 }
 
 + (DVSUser *)currentUser {
+    
     DVSUser *user = [self user];
     NSString *email = [user dvs_email];
     NSString *token = [user dvs_token];
 
     if (email && token) {
-        user.email = email;
-        user.sessionToken = token;
-        return user;
+        if (!dvs_currentUser) dvs_currentUser = user;
+        dvs_currentUser.email = email;
+        dvs_currentUser.sessionToken = token;
     }
-    return nil;
+    return dvs_currentUser;
 }
 
 - (void)logout {
+    dvs_currentUser = nil;
     [self dvs_deleteSensitiveData];
 }
 
