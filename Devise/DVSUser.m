@@ -67,24 +67,12 @@
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSError *error;
-    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
-        
-        NSMutableArray *rules = [@[validate(@"password").required(),
-                                   validate(@"email").required().emailSyntax()] mutableCopy];
-        
-        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForLogin:)]) {
-            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForLogin:self]];
-        }
-        return [rules copy];
-    }];
+    NSArray *rules = @[validate(@"password").required(),
+                       validate(@"email").required().emailSyntax()];
     
-    if (!validated) {
-        failure(error);
-        return;
-    }
-    
-    [DVSAPIManager loginUser:self withSuccess:success failure:failure];
+    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForLogin:) success:^{
+        [DVSAPIManager loginUser:self withSuccess:success failure:failure];
+    } failure:failure];
 }
 
 - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
@@ -97,23 +85,11 @@
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
-    NSError *error;
-    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
-        
-        NSMutableArray *rules = [@[validate(@"email").required().emailSyntax()] mutableCopy];
-        
-        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForRemindPassword:)]) {
-            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForRemindPassword:self]];
-        }
-        return [rules copy];
-    }];
+    NSArray *rules = @[validate(@"email").required().emailSyntax()];
     
-    if (!validated) {
-        failure(error);
-        return;
-    }
-    
-    [DVSAPIManager remindPasswordForUser:self withSuccess:success failure:failure];
+    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForRemindPassword:) success:^{
+        [DVSAPIManager remindPasswordForUser:self withSuccess:success failure:failure];
+    } failure:failure];
 }
 
 - (void)remindPasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
@@ -132,24 +108,13 @@
 #pragma mark - Register Methods:
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-
-    NSError *error;
-    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
-        
-        NSMutableArray *rules = [@[validate(@"password").required(),
-                                   validate(@"email").required().emailSyntax()] mutableCopy];
-        
-        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForRegistration:)]) {
-            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForRegistration:self]];
-        }
-        return [rules copy];
-    }];
     
-    if (!validated) {
-        failure(error);
-        return;
-    }
-    [DVSAPIManager registerUser:self withSuccess:success failure:failure];
+    NSArray *rules = @[validate(@"password").required(),
+                       validate(@"email").required().emailSyntax()];
+    
+    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForRegistration:) success:^{
+        [DVSAPIManager registerUser:self withSuccess:success failure:failure];
+    } failure:failure];
 }
 
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
@@ -162,23 +127,11 @@
 
 - (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSError *error;
-    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
-        
-        NSMutableArray *rules = [@[validate(@"password").required().match(newPassword)] mutableCopy];
-        
-        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForChangePassword:)]) {
-            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForChangePassword:self]];
-        }
-        return [rules copy];
-    }];
+    NSArray *rules = @[validate(@"password").required().match(newPassword)];
     
-    if (!validated) {
-        failure(error);
-        return;
-    }
-        
-    [DVSAPIManager changePasswordForUser:self withSuccess:success failure:failure];
+    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForChangePassword:) success:^{
+        [DVSAPIManager changePasswordForUser:self withSuccess:success failure:failure];
+    } failure:failure];
 }
 
 - (void)changePasswordWithNewPassword:(NSString *)newPassword extraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
@@ -190,23 +143,11 @@
 
 - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSError *error;
-    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
-        
-        NSMutableArray *rules = [@[validate(@"email").required().emailSyntax()] mutableCopy];
-        
-        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForUpdate:)]) {
-            [rules addObjectsFromArray:[_dataSource additionalValidationRulesForUpdate:self]];
-        }
-        return [rules copy];
-    }];
+    NSArray *rules = @[validate(@"email").required().emailSyntax()];
     
-    if (!validated) {
-        failure(error);
-        return;
-    }
-    
-    [DVSAPIManager updateUser:self withSuccess:success failure:failure];
+    [self validateUsingRules:rules additionalRulesSelector:@selector(additionalValidationRulesForUpdate:) success:^{
+        [DVSAPIManager updateUser:self withSuccess:success failure:failure];
+    } failure:failure];
 }
 
 - (void)updateWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
@@ -223,6 +164,26 @@
         [self logout];
         success();
     } failure:failure];
+}
+
+#pragma mark - Private Methods
+
+- (void)validateUsingRules:(NSArray *)rules additionalRulesSelector:(SEL)selector success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    NSError *error;
+    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
+        
+        NSMutableArray *array = [rules mutableCopy];
+        
+        if (_dataSource && [_dataSource respondsToSelector:selector]) {
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [array addObjectsFromArray:[_dataSource performSelector:selector withObject:self]];
+            #pragma clang diagnostic pop
+        }
+        return [rules copy];
+    }];
+    validated ? success() : failure(error);
 }
 
 #pragma mark - Accessors
