@@ -28,10 +28,13 @@ typedef NS_ENUM(NSInteger, DVSLogLevel) {
 @interface DVSConfiguration : NSObject
 
 /// The root URL of the server backend.
-@property (strong, nonatomic) NSURL *serverURL;
+@property (copy, nonatomic) NSURL *serverURL;
 
-/// Version of API. Current is v1.
-@property (strong, nonatomic) NSString *apiVersion;
+/// The keychain service name for local users persistence.
+@property (copy, nonatomic) NSString *keychainServiceName;
+
+/// The server-side api version (default: 1).
+@property (assign, nonatomic) NSUInteger apiVersion;
 
 /// The logging level of the framework (default: DVSLogLevelNone).
 @property (assign, nonatomic) DVSLogLevel logLevel;

@@ -5,8 +5,8 @@
 //
 
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+
 #import "DVSConfiguration.h"
-#import "DVSMacros.h"
 #import "NSURL+Devise.h"
 
 @interface DVSConfiguration ()
@@ -19,7 +19,7 @@
 
 @implementation DVSConfiguration
 
-#pragma mark Initialization
+#pragma mark - Initialization
 
 + (instancetype)sharedConfiguration {
     static dispatch_once_t onceToken;
@@ -34,7 +34,8 @@
     self = [super init];
     if (self == nil) return nil;
     self.serverURL = serverURL;
-    self.apiVersion = @"v1";
+    self.apiVersion = 1;
+    self.keychainServiceName = @"co.netguru.lib.devise.keychain";
     self.logLevel = DVSLogLevelNone;
     self.numberOfRetries = 0;
     self.retryTresholdDuration = 0.0;
@@ -46,7 +47,7 @@
     return [self initWithServerURL:nil];
 }
 
-#pragma mark Routes
+#pragma mark - Routes
 
 - (NSMutableDictionary *)mutableRoutePaths {
     if (_mutableRoutePaths != nil) return _mutableRoutePaths;
@@ -67,7 +68,7 @@
     self.mutableRoutePaths[@(route)] = path;
 }
 
-#pragma mark Logging
+#pragma mark - Logging
 
 - (void)logMessage:(NSString *)message {
     switch (self.logLevel) {
@@ -82,7 +83,7 @@
     }
 }
 
-#pragma mark Property accessors
+#pragma mark - Property accessors
 
 - (void)setServerURL:(NSURL *)serverURL {
     if (_serverURL != serverURL) {
