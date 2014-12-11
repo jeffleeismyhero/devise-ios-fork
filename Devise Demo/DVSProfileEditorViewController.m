@@ -35,7 +35,7 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
     [localUser updateWithSuccess:^{
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
-        [UIAlertView dvs_alertViewForError:error];
+        [[UIAlertView dvs_alertViewForError:error] show];
     }];
 }
 
