@@ -68,7 +68,7 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 
 - (void)handleDeleteCell {
     [[[UIAlertView alloc] initWithTitle:DVSDeleteCellTitle
-                               message:@"are you sure you want to do delete your profile?"
+                               message:@"are you sure you want to delete your profile?"
                               delegate:self
                      cancelButtonTitle:[self titleForCancelButton]
                      otherButtonTitles:[self titleForConfirmButton], nil] show];
