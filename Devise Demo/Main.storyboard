@@ -221,7 +221,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="dnS-NT-iIp" kind="show" identifier="password change" id="cjl-qD-QSI"/>
+                        <segue destination="oKk-Sa-AE8" kind="show" identifier="DisplayProfileEditor" id="257-JK-Oql"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzU-5m-ofY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,9 +229,34 @@
             <point key="canvasLocation" x="1281" y="-1045"/>
         </scene>
         <!--Edit Profile-->
+        <scene sceneID="06w-1L-lQ1">
+            <objects>
+                <tableViewController id="oKk-Sa-AE8" customClass="DVSProfileEditorViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CMu-ht-Mvv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="oKk-Sa-AE8" id="cTu-CS-ob5"/>
+                            <outlet property="delegate" destination="oKk-Sa-AE8" id="p7Y-IM-51c"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Edit Profile" id="lXJ-IX-mhR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="aRK-dr-Q99">
+                            <connections>
+                                <action selector="saveButtonTouched:" destination="oKk-Sa-AE8" id="eZP-TZ-BY7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JS9-ct-nbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1920" y="-1044"/>
+        </scene>
+        <!--Edit Profile-->
         <scene sceneID="TRf-tw-FWY">
             <objects>
-                <viewController storyboardIdentifier="PasswordChangeController" title="Edit Profile" id="dnS-NT-iIp" customClass="DVSProfileEditorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordChangeController" title="Edit Profile" id="dnS-NT-iIp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sqc-IU-6Rv"/>
                         <viewControllerLayoutGuide type="bottom" id="ILZ-NL-IbW"/>
@@ -279,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kv2-6v-gII" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1892" y="-1045"/>
+            <point key="canvasLocation" x="1889" y="-181"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WWZ-vq-tJM">

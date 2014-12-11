@@ -11,7 +11,7 @@
 
 #import "UIAlertView+Devise.h"
 
-static NSString * const DVSPasswordChangeSegue = @"password change";
+static NSString * const DVSPasswordChangeSegue = @"DisplayProfileEditor";
 static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
 static NSString * const DVSDeleteCellTitle = @"Delete profile";
