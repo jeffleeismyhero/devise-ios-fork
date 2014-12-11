@@ -150,7 +150,7 @@ Simple as that! For more conditions and messages take a look into `DVSPropertyVa
 Implements full account [lifecycle](#Features). Contains also an example with simple `DVSUser` subclassing and validation.
 
 ## License
-**devise-ios** is available under the MIT license.
+**devise-ios** is available under the [MIT license](https://github.com/netguru/devise-ios/blob/master/LICENSE.md).
 
 ## Contribution
 First, thank you for contributing!
