@@ -10,7 +10,8 @@
 
 @interface DVSUser ()
 
-@property (strong, nonatomic) NSMutableArray *additionalRequestParameters;
+@property (strong, nonatomic) NSArray *additionalRequestParameters;
+@property (nonatomic, strong, readwrite) NSString *sessionToken;
 
 @end
 
@@ -23,10 +24,11 @@ static DVSUser *dvs_currentUser;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.additionalRequestParameters = [NSMutableArray array];
+        NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:5];
         for (int i = 0; i <= DVSActionUpdate; i++) {
-            self.additionalRequestParameters[i] = [NSMutableDictionary dictionary];
+            array[i] = [NSMutableDictionary dictionary];
         }
+        _additionalRequestParameters = [array copy];
     }
     return self;
 }
@@ -49,12 +51,23 @@ static DVSUser *dvs_currentUser;
     return dvs_currentUser;
 }
 
-- (void)logout {
-    dvs_currentUser = nil;
-    [self dvs_deleteSensitiveData];
+- (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
+    return self.additionalRequestParameters[actionType][key];
 }
 
-#pragma mark - Login Methods:
+- (NSDictionary *)objectsForAction:(DVSActionType)actionType {
+    return self.additionalRequestParameters[actionType];
+}
+
+- (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType {
+    self.additionalRequestParameters[actionType][key] = object;
+}
+
+- (void)setObjects:(NSDictionary *)objects forAction:(DVSActionType)actionType {
+    [self.additionalRequestParameters[actionType] addEntriesFromDictionary:objects];
+}
+
+#pragma mark - Login Methods
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
@@ -72,7 +85,7 @@ static DVSUser *dvs_currentUser;
     [self loginWithSuccess:success failure:failure];
 }
 
-#pragma mark - Remind Password Methods:
+#pragma mark - Remind Password Methods
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
@@ -96,7 +109,7 @@ static DVSUser *dvs_currentUser;
     [user remindPasswordWithSuccess:success failure:failure];
 }
 
-#pragma mark - Register Methods:
+#pragma mark - Register Methods
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
@@ -114,7 +127,7 @@ static DVSUser *dvs_currentUser;
     [self registerWithSuccess:success failure:failure];
 }
 
-#pragma mark - Change Password Methods:
+#pragma mark - Change Password Methods
 
 - (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
@@ -146,7 +159,7 @@ static DVSUser *dvs_currentUser;
     [self updateWithSuccess:success failure:failure];
 }
 
-#pragma mark - Delete Account Methods:
+#pragma mark - Delete Account Methods
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
@@ -154,6 +167,13 @@ static DVSUser *dvs_currentUser;
         [self logout];
         success();
     } failure:failure];
+}
+
+#pragma mark - Logout Methods
+
+- (void)logout {
+    dvs_currentUser = nil;
+    [self dvs_deleteSensitiveData];
 }
 
 #pragma mark - Private Methods
@@ -171,22 +191,6 @@ static DVSUser *dvs_currentUser;
         return [array copy];
     }];
     validated ? success() : failure(error);
-}
-
-- (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
-    return self.additionalRequestParameters[actionType][key];
-}
-
-- (NSDictionary *)objectsForAction:(DVSActionType)actionType {
-    return self.additionalRequestParameters[actionType];
-}
-
-- (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType {
-    self.additionalRequestParameters[actionType][key] = object;
-}
-
-- (void)setObjects:(NSDictionary *)objects forAction:(DVSActionType)actionType {
-    self.additionalRequestParameters[actionType] = objects;
 }
 
 @end
