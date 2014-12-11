@@ -102,43 +102,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="defaultCell" rowHeight="68" id="heC-Ol-s7J" userLabel="defaultCell" customClass="DVSDemoFormTableViewCell">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="heC-Ol-s7J" id="ilJ-fF-X5B">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qF0-9d-ZwP">
-                                            <rect key="frame" x="8" y="8" width="31" height="12"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="igx-pC-BPP">
-                                            <rect key="frame" x="8" y="28" width="304" height="31"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="31" id="NOB-3g-VjB"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="igx-pC-BPP" firstAttribute="leading" secondItem="ilJ-fF-X5B" secondAttribute="leadingMargin" id="GQK-Tu-Ur9"/>
-                                        <constraint firstItem="qF0-9d-ZwP" firstAttribute="top" secondItem="ilJ-fF-X5B" secondAttribute="topMargin" id="LzA-r4-VBx"/>
-                                        <constraint firstItem="qF0-9d-ZwP" firstAttribute="leading" secondItem="ilJ-fF-X5B" secondAttribute="leadingMargin" id="RHB-i5-prk"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="igx-pC-BPP" secondAttribute="trailing" id="UXb-MZ-AZk"/>
-                                        <constraint firstItem="igx-pC-BPP" firstAttribute="top" secondItem="qF0-9d-ZwP" secondAttribute="bottom" constant="8" id="c3g-cE-577"/>
-                                        <constraint firstItem="igx-pC-BPP" firstAttribute="bottom" secondItem="ilJ-fF-X5B" secondAttribute="bottomMargin" id="pNs-w1-cdG"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <connections>
-                                    <outlet property="titleLabel" destination="qF0-9d-ZwP" id="3EM-em-ZNA"/>
-                                    <outlet property="valueTextField" destination="igx-pC-BPP" id="rnG-Sp-DjW"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Hg7-v7-tOv" id="jyz-D3-zjC"/>
                             <outlet property="delegate" destination="Hg7-v7-tOv" id="GUv-WY-fGE"/>

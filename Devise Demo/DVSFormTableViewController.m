@@ -30,6 +30,10 @@ static NSString * const DVSTableModelSecuredKey = @"secured";
     
     self.dataSourceTitlesArray = [NSMutableArray array];
     self.dataSourceValuesDictionary = [NSMutableDictionary dictionary];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DVSDemoFormTableViewCell class])
+                                               bundle:nil]
+         forCellReuseIdentifier:DVSDefaultCellId];
 }
 
 #pragma mark - DataSource helpers
@@ -55,7 +59,6 @@ static NSString * const DVSTableModelSecuredKey = @"secured";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     DVSDemoFormTableViewCell *cell = (DVSDemoFormTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
     
     NSString *title = self.dataSourceTitlesArray[indexPath.item];

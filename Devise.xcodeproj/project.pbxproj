@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		210403141A39C74C001AF776 /* DVSDemoFormTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 210403131A39C74C001AF776 /* DVSDemoFormTableViewCell.m */; };
 		210403171A39C7F4001AF776 /* DVSFormTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210403161A39C7F4001AF776 /* DVSFormTableViewController.m */; };
+		210403191A39C8E3001AF776 /* DVSDemoFormTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210403181A39C8E3001AF776 /* DVSDemoFormTableViewCell.xib */; };
 		21F690921A35CDF800DE2ABA /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690911A35CDF800DE2ABA /* DVSDemoUser.m */; };
 		21F690981A3708AD00DE2ABA /* DVSUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690971A3708AC00DE2ABA /* DVSUserViewController.m */; };
 		21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */; };
@@ -111,6 +112,7 @@
 		210403131A39C74C001AF776 /* DVSDemoFormTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoFormTableViewCell.m; sourceTree = "<group>"; };
 		210403151A39C7F4001AF776 /* DVSFormTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormTableViewController.h; sourceTree = "<group>"; };
 		210403161A39C7F4001AF776 /* DVSFormTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormTableViewController.m; sourceTree = "<group>"; };
+		210403181A39C8E3001AF776 /* DVSDemoFormTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVSDemoFormTableViewCell.xib; sourceTree = "<group>"; };
 		21F690901A35CDF800DE2ABA /* DVSDemoUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUser.h; sourceTree = "<group>"; };
 		21F690911A35CDF800DE2ABA /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
 		21F690961A3708AC00DE2ABA /* DVSUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUserViewController.h; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		210403111A39C73F001AF776 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				210403181A39C8E3001AF776 /* DVSDemoFormTableViewCell.xib */,
 				210403121A39C74C001AF776 /* DVSDemoFormTableViewCell.h */,
 				210403131A39C74C001AF776 /* DVSDemoFormTableViewCell.m */,
 			);
@@ -778,6 +781,7 @@
 			files = (
 				3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */,
 				3AA22E5A1A25353B00FE04D1 /* Main.storyboard in Resources */,
+				210403191A39C8E3001AF776 /* DVSDemoFormTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
