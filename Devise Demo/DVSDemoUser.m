@@ -28,12 +28,11 @@
 #pragma mark - DVSUserDataSource
 
 - (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
-    // Sorry for that => only temporary
-//    if (action == DVSActionRegistration) {
-//        return @[DVSValidate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
-//                 DVSValidate(DVSDemoUserFirstNameParameter).required().minLength(1),
-//                 DVSValidate(DVSDemoUserLastNameParameter).required().minLength(1)];
-//    }
+    if (action == DVSActionRegistration) {
+        return @[DVSValidate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
+                 DVSValidate(DVSDemoUserFirstNameParameter).required().minLength(1),
+                 DVSValidate(DVSDemoUserLastNameParameter).required().minLength(1)];
+    }
     return nil;
 }
 

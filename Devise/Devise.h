@@ -14,5 +14,6 @@
     #import <Devise/DVSUser.h>
     #import <Devise/DVSUser+Persistence.h>
     #import <Devise/DVSTypedefs.h>
+    #import <Devise/DVSValidator.h>
 
 #endif
