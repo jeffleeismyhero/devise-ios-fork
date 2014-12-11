@@ -34,7 +34,7 @@ static NSString * const DVSRegistrationPhone = @"Phone";
     [super viewDidLoad];
     
     [self addFormWithTitleToDataSource:DVSRegistrationUsernameTitle];
-    [self addFormWithTitleToDataSource:DVSRegistrationPasswordTitle];
+    [self addFormWithTitleToDataSource:DVSRegistrationPasswordTitle secured:YES];
     [self addFormWithTitleToDataSource:DVSRegistrationEmailTitle];
     [self addFormWithTitleToDataSource:DVSRegistrationFirstNameTitle];
     [self addFormWithTitleToDataSource:DVSRegistrationLastNameTitle];

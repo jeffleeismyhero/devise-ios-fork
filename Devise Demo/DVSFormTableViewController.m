@@ -11,6 +11,8 @@
 #import "DVSDemoFormTableViewCell.h"
 
 static NSString * const DVSDefaultCellId = @"defaultCell";
+static NSString * const DVSTableModelValueKey = @"value";
+static NSString * const DVSTableModelSecuredKey = @"secured";
 
 @interface DVSFormTableViewController () <DVSDemoFormTableViewCellDelegate>
 
@@ -33,12 +35,17 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 #pragma mark - DataSource helpers
 
 - (void)addFormWithTitleToDataSource:(NSString *)title {
+    [self addFormWithTitleToDataSource:title secured:NO];
+}
+
+- (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured {
     [self.dataSourceTitlesArray addObject:title];
-    self.dataSourceValuesDictionary[title] = @"";
+    self.dataSourceValuesDictionary[title] = @{ DVSTableModelValueKey: @"",
+                                                DVSTableModelSecuredKey: [NSNumber numberWithBool:secured] };
 }
 
 - (NSString *)getValueForTitle:(NSString *)title {
-    return self.dataSourceValuesDictionary[title];
+    return self.dataSourceValuesDictionary[title][DVSTableModelValueKey];
 }
 
 #pragma mark - Table view data source
@@ -51,8 +58,10 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     
     DVSDemoFormTableViewCell *cell = (DVSDemoFormTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
     
-    cell.titleLabel.text = self.dataSourceTitlesArray[indexPath.item];
+    NSString *title = self.dataSourceTitlesArray[indexPath.item];
+    cell.titleLabel.text = title;
     cell.delegate = self;
+    cell.valueTextField.secureTextEntry = ((NSNumber *)self.dataSourceValuesDictionary[title][DVSTableModelSecuredKey]).boolValue;
     
     return cell;
 }
@@ -60,7 +69,9 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 #pragma mark - DVSDemoFormTableViewCellDelegate
 
 - (void)formTableViewCell:(DVSDemoFormTableViewCell *)cell changedValue:(NSString *)string {
-    self.dataSourceValuesDictionary[cell.titleLabel.text] = string;
+    NSNumber *isSecured = self.dataSourceValuesDictionary[cell.titleLabel.text][DVSTableModelSecuredKey];
+    self.dataSourceValuesDictionary[cell.titleLabel.text] = @{ DVSTableModelValueKey: string,
+                                                               DVSTableModelSecuredKey: isSecured };
 }
 
 @end

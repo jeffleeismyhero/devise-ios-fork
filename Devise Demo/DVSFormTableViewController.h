@@ -11,6 +11,7 @@
 @interface DVSFormTableViewController : UITableViewController
 
 - (void)addFormWithTitleToDataSource:(NSString *)title;
+- (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured;
 - (NSString *)getValueForTitle:(NSString *)title;
 
 @end
