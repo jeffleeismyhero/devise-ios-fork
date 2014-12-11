@@ -9,7 +9,7 @@ Welcome to the **SaasKit** project. Are you wondering what saas mean? It's a sho
 - CocoaPods 0.35 rc2 (use `sudo gem install cocoapods` to grab it!)
 
 #### Configuration
-- `git clone git@github.com:netguru/saaskit.git`
+- `git clone git@github.com:netguru/devise-ios.git`
 - `git submodule update --init --recursive`
 - `pod install`
 
