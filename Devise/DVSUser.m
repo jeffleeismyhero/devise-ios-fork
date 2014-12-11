@@ -71,8 +71,8 @@ static DVSUser *dvs_currentUser;
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSArray *rules = @[validate(@"password").required(),
-                       validate(@"email").required().emailSyntax()];
+    NSArray *rules = @[DVSValidate(@"password").required(),
+                       DVSValidate(@"email").required().emailSyntax()];
     
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [DVSAPIManager loginUser:self withSuccess:success failure:failure];
@@ -89,7 +89,7 @@ static DVSUser *dvs_currentUser;
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
-    NSArray *rules = @[validate(@"email").required().emailSyntax()];
+    NSArray *rules = @[DVSValidate(@"email").required().emailSyntax()];
     
     [self validateUsingRules:rules forAction:DVSActionRemindPassword success:^{
         [DVSAPIManager remindPasswordForUser:self withSuccess:success failure:failure];
@@ -113,8 +113,8 @@ static DVSUser *dvs_currentUser;
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSArray *rules = @[validate(@"password").required(),
-                       validate(@"email").required().emailSyntax()];
+    NSArray *rules = @[DVSValidate(@"password").required(),
+                       DVSValidate(@"email").required().emailSyntax()];
     
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [DVSAPIManager registerUser:self withSuccess:success failure:failure];
@@ -131,7 +131,7 @@ static DVSUser *dvs_currentUser;
 
 - (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSArray *rules = @[validate(@"password").required().match(newPassword)];
+    NSArray *rules = @[DVSValidate(@"password").required().match(newPassword)];
     
     [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
         [DVSAPIManager changePasswordForUser:self withSuccess:success failure:failure];
@@ -147,7 +147,7 @@ static DVSUser *dvs_currentUser;
 
 - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
-    NSArray *rules = @[validate(@"email").required().emailSyntax()];
+    NSArray *rules = @[DVSValidate(@"email").required().emailSyntax()];
     
     [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
         [DVSAPIManager updateUser:self withSuccess:success failure:failure];

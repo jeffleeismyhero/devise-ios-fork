@@ -11,13 +11,12 @@
 @interface DVSValidator : NSObject
 
 /**
- *  Defines name of validated property and initializing validation
+ *  Defines validated property and initialize validation
  *
- *  @param NSString property name
- *
+ *  @param  Name of property given as NSString.
  *  @return instance of DVSPropertyValidator used to specify next validation rules
  */
-extern DVSPropertyValidator * validate(NSString *);
+extern DVSPropertyValidator * DVSValidate(NSString *propertyName);
 
 /**
  *  Validates given model with selected rules. Returns YES when validation succeeded, NO otherwise.
@@ -25,7 +24,6 @@ extern DVSPropertyValidator * validate(NSString *);
  *  @param model Model within properties are validated
  *  @param error Validation error with decription, nil when validation will pass
  *  @param rules An array of validation rules. Every property within a model is validated separately
- *
  *  @return result of validation. YES if validation will pass, NO otherwise.
  */
 + (BOOL)validateModel:(NSObject *)model error:(NSError **)error usingRules:(NSArray *(^)())rules;
@@ -35,7 +33,6 @@ extern DVSPropertyValidator * validate(NSString *);
  *
  *  @param model Model within properties are validated
  *  @param rules An array of validation rules. Every property within a model is validated separately
- *
  *  @return an array of errors. If validation will pass then array is empty.
  */
 + (NSArray *)validateModel:(NSObject *)model usingRules:(NSArray *(^)())rules;

@@ -29,9 +29,9 @@
 - (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
     
     if (action == DVSActionRegistration) {
-        return @[validate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
-                 validate(DVSDemoUserFirstNameParameter).required().minLength(1),
-                 validate(DVSDemoUserLastNameParameter).required().minLength(1)];
+        return @[DVSValidate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
+                 DVSValidate(DVSDemoUserFirstNameParameter).required().minLength(1),
+                 DVSValidate(DVSDemoUserLastNameParameter).required().minLength(1)];
     }
     return nil;
 }
