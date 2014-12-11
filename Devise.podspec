@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
 
   spec.version       = '0.1.0'
   spec.source        = { :git => 'https://github.com/netguru/saaskit.git', :tag => spec.version.to_s }
-  spec.platform      = :ios, '7.1'
+  spec.platform      = :ios, '7.0'
 
   spec.source_files  = 'Devise/**/*.{h,m}'
   spec.requires_arc  = true

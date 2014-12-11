@@ -8,7 +8,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 # Initial configuration
-platform :ios, '7.1'
+platform :ios, '7.0'
 inhibit_all_warnings!
 
 # Framework dependencies
