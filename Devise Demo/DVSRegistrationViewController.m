@@ -12,51 +12,73 @@
 #import "DVSMacros.h"
 #import "DVSDemoUser.h"
 #import "DVSUser+Demo.h"
-#import "DVSUserViewController.h"
 #import "UIAlertView+Devise.h"
+#import "DVSDemoFormTableViewCell.h"
 
 static NSString * const DVSEnterSegue = @"DisplayHomeView";
-static NSString * const DVSUserSegue = @"EmbedUserView";
+static NSString * const DVSDefaultCellId = @"defaultCell";
 
-@interface DVSRegistrationViewController ()
+static NSString * const DVSRegistrationUsernameTitle = @"Username";
+static NSString * const DVSRegistrationPasswordTitle = @"Password";
+static NSString * const DVSRegistrationEmailTitle = @"Email";
+static NSString * const DVSRegistrationFirstNameTitle = @"First name";
+static NSString * const DVSRegistrationLastNameTitle = @"Last name";
+static NSString * const DVSRegistrationPhone = @"Phone";
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerViewBottomConstraint;
-@property (strong, nonatomic) DVSUserViewController *userViewController;
+@interface DVSRegistrationViewController () <DVSDemoFormTableViewCellDelegate>
+
+@property (strong, nonatomic) NSMutableArray *dataSourceTitlesArray;
+@property (strong, nonatomic) NSMutableDictionary *dataSourceValuesDictionary;
 
 @end
 
 @implementation DVSRegistrationViewController
 
-#pragma mark - Lifecycle
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear: animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardSizeChanged:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardSizeChanged:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver: self];
-}
-
-#pragma mark - Notifications
-
-- (void)keyboardSizeChanged:(NSNotification*)notification {
-    CGRect keyboardEndFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGRect keyboardBeginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    if (keyboardBeginFrame.origin.y > keyboardEndFrame.origin.y) {
-        self.containerViewBottomConstraint.constant = keyboardBeginFrame.size.height;
-    } else {
-        self.containerViewBottomConstraint.constant = 0;
-    }
+    self.dataSourceTitlesArray = [NSMutableArray array];
+    self.dataSourceValuesDictionary = [NSMutableDictionary dictionary];
+    
+    [self addFormWithTitleToDataSource:DVSRegistrationUsernameTitle];
+    [self addFormWithTitleToDataSource:DVSRegistrationPasswordTitle];
+    [self addFormWithTitleToDataSource:DVSRegistrationEmailTitle];
+    [self addFormWithTitleToDataSource:DVSRegistrationFirstNameTitle];
+    [self addFormWithTitleToDataSource:DVSRegistrationLastNameTitle];
+    [self addFormWithTitleToDataSource:DVSRegistrationPhone];
+}
+
+#pragma mark - DataSource helpers
+
+- (void)addFormWithTitleToDataSource:(NSString *)title {
+    [self.dataSourceTitlesArray addObject:title];
+    self.dataSourceValuesDictionary[title] = @"";
+}
+
+- (NSString *)getValueForTitle:(NSString *)title {
+    return self.dataSourceValuesDictionary[title];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataSourceTitlesArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    DVSDemoFormTableViewCell *cell = (DVSDemoFormTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
+    
+    cell.titleLabel.text = self.dataSourceTitlesArray[indexPath.item];
+    cell.delegate = self;
+    
+    return cell;
+}
+
+#pragma mark - DVSDemoFormTableViewCellDelegate
+
+- (void)formTableViewCell:(DVSDemoFormTableViewCell *)cell changedValue:(NSString *)string {
+    self.dataSourceValuesDictionary[cell.titleLabel.text] = string;
 }
 
 #pragma mark - Touch
@@ -64,26 +86,18 @@ static NSString * const DVSUserSegue = @"EmbedUserView";
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender {
     DVSDemoUser *newUser = [[DVSDemoUser alloc] init];
     
-    newUser.email = self.userViewController.emailTextField.text;
-    newUser.password = self.userViewController.passwordTextField.text;
-    newUser.username = self.userViewController.usernameTextField.text;
-    newUser.firstName = self.userViewController.firstNameTextField.text;
-    newUser.lastName = self.userViewController.lastNameTextField.text;
-    newUser.phone = self.userViewController.phoneTextField.text;
+    newUser.username = [self getValueForTitle:DVSRegistrationUsernameTitle];
+    newUser.password = [self getValueForTitle:DVSRegistrationPasswordTitle];
+    newUser.email = [self getValueForTitle:DVSRegistrationEmailTitle];
+    newUser.firstName = [self getValueForTitle:DVSRegistrationFirstNameTitle];
+    newUser.lastName = [self getValueForTitle:DVSRegistrationLastNameTitle];
+    newUser.phone = [self getValueForTitle:DVSRegistrationPhone];
     
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
     } failure:^(NSError *error) {
         [[UIAlertView dvs_alertViewForError:error] show];
     }];
-}
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:DVSUserSegue]) {
-        self.userViewController = (DVSUserViewController *)segue.destinationViewController;
-    }
 }
 
 @end

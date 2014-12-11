@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DVSRegistrationViewController : UIViewController
+@interface DVSRegistrationViewController : UITableViewController
 
 @end

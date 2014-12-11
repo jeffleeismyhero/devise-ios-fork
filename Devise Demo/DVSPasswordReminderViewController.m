@@ -20,13 +20,11 @@
 @implementation DVSPasswordReminderViewController
 
 - (IBAction)sendButtonTouched:(UIBarButtonItem *)sender {
-    [DVSUser remindPasswordWithEmail:self.emailTextField.text
-                             success:^{
-                                 [self.navigationController popViewControllerAnimated:YES];
-                             } failure:^(NSError *error) {
-                                 [[UIAlertView dvs_alertViewForError:error] show];
-                             }];
-    
+    [DVSUser remindPasswordWithEmail:self.emailTextField.text success:^{
+         [self.navigationController popViewControllerAnimated:YES];
+     } failure:^(NSError *error) {
+         [[UIAlertView dvs_alertViewForError:error] show];
+     }];
 }
 
 @end

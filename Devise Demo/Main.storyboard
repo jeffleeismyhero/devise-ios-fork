@@ -95,51 +95,68 @@
             <point key="canvasLocation" x="554" y="-1419"/>
         </scene>
         <!--Registration-->
-        <scene sceneID="Iiu-bG-cc7">
+        <scene sceneID="EFM-nj-r6m">
             <objects>
-                <viewController storyboardIdentifier="RegistrationController" automaticallyAdjustsScrollViewInsets="NO" id="8gg-yS-1a6" customClass="DVSRegistrationViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Nrs-hC-3ER"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qgc-SW-cbf"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Wj8-1Y-cTN" userLabel="Root View">
+                <tableViewController id="Hg7-v7-tOv" customClass="DVSRegistrationViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="Q0g-Te-8Ko">
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOY-k7-UkA">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <connections>
-                                    <segue destination="A2Z-C2-qEZ" kind="embed" identifier="EmbedUserView" id="zVV-hC-BAs"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="MOY-k7-UkA" secondAttribute="trailing" id="P0a-Nc-nkF"/>
-                            <constraint firstItem="Qgc-SW-cbf" firstAttribute="top" secondItem="MOY-k7-UkA" secondAttribute="bottom" id="cxB-ze-sSE"/>
-                            <constraint firstItem="MOY-k7-UkA" firstAttribute="top" secondItem="Nrs-hC-3ER" secondAttribute="bottom" id="h43-nr-u6Y"/>
-                            <constraint firstItem="MOY-k7-UkA" firstAttribute="leading" secondItem="Wj8-1Y-cTN" secondAttribute="leading" id="qcm-aG-cft"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Registration" id="h0p-sP-50q">
-                        <barButtonItem key="rightBarButtonItem" title="Sign up" id="FXg-uf-n3e">
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="defaultCell" rowHeight="68" id="heC-Ol-s7J" userLabel="defaultCell" customClass="DVSDemoFormTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="heC-Ol-s7J" id="ilJ-fF-X5B">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qF0-9d-ZwP">
+                                            <rect key="frame" x="8" y="8" width="31" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="igx-pC-BPP">
+                                            <rect key="frame" x="8" y="28" width="304" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="31" id="NOB-3g-VjB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="igx-pC-BPP" firstAttribute="leading" secondItem="ilJ-fF-X5B" secondAttribute="leadingMargin" id="GQK-Tu-Ur9"/>
+                                        <constraint firstItem="qF0-9d-ZwP" firstAttribute="top" secondItem="ilJ-fF-X5B" secondAttribute="topMargin" id="LzA-r4-VBx"/>
+                                        <constraint firstItem="qF0-9d-ZwP" firstAttribute="leading" secondItem="ilJ-fF-X5B" secondAttribute="leadingMargin" id="RHB-i5-prk"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="igx-pC-BPP" secondAttribute="trailing" id="UXb-MZ-AZk"/>
+                                        <constraint firstItem="igx-pC-BPP" firstAttribute="top" secondItem="qF0-9d-ZwP" secondAttribute="bottom" constant="8" id="c3g-cE-577"/>
+                                        <constraint firstItem="igx-pC-BPP" firstAttribute="bottom" secondItem="ilJ-fF-X5B" secondAttribute="bottomMargin" id="pNs-w1-cdG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="titleLabel" destination="qF0-9d-ZwP" id="3EM-em-ZNA"/>
+                                    <outlet property="valueTextField" destination="igx-pC-BPP" id="rnG-Sp-DjW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Hg7-v7-tOv" id="jyz-D3-zjC"/>
+                            <outlet property="delegate" destination="Hg7-v7-tOv" id="GUv-WY-fGE"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Registration" id="RH1-Ke-YV4">
+                        <barButtonItem key="rightBarButtonItem" title="Sign up" id="8c8-0t-B1V">
                             <connections>
-                                <action selector="signUpTouched:" destination="8gg-yS-1a6" id="axH-4v-XbS"/>
+                                <action selector="signUpTouched:" destination="Hg7-v7-tOv" id="AW6-P1-SaD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
-                    <connections>
-                        <outlet property="containerViewBottomConstraint" destination="cxB-ze-sSE" id="vBK-pv-4dd"/>
-                        <segue destination="zOZ-MF-GrP" kind="show" identifier="DisplayHomeView" id="GHH-7m-cTX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nau-Yu-QrV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZU-A7-33Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="-569"/>
+            <point key="canvasLocation" x="333" y="-317"/>
         </scene>
         <!--Password Reminder-->
         <scene sceneID="2S8-XJ-vJx">
@@ -356,7 +373,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="CMz-fr-TiQ" kind="show" identifier="DisplayLoginView" id="CaB-4l-wNb"/>
-                        <segue destination="8gg-yS-1a6" kind="show" identifier="DisplayRegisterView" id="Dzm-Ud-bEp"/>
+                        <segue destination="Hg7-v7-tOv" kind="show" identifier="DisplayRegisterView" id="6Mx-DM-Yj0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJo-Q2-UoA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -566,8 +583,4 @@
             <point key="canvasLocation" x="1281" y="-213"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="EiM-Vf-zu4"/>
-        <segue reference="h3A-c2-nC0"/>
-    </inferredMetricsTieBreakers>
 </document>
