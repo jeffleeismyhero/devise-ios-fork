@@ -8,7 +8,7 @@
 
 #import "DVSDemoFormTableViewCell.h"
 
-@interface DVSDemoFormTableViewCell () <UITextFieldDelegate>
+@interface DVSDemoFormTableViewCell ()
 
 @property (weak, nonatomic, readwrite) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic, readwrite) IBOutlet UITextField *valueTextField;
@@ -17,15 +17,12 @@
 
 @implementation DVSDemoFormTableViewCell
 
-- (void)awakeFromNib {
-    self.valueTextField.delegate = self;
-}
+#pragma mark - UITextField events
 
-#pragma mark - UITextFieldDelegate
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (IBAction)testFieldChanged:(id)sender {
     if ([self.delegate respondsToSelector:@selector(formTableViewCell:changedValue:)]) {
-        [self.delegate formTableViewCell:self changedValue:textField.text];
+        UITextField *senderTextField = (UITextField *)sender;
+        [self.delegate formTableViewCell:self changedValue:senderTextField.text];
     }
 }
 
