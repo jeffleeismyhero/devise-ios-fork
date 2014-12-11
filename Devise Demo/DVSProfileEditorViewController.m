@@ -36,7 +36,7 @@ static NSString * const DVSUserViewSegue = @"EmbedUserView";
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    [self.userViewController fillWithUser:[DVSUser currentUser]];
+    [self.userViewController fillWithUser:[DVSUser localUser]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -60,15 +60,15 @@ static NSString * const DVSUserViewSegue = @"EmbedUserView";
 #pragma mark - Touch
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
-    DVSUser *currentUser = [DVSUser currentUser];
+    DVSUser *localUser = [DVSUser localUser];
     
-    currentUser.username = self.userViewController.usernameTextField.text;
-    currentUser.email = self.userViewController.emailTextField.text;
-    currentUser.firstName = self.userViewController.firstNameTextField.text;
-    currentUser.lastName = self.userViewController.lastNameTextField.text;
-    currentUser.phone = self.userViewController.phoneTextField.text;
+    localUser.username = self.userViewController.usernameTextField.text;
+    localUser.email = self.userViewController.emailTextField.text;
+    localUser.firstName = self.userViewController.firstNameTextField.text;
+    localUser.lastName = self.userViewController.lastNameTextField.text;
+    localUser.phone = self.userViewController.phoneTextField.text;
     
-    [currentUser updateWithSuccess:^{
+    [localUser updateWithSuccess:^{
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         [UIAlertView dvs_alertViewForError:error];

@@ -79,7 +79,7 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if ([buttonTitle isEqualToString:[self titleForConfirmButton]]) {
-        [[DVSUser currentUser] deleteAccountWithSuccess:^{
+        [[DVSUser localUser] deleteAccountWithSuccess:^{
             [self.navigationController popToRootViewControllerAnimated:YES];
         } failure:^(NSError *error) {
             [UIAlertView dvs_alertViewForError:error];

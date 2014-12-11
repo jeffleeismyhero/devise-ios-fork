@@ -7,6 +7,7 @@
 //
 
 #import "DVSDemoUser.h"
+#import <Devise/Devise.h>
 
 #import "DVSUser+Demo.h"
 
@@ -27,12 +28,12 @@
 #pragma mark - DVSUserDataSource
 
 - (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
-    
-    if (action == DVSActionRegistration) {
-        return @[DVSValidate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
-                 DVSValidate(DVSDemoUserFirstNameParameter).required().minLength(1),
-                 DVSValidate(DVSDemoUserLastNameParameter).required().minLength(1)];
-    }
+    // Sorry for that => only temporary
+//    if (action == DVSActionRegistration) {
+//        return @[DVSValidate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
+//                 DVSValidate(DVSDemoUserFirstNameParameter).required().minLength(1),
+//                 DVSValidate(DVSDemoUserLastNameParameter).required().minLength(1)];
+//    }
     return nil;
 }
 
