@@ -4,18 +4,19 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSUser.h"
 #import "DVSAPIManager.h"
-#import "DVSUser+Memorize.h"
+#import "DVSUser.h"
+#import "DVSUser+Persistence.h"
+#import "DVSValidator.h"
 
 @interface DVSUser ()
 
 @property (strong, nonatomic) NSArray *additionalRequestParameters;
-@property (nonatomic, strong, readwrite) NSString *sessionToken;
+
+@property (strong, nonatomic, readwrite) NSString *identifier;
+@property (strong, nonatomic, readwrite) NSString *sessionToken;
 
 @end
-
-static DVSUser *dvs_currentUser;
 
 @implementation DVSUser
 
@@ -35,20 +36,6 @@ static DVSUser *dvs_currentUser;
 
 + (instancetype)user {
     return [[[self class] alloc] init];
-}
-
-+ (DVSUser *)currentUser {
-    
-    DVSUser *user = [self user];
-    NSString *email = [user dvs_email];
-    NSString *token = [user dvs_token];
-
-    if (email && token) {
-        if (!dvs_currentUser) dvs_currentUser = user;
-        dvs_currentUser.email = email;
-        dvs_currentUser.sessionToken = token;
-    }
-    return dvs_currentUser;
 }
 
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
@@ -164,16 +151,9 @@ static DVSUser *dvs_currentUser;
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
     [DVSAPIManager deleteUser:self withSuccess:^{
-        [self logout];
+        [[self class] removeLocalUser];
         success();
     } failure:failure];
-}
-
-#pragma mark - Logout Methods
-
-- (void)logout {
-    dvs_currentUser = nil;
-    [self dvs_deleteSensitiveData];
 }
 
 #pragma mark - Private Methods

@@ -5,8 +5,8 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "DVSTypedefs.h"
-#import "DVSValidator.h"
 
 typedef NS_ENUM(NSInteger, DVSActionType) {
     DVSActionLogin,
@@ -19,6 +19,11 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 @protocol DVSUserDataSource;
 
 @interface DVSUser : NSObject
+
+/**
+ *  User's unique identifier, set by the server-side database.
+ */
+@property (strong, nonatomic, readonly) NSString *identifier;
 
 /**
  *  User's email. Stored in keychain.
@@ -34,7 +39,7 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  *  User's session token. Is set by the server upon successful authentication.
  *  Stored in keychain. Is automatically added for every request which requires it.
  */
-@property (nonatomic, strong, readonly) NSString *sessionToken;
+@property (strong, nonatomic, readonly) NSString *sessionToken;
 
 /**
  *  User's data source.
@@ -47,13 +52,6 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  *  @return Instance of a new DVSUser object.
  */
 + (DVSUser *)user;
-
-/**
- *  Gets the currently logged in user from disk and returns an instance of it. If there is none, returns nil.
- *
- *  @return Instance of a locally stored DVSUser object.
- */
-+ (DVSUser *)currentUser;
 
 /**
  *  Returns an object for key for given action type.
@@ -174,11 +172,6 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  *  Deletes account associated with user asynchronously. When succeed removes also user related data from keychain.
  */
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
-
-/**
- *   Logs out the currently logged in user and removes user related data from keychain.
- */
-- (void)logout;
 
 @end
 
