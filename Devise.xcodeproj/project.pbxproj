@@ -11,7 +11,6 @@
 		210403171A39C7F4001AF776 /* DVSFormTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210403161A39C7F4001AF776 /* DVSFormTableViewController.m */; };
 		210403191A39C8E3001AF776 /* DVSDemoFormTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210403181A39C8E3001AF776 /* DVSDemoFormTableViewCell.xib */; };
 		21F690921A35CDF800DE2ABA /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690911A35CDF800DE2ABA /* DVSDemoUser.m */; };
-		21F690981A3708AD00DE2ABA /* DVSUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690971A3708AC00DE2ABA /* DVSUserViewController.m */; };
 		21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */; };
 		21F6909F1A374B5D00DE2ABA /* UIAlertView+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909E1A374B5D00DE2ABA /* UIAlertView+Devise.m */; };
 		21F690A21A38788C00DE2ABA /* DVSUser+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F690A11A38788C00DE2ABA /* DVSUser+Demo.m */; };
@@ -115,8 +114,6 @@
 		210403181A39C8E3001AF776 /* DVSDemoFormTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVSDemoFormTableViewCell.xib; sourceTree = "<group>"; };
 		21F690901A35CDF800DE2ABA /* DVSDemoUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUser.h; sourceTree = "<group>"; };
 		21F690911A35CDF800DE2ABA /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
-		21F690961A3708AC00DE2ABA /* DVSUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUserViewController.h; sourceTree = "<group>"; };
-		21F690971A3708AC00DE2ABA /* DVSUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserViewController.m; sourceTree = "<group>"; };
 		21F690991A3711E100DE2ABA /* DVSMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSMenuTableViewController.h; sourceTree = "<group>"; };
 		21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSMenuTableViewController.m; sourceTree = "<group>"; };
 		21F6909D1A374B5D00DE2ABA /* UIAlertView+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Devise.h"; sourceTree = "<group>"; };
@@ -390,8 +387,6 @@
 				3AA22E541A25353B00FE04D1 /* DVSRegistrationViewController.m */,
 				3AA22E551A25353B00FE04D1 /* DVSWelcomeViewController.h */,
 				3AA22E561A25353B00FE04D1 /* DVSWelcomeViewController.m */,
-				21F690961A3708AC00DE2ABA /* DVSUserViewController.h */,
-				21F690971A3708AC00DE2ABA /* DVSUserViewController.m */,
 				210403151A39C7F4001AF776 /* DVSFormTableViewController.h */,
 				210403161A39C7F4001AF776 /* DVSFormTableViewController.m */,
 				21F690991A3711E100DE2ABA /* DVSMenuTableViewController.h */,
@@ -946,7 +941,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21F690981A3708AD00DE2ABA /* DVSUserViewController.m in Sources */,
 				3AA22E571A25353B00FE04D1 /* AppDelegate.m in Sources */,
 				3AA22E5D1A25353B00FE04D1 /* DVSRegistrationViewController.m in Sources */,
 				3AA22E601A25361200FE04D1 /* Devise-Demo-Main.m in Sources */,
