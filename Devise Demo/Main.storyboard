@@ -116,10 +116,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="zOZ-MF-GrP" kind="show" identifier="DisplayHomeView" id="NpY-kQ-L1y"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZU-A7-33Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="333" y="-317"/>
+            <point key="canvasLocation" x="334" y="-329"/>
         </scene>
         <!--Password Reminder-->
         <scene sceneID="2S8-XJ-vJx">
@@ -546,4 +549,7 @@
             <point key="canvasLocation" x="1281" y="-213"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="NpY-kQ-L1y"/>
+    </inferredMetricsTieBreakers>
 </document>
