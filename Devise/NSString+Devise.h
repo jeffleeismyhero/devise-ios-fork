@@ -8,16 +8,9 @@
 
 @interface NSString (Devise)
 
-/// Whether a string is empty.
 - (BOOL)dvs_isEmpty;
-
-/// Whether a string has a valid email syntax.
 - (BOOL)dvs_isEmail;
-
-/// Whether a string represents a decimal number.
 - (BOOL)dvs_isDecimal;
-
-/// Returns a string with percent escapes.
 - (NSString *)dvs_percentEscapedString;
 
 @end

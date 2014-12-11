@@ -24,7 +24,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 @implementation DVSHTTPClient
 
-#pragma mark Object lifecycle
+#pragma mark - Object lifecycle
 
 + (instancetype)sharedClient {
     static dispatch_once_t onceToken;
@@ -56,7 +56,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
     [self cancelAllRequests];
 }
 
-#pragma mark Request management
+#pragma mark - Request management
 
 - (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
@@ -88,7 +88,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
     }
 }
 
-#pragma mark Helpers
+#pragma mark - Helpers
 
 - (NSString *)absoluteURLStringForPath:(NSString *)path {
     return [[self.configuration.serverURL URLByAppendingPathComponent:path] absoluteString];

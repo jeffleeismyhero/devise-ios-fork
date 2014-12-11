@@ -8,13 +8,19 @@
 
 @interface DVSUser (DVSLocalPersistence) <NSSecureCoding>
 
-/// A locally saved user object (if any).
+/**
+ *  A locally saved user object (if any).
+ */
 + (instancetype)localUser;
 
-/// Saves the locally saved user object.
+/**
+ *  Saves the locally saved user object.
+ */
 + (void)setLocalUser:(DVSUser *)user;
 
-/// Removes the locally saved user object.
+/**
+ *  Removes the locally saved user object.
+ */
 + (void)removeLocalUser;
 
 @end
