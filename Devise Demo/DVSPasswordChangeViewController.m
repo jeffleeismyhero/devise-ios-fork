@@ -32,13 +32,13 @@ static NSString * const DVSNewPasswordTitle = @"New password";
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
     DVSUser *localUser = [DVSUser localUser];
-    localUser.password = [self getValueForTitle:DVSCurrentPasswordTitle];
+    NSString *currentPassword = localUser.password;
     
-    NSString *newPassword = [self getValueForTitle:DVSCurrentPasswordTitle];
-    
-    [localUser changePasswordWithNewPassword:newPassword success:^{
+    localUser.password = [self getValueForTitle:DVSNewPasswordTitle];
+    [localUser changePasswordWithSuccess:^{
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
+        localUser.password = currentPassword;
         [[UIAlertView dvs_alertViewForError:error] show];
     }];
 }
