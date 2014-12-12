@@ -15,8 +15,6 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 @interface DVSWelcomeViewController ()
 
-@property (nonatomic,strong) NSArray *dataSourceArray;
-
 @end
 
 @implementation DVSWelcomeViewController
@@ -31,23 +29,14 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 #pragma mark - Setup
 
 - (void)setupDataSource {
-    self.dataSourceArray = @[ @{DVSTableModelTitleKey: @"Sign up",
-                                DVSTableModelSubtitleKey: @"Create new account",
-                                DVSTableModelSegueKey: DVSRegisterSegue},
-                              @{DVSTableModelTitleKey: @"Log in",
-                                DVSTableModelSubtitleKey: @"Already registered?",
-                                DVSTableModelSegueKey: DVSLoginSegue}
-                              ];
+    [self addMenuEntryWithTitle:@"Sign up" subtitle:@"Create new account" segue:DVSRegisterSegue];
+    [self addMenuEntryWithTitle:@"Log in" subtitle:@"Already registered?" segue:DVSLoginSegue];
 }
 
 #pragma mark - DVSMenuTableViewController methods
 
 - (NSString *)defaultCellId {
     return DVSDefaultWelcomeCell;
-}
-
-- (NSArray *)tableDataSource {
-    return self.dataSourceArray;
 }
 
 @end

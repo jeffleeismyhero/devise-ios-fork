@@ -19,8 +19,6 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 
 @interface DVSHomeViewController () <UIAlertViewDelegate>
 
-@property (nonatomic,strong) NSArray * dataSourceArray;
-
 @end
 
 @implementation DVSHomeViewController
@@ -35,25 +33,20 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 #pragma mark - Setup
 
 - (void)setupDataSource {
-    self.dataSourceArray = @[ @{DVSTableModelTitleKey: @"Edit profile",
-                                DVSTableModelSubtitleKey: @"Do you feel something in your account is bad?",
-                                DVSTableModelSegueKey: DVSEditProfileSegue},
-                              @{DVSTableModelTitleKey: @"Change password",
-                                DVSTableModelSubtitleKey: @"Do you want to change your password?",
-                                DVSTableModelSegueKey: DVSPasswordChangeSegue},
-                              @{DVSTableModelTitleKey: DVSDeleteCellTitle,
-                                DVSTableModelSubtitleKey: @"Do you feel bored?"}
-                              ];
+    [self addMenuEntryWithTitle:@"Edit profile"
+                       subtitle:@"Do you feel something in your account is bad?"
+                          segue:DVSEditProfileSegue];
+    [self addMenuEntryWithTitle:@"Change password"
+                       subtitle:@"Do you want to change your password?"
+                          segue:DVSPasswordChangeSegue];
+    [self addMenuEntryWithTitle:DVSDeleteCellTitle
+                       subtitle:@"Do you feel bored?"];
 }
 
 #pragma mark - DVSMenuTableViewController methods
 
 - (NSString *)defaultCellId {
     return DVSHomeDefaultCell;
-}
-
-- (NSArray *)tableDataSource {
-    return self.dataSourceArray;
 }
 
 #pragma mark - UITableViewDelegate
