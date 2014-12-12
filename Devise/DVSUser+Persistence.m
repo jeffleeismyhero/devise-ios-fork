@@ -43,7 +43,7 @@ static DVSUser *_dvs_localUser = nil;
     _dvs_localUser = nil;
 }
 
-+ (NSString *)persistentEmail {
++ (NSString *)persistentXUserEmail {
     return [[self persistentUser].email copy];
 }
 
