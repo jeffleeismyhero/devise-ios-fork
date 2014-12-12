@@ -222,6 +222,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="oKk-Sa-AE8" kind="show" identifier="DisplayProfileEditor" id="257-JK-Oql"/>
+                        <segue destination="wEB-g5-75j" kind="show" identifier="DisplayPasswordChange" id="x47-oB-0YF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzU-5m-ofY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -252,6 +253,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JS9-ct-nbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1920" y="-1044"/>
+        </scene>
+        <!--Change password-->
+        <scene sceneID="vvx-Ye-8ng">
+            <objects>
+                <tableViewController id="wEB-g5-75j" customClass="DVSPasswordChangeViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rzc-MM-qdX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="wEB-g5-75j" id="Ptv-Uf-WRT"/>
+                            <outlet property="delegate" destination="wEB-g5-75j" id="kvv-mS-N1N"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Change password" id="Ysr-uU-xQw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kvw-tn-7Ls">
+                            <connections>
+                                <action selector="saveButtonTouched:" destination="wEB-g5-75j" id="KaT-b1-Yh9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mnh-FX-Cay" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1920" y="-329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WWZ-vq-tJM">

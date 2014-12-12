@@ -11,7 +11,8 @@
 
 #import "UIAlertView+Devise.h"
 
-static NSString * const DVSPasswordChangeSegue = @"DisplayProfileEditor";
+static NSString * const DVSEditProfileSegue = @"DisplayProfileEditor";
+static NSString * const DVSPasswordChangeSegue = @"DisplayPasswordChange";
 static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
 static NSString * const DVSDeleteCellTitle = @"Delete profile";
@@ -36,6 +37,9 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 - (void)setupDataSource {
     self.dataSourceArray = @[ @{DVSTableModelTitleKey: @"Edit profile",
                                 DVSTableModelSubtitleKey: @"Do you feel something in your account is bad?",
+                                DVSTableModelSegueKey: DVSEditProfileSegue},
+                              @{DVSTableModelTitleKey: @"Change password",
+                                DVSTableModelSubtitleKey: @"Do you want to change your password?",
                                 DVSTableModelSegueKey: DVSPasswordChangeSegue},
                               @{DVSTableModelTitleKey: DVSDeleteCellTitle,
                                 DVSTableModelSubtitleKey: @"Do you feel bored?"}
