@@ -24,10 +24,7 @@ static DVSUser *_dvs_localUser = nil;
 
 + (instancetype)localUser {
     if (_dvs_localUser != nil) return _dvs_localUser;
-    NSString *keychainService = [DVSConfiguration sharedConfiguration].keychainServiceName;
-    NSString *keychainKey = NSStringFromClass(self);
-    NSData *archivedData = [UICKeyChainStore dataForKey:keychainKey service:keychainService];
-    return (_dvs_localUser = [NSKeyedUnarchiver unarchiveObjectWithData:archivedData]);
+    return (_dvs_localUser = [self persistentUser]);
 }
 
 + (void)setLocalUser:(DVSUser *)user {
@@ -44,6 +41,17 @@ static DVSUser *_dvs_localUser = nil;
     NSString *keychainKey = NSStringFromClass(self);
     [UICKeyChainStore removeItemForKey:keychainKey service:keychainService];
     _dvs_localUser = nil;
+}
+
++ (NSString *)persistentEmail {
+    return [[self persistentUser].email copy];
+}
+
++ (DVSUser *)persistentUser {
+    NSString *keychainService = [DVSConfiguration sharedConfiguration].keychainServiceName;
+    NSString *keychainKey = NSStringFromClass(self);
+    NSData *archivedData = [UICKeyChainStore dataForKey:keychainKey service:keychainService];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
 }
 
 #pragma mark - Object serialization

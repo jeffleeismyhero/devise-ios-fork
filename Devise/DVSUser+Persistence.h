@@ -23,4 +23,9 @@
  */
 + (void)removeLocalUser;
 
+/**
+ *  Returns stored locally email used in HTTP X-User-Email Header Field
+ */
++ (NSString *)persistentXUserEmail;
+
 @end

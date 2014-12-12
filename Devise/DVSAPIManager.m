@@ -42,7 +42,7 @@ NSString * const DVSDefaultPasswordPath = @"password";
 
 + (void)updateUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:nil];
-    [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:user.email];
+    [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:[DVSUser persistentXUserEmail]];
     [DVSNetworkManager requestWithPUT:[user updateJSON] path:path success:^(NSDictionary *json, NSUInteger code) {
         if (success != NULL) success();
     } failure:^(NSError *error) {
@@ -73,7 +73,7 @@ NSString * const DVSDefaultPasswordPath = @"password";
 
 + (void)changePasswordForUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:DVSDefaultPasswordPath];
-    [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:user.email];
+    [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:[DVSUser persistentXUserEmail]];
     [DVSNetworkManager requestWithPUT:[user changePasswordJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
         if (success != NULL) success();
     } failure:^(NSError *error) {
@@ -83,7 +83,7 @@ NSString * const DVSDefaultPasswordPath = @"password";
 
 + (void)deleteUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:nil];
-    [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:user.email];
+    [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:[DVSUser persistentXUserEmail]];
     [DVSNetworkManager requestWithDELETE:nil path:path success:^(NSDictionary *response, NSUInteger code) {
         [[user class] removeLocalUser];
         if (success != NULL) success();
