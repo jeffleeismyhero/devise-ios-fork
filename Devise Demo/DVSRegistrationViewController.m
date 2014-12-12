@@ -10,8 +10,8 @@
 #import <Devise/Devise.h>
 
 #import "DVSMacros.h"
-#import "DVSDemoUser.h"
 #import "DVSUser+Demo.h"
+#import "DVSDemoUserDataSource.h"
 #import "UIAlertView+Devise.h"
 #import "DVSDemoFormTableViewCell.h"
 
@@ -22,9 +22,11 @@ static NSString * const DVSRegistrationPasswordTitle = @"Password";
 static NSString * const DVSRegistrationEmailTitle = @"Email";
 static NSString * const DVSRegistrationFirstNameTitle = @"First name";
 static NSString * const DVSRegistrationLastNameTitle = @"Last name";
-static NSString * const DVSRegistrationPhone = @"Phone";
+static NSString * const DVSRegistrationPhoneTitle = @"Phone";
 
 @interface DVSRegistrationViewController ()
+
+@property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
 
 @end
 
@@ -33,25 +35,29 @@ static NSString * const DVSRegistrationPhone = @"Phone";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.userDataSource = [DVSDemoUserDataSource dataSource];
+    
     [self addFormWithTitleToDataSource:DVSRegistrationUsernameTitle];
     [self addFormWithTitleToDataSource:DVSRegistrationPasswordTitle secured:YES];
     [self addFormWithTitleToDataSource:DVSRegistrationEmailTitle];
     [self addFormWithTitleToDataSource:DVSRegistrationFirstNameTitle];
     [self addFormWithTitleToDataSource:DVSRegistrationLastNameTitle];
-    [self addFormWithTitleToDataSource:DVSRegistrationPhone];
+    [self addFormWithTitleToDataSource:DVSRegistrationPhoneTitle];
 }
 
 #pragma mark - Touch
 
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender {
-    DVSDemoUser *newUser = [[DVSDemoUser alloc] init];
+    DVSUser *newUser = [DVSUser user];
+    
+    newUser.dataSource = self.userDataSource;
     
     newUser.username = [self getValueForTitle:DVSRegistrationUsernameTitle];
     newUser.password = [self getValueForTitle:DVSRegistrationPasswordTitle];
     newUser.email = [self getValueForTitle:DVSRegistrationEmailTitle];
     newUser.firstName = [self getValueForTitle:DVSRegistrationFirstNameTitle];
     newUser.lastName = [self getValueForTitle:DVSRegistrationLastNameTitle];
-    newUser.phone = [self getValueForTitle:DVSRegistrationPhone];
+    newUser.phone = [self getValueForTitle:DVSRegistrationPhoneTitle];
     
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];

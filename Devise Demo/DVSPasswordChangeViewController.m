@@ -9,6 +9,7 @@
 #import "DVSPasswordChangeViewController.h"
 #import <Devise/Devise.h>
 
+#import "DVSDemoUserDataSource.h"
 #import "NSError+Devise.h"
 #import "UIAlertView+Devise.h"
 
@@ -18,6 +19,8 @@ static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
 
 @interface DVSPasswordChangeViewController ()
 
+@property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
+
 @end
 
 @implementation DVSPasswordChangeViewController
@@ -26,6 +29,9 @@ static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.userDataSource = [DVSDemoUserDataSource dataSource];
+    
     [self addFormWithTitleToDataSource:DVSCurrentPasswordTitle secured:YES];
     [self addFormWithTitleToDataSource:DVSNewPasswordTitle secured:YES];
     [self addFormWithTitleToDataSource:DVSNewPasswordConfirmTitle secured:YES];
@@ -35,6 +41,9 @@ static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
     DVSUser *localUser = [DVSUser localUser];
+    
+    localUser.dataSource = self.userDataSource;
+    
     NSString *currentPassword = localUser.password;
     
     NSString *currentPasswordConfirm = [self getValueForTitle:DVSCurrentPasswordTitle];

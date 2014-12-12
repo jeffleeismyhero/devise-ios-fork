@@ -53,7 +53,6 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
 
 - (void)setProperty:(id)property forKey:(NSString *)aKey {
     [self setObject:property forKey:aKey action:DVSActionRegistration];
-    [self setObject:property forKey:aKey action:DVSActionUpdate];
 }
 
 - (id)propertyForKey:(NSString *)aKey {
