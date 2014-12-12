@@ -40,7 +40,8 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
                        subtitle:@"Do you want to change your password?"
                           segue:DVSPasswordChangeSegue];
     [self addMenuEntryWithTitle:DVSDeleteCellTitle
-                       subtitle:@"Do you feel bored?"];
+                       subtitle:@"Do you feel bored?"
+                       selector:@selector(handleDeleteCell)];
 }
 
 #pragma mark - DVSMenuTableViewController methods
@@ -49,19 +50,7 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
     return DVSHomeDefaultCell;
 }
 
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *dataDictionary = [self tableDataSource][indexPath.row];
-    NSString *title = (NSString *)dataDictionary[DVSTableModelTitleKey];
-    
-    if ([title isEqualToString:DVSDeleteCellTitle]) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [self handleDeleteCell];
-    } else {
-        [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    }
-}
+#pragma mark - Delete action
 
 - (void)handleDeleteCell {
     [[[UIAlertView alloc] initWithTitle:DVSDeleteCellTitle

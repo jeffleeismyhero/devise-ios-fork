@@ -13,6 +13,7 @@ static NSString * const DVSDefaultCell = @"defaultCell";
 NSString * const DVSTableModelTitleKey = @"title";
 NSString * const DVSTableModelSubtitleKey = @"sub";
 NSString * const DVSTableModelSegueKey = @"segue";
+NSString * const DVSTableModelSelectorStringKey = @"selector";
 
 @interface DVSMenuTableViewController ()
 
@@ -42,14 +43,21 @@ NSString * const DVSTableModelSegueKey = @"segue";
 
 #pragma mark - Menu entries
 
-- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
-    [self addMenuEntryWithTitle:title subtitle:subtitle segue:@""];
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue {
+    [self addMenuEntryWithTitle:title subtitle:subtitle segue:segue selectorString:@""];
 }
 
-- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue {
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle selector:(SEL)selector {
+    [self addMenuEntryWithTitle:title subtitle:subtitle segue:@"" selectorString:NSStringFromSelector(selector)];
+}
+
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue selectorString:(NSString *)selectorString {
+    
     [self.dataSourceArray addObject:@{DVSTableModelTitleKey: title,
                                       DVSTableModelSubtitleKey: subtitle,
-                                      DVSTableModelSegueKey: segue}];
+                                      DVSTableModelSegueKey: segue,
+                                      DVSTableModelSelectorStringKey: selectorString}];
+    
 }
 
 #pragma mark - UITableViewDataSource
@@ -76,8 +84,26 @@ NSString * const DVSTableModelSegueKey = @"segue";
 #pragma mark - TableView delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     NSDictionary *dataDictionary = self.dataSourceArray[indexPath.row];
-    [self performSegueWithIdentifier:dataDictionary[DVSTableModelSegueKey] sender:self];
+    
+    NSString *selectorString = dataDictionary[DVSTableModelSelectorStringKey];
+    if (selectorString && ![selectorString isEqual:@""]) {
+        SEL selector = NSSelectorFromString(selectorString);
+        if (selector) {
+            #pragma clang diagnostic push
+            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:selector];
+            #pragma clang diagnostic pop
+            return;
+        }
+    }
+    
+    NSString *segue = dataDictionary[DVSTableModelSegueKey];
+    if (segue && ![segue isEqualToString:@""]) {
+        [self performSegueWithIdentifier:segue sender:self];
+    }
 }
 
 @end
