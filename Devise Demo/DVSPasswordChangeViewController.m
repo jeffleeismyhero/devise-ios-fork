@@ -9,10 +9,12 @@
 #import "DVSPasswordChangeViewController.h"
 #import <Devise/Devise.h>
 
+#import "NSError+Devise.h"
 #import "UIAlertView+Devise.h"
 
 static NSString * const DVSCurrentPasswordTitle = @"Current password";
 static NSString * const DVSNewPasswordTitle = @"New password";
+static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
 
 @interface DVSPasswordChangeViewController ()
 
@@ -26,6 +28,7 @@ static NSString * const DVSNewPasswordTitle = @"New password";
     [super viewDidLoad];
     [self addFormWithTitleToDataSource:DVSCurrentPasswordTitle secured:YES];
     [self addFormWithTitleToDataSource:DVSNewPasswordTitle secured:YES];
+    [self addFormWithTitleToDataSource:DVSNewPasswordConfirmTitle secured:YES];
 }
 
 #pragma mark - Touch
@@ -34,7 +37,20 @@ static NSString * const DVSNewPasswordTitle = @"New password";
     DVSUser *localUser = [DVSUser localUser];
     NSString *currentPassword = localUser.password;
     
-    localUser.password = [self getValueForTitle:DVSNewPasswordTitle];
+    NSString *currentPasswordConfirm = [self getValueForTitle:DVSCurrentPasswordTitle];
+    if (![currentPassword isEqualToString:currentPasswordConfirm]) {
+        [[UIAlertView dvs_alertViewForError:[NSError dvs_passwordConfirmError]] show];
+        return;
+    }
+    
+    NSString *newPassword = [self getValueForTitle:DVSNewPasswordTitle];
+    NSString *newPasswordConfirm = [self getValueForTitle:DVSNewPasswordConfirmTitle];
+    if (![newPassword isEqualToString:newPasswordConfirm]) {
+        [[UIAlertView dvs_alertViewForError:[NSError dvs_newPasswordConfirmError]] show];
+        return;
+    }
+    
+    localUser.password = newPassword;
     [localUser changePasswordWithSuccess:^{
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
