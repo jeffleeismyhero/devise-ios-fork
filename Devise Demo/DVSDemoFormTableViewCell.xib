@@ -13,9 +13,9 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8hT-5Z-edB" id="8Kc-FN-dNm">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KE6-IW-Kya" userLabel="titleLabel">
-                        <rect key="frame" x="8" y="8" width="31" height="12"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KE6-IW-Kya" userLabel="titleLabel">
+                        <rect key="frame" x="8" y="8" width="304" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -33,6 +33,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="vWT-7w-NY3" firstAttribute="bottom" secondItem="8Kc-FN-dNm" secondAttribute="bottomMargin" id="6HB-aY-dil"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="KE6-IW-Kya" secondAttribute="trailing" id="E8C-io-ceG"/>
                     <constraint firstAttribute="trailingMargin" secondItem="vWT-7w-NY3" secondAttribute="trailing" id="b9k-zK-wed"/>
                     <constraint firstItem="KE6-IW-Kya" firstAttribute="leading" secondItem="8Kc-FN-dNm" secondAttribute="leadingMargin" id="btg-2f-eB8"/>
                     <constraint firstItem="KE6-IW-Kya" firstAttribute="top" secondItem="8Kc-FN-dNm" secondAttribute="topMargin" id="qJV-jq-6GF"/>
