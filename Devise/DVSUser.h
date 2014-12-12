@@ -139,9 +139,8 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 
 /**
  *  Changes user password asynchronously.
- *  @param newPassword Password which will become a new password on succeed.
  */
-- (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Changes user password asynchronously with additional parameters given as an NSDictionary.
@@ -149,10 +148,8 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  *  - additionalRequestParametersForAction: method, available via DVSUserDataSource protocol.
  *  - setObject:forKey:action method, used to set one key-value pair.
  *  - setObjects:forKey:action method, used to set bunch of key-value pairs.
- *
- *  @param newPassword Password which will become a new password on succeed
  */
-- (void)changePasswordWithNewPassword:(NSString *)newPassword extraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)changePasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Update user info asynchronously.

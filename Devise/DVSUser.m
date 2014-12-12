@@ -116,18 +116,15 @@
 
 #pragma mark - Change Password Methods
 
-- (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
-    NSArray *rules = @[DVSValidate(@"password").required().match(newPassword)];
-    
-    [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
+- (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    [self validateUsingRules:@[] forAction:DVSActionChangePassword success:^{
         [DVSAPIManager changePasswordForUser:self withSuccess:success failure:failure];
     } failure:failure];
 }
 
-- (void)changePasswordWithNewPassword:(NSString *)newPassword extraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)changePasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setObjects:params() forAction:DVSActionChangePassword];
-    [self changePasswordWithNewPassword:newPassword success:success failure:failure];
+    [self changePasswordWithSuccess:success failure:failure];
 }
 
 #pragma mark - Update Methods
