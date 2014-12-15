@@ -8,12 +8,9 @@
 
 #import "DVSMenuTableViewController.h"
 
-static NSString * const DVSDefaultCell = @"defaultCell";
+#import "DVSMenuTableModel.h"
 
-NSString * const DVSTableModelTitleKey = @"title";
-NSString * const DVSTableModelSubtitleKey = @"sub";
-NSString * const DVSTableModelSegueKey = @"segue";
-NSString * const DVSTableModelSelectorStringKey = @"selector";
+static NSString * const DVSDefaultCell = @"defaultCell";
 
 @interface DVSMenuTableViewController ()
 
@@ -37,27 +34,18 @@ NSString * const DVSTableModelSelectorStringKey = @"selector";
     return @"";
 }
 
-- (NSArray *)tableDataSource {
-    return [self.dataSourceArray copy];
-}
-
 #pragma mark - Menu entries
 
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue {
-    [self addMenuEntryWithTitle:title subtitle:subtitle segue:segue selectorString:@""];
+    [self.dataSourceArray addObject:[[DVSMenuTableModel alloc] initWithTitle:title
+                                                                    subtitle:subtitle
+                                                                   segueName:segue]];
 }
 
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle selector:(SEL)selector {
-    [self addMenuEntryWithTitle:title subtitle:subtitle segue:@"" selectorString:NSStringFromSelector(selector)];
-}
-
-- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue selectorString:(NSString *)selectorString {
-    
-    [self.dataSourceArray addObject:@{DVSTableModelTitleKey: title,
-                                      DVSTableModelSubtitleKey: subtitle,
-                                      DVSTableModelSegueKey: segue,
-                                      DVSTableModelSelectorStringKey: selectorString}];
-    
+    [self.dataSourceArray addObject:[[DVSMenuTableModel alloc] initWithTitle:title
+                                                                    subtitle:subtitle
+                                                              selectorString:NSStringFromSelector(selector)]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -69,10 +57,10 @@ NSString * const DVSTableModelSelectorStringKey = @"selector";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[self defaultCellId] forIndexPath:indexPath];
     
-    NSDictionary *dataDictionary = self.dataSourceArray[indexPath.row];
+    DVSMenuTableModel *model = (DVSMenuTableModel *)self.dataSourceArray[indexPath.row];
     
-    cell.textLabel.text = dataDictionary[DVSTableModelTitleKey];
-    cell.detailTextLabel.text = dataDictionary[DVSTableModelSubtitleKey];
+    cell.textLabel.text = model.title;
+    cell.detailTextLabel.text = model.subtitle;
     
     return cell;
 }
@@ -86,11 +74,10 @@ NSString * const DVSTableModelSelectorStringKey = @"selector";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSDictionary *dataDictionary = self.dataSourceArray[indexPath.row];
+    DVSMenuTableModel *model = (DVSMenuTableModel *)self.dataSourceArray[indexPath.row];
     
-    NSString *selectorString = dataDictionary[DVSTableModelSelectorStringKey];
-    if (selectorString && ![selectorString isEqual:@""]) {
-        SEL selector = NSSelectorFromString(selectorString);
+    if (model.selectorString) {
+        SEL selector = NSSelectorFromString(model.selectorString);
         if (selector) {
             #pragma clang diagnostic push
             #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -100,9 +87,8 @@ NSString * const DVSTableModelSelectorStringKey = @"selector";
         }
     }
     
-    NSString *segue = dataDictionary[DVSTableModelSegueKey];
-    if (segue && ![segue isEqualToString:@""]) {
-        [self performSegueWithIdentifier:segue sender:self];
+    if (model.segueName) {
+        [self performSegueWithIdentifier:model.segueName sender:self];
     }
 }
 

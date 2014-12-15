@@ -15,7 +15,6 @@ extern NSString * const DVSTableModelSegueKey;
 @interface DVSMenuTableViewController : UITableViewController
 
 - (NSString *)defaultCellId;
-- (NSArray *)tableDataSource;
 
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue;
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle selector:(SEL)selector;
