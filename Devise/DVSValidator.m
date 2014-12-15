@@ -8,7 +8,7 @@
 #import "DVSValidator.h"
 #import "NSArray+Devise.h"
 #import "DVSConfiguration.h"
-#import <objc/runtime.h>
+#import "NSObject+Devise.h"
 
 @interface DVSValidator ()
 
@@ -62,7 +62,7 @@ inline DVSPropertyValidator * DVSValidate(NSString *propertyName) {
     else NSAssert(NO, @"Allowed class: NSArray or NSError");
     
     NSArray *array = rules();
-    NSArray *properties = [self propertiesOfModel:model];
+    NSArray *properties = [model dvs_properties];
     NSMutableArray *errors = [NSMutableArray array];
     
     if (array.count == 0) {
@@ -104,30 +104,6 @@ inline DVSPropertyValidator * DVSValidate(NSString *propertyName) {
     @catch (NSException *exception) {
         NSAssert1(NO, @"An exception appear during parameter from %@ model validation. Did you remember to use parentheses in block call?", [model class]);
     }
-}
-
-+ (NSArray *)propertiesOfClass:(Class)aClass {
-    
-    uint count;
-    objc_property_t *properties = class_copyPropertyList(aClass, &count);
-    NSMutableArray *propertyArray = [NSMutableArray arrayWithCapacity:count];
-    
-    for (uint i = 0; i < count ; i++) {
-        const char *propertyName = property_getName(properties[i]);
-        [propertyArray addObject:[NSString stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
-    }
-    free(properties);
-    return propertyArray;
-}
-
-+ (NSArray *)propertiesOfModel:(NSObject *)model {
-    
-    NSMutableArray *array = [[self propertiesOfClass:[model class]] mutableCopy];
-    
-    if (![model.superclass isMemberOfClass:[NSObject class]]) {
-        [array addObjectsFromArray:[self propertiesOfClass:model.superclass]];
-    }
-    return [array copy];
 }
 
 @end
