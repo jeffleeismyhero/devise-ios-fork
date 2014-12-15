@@ -19,10 +19,9 @@
 
 #pragma mark - UITextField events
 
-- (IBAction)testFieldChanged:(id)sender {
+- (IBAction)testFieldChanged:(UITextField *)sender {
     if ([self.delegate respondsToSelector:@selector(formTableViewCell:changedValue:)]) {
-        UITextField *senderTextField = (UITextField *)sender;
-        [self.delegate formTableViewCell:self changedValue:senderTextField.text];
+        [self.delegate formTableViewCell:self changedValue:sender.text];
     }
 }
 
