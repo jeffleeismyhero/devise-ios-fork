@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol DVSDemoFormTableViewCellDelegate;
+@protocol DVSFormTableViewCellDelegate;
 
-@interface DVSDemoFormTableViewCell : UITableViewCell
+@interface DVSFormTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) id<DVSDemoFormTableViewCellDelegate> delegate;
+@property (weak, nonatomic) id<DVSFormTableViewCellDelegate> delegate;
 @property (weak, nonatomic, readonly) UILabel *titleLabel;
 @property (weak, nonatomic, readonly) UITextField *valueTextField;
 
 @end
 
-@protocol DVSDemoFormTableViewCellDelegate <NSObject>
+@protocol DVSFormTableViewCellDelegate <NSObject>
 
-- (void)formTableViewCell:(DVSDemoFormTableViewCell *)cell changedValue:(NSString *)string;
+- (void)formTableViewCell:(DVSFormTableViewCell *)cell changedValue:(NSString *)string;
 
 @end

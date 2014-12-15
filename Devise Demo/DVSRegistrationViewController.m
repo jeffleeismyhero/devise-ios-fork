@@ -13,7 +13,6 @@
 #import "DVSUser+Demo.h"
 #import "DVSDemoUserDataSource.h"
 #import "UIAlertView+Devise.h"
-#import "DVSDemoFormTableViewCell.h"
 
 static NSString * const DVSEnterSegue = @"DisplayHomeView";
 

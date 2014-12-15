@@ -8,12 +8,12 @@
 
 #import "DVSFormTableViewController.h"
 
-#import "DVSDemoFormTableViewCell.h"
+#import "DVSFormTableViewCell.h"
 #import "DVSFormTableModel.h"
 
 static NSString * const DVSDefaultCellId = @"defaultCell";
 
-@interface DVSFormTableViewController () <DVSDemoFormTableViewCellDelegate>
+@interface DVSFormTableViewController () <DVSFormTableViewCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray *dataSourceTitlesArray;
 @property (strong, nonatomic) NSMutableDictionary *dataSourceValuesDictionary;
@@ -30,7 +30,7 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     self.dataSourceTitlesArray = [NSMutableArray array];
     self.dataSourceValuesDictionary = [NSMutableDictionary dictionary];
     
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DVSDemoFormTableViewCell class])
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DVSFormTableViewCell class])
                                                bundle:nil]
          forCellReuseIdentifier:DVSDefaultCellId];
 }
@@ -51,14 +51,14 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     return model.value;
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSourceTitlesArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DVSDemoFormTableViewCell *cell = (DVSDemoFormTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
+    DVSFormTableViewCell *cell = (DVSFormTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
     
     NSString *title = self.dataSourceTitlesArray[indexPath.item];
     DVSFormTableModel *model = self.dataSourceValuesDictionary[title];
@@ -73,7 +73,7 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 
 #pragma mark - DVSDemoFormTableViewCellDelegate
 
-- (void)formTableViewCell:(DVSDemoFormTableViewCell *)cell changedValue:(NSString *)string {
+- (void)formTableViewCell:(DVSFormTableViewCell *)cell changedValue:(NSString *)string {
     DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[cell.titleLabel.text];
     self.dataSourceValuesDictionary[cell.titleLabel.text] = [[DVSFormTableModel alloc] initWithValue:string
                                                                                              secured:model.secured];
