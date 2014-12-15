@@ -11,6 +11,7 @@
 #import "DVSHTTPReqeustOperationManager.h"
 #import "DVSUser+Persistence.h"
 #import "DVSUser+Querying.h"
+#import "NSObject+Devise.h"
 
 NSString * const DVSDefaultLoginPath = @"sign_in";
 NSString * const DVSDefaultPasswordPath = @"password";
@@ -30,10 +31,8 @@ NSString * const DVSDefaultPasswordPath = @"password";
 
 + (void)registerUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:nil];
-    [DVSNetworkManager requestWithPOST:[user registerJSON] path:path success:^(NSDictionary *json, NSUInteger code) {
-        user.identifier = [json[@"user"] dvs_stringValueForKey:@"id"];
-        user.sessionToken = json[@"user"][@"authenticationToken"];
-        [[user class] setLocalUser:user];
+    [DVSNetworkManager requestWithPOST:[user registerJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
+        [self storeUser:user withResponse:response];
         if (success != NULL) success();
     } failure:^(NSError *error) {
         if (failure != NULL) failure(error);
@@ -43,8 +42,8 @@ NSString * const DVSDefaultPasswordPath = @"password";
 + (void)updateUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:nil];
     [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:[DVSUser persistentXUserEmail]];
-    [DVSNetworkManager requestWithPUT:[user updateJSON] path:path success:^(NSDictionary *json, NSUInteger code) {
-        [[user class] setLocalUser:user];
+    [DVSNetworkManager requestWithPUT:[user updateJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
+        [self storeUser:user withResponse:response];
         if (success != NULL) success();
     } failure:^(NSError *error) {
         if (failure != NULL) failure(error);
@@ -53,10 +52,8 @@ NSString * const DVSDefaultPasswordPath = @"password";
 
 + (void)loginUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:DVSDefaultLoginPath];
-    [DVSNetworkManager requestWithPOST:[user loginJSON] path:path success:^(NSDictionary *json, NSUInteger code) {
-        user.identifier = [json[@"user"] dvs_stringValueForKey:@"id"];
-        user.sessionToken = json[@"user"][@"authenticationToken"];
-        [[user class] setLocalUser:user];
+    [DVSNetworkManager requestWithPOST:[user loginJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
+        [self storeUser:user withResponse:response];
         if (success != NULL) success();
     } failure:^(NSError *error) {
         if (failure != NULL) failure(error);
@@ -65,7 +62,7 @@ NSString * const DVSDefaultPasswordPath = @"password";
 
 + (void)remindPasswordForUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:DVSDefaultPasswordPath];
-    [DVSNetworkManager requestWithPOST:[user forgotPasswordJSON] path:path success:^(NSDictionary *json, NSUInteger code) {
+    [DVSNetworkManager requestWithPOST:[user forgotPasswordJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
         if (success != NULL) success();
     } failure:^(NSError *error) {
         if (failure != NULL) failure(error);
@@ -76,6 +73,7 @@ NSString * const DVSDefaultPasswordPath = @"password";
     NSString *path = [self pathForRoute:DVSRouteUser param:DVSDefaultPasswordPath];
     [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:[DVSUser persistentXUserEmail]];
     [DVSNetworkManager requestWithPUT:[user changePasswordJSON] path:path success:^(NSDictionary *response, NSUInteger code) {
+        [self storeUser:user withResponse:response];
         if (success != NULL) success();
     } failure:^(NSError *error) {
         if (failure != NULL) failure(error);
@@ -104,6 +102,28 @@ NSString * const DVSDefaultPasswordPath = @"password";
         fullPath = [fullPath stringByAppendingPathComponent:param];
     }
     return fullPath;
+}
+
++ (void)storeUser:(DVSUser *)user withResponse:(NSDictionary *)response {
+    [self mapUserProperties:user usingResponse:response[@"user"]];
+    [[user class] setLocalUser:user];
+}
+
++ (void)mapUserProperties:(DVSUser *)user usingResponse:(NSDictionary *)response {
+    
+    user.identifier = [response dvs_stringValueForKey:@"id"];
+    user.sessionToken = response[@"authenticationToken"];
+    
+    NSArray *properties = [user dvs_properties];
+    
+    for (NSString *property in properties) {
+        for (NSString *key in response.allKeys) {
+            if ([property isEqualToString:key]) {
+                [user setValue:response[key] forKey:property];
+                break;
+            }
+        }
+    }
 }
 
 @end

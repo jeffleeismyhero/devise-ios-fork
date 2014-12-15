@@ -61,6 +61,9 @@
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
 		5E64C17A1A30603E00A41A88 /* DVSPropertyValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */; };
+		5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */; };
+		5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise.h */; };
+		5E7A9A351A3F114F0077DC43 /* NSObject+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise.m */; };
 		5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */; };
 		5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7E166C1A264F6900684A60 /* DVSValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -212,6 +215,10 @@
 		3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Devise-Demo-Assets.xcassets"; sourceTree = "<group>"; };
 		5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPropertyValidatorSpec.m; sourceTree = "<group>"; };
 		5E64C17B1A30872B00A41A88 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5E7A9A2F1A3EFEFA0077DC43 /* DVSDemoUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUser.h; sourceTree = "<group>"; };
+		5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
+		5E7A9A321A3F114F0077DC43 /* NSObject+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Devise.h"; sourceTree = "<group>"; };
+		5E7A9A331A3F114F0077DC43 /* NSObject+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Devise.m"; sourceTree = "<group>"; };
 		5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPropertyValidator.h; sourceTree = "<group>"; };
 		5E7E166B1A264F6900684A60 /* DVSPropertyValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPropertyValidator.m; sourceTree = "<group>"; };
 		5E7E166C1A264F6900684A60 /* DVSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSValidator.h; sourceTree = "<group>"; };
@@ -302,6 +309,8 @@
 			children = (
 				21F690A01A38788C00DE2ABA /* DVSUser+Demo.h */,
 				21F690A11A38788C00DE2ABA /* DVSUser+Demo.m */,
+				5E7A9A2F1A3EFEFA0077DC43 /* DVSDemoUser.h */,
+				5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */,
 				21B1AAB61A3B2BF600578DF7 /* DVSDemoUserDataSource.h */,
 				21B1AAB71A3B2BF600578DF7 /* DVSDemoUserDataSource.m */,
 			);
@@ -364,6 +373,8 @@
 				5EF381EF1A287458006875D4 /* NSNumber+Devise.m */,
 				5EE295061A35C086009441E1 /* NSDictionary+Devise.h */,
 				5EE295071A35C086009441E1 /* NSDictionary+Devise.m */,
+				5E7A9A321A3F114F0077DC43 /* NSObject+Devise.h */,
+				5E7A9A331A3F114F0077DC43 /* NSObject+Devise.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -662,6 +673,7 @@
 			files = (
 				5EF381DC1A279998006875D4 /* NSDate+Devise.h in Headers */,
 				3AA22E411A25330C00FE04D1 /* DVSAPIManager.h in Headers */,
+				5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */,
 				5EF381F01A287458006875D4 /* NSNumber+Devise.h in Headers */,
 				5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */,
 				3AA22E261A25112800FE04D1 /* NSError+Devise.h in Headers */,
@@ -947,6 +959,7 @@
 				5EE295091A35C086009441E1 /* NSDictionary+Devise.m in Sources */,
 				5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */,
+				5E7A9A351A3F114F0077DC43 /* NSObject+Devise.m in Sources */,
 				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
 				5EF5E6DB1A2667D80049BEA6 /* NSArray+Devise.m in Sources */,
 				3AA22E441A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m in Sources */,
@@ -985,6 +998,7 @@
 				3AA22E5B1A25353B00FE04D1 /* DVSProfileEditorViewController.m in Sources */,
 				210403171A39C7F4001AF776 /* DVSFormTableViewController.m in Sources */,
 				21B1AAB81A3B2BF600578DF7 /* DVSDemoUserDataSource.m in Sources */,
+				5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */,
 				3AA22E581A25353B00FE04D1 /* DVSHomeViewController.m in Sources */,
 				21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */,
 				21F690A21A38788C00DE2ABA /* DVSUser+Demo.m in Sources */,

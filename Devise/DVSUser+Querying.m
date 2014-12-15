@@ -6,6 +6,7 @@
 
 #import "DVSUser+Querying.h"
 #import "NSString+Devise.h"
+#import "NSDictionary+Devise.h"
 
 @implementation DVSUser (Querying)
 

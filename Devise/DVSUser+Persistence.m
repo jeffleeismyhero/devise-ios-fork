@@ -8,6 +8,7 @@
 
 #import "DVSConfiguration.h"
 #import "DVSUser+Persistence.h"
+#import "NSObject+Devise.h"
 
 @interface DVSUser ()
 
@@ -59,16 +60,25 @@ static DVSUser *_dvs_localUser = nil;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self == nil) return nil;
-    self.identifier = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"identifier"];
-    self.email = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"email"];
-    self.sessionToken = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"sessionToken"];
+ 
+    NSArray *properties = [self dvs_properties];
+    for (NSString *property in properties) {
+        id value = [aDecoder decodeObjectForKey:property];
+        [self setValue:value forKey:property];
+    }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.identifier forKey:@"identifier"];
-    [aCoder encodeObject:self.email forKey:@"email"];
-    [aCoder encodeObject:self.sessionToken forKey:@"token"];
+    NSMutableArray *properties = [[self dvs_properties] mutableCopy];
+    
+    //do not store those properties:
+    [properties removeObject:@"additionalRequestParameters"];
+    [properties removeObject:@"dataSource"];
+    
+    for (NSString *property in properties) {
+        [aCoder encodeObject:[self valueForKey:property] forKey:property];
+    }
 }
 
 + (BOOL)supportsSecureCoding {

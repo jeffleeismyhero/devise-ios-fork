@@ -15,16 +15,16 @@ extern NSString * const DVSDemoUserPhoneParameter;
 
 @interface DVSUser (Demo)
 
-/// User's username.
-@property (strong, nonatomic) NSString *username;
-
-/// User's first name.
-@property (strong, nonatomic) NSString *firstName;
-
-/// User's last name.
-@property (strong, nonatomic) NSString *lastName;
-
-/// User's phone number.
-@property (strong, nonatomic) NSString *phone;
+///// User's username.
+//@property (strong, nonatomic) NSString *username;
+//
+///// User's first name.
+//@property (strong, nonatomic) NSString *firstName;
+//
+///// User's last name.
+//@property (strong, nonatomic) NSString *lastName;
+//
+///// User's phone number.
+//@property (strong, nonatomic) NSString *phone;
 
 @end
