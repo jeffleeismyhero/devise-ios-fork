@@ -8,7 +8,7 @@
 
 #import "DVSDemoUserDataSource.h"
 
-#import "DVSUser+Demo.h"
+#import "DVSDemoUser.h"
 
 static NSString * const DVSUserPasswordParameter = @"password";
 static NSString * const DVSUserEmailParameter = @"email";

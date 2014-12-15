@@ -8,6 +8,11 @@
 
 #import <Devise/Devise.h>
 
+extern NSString * const DVSDemoUserUsernameParameter;
+extern NSString * const DVSDemoUserFirstNameParameter;
+extern NSString * const DVSDemoUserLastNameParameter;
+extern NSString * const DVSDemoUserPhoneParameter;
+
 @interface DVSDemoUser : DVSUser
 
 /// User's username.
