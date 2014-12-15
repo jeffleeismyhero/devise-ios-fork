@@ -31,7 +31,7 @@ NSString * const DVSDefaultPasswordPath = @"password";
 + (void)registerUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:nil];
     [DVSNetworkManager requestWithPOST:[user registerJSON] path:path success:^(NSDictionary *json, NSUInteger code) {
-        user.identifier = [json[@"user"][@"id"] stringValue]; // [@"id"] is a number
+        user.identifier = [json[@"user"] dvs_stringValueForKey:@"id"];
         user.sessionToken = json[@"user"][@"authenticationToken"];
         [[user class] setLocalUser:user];
         if (success != NULL) success();
@@ -53,7 +53,7 @@ NSString * const DVSDefaultPasswordPath = @"password";
 + (void)loginUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = [self pathForRoute:DVSRouteUser param:DVSDefaultLoginPath];
     [DVSNetworkManager requestWithPOST:[user loginJSON] path:path success:^(NSDictionary *json, NSUInteger code) {
-        user.identifier = [json[@"user"][@"id"] stringValue]; // [@"id"] is a number
+        user.identifier = [json[@"user"] dvs_stringValueForKey:@"id"];
         user.sessionToken = json[@"user"][@"authenticationToken"];
         [[user class] setLocalUser:user];
         if (success != NULL) success();
