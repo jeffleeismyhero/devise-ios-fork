@@ -19,13 +19,6 @@ static inline NSString * intToString(NSUInteger x) {
 
 NSString * const dvs_attribute = @"{attribute}";
 
-@interface DVSPropertyValidator ()
-
-@property (strong, nonatomic) NSMutableArray *validators;
-@property (strong, nonatomic) NSMutableDictionary *descriptions;
-
-@end
-
 @implementation DVSPropertyValidator
 
 #pragma mark - Initializers
@@ -68,10 +61,6 @@ NSString * const dvs_attribute = @"{attribute}";
         }
     }
     return array;
-}
-
-- (NSDictionary *)errorDescriptions {
-    return [self.descriptions copy];
 }
 
 - (NSString *)messageforErrorDescription:(DVSErrorDescription)errorDescription {

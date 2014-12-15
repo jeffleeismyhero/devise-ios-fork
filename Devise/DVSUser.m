@@ -163,14 +163,33 @@
     NSError *error;
     BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
         
-        NSMutableArray *array = [rules mutableCopy];
         
         if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalValidationRulesForAction:)]) {
-            [array addObjectsFromArray:[self.dataSource additionalValidationRulesForAction:action]];
+            NSArray *array = [self.dataSource additionalValidationRulesForAction:action];
+            return [self mergeDefaultRules:rules withCustomRules:array];
         }
-        return [array copy];
+        return rules;
     }];
     validated ? success() : failure(error);
 }
+
+- (NSArray *)mergeDefaultRules:(NSArray *)defaultRules withCustomRules:(NSArray *)customRules {
+    //Quick fix -- has to be improved
+    NSMutableArray *array = [defaultRules mutableCopy];
+    [array addObjectsFromArray:customRules];
+    
+    for (DVSPropertyValidator *validatorA in defaultRules) {
+        for (DVSPropertyValidator *validatorB in customRules) {
+            if ([validatorA.propertyName isEqualToString:validatorB.propertyName]) {
+                [validatorA.validators addObjectsFromArray:validatorB.validators];
+                validatorA.descriptions = validatorB.descriptions;
+                [array removeObject:validatorB];
+                break;
+            }
+        }
+    }
+    return array;
+}
+                                         
 
 @end

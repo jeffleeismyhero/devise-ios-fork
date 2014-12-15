@@ -62,6 +62,16 @@ typedef NS_ENUM(NSInteger, DVSErrorDescription) {
  */
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
+/**
+ *  An array of validators
+ */
+@property (strong, nonatomic) NSMutableArray *validators;
+
+/**
+ *  An array of error descriptions
+ */
+@property (strong, nonatomic) NSMutableDictionary *descriptions;
+
 #pragma mark - Validators Rules
 
 /**
@@ -273,11 +283,6 @@ typedef NS_ENUM(NSInteger, DVSErrorDescription) {
  *  @param errorDescription The error description, for which you want to get the message.
  */
 - (void)setMessage:(NSString *)message forErrorDescription:(DVSErrorDescription)errorDescription;
-
-/**
- *  Dictionary of error descriptions used by validator.
- */
-- (NSDictionary *)errorDescriptions;
 
 /**
  *  Validates property to first error.
