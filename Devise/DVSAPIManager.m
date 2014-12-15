@@ -44,6 +44,7 @@ NSString * const DVSDefaultPasswordPath = @"password";
     NSString *path = [self pathForRoute:DVSRouteUser param:nil];
     [DVSNetworkManager setupAuthorizationHeaderWithToken:user.sessionToken email:[DVSUser persistentXUserEmail]];
     [DVSNetworkManager requestWithPUT:[user updateJSON] path:path success:^(NSDictionary *json, NSUInteger code) {
+        [[user class] setLocalUser:user];
         if (success != NULL) success();
     } failure:^(NSError *error) {
         if (failure != NULL) failure(error);
