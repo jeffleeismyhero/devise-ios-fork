@@ -10,6 +10,7 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+Devise.h"
+#import "DVSDemoUserDataSource.h"
 
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
@@ -19,9 +20,20 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
+@property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
+
 @end
 
 @implementation DVSLoginViewController
+
+#pragma mark - Lifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.userDataSource = [[DVSDemoUserDataSource alloc] init];
+}
+
+#pragma mark - UIButtons events
 
 - (IBAction)remindButtonTouched:(UIButton *)sender {
     [self performSegueWithIdentifier:DVSRemindPasswordSegue sender:self];
@@ -29,6 +41,8 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 
 - (IBAction)logInTouched:(UIBarButtonItem *)sender {
     DVSUser *user = [DVSUser user];
+    
+    user.dataSource = self.userDataSource;
     
     user.email = self.emailTextField.text;
     user.password = self.passwordTextField.text;

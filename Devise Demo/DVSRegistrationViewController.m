@@ -44,7 +44,7 @@ static NSString * const DVSRegistrationPhoneTitle = @"Phone";
     [self addFormWithTitleToDataSource:DVSRegistrationPhoneTitle];
 }
 
-#pragma mark - Touch
+#pragma mark - UIButtons events
 
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender {
     DVSUser *newUser = [DVSUser user];

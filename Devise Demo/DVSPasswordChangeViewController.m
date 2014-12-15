@@ -37,7 +37,7 @@ static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
     [self addFormWithTitleToDataSource:DVSNewPasswordConfirmTitle secured:YES];
 }
 
-#pragma mark - Touch
+#pragma mark - UIButtons events
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
     DVSUser *localUser = [DVSUser localUser];

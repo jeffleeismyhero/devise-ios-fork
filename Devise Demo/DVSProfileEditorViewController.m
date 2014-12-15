@@ -10,10 +10,13 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+Devise.h"
+#import "DVSDemoUserDataSource.h"
 
 static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
 
 @interface DVSProfileEditorViewController ()
+
+@property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
 
 @end
 
@@ -23,13 +26,18 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.userDataSource = [[DVSDemoUserDataSource alloc] init];
+    
     [self addFormWithTitleToDataSource:DVSProfileEditorEmailTitle];
 }
 
-#pragma mark - Touch
+#pragma mark - UIButtons events
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
     DVSUser *localUser = [DVSUser localUser];
+    
+    localUser.dataSource = self.userDataSource;
     localUser.email = [self getValueForTitle:DVSProfileEditorEmailTitle];
     
     [localUser updateWithSuccess:^{

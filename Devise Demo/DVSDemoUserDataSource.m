@@ -11,6 +11,7 @@
 #import "DVSUser+Demo.h"
 
 static NSString * const DVSUserPasswordParameter = @"password";
+static NSString * const DVSUserEmailParameter = @"email";
 
 @implementation DVSDemoUserDataSource
 
@@ -22,26 +23,61 @@ static NSString * const DVSUserPasswordParameter = @"password";
 
 - (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
     switch (action) {
+        case DVSActionLogin:
+            return [self additionalValidationRulesForLogin];
+            
         case DVSActionRegistration:
             return [self additionalValidationRulesForRegistration];
             
         case DVSActionChangePassword:
             return [self additionalValidationRulesForPasswordChange];
         
-        default:
-            return nil;
+        case DVSActionUpdate:
+        case DVSActionRemindPassword:
+            return [self additionalValidationRulesForUpdateAndRemindPassword];
     }
 }
 
+#pragma mark - Validators for specific actions
+
+- (NSArray *)additionalValidationRulesForLogin {
+    return @[[self defaultDemoValidatorForEmail],
+             DVSValidate(DVSUserPasswordParameter).localizedPropertyName(@"Password")
+             .minLength(5).tooShort(@"is wrong.")];
+}
+
 - (NSArray *)additionalValidationRulesForRegistration {
-    return @[DVSValidate(DVSDemoUserUsernameParameter).required().minLength(5).tooShort(@"is too short."),
-             DVSValidate(DVSDemoUserFirstNameParameter).required().minLength(1),
-             DVSValidate(DVSDemoUserLastNameParameter).required().minLength(1),
-             DVSValidate(DVSUserPasswordParameter).minLength(5)];
+    return @[[self defaultDemoValidatorForEmail],
+             [self defaultDemoValidatorForPassword],
+             DVSValidate(DVSDemoUserUsernameParameter).localizedPropertyName(@"Username")
+                                                      .required()
+                                                      .minLength(5).tooShort(@"should has at least 5 signs."),
+             DVSValidate(DVSDemoUserFirstNameParameter).localizedPropertyName(@"First name")
+                                                       .required()
+                                                       .minLength(1).tooShort(@"can't be empty."),
+             DVSValidate(DVSDemoUserLastNameParameter).localizedPropertyName(@"Last name")
+                                                      .required()
+                                                      .minLength(1).tooShort(@"can't be empty.")
+             ];
+}
+
+- (NSArray *)additionalValidationRulesForUpdateAndRemindPassword {
+    return @[[self defaultDemoValidatorForEmail]];
 }
 
 - (NSArray *)additionalValidationRulesForPasswordChange {
-    return @[DVSValidate(DVSUserPasswordParameter).minLength(5)];
+    return @[DVSValidate(DVSUserPasswordParameter).localizedPropertyName(@"New password").minLength(5).tooShort(@"should has at least 5 signs.")];
+}
+
+#pragma mark - Default demo validators
+
+- (DVSPropertyValidator *)defaultDemoValidatorForEmail {
+    return DVSValidate(DVSUserEmailParameter).localizedPropertyName(@"E-mail");
+}
+
+- (DVSPropertyValidator *)defaultDemoValidatorForPassword {
+    return DVSValidate(DVSUserPasswordParameter).localizedPropertyName(@"Password")
+                                                .minLength(5).tooShort(@"should has at least 5 signs.");
 }
 
 @end
