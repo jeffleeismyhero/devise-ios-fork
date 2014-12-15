@@ -21,7 +21,7 @@
 + (void)registerUser:(DVSUser *)user withSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
- *  user profile updating.
+ *  User profile updating.
  *
  *  @param user    The User which is associated with account you want to update.
  *  @param success The success block executed when the request finishes with success.

@@ -21,7 +21,7 @@
     // Override point for customization after application launch.
     
     DVSWorkInProgress("For final version we will need better handling of url configuration.");
-    NSString *urlString = @"";
+    NSString *urlString = @"https://devise-ios-rails-example.herokuapp.com";
     
     [[DVSConfiguration sharedConfiguration] setServerURL:[NSURL URLWithString:urlString]];
     [[DVSConfiguration sharedConfiguration] setLogLevel:DVSLogLevelWarning];
