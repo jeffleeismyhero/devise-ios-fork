@@ -147,7 +147,16 @@ NSLog(@"%@", error.localizedDescription);
 Simple as that! For more conditions and messages take a look into `DVSPropertyValidator.h`
 
 ## Demo
-Implements full account [lifecycle](#Features). Contains also an example with simple `DVSUser` subclassing and validation.
+Implements full account [lifecycle](#Features). Contains also an example with simple `DVSUser` subclassing and validation. To run demo please follow the instructions below:
+```ruby
+git clone --recursive git@github.com:netguru/devise-ios.git
+pod install
+```
+or if you already cloned project without `--recursive`:
+```ruby
+git submodule update --init --recursive
+pod install
+```
 
 ## License
 **devise-ios** is available under the [MIT license](https://github.com/netguru/devise-ios/blob/master/LICENSE.md).
