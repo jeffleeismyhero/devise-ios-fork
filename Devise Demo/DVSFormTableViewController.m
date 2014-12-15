@@ -9,10 +9,9 @@
 #import "DVSFormTableViewController.h"
 
 #import "DVSDemoFormTableViewCell.h"
+#import "DVSFormTableModel.h"
 
 static NSString * const DVSDefaultCellId = @"defaultCell";
-static NSString * const DVSTableModelValueKey = @"value";
-static NSString * const DVSTableModelSecuredKey = @"secured";
 
 @interface DVSFormTableViewController () <DVSDemoFormTableViewCellDelegate>
 
@@ -44,12 +43,12 @@ static NSString * const DVSTableModelSecuredKey = @"secured";
 
 - (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured {
     [self.dataSourceTitlesArray addObject:title];
-    self.dataSourceValuesDictionary[title] = @{ DVSTableModelValueKey: @"",
-                                                DVSTableModelSecuredKey: [NSNumber numberWithBool:secured] };
+    self.dataSourceValuesDictionary[title] = [[DVSFormTableModel alloc] initWithValue:@"" secured:secured];
 }
 
 - (NSString *)getValueForTitle:(NSString *)title {
-    return self.dataSourceValuesDictionary[title][DVSTableModelValueKey];
+    DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[title];
+    return model.value;
 }
 
 #pragma mark - Table view data source
@@ -62,9 +61,12 @@ static NSString * const DVSTableModelSecuredKey = @"secured";
     DVSDemoFormTableViewCell *cell = (DVSDemoFormTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
     
     NSString *title = self.dataSourceTitlesArray[indexPath.item];
+    DVSFormTableModel *model = self.dataSourceValuesDictionary[title];
+    
     cell.titleLabel.text = title;
     cell.delegate = self;
-    cell.valueTextField.secureTextEntry = ((NSNumber *)self.dataSourceValuesDictionary[title][DVSTableModelSecuredKey]).boolValue;
+    cell.valueTextField.text = model.value;
+    cell.valueTextField.secureTextEntry = model.secured;
     
     return cell;
 }
@@ -72,9 +74,9 @@ static NSString * const DVSTableModelSecuredKey = @"secured";
 #pragma mark - DVSDemoFormTableViewCellDelegate
 
 - (void)formTableViewCell:(DVSDemoFormTableViewCell *)cell changedValue:(NSString *)string {
-    NSNumber *isSecured = self.dataSourceValuesDictionary[cell.titleLabel.text][DVSTableModelSecuredKey];
-    self.dataSourceValuesDictionary[cell.titleLabel.text] = @{ DVSTableModelValueKey: string,
-                                                               DVSTableModelSecuredKey: isSecured };
+    DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[cell.titleLabel.text];
+    self.dataSourceValuesDictionary[cell.titleLabel.text] = [[DVSFormTableModel alloc] initWithValue:string
+                                                                                             secured:model.secured];
 }
 
 @end
