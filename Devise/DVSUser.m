@@ -165,8 +165,8 @@
         
         NSMutableArray *array = [rules mutableCopy];
         
-        if (_dataSource && [_dataSource respondsToSelector:@selector(additionalValidationRulesForAction:)]) {
-            [array addObjectsFromArray:[_dataSource additionalValidationRulesForAction:action]];
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalValidationRulesForAction:)]) {
+            [array addObjectsFromArray:[self.dataSource additionalValidationRulesForAction:action]];
         }
         return [array copy];
     }];
