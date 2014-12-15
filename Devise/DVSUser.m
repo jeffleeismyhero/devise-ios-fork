@@ -8,6 +8,7 @@
 #import "DVSUser.h"
 #import "DVSUser+Persistence.h"
 #import "DVSValidator.h"
+#import "DVSMacros.h"
 
 @interface DVSUser ()
 
@@ -163,7 +164,6 @@
     NSError *error;
     BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
         
-        
         if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalValidationRulesForAction:)]) {
             NSArray *array = [self.dataSource additionalValidationRulesForAction:action];
             return [self mergeDefaultRules:rules withCustomRules:array];
@@ -174,7 +174,7 @@
 }
 
 - (NSArray *)mergeDefaultRules:(NSArray *)defaultRules withCustomRules:(NSArray *)customRules {
-    //Quick fix -- has to be improved
+    DVSWorkInProgress("Temporary quick fix -- has to be improved");
     NSMutableArray *array = [defaultRules mutableCopy];
     [array addObjectsFromArray:customRules];
     
@@ -190,6 +190,5 @@
     }
     return array;
 }
-                                         
 
 @end

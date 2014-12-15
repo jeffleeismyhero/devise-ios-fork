@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "Devise.h"
-#import "DVSMacros.h"
 
 @interface AppDelegate ()
 
