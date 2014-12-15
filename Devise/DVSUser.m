@@ -35,7 +35,7 @@
 }
 
 + (instancetype)user {
-    return [[[self class] alloc] init];
+    return [[self alloc] init];
 }
 
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
