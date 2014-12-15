@@ -10,6 +10,7 @@
 #import <Devise/Devise.h>
 
 #import "DVSMacros.h"
+#import "DVSDemoUser.h"
 #import "DVSUser+Demo.h"
 #import "DVSDemoUserDataSource.h"
 #import "UIAlertView+Devise.h"
@@ -47,7 +48,7 @@ static NSString * const DVSRegistrationPhoneTitle = @"Phone";
 #pragma mark - UIButtons events
 
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender {
-    DVSUser *newUser = [DVSUser user];
+    DVSDemoUser *newUser = [[DVSDemoUser alloc] init];
     
     newUser.dataSource = self.userDataSource;
     
@@ -56,7 +57,10 @@ static NSString * const DVSRegistrationPhoneTitle = @"Phone";
     newUser.email = [self getValueForTitle:DVSRegistrationEmailTitle];
     newUser.firstName = [self getValueForTitle:DVSRegistrationFirstNameTitle];
     newUser.lastName = [self getValueForTitle:DVSRegistrationLastNameTitle];
-    newUser.phone = [self getValueForTitle:DVSRegistrationPhoneTitle];
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    newUser.phone = [formatter numberFromString:[self getValueForTitle:DVSRegistrationPhoneTitle]];
     
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
