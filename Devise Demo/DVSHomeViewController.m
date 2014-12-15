@@ -56,15 +56,15 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
     [[[UIAlertView alloc] initWithTitle:DVSDeleteCellTitle
                                message:@"Are you sure you want to delete your profile?"
                               delegate:self
-                     cancelButtonTitle:[self titleForCancelButton]
-                     otherButtonTitles:[self titleForConfirmButton], nil] show];
+                     cancelButtonTitle:[self titleForDeleteAlertCancelButton]
+                     otherButtonTitles:[self titleForDeleteAlertConfirmButton], nil] show];
 }
 
 #pragma merk - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:[self titleForConfirmButton]]) {
+    if ([buttonTitle isEqualToString:[self titleForDeleteAlertConfirmButton]]) {
         [[DVSUser localUser] deleteAccountWithSuccess:^{
             [self.navigationController popToRootViewControllerAnimated:YES];
         } failure:^(NSError *error) {
@@ -73,11 +73,11 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
     }
 }
 
-- (NSString *)titleForCancelButton {
+- (NSString *)titleForDeleteAlertCancelButton {
     return @"No";
 }
 
-- (NSString *)titleForConfirmButton {
+- (NSString *)titleForDeleteAlertConfirmButton {
     return @"Yes";
 }
 
