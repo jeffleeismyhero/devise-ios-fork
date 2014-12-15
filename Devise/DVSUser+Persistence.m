@@ -10,6 +10,8 @@
 #import "DVSUser+Persistence.h"
 #import "NSObject+Devise.h"
 
+NSString * const DVSKeychainKey = @"co.netguru.lib.devise.key";
+
 @interface DVSUser ()
 
 @property (strong, nonatomic, readwrite) NSString *identifier;
@@ -31,16 +33,14 @@ static DVSUser *_dvs_localUser = nil;
 + (void)setLocalUser:(DVSUser *)user {
     [self removeLocalUser];
     NSString *keychainService = [DVSConfiguration sharedConfiguration].keychainServiceName;
-    NSString *keychainKey = NSStringFromClass(self);
     NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:user];
-    [UICKeyChainStore setData:archivedData forKey:keychainKey service:keychainService];
+    [UICKeyChainStore setData:archivedData forKey:DVSKeychainKey service:keychainService];
     _dvs_localUser = user;
 }
 
 + (void)removeLocalUser {
     NSString *keychainService = [DVSConfiguration sharedConfiguration].keychainServiceName;
-    NSString *keychainKey = NSStringFromClass(self);
-    [UICKeyChainStore removeItemForKey:keychainKey service:keychainService];
+    [UICKeyChainStore removeItemForKey:DVSKeychainKey service:keychainService];
     _dvs_localUser = nil;
 }
 
@@ -50,8 +50,7 @@ static DVSUser *_dvs_localUser = nil;
 
 + (DVSUser *)persistentUser {
     NSString *keychainService = [DVSConfiguration sharedConfiguration].keychainServiceName;
-    NSString *keychainKey = NSStringFromClass(self);
-    NSData *archivedData = [UICKeyChainStore dataForKey:keychainKey service:keychainService];
+    NSData *archivedData = [UICKeyChainStore dataForKey:DVSKeychainKey service:keychainService];
     return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
 }
 
