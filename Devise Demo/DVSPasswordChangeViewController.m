@@ -18,7 +18,7 @@ static NSString * const DVSCurrentPasswordTitle = @"Current password";
 static NSString * const DVSNewPasswordTitle = @"New password";
 static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
 
-@interface DVSPasswordChangeViewController ()
+@interface DVSPasswordChangeViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
 
@@ -62,11 +62,28 @@ static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
     
     localUser.password = newPassword;
     [localUser changePasswordWithSuccess:^{
-        [self.navigationController popViewControllerAnimated:YES];
+        [[[UIAlertView alloc] initWithTitle:@"Password changed"
+                                    message:@"Password was changed. \nNow you can login with new password."
+                                   delegate:self
+                          cancelButtonTitle:[self titleForPasswordChangedAlertCancelButton]
+                          otherButtonTitles:nil] show];
     } failure:^(NSError *error) {
         localUser.password = currentPassword;
         [[UIAlertView dvs_alertViewForError:error] show];
     }];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:[self titleForPasswordChangedAlertCancelButton]]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (NSString *)titleForPasswordChangedAlertCancelButton {
+    return @"Close";
 }
 
 @end
