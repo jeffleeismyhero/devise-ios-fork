@@ -40,7 +40,7 @@ describe(@"DVSPropertyValidator", ^{
     });
     
     it(@"should have exactly 19 messages", ^{
-        [[propertyValidator.errorDescriptions should] haveCountOf:19];
+        [[propertyValidator.descriptions should] haveCountOf:19];
     });
     
     it(@"should save custom message using property accessors", ^{
@@ -99,9 +99,9 @@ describe(@"DVSPropertyValidator", ^{
     testMessage(@"isntLessOrEqual", DVSErrorDescriptionLessThanOrEqualTo, validator.isntLessOrEqual(KBlockMessage));
     
     it(@"all messages should be custom", ^{
-        NSArray *keys = [validator errorDescriptions].allKeys;
+        NSArray *keys = [validator descriptions].allKeys;
         for(NSString *key in keys) {
-            [[[validator errorDescriptions][key] should] equal:KBlockMessage];
+            [[[validator descriptions][key] should] equal:KBlockMessage];
         }
     });
 });
