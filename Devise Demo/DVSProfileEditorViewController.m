@@ -10,6 +10,7 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+Devise.h"
+#import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
 
 static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
@@ -35,7 +36,7 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
 #pragma mark - UIButtons events
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
-    DVSUser *localUser = [DVSUser localUser];
+    DVSDemoUser *localUser = [DVSDemoUser localUser];
     
     localUser.dataSource = self.userDataSource;
     localUser.email = [self getValueForTitle:DVSProfileEditorEmailTitle];

@@ -9,6 +9,7 @@
 #import "DVSPasswordChangeViewController.h"
 #import <Devise/Devise.h>
 
+#import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
 #import "NSError+Devise.h"
 #import "UIAlertView+Devise.h"
@@ -40,7 +41,7 @@ static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
 #pragma mark - UIButtons events
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
-    DVSUser *localUser = [DVSUser localUser];
+    DVSDemoUser *localUser = [DVSDemoUser localUser];
     
     localUser.dataSource = self.userDataSource;
     

@@ -10,6 +10,7 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+Devise.h"
+#import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
 
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
@@ -40,7 +41,7 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 }
 
 - (IBAction)logInTouched:(UIBarButtonItem *)sender {
-    DVSUser *user = [DVSUser user];
+    DVSDemoUser *user = [[DVSDemoUser alloc] init];
     
     user.dataSource = self.userDataSource;
     

@@ -10,6 +10,7 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+Devise.h"
+#import "DVSDemoUser.h"
 
 @interface DVSPasswordReminderViewController ()
 
@@ -20,7 +21,7 @@
 @implementation DVSPasswordReminderViewController
 
 - (IBAction)sendButtonTouched:(UIBarButtonItem *)sender {
-    [DVSUser remindPasswordWithEmail:self.emailTextField.text success:^{
+    [DVSDemoUser remindPasswordWithEmail:self.emailTextField.text success:^{
          [self.navigationController popViewControllerAnimated:YES];
      } failure:^(NSError *error) {
          [[UIAlertView dvs_alertViewForError:error] show];
