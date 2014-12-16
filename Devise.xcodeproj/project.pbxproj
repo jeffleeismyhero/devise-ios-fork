@@ -17,13 +17,18 @@
 		21B1AAC11A3EE69800578DF7 /* DVSFormTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAC01A3EE69800578DF7 /* DVSFormTableModel.m */; };
 		21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */; };
 		21F6909F1A374B5D00DE2ABA /* UIAlertView+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909E1A374B5D00DE2ABA /* UIAlertView+Devise.m */; };
+		3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE5A21A40A40400A068E2 /* DVSTestConfiguration.m */; };
+		3A4EE5A71A40AC9E00A068E2 /* DVSTestUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE5A61A40AC9D00A068E2 /* DVSTestUser.m */; };
+		3A4EE5AB1A40B89100A068E2 /* DVSHTTPClientUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */; };
+		3A4EE5AC1A40C93500A068E2 /* DVSHTTPClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */; };
+		3A4EE5AD1A40C95F00A068E2 /* DVSValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381F21A287749006875D4 /* DVSValidatorSpec.m */; };
+		3A4EE5AE1A40C96200A068E2 /* DVSPropertyValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */; };
+		3A4EE5AF1A40C96500A068E2 /* DVSConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1E1A2509AF00FE04D1 /* DVSConfigurationSpec.m */; };
 		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */; };
 		3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */; };
 		3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */; };
-		3A93A1511A2E5119006827D3 /* DVSHTTPClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */; };
 		3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E1A1A25031300FE04D1 /* DVSConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1B1A25031300FE04D1 /* DVSConfiguration.m */; };
-		3AA22E1F1A2509AF00FE04D1 /* DVSConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1E1A2509AF00FE04D1 /* DVSConfigurationSpec.m */; };
 		3AA22E261A25112800FE04D1 /* NSError+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E241A25112800FE04D1 /* NSError+Devise.h */; };
 		3AA22E271A25112800FE04D1 /* NSError+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E251A25112800FE04D1 /* NSError+Devise.m */; };
 		3AA22E2A1A2514DD00FE04D1 /* NSString+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E281A2514DD00FE04D1 /* NSString+Devise.h */; };
@@ -57,7 +62,6 @@
 		3AD4C7141A24FA2A00F0AE67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */; };
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
-		5E64C17A1A30603E00A41A88 /* DVSPropertyValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */; };
 		5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */; };
 		5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise.h */; };
 		5E7A9A351A3F114F0077DC43 /* NSObject+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise.m */; };
@@ -73,7 +77,6 @@
 		5EF381DD1A279998006875D4 /* NSDate+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381DB1A279998006875D4 /* NSDate+Devise.m */; };
 		5EF381F01A287458006875D4 /* NSNumber+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381EE1A287458006875D4 /* NSNumber+Devise.h */; };
 		5EF381F11A287458006875D4 /* NSNumber+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381EF1A287458006875D4 /* NSNumber+Devise.m */; };
-		5EF381F31A287749006875D4 /* DVSValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381F21A287749006875D4 /* DVSValidatorSpec.m */; };
 		5EF5E6DA1A2667D80049BEA6 /* NSArray+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF5E6D81A2667D80049BEA6 /* NSArray+Devise.h */; };
 		5EF5E6DB1A2667D80049BEA6 /* NSArray+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF5E6D91A2667D80049BEA6 /* NSArray+Devise.m */; };
 		7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
@@ -131,6 +134,11 @@
 		21F6909D1A374B5D00DE2ABA /* UIAlertView+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Devise.h"; sourceTree = "<group>"; };
 		21F6909E1A374B5D00DE2ABA /* UIAlertView+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Devise.m"; sourceTree = "<group>"; };
 		3A49C2711A25D60D0041406B /* DVSUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserSpec.m; sourceTree = "<group>"; };
+		3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSHTTPClientUserSpec.m; sourceTree = "<group>"; };
+		3A4EE5A11A40A40400A068E2 /* DVSTestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestConfiguration.h; sourceTree = "<group>"; };
+		3A4EE5A21A40A40400A068E2 /* DVSTestConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestConfiguration.m; sourceTree = "<group>"; };
+		3A4EE5A51A40AC9D00A068E2 /* DVSTestUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUser.h; sourceTree = "<group>"; };
+		3A4EE5A61A40AC9D00A068E2 /* DVSTestUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUser.m; sourceTree = "<group>"; };
 		3A6E03FC1A263866006ECA3E /* OHHTTPStubs+DeviseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OHHTTPStubs+DeviseTests.h"; sourceTree = "<group>"; };
 		3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OHHTTPStubs+DeviseTests.m"; sourceTree = "<group>"; };
 		3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSHTTPClient.h; sourceTree = "<group>"; };
@@ -319,11 +327,31 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		3A6E03F31A263588006ECA3E /* Additions */ = {
+		3A4EE5A81A40ACA700A068E2 /* Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3A4EE5A11A40A40400A068E2 /* DVSTestConfiguration.h */,
+				3A4EE5A21A40A40400A068E2 /* DVSTestConfiguration.m */,
+				3A4EE5A51A40AC9D00A068E2 /* DVSTestUser.h */,
+				3A4EE5A61A40AC9D00A068E2 /* DVSTestUser.m */,
+			);
+			name = "Test Classes";
+			sourceTree = "<group>";
+		};
+		3A4EE5A91A40ACB600A068E2 /* Test Stubs */ = {
 			isa = PBXGroup;
 			children = (
 				3A6E03FC1A263866006ECA3E /* OHHTTPStubs+DeviseTests.h */,
 				3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */,
+			);
+			name = "Test Stubs";
+			sourceTree = "<group>";
+		};
+		3A6E03F31A263588006ECA3E /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3A4EE5A91A40ACB600A068E2 /* Test Stubs */,
+				3A4EE5A81A40ACA700A068E2 /* Test Classes */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -474,6 +502,7 @@
 				3A6E03F31A263588006ECA3E /* Additions */,
 				3AA22E1E1A2509AF00FE04D1 /* DVSConfigurationSpec.m */,
 				3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */,
+				3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */,
 				3A49C2711A25D60D0041406B /* DVSUserSpec.m */,
 				5EF381F21A287749006875D4 /* DVSValidatorSpec.m */,
 				5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */,
@@ -958,11 +987,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AA22E1F1A2509AF00FE04D1 /* DVSConfigurationSpec.m in Sources */,
+				3A4EE5AB1A40B89100A068E2 /* DVSHTTPClientUserSpec.m in Sources */,
+				3A4EE5AF1A40C96500A068E2 /* DVSConfigurationSpec.m in Sources */,
+				3A4EE5AC1A40C93500A068E2 /* DVSHTTPClientSpec.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */,
-				5E64C17A1A30603E00A41A88 /* DVSPropertyValidatorSpec.m in Sources */,
-				5EF381F31A287749006875D4 /* DVSValidatorSpec.m in Sources */,
-				3A93A1511A2E5119006827D3 /* DVSHTTPClientSpec.m in Sources */,
+				3A4EE5AD1A40C95F00A068E2 /* DVSValidatorSpec.m in Sources */,
+				3A4EE5A71A40AC9E00A068E2 /* DVSTestUser.m in Sources */,
+				3A4EE5AE1A40C96200A068E2 /* DVSPropertyValidatorSpec.m in Sources */,
+				3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
