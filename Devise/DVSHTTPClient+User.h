@@ -11,6 +11,39 @@
 
 @class DVSUser;
 
+/**
+ *  The default register action path.
+ */
+extern NSString * const DVSHTTPClientDefaultRegisterPath;
+
+/**
+ *  The default log in action path.
+ */
+extern NSString * const DVSHTTPClientDefaultLogInPath;
+
+/**
+ *  The default update action path.
+ */
+extern NSString * const DVSHTTPClientDefaultUpdatePath;
+
+/**
+ *  The default delete action path.
+ */
+extern NSString * const DVSHTTPClientDefaultDeletePath;
+
+/**
+ *  The default change password action path.
+ */
+extern NSString * const DVSHTTPClientDefaultChangePasswordPath;
+
+/**
+ *  The default remind password action path.
+ */
+extern NSString * const DVSHTTPClientDefaultRemindPasswordPath;
+
+/**
+ *  This category provides shorthand methods for performing requests related to the user resource.
+ */
 @interface DVSHTTPClient (User)
 
 /**
