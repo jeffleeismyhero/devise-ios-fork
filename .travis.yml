@@ -13,6 +13,8 @@ env:
   - secure: P+AQUGqg6qijaQY9wLdPMboVlO+VAht4eD00bLkDoenp/w/hRoMFayWmn9pNYEQDQpB+JTSupAb4zRlMvcf7WW7ecGWMQcrpzxh58drPvmoFFpcEycSdfluY57aaeqvhr1x/a5bsE0F4NxckwJA7uAw/bWrS8ghzSqRN1PXcwqU=
 before_install:
 - bundle install --without development --deployment --jobs=3 --retry=3
+- chmod +x scripts/travis/add-key.sh
+- chmod +x scripts/travis/remove-key.sh
 install:
 - bundle exec rake install
 before_script:
