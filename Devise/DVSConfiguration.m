@@ -57,12 +57,18 @@
 #pragma mark - Property accessors
 
 - (void)setServerURL:(NSURL *)serverURL {
-    if (_serverURL != serverURL) {
-        if (![serverURL dvs_hasValidSyntax]) {
-            [self logMessage:[NSString stringWithFormat:@"URL \"%@\" has invalid syntax", serverURL]];
-        }
-        _serverURL = serverURL;
+    if (_serverURL == serverURL) return;
+    if (![serverURL dvs_hasValidSyntax]) {
+        [self logMessage:[NSString stringWithFormat:@"URL \"%@\" has invalid syntax", serverURL]];
     }
+    _serverURL = [serverURL copy];
+}
+
+- (NSURL *)baseURL {
+    if (self.serverURL == nil) return nil;
+    NSString *versionPath = [NSString stringWithFormat:@"v%lu", (unsigned long)self.apiVersion];
+    NSString *resourcePath = self.resourceName;
+    return [[self.serverURL URLByAppendingPathComponent:versionPath] URLByAppendingPathComponent:resourcePath];
 }
 
 - (void)setShowsNetworkActivityIndicator:(BOOL)shows {

@@ -38,6 +38,11 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (copy, nonatomic) NSURL *serverURL;
 
 /**
+ *  The base URL of the server backend, which includes api and resource paths.
+ */
+@property (strong, nonatomic, readonly) NSURL *baseURL;
+
+/**
  *  The keychain service name for local users persistence.
  */
 @property (copy, nonatomic) NSString *keychainServiceName;

@@ -98,7 +98,9 @@ describe(@"DVSHTTPClient", ^{
         context(@"with a server url", ^{
 
             beforeEach(^{
-                configuration.serverURL = [NSURL URLWithString:@"http://httpbin.org"];
+                NSURL *baseURL = [NSURL URLWithString:@"http://httpbin.org"];
+                configuration.serverURL = baseURL;
+                [configuration stub:@selector(baseURL) andReturn:baseURL];
             });
 
             specify(^{

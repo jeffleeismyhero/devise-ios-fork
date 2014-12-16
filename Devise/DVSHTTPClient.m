@@ -60,7 +60,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 - (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        NSAssert(self.configuration.serverURL != nil, @"Server base URL cannot be nil.");
+        NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
         NSString *actualPath = [self absoluteURLStringForPath:path];
         [self.sessionManager GET:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             if (retry != NULL) retry(responseObject, nil);
@@ -72,7 +72,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 - (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        NSAssert(self.configuration.serverURL != nil, @"Server base URL cannot be nil.");
+        NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
         NSString *actualPath = [self absoluteURLStringForPath:path];
         [self.sessionManager POST:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             if (retry != NULL) retry(responseObject, nil);
@@ -84,7 +84,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 - (void)PUT:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        NSAssert(self.configuration.serverURL != nil, @"Server base URL cannot be nil.");
+        NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
         NSString *actualPath = [self absoluteURLStringForPath:path];
         [self.sessionManager PUT:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             if (retry != NULL) retry(responseObject, nil);
@@ -96,7 +96,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 - (void)DELETE:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        NSAssert(self.configuration.serverURL != nil, @"Server base URL cannot be nil.");
+        NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
         NSString *actualPath = [self absoluteURLStringForPath:path];
         [self.sessionManager DELETE:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             if (retry != NULL) retry(responseObject, nil);
@@ -121,10 +121,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 #pragma mark - Helpers
 
 - (NSString *)absoluteURLStringForPath:(NSString *)path {
-    NSString *versionPath = [NSString stringWithFormat:@"v%lu", (unsigned long)self.configuration.apiVersion];
-    NSString *resourcePath = self.configuration.resourceName;
-    NSString *baseURLString = self.configuration.serverURL.absoluteString;
-    return [[baseURLString stringByAppendingPathComponent:versionPath] stringByAppendingPathComponent:resourcePath];
+    return [self.configuration.baseURL URLByAppendingPathComponent:path].absoluteString;
 }
 
 - (void)executeRetriableBlock:(DVSHTTPClientRetriableBlock)retriable completion:(DVSHTTPClientCompletionBlock)completion {
