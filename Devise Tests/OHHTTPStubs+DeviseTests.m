@@ -4,8 +4,10 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "OHHTTPStubs+DeviseTests.h"
 #import <OHHTTPStubs/OHHTTPStubsResponse+JSON.h>
+
+#import "DVSHTTPClient+User.h"
+#import "OHHTTPStubs+DeviseTests.h"
 
 NSString * const DVSHTTPStubsAllowedLoginCredentialsKey = @"DVSHTTPStubsAllowedLoginCredentialsKey";
 NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey";
@@ -13,25 +15,99 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
 
 @implementation OHHTTPStubs (DeviseTests)
 
-#pragma mark Specific stubs
+#pragma mark - Specific stubs
 
-+ (id<OHHTTPStubsDescriptor>)dvs_stubLoginRequestsWithOptions:(NSDictionary *)options {
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserRegisterRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultRegisterPath;
     options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
         DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ],
     }];
-    return [self dvs_stubRequestsForPath:@"login" options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        NSDictionary *postData = [self dvs_postJSONObjectForRequest:request];
-        if (options[DVSHTTPStubsAllowedLoginCredentialsKey] != nil) {
-            NSDictionary *allowedCredentials = options[DVSHTTPStubsAllowedLoginCredentialsKey];
-            if (![allowedCredentials[postData[@"email"]] isEqualToString:postData[@"password"]]) {
-                return [self dvs_responseWithJSON:@{ @"error": @{} } statusCode:401];
-            }
-        }
-        return [self dvs_responseWithJSON:@{ @"user": @{} } statusCode:200];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [self dvs_responseWithJSON:@{ @"user": @{
+            @"id": @(1),
+            @"email": @"john.appleseed@apple.com",
+            @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
+            @"createdAt": @"1970-01-01T00:00:00.000Z",
+            @"updatedAt": @"1970-01-01T00:00:00.000Z",
+        } } statusCode:200];
     }];
 }
 
-#pragma mark General stubs
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserLogInRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultLogInPath;
+    options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
+        DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ],
+    }];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [self dvs_responseWithJSON:@{ @"user": @{
+            @"id": @(1),
+            @"email": @"john.appleseed@apple.com",
+            @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
+            @"createdAt": @"1970-01-01T00:00:00.000Z",
+            @"updatedAt": @"1970-01-01T00:00:00.000Z",
+        } } statusCode:200];
+    }];
+}
+
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserUpdateRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultUpdatePath;
+    options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
+        DVSHTTPStubsAllowedMethodsKey: @[ @"PUT" ],
+    }];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [self dvs_responseWithJSON:@{ @"user": @{
+            @"id": @(1),
+            @"email": @"john.appleseed@apple.com",
+            @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
+            @"createdAt": @"1970-01-01T00:00:00.000Z",
+            @"updatedAt": @"1970-01-01T00:00:00.000Z",
+        } } statusCode:200];
+    }];
+}
+
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserDeleteRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultDeletePath;
+    options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
+        DVSHTTPStubsAllowedMethodsKey: @[ @"DELETE" ],
+    }];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [self dvs_responseWithJSON:@{ @"user": @{
+            @"id": @(1),
+            @"email": @"john.appleseed@apple.com",
+            @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
+            @"createdAt": @"1970-01-01T00:00:00.000Z",
+            @"updatedAt": @"1970-01-01T00:00:00.000Z",
+        } } statusCode:200];
+    }];
+}
+
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserChangePasswordRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultChangePasswordPath;
+    options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
+        DVSHTTPStubsAllowedMethodsKey: @[ @"PUT" ],
+    }];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [self dvs_responseWithJSON:@{ @"user": @{
+            @"id": @(1),
+            @"email": @"john.appleseed@apple.com",
+            @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
+            @"createdAt": @"1970-01-01T00:00:00.000Z",
+            @"updatedAt": @"1970-01-01T00:00:00.000Z",
+        } } statusCode:200];
+    }];
+}
+
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserRemindPasswordRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultRemindPasswordPath;
+    options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
+        DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ],
+    }];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithData:nil statusCode:204 headers:nil];
+    }];
+}
+
+#pragma mark - General stubs
 
 + (id<OHHTTPStubsDescriptor>)dvs_stubRequestsForPath:(NSString *)path options:(NSDictionary *)options response:(OHHTTPStubsResponseBlock)response {
     if (options[DVSHTTPStubsNumberOfFailuresKey] != nil) {
@@ -39,7 +115,7 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
         [self dvs_setRemainingNumberOfFailures:numberOfFailures forPath:path];
     }
     return [self stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        if (![request.URL.pathComponents[1] isEqualToString:path]) {
+        if (![[request.URL.path substringFromIndex:1] isEqualToString:path]) {
             return NO;
         }
         if (options[DVSHTTPStubsAllowedMethodsKey]) {
@@ -53,12 +129,12 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
     }];
 }
 
-#pragma mark Failures management
+#pragma mark - Failures management
 
 + (void)dvs_resetRemainingNumberOfFailuresForPath:(NSString *)path {
     NSArray *requests = [self.dvs_remainingNumberOfFailuresRegistry.allKeys copy];
     for (NSURLRequest *request in requests) {
-        if ([request.URL.pathComponents[1] isEqualToString:path]) {
+        if ([[request.URL.path substringFromIndex:1] isEqualToString:path]) {
             [self.dvs_remainingNumberOfFailuresRegistry removeObjectForKey:request];
         }
     }
@@ -97,24 +173,20 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
     }
 }
 
-#pragma mark Convenience methods
+#pragma mark - Convenience methods
 
 + (OHHTTPStubsResponse *)dvs_responseWithJSON:(id)jsonObject statusCode:(int)statusCode {
     return [OHHTTPStubsResponse responseWithJSONObject:jsonObject statusCode:statusCode headers:nil];
 }
 
 + (NSDictionary *)dvs_optionsDictionaryForReceivedOptions:(NSDictionary *)options defaultOptions:(NSDictionary *)defaults {
-    NSMutableDictionary *mutableOptions = [options mutableCopy];
+    NSMutableDictionary *mutableOptions = (options != nil) ? [options mutableCopy] : [NSMutableDictionary dictionary];
     [defaults enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if (mutableOptions[key] == nil) {
             mutableOptions[key] = obj;
         }
     }];
     return [mutableOptions copy];
-}
-
-+ (id)dvs_postJSONObjectForRequest:(NSURLRequest *)request {
-    return [NSJSONSerialization JSONObjectWithData:request.HTTPBody options:0 error:nil];
 }
 
 @end
