@@ -10,6 +10,8 @@
 
 @implementation NSError (Devise)
 
+NSString * const DVSDemoErrorDomain = @"co.netguru.lib.devise.demo.error";
+
 typedef NS_ENUM(NSInteger, DVSErrorCode) {
     DVSErrorPasswordConfirmNotMatch = 101,
     DVSErrorNewPasswordNotMatch = 102
@@ -18,7 +20,7 @@ typedef NS_ENUM(NSInteger, DVSErrorCode) {
 + (NSError *)dvs_passwordConfirmError {
     NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"Password confirm and current password do not match.", nil) };
     
-    return [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+    return [NSError errorWithDomain:DVSDemoErrorDomain
                                code:DVSErrorPasswordConfirmNotMatch
                            userInfo:userInfo];
 }
@@ -26,7 +28,7 @@ typedef NS_ENUM(NSInteger, DVSErrorCode) {
 + (NSError *)dvs_newPasswordConfirmError {
     NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"New password and its confirm do not match.", nil) };
     
-    return [NSError errorWithDomain:[[NSBundle mainBundle] bundleIdentifier]
+    return [NSError errorWithDomain:DVSDemoErrorDomain
                                code:DVSErrorNewPasswordNotMatch
                            userInfo:userInfo];
 }
