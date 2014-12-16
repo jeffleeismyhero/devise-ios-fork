@@ -142,7 +142,7 @@ Moreover `registrationUsername` doesn't sound very well for user, so it should b
 When user will provide string `foo` for `registrationUsername` property, **devise-ios** will return an `NSError` with localized description:
 ```objective-c
 NSLog(@"%@", error.localizedDescription);
->>> Username should has at least 4 signs.
+>>> Username should has at least 4 characters.
 ```
 Simple as that! For more conditions and messages take a look into `DVSPropertyValidator.h`
 

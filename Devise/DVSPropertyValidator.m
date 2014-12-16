@@ -587,9 +587,9 @@ NSString * const dvs_attribute = @"{attribute}";
     [self setMessage:@"cannot be nil or empty" forErrorDescription:DVSErrorDescriptionRequired];
     [self setMessage:_propertyName forErrorDescription:DVSErrorDescriptionLocalizedPropertyName];
     // NSString:
-    [self setMessage:@"is too short. Should be min {attribute} signs." forErrorDescription:DVSErrorDescriptionTooShort];
-    [self setMessage:@"is too long. Should be max {attribute} signs." forErrorDescription:DVSErrorDescriptionTooLong];
-    [self setMessage:@"hasn't exact length. Should has {attribute} signs." forErrorDescription:DVSErrorDescriptionExactLength];
+    [self setMessage:@"is too short. Should be min {attribute} characters." forErrorDescription:DVSErrorDescriptionTooShort];
+    [self setMessage:@"is too long. Should be max {attribute} characters." forErrorDescription:DVSErrorDescriptionTooLong];
+    [self setMessage:@"hasn't exact length. Should has {attribute} characters." forErrorDescription:DVSErrorDescriptionExactLength];
     [self setMessage:@"has invalid email syntax" forErrorDescription:DVSErrorDescriptionSyntaxEmail];
     [self setMessage:@"isn't decimal" forErrorDescription:DVSErrorDescriptionDecimal];
     [self setMessage:@"doesn't match {attribute}" forErrorDescription:DVSErrorDescriptionDoesntMatch];

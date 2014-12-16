@@ -192,7 +192,7 @@ typedef NS_ENUM(NSInteger, DVSErrorDescription) {
 @property (nonatomic, readonly, copy) DVSPropertyValidator *(^tooLong)(NSString *message);
 
 /**
- *  User-defined error message used when the property hasn't exact length (default: hasn't exact length. Should has {attribute} signs.).
+ *  User-defined error message used when the property hasn't exact length (default: hasn't exact length. Should has {attribute} characters.).
  *  Equivalent to setting a message by [setMessage:forErrorDescription:] method with DVSErrorDescriptionExactLength.
  */
 @property (nonatomic, readonly, copy) DVSPropertyValidator *(^notExactLength)(NSString *message);
