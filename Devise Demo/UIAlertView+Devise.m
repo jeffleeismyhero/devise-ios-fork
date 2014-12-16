@@ -11,10 +11,10 @@
 @implementation UIAlertView (Devise)
 
 + (UIAlertView *)dvs_alertViewForError:(NSError *)error {
-    return [[UIAlertView alloc] initWithTitle:@"Error"
+    return [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
                                       message:error.localizedDescription
                                      delegate:nil
-                            cancelButtonTitle:@"Close"
+                            cancelButtonTitle:NSLocalizedString(@"Close", nil)
                             otherButtonTitles:nil];
 }
 
