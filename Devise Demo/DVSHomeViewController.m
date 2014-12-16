@@ -15,8 +15,6 @@ static NSString * const DVSEditProfileSegue = @"DisplayProfileEditor";
 static NSString * const DVSPasswordChangeSegue = @"DisplayPasswordChange";
 static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
-static NSString * const DVSDeleteCellTitle = @"Delete profile";
-
 @interface DVSHomeViewController () <UIAlertViewDelegate>
 
 @end
@@ -33,14 +31,14 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 #pragma mark - Setup
 
 - (void)setupDataSource {
-    [self addMenuEntryWithTitle:@"Edit profile"
-                       subtitle:@"Do you feel something in your account is bad?"
+    [self addMenuEntryWithTitle:NSLocalizedString(@"Edit profile", nil)
+                       subtitle:NSLocalizedString(@"Do you feel something in your account is bad?", nil)
                           segue:DVSEditProfileSegue];
-    [self addMenuEntryWithTitle:@"Change password"
-                       subtitle:@"Do you want to change your password?"
+    [self addMenuEntryWithTitle:NSLocalizedString(@"Change password", nil)
+                       subtitle:NSLocalizedString(@"Do you want to change your password?", nil)
                           segue:DVSPasswordChangeSegue];
-    [self addMenuEntryWithTitle:DVSDeleteCellTitle
-                       subtitle:@"Do you feel bored?"
+    [self addMenuEntryWithTitle:[self titleForDeleteAlertView]
+                       subtitle:NSLocalizedString(@"Do you feel bored?", nil)
                        selector:@selector(handleDeleteCell)];
 }
 
@@ -53,11 +51,11 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 #pragma mark - Delete action
 
 - (void)handleDeleteCell {
-    [[[UIAlertView alloc] initWithTitle:DVSDeleteCellTitle
-                               message:@"Are you sure you want to delete your profile?"
-                              delegate:self
-                     cancelButtonTitle:[self titleForDeleteAlertCancelButton]
-                     otherButtonTitles:[self titleForDeleteAlertConfirmButton], nil] show];
+    [[[UIAlertView alloc] initWithTitle:[self titleForDeleteAlertView]
+                                message:NSLocalizedString(@"Are you sure you want to delete your profile?", nil)
+                               delegate:self
+                      cancelButtonTitle:[self titleForDeleteAlertCancelButton]
+                      otherButtonTitles:[self titleForDeleteAlertConfirmButton], nil] show];
 }
 
 #pragma merk - UIAlertViewDelegate
@@ -74,11 +72,15 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 }
 
 - (NSString *)titleForDeleteAlertCancelButton {
-    return @"No";
+    return NSLocalizedString(@"No", nil);
 }
 
 - (NSString *)titleForDeleteAlertConfirmButton {
-    return @"Yes";
+    return NSLocalizedString(@"Yes", nil);
+}
+
+- (NSString *)titleForDeleteAlertView {
+    return NSLocalizedString(@"Delete profile", nil);
 }
 
 #pragma mark - UIControl events

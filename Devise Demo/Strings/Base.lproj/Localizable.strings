@@ -9,3 +9,16 @@
 /* General strings */
 "Error" = "Error";
 "Close" = "Close";
+"Yes" = "Yes";
+"No" = "No";
+
+/* Home view controller */
+"Edit profile" = "Edit profile";
+"Delete profile" = "Delete profile";
+"Change password" = "Change password";
+
+"Do you feel something in your account is bad?" = "Do you feel something in your account is bad?";
+"Do you want to change your password?" = "Do you want to change your password?";
+"Do you feel bored?" = "Do you feel bored?";
+"Are you sure you want to delete your profile?" = "Are you sure you want to delete your profile?";
+
