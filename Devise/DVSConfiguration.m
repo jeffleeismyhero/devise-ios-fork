@@ -9,14 +9,6 @@
 #import "DVSConfiguration.h"
 #import "NSURL+Devise.h"
 
-@interface DVSConfiguration ()
-
-@property (strong, nonatomic) NSMutableDictionary *mutableRoutePaths;
-
-@end
-
-#pragma mark -
-
 @implementation DVSConfiguration
 
 #pragma mark - Initialization
@@ -35,37 +27,16 @@
     if (self == nil) return nil;
     self.serverURL = serverURL;
     self.apiVersion = 1;
+    self.resourceName = @"users";
     self.keychainServiceName = @"co.netguru.lib.devise.keychain";
     self.loggingMode = DVSLoggingModeNone;
     self.numberOfRetries = 0;
     self.retryTresholdDuration = 0.0;
-    [self setPath:@"users" forRoute:DVSRouteUser];
     return self;
 }
 
 - (instancetype)init {
     return [self initWithServerURL:nil];
-}
-
-#pragma mark - Routes
-
-- (NSMutableDictionary *)mutableRoutePaths {
-    if (_mutableRoutePaths != nil) return _mutableRoutePaths;
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    _mutableRoutePaths = dictionary;
-    return _mutableRoutePaths;
-}
-
-- (NSDictionary *)routePaths {
-    return [self.mutableRoutePaths copy];
-}
-
-- (NSString *)pathForRoute:(DVSRoute)route {
-    return self.mutableRoutePaths[@(route)];
-}
-
-- (void)setPath:(NSString *)path forRoute:(DVSRoute)route {
-    self.mutableRoutePaths[@(route)] = path;
 }
 
 #pragma mark - Logging

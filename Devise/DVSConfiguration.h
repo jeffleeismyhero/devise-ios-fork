@@ -7,13 +7,6 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  Routes used in Devise framework.
- */
-typedef NS_ENUM(NSInteger, DVSRoute) {
-    DVSRouteUser = 0 /// User route (default: users).
-};
-
-/**
  *  Logging mode of the framework.
  */
 typedef NS_ENUM(NSInteger, DVSLoggingMode) {
@@ -55,6 +48,11 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (assign, nonatomic) NSUInteger apiVersion;
 
 /**
+ *  The server-side resource name (default: users).
+ */
+@property (assign, nonatomic) NSString *resourceName;
+
+/**
  *  The logging level of the framework (default: DVSLogLevelNone).
  */
 @property (assign, nonatomic) DVSLoggingMode loggingMode;
@@ -86,27 +84,6 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
  *  @return Instance of DVSConfiguration
  */
 - (instancetype)initWithServerURL:(NSURL *)serverURL;
-
-/**
- *  All registered route paths.
- */
-@property (strong, nonatomic, readonly) NSDictionary *routePaths;
-
-/**
- *  Returns a path for the given route.
- *
- *  @param route The route, for which you want to get the path.
- *  @return Path for given route
- */
-- (NSString *)pathForRoute:(DVSRoute)route;
-
-/**
- *  Sets a path for the given route.
- *
- *  @param path  The path you want to set.
- *  @param route The route, for which you want to set the path.
- */
-- (void)setPath:(NSString *)path forRoute:(DVSRoute)route;
 
 /**
  *  Logs a message with the level specified by the \c logLevel property.

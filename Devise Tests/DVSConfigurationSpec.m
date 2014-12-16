@@ -35,6 +35,10 @@ describe(@"DVSConfiguration", ^{
             [[theValue(configuration.numberOfRetries) should] equal:theValue(0)];
         });
 
+        it(@"should have a default resource name", ^{
+            [[configuration.resourceName should] equal:@"users"];
+        });
+
     });
 
     context(@"when using a shared instance", ^{
@@ -83,17 +87,7 @@ describe(@"DVSConfiguration", ^{
             
         });
     });
-
-    it(@"should have exactly one route paths", ^{
-        [[configuration.routePaths should] haveCountOf:1];
-    });
-
-    it(@"should save the route path", ^{
-        [configuration setPath:@"bar" forRoute:DVSRouteUser];
-        NSString *path = [configuration pathForRoute:DVSRouteUser];
-        [[path should] equal:@"bar"];
-    });
-
+    
 });
 
 SPEC_END
