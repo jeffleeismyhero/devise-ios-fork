@@ -21,7 +21,9 @@
 @implementation DVSPasswordReminderViewController
 
 - (IBAction)sendButtonTouched:(UIBarButtonItem *)sender {
-    [DVSDemoUser remindPasswordWithEmail:self.emailTextField.text success:^{
+    DVSDemoUser *user = [DVSDemoUser new];
+    user.email = self.emailTextField.text;
+    [user remindPasswordWithSuccess:^{
          [self.navigationController popViewControllerAnimated:YES];
      } failure:^(NSError *error) {
          [[UIAlertView dvs_alertViewForError:error] show];

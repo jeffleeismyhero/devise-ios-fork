@@ -22,7 +22,7 @@
     NSString *urlString = @"https://devise-ios-rails-example.herokuapp.com";
     
     [[DVSConfiguration sharedConfiguration] setServerURL:[NSURL URLWithString:urlString]];
-    [[DVSConfiguration sharedConfiguration] setLogLevel:DVSLogLevelWarning];
+    [[DVSConfiguration sharedConfiguration] setLoggingMode:DVSLoggingModeWarning];
     
     return YES;
 }
