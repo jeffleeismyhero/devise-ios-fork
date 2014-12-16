@@ -82,16 +82,49 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
     } completion:completion];
 }
 
+- (void)PUT:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
+    [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
+        NSAssert(self.configuration.serverURL != nil, @"Server base URL cannot be nil.");
+        NSString *actualPath = [self absoluteURLStringForPath:path];
+        [self.sessionManager PUT:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (retry != NULL) retry(responseObject, nil);
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (retry != NULL) retry(nil, error);
+        }];
+    } completion:completion];
+}
+
+- (void)DELETE:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
+    [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
+        NSAssert(self.configuration.serverURL != nil, @"Server base URL cannot be nil.");
+        NSString *actualPath = [self absoluteURLStringForPath:path];
+        [self.sessionManager DELETE:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (retry != NULL) retry(responseObject, nil);
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (retry != NULL) retry(nil, error);
+        }];
+    } completion:completion];
+}
+
 - (void)cancelAllRequests {
     for (NSURLSessionTask *task in self.sessionManager.tasks) {
         [task cancel];
     }
 }
 
+#pragma mark - Headers
+
+- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
+    [self.sessionManager.requestSerializer setValue:value forHTTPHeaderField:field];
+}
+
 #pragma mark - Helpers
 
 - (NSString *)absoluteURLStringForPath:(NSString *)path {
-    return [[self.configuration.serverURL URLByAppendingPathComponent:path] absoluteString];
+    NSString *versionPath = [NSString stringWithFormat:@"v%lu", (unsigned long)self.configuration.apiVersion];
+    NSString *resourcePath = self.configuration.resourceName;
+    NSString *baseURLString = self.configuration.serverURL.absoluteString;
+    return [[baseURLString stringByAppendingPathComponent:versionPath] stringByAppendingPathComponent:resourcePath];
 }
 
 - (void)executeRetriableBlock:(DVSHTTPClientRetriableBlock)retriable completion:(DVSHTTPClientCompletionBlock)completion {

@@ -61,6 +61,32 @@ typedef void (^DVSHTTPClientCompletionBlock)(id responseObject, NSError *error);
 - (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)block;
 
 /**
+ *  Performs a PUT request for a given path. The completion block's object is a deserialized response JSON.
+ *
+ *  @param path       The relative path of the request.
+ *  @param parameters The parameters to be included in the request.
+ *  @param block      The completion block executed when the request finishes.
+ */
+- (void)PUT:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)block;
+
+/**
+ *  Performs a DELETE request for a given path. The completion block's object is a deserialized response JSON.
+ *
+ *  @param path       The relative path of the request.
+ *  @param parameters The parameters to be included in the request.
+ *  @param block      The completion block executed when the request finishes.
+ */
+- (void)DELETE:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)block;
+
+/**
+ *  Sets the value for the HTTP header field. If nil, removes the existing value for that header.
+ *
+ *  @param value The value set as default for the specified header (if any).
+ *  @param field The HTTP header to set a default value for.
+ */
+- (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
+
+/**
  *  Cancels and invalidates all requests.
  */
 - (void)cancelAllRequests;
