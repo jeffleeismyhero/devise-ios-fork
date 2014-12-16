@@ -44,3 +44,6 @@ Carthage.checkout
 # Bundler files
 .bundle
 vendor
+
+#Exclude Travis scripts
+!scripts/travis/profile
