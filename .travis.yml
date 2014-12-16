@@ -17,8 +17,14 @@ install:
 - bundle exec rake install
 before_script:
 - bundle exec rake review
+- ./scripts/travis/add-key.sh
 script:
 - bundle exec rake test
+after_script:
+- ./scripts/travis/remove-key.sh
+after_success:
+- ./scripts/travis/testflight.sh
+
 notifications:
   email: false
   slack:
