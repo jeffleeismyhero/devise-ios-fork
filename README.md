@@ -1,5 +1,6 @@
-devise-ios
-=======
+# devise-ios
+
+[![Build Status](https://travis-ci.org/netguru/devise-ios.svg?branch=master)](https://travis-ci.org/netguru/devise-ios)
 
 **devise-ios** is a simple client which automates connection with [Devise](https://github.com/plataformatec/devise). Specially created to work with [devise-ios backend gem](https://github.com/netguru/devise-ios-rails) to make your job easier and faster!
 
