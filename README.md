@@ -35,21 +35,16 @@ Use `#import "Devise.h"` whenever you want to use **devise-ios**.
 ```
 
  **devise-ios** is also able to inform you about encountered problems. Logging is especially useful during debug process. There are 3 designed log levels:
- * `DVSLogLevelNone` - Don't log anything, ignore all messages.
- * `DVSLogLevelWarning` - Print all messages using NSLog.
- * `DVSLogLevelAssert` - Abort the code with the message.
+ * `DVSLoggingModeNone` - Don't log anything, ignore all messages.
+ * `DVSLoggingModeWarning` - Print all messages using NSLog.
+ * `DVSLoggingModeAssert` - Abort the code with the message.
 
-To specify log level use:
+To specify logging mode use:
  ```objective-c
-[[DVSConfiguration sharedConfiguration] setLogLevel:<#DVSLogLevell#>];
+[[DVSConfiguration sharedConfiguration] setLoggingMode:<#DVSLogLevell#>];
 ```
 
  **devise-ios** takes care about network problems and is able to automatically retries request in case of connection issues. You can specify number and time between retries using `numberOfRetries` and `retryTresholdDuration` properties of `DVSConfiguration`.
-
-Although **devise-ios** has default paths that fits [devise-ios backend gem](https://github.com/netguru/devise-ios-rails), you can customize them by your own by calling:
- ```objective-c
-- (void)setPath:(NSString *)path forRoute:(DVSRoute)route;
-```
 
 ## User
 The main class of **devise-ios** is `DVSUser`. Provided implementation is enough for login, registration, edition and any other feature offered by **devise-ios**. Nevertheless you can subclass `DVSUser` to customize it and change to fit your own purposes in easy way!

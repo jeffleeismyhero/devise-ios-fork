@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 /**
  *  The server-side resource name (default: users).
  */
-@property (assign, nonatomic) NSString *resourceName;
+@property (copy, nonatomic) NSString *resourceName;
 
 /**
  *  The logging level of the framework (default: DVSLogLevelNone).
