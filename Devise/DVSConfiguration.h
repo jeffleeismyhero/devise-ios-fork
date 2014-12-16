@@ -14,12 +14,24 @@ typedef NS_ENUM(NSInteger, DVSRoute) {
 };
 
 /**
- *  Logging level of the Devise framework.
+ *  Logging mode of the framework.
  */
-typedef NS_ENUM(NSInteger, DVSLogLevel) {
-    DVSLogLevelNone, // Don't log anything, ignore all messages.
-    DVSLogLevelWarning, // Print all messages using NSLog.
-    DVSLogLevelAssert, // Abort the code with the message.
+typedef NS_ENUM(NSInteger, DVSLoggingMode) {
+
+    /**
+     *  Don't log anything, ignore all messages.
+     */
+    DVSLoggingModeNone,
+
+    /**
+     *  Print all messages using NSLog.
+     */
+    DVSLoggingModeWarning,
+
+    /**
+     *  Abort the code with the message.
+     */
+    DVSLoggingModeAssert,
 };
 
 /**
@@ -45,7 +57,7 @@ typedef NS_ENUM(NSInteger, DVSLogLevel) {
 /**
  *  The logging level of the framework (default: DVSLogLevelNone).
  */
-@property (assign, nonatomic) DVSLogLevel logLevel;
+@property (assign, nonatomic) DVSLoggingMode loggingMode;
 
 /**
  *  The number of retries in case of connection issues (default: 0).

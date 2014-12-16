@@ -21,11 +21,11 @@ describe(@"DVSConfiguration", ^{
         });
 
         it(@"should have the lowest log level", ^{
-            [[theValue(configuration.logLevel) should] equal:theValue(DVSLogLevelNone)];
+            [[theValue(configuration.loggingMode) should] equal:theValue(DVSLoggingModeNone)];
         });
 
         it(@"should not accept invalid server url", ^{
-            configuration.logLevel = DVSLogLevelAssert;
+            configuration.loggingMode = DVSLoggingModeAssert;
             [[theBlock(^{
                 configuration.serverURL = [NSURL URLWithString:@"http:/foo"];
             }) should] raiseWithName:NSInternalInconsistencyException];
@@ -56,10 +56,10 @@ describe(@"DVSConfiguration", ^{
 
     describe(@"logging", ^{
 
-        context(@"when log level is set to warning", ^{
+        context(@"when mode is set to warning", ^{
 
             beforeEach(^{
-                configuration.logLevel = DVSLogLevelWarning;
+                configuration.loggingMode = DVSLoggingModeWarning;
             });
 
             it(@"should not raise an exception", ^{
@@ -69,10 +69,10 @@ describe(@"DVSConfiguration", ^{
             });
         });
 
-        context(@"when log level is set to assert", ^{
+        context(@"when mode is set to assert", ^{
 
             beforeEach(^{
-                configuration.logLevel = DVSLogLevelAssert;
+                configuration.loggingMode = DVSLoggingModeAssert;
             });
 
             it(@"should raise an exception", ^{

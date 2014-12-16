@@ -36,7 +36,7 @@
     self.serverURL = serverURL;
     self.apiVersion = 1;
     self.keychainServiceName = @"co.netguru.lib.devise.keychain";
-    self.logLevel = DVSLogLevelNone;
+    self.loggingMode = DVSLoggingModeNone;
     self.numberOfRetries = 0;
     self.retryTresholdDuration = 0.0;
     [self setPath:@"users" forRoute:DVSRouteUser];
@@ -71,13 +71,13 @@
 #pragma mark - Logging
 
 - (void)logMessage:(NSString *)message {
-    switch (self.logLevel) {
-        case DVSLogLevelNone: default:
+    switch (self.loggingMode) {
+        case DVSLoggingModeNone: default:
             break;
-        case DVSLogLevelWarning:
+        case DVSLoggingModeWarning:
             NSLog(@"[DEVISE] %@", message);
             break;
-        case DVSLogLevelAssert:
+        case DVSLoggingModeAssert:
             NSAssert1(NO, @"[DEVISE] %@", message);
             break;
     }
