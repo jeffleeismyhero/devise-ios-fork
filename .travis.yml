@@ -1,33 +1,24 @@
-#
-#  .travis.yml
-#
-#  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
-#
-#  Currently, xctool is unable to build project with custom frameworks.
-#  Until facebook/xctool#415 is fixed, we'll have to use xcpretty.
-#
-
 language: objective-c
 osx_image: xcode6.1
-
 env:
   global:
-    - XCODE_WORKSPACE="Devise.xcworkspace"
-    - XCODE_SCHEME="Devise"
-    - XCODE_SDK="iphonesimulator8.1"
-
+  - XCODE_WORKSPACE="Devise.xcworkspace"
+  - XCODE_SCHEME="Devise"
+  - XCODE_SDK="iphonesimulator8.1"
+  - APPNAME="Devise Demo"
+  - 'DEVELOPER_NAME="iPhone Distribution: netguru sp. z o. o. (SK8PDF7SG9)"'
+  - PROFILE_UUID=94387ae1-1cb2-49fa-96df-c64bdede7ca1
+  - secure: Hj3sIdUnu5AmOUXWGsyCjgzgV6nokr1UJCta7kITd4AWhttKlXasO8nrMmwjHx6Ry3Atoyym2yR1lBsjEEojFaK32gVFJoWOPipYv3COcHhl0gUC6RK6B+qnLI/bsXlggFQGG2rN5RlK/zfVoaiuPZueQC7yPCeg6tgsjFNuf5M=
+  - secure: MAw9r7WseCfsTRITEG1zkr2sbrwcocDdLTskXXES/SKu+C7bLLQdc9m7+ub7cX6TSARRzeTmTSQepIBOhl0m9Q0W3XTL994JhyazB0aTsOPT4Nn3comJkg+kBsxRhTvbGx+p/pTqWryIC/XQDHVLkbGnm/NR5wtbhDCS1FeFYWc=
+  - secure: P+AQUGqg6qijaQY9wLdPMboVlO+VAht4eD00bLkDoenp/w/hRoMFayWmn9pNYEQDQpB+JTSupAb4zRlMvcf7WW7ecGWMQcrpzxh58drPvmoFFpcEycSdfluY57aaeqvhr1x/a5bsE0F4NxckwJA7uAw/bWrS8ghzSqRN1PXcwqU=
 before_install:
-  - bundle install --without development --deployment --jobs=3 --retry=3
-
+- bundle install --without development --deployment --jobs=3 --retry=3
 install:
-  - bundle exec rake install
-
+- bundle exec rake install
 before_script:
-  - bundle exec rake review
-
+- bundle exec rake review
 script:
-  - bundle exec rake test
-
+- bundle exec rake test
 notifications:
   email: false
   slack:
