@@ -74,6 +74,7 @@ static DVSUser *_dvs_localUser = nil;
     //do not store those properties:
     [properties removeObject:@"additionalRequestParameters"];
     [properties removeObject:@"dataSource"];
+    [properties removeObject:@"httpClient"];
     
     for (NSString *property in properties) {
         [aCoder encodeObject:[self valueForKey:property] forKey:property];
