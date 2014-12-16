@@ -8,6 +8,9 @@
 
 #import "DVSTypedefs.h"
 
+@class DVSConfiguration;
+@protocol DVSUserDataSource;
+
 typedef NS_ENUM(NSInteger, DVSActionType) {
     DVSActionLogin,
     DVSActionRegistration,
@@ -15,8 +18,6 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
     DVSActionChangePassword,
     DVSActionUpdate
 };
-
-@protocol DVSUserDataSource;
 
 @interface DVSUser : NSObject
 
@@ -47,11 +48,9 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 @property (weak, nonatomic) id <DVSUserDataSource> dataSource;
 
 /**
- *  Designed initilizer. Creates a new DVSUser object.
- *
- *  @return Instance of a new DVSUser object.
+ *  The model's configuration object.
  */
-+ (DVSUser *)user;
++ (DVSConfiguration *)configuration;
 
 /**
  *  Returns an object for key for given action type.
@@ -116,12 +115,6 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  *  - setObjects:forKey:action method, used to set bunch of key-value pairs.
  */
 - (void)remindPasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
-
-/**
- *  Reminds user password asynchronously.
- *  @param email   Receiver of recovery password message.
- */
-+ (void)remindPasswordWithEmail:(NSString *)email success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Registers user asynchronously.

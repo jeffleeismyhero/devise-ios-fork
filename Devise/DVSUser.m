@@ -4,15 +4,19 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSAPIManager.h"
+#import "DVSConfiguration.h"
+#import "DVSHTTPClient.h"
+#import "DVSHTTPClient+User.h"
 #import "DVSUser.h"
 #import "DVSUser+Persistence.h"
 #import "DVSValidator.h"
-#import "DVSMacros.h"
 
 @interface DVSUser ()
 
+@property (strong, nonatomic) DVSHTTPClient *httpClient;
+
 @property (strong, nonatomic) NSArray *additionalRequestParameters;
+- (void)setUpDefaultAdditionalRequestParameters;
 
 @property (strong, nonatomic, readwrite) NSString *identifier;
 @property (strong, nonatomic, readwrite) NSString *sessionToken;
@@ -21,22 +25,24 @@
 
 @implementation DVSUser
 
-#pragma mark - Public Methods
+#pragma mark - Object lifecycle
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:5];
-        for (int i = 0; i <= DVSActionUpdate; i++) {
-            array[i] = [NSMutableDictionary dictionary];
-        }
-        _additionalRequestParameters = [array copy];
-    }
+    if (self == nil) return nil;
+    [self setUpDefaultAdditionalRequestParameters];
+    self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:[[self class] configuration]];
     return self;
 }
 
-+ (instancetype)user {
-    return [[self alloc] init];
+#pragma mark - Additional parameters management
+
+- (void)setUpDefaultAdditionalRequestParameters {
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:5];
+    for (int i = 0; i <= DVSActionUpdate; i++) {
+        array[i] = [NSMutableDictionary dictionary];
+    }
+    self.additionalRequestParameters = [array copy];
 }
 
 - (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
@@ -55,20 +61,25 @@
     [self.additionalRequestParameters[actionType] addEntriesFromDictionary:objects];
 }
 
+#pragma mark - Configuration
+
++ (DVSConfiguration *)configuration {
+    return [DVSConfiguration sharedConfiguration];
+}
+
 #pragma mark - Login Methods
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
-    NSArray *rules = @[DVSValidate(@"password").required(),
-                       DVSValidate(@"email").required().emailSyntax()];
-    
+    NSArray *rules = @[
+        DVSValidate(@"password").required(),
+        DVSValidate(@"email").required().emailSyntax()
+    ];
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
-        [DVSAPIManager loginUser:self withSuccess:success failure:failure];
+        [self.httpClient logInUser:self success:success failure:failure];
     } failure:failure];
 }
 
 - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
     [self setObjects:params() forAction:DVSActionLogin];
     [self loginWithSuccess:success failure:failure];
 }
@@ -76,41 +87,30 @@
 #pragma mark - Remind Password Methods
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-
     NSArray *rules = @[DVSValidate(@"email").required().emailSyntax()];
-    
     [self validateUsingRules:rules forAction:DVSActionRemindPassword success:^{
-        [DVSAPIManager remindPasswordForUser:self withSuccess:success failure:failure];
+        [self.httpClient remindPasswordToUser:self success:success failure:failure];
     } failure:failure];
 }
 
 - (void)remindPasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-
     [self setObjects:params() forAction:DVSActionRemindPassword];
     [self remindPasswordWithSuccess:success failure:failure];
-}
-
-+ (void)remindPasswordWithEmail:(NSString *)email success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-
-    DVSUser *user = [DVSUser user];
-    user.email = email;
-    [user remindPasswordWithSuccess:success failure:failure];
 }
 
 #pragma mark - Register Methods
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
-    NSArray *rules = @[DVSValidate(@"password").required(),
-                       DVSValidate(@"email").required().emailSyntax()];
-    
+    NSArray *rules = @[
+        DVSValidate(@"password").required(),
+        DVSValidate(@"email").required().emailSyntax()
+    ];
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
-        [DVSAPIManager registerUser:self withSuccess:success failure:failure];
+        [self.httpClient registerUser:self success:success failure:failure];
     } failure:failure];
 }
 
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-
     [self setObjects:params() forAction:DVSActionRegistration];
     [self registerWithSuccess:success failure:failure];
 }
@@ -118,11 +118,9 @@
 #pragma mark - Change Password Methods
 
 - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
     NSArray *rules = @[DVSValidate(@"password").required()];
-    
     [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
-        [DVSAPIManager changePasswordForUser:self withSuccess:success failure:failure];
+        [self.httpClient changePasswordOfUser:self success:success failure:failure];
     } failure:failure];
 }
 
@@ -134,11 +132,9 @@
 #pragma mark - Update Methods
 
 - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
     NSArray *rules = @[DVSValidate(@"email").required().emailSyntax()];
-    
     [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
-        [DVSAPIManager updateUser:self withSuccess:success failure:failure];
+        [self.httpClient updateUser:self success:success failure:failure];
     } failure:failure];
 }
 
@@ -150,10 +146,9 @@
 #pragma mark - Delete Account Methods
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
-    [DVSAPIManager deleteUser:self withSuccess:^{
+    [self.httpClient deleteUser:self success:^{
         [[self class] removeLocalUser];
-        success();
+        if (success != NULL) success();
     } failure:failure];
 }
 
