@@ -34,7 +34,7 @@ NSString * const DVSDefaultRemindPasswordPath = @"/password";
 
 - (void)registerUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self POST:DVSDefaultRegisterPath parameters:[user registerJSON] completion:^(__unused id responseObject, NSError *error) {
-        if (error == nil) {
+        if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
@@ -46,7 +46,7 @@ NSString * const DVSDefaultRemindPasswordPath = @"/password";
 
 - (void)logInUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self POST:DVSDefaultLogInPath parameters:[user loginJSON] completion:^(id responseObject, NSError *error) {
-        if (error == nil) {
+        if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
@@ -59,7 +59,7 @@ NSString * const DVSDefaultRemindPasswordPath = @"/password";
 - (void)updateUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
     [self POST:DVSDefaultUpdatePath parameters:[user updateJSON] completion:^(__unused id responseObject, NSError *error) {
-        if (error == nil) {
+        if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
             if (success != NULL) success();
@@ -70,7 +70,7 @@ NSString * const DVSDefaultRemindPasswordPath = @"/password";
 - (void)deleteUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
     [self DELETE:DVSDefaultDeletePath parameters:nil completion:^(__unused id responseObject, NSError *error) {
-        if (error == nil) {
+        if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
             [[user class] removeLocalUser];
@@ -82,7 +82,7 @@ NSString * const DVSDefaultRemindPasswordPath = @"/password";
 - (void)changePasswordOfUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
     [self PUT:DVSDefaultChangePasswordPath parameters:[user changePasswordJSON] completion:^(__unused id responseObject, NSError *error) {
-        if (error == nil) {
+        if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
             if (success != NULL) success();
@@ -92,7 +92,7 @@ NSString * const DVSDefaultRemindPasswordPath = @"/password";
 
 - (void)remindPasswordToUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self POST:DVSDefaultRemindPasswordPath parameters:[user forgotPasswordJSON] completion:^(__unused id responseObject, NSError *error) {
-        if (error == nil) {
+        if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
             if (success != NULL) success();
