@@ -23,7 +23,7 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
 
 @implementation DVSProfileEditorViewController
 
-#pragma mark - Lifecycle
+#pragma mark - Object lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,7 +33,7 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
     [self addFormWithTitleToDataSource:DVSProfileEditorEmailTitle];
 }
 
-#pragma mark - UIButtons events
+#pragma mark - UIControl events
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
     DVSDemoUser *localUser = [DVSDemoUser localUser];

@@ -19,7 +19,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 @implementation DVSWelcomeViewController
 
-#pragma mark - Lifecycle
+#pragma mark - Object lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];

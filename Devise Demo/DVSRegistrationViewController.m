@@ -31,6 +31,8 @@ static NSString * const DVSRegistrationPhoneTitle = @"Phone";
 
 @implementation DVSRegistrationViewController
 
+#pragma mark - Object lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -44,7 +46,7 @@ static NSString * const DVSRegistrationPhoneTitle = @"Phone";
     [self addFormWithTitleToDataSource:DVSRegistrationPhoneTitle];
 }
 
-#pragma mark - UIButtons events
+#pragma mark - UIControl events
 
 - (IBAction)signUpTouched:(UIBarButtonItem *)sender {
     DVSDemoUser *newUser = [DVSDemoUser new];

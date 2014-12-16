@@ -23,7 +23,7 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
 
 @implementation DVSHomeViewController
 
-#pragma mark - Lifecycle
+#pragma mark - Object lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,7 +81,7 @@ static NSString * const DVSDeleteCellTitle = @"Delete profile";
     return @"Yes";
 }
 
-#pragma mark - Button callbacks
+#pragma mark - UIControl events
 
 - (IBAction)logoutTouched:(UIBarButtonItem *)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];

@@ -26,7 +26,7 @@ static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
 
 @implementation DVSPasswordChangeViewController
 
-#pragma mark - Lifecycle
+#pragma mark - Object lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,7 +38,7 @@ static NSString * const DVSNewPasswordConfirmTitle = @"Confirm new password";
     [self addFormWithTitleToDataSource:DVSNewPasswordConfirmTitle secured:YES];
 }
 
-#pragma mark - UIButtons events
+#pragma mark - UIControl events
 
 - (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
     DVSDemoUser *localUser = [DVSDemoUser localUser];
