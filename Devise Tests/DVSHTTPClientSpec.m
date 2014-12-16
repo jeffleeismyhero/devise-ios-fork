@@ -113,8 +113,8 @@ describe(@"DVSHTTPClient", ^{
                     response = blockResponse;
                     error = blockError;
                 }];
-                [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(2)] beNonNil];
-                [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(2)] beNil];
+                [[expectFutureValue(response) shouldEventually] beNonNil];
+                [[expectFutureValue(error) shouldEventually] beNil];
             });
 
             it(@"should succeed to perform a single post request", ^{
@@ -123,8 +123,8 @@ describe(@"DVSHTTPClient", ^{
                     response = blockResponse;
                     error = blockError;
                 }];
-                [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(2)] beNonNil];
-                [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(2)] beNil];
+                [[expectFutureValue(response) shouldEventually] beNonNil];
+                [[expectFutureValue(error) shouldEventually] beNil];
             });
 
             it(@"should correctly deliver parameters while performing a get request", ^{
@@ -135,10 +135,10 @@ describe(@"DVSHTTPClient", ^{
                     error = blockError;
                     args = blockResponse[@"args"];
                 }];
-                [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(2)] beNonNil];
-                [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(2)] beNil];
-                [[expectFutureValue(args) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"bar" forKey:@"foo"];
-                [[expectFutureValue(args) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"qux" forKey:@"baz"];
+                [[expectFutureValue(response) shouldEventually] beNonNil];
+                [[expectFutureValue(error) shouldEventually] beNil];
+                [[expectFutureValue(args) shouldEventually] haveValue:@"bar" forKey:@"foo"];
+                [[expectFutureValue(args) shouldEventually] haveValue:@"qux" forKey:@"baz"];
             });
 
             it(@"should correctly deliver parameters while performing a post request", ^{
@@ -149,10 +149,10 @@ describe(@"DVSHTTPClient", ^{
                     error = blockError;
                     json = blockResponse[@"json"];
                 }];
-                [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(2)] beNonNil];
-                [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(2)] beNil];
-                [[expectFutureValue(json) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"foo" forKey:@"bar"];
-                [[expectFutureValue(json) shouldEventuallyBeforeTimingOutAfter(2)] haveValue:@"baz" forKey:@"qux"];
+                [[expectFutureValue(response) shouldEventually] beNonNil];
+                [[expectFutureValue(error) shouldEventually] beNil];
+                [[expectFutureValue(json) shouldEventually] haveValue:@"foo" forKey:@"bar"];
+                [[expectFutureValue(json) shouldEventually] haveValue:@"baz" forKey:@"qux"];
             });
 
             describe(@"retrying", ^{
@@ -182,9 +182,9 @@ describe(@"DVSHTTPClient", ^{
                             response = blockResponse;
                             error = blockError;
                         }];
-                        [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(5)] beNonNil];
-                        [[expectFutureValue(error) shouldEventuallyBeforeTimingOutAfter(5)] beNil];
-                        [[expectFutureValue(response) shouldEventuallyBeforeTimingOutAfter(5)] haveValue:@"bar" forKey:@"foo"];
+                        [[expectFutureValue(response) shouldEventually] beNonNil];
+                        [[expectFutureValue(error) shouldEventually] beNil];
+                        [[expectFutureValue(response) shouldEventually] haveValue:@"bar" forKey:@"foo"];
                     });
 
                 });
