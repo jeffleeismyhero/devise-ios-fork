@@ -33,10 +33,6 @@
 		3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */; };
 		3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */; };
 		3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E3A1A2530EA00FE04D1 /* DVSTypedefs.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3AA22E411A25330C00FE04D1 /* DVSAPIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E3D1A25330C00FE04D1 /* DVSAPIManager.h */; };
-		3AA22E421A25330C00FE04D1 /* DVSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E3E1A25330C00FE04D1 /* DVSAPIManager.m */; };
-		3AA22E431A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E3F1A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h */; };
-		3AA22E441A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E401A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m */; };
 		3AA22E571A25353B00FE04D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E491A25353B00FE04D1 /* AppDelegate.m */; };
 		3AA22E581A25353B00FE04D1 /* DVSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E4B1A25353B00FE04D1 /* DVSHomeViewController.m */; };
 		3AA22E591A25353B00FE04D1 /* DVSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E4D1A25353B00FE04D1 /* DVSLoginViewController.m */; };
@@ -47,6 +43,8 @@
 		3AA22E5E1A25353B00FE04D1 /* DVSWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E561A25353B00FE04D1 /* DVSWelcomeViewController.m */; };
 		3AA22E5F1A2535BC00FE04D1 /* DVSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E211A250FC300FE04D1 /* DVSMacros.h */; };
 		3AA22E601A25361200FE04D1 /* Devise-Demo-Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4C7191A24FA6A00F0AE67 /* Devise-Demo-Main.m */; };
+		3AA409F41A3F9D700046B0E4 /* DVSHTTPClient+User.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA409F21A3F9D700046B0E4 /* DVSHTTPClient+User.h */; };
+		3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA409F31A3F9D700046B0E4 /* DVSHTTPClient+User.m */; };
 		3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA631721A39A718002A64AC /* DVSUser+Persistence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA631731A39A718002A64AC /* DVSUser+Persistence.m */; };
 		3AA8B36A1A24DA0000166927 /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
@@ -151,10 +149,6 @@
 		3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUser+Querying.h"; sourceTree = "<group>"; };
 		3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUser+Querying.m"; sourceTree = "<group>"; };
 		3AA22E3A1A2530EA00FE04D1 /* DVSTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTypedefs.h; sourceTree = "<group>"; };
-		3AA22E3D1A25330C00FE04D1 /* DVSAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSAPIManager.h; sourceTree = "<group>"; };
-		3AA22E3E1A25330C00FE04D1 /* DVSAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSAPIManager.m; sourceTree = "<group>"; };
-		3AA22E3F1A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSHTTPReqeustOperationManager.h; sourceTree = "<group>"; };
-		3AA22E401A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSHTTPReqeustOperationManager.m; sourceTree = "<group>"; };
 		3AA22E481A25353B00FE04D1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3AA22E491A25353B00FE04D1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3AA22E4A1A25353B00FE04D1 /* DVSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSHomeViewController.h; sourceTree = "<group>"; };
@@ -170,6 +164,8 @@
 		3AA22E541A25353B00FE04D1 /* DVSRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSRegistrationViewController.m; sourceTree = "<group>"; };
 		3AA22E551A25353B00FE04D1 /* DVSWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSWelcomeViewController.h; sourceTree = "<group>"; };
 		3AA22E561A25353B00FE04D1 /* DVSWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSWelcomeViewController.m; sourceTree = "<group>"; };
+		3AA409F21A3F9D700046B0E4 /* DVSHTTPClient+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSHTTPClient+User.h"; sourceTree = "<group>"; };
+		3AA409F31A3F9D700046B0E4 /* DVSHTTPClient+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSHTTPClient+User.m"; sourceTree = "<group>"; };
 		3AA631721A39A718002A64AC /* DVSUser+Persistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUser+Persistence.h"; sourceTree = "<group>"; };
 		3AA631731A39A718002A64AC /* DVSUser+Persistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUser+Persistence.m"; sourceTree = "<group>"; };
 		3AA8B35E1A24DA0000166927 /* Devise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Devise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,35 +350,27 @@
 		3AA22E231A25110200FE04D1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				3AA22E241A25112800FE04D1 /* NSError+Devise.h */,
-				3AA22E251A25112800FE04D1 /* NSError+Devise.m */,
-				3AA22E281A2514DD00FE04D1 /* NSString+Devise.h */,
-				3AA22E291A2514DD00FE04D1 /* NSString+Devise.m */,
 				5EF5E6D81A2667D80049BEA6 /* NSArray+Devise.h */,
 				5EF5E6D91A2667D80049BEA6 /* NSArray+Devise.m */,
-				5EF381D21A2756BB006875D4 /* NSURL+Devise.h */,
-				5EF381D31A2756BB006875D4 /* NSURL+Devise.m */,
 				5EF381DA1A279998006875D4 /* NSDate+Devise.h */,
 				5EF381DB1A279998006875D4 /* NSDate+Devise.m */,
-				5EF381EE1A287458006875D4 /* NSNumber+Devise.h */,
-				5EF381EF1A287458006875D4 /* NSNumber+Devise.m */,
 				5EE295061A35C086009441E1 /* NSDictionary+Devise.h */,
 				5EE295071A35C086009441E1 /* NSDictionary+Devise.m */,
+				3AA22E241A25112800FE04D1 /* NSError+Devise.h */,
+				3AA22E251A25112800FE04D1 /* NSError+Devise.m */,
+				5EF381EE1A287458006875D4 /* NSNumber+Devise.h */,
+				5EF381EF1A287458006875D4 /* NSNumber+Devise.m */,
 				5E7A9A321A3F114F0077DC43 /* NSObject+Devise.h */,
 				5E7A9A331A3F114F0077DC43 /* NSObject+Devise.m */,
+				3AA22E281A2514DD00FE04D1 /* NSString+Devise.h */,
+				3AA22E291A2514DD00FE04D1 /* NSString+Devise.m */,
+				5EF381D21A2756BB006875D4 /* NSURL+Devise.h */,
+				5EF381D31A2756BB006875D4 /* NSURL+Devise.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		3AA22E2C1A251B0200FE04D1 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				3AA22E311A252D5000FE04D1 /* User */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		3AA22E311A252D5000FE04D1 /* User */ = {
+		3AA22E311A252D5000FE04D1 /* User Model */ = {
 			isa = PBXGroup;
 			children = (
 				3AA22E2D1A251B1400FE04D1 /* DVSUser.h */,
@@ -392,7 +380,7 @@
 				3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */,
 				3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */,
 			);
-			name = User;
+			name = "User Model";
 			sourceTree = "<group>";
 		};
 		3AA22E3C1A25327F00FE04D1 /* Networking */ = {
@@ -400,10 +388,8 @@
 			children = (
 				3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */,
 				3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */,
-				3AA22E3D1A25330C00FE04D1 /* DVSAPIManager.h */,
-				3AA22E3E1A25330C00FE04D1 /* DVSAPIManager.m */,
-				3AA22E3F1A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h */,
-				3AA22E401A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m */,
+				3AA409F21A3F9D700046B0E4 /* DVSHTTPClient+User.h */,
+				3AA409F31A3F9D700046B0E4 /* DVSHTTPClient+User.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -472,11 +458,11 @@
 		3AD4C6821A24DB1700F0AE67 /* Devise */ = {
 			isa = PBXGroup;
 			children = (
-				5E7E16721A264F6C00684A60 /* Validator */,
 				3AA22E191A2502FE00FE04D1 /* Configuration */,
-				3AA22E3C1A25327F00FE04D1 /* Networking */,
 				3AA22E231A25110200FE04D1 /* Categories */,
-				3AA22E2C1A251B0200FE04D1 /* Models */,
+				3AA22E3C1A25327F00FE04D1 /* Networking */,
+				3AA22E311A252D5000FE04D1 /* User Model */,
+				5E7E16721A264F6C00684A60 /* Validation */,
 				3AA22E201A250F9E00FE04D1 /* Supporting Headers */,
 			);
 			path = Devise;
@@ -625,7 +611,7 @@
 			name = "Devise Demo";
 			sourceTree = "<group>";
 		};
-		5E7E16721A264F6C00684A60 /* Validator */ = {
+		5E7E16721A264F6C00684A60 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
 				5E7E166A1A264F6900684A60 /* DVSPropertyValidator.h */,
@@ -633,7 +619,7 @@
 				5E7E166C1A264F6900684A60 /* DVSValidator.h */,
 				5E7E166D1A264F6900684A60 /* DVSValidator.m */,
 			);
-			name = Validator;
+			name = Validation;
 			sourceTree = "<group>";
 		};
 		6DAEEC2DE19FB85AF8F5BCE5 /* CocoaPods */ = {
@@ -667,19 +653,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF381DC1A279998006875D4 /* NSDate+Devise.h in Headers */,
-				3AA22E411A25330C00FE04D1 /* DVSAPIManager.h in Headers */,
 				5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */,
 				5EF381F01A287458006875D4 /* NSNumber+Devise.h in Headers */,
 				5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */,
 				3AA22E261A25112800FE04D1 /* NSError+Devise.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
 				5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */,
-				3AA22E431A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.h in Headers */,
 				5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
 				3AA22E2A1A2514DD00FE04D1 /* NSString+Devise.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
 				3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */,
+				3AA409F41A3F9D700046B0E4 /* DVSHTTPClient+User.h in Headers */,
 				3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */,
 				5EE295081A35C086009441E1 /* NSDictionary+Devise.h in Headers */,
 				5EF5E6DA1A2667D80049BEA6 /* NSArray+Devise.h in Headers */,
@@ -957,14 +942,13 @@
 				5E7A9A351A3F114F0077DC43 /* NSObject+Devise.m in Sources */,
 				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
 				5EF5E6DB1A2667D80049BEA6 /* NSArray+Devise.m in Sources */,
-				3AA22E441A25330C00FE04D1 /* DVSHTTPReqeustOperationManager.m in Sources */,
 				3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */,
 				3AA22E271A25112800FE04D1 /* NSError+Devise.m in Sources */,
 				5E7E16711A264F6900684A60 /* DVSValidator.m in Sources */,
 				3AA22E2B1A2514DD00FE04D1 /* NSString+Devise.m in Sources */,
+				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
 				5EF381DD1A279998006875D4 /* NSDate+Devise.m in Sources */,
 				3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */,
-				3AA22E421A25330C00FE04D1 /* DVSAPIManager.m in Sources */,
 				3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
