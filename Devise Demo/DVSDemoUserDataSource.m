@@ -51,7 +51,7 @@ static NSString * const DVSUserEmailParameter = @"email";
              [self defaultDemoValidatorForPassword],
              DVSValidate(DVSDemoUserUsernameParameter).localizedPropertyName(@"Username")
                                                       .required()
-                                                      .minLength(5).tooShort(@"should has at least 5 characters."),
+                                                      .minLength(5).tooShort(@"should have at least 5 characters."),
              DVSValidate(DVSDemoUserFirstNameParameter).localizedPropertyName(@"First name")
                                                        .required()
                                                        .minLength(1).tooShort(@"can't be empty."),
@@ -66,7 +66,7 @@ static NSString * const DVSUserEmailParameter = @"email";
 }
 
 - (NSArray *)additionalValidationRulesForPasswordChange {
-    return @[DVSValidate(DVSUserPasswordParameter).localizedPropertyName(@"New password").minLength(5).tooShort(@"should has at least 5 characters.")];
+    return @[DVSValidate(DVSUserPasswordParameter).localizedPropertyName(@"New password").minLength(5).tooShort(@"should have at least 5 characters.")];
 }
 
 #pragma mark - Default demo validators
@@ -77,7 +77,7 @@ static NSString * const DVSUserEmailParameter = @"email";
 
 - (DVSPropertyValidator *)defaultDemoValidatorForPassword {
     return DVSValidate(DVSUserPasswordParameter).localizedPropertyName(@"Password")
-                                                .minLength(5).tooShort(@"should has at least 5 characters.");
+                                                .minLength(5).tooShort(@"should have at least 5 characters.");
 }
 
 @end
