@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const DVSTableModelTitleKey;
-extern NSString * const DVSTableModelSubtitleKey;
-extern NSString * const DVSTableModelSegueKey;
-
 @interface DVSMenuTableViewController : UITableViewController
 
 - (NSString *)defaultCellId;
