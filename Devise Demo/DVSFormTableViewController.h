@@ -12,6 +12,7 @@
 
 - (void)addFormWithTitleToDataSource:(NSString *)title;
 - (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured;
+- (void)setValue:(NSString *)value forTitle:(NSString *)title;
 - (NSString *)getValueForTitle:(NSString *)title;
 
 @end

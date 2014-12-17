@@ -46,6 +46,16 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     self.dataSourceValuesDictionary[title] = [[DVSFormTableModel alloc] initWithValue:@"" secured:secured];
 }
 
+- (void)setValue:(NSString *)value forTitle:(NSString *)title {
+    DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[title];
+    
+    NSAssert(model, @"No model for current title");
+    
+    self.dataSourceValuesDictionary[title] = [[DVSFormTableModel alloc] initWithValue:value
+                                                                              secured:model.secured];
+    [self.tableView reloadData];
+}
+
 - (NSString *)getValueForTitle:(NSString *)title {
     DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[title];
     return model.value;
