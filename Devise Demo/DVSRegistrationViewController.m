@@ -13,6 +13,7 @@
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
 #import "UIAlertView+Devise.h"
+#import "UIApplication+Devise.h"
 
 static NSString * const DVSEnterSegue = @"DisplayHomeView";
 
@@ -56,10 +57,13 @@ static NSString * const DVSEnterSegue = @"DisplayHomeView";
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     newUser.phone = [formatter numberFromString:[self getValueForTitle:[self localizedTitleForPhone]]];
     
+    [UIApplication showNetworkActivity];
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
+        [UIApplication hideNetworkActivity];
     } failure:^(NSError *error) {
         [[UIAlertView dvs_alertViewForError:error] show];
+        [UIApplication hideNetworkActivity];
     }];
 }
 
