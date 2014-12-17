@@ -29,8 +29,12 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 #pragma mark - Setup
 
 - (void)setupDataSource {
-    [self addMenuEntryWithTitle:@"Sign up" subtitle:@"Create new account" segue:DVSRegisterSegue];
-    [self addMenuEntryWithTitle:@"Log in" subtitle:@"Already registered?" segue:DVSLoginSegue];
+    [self addMenuEntryWithTitle:NSLocalizedString(@"Sign up", nil)
+                       subtitle:NSLocalizedString(@"Create new account", nil)
+                          segue:DVSRegisterSegue];
+    [self addMenuEntryWithTitle:NSLocalizedString(@"Log in", nil)
+                       subtitle:NSLocalizedString(@"Already registered?", nil)
+                          segue:DVSLoginSegue];
 }
 
 #pragma mark - DVSMenuTableViewController methods

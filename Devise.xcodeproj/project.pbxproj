@@ -462,16 +462,16 @@
 				3AA22E4B1A25353B00FE04D1 /* DVSHomeViewController.m */,
 				3AA22E4C1A25353B00FE04D1 /* DVSLoginViewController.h */,
 				3AA22E4D1A25353B00FE04D1 /* DVSLoginViewController.m */,
-				3AA22E4F1A25353B00FE04D1 /* DVSProfileEditorViewController.h */,
-				3AA22E501A25353B00FE04D1 /* DVSProfileEditorViewController.m */,
+				21B1AAB01A3AF4E000578DF7 /* DVSPasswordChangeViewController.h */,
+				21B1AAB11A3AF4E000578DF7 /* DVSPasswordChangeViewController.m */,
 				3AA22E511A25353B00FE04D1 /* DVSPasswordReminderViewController.h */,
 				3AA22E521A25353B00FE04D1 /* DVSPasswordReminderViewController.m */,
+				3AA22E4F1A25353B00FE04D1 /* DVSProfileEditorViewController.h */,
+				3AA22E501A25353B00FE04D1 /* DVSProfileEditorViewController.m */,
 				3AA22E531A25353B00FE04D1 /* DVSRegistrationViewController.h */,
 				3AA22E541A25353B00FE04D1 /* DVSRegistrationViewController.m */,
 				3AA22E551A25353B00FE04D1 /* DVSWelcomeViewController.h */,
 				3AA22E561A25353B00FE04D1 /* DVSWelcomeViewController.m */,
-				21B1AAB01A3AF4E000578DF7 /* DVSPasswordChangeViewController.h */,
-				21B1AAB11A3AF4E000578DF7 /* DVSPasswordChangeViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

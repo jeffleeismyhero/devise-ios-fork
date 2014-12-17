@@ -42,8 +42,8 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
     localUser.email = [self getValueForTitle:DVSProfileEditorEmailTitle];
     
     [localUser updateWithSuccess:^{
-        [[[UIAlertView alloc] initWithTitle:@"Profile updated"
-                                    message:@"Your profile was updated."
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profile updated", nil)
+                                    message:NSLocalizedString(@"Your profile was updated.", nil)
                                    delegate:self
                           cancelButtonTitle:[self titleForProfileUpdatedAlertCancelButton]
                           otherButtonTitles:nil] show];
@@ -62,7 +62,7 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
 }
 
 - (NSString *)titleForProfileUpdatedAlertCancelButton {
-    return @"Close";
+    return NSLocalizedString(@"Close", nil);
 }
 
 @end

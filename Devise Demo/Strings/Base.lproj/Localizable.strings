@@ -22,3 +22,13 @@
 "Do you feel bored?" = "Do you feel bored?";
 "Are you sure you want to delete your profile?" = "Are you sure you want to delete your profile?";
 
+/* Profile editor view controller */
+"Profile updated" = "Profile updated";
+"Your profile was updated." = "Your profile was updated.";
+
+/* Welcome view controller */
+"Sign up" = "Sign up";
+"Log in" = "Log in";
+"Create new account" = "Create new account";
+"Already registered?" = "Already registered?";
+
