@@ -11,4 +11,5 @@ gem 'cocoapods', '~> 0.35'
 
 # Continious integration tools
 gem 'rake', '~> 10.4.0'
+gem 'shenzhen'
 gem 'xcpretty', '~> 0.1.6'
