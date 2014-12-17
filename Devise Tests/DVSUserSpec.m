@@ -348,6 +348,67 @@ describe(@"DVSUser", ^{
         
     });
 
+    describe(@"changing password of a user", ^{
+
+        __block id<OHHTTPStubsDescriptor> stub = nil;
+
+        beforeAll(^{
+            stub = [OHHTTPStubs dvs_stubUserChangePasswordRequestsWithOptions:nil];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeStub:stub];
+        });
+
+        context(@"when authorized", ^{
+
+            beforeEach(^{
+                user.identifier = @"1";
+                user.email = @"john.appleseed@apple.com";
+                user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
+                [[user class] setLocalUser:user];
+            });
+
+            context(@"using correct data", ^{
+
+                beforeEach(^{
+                    user.password = @"n3w_$eCR3t";
+                });
+
+                it(@"should succeed", ^{
+                    __block BOOL success = NO;
+                    [user changePasswordWithSuccess:^{
+                        success = YES;
+                    } failure:nil];
+                    [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
+                });
+
+            });
+
+            describe(@"validation", ^{
+
+                context(@"using no password", ^{
+
+                    beforeEach(^{
+                        user.password = nil;
+                    });
+
+                    it(@"should fail", ^{
+                        __block BOOL failure = NO;
+                        [user changePasswordWithSuccess:nil failure:^(NSError *error) {
+                            failure = YES;
+                        }];
+                        [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                    });
+
+                });
+                
+            });
+            
+        });
+        
+    });
+
 });
 
 SPEC_END
