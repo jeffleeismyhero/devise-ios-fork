@@ -16,13 +16,6 @@
 
 static NSString * const DVSEnterSegue = @"DisplayHomeView";
 
-static NSString * const DVSRegistrationUsernameTitle = @"Username";
-static NSString * const DVSRegistrationPasswordTitle = @"Password";
-static NSString * const DVSRegistrationEmailTitle = @"Email";
-static NSString * const DVSRegistrationFirstNameTitle = @"First name";
-static NSString * const DVSRegistrationLastNameTitle = @"Last name";
-static NSString * const DVSRegistrationPhoneTitle = @"Phone";
-
 @interface DVSRegistrationViewController ()
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
@@ -38,12 +31,12 @@ static NSString * const DVSRegistrationPhoneTitle = @"Phone";
     
     self.userDataSource = [DVSDemoUserDataSource dataSource];
     
-    [self addFormWithTitleToDataSource:DVSRegistrationUsernameTitle];
-    [self addFormWithTitleToDataSource:DVSRegistrationPasswordTitle secured:YES];
-    [self addFormWithTitleToDataSource:DVSRegistrationEmailTitle];
-    [self addFormWithTitleToDataSource:DVSRegistrationFirstNameTitle];
-    [self addFormWithTitleToDataSource:DVSRegistrationLastNameTitle];
-    [self addFormWithTitleToDataSource:DVSRegistrationPhoneTitle];
+    [self addFormWithTitleToDataSource:[self localizedTitleForUsername]];
+    [self addFormWithTitleToDataSource:[self localizedTitleForPassword] secured:YES];
+    [self addFormWithTitleToDataSource:[self localizedTitleForEmail]];
+    [self addFormWithTitleToDataSource:[self localizedTitleForFirstName]];
+    [self addFormWithTitleToDataSource:[self localizedTitleForLastName]];
+    [self addFormWithTitleToDataSource:[self localizedTitleForPhone]];
 }
 
 #pragma mark - UIControl events
@@ -53,21 +46,47 @@ static NSString * const DVSRegistrationPhoneTitle = @"Phone";
     
     newUser.dataSource = self.userDataSource;
     
-    newUser.username = [self getValueForTitle:DVSRegistrationUsernameTitle];
-    newUser.password = [self getValueForTitle:DVSRegistrationPasswordTitle];
-    newUser.email = [self getValueForTitle:DVSRegistrationEmailTitle];
-    newUser.firstName = [self getValueForTitle:DVSRegistrationFirstNameTitle];
-    newUser.lastName = [self getValueForTitle:DVSRegistrationLastNameTitle];
+    newUser.username = [self getValueForTitle:[self localizedTitleForUsername]];
+    newUser.password = [self getValueForTitle:[self localizedTitleForPassword]];
+    newUser.email = [self getValueForTitle:[self localizedTitleForEmail]];
+    newUser.firstName = [self getValueForTitle:[self localizedTitleForFirstName]];
+    newUser.lastName = [self getValueForTitle:[self localizedTitleForLastName]];
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    newUser.phone = [formatter numberFromString:[self getValueForTitle:DVSRegistrationPhoneTitle]];
+    newUser.phone = [formatter numberFromString:[self getValueForTitle:[self localizedTitleForPhone]]];
     
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
     } failure:^(NSError *error) {
         [[UIAlertView dvs_alertViewForError:error] show];
     }];
+}
+
+#pragma mark - Localized titles
+
+- (NSString *)localizedTitleForUsername {
+    return NSLocalizedString(@"Username", nil);
+}
+
+- (NSString *)localizedTitleForPassword {
+    return NSLocalizedString(@"Password", nil);
+}
+
+- (NSString *)localizedTitleForEmail {
+    return NSLocalizedString(@"E-mail", nil);
+}
+
+- (NSString *)localizedTitleForFirstName {
+    return NSLocalizedString(@"First name", nil);
+}
+
+- (NSString *)localizedTitleForLastName {
+    return NSLocalizedString(@"Last name", nil);
+}
+
+- (NSString *)localizedTitleForPhone {
+    return NSLocalizedString(@"Phone", nil);
 }
 
 @end
