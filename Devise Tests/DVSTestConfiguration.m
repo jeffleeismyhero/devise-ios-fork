@@ -23,6 +23,14 @@
     return self;
 }
 
+- (instancetype)initWithServerURL:(NSURL *)serverURL {
+    return [self initWithServerURL:serverURL appendPathComponents:YES];
+}
+
+- (instancetype)init {
+    return [self initWithServerURL:nil appendPathComponents:YES];
+}
+
 - (NSURL *)baseURL {
     return (self.appendPathComponents) ? [super baseURL] : self.serverURL;
 }

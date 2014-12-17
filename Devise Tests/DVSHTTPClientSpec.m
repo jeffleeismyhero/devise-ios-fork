@@ -5,6 +5,7 @@
 //
 
 #import "DVSHTTPClient.h"
+#import "DVSTestConfiguration.h"
 
 SPEC_BEGIN(DVSHTTPClientSpec)
 
@@ -68,10 +69,10 @@ describe(@"DVSHTTPClient", ^{
 
     context(@"provided with a configuration", ^{
 
-        __block DVSConfiguration *configuration = nil;
+        __block DVSTestConfiguration *configuration = nil;
 
         beforeEach(^{
-            configuration = [[DVSConfiguration alloc] init];
+            configuration = [[DVSTestConfiguration alloc] initWithServerURL:nil appendPathComponents:NO];
             client.configuration = configuration;
         });
 
@@ -100,7 +101,6 @@ describe(@"DVSHTTPClient", ^{
             beforeEach(^{
                 NSURL *baseURL = [NSURL URLWithString:@"http://httpbin.org"];
                 configuration.serverURL = baseURL;
-                [configuration stub:@selector(baseURL) andReturn:baseURL];
             });
 
             specify(^{
