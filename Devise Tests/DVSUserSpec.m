@@ -130,6 +130,101 @@ describe(@"DVSUser", ^{
 
     });
 
+    describe(@"logging in", ^{
+
+        __block id<OHHTTPStubsDescriptor> stub = nil;
+
+        beforeAll(^{
+            stub = [OHHTTPStubs dvs_stubUserLogInRequestsWithOptions:nil];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeStub:stub];
+        });
+
+        context(@"using correct data", ^{
+
+            beforeEach(^{
+                user.email = @"john.appleseed@apple.com";
+                user.password = @"$eCR3t";
+            });
+
+            it(@"should succeed", ^{
+                __block BOOL success = NO;
+                [user loginWithSuccess:^{
+                    success = YES;
+                } failure:nil];
+                [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
+            });
+
+            it(@"shoud fill the user object", ^{
+                [user loginWithSuccess:nil failure:nil];
+                [[expectFutureValue(user.identifier) shouldEventually] beNonNil];
+                [[expectFutureValue(user.sessionToken) shouldEventually] beNonNil];
+            });
+
+            it(@"should save the user locally", ^{
+                [user loginWithSuccess:nil failure:nil];
+                [[expectFutureValue([[user class] localUser]) shouldEventually] beIdenticalTo:user];
+            });
+
+        });
+
+        describe(@"validation", ^{
+
+            context(@"using no email", ^{
+
+                beforeEach(^{
+                    user.password = @"$eCR3t";
+                });
+
+                it(@"should fail", ^{
+                    __block BOOL failure = NO;
+                    [user loginWithSuccess:nil failure:^(NSError *error) {
+                        failure = YES;
+                    }];
+                    [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                });
+
+            });
+
+            context(@"using email with invalid syntax", ^{
+
+                beforeEach(^{
+                    user.email = @"john.appleseed.apple.com";
+                    user.password = @"$eCR3t";
+                });
+
+                it(@"should fail", ^{
+                    __block BOOL failure = NO;
+                    [user loginWithSuccess:nil failure:^(NSError *error) {
+                        failure = YES;
+                    }];
+                    [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                });
+
+            });
+
+            context(@"using no password", ^{
+
+                beforeEach(^{
+                    user.email = @"john.appleseed@apple.com";
+                });
+
+                it(@"should fail", ^{
+                    __block BOOL failure = NO;
+                    [user loginWithSuccess:nil failure:^(NSError *error) {
+                        failure = YES;
+                    }];
+                    [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                });
+                
+            });
+            
+        });
+        
+    });
+
 });
 
 SPEC_END
