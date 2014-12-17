@@ -35,7 +35,7 @@ describe(@"DVSUser", ^{
         user = [[DVSTestUser alloc] init];
     });
 
-    describe(@"registration", ^{
+    describe(@"registering a user", ^{
 
         __block id<OHHTTPStubsDescriptor> stub = nil;
 
@@ -80,6 +80,7 @@ describe(@"DVSUser", ^{
             context(@"using no email", ^{
 
                 beforeEach(^{
+                    user.email = nil;
                     user.password = @"$eCR3t";
                 });
 
@@ -114,6 +115,7 @@ describe(@"DVSUser", ^{
 
                 beforeEach(^{
                     user.email = @"john.appleseed@apple.com";
+                    user.password = nil;
                 });
 
                 it(@"should fail", ^{
@@ -130,7 +132,7 @@ describe(@"DVSUser", ^{
 
     });
 
-    describe(@"logging in", ^{
+    describe(@"logging in a user", ^{
 
         __block id<OHHTTPStubsDescriptor> stub = nil;
 
@@ -175,6 +177,7 @@ describe(@"DVSUser", ^{
             context(@"using no email", ^{
 
                 beforeEach(^{
+                    user.email = nil;
                     user.password = @"$eCR3t";
                 });
 
@@ -209,6 +212,7 @@ describe(@"DVSUser", ^{
 
                 beforeEach(^{
                     user.email = @"john.appleseed@apple.com";
+                    user.password = nil;
                 });
 
                 it(@"should fail", ^{
