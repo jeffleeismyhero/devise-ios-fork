@@ -172,7 +172,7 @@ def build_and_distribute
   ipa_build_dir = File.expand_path("#{build_dir}/Build")
   ipa_build_flags = []
   ipa_build_flags << "--workspace '#{ENV["XCODE_WORKSPACE"]}'"
-  ipa_build_flags << "--scheme 'Storytelling'"
+  ipa_build_flags << "--scheme 'Devise Demo'"
   ipa_build_flags << "--destination '#{ipa_build_dir}'"
   ipa_build_flags << "--embed '#{profile_path}'"
   ipa_build_flags << "--identity '#{cert_name}'"
