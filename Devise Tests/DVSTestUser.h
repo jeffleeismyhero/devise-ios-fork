@@ -24,4 +24,9 @@
  */
 @property (strong, nonatomic, readwrite) NSString *sessionToken;
 
+/**
+ *  Sets the configuration object of the model.
+ */
++ (void)setConfiguration:(DVSConfiguration *)configuration;
+
 @end
