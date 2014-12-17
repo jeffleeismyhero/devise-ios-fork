@@ -124,21 +124,32 @@
 }
 
 - (NSArray *)mergeDefaultRules:(NSArray *)defaultRules withCustomRules:(NSArray *)customRules {
-    DVSWorkInProgress("Temporary quick fix -- has to be improved");
-    NSMutableArray *array = [defaultRules mutableCopy];
-    [array addObjectsFromArray:customRules];
 
-    for (DVSPropertyValidator *validatorA in defaultRules) {
-        for (DVSPropertyValidator *validatorB in customRules) {
-            if ([validatorA.propertyName isEqualToString:validatorB.propertyName]) {
-                [validatorA.validators addObjectsFromArray:validatorB.validators];
-                validatorA.descriptions = validatorB.descriptions;
-                [array removeObject:validatorB];
-                break;
-            }
-        }
+    NSMutableArray *resultRules = [[NSMutableArray alloc] init];
+
+    NSMutableArray *uniqueDefaultRules = [defaultRules mutableCopy];
+    [uniqueDefaultRules removeObjectsInArray:customRules];
+    [resultRules addObjectsFromArray:uniqueDefaultRules];
+
+    NSMutableArray *uniqueCustomRules = [customRules mutableCopy];
+    [uniqueCustomRules removeObjectsInArray:defaultRules];
+    [resultRules addObjectsFromArray:uniqueCustomRules];
+
+    NSMutableArray *commonCustomRules = [customRules mutableCopy];
+    [commonCustomRules removeObjectsInArray:uniqueCustomRules];
+
+    NSArray *defaultRulesKeys = [defaultRules valueForKey:@"propertyName"];
+    NSDictionary *defaultRulesDictionary = [[NSDictionary alloc] initWithObjects:defaultRules forKeys:defaultRulesKeys];
+
+    for (DVSPropertyValidator *customValidator in commonCustomRules) {
+        DVSPropertyValidator *defaultValidator = defaultRulesDictionary[customValidator.propertyName];
+        [defaultValidator.validators addObjectsFromArray:customValidator.validators];
+        defaultValidator.descriptions = customValidator.descriptions;
+        [resultRules addObject:defaultValidator];
     }
-    return array;
+
+    return resultRules;
+
 }
 
 @end

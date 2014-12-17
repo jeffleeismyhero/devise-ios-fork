@@ -38,6 +38,17 @@ NSString * const dvs_attribute = @"{attribute}";
     return [[[self class] alloc] initWithPropertyName:propertyName];
 }
 
+#pragma mark - Object equality
+
+- (BOOL)isEqual:(DVSPropertyValidator *)object {
+    if (![object isKindOfClass:[self class]]) return NO;
+    return (self == object || [self.propertyName isEqualToString:object.propertyName]);
+}
+
+- (NSUInteger)hash {
+    return self.propertyName.hash;
+}
+
 #pragma mark - Public Methods
 
 - (NSError *)simpleValidationOfValue:(id)value {
