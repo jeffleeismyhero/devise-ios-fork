@@ -58,10 +58,6 @@ def xcode_sdk
   ENV["XCODE_SDK"]
 end
 
-def branch
-  ENV["TRAVIS_BRANCH"]
-end
-
 def environment
   'Release'
 end
@@ -76,10 +72,6 @@ end
 
 def project_name
   @project_name ||= `/usr/libexec/PlistBuddy -c 'Print :CFBundleDisplayName' '#{infoplist_path}'`.strip
-end
-
-def display_name
-  project_name
 end
 
 def build_dir
@@ -109,19 +101,11 @@ def set_bundle_params
   sh "/usr/libexec/PlistBuddy -c 'Set :CFBundleIdentifier #{bundle_id}' '#{infoplist_path}'"
 
   report_info "Setting 'CFBundleDisplayName' in '#{infoplist_path}' to '#{bundle_id}'"
-  sh "/usr/libexec/PlistBuddy -c 'Set :CFBundleDisplayName #{display_name}' '#{infoplist_path}'"
-end
-
-def testflight_list
-    project_name
+  sh "/usr/libexec/PlistBuddy -c 'Set :CFBundleDisplayName #{project_name}' '#{infoplist_path}'"
 end
 
 def certs_dir
   ENV["CERTS_DIR"]
-end
-
-def profile_filename
-  "DeviseDemoDistribution.mobileprovision"
 end
 
 def masked_sh(command, masked_strings)
@@ -159,7 +143,7 @@ def build_and_distribute
   FileUtils.mkdir_p profile_dest_dir
   sh "cp '#{certs_dir}'/*.mobileprovision '#{profile_dest_dir}'"
 
-  profile_path = "#{profile_dest_dir}/#{profile_filename}"
+  profile_path = "#{profile_dest_dir}/#{ENV["MOBILEPROVISION_NAME"]}"
 
   set_bundle_params
 
@@ -192,7 +176,7 @@ def build_and_distribute
     ipa_distribute_flags << "--api_token '#{testflight_api_token}'"
     ipa_distribute_flags << "--team_token '#{testflight_team_token}'"
     ipa_distribute_flags << "--notes '#{testflight_release_notes}'"
-    ipa_distribute_flags << "--lists '#{testflight_list}'"
+    ipa_distribute_flags << "--lists '#{project_name}'"
 
     report_info "Uploading the application archive to TestFlight, this may take a while..."
     masked_sh "ipa distribute:testflight #{ipa_distribute_flags.join(" ")}", [testflight_api_token, testflight_team_token]
