@@ -1184,6 +1184,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Launch-Image";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Info.plist";
 				OTHER_CODE_SIGN_FLAGS = "";
