@@ -30,6 +30,7 @@
 "Password was changed. \nNow you can login with new password." = "Password was changed. \nNow you can login with new password.";
 
 /* Profile editor view controller */
+"E-mail address" = "E-mail address";
 "Profile updated" = "Profile updated";
 "Your profile was updated." = "Your profile was updated.";
 

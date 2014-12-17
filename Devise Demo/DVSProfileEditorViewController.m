@@ -13,8 +13,6 @@
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
 
-static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
-
 @interface DVSProfileEditorViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
@@ -30,7 +28,7 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
     
     self.userDataSource = [[DVSDemoUserDataSource alloc] init];
     
-    [self addFormWithTitleToDataSource:DVSProfileEditorEmailTitle];
+    [self addFormWithTitleToDataSource:[self localizedTitleForEmail]];
 }
 
 #pragma mark - UIControl events
@@ -39,7 +37,7 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
     DVSDemoUser *localUser = [DVSDemoUser localUser];
     
     localUser.dataSource = self.userDataSource;
-    localUser.email = [self getValueForTitle:DVSProfileEditorEmailTitle];
+    localUser.email = [self getValueForTitle:[self localizedTitleForEmail]];
     
     [localUser updateWithSuccess:^{
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profile updated", nil)
@@ -63,6 +61,12 @@ static NSString * const DVSProfileEditorEmailTitle = @"E-mail address";
 
 - (NSString *)titleForProfileUpdatedAlertCancelButton {
     return NSLocalizedString(@"Close", nil);
+}
+
+#pragma mark - Localized titles
+
+- (NSString *)localizedTitleForEmail {
+    return NSLocalizedString(@"E-mail address", nil);
 }
 
 @end
