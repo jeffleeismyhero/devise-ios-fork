@@ -8,11 +8,6 @@
 
 #import "DVSMenuTableModel.h"
 
-NSString * const DVSTableModelTitleKey = @"title";
-NSString * const DVSTableModelSubtitleKey = @"sub";
-NSString * const DVSTableModelSegueKey = @"segue";
-NSString * const DVSTableModelSelectorStringKey = @"selector";
-
 @interface DVSMenuTableModel ()
 
 @property (strong, nonatomic, readwrite) NSString *title;
