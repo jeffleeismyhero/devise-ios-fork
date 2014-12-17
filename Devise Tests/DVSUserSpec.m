@@ -409,6 +409,72 @@ describe(@"DVSUser", ^{
         
     });
 
+    describe(@"reminding password to a user", ^{
+
+        __block id<OHHTTPStubsDescriptor> stub = nil;
+
+        beforeAll(^{
+            stub = [OHHTTPStubs dvs_stubUserRemindPasswordRequestsWithOptions:nil];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeStub:stub];
+        });
+
+        context(@"using correct data", ^{
+
+            beforeEach(^{
+                user.email = @"john.appleseed@apple.com";
+            });
+
+            it(@"should succeed", ^{
+                __block BOOL success = NO;
+                [user remindPasswordWithSuccess:^{
+                    success = YES;
+                } failure:nil];
+                [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
+            });
+
+        });
+
+        describe(@"validation", ^{
+
+            context(@"using no email", ^{
+
+                beforeEach(^{
+                    user.email = nil;
+                });
+
+                it(@"should fail", ^{
+                    __block BOOL failure = NO;
+                    [user remindPasswordWithSuccess:nil failure:^(NSError *error) {
+                        failure = YES;
+                    }];
+                    [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                });
+
+            });
+
+            context(@"using email with invalid syntax", ^{
+
+                beforeEach(^{
+                    user.email = @"john.appleseed.apple.com";
+                });
+
+                it(@"should fail", ^{
+                    __block BOOL failure = NO;
+                    [user remindPasswordWithSuccess:nil failure:^(NSError *error) {
+                        failure = YES;
+                    }];
+                    [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                });
+
+            });
+
+        });
+        
+    });
+
 });
 
 SPEC_END
