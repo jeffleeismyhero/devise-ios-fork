@@ -118,6 +118,7 @@ end
 
 def certs_dir
   ENV["CERTS_DIR"]
+end
 
 def profile_filename
   @profile_filename ||= File.basename(
