@@ -35,7 +35,7 @@ describe(@"DVSUser", ^{
         user = [[DVSTestUser alloc] init];
     });
 
-    describe(@"logging in", ^{
+    describe(@"registration", ^{
 
         __block id<OHHTTPStubsDescriptor> stub = nil;
 
