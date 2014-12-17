@@ -5,7 +5,7 @@ cache:
   directories:
     - vendor/bundle
 
-nv:
+env:
   global:
   - CERTS_DIR="Certificates"
   - 'CERT_NAME="iPhone Distribution: netguru sp. z o. o. (SK8PDF7SG9)"'
