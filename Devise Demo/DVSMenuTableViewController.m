@@ -87,8 +87,8 @@ static NSString * const DVSDefaultCell = @"defaultCell";
         }
     }
     
-    if (model.segueName) {
-        [self performSegueWithIdentifier:model.segueName sender:self];
+    if (model.segueIdentifier) {
+        [self performSegueWithIdentifier:model.segueIdentifier sender:self];
     }
 }
 

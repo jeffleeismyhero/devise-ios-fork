@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic, readwrite) NSString *title;
 @property (strong, nonatomic, readwrite) NSString *subtitle;
-@property (strong, nonatomic, readwrite) NSString *segueName;
+@property (strong, nonatomic, readwrite) NSString *segueIdentifier;
 @property (strong, nonatomic, readwrite) NSString *selectorString;
 
 @end
@@ -37,7 +37,7 @@
     if (self = [super init]) {
         self.title = title;
         self.subtitle = subtitle;
-        self.segueName = segueName;
+        self.segueIdentifier = segueName;
         self.selectorString = selectorString;
     }
     return self;

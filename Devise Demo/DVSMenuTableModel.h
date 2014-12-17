@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic, readonly) NSString *title;
 @property (strong, nonatomic, readonly) NSString *subtitle;
-@property (strong, nonatomic, readonly) NSString *segueName;
+@property (strong, nonatomic, readonly) NSString *segueIdentifier;
 @property (strong, nonatomic, readonly) NSString *selectorString;
 
 - (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle segueName:(NSString *)segueName;
