@@ -39,6 +39,7 @@ task "test" do
   xcode_run "clean test"
 end
 
+desc "Build app and distribute"
 task "build-and-distribute" do
   build_and_distribute
 end
