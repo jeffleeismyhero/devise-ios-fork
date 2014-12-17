@@ -121,10 +121,11 @@ def certs_dir
 end
 
 def profile_filename
-  @profile_filename ||= File.basename(
-    Dir.glob("#{certs_dir}/*.mobileprovision")
-      .find{ |p| p.include? environment }
-  )
+  "#{certs_dir}/DeviseDemoDistribution.mobileprovision"
+  # @profile_filename ||= File.basename(
+  #   Dir.glob("#{certs_dir}/*.mobileprovision")
+  #     .find{ |p| p.include? environment }
+  # )
 end
 
 def masked_sh(command, masked_strings)
