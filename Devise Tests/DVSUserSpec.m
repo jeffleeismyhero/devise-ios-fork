@@ -306,6 +306,48 @@ describe(@"DVSUser", ^{
         
     });
 
+    describe(@"deleting a user", ^{
+
+        __block id<OHHTTPStubsDescriptor> stub = nil;
+
+        beforeAll(^{
+            stub = [OHHTTPStubs dvs_stubUserDeleteRequestsWithOptions:nil];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeStub:stub];
+        });
+
+        context(@"when authorized", ^{
+
+            beforeEach(^{
+                user.identifier = @"1";
+                user.email = @"john.appleseed@apple.com";
+                user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
+                [[user class] setLocalUser:user];
+            });
+
+            context(@"using correct data", ^{
+
+                it(@"should succeed", ^{
+                    __block BOOL success = NO;
+                    [user deleteAccountWithSuccess:^{
+                        success = YES;
+                    } failure:nil];
+                    [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
+                });
+
+                it(@"should remove the locally saved user", ^{
+                    [user deleteAccountWithSuccess:nil failure:nil];
+                    [[expectFutureValue([[user class] localUser]) shouldEventually] beNil];
+                });
+
+            });
+
+        });
+        
+    });
+
 });
 
 SPEC_END
