@@ -39,7 +39,7 @@
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-- (NSDictionary *)forgotPasswordJSON {
+- (NSDictionary *)remindPasswordJSON {
     
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     NSString *email = [self paramNameForSelector:@selector(JSONKeyPathForEmail) withDefaultName:@"email"];

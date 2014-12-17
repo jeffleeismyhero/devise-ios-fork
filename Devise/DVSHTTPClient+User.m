@@ -97,7 +97,7 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 
 - (void)remindPasswordToUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultRemindPasswordPath;
-    [self POST:path parameters:[user forgotPasswordJSON] completion:^(__unused id responseObject, NSError *error) {
+    [self POST:path parameters:[user remindPasswordJSON] completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {

@@ -11,7 +11,7 @@
 
 - (NSDictionary *)registerJSON;
 - (NSDictionary *)loginJSON;
-- (NSDictionary *)forgotPasswordJSON;
+- (NSDictionary *)remindPasswordJSON;
 - (NSDictionary *)changePasswordJSON;
 - (NSDictionary *)updateJSON;
 
