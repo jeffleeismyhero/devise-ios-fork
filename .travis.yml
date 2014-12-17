@@ -8,7 +8,7 @@ env:
   - XCODE_WORKSPACE="Devise.xcworkspace"
   - XCODE_SCHEME="Devise"
   - XCODE_SDK="iphonesimulator8.1"
-  - XCODE_INFOPLIST_PATH="Devise/Supporting Files/Devise-Demo-Info.plist"
+  - XCODE_INFOPLIST_PATH="Supporting Files/Devise-Demo-Info.plist"
 
 
 before_install:
