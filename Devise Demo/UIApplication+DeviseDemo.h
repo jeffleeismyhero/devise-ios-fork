@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIApplication (Devise)
+@interface UIApplication (DeviseDemo)
 
 + (void)showNetworkActivity;
 + (void)hideNetworkActivity;

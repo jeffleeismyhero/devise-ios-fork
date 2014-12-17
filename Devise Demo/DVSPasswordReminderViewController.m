@@ -9,8 +9,8 @@
 #import "DVSPasswordReminderViewController.h"
 #import <Devise/Devise.h>
 
-#import "UIAlertView+Devise.h"
-#import "UIApplication+Devise.h"
+#import "UIAlertView+DeviseDemo.h"
+#import "UIApplication+DeviseDemo.h"
 #import "DVSDemoUser.h"
 
 @interface DVSPasswordReminderViewController ()

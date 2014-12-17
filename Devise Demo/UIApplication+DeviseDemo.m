@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "UIApplication+Devise.h"
+#import "UIApplication+DeviseDemo.h"
 
-@implementation UIApplication (Devise)
+@implementation UIApplication (DeviseDemo)
 
 + (void)showNetworkActivity {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];

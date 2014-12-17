@@ -12,8 +12,8 @@
 #import "DVSMacros.h"
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
-#import "UIAlertView+Devise.h"
-#import "UIApplication+Devise.h"
+#import "UIAlertView+DeviseDemo.h"
+#import "UIApplication+DeviseDemo.h"
 
 static NSString * const DVSEnterSegue = @"DisplayHomeView";
 

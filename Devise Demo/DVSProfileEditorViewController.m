@@ -9,10 +9,10 @@
 #import "DVSProfileEditorViewController.h"
 #import <Devise/Devise.h>
 
-#import "UIAlertView+Devise.h"
+#import "UIAlertView+DeviseDemo.h"
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
-#import "UIApplication+Devise.h"
+#import "UIApplication+DeviseDemo.h"
 
 @interface DVSProfileEditorViewController () <UIAlertViewDelegate>
 

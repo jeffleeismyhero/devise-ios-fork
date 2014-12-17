@@ -9,7 +9,7 @@
 #import "DVSHomeViewController.h"
 #import <Devise/Devise.h>
 
-#import "UIAlertView+Devise.h"
+#import "UIAlertView+DeviseDemo.h"
 
 static NSString * const DVSEditProfileSegue = @"DisplayProfileEditor";
 static NSString * const DVSPasswordChangeSegue = @"DisplayPasswordChange";

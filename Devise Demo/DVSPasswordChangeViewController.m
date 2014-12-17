@@ -11,9 +11,9 @@
 
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
-#import "NSError+Devise.h"
-#import "UIAlertView+Devise.h"
-#import "UIApplication+Devise.h"
+#import "NSError+DeviseDemo.h"
+#import "UIAlertView+DeviseDemo.h"
+#import "UIApplication+DeviseDemo.h"
 
 @interface DVSPasswordChangeViewController () <UIAlertViewDelegate>
 

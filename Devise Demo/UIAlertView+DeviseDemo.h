@@ -1,5 +1,5 @@
 //
-//  UIAlertView+Devise.h
+//  UIAlertView+DeviseDemo.h
 //  Devise
 //
 //  Created by Wojciech Trzasko on 09.12.2014.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIAlertView (Devise)
+@interface UIAlertView (DeviseDemo)
 
 + (UIAlertView *)dvs_alertViewForError:(NSError *)error;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "NSError+Devise.h"
+#import "NSError+DeviseDemo.h"
 
-@implementation NSError (Devise)
+@implementation NSError (DeviseDemo)
 
 NSString * const DVSDemoErrorDomain = @"co.netguru.lib.devise.demo.error";
 

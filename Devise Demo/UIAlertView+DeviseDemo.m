@@ -1,14 +1,14 @@
 //
-//  UIAlertView+Devise.m
+//  UIAlertView+DeviseDemo.m
 //  Devise
 //
 //  Created by Wojciech Trzasko on 09.12.2014.
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "UIAlertView+Devise.h"
+#import "UIAlertView+DeviseDemo.h"
 
-@implementation UIAlertView (Devise)
+@implementation UIAlertView (DeviseDemo)
 
 + (UIAlertView *)dvs_alertViewForError:(NSError *)error {
     return [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
