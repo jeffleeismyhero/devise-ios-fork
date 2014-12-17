@@ -53,38 +53,38 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 + (DVSConfiguration *)configuration;
 
 /**
- *  Returns an object for key for given action type.
+ *  Returns a parameter for given key and action.
  *
  *  @param key        The key for requested object.
- *  @param actionType The pointer for appropriate action (request) type values.
+ *  @param action     The action specifying where to search for the object for the given key.
  *  @return Instance of object for given key, stored for appropriate action.
  */
-- (id)objectForKey:(NSString *)key action:(DVSActionType)actionType;
+- (id)requestParameterForKey:(NSString *)key action:(DVSActionType)action;
 
 /**
- *  Returns bunch of key-value pairs for given action type.
+ *  Returns bunch of key-value pairs for given action.
  *
- *  @param actionType The pointer for appropriate request values.
+ *  @param action The action for which request parameters are stored.
  *  @return NSDictionary of parameters for given action.
  */
-- (NSDictionary *)objectsForAction:(DVSActionType)actionType;
+- (NSDictionary *)requestParametersForAction:(DVSActionType)action;
 
 /**
- *  Set an object for key for given action. Objects are converted to parameters and used when request is sending.
+ *  Set an object for given key and action. Objects are converted to parameters and used in query.
  *
  *  @param object     The value for key.
- *  @param key        The key for value. If key already exists, object takes its place.
- *  @param actionType The action pointer used for stored key-value pair.
+ *  @param key        The key for value. If other value for key already exists, object will replace that value.
+ *  @param action     The action for which additional parameter will be added to query.
  */
-- (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType;
+- (void)setRequestParameter:(id)parameter forKey:(NSString *)key action:(DVSActionType)action;
 
 /**
- *  Set bunch of key-value pairs for given action type. Objects are converted to parameters and used when request is sending.
+ *  Set bunch of key-value pairs for given action. Objects are converted to parameters and used when request is sending.
  *
  *  @param objects    NSDictionary of objects and keys stored for given action
- *  @param actionType The action pointer used for stored dicionary.
+ *  @param action     The action for which additional parameters will be added to query.
  */
-- (void)setObjects:(NSDictionary *)objects forAction:(DVSActionType)actionType;
+- (void)setRequestParameters:(NSDictionary *)parameters forAction:(DVSActionType)action;
 
 @end
 

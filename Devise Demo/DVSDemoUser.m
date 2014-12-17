@@ -40,7 +40,7 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
 #pragma mark - General accessors
 
 - (void)setProperty:(id)property forKey:(NSString *)aKey {
-    [self setObject:property forKey:aKey action:DVSActionRegistration];
+    [self setRequestParameter:property forKey:aKey action:DVSActionRegistration];
 }
 
 @end

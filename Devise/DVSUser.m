@@ -38,27 +38,28 @@
 #pragma mark - Additional parameters management
 
 - (void)setUpDefaultAdditionalRequestParameters {
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:5];
-    for (int i = 0; i <= DVSActionUpdate; i++) {
+    NSInteger capacity = 5;
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:capacity];
+    for (int i = 0; i < capacity; i++) {
         array[i] = [NSMutableDictionary dictionary];
     }
     self.additionalRequestParameters = [array copy];
 }
 
-- (id)objectForKey:(NSString *)key action:(DVSActionType)actionType {
-    return self.additionalRequestParameters[actionType][key];
+- (id)requestParameterForKey:(NSString *)key action:(DVSActionType)action {
+    return self.additionalRequestParameters[action][key];
 }
 
-- (NSDictionary *)objectsForAction:(DVSActionType)actionType {
-    return self.additionalRequestParameters[actionType];
+- (NSDictionary *)requestParametersForAction:(DVSActionType)action {
+    return self.additionalRequestParameters[action];
 }
 
-- (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType {
-    self.additionalRequestParameters[actionType][key] = object;
+- (void)setRequestParameter:(id)parameter forKey:(NSString *)key action:(DVSActionType)action {
+    self.additionalRequestParameters[action][key] = parameter;
 }
 
-- (void)setObjects:(NSDictionary *)objects forAction:(DVSActionType)actionType {
-    [self.additionalRequestParameters[actionType] addEntriesFromDictionary:objects];
+- (void)setRequestParameters:(NSDictionary *)parameters forAction:(DVSActionType)action {
+    [self.additionalRequestParameters[action] addEntriesFromDictionary:parameters];
 }
 
 #pragma mark - Configuration

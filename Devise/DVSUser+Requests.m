@@ -30,7 +30,7 @@
 }
 
 - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setObjects:params() forAction:DVSActionLogin];
+    [self setRequestParameters:params() forAction:DVSActionLogin];
     [self loginWithSuccess:success failure:failure];
 }
 
@@ -44,7 +44,7 @@
 }
 
 - (void)remindPasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setObjects:params() forAction:DVSActionRemindPassword];
+    [self setRequestParameters:params() forAction:DVSActionRemindPassword];
     [self remindPasswordWithSuccess:success failure:failure];
 }
 
@@ -61,7 +61,7 @@
 }
 
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setObjects:params() forAction:DVSActionRegistration];
+    [self setRequestParameters:params() forAction:DVSActionRegistration];
     [self registerWithSuccess:success failure:failure];
 }
 
@@ -75,7 +75,7 @@
 }
 
 - (void)changePasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setObjects:params() forAction:DVSActionChangePassword];
+    [self setRequestParameters:params() forAction:DVSActionChangePassword];
     [self changePasswordWithSuccess:success failure:failure];
 }
 
@@ -89,7 +89,7 @@
 }
 
 - (void)updateWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setObjects:params() forAction:DVSActionUpdate];
+    [self setRequestParameters:params() forAction:DVSActionUpdate];
     [self updateWithSuccess:success failure:failure];
 }
 
@@ -100,6 +100,11 @@
         [[self class] removeLocalUser];
         if (success != NULL) success();
     } failure:failure];
+}
+
+#pragma mark - Logout method
+- (void)logout {
+    [[self class] removeLocalUser];
 }
 
 #pragma mark - Validation

@@ -91,7 +91,7 @@
 
 - (NSDictionary *)additionalParametersForAction:(DVSActionType)action {
     
-    NSMutableDictionary *dictionary = [[self objectsForAction:action] mutableCopy];
+    NSMutableDictionary *dictionary = [[self requestParametersForAction:action] mutableCopy];
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalRequestParametersForAction:)]) {
         [dictionary addEntriesFromDictionary:[self.dataSource additionalRequestParametersForAction:action]];
     }

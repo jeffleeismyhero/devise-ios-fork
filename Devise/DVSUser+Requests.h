@@ -87,4 +87,9 @@
  */
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
+/**
+ *  Deletes locally stored user.
+ */
+- (void)logout;
+
 @end
