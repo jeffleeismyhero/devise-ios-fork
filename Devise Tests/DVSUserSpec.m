@@ -4,334 +4,128 @@
 //  Copyright 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSAPIManager.h"
+#import "DVSTestConfiguration.h"
+#import "DVSTestUser.h"
 
 SPEC_BEGIN(DVSUserSpec)
 
 describe(@"DVSUser", ^{
 
-    __block DVSConfiguration *configuration = nil;
+    context(@"when newly initialized", ^{
 
-    NSString *validEmail = @"john.appleseed@apple.com";
-    NSString *validPassword = @"$ecr3t";
+        __block DVSUser *user = nil;
+
+        beforeEach(^{
+            user = [[DVSUser alloc] init];
+        });
+
+        it(@"should use a shared configuration", ^{
+            [[[[user class] configuration] should] beIdenticalTo:[DVSConfiguration sharedConfiguration]];
+        });
+
+    });
+
+    __block DVSTestConfiguration *configuration = nil;
+    __block DVSTestUser *user = nil;
 
     beforeEach(^{
-        configuration = [[DVSConfiguration alloc] initWithServerURL:[OHHTTPStubs dvs_stubURL]];
-        [DVSConfiguration stub:@selector(sharedConfiguration) andReturn:configuration];
+        NSURL *serverURL = [NSURL URLWithString:@"http://devise-tests/"];
+        configuration = [[DVSTestConfiguration alloc] initWithServerURL:serverURL appendPathComponents:NO];
+        [[user class] setConfiguration:configuration];
+        user = [[DVSTestUser alloc] init];
     });
 
     describe(@"logging in", ^{
 
-        __block DVSUser *user = nil;
-        __block id<OHHTTPStubsDescriptor> routeStub = nil;
-
-        void (^performLogin)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
-            [user loginWithSuccess:^{
-                if (completion != nil) completion(YES, nil);
-            } failure:^(NSError *error) {
-                if (completion != nil) completion(NO, error);
-            }];
-        };
-
-        void (^assertLoginShouldSucceed)() = ^{
-            __block BOOL success = NO; __block NSError *error = nil;
-            performLogin(^(BOOL inputSuccess, NSError *inputError) {
-                success = inputSuccess;
-                error = inputError;
-            });
-            [[expectFutureValue(theValue(success)) shouldEventually] beYes];
-            [[expectFutureValue(error) shouldEventually] beNil];
-        };
-
-        void (^assertLoginShouldFail)() = ^{
-            __block BOOL success = NO; __block NSError *error = nil;
-            performLogin(^(BOOL inputSuccess, NSError *inputError) {
-                success = inputSuccess;
-                error = inputError;
-            });
-            [[expectFutureValue(theValue(success)) shouldEventually] beNo];
-            [[expectFutureValue(error) shouldEventually] beNonNil];
-        };
+        __block id<OHHTTPStubsDescriptor> stub = nil;
 
         beforeAll(^{
-            routeStub = [OHHTTPStubs dvs_stubLoginRouteWithOptions:@{
-                @"allowedEmail": validEmail,
-                @"allowedPassword": validPassword,
-            }];
+            stub = [OHHTTPStubs dvs_stubUserRegisterRequestsWithOptions:nil];
         });
 
         afterAll(^{
-            [OHHTTPStubs removeStub:routeStub];
-        });
-
-        beforeEach(^{
-            user = [DVSUser user];
-        });
-
-        context(@"using email with incorrect syntax", ^{
-
-            beforeEach(^{
-                user.email = @"qux";
-                user.password = validPassword;
-            });
-
-            it(@"should fail", ^{
-                assertLoginShouldFail();
-            });
-
-        });
-
-        context(@"using no email", ^{
-
-            beforeEach(^{
-                user.password = validPassword;
-            });
-
-            it(@"should fail", ^{
-                assertLoginShouldFail();
-            });
-
-        });
-
-        context(@"using no password", ^{
-
-            beforeEach(^{
-                user.email = validEmail;
-            });
-
-            it(@"should fail", ^{
-                assertLoginShouldFail();
-            });
-
-        });
-
-        context(@"using incorrect email", ^{
-
-            beforeEach(^{
-                user.email = @"john.smith@apple.com";
-                user.password = validPassword;
-            });
-
-            it(@"should fail", ^{
-                assertLoginShouldFail();
-            });
-            
-        });
-
-        context(@"using incorrect password", ^{
-
-            beforeEach(^{
-                user.email = validEmail;
-                user.password = @"baz";
-            });
-
-            it(@"should fail", ^{
-                assertLoginShouldFail();
-            });
-            
-        });
-
-        context(@"using correct email and password", ^{
-
-            beforeEach(^{
-                user.email = validEmail;
-                user.password = validPassword;
-            });
-
-            it(@"should succeed", ^{
-                assertLoginShouldSucceed();
-            });
-            
-        });
-
-    });
-
-    describe(@"reminding password", ^{
-
-        __block DVSUser *user = nil;
-        __block id<OHHTTPStubsDescriptor> routeStub = nil;
-
-        void (^performForgotPassword)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
-            [user remindPasswordWithSuccess:^{
-                if (completion != nil) completion(YES, nil);
-            } failure:^(NSError *error) {
-                if (completion != nil) completion(NO, error);
-            }];
-        };
-
-        void (^assertRemindPasswordShouldSucceed)() = ^{
-            __block BOOL success = NO; __block NSError *error = nil;
-            performForgotPassword(^(BOOL inputSuccess, NSError *inputError) {
-                success = inputSuccess;
-                error = inputError;
-            });
-            [[expectFutureValue(theValue(success)) shouldEventually] beYes];
-            [[expectFutureValue(error) shouldEventually] beNil];
-        };
-
-        void (^assertRemindPasswordShouldFail)() = ^{
-            __block BOOL success = NO; __block NSError *error = nil;
-            performForgotPassword(^(BOOL inputSuccess, NSError *inputError) {
-                success = inputSuccess;
-                error = inputError;
-            });
-            [[expectFutureValue(theValue(success)) shouldEventually] beNo];
-            [[expectFutureValue(error) shouldEventually] beNonNil];
-        };
-
-        beforeAll(^{
-            routeStub = [OHHTTPStubs dvs_stubForgotPasswordRouteWithOptions:@{
-                @"allowedEmail": validEmail,
-            }];
-        });
-        
-        afterAll(^{
-            [OHHTTPStubs removeStub:routeStub];
-        });
-        
-        beforeEach(^{
-            user = [DVSUser user];
-        });
-
-        context(@"using no email", ^{
-
-            it(@"should fail", ^{
-                assertRemindPasswordShouldFail();
-            });
-
-        });
-
-        context(@"using email with invalid syntax", ^{
-
-            beforeEach(^{
-                user.email = @"fox";
-            });
-
-            it(@"should fail", ^{
-                assertRemindPasswordShouldFail();
-            });
-            
-        });
-
-        context(@"using incorrect email", ^{
-
-            beforeEach(^{
-                user.email = @"john.smith@apple.com";
-            });
-
-            it(@"should fail", ^{
-                assertRemindPasswordShouldFail();
-            });
-            
-        });
-
-        context(@"using valid email", ^{
-
-            beforeEach(^{
-                user.email = validEmail;
-            });
-
-            it(@"should succeed", ^{
-                assertRemindPasswordShouldSucceed();
-            });
-            
-        });
-
-    });
-
-    describe(@"registration", ^{
-
-        __block DVSUser *user = nil;
-        __block id<OHHTTPStubsDescriptor> routeStub = nil;
-
-        void (^performRegisterPassword)(void(^)(BOOL, NSError *)) = ^(void(^completion)(BOOL, NSError *)) {
-            [user registerWithSuccess:^{
-                if (completion != nil) completion(YES, nil);
-            } failure:^(NSError *error) {
-                if (completion != nil) completion(NO, error);
-            }];
-        };
-
-        void (^assertRegisterShouldSucceed)() = ^{
-            __block BOOL success = NO; __block NSError *error = nil;
-            performRegisterPassword(^(BOOL inputSuccess, NSError *inputError) {
-                success = inputSuccess;
-                error = inputError;
-            });
-            [[expectFutureValue(theValue(success)) shouldEventually] beYes];
-            [[expectFutureValue(error) shouldEventually] beNil];
-        };
-
-        void (^assertRegisterShouldFail)() = ^{
-            __block BOOL success = NO; __block NSError *error = nil;
-            performRegisterPassword(^(BOOL inputSuccess, NSError *inputError) {
-                success = inputSuccess;
-                error = inputError;
-            });
-            [[expectFutureValue(theValue(success)) shouldEventually] beNo];
-            [[expectFutureValue(error) shouldEventually] beNonNil];
-        };
-
-        beforeAll(^{
-            routeStub = [OHHTTPStubs dvs_stubRegisterRouteWithOptions:nil];
-        });
-
-        afterAll(^{
-            [OHHTTPStubs removeStub:routeStub];
-        });
-
-        beforeEach(^{
-            user = [DVSUser user];
-        });
-
-        context(@"using no email", ^{
-
-            beforeEach(^{
-                user.password = validPassword;
-            });
-
-            it(@"should fail", ^{
-                assertRegisterShouldFail();
-            });
-            
-        });
-
-        context(@"using email with invalid syntax", ^{
-
-            beforeEach(^{
-                user.email = @"dog";
-                user.password = validPassword;
-            });
-
-            it(@"should fail", ^{
-                assertRegisterShouldFail();
-            });
-            
-        });
-
-        context(@"using no password", ^{
-
-            beforeEach(^{
-                user.email = validEmail;
-            });
-
-            it(@"should fail", ^{
-                assertRegisterShouldFail();
-            });
-            
+            [OHHTTPStubs removeStub:stub];
         });
 
         context(@"using correct data", ^{
-
+            
             beforeEach(^{
-                user.email = validEmail;
-                user.password = validPassword;
+                user.email = @"john.appleseed@apple.com";
+                user.password = @"$eCR3t";
             });
 
             it(@"should succeed", ^{
-                assertRegisterShouldSucceed();
+                __block BOOL success = NO;
+                [user registerWithSuccess:^{
+                    success = YES;
+                } failure:nil];
+                [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
             });
-            
+
+            it(@"shoud fill the user object", ^{
+                [user registerWithSuccess:nil failure:nil];
+                [[expectFutureValue(user.identifier) shouldEventually] beNonNil];
+                [[expectFutureValue(user.sessionToken) shouldEventually] beNonNil];
+            });
+
+            it(@"should save the user locally", ^{
+                [user registerWithSuccess:nil failure:nil];
+                [[expectFutureValue([[user class] localUser]) shouldEventually] beIdenticalTo:user];
+            });
+
+        });
+
+        describe(@"validation", ^{
+
+            context(@"using no email", ^{
+
+                beforeEach(^{
+                    user.password = @"$eCR3t";
+                });
+
+                it(@"should fail", ^{
+                    __block BOOL failure = NO;
+                    [user registerWithSuccess:nil failure:^(NSError *error) {
+                        failure = YES;
+                    }];
+                    [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                });
+
+            });
+
+            context(@"using email with invalid syntax", ^{
+
+                beforeEach(^{
+                    user.email = @"john.appleseed.apple.com";
+                    user.password = @"$eCR3t";
+                });
+
+                it(@"should fail", ^{
+                    __block BOOL failure = NO;
+                    [user registerWithSuccess:nil failure:^(NSError *error) {
+                        failure = YES;
+                    }];
+                    [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                });
+                
+            });
+
+            context(@"using no password", ^{
+
+                beforeEach(^{
+                    user.email = @"john.appleseed@apple.com";
+                });
+
+                it(@"should fail", ^{
+                    __block BOOL failure = NO;
+                    [user registerWithSuccess:nil failure:^(NSError *error) {
+                        failure = YES;
+                    }];
+                    [[expectFutureValue(theValue(failure)) shouldEventually] beTrue];
+                });
+                
+            });
+
         });
 
     });

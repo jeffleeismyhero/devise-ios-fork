@@ -53,6 +53,7 @@
 		3AA22E601A25361200FE04D1 /* Devise-Demo-Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4C7191A24FA6A00F0AE67 /* Devise-Demo-Main.m */; };
 		3AA409F41A3F9D700046B0E4 /* DVSHTTPClient+User.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA409F21A3F9D700046B0E4 /* DVSHTTPClient+User.h */; };
 		3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA409F31A3F9D700046B0E4 /* DVSHTTPClient+User.m */; };
+		3AA57B6E1A41851800C54B36 /* DVSUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A49C2711A25D60D0041406B /* DVSUserSpec.m */; };
 		3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA631721A39A718002A64AC /* DVSUser+Persistence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA631731A39A718002A64AC /* DVSUser+Persistence.m */; };
 		3AA8B36A1A24DA0000166927 /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
@@ -1022,6 +1023,7 @@
 				3A4EE5AD1A40C95F00A068E2 /* DVSValidatorSpec.m in Sources */,
 				3A4EE5A71A40AC9E00A068E2 /* DVSTestUser.m in Sources */,
 				3A4EE5AE1A40C96200A068E2 /* DVSPropertyValidatorSpec.m in Sources */,
+				3AA57B6E1A41851800C54B36 /* DVSUserSpec.m in Sources */,
 				3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
