@@ -29,7 +29,7 @@
 		3A4EE5AE1A40C96200A068E2 /* DVSPropertyValidatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E64C1791A30603E00A41A88 /* DVSPropertyValidatorSpec.m */; };
 		3A4EE5AF1A40C96500A068E2 /* DVSConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1E1A2509AF00FE04D1 /* DVSConfigurationSpec.m */; };
 		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */; };
-		3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */; };
+		3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */; };
 		3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E1A1A25031300FE04D1 /* DVSConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1B1A25031300FE04D1 /* DVSConfiguration.m */; };

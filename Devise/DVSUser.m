@@ -13,8 +13,6 @@
 
 @interface DVSUser ()
 
-@property (strong, nonatomic) DVSHTTPClient *httpClient;
-
 @property (strong, nonatomic) NSArray *additionalRequestParameters;
 - (void)setUpDefaultAdditionalRequestParameters;
 

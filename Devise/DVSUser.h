@@ -48,6 +48,11 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 @property (weak, nonatomic) id <DVSUserDataSource> dataSource;
 
 /**
+ *  The HTTP client used by the model for networking purposes.
+ */
+@property (strong, nonatomic) DVSHTTPClient *httpClient;
+
+/**
  *  The model's configuration object.
  */
 + (DVSConfiguration *)configuration;

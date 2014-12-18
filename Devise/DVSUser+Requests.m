@@ -9,12 +9,6 @@
 #import "DVSHTTPClient+User.h"
 #import "DVSUser+Requests.h"
 
-@interface DVSUser ()
-
-@property (strong, nonatomic) DVSHTTPClient *httpClient;
-
-@end
-
 @implementation DVSUser (Requests)
 
 #pragma mark - Logging in
