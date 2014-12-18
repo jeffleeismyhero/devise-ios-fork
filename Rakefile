@@ -78,6 +78,10 @@ def certs_dir
   ENV["CERTS_DIR"]
 end
 
+def profile_name
+  ENV["PROFILE_NAME"]
+end
+
 def testflight_lists
   ENV["TESTFLIGHT_LISTS"]
 end
@@ -108,7 +112,7 @@ def build_and_distribute
   FileUtils.mkdir_p profile_dest_dir
   sh "cp '#{certs_dir}'/*.mobileprovision '#{profile_dest_dir}'"
 
-  profile_path = "#{profile_dest_dir}/#{ENV["MOBILEPROVISION_NAME"]}"
+  profile_path = "#{profile_dest_dir}/#{profile_name}"
 
   set_infoplist_version
 
