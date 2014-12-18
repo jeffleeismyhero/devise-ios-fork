@@ -25,6 +25,6 @@ extern NSString * const DVSDemoUserPhoneParameter;
 @property (strong, nonatomic) NSString *lastName;
 
 /// User's phone number.
-@property (strong, nonatomic) NSNumber *phone;
+@property (strong, nonatomic) NSString *phone;
 
 @end

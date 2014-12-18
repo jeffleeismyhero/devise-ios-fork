@@ -32,7 +32,7 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
     [self setProperty:lastName forKey:DVSDemoUserLastNameParameter];
 }
 
-- (void)setPhone:(NSNumber *)phone {
+- (void)setPhone:(NSString *)phone {
     _phone = phone;
     [self setProperty:phone forKey:DVSDemoUserPhoneParameter];
 }
