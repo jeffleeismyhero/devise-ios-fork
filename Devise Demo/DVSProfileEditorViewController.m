@@ -46,7 +46,9 @@
                           cancelButtonTitle:[self titleForProfileUpdatedAlertCancelButton]
                           otherButtonTitles:nil] show];
     } failure:^(NSError *error) {
-        [[UIAlertView dvs_alertViewForError:error] show];
+        UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                        statusDescriptionsDictionary:@{ @422: NSLocalizedString(@"E-mail is already taken.", nil) }];
+        [errorAlert show];
     }];
 }
 

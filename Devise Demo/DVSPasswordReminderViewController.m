@@ -28,7 +28,9 @@
     [user remindPasswordWithSuccess:^{
          [self.navigationController popViewControllerAnimated:YES];
      } failure:^(NSError *error) {
-         [[UIAlertView dvs_alertViewForError:error] show];
+         UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                         statusDescriptionsDictionary:@{ @404: NSLocalizedString(@"User for current e-mail does not exist.", nil) }];
+         [errorAlert show];
      }];
 }
 

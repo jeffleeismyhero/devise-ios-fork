@@ -57,7 +57,9 @@ static NSString * const DVSEnterSegue = @"DisplayHomeView";
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
     } failure:^(NSError *error) {
-        [[UIAlertView dvs_alertViewForError:error] show];
+        UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                        statusDescriptionsDictionary:@{ @422: NSLocalizedString(@"E-mail is already taken.", nil) }];
+        [errorAlert show];
     }];
 }
 
