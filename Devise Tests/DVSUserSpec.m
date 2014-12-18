@@ -50,7 +50,7 @@ describe(@"DVSUser", ^{
         context(@"using correct data", ^{
             
             beforeEach(^{
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.password = @"$eCR3t";
             });
 
@@ -97,7 +97,7 @@ describe(@"DVSUser", ^{
             context(@"using email with invalid syntax", ^{
 
                 beforeEach(^{
-                    user.email = @"john.appleseed.apple.com";
+                    user.email = @"john.appleseed.example.com";
                     user.password = @"$eCR3t";
                 });
 
@@ -114,7 +114,7 @@ describe(@"DVSUser", ^{
             context(@"using no password", ^{
 
                 beforeEach(^{
-                    user.email = @"john.appleseed@apple.com";
+                    user.email = @"john.appleseed@example.com";
                     user.password = nil;
                 });
 
@@ -147,7 +147,7 @@ describe(@"DVSUser", ^{
         context(@"using correct data", ^{
 
             beforeEach(^{
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.password = @"$eCR3t";
             });
 
@@ -194,7 +194,7 @@ describe(@"DVSUser", ^{
             context(@"using email with invalid syntax", ^{
 
                 beforeEach(^{
-                    user.email = @"john.appleseed.apple.com";
+                    user.email = @"john.appleseed.example.com";
                     user.password = @"$eCR3t";
                 });
 
@@ -211,7 +211,7 @@ describe(@"DVSUser", ^{
             context(@"using no password", ^{
 
                 beforeEach(^{
-                    user.email = @"john.appleseed@apple.com";
+                    user.email = @"john.appleseed@example.com";
                     user.password = nil;
                 });
 
@@ -245,7 +245,7 @@ describe(@"DVSUser", ^{
 
             beforeEach(^{
                 user.identifier = @"1";
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
                 [[user class] setLocalUser:user];
             });
@@ -253,7 +253,7 @@ describe(@"DVSUser", ^{
             context(@"using correct data", ^{
 
                 beforeEach(^{
-                    user.email = @"john.appleseed@apple.com";
+                    user.email = @"john.appleseed@example.com";
                 });
 
                 it(@"should succeed", ^{
@@ -287,7 +287,7 @@ describe(@"DVSUser", ^{
                 context(@"using email with invalid syntax", ^{
 
                     beforeEach(^{
-                        user.email = @"john.appleseed.apple.com";
+                        user.email = @"john.appleseed.example.com";
                     });
 
                     it(@"should fail", ^{
@@ -322,7 +322,7 @@ describe(@"DVSUser", ^{
 
             beforeEach(^{
                 user.identifier = @"1";
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
                 [[user class] setLocalUser:user];
             });
@@ -364,7 +364,7 @@ describe(@"DVSUser", ^{
 
             beforeEach(^{
                 user.identifier = @"1";
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
                 [[user class] setLocalUser:user];
             });
@@ -424,7 +424,7 @@ describe(@"DVSUser", ^{
         context(@"using correct data", ^{
 
             beforeEach(^{
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
             });
 
             it(@"should succeed", ^{
@@ -458,7 +458,7 @@ describe(@"DVSUser", ^{
             context(@"using email with invalid syntax", ^{
 
                 beforeEach(^{
-                    user.email = @"john.appleseed.apple.com";
+                    user.email = @"john.appleseed.example.com";
                 });
 
                 it(@"should fail", ^{

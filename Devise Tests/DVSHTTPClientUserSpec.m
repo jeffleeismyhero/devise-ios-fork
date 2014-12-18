@@ -39,7 +39,7 @@ describe(@"DVSHTTPClient+User", ^{
         context(@"using correct data", ^{
 
             beforeEach(^{
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.password = @"$eCR3t";
             });
 
@@ -81,7 +81,7 @@ describe(@"DVSHTTPClient+User", ^{
         context(@"using correct data", ^{
 
             beforeEach(^{
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.password = @"$eCR3t";
             });
 
@@ -124,7 +124,7 @@ describe(@"DVSHTTPClient+User", ^{
 
             beforeEach(^{
                 user.identifier = @"1";
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
                 [[user class] setLocalUser:user];
             });
@@ -132,7 +132,7 @@ describe(@"DVSHTTPClient+User", ^{
             context(@"using correct data", ^{
 
                 beforeEach(^{
-                    user.email = @"john.appleseed@microsoft.com";
+                    user.email = @"john.appleseed@example2.com";
                 });
 
                 it(@"should succeed", ^{
@@ -165,7 +165,7 @@ describe(@"DVSHTTPClient+User", ^{
 
             beforeEach(^{
                 user.identifier = @"1";
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
                 [[user class] setLocalUser:user];
             });
@@ -207,7 +207,7 @@ describe(@"DVSHTTPClient+User", ^{
 
             beforeEach(^{
                 user.identifier = @"1";
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
                 [[user class] setLocalUser:user];
             });
@@ -247,7 +247,7 @@ describe(@"DVSHTTPClient+User", ^{
         context(@"using correct data", ^{
 
             beforeEach(^{
-                user.email = @"john.appleseed@apple.com";
+                user.email = @"john.appleseed@example.com";
             });
 
             it(@"should succeed", ^{
