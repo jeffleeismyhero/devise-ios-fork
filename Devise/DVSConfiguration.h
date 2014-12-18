@@ -73,7 +73,7 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (assign, nonatomic) NSTimeInterval retryTresholdDuration;
 
 /**
- *  Whether the network activity indicator should be visible.
+ *  Whether the network activity indicator should be visible (default: NO).
  */
 @property (assign, nonatomic) BOOL showsNetworkActivityIndicator;
 
