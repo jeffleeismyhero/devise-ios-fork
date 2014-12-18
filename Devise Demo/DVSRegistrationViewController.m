@@ -54,11 +54,7 @@ static NSString * const DVSEnterSegue = @"DisplayHomeView";
     newUser.lastName = [self getValueForTitle:[self localizedTitleForLastName]];
     
     NSNumber *phoneNumber = [[self getValueForTitle:[self localizedTitleForPhone]] dvs_numberValue];
-    if (phoneNumber) {
-        newUser.phone = phoneNumber;
-    } else {
-        newUser.phone = [NSNumber numberWithInteger:0];
-    }
+    newUser.phone = (phoneNumber) ?: @0;
     
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
