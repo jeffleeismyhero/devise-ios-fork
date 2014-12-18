@@ -5,3 +5,4 @@
 //
 
 #include "Configuration/iOS/iOS-Application.xcconfig"
+#include "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"
