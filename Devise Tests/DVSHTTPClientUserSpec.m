@@ -51,7 +51,7 @@ describe(@"DVSHTTPClient+User", ^{
                 [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
             });
 
-            it(@"shoud fill the user object", ^{
+            it(@"should fill the user object", ^{
                 [client registerUser:user success:nil failure:nil];
                 [[expectFutureValue(user.identifier) shouldEventually] beNonNil];
                 [[expectFutureValue(user.sessionToken) shouldEventually] beNonNil];
@@ -93,7 +93,7 @@ describe(@"DVSHTTPClient+User", ^{
                 [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
             });
 
-            it(@"shoud fill the user object", ^{
+            it(@"should fill the user object", ^{
                 [client logInUser:user success:nil failure:nil];
                 [[expectFutureValue(user.identifier) shouldEventually] beNonNil];
                 [[expectFutureValue(user.sessionToken) shouldEventually] beNonNil];
