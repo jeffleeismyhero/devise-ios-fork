@@ -10,7 +10,6 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+DeviseDemo.h"
-#import "UIApplication+DeviseDemo.h"
 #import "DVSDemoUser.h"
 
 @interface DVSPasswordReminderViewController ()
@@ -26,13 +25,10 @@
     
     user.email = self.emailTextField.text;
     
-    [UIApplication showNetworkActivity];
     [user remindPasswordWithSuccess:^{
          [self.navigationController popViewControllerAnimated:YES];
-         [UIApplication hideNetworkActivity];
      } failure:^(NSError *error) {
          [[UIAlertView dvs_alertViewForError:error] show];
-         [UIApplication hideNetworkActivity];
      }];
 }
 

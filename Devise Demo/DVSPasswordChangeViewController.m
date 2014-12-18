@@ -13,7 +13,6 @@
 #import "DVSDemoUserDataSource.h"
 #import "NSError+DeviseDemo.h"
 #import "UIAlertView+DeviseDemo.h"
-#import "UIApplication+DeviseDemo.h"
 
 @interface DVSPasswordChangeViewController () <UIAlertViewDelegate>
 
@@ -63,20 +62,15 @@
     
     localUser.password = newPassword;
     
-    [UIApplication showNetworkActivity];
     [localUser changePasswordWithSuccess:^{
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Password changed", nil)
                                     message:NSLocalizedString(@"Password was changed. \nNow you can login with new password.", nil)
                                    delegate:self
                           cancelButtonTitle:[self titleForPasswordChangedAlertCancelButton]
                           otherButtonTitles:nil] show];
-        
-        [UIApplication hideNetworkActivity];
     } failure:^(NSError *error) {
         localUser.password = currentPassword;
         [[UIAlertView dvs_alertViewForError:error] show];
-        
-        [UIApplication hideNetworkActivity];
     }];
 }
 

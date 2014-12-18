@@ -10,7 +10,6 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+DeviseDemo.h"
-#import "UIApplication+DeviseDemo.h"
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
 
@@ -49,13 +48,10 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
     user.email = self.emailTextField.text;
     user.password = self.passwordTextField.text;
     
-    [UIApplication showNetworkActivity];
     [user loginWithSuccess:^{
         [self performSegueWithIdentifier:DVSHomeSegue sender:self];
-        [UIApplication hideNetworkActivity];
     } failure:^(NSError *error) {
         [[UIAlertView dvs_alertViewForError:error] show];
-        [UIApplication hideNetworkActivity];
     }];
 }
 

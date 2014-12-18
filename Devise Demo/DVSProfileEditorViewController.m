@@ -12,7 +12,6 @@
 #import "UIAlertView+DeviseDemo.h"
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
-#import "UIApplication+DeviseDemo.h"
 
 @interface DVSProfileEditorViewController () <UIAlertViewDelegate>
 
@@ -40,17 +39,14 @@
     localUser.dataSource = self.userDataSource;
     localUser.email = [self getValueForTitle:[self localizedTitleForEmail]];
     
-    [UIApplication showNetworkActivity];
     [localUser updateWithSuccess:^{
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profile updated", nil)
                                     message:NSLocalizedString(@"Your profile was updated.", nil)
                                    delegate:self
                           cancelButtonTitle:[self titleForProfileUpdatedAlertCancelButton]
                           otherButtonTitles:nil] show];
-        [UIApplication hideNetworkActivity];
     } failure:^(NSError *error) {
         [[UIAlertView dvs_alertViewForError:error] show];
-        [UIApplication hideNetworkActivity];
     }];
 }
 

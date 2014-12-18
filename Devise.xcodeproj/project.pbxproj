@@ -10,7 +10,6 @@
 		210403141A39C74C001AF776 /* DVSFormTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 210403131A39C74C001AF776 /* DVSFormTableViewCell.m */; };
 		210403171A39C7F4001AF776 /* DVSFormTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210403161A39C7F4001AF776 /* DVSFormTableViewController.m */; };
 		210403191A39C8E3001AF776 /* DVSFormTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 210403181A39C8E3001AF776 /* DVSFormTableViewCell.xib */; };
-		2118A4E51A4190A200049C1F /* UIApplication+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2118A4E41A4190A200049C1F /* UIApplication+DeviseDemo.m */; };
 		2118A4E81A42CB3000049C1F /* NSString+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2118A4E71A42CB3000049C1F /* NSString+DeviseDemo.m */; };
 		215575B31A40880C00BA8661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 215575B11A40880C00BA8661 /* Localizable.strings */; };
 		21B1AAB21A3AF4E000578DF7 /* DVSPasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB11A3AF4E000578DF7 /* DVSPasswordChangeViewController.m */; };
@@ -125,8 +124,6 @@
 		210403151A39C7F4001AF776 /* DVSFormTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormTableViewController.h; sourceTree = "<group>"; };
 		210403161A39C7F4001AF776 /* DVSFormTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormTableViewController.m; sourceTree = "<group>"; };
 		210403181A39C8E3001AF776 /* DVSFormTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVSFormTableViewCell.xib; sourceTree = "<group>"; };
-		2118A4E31A4190A200049C1F /* UIApplication+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+DeviseDemo.h"; sourceTree = "<group>"; };
-		2118A4E41A4190A200049C1F /* UIApplication+DeviseDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+DeviseDemo.m"; sourceTree = "<group>"; };
 		2118A4E61A42CB3000049C1F /* NSString+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DeviseDemo.h"; sourceTree = "<group>"; };
 		2118A4E71A42CB3000049C1F /* NSString+DeviseDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DeviseDemo.m"; sourceTree = "<group>"; };
 		215575B21A40880C00BA8661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -352,8 +349,6 @@
 				21F6909E1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m */,
 				21B1AAB31A3B12CE00578DF7 /* NSError+DeviseDemo.h */,
 				21B1AAB41A3B12CE00578DF7 /* NSError+DeviseDemo.m */,
-				2118A4E31A4190A200049C1F /* UIApplication+DeviseDemo.h */,
-				2118A4E41A4190A200049C1F /* UIApplication+DeviseDemo.m */,
 				2118A4E61A42CB3000049C1F /* NSString+DeviseDemo.h */,
 				2118A4E71A42CB3000049C1F /* NSString+DeviseDemo.m */,
 			);
@@ -1056,7 +1051,6 @@
 				21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */,
 				3AA22E5C1A25353B00FE04D1 /* DVSPasswordReminderViewController.m in Sources */,
 				3AA22E5E1A25353B00FE04D1 /* DVSWelcomeViewController.m in Sources */,
-				2118A4E51A4190A200049C1F /* UIApplication+DeviseDemo.m in Sources */,
 				210403141A39C74C001AF776 /* DVSFormTableViewCell.m in Sources */,
 				3AA22E591A25353B00FE04D1 /* DVSLoginViewController.m in Sources */,
 				21F6909F1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m in Sources */,
