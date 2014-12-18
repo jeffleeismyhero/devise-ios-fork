@@ -38,12 +38,22 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 #pragma mark - DataSource helpers
 
 - (void)addFormWithTitleToDataSource:(NSString *)title {
-    [self addFormWithTitleToDataSource:title secured:NO];
+    [self addFormWithTitleToDataSource:title secured:NO keyboardType:UIKeyboardTypeDefault];
 }
 
 - (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured {
+    [self addFormWithTitleToDataSource:title secured:secured keyboardType:UIKeyboardTypeDefault];
+}
+
+- (void)addFormWithTitleToDataSource:(NSString *)title keyboardType:(UIKeyboardType)keyboardType {
+    [self addFormWithTitleToDataSource:title secured:NO keyboardType:keyboardType];
+}
+
+- (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
     [self.dataSourceTitlesArray addObject:title];
-    self.dataSourceValuesDictionary[title] = [[DVSFormTableModel alloc] initWithValue:@"" secured:secured];
+    self.dataSourceValuesDictionary[title] = [[DVSFormTableModel alloc] initWithValue:@""
+                                                                              secured:secured
+                                                                         keyboardType:keyboardType];
 }
 
 - (void)setValue:(NSString *)value forTitle:(NSString *)title {
@@ -52,7 +62,8 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     NSAssert(model, @"No model for current title");
     
     self.dataSourceValuesDictionary[title] = [[DVSFormTableModel alloc] initWithValue:value
-                                                                              secured:model.secured];
+                                                                              secured:model.secured
+                                                                         keyboardType:model.keyboardType];
     [self.tableView reloadData];
 }
 
@@ -77,6 +88,7 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     cell.delegate = self;
     cell.valueTextField.text = model.value;
     cell.valueTextField.secureTextEntry = model.secured;
+    cell.valueTextField.keyboardType = model.keyboardType;
     
     return cell;
 }
@@ -86,7 +98,8 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 - (void)formTableViewCell:(DVSFormTableViewCell *)cell changedValue:(NSString *)string {
     DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[cell.titleLabel.text];
     self.dataSourceValuesDictionary[cell.titleLabel.text] = [[DVSFormTableModel alloc] initWithValue:string
-                                                                                             secured:model.secured];
+                                                                                             secured:model.secured
+                                                                                        keyboardType:model.keyboardType];
 }
 
 @end

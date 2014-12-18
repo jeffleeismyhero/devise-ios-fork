@@ -38,7 +38,7 @@ static NSString * const DVSEnterSegue = @"DisplayHomeView";
     [self addFormWithTitleToDataSource:[self localizedTitleForEmail]];
     [self addFormWithTitleToDataSource:[self localizedTitleForFirstName]];
     [self addFormWithTitleToDataSource:[self localizedTitleForLastName]];
-    [self addFormWithTitleToDataSource:[self localizedTitleForPhone]];
+    [self addFormWithTitleToDataSource:[self localizedTitleForPhone] keyboardType:UIKeyboardTypePhonePad];
 }
 
 #pragma mark - UIControl events
