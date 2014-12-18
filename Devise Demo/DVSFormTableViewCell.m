@@ -8,6 +8,8 @@
 
 #import "DVSFormTableViewCell.h"
 
+#import "DVSFormTableModel.h"
+
 @interface DVSFormTableViewCell ()
 
 @property (weak, nonatomic, readwrite) IBOutlet UILabel *titleLabel;
@@ -16,6 +18,13 @@
 @end
 
 @implementation DVSFormTableViewCell
+
+- (void)fillWithTitle:(NSString *)title model:(DVSFormTableModel *)model {
+    self.titleLabel.text = title;
+    self.valueTextField.text = model.value;
+    self.valueTextField.secureTextEntry = model.secured;
+    self.valueTextField.keyboardType = model.keyboardType;
+}
 
 #pragma mark - UITextField events
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DVSFormTableModel.h"
+
 @protocol DVSFormTableViewCellDelegate;
 
 @interface DVSFormTableViewCell : UITableViewCell
@@ -15,6 +17,8 @@
 @property (weak, nonatomic) id<DVSFormTableViewCellDelegate> delegate;
 @property (weak, nonatomic, readonly) UILabel *titleLabel;
 @property (weak, nonatomic, readonly) UITextField *valueTextField;
+
+- (void)fillWithTitle:(NSString *)title model:(DVSFormTableModel *)model;
 
 @end
 

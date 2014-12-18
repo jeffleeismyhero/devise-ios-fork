@@ -80,15 +80,11 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DVSFormTableViewCell *cell = (DVSFormTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
-    
     NSString *title = self.dataSourceTitlesArray[indexPath.item];
     DVSFormTableModel *model = self.dataSourceValuesDictionary[title];
     
-    cell.titleLabel.text = title;
+    [cell fillWithTitle:title model:model];
     cell.delegate = self;
-    cell.valueTextField.text = model.value;
-    cell.valueTextField.secureTextEntry = model.secured;
-    cell.valueTextField.keyboardType = model.keyboardType;
     
     return cell;
 }
