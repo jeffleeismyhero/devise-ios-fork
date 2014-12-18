@@ -46,6 +46,14 @@ end
 
 ################################################################################
 
+def build_dir
+  ENV["TRAVIS_BUILD_DIR"]
+end
+
+def build_number
+  ENV["TRAVIS_BUILD_NUMBER"]
+end
+
 def xcode_workspace
   ENV["XCODE_WORKSPACE"]
 end
@@ -58,63 +66,20 @@ def xcode_sdk
   ENV["XCODE_SDK"]
 end
 
-def environment
+def xcode_configuration
   'Release'
 end
 
-def infoplist_path
+def xcode_infoplist
   ENV["XCODE_INFOPLIST_PATH"]
-end
-
-def bundle_id
-  `/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' '#{infoplist_path}'`.strip
-end
-
-def project_name
-  @project_name ||= `/usr/libexec/PlistBuddy -c 'Print :CFBundleDisplayName' '#{infoplist_path}'`.strip
-end
-
-def build_dir
-  ENV["TRAVIS_BUILD_DIR"]
-end
-
-def workspace_path
-  "#{build_dir}/#{ENV['XCODE_WORKSPACE']}"
-end
-
-def build_config
-  {
-    workspace: workspace_path,
-    configuration: environment,
-  }
-end
-
-def build_number
-  ENV["TRAVIS_BUILD_NUMBER"]
-end
-
-def set_bundle_params
-  report_info "Setting 'CFBundleVersion' in '#{infoplist_path}' to '#{build_number}'"
-  sh "/usr/libexec/PlistBuddy -c 'Set :CFBundleVersion #{build_number}' '#{infoplist_path}'"
-
-  report_info "Setting 'CFBundleIdentifier' in '#{infoplist_path}' to '#{bundle_id}'"
-  sh "/usr/libexec/PlistBuddy -c 'Set :CFBundleIdentifier #{bundle_id}' '#{infoplist_path}'"
-
-  report_info "Setting 'CFBundleDisplayName' in '#{infoplist_path}' to '#{bundle_id}'"
-  sh "/usr/libexec/PlistBuddy -c 'Set :CFBundleDisplayName #{project_name}' '#{infoplist_path}'"
 end
 
 def certs_dir
   ENV["CERTS_DIR"]
 end
 
-def masked_sh(command, masked_strings)
-  masked_command = command
-  masked_strings.each do |masked_string|
-    masked_command = masked_command.sub(masked_string, "[secure]")
-  end
-  puts masked_command
-  system command
+def testflight_lists
+  ENV["TESTFLIGHT_LISTS"]
 end
 
 ################################################################################
@@ -145,7 +110,7 @@ def build_and_distribute
 
   profile_path = "#{profile_dest_dir}/#{ENV["MOBILEPROVISION_NAME"]}"
 
-  set_bundle_params
+  set_infoplist_version
 
   cert_name = ENV["CERT_NAME"]
 
@@ -157,7 +122,7 @@ def build_and_distribute
   ipa_build_flags << "--embed '#{profile_path}'"
   ipa_build_flags << "--identity '#{cert_name}'"
   ipa_build_flags << "--no-clean"
-  ipa_build_flags << "--configuration '#{environment}'"
+  ipa_build_flags << "--configuration '#{xcode_configuration}'"
 
   report_info "Building the application archive, this may take a while..."
   FileUtils.mkdir_p ipa_build_dir
@@ -176,7 +141,7 @@ def build_and_distribute
     ipa_distribute_flags << "--api_token '#{testflight_api_token}'"
     ipa_distribute_flags << "--team_token '#{testflight_team_token}'"
     ipa_distribute_flags << "--notes '#{testflight_release_notes}'"
-    ipa_distribute_flags << "--lists '#{project_name}'"
+    ipa_distribute_flags << "--lists '#{testflight_lists}'"
 
     report_info "Uploading the application archive to TestFlight, this may take a while..."
     masked_sh "ipa distribute:testflight #{ipa_distribute_flags.join(" ")}", [testflight_api_token, testflight_team_token]
@@ -184,9 +149,14 @@ def build_and_distribute
   end
 end
 
+def set_infoplist_version
+  report_info "Setting 'CFBundleVersion' in '#{xcode_infoplist}' to '#{build_number}'"
+  sh "/usr/libexec/PlistBuddy -c 'Set :CFBundleVersion #{build_number}' '#{xcode_infoplist}'"
+end
+
 ################################################################################
 
-def xcode_flags
+def xcodebuild_flags
   {
     "workspace" => xcode_workspace,
     "scheme" => xcode_scheme,
@@ -197,12 +167,20 @@ def xcode_flags
 end
 
 def xcode_run action
-  flags = xcode_flags
-  sh "xcodebuild #{flags} #{action} | xcpretty -c ; exit ${PIPESTATUS[0]}" rescue nil
+  sh "xcodebuild #{xcodebuild_flags} #{action} | xcpretty -c ; exit ${PIPESTATUS[0]}" rescue nil
   report_failure "Scheme '#{xcode_scheme}' failed to '#{action}'.", $?.exitstatus unless $?.success?
 end
 
 ################################################################################
+
+def masked_sh(command, masked_strings)
+  masked_command = command
+  masked_strings.each do |masked_string|
+    masked_command = masked_command.sub(masked_string, "[secure]")
+  end
+  puts masked_command
+  system command
+end
 
 def report_success(message)
   report_common message, 2
