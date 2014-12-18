@@ -8,7 +8,7 @@
 
 #import "DVSTypedefs.h"
 
-@class DVSConfiguration;
+@class DVSConfiguration, DVSHTTPClient;
 @protocol DVSUserDataSource;
 
 typedef NS_ENUM(NSInteger, DVSActionType) {
