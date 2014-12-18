@@ -9,7 +9,6 @@
 #import "DVSConfiguration.h"
 #import "NSString+Devise.h"
 #import "NSNumber+Devise.h"
-#import "NSError+Devise.h"
 #import "NSDate+Devise.h"
 #import "DVSTypedefs.h"
 
@@ -570,7 +569,8 @@ NSString * const dvs_attribute = @"{attribute}";
     if (attribute) {
         description = [description stringByReplacingOccurrencesOfString:dvs_attribute withString:attribute];
     }
-    return [NSError dvs_errorWithDescription:description code:DVSErrorValidationFailed];
+
+    return [NSError errorWithDomain:@"co.netguru.lib.devise.validation" code:2000 userInfo:@{NSLocalizedDescriptionKey: description}];
 }
 
 - (NSError *)errorWithMessage:(DVSErrorDescription)message {

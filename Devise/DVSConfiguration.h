@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (copy, nonatomic) NSString *resourceName;
 
 /**
- *  The logging level of the framework (default: DVSLogLevelNone).
+ *  The logging level of the framework (default: DVSLoggingModeNone).
  */
 @property (assign, nonatomic) DVSLoggingMode loggingMode;
 
