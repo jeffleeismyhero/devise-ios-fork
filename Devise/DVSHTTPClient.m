@@ -42,7 +42,11 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
     self.configuration = configuration;
 
     self.sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];
-    self.sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+
+    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+    [requestSerializer setValue:@"application/json" forKey:@"Accept"];
+    self.sessionManager.requestSerializer = requestSerializer;
+    
     self.sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
 
     return self;
