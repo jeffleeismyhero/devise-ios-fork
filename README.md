@@ -140,6 +140,12 @@ And what was mentioned earlier you can inject your own request parameters via me
 - (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;
 ```
 
+If it's needed to store locally more info about `DVSUser` subclass (other than `email`, `sessionToken` and `identifier` - these are stored by default) conform `DVSUserPersisting` protocol. You can choose which properties should be persist by invoking:
+```objc
+- (NSArray *)propertiesToPersistByName;
+```
+Just remember to pass property names as `NSString`.
+
 ## User model validation and messaging
 
 **devise-ios** deliver also simply validation wrapper for your purposes. If you wish to use it, conform `DVSUserDataSource` protocol and implement `additionalValidationRulesForAction:` method.
