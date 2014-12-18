@@ -11,5 +11,6 @@
 @interface UIAlertView (DeviseDemo)
 
 + (UIAlertView *)dvs_alertViewForError:(NSError *)error;
++ (UIAlertView *)dvs_alertViewForError:(NSError *)error statusDescriptionsDictionary:(NSDictionary *)dictionary;
 
 @end

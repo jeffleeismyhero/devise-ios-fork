@@ -51,7 +51,9 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
     [user loginWithSuccess:^{
         [self performSegueWithIdentifier:DVSHomeSegue sender:self];
     } failure:^(NSError *error) {
-        [[UIAlertView dvs_alertViewForError:error] show];
+        UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                        statusDescriptionsDictionary:@{ @401: NSLocalizedString(@"Incorrect e-mail or password.", nil) }];
+        [errorAlert show];
     }];
 }
 
