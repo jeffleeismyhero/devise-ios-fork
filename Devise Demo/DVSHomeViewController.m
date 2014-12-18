@@ -9,6 +9,7 @@
 #import "DVSHomeViewController.h"
 #import <Devise/Devise.h>
 
+#import "DVSDemoUser.h"
 #import "UIAlertView+DeviseDemo.h"
 
 static NSString * const DVSEditProfileSegue = @"DisplayProfileEditor";
@@ -87,6 +88,7 @@ static NSString * const DVSHomeDefaultCell = @"defaultCell";
 
 - (IBAction)logoutTouched:(UIBarButtonItem *)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [[DVSDemoUser localUser] logout];
 }
 
 @end
