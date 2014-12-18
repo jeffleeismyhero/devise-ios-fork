@@ -13,7 +13,7 @@ extern NSString * const DVSDemoUserFirstNameParameter;
 extern NSString * const DVSDemoUserLastNameParameter;
 extern NSString * const DVSDemoUserPhoneParameter;
 
-@interface DVSDemoUser : DVSUser
+@interface DVSDemoUser : DVSUser <DVSUserPersisting>
 
 /// User's username.
 @property (strong, nonatomic) NSString *username;

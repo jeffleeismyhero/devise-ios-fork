@@ -29,3 +29,13 @@
 + (NSString *)persistentXUserEmail;
 
 @end
+
+@protocol DVSUserPersisting <NSObject>
+
+@optional
+/**
+ *  List of property which will be stored locally. Pass names as strings.
+ */
+- (NSArray *)propertiesToPersistByName;
+
+@end

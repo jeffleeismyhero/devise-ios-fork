@@ -11,5 +11,6 @@
 @interface NSObject (Devise)
 
 - (NSArray *)dvs_properties;
+- (Class)dvs_classOfPropertyNamed:(NSString *)propertyName;
 
 @end

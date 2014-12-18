@@ -35,6 +35,10 @@
     return self;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p, id: %@, sessionToken: %@, email: %@>", NSStringFromClass([self class]), self, self.identifier, self.sessionToken, self.email];
+}
+
 #pragma mark - Additional parameters management
 
 - (void)setUpDefaultAdditionalRequestParameters {

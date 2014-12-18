@@ -43,4 +43,9 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
     [self setRequestParameter:property forKey:aKey action:DVSActionRegistration];
 }
 
+#pragma mark - Persistence
+- (NSArray *)propertiesToPersistByName {
+    return @[DVSDemoUserUsernameParameter, DVSDemoUserLastNameParameter, DVSDemoUserFirstNameParameter, DVSDemoUserPhoneParameter];
+}
+
 @end

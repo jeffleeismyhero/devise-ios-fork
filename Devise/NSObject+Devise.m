@@ -39,4 +39,20 @@
     return [self dvs_propertiesOfClass:[self class]];
 }
 
+
+- (Class)dvs_classOfPropertyNamed:(NSString *)propertyName {
+
+    Class propertyClass = nil;
+    objc_property_t property = class_getProperty([self class], [propertyName UTF8String]);
+    NSString *propertyAttributes = [NSString stringWithCString:property_getAttributes(property) encoding:NSUTF8StringEncoding];
+    NSArray *splitPropertyAttributes = [propertyAttributes componentsSeparatedByString:@","];
+    if (splitPropertyAttributes.count > 0) {
+        NSString *encodeType = splitPropertyAttributes[0];
+        NSArray *splitEncodeType = [encodeType componentsSeparatedByString:@"\""];
+        NSString *className = splitEncodeType[1];
+        propertyClass = NSClassFromString(className);
+    }
+    return propertyClass;
+}
+
 @end
