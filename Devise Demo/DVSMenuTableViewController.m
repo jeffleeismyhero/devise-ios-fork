@@ -66,7 +66,7 @@ static NSString * const DVSDefaultCell = @"defaultCell";
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Menu";
+    return NSLocalizedString(@"Menu", nil);
 }
 
 #pragma mark - TableView delegate
