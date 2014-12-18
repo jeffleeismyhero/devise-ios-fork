@@ -12,6 +12,7 @@
 #import "DVSMacros.h"
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
+#import "NSString+DeviseDemo.h"
 #import "UIAlertView+DeviseDemo.h"
 #import "UIApplication+DeviseDemo.h"
 
@@ -53,9 +54,7 @@ static NSString * const DVSEnterSegue = @"DisplayHomeView";
     newUser.firstName = [self getValueForTitle:[self localizedTitleForFirstName]];
     newUser.lastName = [self getValueForTitle:[self localizedTitleForLastName]];
     
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    newUser.phone = [formatter numberFromString:[self getValueForTitle:[self localizedTitleForPhone]]];
+    newUser.phone = [[self getValueForTitle:[self localizedTitleForPhone]] dvs_numberValue];
     
     [UIApplication showNetworkActivity];
     [newUser registerWithSuccess:^{
