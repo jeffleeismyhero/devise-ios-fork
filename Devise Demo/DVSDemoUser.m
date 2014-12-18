@@ -44,6 +44,7 @@ NSString * const DVSDemoUserPhoneParameter = @"phone";
 }
 
 #pragma mark - Persistence
+
 - (NSArray *)propertiesToPersistByName {
     return @[DVSDemoUserUsernameParameter, DVSDemoUserLastNameParameter, DVSDemoUserFirstNameParameter, DVSDemoUserPhoneParameter];
 }

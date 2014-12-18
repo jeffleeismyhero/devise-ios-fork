@@ -96,7 +96,7 @@ static DVSUser *_dvs_localUser = nil;
         #pragma clang diagnostic pop
         for (id object in array) {
             if (![object isKindOfClass:[NSString class]]) {
-                [[DVSConfiguration sharedConfiguration] logMessage:@"Properties to persist should be passed by name as NSString. Aborted"];
+                [[DVSConfiguration sharedConfiguration] logMessage:@"Properties to persist should be passed by name as NSString. Aborted."];
                 return nil;
             }
         }
