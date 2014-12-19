@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "Devise.h"
 
+#import "DVSDemoUser.h"
+
 @interface AppDelegate ()
 
 @end
@@ -20,11 +22,11 @@
     
     NSString *urlString = @"https://devise-ios-rails-example.herokuapp.com";
     
-    DVSConfiguration *sharedConfiguration = [DVSConfiguration sharedConfiguration];
+    DVSConfiguration *configuration = [DVSDemoUser configuration];
 
-    [sharedConfiguration setServerURL:[NSURL URLWithString:urlString]];
-    [sharedConfiguration setLoggingMode:DVSLoggingModeWarning];
-    [sharedConfiguration setShowsNetworkActivityIndicator:YES];
+    [configuration setServerURL:[NSURL URLWithString:urlString]];
+    [configuration setLoggingMode:DVSLoggingModeWarning];
+    [configuration setShowsNetworkActivityIndicator:YES];
     
     return YES;
 }
