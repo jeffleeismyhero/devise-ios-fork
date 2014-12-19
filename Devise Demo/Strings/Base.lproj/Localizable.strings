@@ -22,12 +22,18 @@
 "Do you feel bored?" = "Do you feel bored?";
 "Are you sure you want to delete your profile?" = "Are you sure you want to delete your profile?";
 
+/* Login view controller */
+"Incorrect e-mail or password." = "Incorrect e-mail or password.";
+
 /* Password change view controller */
 "Current password" = "Current password";
 "New password" = "New password";
 "Confirm new password" = "Confirm new password";
 "Password changed" = "Password changed";
 "Password was changed. \nNow you can login with new password." = "Password was changed. \nNow you can login with new password.";
+
+/* Password reminder view controller */
+"User for current e-mail does not exist." = "User for current e-mail does not exist.";
 
 /* Profile editor view controller */
 "E-mail address" = "E-mail address";
@@ -41,6 +47,7 @@
 "First name" = "First name";
 "Last name" = "Last name";
 "Phone" = "Phone";
+"E-mail is already taken." = "E-mail is already taken.";
 
 /* Welcome view controller */
 "Sign up" = "Sign up";
