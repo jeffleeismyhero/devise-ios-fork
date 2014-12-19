@@ -19,7 +19,7 @@
 
 @implementation DVSFormTableViewCell
 
-- (void)fillWithTitle:(NSString *)title model:(DVSFormTableModel *)model {
+- (void)configureForTitle:(NSString *)title model:(DVSFormTableModel *)model {
     self.titleLabel.text = title;
     self.valueTextField.text = model.value;
     self.valueTextField.secureTextEntry = model.secured;

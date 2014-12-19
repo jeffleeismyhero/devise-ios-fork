@@ -83,7 +83,7 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     NSString *title = self.dataSourceTitlesArray[indexPath.item];
     DVSFormTableModel *model = self.dataSourceValuesDictionary[title];
     
-    [cell fillWithTitle:title model:model];
+    [cell configureForTitle:title model:model];
     cell.delegate = self;
     
     return cell;

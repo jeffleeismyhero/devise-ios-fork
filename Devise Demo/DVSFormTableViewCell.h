@@ -18,7 +18,7 @@
 @property (weak, nonatomic, readonly) UILabel *titleLabel;
 @property (weak, nonatomic, readonly) UITextField *valueTextField;
 
-- (void)fillWithTitle:(NSString *)title model:(DVSFormTableModel *)model;
+- (void)configureForTitle:(NSString *)title model:(DVSFormTableModel *)model;
 
 @end
 
