@@ -49,6 +49,11 @@
 "Phone" = "Phone";
 "E-mail is already taken." = "E-mail is already taken.";
 
+/* Client side validation */
+"is wrong." = "is wrong.";
+"should have at least 5 characters." = "should have at least 5 characters.";
+"can't be empty." = "can't be empty.";
+
 /* Welcome view controller */
 "Sign up" = "Sign up";
 "Log in" = "Log in";
