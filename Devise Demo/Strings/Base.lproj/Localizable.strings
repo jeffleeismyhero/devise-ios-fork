@@ -33,6 +33,8 @@
 "Password was changed. \nNow you can login with new password." = "Password was changed. \nNow you can login with new password.";
 
 /* Password reminder view controller */
+"Remind successful" = "Remind successful";
+"You will receive e-mail with instructions how to reset your password." = "You will receive e-mail with instructions how to reset your password.";
 "User for current e-mail does not exist." = "User for current e-mail does not exist.";
 
 /* Profile editor view controller */
