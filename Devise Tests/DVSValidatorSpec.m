@@ -147,7 +147,7 @@ describe(@"DVSValidator", ^{
     });
 
     testValidation(@"emailSyntax", @"Please provide valid email address", @[
-        rule(@"email with valid syntax", @"john.appleseed@apple.com", YES, 0, [NSString class]),
+        rule(@"email with valid syntax", @"john.appleseed@example.com", YES, 0, [NSString class]),
         rule(@"email with invalid syntax", @"foo~", NO, 1, [NSString class])
     ], ^(DVSPropertyValidator *validator) {
         validator.emailSyntax().isntEmail(@"Please provide valid email address");
