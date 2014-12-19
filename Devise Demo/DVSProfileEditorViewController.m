@@ -28,7 +28,9 @@
     
     self.userDataSource = [DVSDemoUserDataSource new];
     
-    [self addFormWithTitleToDataSource:[self localizedTitleForEmail]];
+    NSString *emailTitle = [self localizedTitleForEmail];
+    [self addFormWithTitleToDataSource:emailTitle];
+    [self setValue:[DVSDemoUser localUser].email forTitle:emailTitle];
 }
 
 #pragma mark - UIControl events
