@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.userDataSource = [[DVSDemoUserDataSource alloc] init];
+    self.userDataSource = [DVSDemoUserDataSource new];
     
     [self addFormWithTitleToDataSource:[self localizedTitleForEmail]];
 }

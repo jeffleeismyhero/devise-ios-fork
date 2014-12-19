@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.userDataSource = [DVSDemoUserDataSource dataSource];
+    self.userDataSource = [DVSDemoUserDataSource new];
     
     [self addFormWithTitleToDataSource:[self localizedTitleForCurrentPassword]
                                secured:YES];

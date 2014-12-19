@@ -29,7 +29,7 @@ static NSString * const DVSEnterSegue = @"DisplayHomeView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.userDataSource = [DVSDemoUserDataSource dataSource];
+    self.userDataSource = [DVSDemoUserDataSource new];
     
     [self addFormWithTitleToDataSource:[self localizedTitleForUsername]];
     [self addFormWithTitleToDataSource:[self localizedTitleForPassword] secured:YES];

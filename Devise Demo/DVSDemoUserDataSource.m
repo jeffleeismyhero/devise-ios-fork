@@ -15,10 +15,6 @@ static NSString * const DVSUserEmailParameter = @"email";
 
 @implementation DVSDemoUserDataSource
 
-+ (instancetype)dataSource {
-    return [[[self class] alloc] init];
-}
-
 #pragma mark - DVSUserDataSource
 
 - (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {

@@ -10,6 +10,4 @@
 
 @interface DVSDemoUserDataSource : NSObject <DVSUserDataSource>
 
-+ (instancetype)dataSource;
-
 @end

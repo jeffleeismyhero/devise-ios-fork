@@ -31,7 +31,7 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.userDataSource = [[DVSDemoUserDataSource alloc] init];
+    self.userDataSource = [DVSDemoUserDataSource new];
 }
 
 #pragma mark - UIControl events
