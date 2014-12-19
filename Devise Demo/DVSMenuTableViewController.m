@@ -77,19 +77,29 @@ static NSString * const DVSDefaultCell = @"defaultCell";
     DVSMenuTableModel *model = (DVSMenuTableModel *)self.dataSourceArray[indexPath.row];
     
     if (model.selectorString) {
-        SEL selector = NSSelectorFromString(model.selectorString);
-        if (selector) {
-            #pragma clang diagnostic push
-            #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [self performSelector:selector];
-            #pragma clang diagnostic pop
-            return;
-        }
+        [self performSelectorWithModel:model];
+    } else if (model.segueIdentifier) {
+        [self performSegueWithModel:model];
     }
-    
-    if (model.segueIdentifier) {
-        [self performSegueWithIdentifier:model.segueIdentifier sender:self];
+}
+
+- (void)performSelectorWithModel:(DVSMenuTableModel *)model {
+    SEL selector = NSSelectorFromString(model.selectorString);
+    if (selector) {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [self performSelector:selector];
+        #pragma clang diagnostic pop
     }
+}
+
+- (void)performSegueWithModel:(DVSMenuTableModel *)model {
+    // Prevent performing segue multiple times. Bug connected with:
+    // http://stackoverflow.com/questions/5687991/tableview-didselectrowatindexpath-called-twice
+    if (self.navigationController.topViewController != self) {
+        return;
+    }
+    [self performSegueWithIdentifier:model.segueIdentifier sender:self];
 }
 
 @end
