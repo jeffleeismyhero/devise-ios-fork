@@ -20,19 +20,19 @@ typedef NS_ENUM(NSInteger, DVSErrorCode) {
 };
 
 + (NSError *)dvs_passwordConfirmError {
-    NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"Password confirm and current password do not match.", nil) };
-    
-    return [NSError errorWithDomain:DVSDemoErrorDomain
-                               code:DVSErrorPasswordConfirmNotMatch
-                           userInfo:userInfo];
+    return [NSError dvs_errorForCode:DVSErrorPasswordConfirmNotMatch
+                localizedDescription:NSLocalizedString(@"Password confirm and current password do not match.", nil)];
 }
 
 + (NSError *)dvs_newPasswordConfirmError {
-    NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: NSLocalizedString(@"New password and its confirm do not match.", nil) };
-    
+    return [self dvs_errorForCode:DVSErrorNewPasswordNotMatch
+             localizedDescription:NSLocalizedString(@"New password and its confirm do not match.", nil)];
+}
+
++ (NSError *)dvs_errorForCode:(NSInteger)code localizedDescription:(NSString *)localizedDescription {
     return [NSError errorWithDomain:DVSDemoErrorDomain
-                               code:DVSErrorNewPasswordNotMatch
-                           userInfo:userInfo];
+                               code:code
+                           userInfo:@{ NSLocalizedDescriptionKey: localizedDescription}];
 }
 
 - (NSInteger)dvs_urlStatusCode {
