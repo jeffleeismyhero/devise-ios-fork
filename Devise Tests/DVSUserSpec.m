@@ -62,7 +62,7 @@ describe(@"DVSUser", ^{
                 [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
             });
 
-            it(@"shoud fill the user object", ^{
+            it(@"should fill the user object", ^{
                 [user registerWithSuccess:nil failure:nil];
                 [[expectFutureValue(user.identifier) shouldEventually] beNonNil];
                 [[expectFutureValue(user.sessionToken) shouldEventually] beNonNil];
@@ -159,7 +159,7 @@ describe(@"DVSUser", ^{
                 [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
             });
 
-            it(@"shoud fill the user object", ^{
+            it(@"should fill the user object", ^{
                 [user loginWithSuccess:nil failure:nil];
                 [[expectFutureValue(user.identifier) shouldEventually] beNonNil];
                 [[expectFutureValue(user.sessionToken) shouldEventually] beNonNil];
