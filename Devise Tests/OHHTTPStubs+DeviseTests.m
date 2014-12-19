@@ -25,7 +25,7 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [self dvs_responseWithJSON:@{ @"user": @{
             @"id": @1,
-            @"email": @"john.appleseed@apple.com",
+            @"email": @"john.appleseed@example.com",
             @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
             @"createdAt": @"1970-01-01T00:00:00.000Z",
             @"updatedAt": @"1970-01-01T00:00:00.000Z",
@@ -41,7 +41,7 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [self dvs_responseWithJSON:@{ @"user": @{
             @"id": @1,
-            @"email": @"john.appleseed@apple.com",
+            @"email": @"john.appleseed@example.com",
             @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
             @"createdAt": @"1970-01-01T00:00:00.000Z",
             @"updatedAt": @"1970-01-01T00:00:00.000Z",
@@ -57,7 +57,7 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [self dvs_responseWithJSON:@{ @"user": @{
             @"id": @1,
-            @"email": @"john.appleseed@apple.com",
+            @"email": @"john.appleseed@example.com",
             @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
             @"createdAt": @"1970-01-01T00:00:00.000Z",
             @"updatedAt": @"1970-01-01T00:00:00.000Z",
@@ -73,7 +73,7 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [self dvs_responseWithJSON:@{ @"user": @{
             @"id": @1,
-            @"email": @"john.appleseed@apple.com",
+            @"email": @"john.appleseed@example.com",
             @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
             @"createdAt": @"1970-01-01T00:00:00.000Z",
             @"updatedAt": @"1970-01-01T00:00:00.000Z",
@@ -89,7 +89,7 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [self dvs_responseWithJSON:@{ @"user": @{
             @"id": @1,
-            @"email": @"john.appleseed@apple.com",
+            @"email": @"john.appleseed@example.com",
             @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
             @"createdAt": @"1970-01-01T00:00:00.000Z",
             @"updatedAt": @"1970-01-01T00:00:00.000Z",
