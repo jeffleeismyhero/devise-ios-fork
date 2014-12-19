@@ -253,7 +253,7 @@ NSString * const dvs_attribute = @"{attribute}";
                 return [weakSelf compareDate:(NSDate *)value toDate:(NSDate *)compareObject usingOperator:comparisionOperator];
                 
             } else {
-                NSString *description = [NSString stringWithFormat:@"Only NSDate and NSNumber objects can be compared to eachoter. Given parameter is kind of %@ class", [value class]];
+                NSString *description = [NSString stringWithFormat:@"Only NSDate and NSNumber objects can be compared to each other. Given parameter is kind of %@ class", [value class]];
                 [weakSelf assertWithDescription:description];
             }
             return (NSError *)nil;
