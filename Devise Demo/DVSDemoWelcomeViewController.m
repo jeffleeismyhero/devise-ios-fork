@@ -8,7 +8,7 @@
 
 #import "DVSDemoWelcomeViewController.h"
 
-#import "DVSDemoLoginViewController.h"
+#import "DVSLoginViewController.h"
 
 static NSString * const DVSRegisterSegue = @"DisplayRegisterView";
 static NSString * const DVSLoginSegue = @"DisplayLoginView";
@@ -44,8 +44,8 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 - (void)didSelectLogIn {
     
 #if ENABLE_DEVISE_CONTROLLERS
-    DVSLoginViewController *logInController = [[DVSLoginViewController alloc] init];
-    [self presentViewController:logInController animated:YES completion:nil];
+    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] init];
+    [self.navigationController pushViewController:logInController animated:YES];
 #else
     [self performSegueWithIdentifier:DVSLoginSegue sender:self];
 #endif

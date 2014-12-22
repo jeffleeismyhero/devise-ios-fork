@@ -8,6 +8,21 @@
 
 #import "DVSFormViewController.h"
 
-@interface DVSLogInViewController : UIViewController
+#import <XLForm/XLForm.h>
+
+#import "DVSUser.h"
+
+@protocol DVSLogInViewControllerDelegate;
+
+@interface DVSLogInViewController : XLFormViewController
+
+@property (assign, nonatomic) id<DVSLogInViewControllerDelegate> delegate;
+
+@end
+
+@protocol DVSLogInViewControllerDelegate <NSObject>
+
+- (void)logInViewController:(DVSLogInViewController *)controller didLogInUser:(DVSUser *)user;
+- (void)logInViewController:(DVSLogInViewController *)controller didFailedWithError:(NSError *)error;
 
 @end

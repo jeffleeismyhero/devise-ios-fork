@@ -734,7 +734,6 @@
 			files = (
 				5EF381DC1A279998006875D4 /* NSDate+Devise.h in Headers */,
 				5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */,
-				21AFB7E61A48303000769C87 /* DVSLogInViewController.h in Headers */,
 				5EF381F01A287458006875D4 /* NSNumber+Devise.h in Headers */,
 				5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
@@ -743,6 +742,7 @@
 				5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
 				3AA22E2A1A2514DD00FE04D1 /* NSString+Devise.h in Headers */,
+				21AFB7E61A48303000769C87 /* DVSLogInViewController.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
 				3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */,
 				3AA409F41A3F9D700046B0E4 /* DVSHTTPClient+User.h in Headers */,
