@@ -41,7 +41,7 @@ static NSString * const DVSEnterSegue = @"DisplayHomeView";
 
 #pragma mark - UIControl events
 
-- (IBAction)signUpTouched:(UIBarButtonItem *)sender {
+- (IBAction)signUpButtonTapped:(UIBarButtonItem *)sender {
     DVSDemoUser *newUser = [DVSDemoUser new];
     
     newUser.dataSource = self.userDataSource;

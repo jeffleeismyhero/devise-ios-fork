@@ -36,11 +36,11 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 
 #pragma mark - UIControl events
 
-- (IBAction)remindButtonTouched:(UIButton *)sender {
+- (IBAction)remindButtonTapped:(UIButton *)sender {
     [self performSegueWithIdentifier:DVSRemindPasswordSegue sender:self];
 }
 
-- (IBAction)logInTouched:(UIBarButtonItem *)sender {
+- (IBAction)logInButtonTapped:(UIBarButtonItem *)sender {
     DVSDemoUser *user = [DVSDemoUser new];
     
     user.dataSource = self.userDataSource;

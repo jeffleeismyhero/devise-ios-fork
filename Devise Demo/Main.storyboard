@@ -51,7 +51,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="remindButtonTouched:" destination="CMz-fr-TiQ" eventType="touchUpInside" id="ER3-f8-nPA"/>
+                                    <action selector="remindButtonTapped:" destination="CMz-fr-TiQ" eventType="touchUpInside" id="Tcg-ld-twF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -77,7 +77,7 @@
                     <navigationItem key="navigationItem" title="Login" id="LYs-dB-Ctd">
                         <barButtonItem key="rightBarButtonItem" title="Log in" id="OE8-54-EBi">
                             <connections>
-                                <action selector="logInTouched:" destination="CMz-fr-TiQ" id="YX0-TT-IOo"/>
+                                <action selector="logInButtonTapped:" destination="CMz-fr-TiQ" id="zzo-So-mo8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -111,7 +111,7 @@
                     <navigationItem key="navigationItem" title="Registration" id="RH1-Ke-YV4">
                         <barButtonItem key="rightBarButtonItem" title="Sign up" id="8c8-0t-B1V">
                             <connections>
-                                <action selector="signUpTouched:" destination="Hg7-v7-tOv" id="AW6-P1-SaD"/>
+                                <action selector="signUpButtonTapped:" destination="Hg7-v7-tOv" id="3C1-BG-nrL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -164,7 +164,7 @@
                     <navigationItem key="navigationItem" title="Password Reminder" id="i7f-GW-S2G">
                         <barButtonItem key="rightBarButtonItem" title="Send" id="VV6-Fq-NHh">
                             <connections>
-                                <action selector="sendButtonTouched:" destination="bLm-eR-XjY" id="pKl-sA-4fQ"/>
+                                <action selector="sendButtonTapped:" destination="bLm-eR-XjY" id="7iK-bk-hL8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -245,7 +245,7 @@
                     <navigationItem key="navigationItem" title="Edit Profile" id="lXJ-IX-mhR">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="aRK-dr-Q99">
                             <connections>
-                                <action selector="saveButtonTouched:" destination="oKk-Sa-AE8" id="eZP-TZ-BY7"/>
+                                <action selector="saveButtonTapped:" destination="oKk-Sa-AE8" id="xfs-rG-9w7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -270,7 +270,7 @@
                     <navigationItem key="navigationItem" title="Change password" id="Ysr-uU-xQw">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="kvw-tn-7Ls">
                             <connections>
-                                <action selector="saveButtonTouched:" destination="wEB-g5-75j" id="KaT-b1-Yh9"/>
+                                <action selector="saveButtonTapped:" destination="wEB-g5-75j" id="IBH-Yf-Fpt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

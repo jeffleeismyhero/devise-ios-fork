@@ -22,7 +22,7 @@
 
 #pragma mark - UIControl events
 
-- (IBAction)sendButtonTouched:(UIBarButtonItem *)sender {
+- (IBAction)sendButtonTapped:(UIBarButtonItem *)sender {
     DVSDemoUser *user = [DVSDemoUser new];
     
     user.email = self.emailTextField.text;

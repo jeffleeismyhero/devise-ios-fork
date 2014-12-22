@@ -35,7 +35,7 @@
 
 #pragma mark - UIControl events
 
-- (IBAction)saveButtonTouched:(UIBarButtonItem *)sender {
+- (IBAction)saveButtonTapped:(UIBarButtonItem *)sender {
     DVSDemoUser *localUser = [DVSDemoUser localUser];
     
     localUser.dataSource = self.userDataSource;
