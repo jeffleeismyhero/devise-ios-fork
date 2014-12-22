@@ -6,20 +6,20 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "DVSWelcomeViewController.h"
+#import "DVSDemoWelcomeViewController.h"
 
-#import "DVSLoginViewController.h"
+#import "DVSDemoLoginViewController.h"
 
 static NSString * const DVSRegisterSegue = @"DisplayRegisterView";
 static NSString * const DVSLoginSegue = @"DisplayLoginView";
 
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
-@interface DVSWelcomeViewController ()
+@interface DVSDemoWelcomeViewController ()
 
 @end
 
-@implementation DVSWelcomeViewController
+@implementation DVSDemoWelcomeViewController
 
 #pragma mark - Object lifecycle
 

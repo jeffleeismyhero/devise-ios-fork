@@ -1,5 +1,5 @@
 //
-//  WelcomeViewController.h
+//  HomeViewController.h
 //  Devise
 //
 //  Created by Grzegorz Lesiak on 20/11/14.
@@ -10,6 +10,6 @@
 
 #import "DVSMenuTableViewController.h"
 
-@interface DVSWelcomeViewController : DVSMenuTableViewController
+@interface DVSDemoHomeViewController : DVSMenuTableViewController
 
 @end

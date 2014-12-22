@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DVSLoginViewController : UIViewController
+@interface DVSDemoLoginViewController : UIViewController
 
 @end
 

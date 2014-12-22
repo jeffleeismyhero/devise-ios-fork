@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "DVSLoginViewController.h"
+#import "DVSDemoLoginViewController.h"
 #import <Devise/Devise.h>
 
 #import "UIAlertView+DeviseDemo.h"
@@ -16,7 +16,7 @@
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 
-@interface DVSLoginViewController ()
+@interface DVSDemoLoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -25,7 +25,7 @@ static NSString * const DVSRemindPasswordSegue = @"DisplayPasswordReminderView";
 
 @end
 
-@implementation DVSLoginViewController
+@implementation DVSDemoLoginViewController
 
 #pragma mark - Object lifecycle
 

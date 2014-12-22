@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSPasswordChangeViewController.h"
+#import "DVSDemoPasswordChangeViewController.h"
 #import <Devise/Devise.h>
 
 #import "DVSDemoUser.h"
@@ -19,13 +19,13 @@ static NSString * const DVSTitleForCurrentPasswort = @"Current password";
 static NSString * const DVSTitleForNewPassword = @"New password";
 static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
 
-@interface DVSPasswordChangeViewController () <UIAlertViewDelegate>
+@interface DVSDemoPasswordChangeViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
 
 @end
 
-@implementation DVSPasswordChangeViewController
+@implementation DVSDemoPasswordChangeViewController
 
 #pragma mark - Object lifecycle
 

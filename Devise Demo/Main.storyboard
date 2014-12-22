@@ -8,7 +8,7 @@
         <!--Login-->
         <scene sceneID="Cm5-tc-Kbk">
             <objects>
-                <viewController storyboardIdentifier="LoginController" id="CMz-fr-TiQ" customClass="DVSLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginController" id="CMz-fr-TiQ" customClass="DVSDemoLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TH1-4M-Q3S"/>
                         <viewControllerLayoutGuide type="bottom" id="MK7-Iy-Caf"/>
@@ -97,7 +97,7 @@
         <!--Registration-->
         <scene sceneID="EFM-nj-r6m">
             <objects>
-                <tableViewController id="Hg7-v7-tOv" customClass="DVSRegistrationViewController" sceneMemberID="viewController">
+                <tableViewController id="Hg7-v7-tOv" customClass="DVSDemoRegistrationViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="Q0g-Te-8Ko">
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -127,7 +127,7 @@
         <!--Password Reminder-->
         <scene sceneID="2S8-XJ-vJx">
             <objects>
-                <viewController storyboardIdentifier="PasswordReminderController" title="Password Reminder" id="bLm-eR-XjY" customClass="DVSPasswordReminderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordReminderController" title="Password Reminder" id="bLm-eR-XjY" customClass="DVSDemoPasswordReminderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wbq-Ef-84f"/>
                         <viewControllerLayoutGuide type="bottom" id="UGN-VB-0ar"/>
@@ -180,7 +180,7 @@
         <!--Home-->
         <scene sceneID="cRT-wd-pfL">
             <objects>
-                <tableViewController title="Home" id="zOZ-MF-GrP" customClass="DVSHomeViewController" sceneMemberID="viewController">
+                <tableViewController title="Home" id="zOZ-MF-GrP" customClass="DVSDemoHomeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="G24-Xz-SNH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -232,7 +232,7 @@
         <!--Edit Profile-->
         <scene sceneID="06w-1L-lQ1">
             <objects>
-                <tableViewController id="oKk-Sa-AE8" customClass="DVSProfileEditorViewController" sceneMemberID="viewController">
+                <tableViewController id="oKk-Sa-AE8" customClass="DVSDemoProfileEditorViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CMu-ht-Mvv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -257,7 +257,7 @@
         <!--Change password-->
         <scene sceneID="vvx-Ye-8ng">
             <objects>
-                <tableViewController id="wEB-g5-75j" customClass="DVSPasswordChangeViewController" sceneMemberID="viewController">
+                <tableViewController id="wEB-g5-75j" customClass="DVSDemoPasswordChangeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rzc-MM-qdX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -301,7 +301,7 @@
         <!--Welcome-->
         <scene sceneID="J0F-kB-0lM">
             <objects>
-                <tableViewController title="Welcome" id="s8Z-bi-Smj" customClass="DVSWelcomeViewController" sceneMemberID="viewController">
+                <tableViewController title="Welcome" id="s8Z-bi-Smj" customClass="DVSDemoWelcomeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="GlP-YS-3FA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "DVSHomeViewController.h"
+#import "DVSDemoHomeViewController.h"
 #import <Devise/Devise.h>
 
 #import "DVSDemoUser.h"
@@ -19,11 +19,11 @@ static NSString * const DVSTitleForAlertNoButton = @"No";
 static NSString * const DVSTitleForAlertYesButton = @"Yes";
 static NSString * const DVSTitleForDelete = @"Delete profile";
 
-@interface DVSHomeViewController () <UIAlertViewDelegate>
+@interface DVSDemoHomeViewController () <UIAlertViewDelegate>
 
 @end
 
-@implementation DVSHomeViewController
+@implementation DVSDemoHomeViewController
 
 #pragma mark - Object lifecycle
 

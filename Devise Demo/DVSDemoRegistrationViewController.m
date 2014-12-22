@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "DVSRegistrationViewController.h"
+#import "DVSDemoRegistrationViewController.h"
 #import <Devise/Devise.h>
 
 #import "DVSMacros.h"
@@ -22,13 +22,13 @@ static NSString * const DVSTitleForFirstName = @"First name";
 static NSString * const DVSTitleForLastName = @"Last name";
 static NSString * const DVSTitleForPhone = @"Phone";
 
-@interface DVSRegistrationViewController ()
+@interface DVSDemoRegistrationViewController ()
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
 
 @end
 
-@implementation DVSRegistrationViewController
+@implementation DVSDemoRegistrationViewController
 
 #pragma mark - Object lifecycle
 

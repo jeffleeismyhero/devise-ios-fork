@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "DVSProfileEditorViewController.h"
+#import "DVSDemoProfileEditorViewController.h"
 #import <Devise/Devise.h>
 
 #import "UIAlertView+DeviseDemo.h"
@@ -16,13 +16,13 @@
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 static NSString * const DVSTitleForEmail = @"E-mail address";
 
-@interface DVSProfileEditorViewController () <UIAlertViewDelegate>
+@interface DVSDemoProfileEditorViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
 
 @end
 
-@implementation DVSProfileEditorViewController
+@implementation DVSDemoProfileEditorViewController
 
 #pragma mark - Object lifecycle
 

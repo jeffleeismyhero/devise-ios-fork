@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru.co. All rights reserved.
 //
 
-#import "DVSPasswordReminderViewController.h"
+#import "DVSDemoPasswordReminderViewController.h"
 #import <Devise/Devise.h>
 
 #import "UIAlertView+DeviseDemo.h"
@@ -14,13 +14,13 @@
 
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
-@interface DVSPasswordReminderViewController () <UIAlertViewDelegate>
+@interface DVSDemoPasswordReminderViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
 @end
 
-@implementation DVSPasswordReminderViewController
+@implementation DVSDemoPasswordReminderViewController
 
 #pragma mark - UIControl events
 

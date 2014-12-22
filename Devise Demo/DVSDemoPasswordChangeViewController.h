@@ -8,6 +8,6 @@
 
 #import "DVSFormViewController.h"
 
-@interface DVSPasswordChangeViewController : DVSFormViewController
+@interface DVSDemoPasswordChangeViewController : DVSFormViewController
 
 @end

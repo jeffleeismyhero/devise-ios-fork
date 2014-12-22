@@ -10,6 +10,6 @@
 
 #import "DVSFormViewController.h"
 
-@interface DVSRegistrationViewController : DVSFormViewController
+@interface DVSDemoRegistrationViewController : DVSFormViewController
 
 @end
