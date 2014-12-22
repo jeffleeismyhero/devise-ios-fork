@@ -8,15 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		215575B31A40880C00BA8661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 215575B11A40880C00BA8661 /* Localizable.strings */; };
-		21AFB7DB1A48281800769C87 /* DVSFormTextFieldModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7D41A48281800769C87 /* DVSFormTextFieldModel.h */; };
-		21AFB7DC1A48281800769C87 /* DVSFormTextFieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7D51A48281800769C87 /* DVSFormTextFieldModel.m */; };
-		21AFB7DD1A48281800769C87 /* DVSFormTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7D61A48281800769C87 /* DVSFormTextFieldCell.h */; };
-		21AFB7DE1A48281800769C87 /* DVSFormTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7D71A48281800769C87 /* DVSFormTextFieldCell.m */; };
-		21AFB7DF1A48281800769C87 /* DVSFormTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7D81A48281800769C87 /* DVSFormTextFieldCell.xib */; };
-		21AFB7E01A48281800769C87 /* DVSFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7D91A48281800769C87 /* DVSFormViewController.h */; };
-		21AFB7E11A48281800769C87 /* DVSFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7DA1A48281800769C87 /* DVSFormViewController.m */; };
 		21AFB7E61A48303000769C87 /* DVSLogInViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7E41A48303000769C87 /* DVSLogInViewController.h */; };
 		21AFB7E71A48303000769C87 /* DVSLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E51A48303000769C87 /* DVSLogInViewController.m */; };
+		21AFB7EA1A48416F00769C87 /* DVSFormTextFieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E91A48416F00769C87 /* DVSFormTextFieldModel.m */; };
+		21AFB7F61A48446600769C87 /* DVSFormTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F41A48446600769C87 /* DVSFormTextFieldCell.m */; };
+		21AFB7F71A48446600769C87 /* DVSFormTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7F51A48446600769C87 /* DVSFormTextFieldCell.xib */; };
+		21AFB7FA1A4844A800769C87 /* DVSFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F91A4844A800769C87 /* DVSFormViewController.m */; };
 		21B1AAB21A3AF4E000578DF7 /* DVSPasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB11A3AF4E000578DF7 /* DVSPasswordChangeViewController.m */; };
 		21B1AAB51A3B12CE00578DF7 /* NSError+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB41A3B12CE00578DF7 /* NSError+DeviseDemo.m */; };
 		21B1AAB81A3B2BF600578DF7 /* DVSDemoUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB71A3B2BF600578DF7 /* DVSDemoUserDataSource.m */; };
@@ -122,15 +119,15 @@
 
 /* Begin PBXFileReference section */
 		215575B21A40880C00BA8661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		21AFB7D41A48281800769C87 /* DVSFormTextFieldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVSFormTextFieldModel.h; path = Devise/DVSFormTextFieldModel.h; sourceTree = SOURCE_ROOT; };
-		21AFB7D51A48281800769C87 /* DVSFormTextFieldModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSFormTextFieldModel.m; path = Devise/DVSFormTextFieldModel.m; sourceTree = SOURCE_ROOT; };
-		21AFB7D61A48281800769C87 /* DVSFormTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVSFormTextFieldCell.h; path = Devise/DVSFormTextFieldCell.h; sourceTree = SOURCE_ROOT; };
-		21AFB7D71A48281800769C87 /* DVSFormTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSFormTextFieldCell.m; path = Devise/DVSFormTextFieldCell.m; sourceTree = SOURCE_ROOT; };
-		21AFB7D81A48281800769C87 /* DVSFormTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DVSFormTextFieldCell.xib; path = Devise/DVSFormTextFieldCell.xib; sourceTree = SOURCE_ROOT; };
-		21AFB7D91A48281800769C87 /* DVSFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVSFormViewController.h; path = Devise/DVSFormViewController.h; sourceTree = SOURCE_ROOT; };
-		21AFB7DA1A48281800769C87 /* DVSFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSFormViewController.m; path = Devise/DVSFormViewController.m; sourceTree = SOURCE_ROOT; };
 		21AFB7E41A48303000769C87 /* DVSLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSLogInViewController.h; sourceTree = "<group>"; };
 		21AFB7E51A48303000769C87 /* DVSLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSLogInViewController.m; sourceTree = "<group>"; };
+		21AFB7E81A48416F00769C87 /* DVSFormTextFieldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormTextFieldModel.h; sourceTree = "<group>"; };
+		21AFB7E91A48416F00769C87 /* DVSFormTextFieldModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormTextFieldModel.m; sourceTree = "<group>"; };
+		21AFB7F31A48446600769C87 /* DVSFormTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormTextFieldCell.h; sourceTree = "<group>"; };
+		21AFB7F41A48446600769C87 /* DVSFormTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormTextFieldCell.m; sourceTree = "<group>"; };
+		21AFB7F51A48446600769C87 /* DVSFormTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVSFormTextFieldCell.xib; sourceTree = "<group>"; };
+		21AFB7F81A4844A800769C87 /* DVSFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormViewController.h; sourceTree = "<group>"; };
+		21AFB7F91A4844A800769C87 /* DVSFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormViewController.m; sourceTree = "<group>"; };
 		21B1AAB01A3AF4E000578DF7 /* DVSPasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPasswordChangeViewController.h; sourceTree = "<group>"; };
 		21B1AAB11A3AF4E000578DF7 /* DVSPasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPasswordChangeViewController.m; sourceTree = "<group>"; };
 		21B1AAB31A3B12CE00578DF7 /* NSError+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+DeviseDemo.h"; sourceTree = "<group>"; };
@@ -300,7 +297,6 @@
 		21AFB7D31A48276E00769C87 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				21B1AABE1A3EE67B00578DF7 /* DVSFormViewController */,
 				21AFB7E41A48303000769C87 /* DVSLogInViewController.h */,
 				21AFB7E51A48303000769C87 /* DVSLogInViewController.m */,
 			);
@@ -310,9 +306,9 @@
 		21AFB7E21A482BA100769C87 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				21AFB7D61A48281800769C87 /* DVSFormTextFieldCell.h */,
-				21AFB7D71A48281800769C87 /* DVSFormTextFieldCell.m */,
-				21AFB7D81A48281800769C87 /* DVSFormTextFieldCell.xib */,
+				21AFB7F31A48446600769C87 /* DVSFormTextFieldCell.h */,
+				21AFB7F41A48446600769C87 /* DVSFormTextFieldCell.m */,
+				21AFB7F51A48446600769C87 /* DVSFormTextFieldCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -320,8 +316,8 @@
 		21AFB7E31A482C9F00769C87 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				21AFB7D41A48281800769C87 /* DVSFormTextFieldModel.h */,
-				21AFB7D51A48281800769C87 /* DVSFormTextFieldModel.m */,
+				21AFB7E81A48416F00769C87 /* DVSFormTextFieldModel.h */,
+				21AFB7E91A48416F00769C87 /* DVSFormTextFieldModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -329,6 +325,7 @@
 		21B1AAB91A3EE21800578DF7 /* Base View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				21B1AABE1A3EE67B00578DF7 /* DVSFormViewController */,
 				21B1AABA1A3EE22700578DF7 /* MenuTableViewController */,
 			);
 			name = "Base View Controllers";
@@ -350,8 +347,8 @@
 			children = (
 				21AFB7E31A482C9F00769C87 /* Model */,
 				21AFB7E21A482BA100769C87 /* Cell */,
-				21AFB7D91A48281800769C87 /* DVSFormViewController.h */,
-				21AFB7DA1A48281800769C87 /* DVSFormViewController.m */,
+				21AFB7F81A4844A800769C87 /* DVSFormViewController.h */,
+				21AFB7F91A4844A800769C87 /* DVSFormViewController.m */,
 			);
 			name = DVSFormViewController;
 			path = "Devise Demo";
@@ -736,17 +733,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF381DC1A279998006875D4 /* NSDate+Devise.h in Headers */,
-				21AFB7DB1A48281800769C87 /* DVSFormTextFieldModel.h in Headers */,
 				5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */,
 				21AFB7E61A48303000769C87 /* DVSLogInViewController.h in Headers */,
 				5EF381F01A287458006875D4 /* NSNumber+Devise.h in Headers */,
 				5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
-				21AFB7DD1A48281800769C87 /* DVSFormTextFieldCell.h in Headers */,
 				5E7E16701A264F6900684A60 /* DVSValidator.h in Headers */,
 				3A2B04FE1A41663E00DDA453 /* DVSUser+Requests.h in Headers */,
 				5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */,
-				21AFB7E01A48281800769C87 /* DVSFormViewController.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
 				3AA22E2A1A2514DD00FE04D1 /* NSString+Devise.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
@@ -876,7 +870,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21AFB7DF1A48281800769C87 /* DVSFormTextFieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,6 +887,7 @@
 				3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */,
 				215575B31A40880C00BA8661 /* Localizable.strings in Resources */,
 				3AA22E5A1A25353B00FE04D1 /* Main.storyboard in Resources */,
+				21AFB7F71A48446600769C87 /* DVSFormTextFieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,13 +1018,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				21AFB7E71A48303000769C87 /* DVSLogInViewController.m in Sources */,
-				21AFB7DC1A48281800769C87 /* DVSFormTextFieldModel.m in Sources */,
-				21AFB7DE1A48281800769C87 /* DVSFormTextFieldCell.m in Sources */,
 				5EF381F11A287458006875D4 /* NSNumber+Devise.m in Sources */,
 				3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */,
 				3A2B04FF1A41663E00DDA453 /* DVSUser+Requests.m in Sources */,
 				5EE295091A35C086009441E1 /* NSDictionary+Devise.m in Sources */,
-				21AFB7E11A48281800769C87 /* DVSFormViewController.m in Sources */,
 				5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */,
 				5E7A9A351A3F114F0077DC43 /* NSObject+Devise.m in Sources */,
@@ -1076,9 +1067,12 @@
 				3AA22E581A25353B00FE04D1 /* DVSHomeViewController.m in Sources */,
 				21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */,
 				3AA22E5C1A25353B00FE04D1 /* DVSPasswordReminderViewController.m in Sources */,
+				21AFB7FA1A4844A800769C87 /* DVSFormViewController.m in Sources */,
 				3AA22E5E1A25353B00FE04D1 /* DVSWelcomeViewController.m in Sources */,
+				21AFB7F61A48446600769C87 /* DVSFormTextFieldCell.m in Sources */,
 				3AA22E591A25353B00FE04D1 /* DVSLoginViewController.m in Sources */,
 				21F6909F1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m in Sources */,
+				21AFB7EA1A48416F00769C87 /* DVSFormTextFieldModel.m in Sources */,
 				21B1AABD1A3EE24C00578DF7 /* DVSMenuTableModel.m in Sources */,
 				21B1AAB21A3AF4E000578DF7 /* DVSPasswordChangeViewController.m in Sources */,
 			);

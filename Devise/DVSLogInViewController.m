@@ -10,4 +10,10 @@
 
 @implementation DVSLogInViewController
 
+#pragma mark - Object lifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
 @end

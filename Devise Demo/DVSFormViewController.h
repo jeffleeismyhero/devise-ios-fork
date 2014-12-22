@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DVSMacros.h"
 
-@interface DVSFormTableViewController : UITableViewController
+@interface DVSFormViewController : UITableViewController
 
 - (void)addFormWithTitleToDataSource:(NSString *)title;
 - (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured;

@@ -8,6 +8,6 @@
 
 #import "DVSFormViewController.h"
 
-@interface DVSLogInViewController : DVSFormViewController
+@interface DVSLogInViewController : UIViewController
 
 @end
