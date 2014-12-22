@@ -64,7 +64,7 @@ static NSString * const DVSTitleForDelete = @"Delete profile";
                       otherButtonTitles:NSLocalizedString(DVSTitleForAlertYesButton, nil), nil] show];
 }
 
-#pragma merk - UIAlertViewDelegate
+#pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
