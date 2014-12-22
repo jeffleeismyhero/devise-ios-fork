@@ -338,6 +338,7 @@
                     <connections>
                         <segue destination="CMz-fr-TiQ" kind="show" identifier="DisplayLoginView" id="CaB-4l-wNb"/>
                         <segue destination="Hg7-v7-tOv" kind="show" identifier="DisplayRegisterView" id="6Mx-DM-Yj0"/>
+                        <segue destination="zOZ-MF-GrP" kind="show" identifier="DisplayHomeView" id="Ah7-8G-eUG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJo-Q2-UoA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -346,6 +347,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="NpY-kQ-L1y"/>
+        <segue reference="Ah7-8G-eUG"/>
     </inferredMetricsTieBreakers>
 </document>

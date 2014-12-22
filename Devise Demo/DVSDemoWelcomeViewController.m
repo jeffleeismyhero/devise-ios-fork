@@ -9,13 +9,15 @@
 #import "DVSDemoWelcomeViewController.h"
 
 #import "DVSLoginViewController.h"
+#import "UIAlertView+DeviseDemo.h"
 
 static NSString * const DVSRegisterSegue = @"DisplayRegisterView";
 static NSString * const DVSLoginSegue = @"DisplayLoginView";
+static NSString * const DVSHomeSegue = @"DisplayHomeView";
 
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
-@interface DVSDemoWelcomeViewController ()
+@interface DVSDemoWelcomeViewController () <DVSLogInViewControllerDelegate>
 
 @end
 
@@ -45,6 +47,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
     
 #if ENABLE_DEVISE_CONTROLLERS
     DVSLogInViewController *logInController = [[DVSLogInViewController alloc] init];
+    logInController.delegate = self;
     [self.navigationController pushViewController:logInController animated:YES];
 #else
     [self performSegueWithIdentifier:DVSLoginSegue sender:self];
@@ -56,6 +59,19 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 - (NSString *)defaultCellId {
     return DVSDefaultWelcomeCell;
+}
+
+DVSWorkInProgress("Need to move DVSLoginViewControllerDelegate to separate class");
+#pragma mark - DVSLoginViewControllerDelegate
+
+- (void)logInViewController:(DVSLogInViewController *)controller didLogInUser:(DVSUser *)user {
+    [self performSegueWithIdentifier:DVSHomeSegue sender:self];
+}
+
+- (void)logInViewController:(DVSLogInViewController *)controller didFailedWithError:(NSError *)error {
+    UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                    statusDescriptionsDictionary:@{ @401: NSLocalizedString(@"Incorrect e-mail or password.", nil) }];
+    [errorAlert show];
 }
 
 @end
