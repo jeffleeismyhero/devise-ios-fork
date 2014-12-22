@@ -49,7 +49,7 @@ static NSString * const DVSLogInTag = @"login";
 
 #pragma mark - UIControl events
 
-- (void)logInButtonTapped:(UIButton *)sender {
+- (void)logInButtonTapped:(XLFormRowDescriptor *)sender {
     NSDictionary *formValues = [self formValues];
     
     DVSUser *user = [DVSUser new];
@@ -65,6 +65,8 @@ static NSString * const DVSLogInTag = @"login";
             [self.delegate logInViewController:self didFailedWithError:error];
         }
     }];
+    
+    [self deselectFormRow:sender];
 }
 
 @end
