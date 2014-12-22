@@ -13,6 +13,9 @@
 #import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
 
+static NSString * const DVSTitleForAlertCancelButton = @"Close";
+static NSString * const DVSTitleForEmail = @"E-mail address";
+
 @interface DVSProfileEditorViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
@@ -28,7 +31,7 @@
     
     self.userDataSource = [DVSDemoUserDataSource new];
     
-    NSString *emailTitle = [self localizedTitleForEmail];
+    NSString *emailTitle = NSLocalizedString(DVSTitleForEmail, nil);
     [self addFormWithTitleToDataSource:emailTitle];
     [self setValue:[DVSDemoUser localUser].email forTitle:emailTitle];
 }
@@ -39,13 +42,13 @@
     DVSDemoUser *localUser = [DVSDemoUser localUser];
     
     localUser.dataSource = self.userDataSource;
-    localUser.email = [self getValueForTitle:[self localizedTitleForEmail]];
+    localUser.email = [self getValueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
     
     [localUser updateWithSuccess:^{
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profile updated", nil)
                                     message:NSLocalizedString(@"Your profile was updated.", nil)
                                    delegate:self
-                          cancelButtonTitle:[self titleForProfileUpdatedAlertCancelButton]
+                          cancelButtonTitle:NSLocalizedString(DVSTitleForAlertCancelButton, nil)
                           otherButtonTitles:nil] show];
     } failure:^(NSError *error) {
         UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
@@ -58,19 +61,9 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:[self titleForProfileUpdatedAlertCancelButton]]) {
+    if ([buttonTitle isEqualToString:NSLocalizedString(DVSTitleForAlertCancelButton, nil)]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-}
-
-- (NSString *)titleForProfileUpdatedAlertCancelButton {
-    return NSLocalizedString(@"Close", nil);
-}
-
-#pragma mark - Localized titles
-
-- (NSString *)localizedTitleForEmail {
-    return NSLocalizedString(@"E-mail address", nil);
 }
 
 @end

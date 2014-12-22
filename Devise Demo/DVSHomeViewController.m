@@ -15,6 +15,9 @@
 static NSString * const DVSEditProfileSegue = @"DisplayProfileEditor";
 static NSString * const DVSPasswordChangeSegue = @"DisplayPasswordChange";
 static NSString * const DVSHomeDefaultCell = @"defaultCell";
+static NSString * const DVSTitleForAlertNoButton = @"No";
+static NSString * const DVSTitleForAlertYesButton = @"Yes";
+static NSString * const DVSTitleForDelete = @"Delete profile";
 
 @interface DVSHomeViewController () <UIAlertViewDelegate>
 
@@ -35,10 +38,12 @@ static NSString * const DVSHomeDefaultCell = @"defaultCell";
     [self addMenuEntryWithTitle:NSLocalizedString(@"Edit profile", nil)
                        subtitle:NSLocalizedString(@"Do you feel something in your account is bad?", nil)
                           segue:DVSEditProfileSegue];
+    
     [self addMenuEntryWithTitle:NSLocalizedString(@"Change password", nil)
                        subtitle:NSLocalizedString(@"Do you want to change your password?", nil)
                           segue:DVSPasswordChangeSegue];
-    [self addMenuEntryWithTitle:[self titleForDeleteAlertView]
+    
+    [self addMenuEntryWithTitle:NSLocalizedString(DVSTitleForDelete, nil)
                        subtitle:NSLocalizedString(@"Do you feel bored?", nil)
                        selector:@selector(handleDeleteCell)];
 }
@@ -52,36 +57,26 @@ static NSString * const DVSHomeDefaultCell = @"defaultCell";
 #pragma mark - Delete action
 
 - (void)handleDeleteCell {
-    [[[UIAlertView alloc] initWithTitle:[self titleForDeleteAlertView]
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(DVSTitleForDelete, nil)
                                 message:NSLocalizedString(@"Are you sure you want to delete your profile?", nil)
                                delegate:self
-                      cancelButtonTitle:[self titleForDeleteAlertCancelButton]
-                      otherButtonTitles:[self titleForDeleteAlertConfirmButton], nil] show];
+                      cancelButtonTitle:NSLocalizedString(DVSTitleForAlertNoButton, nil)
+                      otherButtonTitles:NSLocalizedString(DVSTitleForAlertYesButton, nil), nil] show];
 }
 
 #pragma merk - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:[self titleForDeleteAlertConfirmButton]]) {
+    
+    if ([buttonTitle isEqualToString:NSLocalizedString(DVSTitleForAlertYesButton, nil)]) {
+        
         [[DVSUser localUser] deleteAccountWithSuccess:^{
             [self.navigationController popToRootViewControllerAnimated:YES];
         } failure:^(NSError *error) {
             [UIAlertView dvs_alertViewForError:error];
         }];
     }
-}
-
-- (NSString *)titleForDeleteAlertCancelButton {
-    return NSLocalizedString(@"No", nil);
-}
-
-- (NSString *)titleForDeleteAlertConfirmButton {
-    return NSLocalizedString(@"Yes", nil);
-}
-
-- (NSString *)titleForDeleteAlertView {
-    return NSLocalizedString(@"Delete profile", nil);
 }
 
 #pragma mark - UIControl events

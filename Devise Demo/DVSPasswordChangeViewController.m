@@ -14,6 +14,11 @@
 #import "NSError+DeviseDemo.h"
 #import "UIAlertView+DeviseDemo.h"
 
+static NSString * const DVSTitleForAlertCancelButton = @"Cancel";
+static NSString * const DVSTitleForCurrentPasswort = @"Current password";
+static NSString * const DVSTitleForNewPassword = @"New password";
+static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
+
 @interface DVSPasswordChangeViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
@@ -29,11 +34,11 @@
     
     self.userDataSource = [DVSDemoUserDataSource new];
     
-    [self addFormWithTitleToDataSource:[self localizedTitleForCurrentPassword]
+    [self addFormWithTitleToDataSource:NSLocalizedString(DVSTitleForCurrentPasswort, nil)
                                secured:YES];
-    [self addFormWithTitleToDataSource:[self localizedTitleForNewPassword]
+    [self addFormWithTitleToDataSource:NSLocalizedString(DVSTitleForNewPassword, nil)
                                secured:YES];
-    [self addFormWithTitleToDataSource:[self localizedTitleForNewPasswordConfirm]
+    [self addFormWithTitleToDataSource:NSLocalizedString(DVSTitleForConfirmNewPassword, nil)
                                secured:YES];
 }
 
@@ -46,14 +51,14 @@
     
     NSString *currentPassword = localUser.password;
     
-    NSString *currentPasswordConfirm = [self getValueForTitle:[self localizedTitleForCurrentPassword]];
+    NSString *currentPasswordConfirm = [self getValueForTitle:NSLocalizedString(DVSTitleForCurrentPasswort, nil)];
     if (![currentPassword isEqualToString:currentPasswordConfirm]) {
         [[UIAlertView dvs_alertViewForError:[NSError dvs_passwordConfirmError]] show];
         return;
     }
     
-    NSString *newPassword = [self getValueForTitle:[self localizedTitleForNewPassword]];
-    NSString *newPasswordConfirm = [self getValueForTitle:[self localizedTitleForNewPasswordConfirm]];
+    NSString *newPassword = [self getValueForTitle:NSLocalizedString(DVSTitleForNewPassword, nil)];
+    NSString *newPasswordConfirm = [self getValueForTitle:NSLocalizedString(DVSTitleForConfirmNewPassword, nil)];
     
     if (![newPassword isEqualToString:newPasswordConfirm]) {
         [[UIAlertView dvs_alertViewForError:[NSError dvs_newPasswordConfirmError]] show];
@@ -66,7 +71,7 @@
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Password changed", nil)
                                     message:NSLocalizedString(@"Password was changed. \nNow you can login with new password.", nil)
                                    delegate:self
-                          cancelButtonTitle:[self titleForPasswordChangedAlertCancelButton]
+                          cancelButtonTitle:NSLocalizedString(DVSTitleForAlertCancelButton, nil)
                           otherButtonTitles:nil] show];
     } failure:^(NSError *error) {
         localUser.password = currentPassword;
@@ -78,27 +83,9 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:[self titleForPasswordChangedAlertCancelButton]]) {
+    if ([buttonTitle isEqualToString:NSLocalizedString(DVSTitleForAlertCancelButton, nil)]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-}
-
-- (NSString *)titleForPasswordChangedAlertCancelButton {
-    return NSLocalizedString(@"Close", nil);
-}
-
-#pragma mark - Localized titles
-
-- (NSString *)localizedTitleForCurrentPassword {
-    return NSLocalizedString(@"Current password", nil);
-}
-
-- (NSString *)localizedTitleForNewPassword {
-    return NSLocalizedString(@"New password", nil);
-}
-
-- (NSString *)localizedTitleForNewPasswordConfirm {
-    return NSLocalizedString(@"Confirm new password", nil);
 }
 
 @end

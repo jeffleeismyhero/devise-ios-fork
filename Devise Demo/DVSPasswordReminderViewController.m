@@ -12,6 +12,8 @@
 #import "UIAlertView+DeviseDemo.h"
 #import "DVSDemoUser.h"
 
+static NSString * const DVSTitleForAlertCancelButton = @"Close";
+
 @interface DVSPasswordReminderViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -31,7 +33,7 @@
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Remind successful", nil)
                                     message:NSLocalizedString(@"You will receive e-mail with instructions how to reset your password.", nil)
                                    delegate:self
-                          cancelButtonTitle:[self titleForPasswordRemindAlertCancelButton]
+                          cancelButtonTitle:NSLocalizedString(DVSTitleForAlertCancelButton, nil)
                           otherButtonTitles:nil] show];
      } failure:^(NSError *error) {
          UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
@@ -44,13 +46,9 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:[self titleForPasswordRemindAlertCancelButton]]) {
+    if ([buttonTitle isEqualToString:NSLocalizedString(DVSTitleForAlertCancelButton, nil)]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-}
-
-- (NSString *)titleForPasswordRemindAlertCancelButton {
-    return NSLocalizedString(@"Close", nil);
 }
 
 @end
