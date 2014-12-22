@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DVSFormTableModel : NSObject
+@interface DVSFormTextFieldModel : NSObject
 
 @property (strong, nonatomic, readonly) NSString *value;
 @property (assign, nonatomic, readonly) BOOL secured;

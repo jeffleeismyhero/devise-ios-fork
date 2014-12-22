@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSFormTableModel.h"
+#import "DVSFormTextFieldModel.h"
 
-@interface DVSFormTableModel ()
+@interface DVSFormTextFieldModel ()
 
 @property (strong, nonatomic, readwrite) NSString *value;
 @property (assign, nonatomic, readwrite) BOOL secured;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation DVSFormTableModel
+@implementation DVSFormTextFieldModel
 
 - (instancetype)initWithValue:(NSString *)value secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
     if (self = [super init]) {

@@ -8,8 +8,8 @@
 
 #import "DVSFormViewController.h"
 
-#import "DVSFormTableViewCell.h"
-#import "DVSFormTableModel.h"
+#import "DVSFormTextFieldCell.h"
+#import "DVSFormTextFieldModel.h"
 
 static NSString * const DVSDefaultCellId = @"defaultCell";
 
@@ -30,7 +30,7 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     self.dataSourceTitlesArray = [NSMutableArray array];
     self.dataSourceValuesDictionary = [NSMutableDictionary dictionary];
     
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DVSFormTableViewCell class])
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DVSFormTextFieldCell class])
                                                bundle:nil]
          forCellReuseIdentifier:DVSDefaultCellId];
 }
@@ -51,24 +51,24 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 
 - (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
     [self.dataSourceTitlesArray addObject:title];
-    self.dataSourceValuesDictionary[title] = [[DVSFormTableModel alloc] initWithValue:@""
+    self.dataSourceValuesDictionary[title] = [[DVSFormTextFieldModel alloc] initWithValue:@""
                                                                               secured:secured
                                                                          keyboardType:keyboardType];
 }
 
 - (void)setValue:(NSString *)value forTitle:(NSString *)title {
-    DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[title];
+    DVSFormTextFieldModel *model = (DVSFormTextFieldModel *)self.dataSourceValuesDictionary[title];
     
     NSAssert(model, @"No model for current title");
     
-    self.dataSourceValuesDictionary[title] = [[DVSFormTableModel alloc] initWithValue:value
+    self.dataSourceValuesDictionary[title] = [[DVSFormTextFieldModel alloc] initWithValue:value
                                                                               secured:model.secured
                                                                          keyboardType:model.keyboardType];
     [self.tableView reloadData];
 }
 
 - (NSString *)getValueForTitle:(NSString *)title {
-    DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[title];
+    DVSFormTextFieldModel *model = (DVSFormTextFieldModel *)self.dataSourceValuesDictionary[title];
     return model.value;
 }
 
@@ -79,10 +79,10 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DVSFormTableViewCell *cell = (DVSFormTableViewCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
+    DVSFormTextFieldCell *cell = (DVSFormTextFieldCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
     
     NSString *title = self.dataSourceTitlesArray[indexPath.item];
-    DVSFormTableModel *model = self.dataSourceValuesDictionary[title];
+    DVSFormTextFieldModel *model = self.dataSourceValuesDictionary[title];
     
     cell.titleLabel.text = title;
     cell.delegate = self;
@@ -95,9 +95,9 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 
 #pragma mark - DVSDemoFormTableViewCellDelegate
 
-- (void)formTableViewCell:(DVSFormTableViewCell *)cell changedValue:(NSString *)string {
-    DVSFormTableModel *model = (DVSFormTableModel *)self.dataSourceValuesDictionary[cell.titleLabel.text];
-    self.dataSourceValuesDictionary[cell.titleLabel.text] = [[DVSFormTableModel alloc] initWithValue:string
+- (void)formTableViewCell:(DVSFormTextFieldCell *)cell changedValue:(NSString *)string {
+    DVSFormTextFieldModel *model = (DVSFormTextFieldModel *)self.dataSourceValuesDictionary[cell.titleLabel.text];
+    self.dataSourceValuesDictionary[cell.titleLabel.text] = [[DVSFormTextFieldModel alloc] initWithValue:string
                                                                                              secured:model.secured
                                                                                         keyboardType:model.keyboardType];
 }

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DVSMacros.h"
 
 @interface DVSFormViewController : UITableViewController
 
+DVSTemporary("Backward compability with demo. Will be refactored after adding new cell types.");
 - (void)addFormWithTitleToDataSource:(NSString *)title;
 - (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured;
 - (void)addFormWithTitleToDataSource:(NSString *)title keyboardType:(UIKeyboardType)keyboardType;

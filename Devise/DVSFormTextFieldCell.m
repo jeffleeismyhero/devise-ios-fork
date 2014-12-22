@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSFormTableViewCell.h"
+#import "DVSFormTextFieldCell.h"
 
-@interface DVSFormTableViewCell ()
+@interface DVSFormTextFieldCell ()
 
 @property (weak, nonatomic, readwrite) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic, readwrite) IBOutlet UITextField *valueTextField;
 
 @end
 
-@implementation DVSFormTableViewCell
+@implementation DVSFormTextFieldCell
 
 #pragma mark - UITextField events
 
