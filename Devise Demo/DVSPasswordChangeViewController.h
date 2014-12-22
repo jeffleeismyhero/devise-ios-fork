@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSFormTableViewController.h"
+#import "DVSFormViewController.h"
 
-@interface DVSPasswordChangeViewController : DVSFormTableViewController
+@interface DVSPasswordChangeViewController : DVSFormViewController
 
 @end

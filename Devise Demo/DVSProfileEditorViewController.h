@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "DVSFormTableViewController.h"
+#import "DVSFormViewController.h"
 
-@interface DVSProfileEditorViewController : DVSFormTableViewController
+@interface DVSProfileEditorViewController : DVSFormViewController
 
 @end
