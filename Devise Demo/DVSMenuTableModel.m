@@ -8,15 +8,6 @@
 
 #import "DVSMenuTableModel.h"
 
-@interface DVSMenuTableModel ()
-
-@property (strong, nonatomic, readwrite) NSString *title;
-@property (strong, nonatomic, readwrite) NSString *subtitle;
-@property (strong, nonatomic, readwrite) NSString *segueIdentifier;
-@property (strong, nonatomic, readwrite) NSString *selectorString;
-
-@end
-
 @implementation DVSMenuTableModel
 
 - (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle segueName:(NSString *)segueName {
@@ -35,10 +26,10 @@
 
 - (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle segueName:(NSString *)segueName selectorString:(NSString *)selectorString {
     if (self = [super init]) {
-        self.title = title;
-        self.subtitle = subtitle;
-        self.segueIdentifier = segueName;
-        self.selectorString = selectorString;
+        _title = title;
+        _subtitle = subtitle;
+        _segueIdentifier = segueName;
+        _selectorString = selectorString;
     }
     return self;
 }
