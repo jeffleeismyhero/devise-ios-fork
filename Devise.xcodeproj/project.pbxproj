@@ -14,6 +14,8 @@
 		21AFB7F61A48446600769C87 /* DVSFormTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F41A48446600769C87 /* DVSFormTextFieldCell.m */; };
 		21AFB7F71A48446600769C87 /* DVSFormTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7F51A48446600769C87 /* DVSFormTextFieldCell.xib */; };
 		21AFB7FA1A4844A800769C87 /* DVSFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F91A4844A800769C87 /* DVSFormViewController.m */; };
+		21AFB8001A48C31100769C87 /* DVSLoginViewUserDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7FE1A48C31100769C87 /* DVSLoginViewUserDataSource.h */; };
+		21AFB8011A48C31100769C87 /* DVSLoginViewUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7FF1A48C31100769C87 /* DVSLoginViewUserDataSource.m */; };
 		21B1AAB21A3AF4E000578DF7 /* DVSDemoPasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB11A3AF4E000578DF7 /* DVSDemoPasswordChangeViewController.m */; };
 		21B1AAB51A3B12CE00578DF7 /* NSError+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB41A3B12CE00578DF7 /* NSError+DeviseDemo.m */; };
 		21B1AAB81A3B2BF600578DF7 /* DVSDemoUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB71A3B2BF600578DF7 /* DVSDemoUserDataSource.m */; };
@@ -128,6 +130,8 @@
 		21AFB7F51A48446600769C87 /* DVSFormTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVSFormTextFieldCell.xib; sourceTree = "<group>"; };
 		21AFB7F81A4844A800769C87 /* DVSFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormViewController.h; sourceTree = "<group>"; };
 		21AFB7F91A4844A800769C87 /* DVSFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormViewController.m; sourceTree = "<group>"; };
+		21AFB7FE1A48C31100769C87 /* DVSLoginViewUserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSLoginViewUserDataSource.h; sourceTree = "<group>"; };
+		21AFB7FF1A48C31100769C87 /* DVSLoginViewUserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSLoginViewUserDataSource.m; sourceTree = "<group>"; };
 		21B1AAB01A3AF4E000578DF7 /* DVSDemoPasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoPasswordChangeViewController.h; sourceTree = "<group>"; };
 		21B1AAB11A3AF4E000578DF7 /* DVSDemoPasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoPasswordChangeViewController.m; sourceTree = "<group>"; };
 		21B1AAB31A3B12CE00578DF7 /* NSError+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+DeviseDemo.h"; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 			children = (
 				21AFB7E41A48303000769C87 /* DVSLogInViewController.h */,
 				21AFB7E51A48303000769C87 /* DVSLogInViewController.m */,
+				21AFB7FE1A48C31100769C87 /* DVSLoginViewUserDataSource.h */,
+				21AFB7FF1A48C31100769C87 /* DVSLoginViewUserDataSource.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -753,6 +759,7 @@
 				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
 				3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */,
 				3AA22E5F1A2535BC00FE04D1 /* DVSMacros.h in Headers */,
+				21AFB8001A48C31100769C87 /* DVSLoginViewUserDataSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1025,6 +1032,7 @@
 				5E7E166F1A264F6900684A60 /* DVSPropertyValidator.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */,
 				5E7A9A351A3F114F0077DC43 /* NSObject+Devise.m in Sources */,
+				21AFB8011A48C31100769C87 /* DVSLoginViewUserDataSource.m in Sources */,
 				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
 				5EF5E6DB1A2667D80049BEA6 /* NSArray+Devise.m in Sources */,
 				3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */,
