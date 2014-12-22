@@ -18,3 +18,5 @@
     #import <Devise/Devise.h>
 
 #endif
+
+#define ENABLE_DEVISE_CONTROLLERS 0

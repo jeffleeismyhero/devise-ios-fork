@@ -15,6 +15,8 @@
 		21AFB7DF1A48281800769C87 /* DVSFormTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7D81A48281800769C87 /* DVSFormTextFieldCell.xib */; };
 		21AFB7E01A48281800769C87 /* DVSFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7D91A48281800769C87 /* DVSFormViewController.h */; };
 		21AFB7E11A48281800769C87 /* DVSFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7DA1A48281800769C87 /* DVSFormViewController.m */; };
+		21AFB7E61A48303000769C87 /* DVSLogInViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7E41A48303000769C87 /* DVSLogInViewController.h */; };
+		21AFB7E71A48303000769C87 /* DVSLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E51A48303000769C87 /* DVSLogInViewController.m */; };
 		21B1AAB21A3AF4E000578DF7 /* DVSPasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB11A3AF4E000578DF7 /* DVSPasswordChangeViewController.m */; };
 		21B1AAB51A3B12CE00578DF7 /* NSError+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB41A3B12CE00578DF7 /* NSError+DeviseDemo.m */; };
 		21B1AAB81A3B2BF600578DF7 /* DVSDemoUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB71A3B2BF600578DF7 /* DVSDemoUserDataSource.m */; };
@@ -127,6 +129,8 @@
 		21AFB7D81A48281800769C87 /* DVSFormTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DVSFormTextFieldCell.xib; path = Devise/DVSFormTextFieldCell.xib; sourceTree = SOURCE_ROOT; };
 		21AFB7D91A48281800769C87 /* DVSFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVSFormViewController.h; path = Devise/DVSFormViewController.h; sourceTree = SOURCE_ROOT; };
 		21AFB7DA1A48281800769C87 /* DVSFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSFormViewController.m; path = Devise/DVSFormViewController.m; sourceTree = SOURCE_ROOT; };
+		21AFB7E41A48303000769C87 /* DVSLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSLogInViewController.h; sourceTree = "<group>"; };
+		21AFB7E51A48303000769C87 /* DVSLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSLogInViewController.m; sourceTree = "<group>"; };
 		21B1AAB01A3AF4E000578DF7 /* DVSPasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPasswordChangeViewController.h; sourceTree = "<group>"; };
 		21B1AAB11A3AF4E000578DF7 /* DVSPasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPasswordChangeViewController.m; sourceTree = "<group>"; };
 		21B1AAB31A3B12CE00578DF7 /* NSError+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+DeviseDemo.h"; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 			isa = PBXGroup;
 			children = (
 				21B1AABE1A3EE67B00578DF7 /* DVSFormViewController */,
+				21AFB7E41A48303000769C87 /* DVSLogInViewController.h */,
+				21AFB7E51A48303000769C87 /* DVSLogInViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -732,6 +738,7 @@
 				5EF381DC1A279998006875D4 /* NSDate+Devise.h in Headers */,
 				21AFB7DB1A48281800769C87 /* DVSFormTextFieldModel.h in Headers */,
 				5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */,
+				21AFB7E61A48303000769C87 /* DVSLogInViewController.h in Headers */,
 				5EF381F01A287458006875D4 /* NSNumber+Devise.h in Headers */,
 				5E7E166E1A264F6900684A60 /* DVSPropertyValidator.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
@@ -933,7 +940,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n#touch \"$GCC_PREFIX_HEADER\"";
+			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"";
 		};
 		3AD4C68D1A24DC1500F0AE67 /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1016,6 +1023,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21AFB7E71A48303000769C87 /* DVSLogInViewController.m in Sources */,
 				21AFB7DC1A48281800769C87 /* DVSFormTextFieldModel.m in Sources */,
 				21AFB7DE1A48281800769C87 /* DVSFormTextFieldCell.m in Sources */,
 				5EF381F11A287458006875D4 /* NSNumber+Devise.m in Sources */,
@@ -1148,6 +1156,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Launch-Image";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1203,6 +1212,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
+				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Info.plist";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

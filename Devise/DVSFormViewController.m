@@ -11,8 +11,6 @@
 #import "DVSFormTextFieldCell.h"
 #import "DVSFormTextFieldModel.h"
 
-static NSString * const DVSDefaultCellId = @"defaultCell";
-
 @interface DVSFormViewController () <DVSFormTableViewCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray *dataSourceTitlesArray;
@@ -30,9 +28,16 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     self.dataSourceTitlesArray = [NSMutableArray array];
     self.dataSourceValuesDictionary = [NSMutableDictionary dictionary];
     
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DVSFormTextFieldCell class])
+    [self registerNibForCellClass:[DVSFormTextFieldCell class]];
+}
+
+#pragma mark - Register nib for cell 
+
+- (void)registerNibForCellClass:(Class)cellClass {
+    NSString *className = NSStringFromClass(cellClass);
+    [self.tableView registerNib:[UINib nibWithNibName:className
                                                bundle:nil]
-         forCellReuseIdentifier:DVSDefaultCellId];
+         forCellReuseIdentifier:className];
 }
 
 #pragma mark - DataSource helpers
@@ -79,7 +84,10 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DVSFormTextFieldCell *cell = (DVSFormTextFieldCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
+    
+    NSString *cellIdentifier = NSStringFromClass([DVSFormTextFieldCell class]);
+    DVSFormTextFieldCell *cell = (DVSFormTextFieldCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier
+                                                                                         forIndexPath:indexPath];
     
     NSString *title = self.dataSourceTitlesArray[indexPath.item];
     DVSFormTextFieldModel *model = self.dataSourceValuesDictionary[title];
