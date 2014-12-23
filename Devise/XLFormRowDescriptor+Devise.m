@@ -8,7 +8,29 @@
 
 #import "XLFormRowDescriptor+Devise.h"
 
+#import "XLForm.h"
+
 @implementation XLFormRowDescriptor (Devise)
+
++ (XLFormRowDescriptor *)dvs_emailRowWithTag:(NSString *)tag {
+    return [XLFormRowDescriptor formRowDescriptorWithTag:tag
+                                                 rowType:XLFormRowDescriptorTypeEmail
+                                                   title:NSLocalizedString(@"E-mail", nil)];
+}
+
++ (XLFormRowDescriptor *)dvs_passwordRowWithTag:(NSString *)tag {
+    return [XLFormRowDescriptor formRowDescriptorWithTag:tag
+                                                 rowType:XLFormRowDescriptorTypePassword
+                                                   title:NSLocalizedString(@"Password", nil)];
+}
+
++ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color {
+    XLFormRowDescriptor *buttonRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
+                                                                           rowType:XLFormRowDescriptorTypeButton
+                                                                             title:title];
+    [buttonRow dvs_customizeTextWithColor:color alignment:NSTextAlignmentCenter];
+    return buttonRow;
+}
 
 - (void)dvs_customizeTextWithColor:(UIColor *)color alignment:(NSTextAlignment)alignment {
     [self.cellConfig setObject:color forKey:@"textLabel.textColor"];

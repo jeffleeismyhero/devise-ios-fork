@@ -10,6 +10,10 @@
 
 @interface XLFormRowDescriptor (Devise)
 
++ (XLFormRowDescriptor *)dvs_emailRowWithTag:(NSString *)tag;
++ (XLFormRowDescriptor *)dvs_passwordRowWithTag:(NSString *)tag;
++ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color;
+
 - (void)dvs_customizeTextWithColor:(UIColor *)color alignment:(NSTextAlignment)alignment;
 
 @end

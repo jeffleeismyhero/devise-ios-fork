@@ -75,20 +75,15 @@ static NSString * const DVSDismissTag = @"dismiss";
     
     BOOL shouldShowEmailAndPassword = (viewsOptions & DVSLogInViewsEmailAndPassword) == DVSLogInViewsEmailAndPassword;
     if (shouldShowEmailAndPassword) {
-        [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:DVSEmailTag
-                                                                  rowType:XLFormRowDescriptorTypeEmail
-                                                                    title:NSLocalizedString(@"E-mail", nil)]];
-        [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:DVSPasswordTag
-                                                                  rowType:XLFormRowDescriptorTypePassword
-                                                                    title:NSLocalizedString(@"Password", nil)]];
+        [section addFormRow:[XLFormRowDescriptor dvs_emailRowWithTag:DVSEmailTag]];
+        [section addFormRow:[XLFormRowDescriptor dvs_passwordRowWithTag:DVSPasswordTag]];
     }
     
     BOOL shouldShowLogInButton = (viewsOptions & DVSLogInViewsLogInButton) == DVSLogInViewsLogInButton;
     if (shouldShowLogInButton) {
-        XLFormRowDescriptor *logInButtonRow = [XLFormRowDescriptor formRowDescriptorWithTag:DVSLogInTag
-                                                                                    rowType:XLFormRowDescriptorTypeButton
-                                                                                      title:NSLocalizedString(@"Log In", nil)];
-        [logInButtonRow dvs_customizeTextWithColor:[UIColor blueColor] alignment:NSTextAlignmentCenter];
+        XLFormRowDescriptor *logInButtonRow = [XLFormRowDescriptor dvs_buttonRowWithTag:DVSLogInTag
+                                                                                  title:NSLocalizedString(@"Log In", nil)
+                                                                                  color:[UIColor blueColor]];
         logInButtonRow.action.formSelector = @selector(logInButtonTapped:);
         
         [section addFormRow:logInButtonRow];
@@ -96,10 +91,9 @@ static NSString * const DVSDismissTag = @"dismiss";
     
     BOOL shouldShowDismissButton = (viewsOptions & DVSLogInViewsDismissButton) == DVSLogInViewsDismissButton;
     if (shouldShowDismissButton) {
-        XLFormRowDescriptor *dismissButtonRow = [XLFormRowDescriptor formRowDescriptorWithTag:DVSDismissTag
-                                                                                      rowType:XLFormRowDescriptorTypeButton
-                                                                                        title:NSLocalizedString(@"Cancel", nil)];
-        [dismissButtonRow dvs_customizeTextWithColor:[UIColor redColor] alignment:NSTextAlignmentCenter];
+        XLFormRowDescriptor *dismissButtonRow = [XLFormRowDescriptor dvs_buttonRowWithTag:DVSDismissTag
+                                                                                    title:NSLocalizedString(@"Cancel", nil)
+                                                                                    color:[UIColor redColor]];
         dismissButtonRow.action.formSelector = @selector(dismissButtonTapped:);
         
         [section addFormRow:dismissButtonRow];
