@@ -12,12 +12,6 @@
 #import "DVSUser+Requests.h"
 #import "XLFormRowDescriptor+Devise.h"
 
-static NSString * const DVSTitleTag = @"title";
-static NSString * const DVSEmailTag = @"email";
-static NSString * const DVSPasswordTag = @"password";
-static NSString * const DVSLogInTag = @"login";
-static NSString * const DVSDismissTag = @"dismiss";
-
 @interface DVSLogInViewController ()
 
 @property (strong, nonatomic) DVSLoginViewUserDataSource *userDataSource;
@@ -107,8 +101,8 @@ static NSString * const DVSDismissTag = @"dismiss";
     
     DVSUser *user = [DVSUser new];
     
-    user.email = formValues[DVSEmailTag];
-    user.password = formValues[DVSPasswordTag];
+    user.email = formValues[DVSFormEmailTag];
+    user.password = formValues[DVSFormPasswordTag];
     user.dataSource = self.userDataSource;
     
     [user loginWithSuccess:^{
