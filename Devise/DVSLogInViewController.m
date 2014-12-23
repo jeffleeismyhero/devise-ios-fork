@@ -31,20 +31,35 @@ static NSString * const DVSDismissTag = @"dismiss";
 - (instancetype)init {
     DVSLogInViewsOptions defaultOptions = [self defaultViewsOptions];
     if (self = [super initWithForm:[self formForOptions:defaultOptions]]) {
-        [self initialSetup];
+        [self setupForViews:defaultOptions];
     }
     return self;
 }
 
 - (instancetype)initWithViewsOptions:(DVSLogInViewsOptions)viewsOptions {
     if (self = [super initWithForm:[self formForOptions:viewsOptions]]) {
-        [self initialSetup];
+        [self setupForViews:viewsOptions];
     }
     return self;
 }
 
-- (void)initialSetup {
+- (void)setupForViews:(DVSLogInViewsOptions)viewOptions {
     self.userDataSource = [DVSLoginViewUserDataSource new];
+    
+    BOOL shouldShowNavigationLogInButton = (viewOptions & DVSLogInViewsNavigationLogInButton) == DVSLogInViewsNavigationLogInButton;
+    if (shouldShowNavigationLogInButton) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log In", nil)
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                 target:self
+                                                                                 action:@selector(navigationLogInButtonTapped:)];
+    }
+    
+    BOOL shouldShowNavigationDismissButton = (viewOptions & DVSLogInViewsNavigationDismissButton) == DVSLogInViewsNavigationDismissButton;
+    if (shouldShowNavigationDismissButton) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                              target:self
+                                                                                              action:@selector(navigationDismissButtonTapped:)];
+    }
 }
 
 - (DVSLogInViewsOptions)defaultViewsOptions {
@@ -98,6 +113,26 @@ static NSString * const DVSDismissTag = @"dismiss";
 #pragma mark - UIControl events
 
 - (void)logInButtonTapped:(XLFormRowDescriptor *)sender {
+    [self performLogInAction];
+    [self deselectFormRow:sender];
+}
+
+- (void)navigationLogInButtonTapped:(UIBarButtonItem *)sender {
+    [self performLogInAction];
+}
+
+- (void)dismissButtonTapped:(XLFormRowDescriptor *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self deselectFormRow:sender];
+}
+
+- (void)navigationDismissButtonTapped:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Actions
+
+- (void)performLogInAction {
     NSDictionary *formValues = [self formValues];
     
     DVSUser *user = [DVSUser new];
@@ -115,13 +150,6 @@ static NSString * const DVSDismissTag = @"dismiss";
             [self.delegate logInViewController:self didFailedWithError:error];
         }
     }];
-    
-    [self deselectFormRow:sender];
-}
-
-- (void)dismissButtonTapped:(XLFormRowDescriptor *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self deselectFormRow:sender];
 }
 
 @end

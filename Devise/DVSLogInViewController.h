@@ -13,9 +13,11 @@
 #import "DVSUser.h"
 
 typedef NS_OPTIONS(NSInteger, DVSLogInViewsOptions) {
-    DVSLogInViewsEmailAndPassword   = 1 << 0,
-    DVSLogInViewsLogInButton        = 1 << 1,
-    DVSLogInViewsDismissButton      = 1 << 2
+    DVSLogInViewsEmailAndPassword           = 1 << 0,
+    DVSLogInViewsLogInButton                = 1 << 1,
+    DVSLogInViewsDismissButton              = 1 << 2,
+    DVSLogInViewsNavigationLogInButton      = 1 << 3,
+    DVSLogInViewsNavigationDismissButton    = 1 << 4
 };
 
 @protocol DVSLogInViewControllerDelegate;
