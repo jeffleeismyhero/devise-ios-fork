@@ -37,7 +37,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
                           otherButtonTitles:nil] show];
      } failure:^(NSError *error) {
          UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
-                                         statusDescriptionsDictionary:@{ @404: NSLocalizedString(@"User for current e-mail does not exist.", nil) }];
+                                         statusDescriptionsDictionary:@{ @404: NSLocalizedString(@"Account for given e-mail does not exist.", nil) }];
          [errorAlert show];
      }];
 }
