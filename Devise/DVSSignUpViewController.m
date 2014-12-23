@@ -11,10 +11,6 @@
 #import "DVSUser+Requests.h"
 #import "XLFormRowDescriptor+Devise.h"
 
-static NSString * const DVSEmailTag = @"email";
-static NSString * const DVSPasswordTag = @"password";
-static NSString * const DVSSignUpTag = @"signUp";
-
 @implementation DVSSignUpViewController
 
 #pragma mark - Initialization
@@ -34,19 +30,17 @@ static NSString * const DVSSignUpTag = @"signUp";
     return self;
 }
 
-- (void)setupForViews:(DVSSignUpViewsOptions)viewOptions {
+- (void)setupForViews:(DVSSignUpViewsOptions)viewsOptions {
     __weak typeof(self) weakSelf = self;
     
-    BOOL shouldShowNavigationSignUpButton = (viewOptions & DVSSignUpViewsNavigationSignUpButton) == DVSSignUpViewsNavigationSignUpButton;
-    if (shouldShowNavigationSignUpButton) {
+    if ([self shouldShow:DVSSignUpViewsNavigationSignUpButton basedOn:viewsOptions]) {
         [self setupLeftNavigationBarButtonWithTitle:NSLocalizedString(@"Sign Up", nil)
                                              action:^{
                                                  [weakSelf performSignUpAction];
                                              }];
     }
     
-    BOOL shouldShowNavigationDismissButton = (viewOptions & DVSSignUpViewsNavigationDismissButton) == DVSSignUpViewsNavigationDismissButton;
-    if (shouldShowNavigationDismissButton) {
+    if ([self shouldShow:DVSSignUpViewsNavigationDismissButton basedOn:viewsOptions]) {
         [self setupRightNavigationBarButtonWithTitle:NSLocalizedString(@"Back", nil)
                                               action:^{
                                                   [weakSelf dismissViewControllerAnimated:YES completion:nil];
@@ -65,28 +59,29 @@ static NSString * const DVSSignUpTag = @"signUp";
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Sign Up", nil)];
     
-    [section addFormRow:[XLFormRowDescriptor dvs_emailRowWithTag:DVSEmailTag]];
-    [section addFormRow:[XLFormRowDescriptor dvs_passwordRowWithTag:DVSPasswordTag]];
+    if ([self shouldShow:DVSSignUpViewsEmailAndPassword basedOn:viewsOptions]) {
+        [self addEmailAndPasswordToSection:section];
+    }
     
-    [section addFormRow:[XLFormRowDescriptor dvs_buttonRowWithTag:DVSSignUpTag
-                                                            title:NSLocalizedString(@"Sign Up", nil)
-                                                            color:[UIColor blueColor]
-                                                         selector:@selector(signUpButtonTapped:)]];
+    __weak typeof(self) weakSelf = self;
+    if ([self shouldShow:DVSSignUpViewsSignUpButton basedOn:viewsOptions]) {
+        [self addProceedButtonToSection:section
+                                  title:NSLocalizedString(@"Sign Up", nil)
+                                 action:^() {
+                                     [weakSelf performSignUpAction];
+                                 }];
+    }
+    
+    if ([self shouldShow:DVSSignUpViewsDismissButton basedOn:viewsOptions]) {
+        [self addDismissButtonToSection:section
+                                  title:NSLocalizedString(@"Dismiss", nil)
+                                 action:^{
+                                     [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                 }];
+    }
     
     [form addFormSection:section];
     return form;
-}
-
-#pragma mark - UIControl events
-
-- (void)signUpButtonTapped:(XLFormRowDescriptor *)sender {
-    [self performSignUpAction];
-    [self deselectFormRow:sender];
-}
-
-- (void)dismissButtonTapped:(XLFormRowDescriptor *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self deselectFormRow:sender];
 }
 
 #pragma mark - Actions
@@ -96,8 +91,8 @@ static NSString * const DVSSignUpTag = @"signUp";
     
     DVSUser *newUser = [DVSUser new];
     
-    newUser.password = formValues[DVSEmailTag];
-    newUser.email = formValues[DVSPasswordTag];
+    newUser.password = formValues[DVSFormEmailTag];
+    newUser.email = formValues[DVSFormPasswordTag];
     
     [newUser registerWithSuccess:^{
         if ([self.delegate respondsToSelector:@selector(signUpViewController:didSignUpUser:)]) {
