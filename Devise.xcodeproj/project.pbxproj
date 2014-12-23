@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */; };
 		2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */; };
+		2151995E1A495A4D00EF5F80 /* DVSSignUpViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2151995C1A495A4D00EF5F80 /* DVSSignUpViewController.h */; };
+		2151995F1A495A4D00EF5F80 /* DVSSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2151995D1A495A4D00EF5F80 /* DVSSignUpViewController.m */; };
 		215575B31A40880C00BA8661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 215575B11A40880C00BA8661 /* Localizable.strings */; };
 		21AFB7E61A48303000769C87 /* DVSLogInViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7E41A48303000769C87 /* DVSLogInViewController.h */; };
 		21AFB7E71A48303000769C87 /* DVSLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E51A48303000769C87 /* DVSLogInViewController.m */; };
@@ -124,6 +126,8 @@
 /* Begin PBXFileReference section */
 		215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XLFormRowDescriptor+Devise.h"; sourceTree = "<group>"; };
 		215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XLFormRowDescriptor+Devise.m"; sourceTree = "<group>"; };
+		2151995C1A495A4D00EF5F80 /* DVSSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSSignUpViewController.h; sourceTree = "<group>"; };
+		2151995D1A495A4D00EF5F80 /* DVSSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSSignUpViewController.m; sourceTree = "<group>"; };
 		215575B21A40880C00BA8661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		21AFB7E41A48303000769C87 /* DVSLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSLogInViewController.h; sourceTree = "<group>"; };
 		21AFB7E51A48303000769C87 /* DVSLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSLogInViewController.m; sourceTree = "<group>"; };
@@ -286,6 +290,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2151995B1A495A0300EF5F80 /* SignUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2151995C1A495A4D00EF5F80 /* DVSSignUpViewController.h */,
+				2151995D1A495A4D00EF5F80 /* DVSSignUpViewController.m */,
+			);
+			name = SignUpViewController;
+			sourceTree = "<group>";
+		};
 		215575AF1A40873800BA8661 /* Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,7 +318,8 @@
 		21AFB7D31A48276E00769C87 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				21AFB8021A48C6E200769C87 /* LoginViewController */,
+				2151995B1A495A0300EF5F80 /* SignUpViewController */,
+				21AFB8021A48C6E200769C87 /* LogInViewController */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -329,7 +343,7 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		21AFB8021A48C6E200769C87 /* LoginViewController */ = {
+		21AFB8021A48C6E200769C87 /* LogInViewController */ = {
 			isa = PBXGroup;
 			children = (
 				21AFB7E41A48303000769C87 /* DVSLogInViewController.h */,
@@ -337,7 +351,7 @@
 				21AFB7FE1A48C31100769C87 /* DVSLoginViewUserDataSource.h */,
 				21AFB7FF1A48C31100769C87 /* DVSLoginViewUserDataSource.m */,
 			);
-			name = LoginViewController;
+			name = LogInViewController;
 			sourceTree = "<group>";
 		};
 		21B1AAB91A3EE21800578DF7 /* Base View Controllers */ = {
@@ -769,6 +783,7 @@
 				3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */,
 				5EE295081A35C086009441E1 /* NSDictionary+Devise.h in Headers */,
 				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */,
+				2151995E1A495A4D00EF5F80 /* DVSSignUpViewController.h in Headers */,
 				5EF5E6DA1A2667D80049BEA6 /* NSArray+Devise.h in Headers */,
 				3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */,
 				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
@@ -1041,6 +1056,7 @@
 			files = (
 				21AFB7E71A48303000769C87 /* DVSLogInViewController.m in Sources */,
 				5EF381F11A287458006875D4 /* NSNumber+Devise.m in Sources */,
+				2151995F1A495A4D00EF5F80 /* DVSSignUpViewController.m in Sources */,
 				3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */,
 				3A2B04FF1A41663E00DDA453 /* DVSUser+Requests.m in Sources */,
 				5EE295091A35C086009441E1 /* NSDictionary+Devise.m in Sources */,

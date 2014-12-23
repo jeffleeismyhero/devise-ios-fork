@@ -25,10 +25,16 @@
 }
 
 + (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color {
+    return [self dvs_buttonRowWithTag:tag title:title color:color selector:nil];
+}
+
++ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color selector:(SEL)selector {
     XLFormRowDescriptor *buttonRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
                                                                            rowType:XLFormRowDescriptorTypeButton
                                                                              title:title];
     [buttonRow dvs_customizeTextWithColor:color alignment:NSTextAlignmentCenter];
+    buttonRow.action.formSelector = selector;
+    
     return buttonRow;
 }
 

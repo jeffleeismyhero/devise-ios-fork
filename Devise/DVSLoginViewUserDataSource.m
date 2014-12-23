@@ -28,7 +28,7 @@ static NSString * const DVSUserEmailParameter = @"email";
 - (NSArray *)additionalValidationRulesForLogin {
     return @[DVSValidate(DVSUserEmailParameter).localizedPropertyName(NSLocalizedString(@"E-mail", nil)),
              DVSValidate(DVSUserPasswordParameter).localizedPropertyName(NSLocalizedString(@"Password", nil))
-             .minLength(5).tooShort(NSLocalizedString(@"is wrong.", nil))];
+                                                  .minLength(5).tooShort(NSLocalizedString(@"is wrong.", nil))];
 }
 
 @end
