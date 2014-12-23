@@ -46,9 +46,9 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 - (void)didSelectLogIn {
     
 #if ENABLE_DEVISE_CONTROLLERS
-    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] init];
+    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] initWithViewsOptions:DVSLogInViewsEmailAndPassword | DVSLogInViewsLogInButton | DVSLogInViewsDismissButton];
     logInController.delegate = self;
-    [self.navigationController pushViewController:logInController animated:YES];
+    [self presentViewController:logInController animated:YES completion:nil];
 #else
     [self performSegueWithIdentifier:DVSLoginSegue sender:self];
 #endif

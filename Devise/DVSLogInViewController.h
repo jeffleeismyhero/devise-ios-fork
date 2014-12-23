@@ -12,11 +12,19 @@
 
 #import "DVSUser.h"
 
+typedef NS_OPTIONS(NSInteger, DVSLogInViewsOptions) {
+    DVSLogInViewsEmailAndPassword   = 1 << 0,
+    DVSLogInViewsLogInButton        = 1 << 1,
+    DVSLogInViewsDismissButton      = 1 << 2
+};
+
 @protocol DVSLogInViewControllerDelegate;
 
 @interface DVSLogInViewController : XLFormViewController
 
 @property (assign, nonatomic) id<DVSLogInViewControllerDelegate> delegate;
+
+- (instancetype)initWithViewsOptions:(DVSLogInViewsOptions)viewsOptions;
 
 @end
 

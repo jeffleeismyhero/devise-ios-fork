@@ -1,0 +1,15 @@
+//
+//  XLFormRowDescriptor+Devise.h
+//  Devise
+//
+//  Created by Wojciech Trzasko on 23.12.2014.
+//  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
+//
+
+#import "XLFormRowDescriptor.h"
+
+@interface XLFormRowDescriptor (Devise)
+
+- (void)dvs_customizeTextWithColor:(UIColor *)color alignment:(NSTextAlignment)alignment;
+
+@end

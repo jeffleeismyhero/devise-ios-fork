@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */; };
+		2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */; };
 		215575B31A40880C00BA8661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 215575B11A40880C00BA8661 /* Localizable.strings */; };
 		21AFB7E61A48303000769C87 /* DVSLogInViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7E41A48303000769C87 /* DVSLogInViewController.h */; };
 		21AFB7E71A48303000769C87 /* DVSLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E51A48303000769C87 /* DVSLogInViewController.m */; };
@@ -120,6 +122,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XLFormRowDescriptor+Devise.h"; sourceTree = "<group>"; };
+		215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XLFormRowDescriptor+Devise.m"; sourceTree = "<group>"; };
 		215575B21A40880C00BA8661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		21AFB7E41A48303000769C87 /* DVSLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSLogInViewController.h; sourceTree = "<group>"; };
 		21AFB7E51A48303000769C87 /* DVSLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSLogInViewController.m; sourceTree = "<group>"; };
@@ -301,10 +305,7 @@
 		21AFB7D31A48276E00769C87 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				21AFB7E41A48303000769C87 /* DVSLogInViewController.h */,
-				21AFB7E51A48303000769C87 /* DVSLogInViewController.m */,
-				21AFB7FE1A48C31100769C87 /* DVSLoginViewUserDataSource.h */,
-				21AFB7FF1A48C31100769C87 /* DVSLoginViewUserDataSource.m */,
+				21AFB8021A48C6E200769C87 /* LoginViewController */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -326,6 +327,17 @@
 				21AFB7E91A48416F00769C87 /* DVSFormTextFieldModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		21AFB8021A48C6E200769C87 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				21AFB7E41A48303000769C87 /* DVSLogInViewController.h */,
+				21AFB7E51A48303000769C87 /* DVSLogInViewController.m */,
+				21AFB7FE1A48C31100769C87 /* DVSLoginViewUserDataSource.h */,
+				21AFB7FF1A48C31100769C87 /* DVSLoginViewUserDataSource.m */,
+			);
+			name = LoginViewController;
 			sourceTree = "<group>";
 		};
 		21B1AAB91A3EE21800578DF7 /* Base View Controllers */ = {
@@ -447,6 +459,8 @@
 				3AA22E291A2514DD00FE04D1 /* NSString+Devise.m */,
 				5EF381D21A2756BB006875D4 /* NSURL+Devise.h */,
 				5EF381D31A2756BB006875D4 /* NSURL+Devise.m */,
+				215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */,
+				215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -754,6 +768,7 @@
 				3AA409F41A3F9D700046B0E4 /* DVSHTTPClient+User.h in Headers */,
 				3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */,
 				5EE295081A35C086009441E1 /* NSDictionary+Devise.h in Headers */,
+				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */,
 				5EF5E6DA1A2667D80049BEA6 /* NSArray+Devise.h in Headers */,
 				3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */,
 				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
@@ -1041,6 +1056,7 @@
 				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
 				5EF381DD1A279998006875D4 /* NSDate+Devise.m in Sources */,
 				3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */,
+				2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m in Sources */,
 				3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

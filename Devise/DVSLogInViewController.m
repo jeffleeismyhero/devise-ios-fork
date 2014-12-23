@@ -10,11 +10,13 @@
 
 #import "DVSLoginViewUserDataSource.h"
 #import "DVSUser+Requests.h"
+#import "XLFormRowDescriptor+Devise.h"
 
 static NSString * const DVSTitleTag = @"title";
 static NSString * const DVSEmailTag = @"email";
 static NSString * const DVSPasswordTag = @"password";
 static NSString * const DVSLogInTag = @"login";
+static NSString * const DVSDismissTag = @"dismiss";
 
 @interface DVSLogInViewController ()
 
@@ -27,33 +29,66 @@ static NSString * const DVSLogInTag = @"login";
 #pragma mark - Initialization
 
 - (instancetype)init {
-    if (self = [super initWithForm:[self defaultForm]]) {
-        self.userDataSource = [DVSLoginViewUserDataSource new];
+    DVSLogInViewsOptions defaultOptions = [self defaultViewsOptions];
+    if (self = [super initWithForm:[self formForOptions:defaultOptions]]) {
+        [self initialSetup];
     }
     return self;
 }
 
+- (instancetype)initWithViewsOptions:(DVSLogInViewsOptions)viewsOptions {
+    if (self = [super initWithForm:[self formForOptions:viewsOptions]]) {
+        [self initialSetup];
+    }
+    return self;
+}
+
+- (void)initialSetup {
+    self.userDataSource = [DVSLoginViewUserDataSource new];
+}
+
+- (DVSLogInViewsOptions)defaultViewsOptions {
+    return DVSLogInViewsEmailAndPassword | DVSLogInViewsLogInButton;
+}
+
 #pragma mark - Form initialization
 
-- (XLFormDescriptor *)defaultForm {
+- (XLFormDescriptor *)formForOptions:(DVSLogInViewsOptions)viewsOptions {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Log In", nil)];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Log In", nil)];
     
-    [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:DVSEmailTag
-                                                              rowType:XLFormRowDescriptorTypeEmail
-                                                                title:NSLocalizedString(@"E-mail", nil)]];
-    [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:DVSPasswordTag
-                                                              rowType:XLFormRowDescriptorTypePassword
-                                                                title:NSLocalizedString(@"Password", nil)]];
+    BOOL shouldShowEmailAndPassword = (viewsOptions & DVSLogInViewsEmailAndPassword) == DVSLogInViewsEmailAndPassword;
+    if (shouldShowEmailAndPassword) {
+        [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:DVSEmailTag
+                                                                  rowType:XLFormRowDescriptorTypeEmail
+                                                                    title:NSLocalizedString(@"E-mail", nil)]];
+        [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:DVSPasswordTag
+                                                                  rowType:XLFormRowDescriptorTypePassword
+                                                                    title:NSLocalizedString(@"Password", nil)]];
+    }
     
-    XLFormRowDescriptor *logInButtonRow = [XLFormRowDescriptor formRowDescriptorWithTag:DVSLogInTag
-                                                                                rowType:XLFormRowDescriptorTypeButton
-                                                                                  title:NSLocalizedString(@"Log In", nil)];
-    [logInButtonRow.cellConfig setObject:[UIColor blueColor] forKey:@"textLabel.textColor"];
-    [logInButtonRow.cellConfig setObject:@(NSTextAlignmentCenter) forKey:@"textLabel.textAlignment"];
-    logInButtonRow.action.formSelector = @selector(logInButtonTapped:);
-    [section addFormRow:logInButtonRow];
+    BOOL shouldShowLogInButton = (viewsOptions & DVSLogInViewsLogInButton) == DVSLogInViewsLogInButton;
+    if (shouldShowLogInButton) {
+        XLFormRowDescriptor *logInButtonRow = [XLFormRowDescriptor formRowDescriptorWithTag:DVSLogInTag
+                                                                                    rowType:XLFormRowDescriptorTypeButton
+                                                                                      title:NSLocalizedString(@"Log In", nil)];
+        [logInButtonRow dvs_customizeTextWithColor:[UIColor blueColor] alignment:NSTextAlignmentCenter];
+        logInButtonRow.action.formSelector = @selector(logInButtonTapped:);
+        
+        [section addFormRow:logInButtonRow];
+    }
+    
+    BOOL shouldShowDismissButton = (viewsOptions & DVSLogInViewsDismissButton) == DVSLogInViewsDismissButton;
+    if (shouldShowDismissButton) {
+        XLFormRowDescriptor *dismissButtonRow = [XLFormRowDescriptor formRowDescriptorWithTag:DVSDismissTag
+                                                                                      rowType:XLFormRowDescriptorTypeButton
+                                                                                        title:NSLocalizedString(@"Cancel", nil)];
+        [dismissButtonRow dvs_customizeTextWithColor:[UIColor redColor] alignment:NSTextAlignmentCenter];
+        dismissButtonRow.action.formSelector = @selector(dismissButtonTapped:);
+        
+        [section addFormRow:dismissButtonRow];
+    }
     
     [form addFormSection:section];
     
@@ -81,6 +116,11 @@ static NSString * const DVSLogInTag = @"login";
         }
     }];
     
+    [self deselectFormRow:sender];
+}
+
+- (void)dismissButtonTapped:(XLFormRowDescriptor *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self deselectFormRow:sender];
 }
 
