@@ -8,15 +8,15 @@
 
 #import "DVSFormViewController.h"
 
-#import "DVSFormTextFieldCell.h"
-#import "DVSFormTextFieldModel.h"
+#import "DVSFormRow.h"
+#import "DVSFormRowCell.h"
+#import "DVSFormRowCell+Model.h"
 
 static NSString * const DVSDefaultCellId = @"defaultCell";
 
 @interface DVSFormViewController () <DVSFormTableViewCellDelegate>
 
-@property (strong, nonatomic) NSMutableArray *dataSourceTitlesArray;
-@property (strong, nonatomic) NSMutableDictionary *dataSourceValuesDictionary;
+@property (strong, nonatomic) NSMutableArray *dataSourceArray;
 
 @end
 
@@ -27,10 +27,9 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.dataSourceTitlesArray = [NSMutableArray array];
-    self.dataSourceValuesDictionary = [NSMutableDictionary dictionary];
+    self.dataSourceArray = [NSMutableArray array];
     
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DVSFormTextFieldCell class])
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DVSFormRowCell class])
                                                bundle:nil]
          forCellReuseIdentifier:DVSDefaultCellId];
 }
@@ -50,56 +49,56 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 }
 
 - (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
-    [self.dataSourceTitlesArray addObject:title];
-    self.dataSourceValuesDictionary[title] = [[DVSFormTextFieldModel alloc] initWithValue:@""
-                                                                              secured:secured
-                                                                         keyboardType:keyboardType];
+    DVSFormRow *model = [[DVSFormRow alloc] initWithTitle:title
+                                                                          value:@""
+                                                                        secured:secured
+                                                                   keyboardType:keyboardType];
+    [self.dataSourceArray addObject:model];
 }
 
 - (void)setValue:(NSString *)value forTitle:(NSString *)title {
-    DVSFormTextFieldModel *model = (DVSFormTextFieldModel *)self.dataSourceValuesDictionary[title];
+    DVSFormRow *model = [self formTableModelForTitle:title];
     
     NSAssert(model, @"No model for current title");
     
-    self.dataSourceValuesDictionary[title] = [[DVSFormTextFieldModel alloc] initWithValue:value
+    NSUInteger indexOfModel = [self.dataSourceArray indexOfObject:model];
+    self.dataSourceArray[indexOfModel] = [[DVSFormRow alloc] initWithTitle:model.title
+                                                                                value:value
                                                                               secured:model.secured
                                                                          keyboardType:model.keyboardType];
     [self.tableView reloadData];
 }
 
-- (NSString *)getValueForTitle:(NSString *)title {
-    DVSFormTextFieldModel *model = (DVSFormTextFieldModel *)self.dataSourceValuesDictionary[title];
-    return model.value;
+- (NSString *)valueForTitle:(NSString *)title {
+    return [self formTableModelForTitle:title].value;
+}
+
+- (DVSFormRow *)formTableModelForTitle:(NSString *)title {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.title = %@", title];
+    return [[[self dataSourceArray] filteredArrayUsingPredicate:predicate] firstObject];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSourceTitlesArray.count;
+    return self.dataSourceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DVSFormTextFieldCell *cell = (DVSFormTextFieldCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
+    DVSFormRowCell *cell = (DVSFormRowCell *)[tableView dequeueReusableCellWithIdentifier:DVSDefaultCellId forIndexPath:indexPath];
     
-    NSString *title = self.dataSourceTitlesArray[indexPath.item];
-    DVSFormTextFieldModel *model = self.dataSourceValuesDictionary[title];
+    DVSFormRow *model = (DVSFormRow *)self.dataSourceArray[indexPath.item];
     
-    cell.titleLabel.text = title;
     cell.delegate = self;
-    cell.valueTextField.text = model.value;
-    cell.valueTextField.secureTextEntry = model.secured;
-    cell.valueTextField.keyboardType = model.keyboardType;
+    [cell configureWithRow:model];
     
     return cell;
 }
 
 #pragma mark - DVSDemoFormTableViewCellDelegate
 
-- (void)formTableViewCell:(DVSFormTextFieldCell *)cell changedValue:(NSString *)string {
-    DVSFormTextFieldModel *model = (DVSFormTextFieldModel *)self.dataSourceValuesDictionary[cell.titleLabel.text];
-    self.dataSourceValuesDictionary[cell.titleLabel.text] = [[DVSFormTextFieldModel alloc] initWithValue:string
-                                                                                             secured:model.secured
-                                                                                        keyboardType:model.keyboardType];
+- (void)formTableViewCellDidChangeValue:(DVSFormRowCell *)cell {
+    [self setValue:cell.valueTextField.text forTitle:cell.titleLabel.text];
 }
 
 @end

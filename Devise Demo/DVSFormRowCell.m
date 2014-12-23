@@ -6,22 +6,22 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSFormTextFieldCell.h"
+#import "DVSFormRowCell.h"
 
-@interface DVSFormTextFieldCell ()
+@interface DVSFormRowCell ()
 
 @property (weak, nonatomic, readwrite) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic, readwrite) IBOutlet UITextField *valueTextField;
 
 @end
 
-@implementation DVSFormTextFieldCell
+@implementation DVSFormRowCell
 
 #pragma mark - UITextField events
 
 - (IBAction)testFieldChanged:(UITextField *)sender {
-    if ([self.delegate respondsToSelector:@selector(formTableViewCell:changedValue:)]) {
-        [self.delegate formTableViewCell:self changedValue:sender.text];
+    if ([self.delegate respondsToSelector:@selector(formTableViewCellDidChangeValue:)]) {
+        [self.delegate formTableViewCellDidChangeValue:self];
     }
 }
 

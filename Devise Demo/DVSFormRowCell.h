@@ -10,7 +10,7 @@
 
 @protocol DVSFormTableViewCellDelegate;
 
-@interface DVSFormTextFieldCell : UITableViewCell
+@interface DVSFormRowCell : UITableViewCell
 
 @property (weak, nonatomic) id<DVSFormTableViewCellDelegate> delegate;
 @property (weak, nonatomic, readonly) UILabel *titleLabel;
@@ -20,6 +20,6 @@
 
 @protocol DVSFormTableViewCellDelegate <NSObject>
 
-- (void)formTableViewCell:(DVSFormTextFieldCell *)cell changedValue:(NSString *)string;
+- (void)formTableViewCellDidChangeValue:(DVSFormRowCell *)cell;
 
 @end

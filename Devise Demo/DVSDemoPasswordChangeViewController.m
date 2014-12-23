@@ -51,14 +51,14 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
     
     NSString *currentPassword = localUser.password;
     
-    NSString *currentPasswordConfirm = [self getValueForTitle:NSLocalizedString(DVSTitleForCurrentPasswort, nil)];
+    NSString *currentPasswordConfirm = [self valueForTitle:NSLocalizedString(DVSTitleForCurrentPasswort, nil)];
     if (![currentPassword isEqualToString:currentPasswordConfirm]) {
         [[UIAlertView dvs_alertViewForError:[NSError dvs_passwordConfirmError]] show];
         return;
     }
     
-    NSString *newPassword = [self getValueForTitle:NSLocalizedString(DVSTitleForNewPassword, nil)];
-    NSString *newPasswordConfirm = [self getValueForTitle:NSLocalizedString(DVSTitleForConfirmNewPassword, nil)];
+    NSString *newPassword = [self valueForTitle:NSLocalizedString(DVSTitleForNewPassword, nil)];
+    NSString *newPasswordConfirm = [self valueForTitle:NSLocalizedString(DVSTitleForConfirmNewPassword, nil)];
     
     if (![newPassword isEqualToString:newPasswordConfirm]) {
         [[UIAlertView dvs_alertViewForError:[NSError dvs_newPasswordConfirmError]] show];

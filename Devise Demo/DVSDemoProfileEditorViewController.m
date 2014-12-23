@@ -42,7 +42,7 @@ static NSString * const DVSTitleForEmail = @"E-mail address";
     DVSDemoUser *localUser = [DVSDemoUser localUser];
     
     localUser.dataSource = self.userDataSource;
-    localUser.email = [self getValueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
+    localUser.email = [self valueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
     
     [localUser updateWithSuccess:^{
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profile updated", nil)

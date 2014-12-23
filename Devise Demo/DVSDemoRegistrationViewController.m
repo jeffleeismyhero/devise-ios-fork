@@ -52,12 +52,12 @@ static NSString * const DVSTitleForPhone = @"Phone";
     
     newUser.dataSource = self.userDataSource;
     
-    newUser.username = [self getValueForTitle:NSLocalizedString(DVSTitleForUsername, nil)];
-    newUser.password = [self getValueForTitle:NSLocalizedString(DVSTitleForPassword, nil)];
-    newUser.email = [self getValueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
-    newUser.firstName = [self getValueForTitle:NSLocalizedString(DVSTitleForFirstName, nil)];
-    newUser.lastName = [self getValueForTitle:NSLocalizedString(DVSTitleForLastName, nil)];
-    newUser.phone = [self getValueForTitle:NSLocalizedString(DVSTitleForPhone, nil)];
+    newUser.username = [self valueForTitle:NSLocalizedString(DVSTitleForUsername, nil)];
+    newUser.password = [self valueForTitle:NSLocalizedString(DVSTitleForPassword, nil)];
+    newUser.email = [self valueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
+    newUser.firstName = [self valueForTitle:NSLocalizedString(DVSTitleForFirstName, nil)];
+    newUser.lastName = [self valueForTitle:NSLocalizedString(DVSTitleForLastName, nil)];
+    newUser.phone = [self valueForTitle:NSLocalizedString(DVSTitleForPhone, nil)];
     
     [newUser registerWithSuccess:^{
         [self performSegueWithIdentifier:DVSEnterSegue sender:self];
