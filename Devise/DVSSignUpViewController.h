@@ -24,6 +24,8 @@ typedef NS_OPTIONS(NSInteger, DVSSignUpViewsOptions) {
 
 @property (weak, nonatomic) id<DVSSignUpViewControllerDelegate> delegate;
 
+- (instancetype)initWithViewsOptions:(DVSSignUpViewsOptions)viewsOptions;
+
 @end
 
 @protocol DVSSignUpViewControllerDelegate <NSObject>

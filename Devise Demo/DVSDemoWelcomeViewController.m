@@ -59,7 +59,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 - (void)didSelectRegister {
 #if ENABLE_DEVISE_CONTROLLERS
-    DVSSignUpViewController *signUpController = [[DVSSignUpViewController alloc] init];
+    DVSSignUpViewController *signUpController = [[DVSSignUpViewController alloc] initWithViewsOptions:DVSSignUpViewsEmailAndPassword | DVSSignUpViewsDismissButton | DVSSignUpViewsSignUpButton];
     signUpController.delegate = self;
     [self presentViewController:signUpController animated:YES completion:nil];
 #else

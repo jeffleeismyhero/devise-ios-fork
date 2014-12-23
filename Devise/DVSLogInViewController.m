@@ -43,22 +43,22 @@ static NSString * const DVSDismissTag = @"dismiss";
     return self;
 }
 
-- (void)setupForViews:(DVSLogInViewsOptions)viewOptions {
+- (void)setupForViews:(DVSLogInViewsOptions)viewsOptions {
     self.userDataSource = [DVSLoginViewUserDataSource new];
     
-    BOOL shouldShowNavigationLogInButton = (viewOptions & DVSLogInViewsNavigationLogInButton) == DVSLogInViewsNavigationLogInButton;
-    if (shouldShowNavigationLogInButton) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log In", nil)
-                                                                                  style:UIBarButtonItemStylePlain
-                                                                                 target:self
-                                                                                 action:@selector(navigationLogInButtonTapped:)];
+    __weak typeof(self) weakSelf = self;
+    
+    if ([self shouldShow:DVSLogInViewsDismissButton basedOn:viewsOptions]) {
+        [self setupLeftNavigationBarButtonWithTitle:NSLocalizedString(@"Cancel", nil)
+                                             action:^{
+                                                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                             }];
     }
     
-    BOOL shouldShowNavigationDismissButton = (viewOptions & DVSLogInViewsNavigationDismissButton) == DVSLogInViewsNavigationDismissButton;
-    if (shouldShowNavigationDismissButton) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                              target:self
-                                                                                              action:@selector(navigationDismissButtonTapped:)];
+    if ([self shouldShow:DVSLogInViewsNavigationLogInButton basedOn:viewsOptions]) {
+        [self setupRightNavigationBarButtonWithTitle:NSLocalizedString(@"Log In", nil) action:^{
+            [weakSelf performLogInAction];
+        }];
     }
 }
 
@@ -73,55 +73,31 @@ static NSString * const DVSDismissTag = @"dismiss";
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Log In", nil)];
     
-    BOOL shouldShowEmailAndPassword = (viewsOptions & DVSLogInViewsEmailAndPassword) == DVSLogInViewsEmailAndPassword;
-    if (shouldShowEmailAndPassword) {
-        [section addFormRow:[XLFormRowDescriptor dvs_emailRowWithTag:DVSEmailTag]];
-        [section addFormRow:[XLFormRowDescriptor dvs_passwordRowWithTag:DVSPasswordTag]];
+    if ([self shouldShow:DVSLogInViewsEmailAndPassword basedOn:viewsOptions]) {
+        [self addEmailAndPasswordToSection:section];
     }
     
-    BOOL shouldShowLogInButton = (viewsOptions & DVSLogInViewsLogInButton) == DVSLogInViewsLogInButton;
-    if (shouldShowLogInButton) {
-        XLFormRowDescriptor *logInButtonRow = [XLFormRowDescriptor dvs_buttonRowWithTag:DVSLogInTag
-                                                                                  title:NSLocalizedString(@"Log In", nil)
-                                                                                  color:[UIColor blueColor]];
-        logInButtonRow.action.formSelector = @selector(logInButtonTapped:);
-        
-        [section addFormRow:logInButtonRow];
+    __weak typeof(self) weakSelf = self;
+
+    if ([self shouldShow:DVSLogInViewsLogInButton basedOn:viewsOptions]) {
+        [self addProceedButtonToSection:section
+                                  title:NSLocalizedString(@"Log In", nil)
+                                 action:^{
+                                     [weakSelf performLogInAction];
+                                 }];
     }
     
-    BOOL shouldShowDismissButton = (viewsOptions & DVSLogInViewsDismissButton) == DVSLogInViewsDismissButton;
-    if (shouldShowDismissButton) {
-        XLFormRowDescriptor *dismissButtonRow = [XLFormRowDescriptor dvs_buttonRowWithTag:DVSDismissTag
-                                                                                    title:NSLocalizedString(@"Cancel", nil)
-                                                                                    color:[UIColor redColor]];
-        dismissButtonRow.action.formSelector = @selector(dismissButtonTapped:);
-        
-        [section addFormRow:dismissButtonRow];
+    if ([self shouldShow:DVSLogInViewsDismissButton basedOn:DVSLogInViewsDismissButton]) {
+        [self addDismissButtonToSection:section
+                                  title:NSLocalizedString(@"Cancel", nil)
+                                 action:^{
+                                     [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                 }];
     }
     
     [form addFormSection:section];
     
     return form;
-}
-
-#pragma mark - UIControl events
-
-- (void)logInButtonTapped:(XLFormRowDescriptor *)sender {
-    [self performLogInAction];
-    [self deselectFormRow:sender];
-}
-
-- (void)navigationLogInButtonTapped:(UIBarButtonItem *)sender {
-    [self performLogInAction];
-}
-
-- (void)dismissButtonTapped:(XLFormRowDescriptor *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self deselectFormRow:sender];
-}
-
-- (void)navigationDismissButtonTapped:(UIBarButtonItem *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Actions

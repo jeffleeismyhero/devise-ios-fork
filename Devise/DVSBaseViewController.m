@@ -73,12 +73,14 @@ NSString * const DVSFormDismissButtonTag = @"dismissButton";
     if (self.proceedButtonActionBlock) {
         self.proceedButtonActionBlock();
     }
+    [self deselectFormRow:sender];
 }
 
 - (void)dismissButtonTapped:(XLFormRowDescriptor *)sender {
     if (self.dismissButtonActionBlock) {
         self.dismissButtonActionBlock();
     }
+    [self deselectFormRow:sender];
 }
 
 - (void)leftNavigationBarButtonTapped:(UIBarButtonItem *)sender {

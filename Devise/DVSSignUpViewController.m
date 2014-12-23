@@ -41,7 +41,7 @@
     }
     
     if ([self shouldShow:DVSSignUpViewsNavigationDismissButton basedOn:viewsOptions]) {
-        [self setupRightNavigationBarButtonWithTitle:NSLocalizedString(@"Back", nil)
+        [self setupRightNavigationBarButtonWithTitle:NSLocalizedString(@"Cancel", nil)
                                               action:^{
                                                   [weakSelf dismissViewControllerAnimated:YES completion:nil];
                                               }];
@@ -74,7 +74,7 @@
     
     if ([self shouldShow:DVSSignUpViewsDismissButton basedOn:viewsOptions]) {
         [self addDismissButtonToSection:section
-                                  title:NSLocalizedString(@"Dismiss", nil)
+                                  title:NSLocalizedString(@"Cancel", nil)
                                  action:^{
                                      [weakSelf dismissViewControllerAnimated:YES completion:nil];
                                  }];

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import <XLForm/XLForm.h>
+#import "DVSBaseViewController.h"
 
 #import "DVSUser.h"
 
@@ -20,7 +20,7 @@ typedef NS_OPTIONS(NSInteger, DVSLogInViewsOptions) {
 
 @protocol DVSLogInViewControllerDelegate;
 
-@interface DVSLogInViewController : XLFormViewController
+@interface DVSLogInViewController : DVSBaseViewController
 
 @property (assign, nonatomic) id<DVSLogInViewControllerDelegate> delegate;
 
