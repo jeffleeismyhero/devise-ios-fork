@@ -20,13 +20,47 @@ static NSString * const DVSSignUpTag = @"signUp";
 #pragma mark - Initialization
 
 - (instancetype)init {
-    self = [super initWithForm:[self defaultForm]];
+    DVSSignUpViewsOptions defaultOptions = [self defaultOptions];
+    if (self = [super initWithForm:[self formForOptions:defaultOptions]]) {
+        [self setupForViews:defaultOptions];
+    }
     return self;
+}
+
+- (instancetype)initWithViewsOptions:(DVSSignUpViewsOptions)viewsOptions {
+    if (self = [super initWithForm:[self formForOptions:viewsOptions]]) {
+        [self setupForViews:viewsOptions];
+    }
+    return self;
+}
+
+- (void)setupForViews:(DVSSignUpViewsOptions)viewOptions {
+    __weak typeof(self) weakSelf = self;
+    
+    BOOL shouldShowNavigationSignUpButton = (viewOptions & DVSSignUpViewsNavigationSignUpButton) == DVSSignUpViewsNavigationSignUpButton;
+    if (shouldShowNavigationSignUpButton) {
+        [self setupLeftNavigationBarButtonWithTitle:NSLocalizedString(@"Sign Up", nil)
+                                             action:^{
+                                                 [weakSelf performSignUpAction];
+                                             }];
+    }
+    
+    BOOL shouldShowNavigationDismissButton = (viewOptions & DVSSignUpViewsNavigationDismissButton) == DVSSignUpViewsNavigationDismissButton;
+    if (shouldShowNavigationDismissButton) {
+        [self setupRightNavigationBarButtonWithTitle:NSLocalizedString(@"Back", nil)
+                                              action:^{
+                                                  [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                              }];
+    }
+}
+
+- (DVSSignUpViewsOptions)defaultOptions {
+    return DVSSignUpViewsEmailAndPassword | DVSSignUpViewsSignUpButton;
 }
 
 #pragma mark - Form initialization
 
-- (XLFormDescriptor *)defaultForm {
+- (XLFormDescriptor *)formForOptions:(DVSSignUpViewsOptions)viewsOptions {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Sign Up", nil)];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Sign Up", nil)];
@@ -46,6 +80,18 @@ static NSString * const DVSSignUpTag = @"signUp";
 #pragma mark - UIControl events
 
 - (void)signUpButtonTapped:(XLFormRowDescriptor *)sender {
+    [self performSignUpAction];
+    [self deselectFormRow:sender];
+}
+
+- (void)dismissButtonTapped:(XLFormRowDescriptor *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self deselectFormRow:sender];
+}
+
+#pragma mark - Actions
+
+- (void)performSignUpAction {
     NSDictionary *formValues = [self formValues];
     
     DVSUser *newUser = [DVSUser new];
@@ -62,8 +108,6 @@ static NSString * const DVSSignUpTag = @"signUp";
             [self.delegate signUpViewController:self didFailedWithError:error];
         }
     }];
-    
-    [self deselectFormRow:sender];
 }
 
 @end
