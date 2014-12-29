@@ -74,7 +74,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
     signUpController.delegate = self;
     [self presentViewController:signUpController animated:YES completion:nil];
 #else
-    [self performSegueWithIdentifier:DVSLoginSegue sender:self];
+    [self performSegueWithIdentifier:DVSRegisterSegue sender:self];
 #endif
 }
 
