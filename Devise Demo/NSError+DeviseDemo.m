@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, DVSErrorCode) {
 
 + (NSError *)dvs_newPasswordConfirmError {
     return [self dvs_errorForCode:DVSErrorNewPasswordNotMatch
-             localizedDescription:NSLocalizedString(@"Password must be repeated exactly.", nil)];
+             localizedDescription:NSLocalizedString(@"Passwords do not match.", nil)];
 }
 
 + (NSError *)dvs_errorForCode:(NSInteger)code localizedDescription:(NSString *)localizedDescription {
