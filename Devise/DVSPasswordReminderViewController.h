@@ -19,7 +19,7 @@ typedef NS_OPTIONS(NSInteger, DVSPasswordReminderFields) {
 
 @property (weak, nonatomic) id<DVSPasswordReminderViewControllerDelegate> delegate;
 
-- (instancetype)initWithFields:(DVSPasswordReminderFields)viewsOptions;
+- (instancetype)initWithFields:(DVSPasswordReminderFields)fields;
 
 @end
 
