@@ -9,14 +9,14 @@
 #import "DVSLogInViewController.h"
 
 #import "DVSBarButtonItem.h"
-#import "DVSLoginViewUserDataSource.h"
+#import "DVSTemplatesViewsUserDataSource.h"
 #import "DVSUser+Requests.h"
 #import "XLFormRowDescriptor+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
 
 @interface DVSLogInViewController ()
 
-@property (strong, nonatomic) DVSLoginViewUserDataSource *userDataSource;
+@property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
 
 @end
 
@@ -40,7 +40,7 @@
 }
 
 - (void)setupForViews:(DVSLogInFields)fields {
-    self.userDataSource = [DVSLoginViewUserDataSource new];
+    self.userDataSource = [DVSTemplatesViewsUserDataSource new];
     
     __weak typeof(self) weakSelf = self;
     

@@ -10,6 +10,6 @@
 
 #import "DVSUser.h"
 
-@interface DVSLoginViewUserDataSource : NSObject <DVSUserDataSource>
+@interface DVSTemplatesViewsUserDataSource : NSObject <DVSUserDataSource>
 
 @end

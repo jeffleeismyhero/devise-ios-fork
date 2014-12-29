@@ -10,8 +10,15 @@
 
 #import "DVSBarButtonItem.h"
 #import "DVSUser+Requests.h"
+#import "DVSTemplatesViewsUserDataSource.h"
 #import "XLFormSectionDescriptor+Devise.h"
 #import "XLFormRowDescriptor+Devise.h"
+
+@interface DVSSignUpViewController ()
+
+@property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
+
+@end
 
 @implementation DVSSignUpViewController
 
@@ -33,6 +40,8 @@
 }
 
 - (void)setupForViews:(DVSSignUpFields)fields {
+    self.userDataSource = [DVSTemplatesViewsUserDataSource new];
+    
     __weak typeof(self) weakSelf = self;
     
     if ([self shouldShow:DVSSignUpViewsNavigationSignUpButton basedOn:fields]) {
@@ -92,8 +101,9 @@
     
     DVSUser *newUser = [DVSUser new];
     
-    newUser.password = formValues[DVSFormEmailTag];
-    newUser.email = formValues[DVSFormPasswordTag];
+    newUser.email = formValues[DVSFormEmailTag];
+    newUser.password = formValues[DVSFormPasswordTag];
+    newUser.dataSource = self.userDataSource;
     
     [newUser registerWithSuccess:^{
         if ([self.delegate respondsToSelector:@selector(signUpViewController:didSignUpUser:)]) {
