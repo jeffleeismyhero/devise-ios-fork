@@ -13,6 +13,6 @@
 - (NSString *)defaultCellId;
 
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue;
-- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle selector:(SEL)selector;
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target action:(SEL)selector;
 
 @end

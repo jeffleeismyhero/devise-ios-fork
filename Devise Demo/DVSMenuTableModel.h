@@ -14,8 +14,9 @@
 @property (strong, nonatomic, readonly) NSString *subtitle;
 @property (strong, nonatomic, readonly) NSString *segueIdentifier;
 @property (strong, nonatomic, readonly) NSString *selectorString;
+@property (strong, nonatomic, readonly) id target;
 
 - (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle segueName:(NSString *)segueName;
-- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle selectorString:(NSString *)selector;
+- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target selectorString:(NSString *)selector;
 
 @end

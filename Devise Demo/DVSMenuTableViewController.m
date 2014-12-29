@@ -42,9 +42,10 @@ static NSString * const DVSDefaultCell = @"defaultCell";
                                                                    segueName:segue]];
 }
 
-- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle selector:(SEL)selector {
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target action:(SEL)selector {
     [self.dataSourceArray addObject:[[DVSMenuTableModel alloc] initWithTitle:title
                                                                     subtitle:subtitle
+                                                                      target:target
                                                               selectorString:NSStringFromSelector(selector)]];
 }
 
@@ -85,10 +86,10 @@ static NSString * const DVSDefaultCell = @"defaultCell";
 
 - (void)performSelectorWithModel:(DVSMenuTableModel *)model {
     SEL selector = NSSelectorFromString(model.selectorString);
-    if (selector) {
+    if (selector && model.target) {
         #pragma clang diagnostic push
         #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self performSelector:selector];
+        [model.target performSelector:selector];
         #pragma clang diagnostic pop
     }
 }

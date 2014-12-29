@@ -45,7 +45,8 @@ static NSString * const DVSTitleForDelete = @"Delete profile";
     
     [self addMenuEntryWithTitle:NSLocalizedString(DVSTitleForDelete, nil)
                        subtitle:NSLocalizedString(@"Do you feel bored?", nil)
-                       selector:@selector(handleDeleteCell)];
+                         target:self
+                         action:@selector(handleDeleteCell)];
 }
 
 #pragma mark - DVSMenuTableViewController methods

@@ -37,10 +37,12 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 - (void)setupDataSource {
     [self addMenuEntryWithTitle:NSLocalizedString(@"Sign up", nil)
                        subtitle:NSLocalizedString(@"Create new account", nil)
-                       selector:@selector(didSelectRegister)];
+                         target:self
+                         action:@selector(didSelectRegister)];
     [self addMenuEntryWithTitle:NSLocalizedString(@"Log in", nil)
                        subtitle:NSLocalizedString(@"Already registered?", nil)
-                       selector:@selector(didSelectLogIn)];
+                         target:self
+                         action:@selector(didSelectLogIn)];
 }
 
 #pragma mark - Menu actions
