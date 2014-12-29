@@ -14,6 +14,7 @@ NSString * const DVSFormEmailTag = @"email";
 NSString * const DVSFormPasswordTag = @"password";
 NSString * const DVSFormProceedButtonTag = @"proceedButton";
 NSString * const DVSFormDismissButtonTag = @"dismissButton";
+NSString * const DVSFormPresentButtonTag = @"presentButton";
 
 @implementation XLFormSectionDescriptor (Devise)
 
@@ -46,6 +47,13 @@ NSString * const DVSFormDismissButtonTag = @"dismissButton";
     [self addFormRow:[XLFormRowDescriptor dvs_buttonRowWithTag:DVSFormProceedButtonTag
                                                          title:title
                                                          color:[UIColor blueColor]
+                                                        action:action]];
+}
+
+- (void)dvs_addPresentButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *))action {
+    [self addFormRow:[XLFormRowDescriptor dvs_buttonRowWithTag:DVSFormPresentButtonTag
+                                                         title:title
+                                                         color:[UIColor redColor]
                                                         action:action]];
 }
 

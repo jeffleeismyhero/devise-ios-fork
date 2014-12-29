@@ -8,18 +8,48 @@
 
 #import "DVSPasswordReminderViewController.h"
 
+#import "DVSBarButtonItem.h"
 #import "DVSUser+Requests.h"
 #import "XLFormRowDescriptor+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
 
 @implementation DVSPasswordReminderViewController
 
+#pragma mark - Initialization
+
 - (instancetype)init {
-    self = [super initWithForm:[self defaultForm]];
+    DVSPasswordReminderFields defaultFields = [self defaultFields];
+    if (self = [super initWithForm:[self formWithFields:defaultFields]]) {
+        [self setupForFields:defaultFields];
+    }
     return self;
 }
 
-- (XLFormDescriptor *)defaultForm {
+- (instancetype)initWithFields:(DVSPasswordReminderFields)fields {
+    if (self = [super initWithForm:[self formWithFields:fields]]) {
+        [self setupForFields:fields];
+    }
+    return self;
+}
+
+- (void)setupForFields:(DVSPasswordReminderFields)fields {
+    __weak typeof(self) weakSelf = self;
+    
+    if ([self shouldShow:DVSPasswordReminderFieldNavigationDismissButton basedOn:fields]) {
+        self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                                                 action:^(DVSBarButtonItem *sender) {
+                                                                                     [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                                                                 }];
+    }
+}
+                                               
+- (DVSPasswordReminderFields)defaultFields {
+   return DVSPasswordReminderFieldDismissButton;
+}
+
+#pragma mark - Form initialization
+
+- (XLFormDescriptor *)formWithFields:(DVSPasswordReminderFields)fields {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Remind password", nil)];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Remind", nil)];
@@ -32,17 +62,20 @@
                                         [weakSelf performRemindAction];
                                         [weakSelf deselectFormRow:sender];
                                     }];
-    [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
-                                    action:^(XLFormRowDescriptor *sender) {
-                                        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-                                        [weakSelf deselectFormRow:sender];
-                                    }];
+    
+    if ([self shouldShow:DVSPasswordReminderFieldDismissButton basedOn:fields]) {
+        [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
+                                        action:^(XLFormRowDescriptor *sender) {
+                                            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                            [weakSelf deselectFormRow:sender];
+                                        }];
+    }
     
     [form addFormSection:section];
     
     return form;
 }
-
+                                               
 #pragma mark - Actions
 
 - (void)performRemindAction {

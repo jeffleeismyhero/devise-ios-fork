@@ -22,5 +22,6 @@ extern NSString * const DVSFormDismissButtonTag;
 - (void)dvs_addDismissButtonWithAction:(void (^)(XLFormRowDescriptor *sender))action;
 - (void)dvs_addDismissButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *sender))action;
 - (void)dvs_addProceedButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *sender))action;
+- (void)dvs_addPresentButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *))action;
 
 @end

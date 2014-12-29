@@ -11,11 +11,12 @@
 #import "DVSUser.h"
 
 typedef NS_OPTIONS(NSInteger, DVSLogInFields) {
-    DVSLogInViewsEmailAndPassword           = 1 << 0,
-    DVSLogInViewsLogInButton                = 1 << 1,
-    DVSLogInViewsDismissButton              = 1 << 2,
-    DVSLogInViewsNavigationLogInButton      = 1 << 3,
-    DVSLogInViewsNavigationDismissButton    = 1 << 4
+    DVSLogInFieldEmailAndPassword           = 1 << 0,
+    DVSLogInFieldLogInButton                = 1 << 1,
+    DVSLogInFieldDismissButton              = 1 << 2,
+    DVSLogInFieldNavigationLogInButton      = 1 << 3,
+    DVSLogInFieldNavigationDismissButton    = 1 << 4,
+    DVSLogInFieldPasswordReminder           = 1 << 5
 };
 
 @protocol DVSLogInViewControllerDelegate;
@@ -24,7 +25,7 @@ typedef NS_OPTIONS(NSInteger, DVSLogInFields) {
 
 @property (weak, nonatomic) id<DVSLogInViewControllerDelegate> delegate;
 
-- (instancetype)initWithFields:(DVSLogInFields)viewsOptions;
+- (instancetype)initWithFields:(DVSLogInFields)fields;
 
 @end
 

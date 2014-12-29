@@ -44,14 +44,14 @@
     
     __weak typeof(self) weakSelf = self;
     
-    if ([self shouldShow:DVSSignUpViewsNavigationSignUpButton basedOn:fields]) {
+    if ([self shouldShow:DVSSignUpFieldNavigationSignUpButton basedOn:fields]) {
         self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Sign Up", nil)
                                                                                  action:^(DVSBarButtonItem *sender) {
                                                                                      [weakSelf performSignUpAction];
                                                                                  }];
     }
     
-    if ([self shouldShow:DVSSignUpViewsNavigationDismissButton basedOn:fields]) {
+    if ([self shouldShow:DVSSignUpFieldNavigationDismissButton basedOn:fields]) {
         self.navigationItem.rightBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                                   action:^(DVSBarButtonItem *sender) {
                                                                                       [weakSelf dismissViewControllerAnimated:YES completion:nil];
@@ -60,7 +60,7 @@
 }
 
 - (DVSSignUpFields)defaultFields {
-    return DVSSignUpViewsEmailAndPassword | DVSSignUpViewsSignUpButton;
+    return DVSSignUpFieldEmailAndPassword | DVSSignUpFieldSignUpButton;
 }
 
 #pragma mark - Form initialization
@@ -70,12 +70,12 @@
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Sign Up", nil)];
     
-    if ([self shouldShow:DVSSignUpViewsEmailAndPassword basedOn:fields]) {
+    if ([self shouldShow:DVSSignUpFieldEmailAndPassword basedOn:fields]) {
         [section dvs_addEmailAndPasswordTextFields];
     }
     
     __weak typeof(self) weakSelf = self;
-    if ([self shouldShow:DVSSignUpViewsSignUpButton basedOn:fields]) {
+    if ([self shouldShow:DVSSignUpFieldSignUpButton basedOn:fields]) {
         [section dvs_addProceedButtonWithTitle:NSLocalizedString(@"Sign Up", nil)
                                         action:^(XLFormRowDescriptor *sender) {
                                             [weakSelf performSignUpAction];
@@ -83,7 +83,7 @@
                                         }];
     }
     
-    if ([self shouldShow:DVSSignUpViewsDismissButton basedOn:fields]) {
+    if ([self shouldShow:DVSSignUpFieldDismissButton basedOn:fields]) {
         [section dvs_addDismissButtonWithAction:^(XLFormRowDescriptor *sender) {
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
             [weakSelf deselectFormRow:sender];

@@ -59,7 +59,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 - (void)didSelectLogIn {
     
 #if ENABLE_DEVISE_CONTROLLERS
-    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] initWithFields:DVSLogInViewsEmailAndPassword | DVSLogInViewsLogInButton | DVSLogInViewsDismissButton];
+    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] initWithFields:DVSLogInFieldEmailAndPassword | DVSLogInFieldLogInButton | DVSLogInFieldDismissButton];
     logInController.delegate = self;
     [self presentViewController:logInController animated:YES completion:nil];
 #else
@@ -70,7 +70,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 - (void)didSelectRegister {
 #if ENABLE_DEVISE_CONTROLLERS
-    DVSSignUpViewController *signUpController = [[DVSSignUpViewController alloc] initWithFields:DVSSignUpViewsEmailAndPassword | DVSSignUpViewsDismissButton | DVSSignUpViewsSignUpButton];
+    DVSSignUpViewController *signUpController = [[DVSSignUpViewController alloc] initWithFields:DVSSignUpFieldEmailAndPassword | DVSSignUpFieldDismissButton | DVSSignUpFieldSignUpButton];
     signUpController.delegate = self;
     [self presentViewController:signUpController animated:YES completion:nil];
 #else

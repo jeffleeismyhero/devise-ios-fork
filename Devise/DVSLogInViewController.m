@@ -44,14 +44,14 @@
     
     __weak typeof(self) weakSelf = self;
     
-    if ([self shouldShow:DVSLogInViewsDismissButton basedOn:fields]) {
+    if ([self shouldShow:DVSLogInFieldDismissButton basedOn:fields]) {
         self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                                  action:^(DVSBarButtonItem *sender) {
                                                                                      [weakSelf dismissViewControllerAnimated:YES completion:nil];
                                                                                  }];
     }
     
-    if ([self shouldShow:DVSLogInViewsNavigationLogInButton basedOn:fields]) {
+    if ([self shouldShow:DVSLogInFieldNavigationLogInButton basedOn:fields]) {
         self.navigationItem.rightBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log In", nil)
                                                                                   action:^(DVSBarButtonItem *sender) {
                                                                                       [weakSelf performLogInAction];
@@ -60,23 +60,23 @@
 }
 
 - (DVSLogInFields)defaultFields {
-    return DVSLogInViewsEmailAndPassword | DVSLogInViewsLogInButton;
+    return DVSLogInFieldEmailAndPassword | DVSLogInFieldLogInButton;
 }
 
 #pragma mark - Form initialization
 
-- (XLFormDescriptor *)formWithFields:(DVSLogInFields)viewsOptions {
+- (XLFormDescriptor *)formWithFields:(DVSLogInFields)fields {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Log In", nil)];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Log In", nil)];
     
-    if ([self shouldShow:DVSLogInViewsEmailAndPassword basedOn:viewsOptions]) {
+    if ([self shouldShow:DVSLogInFieldEmailAndPassword basedOn:fields]) {
         [section dvs_addEmailAndPasswordTextFields];
     }
     
     __weak typeof(self) weakSelf = self;
 
-    if ([self shouldShow:DVSLogInViewsLogInButton basedOn:viewsOptions]) {
+    if ([self shouldShow:DVSLogInFieldLogInButton basedOn:fields]) {
         [section dvs_addProceedButtonWithTitle:NSLocalizedString(@"Log In", nil)
                                         action:^(XLFormRowDescriptor *sender) {
                                             [weakSelf performLogInAction];
@@ -84,7 +84,15 @@
                                         }];
     }
     
-    if ([self shouldShow:DVSLogInViewsDismissButton basedOn:DVSLogInViewsDismissButton]) {
+    if ([self shouldShow:DVSLogInFieldPasswordReminder basedOn:fields]) {
+        [section dvs_addPresentButtonWithTitle:NSLocalizedString(@"Remind password", nil)
+                                        action:^(XLFormRowDescriptor *sender) {
+                                            [weakSelf performRemindPasswordAction];
+                                            [weakSelf deselectFormRow:sender];
+                                        }];
+    }
+    
+    if ([self shouldShow:DVSLogInFieldDismissButton basedOn:fields]) {
         [section dvs_addDismissButtonWithAction:^(XLFormRowDescriptor *sender) {
             [weakSelf dismissViewControllerAnimated:YES completion:nil];
             [weakSelf deselectFormRow:sender];
@@ -116,6 +124,10 @@
             [self.delegate logInViewController:self didFailWithError:error];
         }
     }];
+}
+
+- (void)performRemindPasswordAction {
+    // [WIP] Nothing for now
 }
 
 @end

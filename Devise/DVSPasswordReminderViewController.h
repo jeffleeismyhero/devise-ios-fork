@@ -8,11 +8,18 @@
 
 #import "DVSBaseViewController.h"
 
+typedef NS_OPTIONS(NSInteger, DVSPasswordReminderFields) {
+    DVSPasswordReminderFieldDismissButton              = 1 << 0,
+    DVSPasswordReminderFieldNavigationDismissButton    = 1 << 1
+};
+
 @protocol DVSPasswordReminderViewControllerDelegate;
 
 @interface DVSPasswordReminderViewController : DVSBaseViewController
 
 @property (weak, nonatomic) id<DVSPasswordReminderViewControllerDelegate> delegate;
+
+- (instancetype)initWithFields:(DVSPasswordReminderFields)viewsOptions;
 
 @end
 
