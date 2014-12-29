@@ -11,6 +11,7 @@
 #import "DVSMacros.h"
 #import "DVSLoginViewController.h"
 #import "DVSSignUpViewController.h"
+#import "DVSPasswordReminderViewController.h"
 #import "UIAlertView+DeviseDemo.h"
 
 static NSString * const DVSRegisterSegue = @"DisplayRegisterView";
@@ -43,6 +44,14 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
                        subtitle:NSLocalizedString(@"Already registered?", nil)
                          target:self
                          action:@selector(didSelectLogIn)];
+    
+#if ENABLE_DEVISE_CONTROLLERS
+    DVSWorkInProgress("Temporary. Only for testing purposes.");
+    [self addMenuEntryWithTitle:NSLocalizedString(@"Password remind", nil)
+                       subtitle:NSLocalizedString(@"Need some help with password?", nil)
+                         target:self
+                         action:@selector(didSelectPasswordRemind)];
+#endif
 }
 
 #pragma mark - Menu actions
@@ -67,6 +76,12 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 #else
     [self performSegueWithIdentifier:DVSLoginSegue sender:self];
 #endif
+}
+
+DVSWorkInProgress("Temporary. Only for testing purposes.");
+- (void)didSelectPasswordRemind {
+    DVSPasswordReminderViewController *controller = [[DVSPasswordReminderViewController alloc] init];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 #pragma mark - DVSMenuTableViewController methods

@@ -71,7 +71,7 @@
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Log In", nil)];
     
     if ([self shouldShow:DVSLogInViewsEmailAndPassword basedOn:viewsOptions]) {
-        [section dvs_addEmailAndPassword];
+        [section dvs_addEmailAndPasswordTextFields];
     }
     
     __weak typeof(self) weakSelf = self;

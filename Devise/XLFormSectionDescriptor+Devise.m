@@ -17,14 +17,27 @@ NSString * const DVSFormDismissButtonTag = @"dismissButton";
 
 @implementation XLFormSectionDescriptor (Devise)
 
-- (void)dvs_addEmailAndPassword {
+- (void)dvs_addEmailAndPasswordTextFields {
+    [self dvs_addEmailTextField];
+    [self dvs_addPasswordTextField];
+}
+
+- (void)dvs_addEmailTextField {
     [self addFormRow:[XLFormRowDescriptor dvs_emailRowWithTag:DVSFormEmailTag]];
+}
+
+- (void)dvs_addPasswordTextField {
     [self addFormRow:[XLFormRowDescriptor dvs_passwordRowWithTag:DVSFormPasswordTag]];
 }
 
 - (void)dvs_addDismissButtonWithAction:(void (^)(XLFormRowDescriptor *))action {
+    [self dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
+                                 action:action];
+}
+
+- (void)dvs_addDismissButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *))action {
     [self addFormRow:[XLFormRowDescriptor dvs_buttonRowWithTag:DVSFormDismissButtonTag
-                                                         title:NSLocalizedString(@"Cancel", nil)
+                                                         title:title
                                                          color:[UIColor redColor]
                                                         action:action]];
 }

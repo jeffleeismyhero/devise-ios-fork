@@ -15,8 +15,12 @@ extern NSString * const DVSFormDismissButtonTag;
 
 @interface XLFormSectionDescriptor (Devise)
 
-- (void)dvs_addEmailAndPassword;
+- (void)dvs_addEmailAndPasswordTextFields;
+- (void)dvs_addEmailTextField;
+- (void)dvs_addPasswordTextField;
+
 - (void)dvs_addDismissButtonWithAction:(void (^)(XLFormRowDescriptor *sender))action;
+- (void)dvs_addDismissButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *sender))action;
 - (void)dvs_addProceedButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *sender))action;
 
 @end
