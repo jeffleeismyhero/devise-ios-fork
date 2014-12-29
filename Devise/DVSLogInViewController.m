@@ -110,8 +110,8 @@
             [self.delegate logInViewController:self didLogInUser:[DVSUser localUser]];
         }
     } failure:^(NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(logInViewController:didFailedWithError:)]) {
-            [self.delegate logInViewController:self didFailedWithError:error];
+        if ([self.delegate respondsToSelector:@selector(logInViewController:didFailWithError:)]) {
+            [self.delegate logInViewController:self didFailWithError:error];
         }
     }];
 }

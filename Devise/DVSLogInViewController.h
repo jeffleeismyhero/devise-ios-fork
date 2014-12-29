@@ -31,6 +31,6 @@ typedef NS_OPTIONS(NSInteger, DVSLogInViewsOptions) {
 @protocol DVSLogInViewControllerDelegate <NSObject>
 
 - (void)logInViewController:(DVSLogInViewController *)controller didLogInUser:(DVSUser *)user;
-- (void)logInViewController:(DVSLogInViewController *)controller didFailedWithError:(NSError *)error;
+- (void)logInViewController:(DVSLogInViewController *)controller didFailWithError:(NSError *)error;
 
 @end

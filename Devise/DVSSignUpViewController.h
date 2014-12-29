@@ -31,6 +31,6 @@ typedef NS_OPTIONS(NSInteger, DVSSignUpViewsOptions) {
 @protocol DVSSignUpViewControllerDelegate <NSObject>
 
 - (void)signUpViewController:(DVSSignUpViewController *)controller didSignUpUser:(DVSUser *)user;
-- (void)signUpViewController:(DVSSignUpViewController *)controller didFailedWithError:(NSError *)error;
+- (void)signUpViewController:(DVSSignUpViewController *)controller didFailWithError:(NSError *)error;
 
 @end

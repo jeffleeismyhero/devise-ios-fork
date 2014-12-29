@@ -99,8 +99,8 @@
             [self.delegate signUpViewController:self didSignUpUser:[DVSUser localUser]];
         }
     } failure:^(NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(signUpViewController:didFailedWithError:)]) {
-            [self.delegate signUpViewController:self didFailedWithError:error];
+        if ([self.delegate respondsToSelector:@selector(signUpViewController:didFailWithError:)]) {
+            [self.delegate signUpViewController:self didFailWithError:error];
         }
     }];
 }

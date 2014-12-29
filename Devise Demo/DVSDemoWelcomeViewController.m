@@ -81,7 +81,7 @@ DVSWorkInProgress("Need to move DVSLoginViewControllerDelegate to separate class
     [self performSegueWithIdentifier:DVSHomeSegue sender:self];
 }
 
-- (void)logInViewController:(DVSLogInViewController *)controller didFailedWithError:(NSError *)error {
+- (void)logInViewController:(DVSLogInViewController *)controller didFailWithError:(NSError *)error {
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                     statusDescriptionsDictionary:@{ @401: NSLocalizedString(@"Incorrect e-mail or password.", nil) }];
     [errorAlert show];
@@ -93,7 +93,7 @@ DVSWorkInProgress("Need to move DVSLoginViewControllerDelegate to separate class
     [self performSegueWithIdentifier:DVSHomeSegue sender:self];
 }
 
-- (void)signUpViewController:(DVSSignUpViewController *)controller didFailedWithError:(NSError *)error {
+- (void)signUpViewController:(DVSSignUpViewController *)controller didFailWithError:(NSError *)error {
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                     statusDescriptionsDictionary:@{ @422: NSLocalizedString(@"E-mail is already taken.", nil) }];
     [errorAlert show];
