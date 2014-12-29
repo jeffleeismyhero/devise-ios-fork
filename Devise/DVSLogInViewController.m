@@ -11,10 +11,11 @@
 #import "DVSBarButtonItem.h"
 #import "DVSTemplatesViewsUserDataSource.h"
 #import "DVSUser+Requests.h"
+#import "DVSPasswordReminderViewController.h"
 #import "XLFormRowDescriptor+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
 
-@interface DVSLogInViewController ()
+@interface DVSLogInViewController () <DVSPasswordReminderViewControllerDelegate>
 
 @property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
 
@@ -127,7 +128,22 @@
 }
 
 - (void)performRemindPasswordAction {
-    // [WIP] Nothing for now
+    DVSPasswordReminderViewController *passwordReminder = [[DVSPasswordReminderViewController alloc] init];
+    passwordReminder.delegate = self;
+    
+    [self presentViewController:passwordReminder animated:YES completion:nil];
+}
+
+#pragma mark - DVSPasswordReminderViewControllerDelegate
+
+- (void)passwordReminderViewControllerDidRemindPassword:(DVSPasswordReminderViewController *)controller {
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)passwordReminderViewController:(DVSPasswordReminderViewController *)controller didFailWithError:(NSError *)error {
+    if ([self.delegate respondsToSelector:@selector(logInViewController:didFailRemindPasswordWithError:)]) {
+        [self.delegate logInViewController:self didFailRemindPasswordWithError:error];
+    }
 }
 
 @end
