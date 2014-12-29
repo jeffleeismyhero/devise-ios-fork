@@ -10,7 +10,7 @@
 
 #import "DVSUser.h"
 
-typedef NS_OPTIONS(NSInteger, DVSSignUpViewsOptions) {
+typedef NS_OPTIONS(NSInteger, DVSSignUpFieldsOptions) {
     DVSSignUpViewsEmailAndPassword           = 1 << 0,
     DVSSignUpViewsSignUpButton               = 1 << 1,
     DVSSignUpViewsDismissButton              = 1 << 2,
@@ -24,7 +24,7 @@ typedef NS_OPTIONS(NSInteger, DVSSignUpViewsOptions) {
 
 @property (weak, nonatomic) id<DVSSignUpViewControllerDelegate> delegate;
 
-- (instancetype)initWithViewsOptions:(DVSSignUpViewsOptions)viewsOptions;
+- (instancetype)initWithFields:(DVSSignUpFieldsOptions)viewsOptions;
 
 @end
 

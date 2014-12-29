@@ -23,21 +23,21 @@
 #pragma mark - Initialization
 
 - (instancetype)init {
-    DVSLogInViewsOptions defaultOptions = [self defaultViewsOptions];
+    DVSLogInFieldsOptions defaultOptions = [self defaultViewsOptions];
     if (self = [super initWithForm:[self formForOptions:defaultOptions]]) {
         [self setupForViews:defaultOptions];
     }
     return self;
 }
 
-- (instancetype)initWithViewsOptions:(DVSLogInViewsOptions)viewsOptions {
+- (instancetype)initWithFields:(DVSLogInFieldsOptions)viewsOptions {
     if (self = [super initWithForm:[self formForOptions:viewsOptions]]) {
         [self setupForViews:viewsOptions];
     }
     return self;
 }
 
-- (void)setupForViews:(DVSLogInViewsOptions)viewsOptions {
+- (void)setupForViews:(DVSLogInFieldsOptions)viewsOptions {
     self.userDataSource = [DVSLoginViewUserDataSource new];
     
     __weak typeof(self) weakSelf = self;
@@ -56,13 +56,13 @@
     }
 }
 
-- (DVSLogInViewsOptions)defaultViewsOptions {
+- (DVSLogInFieldsOptions)defaultViewsOptions {
     return DVSLogInViewsEmailAndPassword | DVSLogInViewsLogInButton;
 }
 
 #pragma mark - Form initialization
 
-- (XLFormDescriptor *)formForOptions:(DVSLogInViewsOptions)viewsOptions {
+- (XLFormDescriptor *)formForOptions:(DVSLogInFieldsOptions)viewsOptions {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Log In", nil)];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Log In", nil)];
