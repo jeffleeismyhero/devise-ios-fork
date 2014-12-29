@@ -18,21 +18,21 @@
 #pragma mark - Initialization
 
 - (instancetype)init {
-    DVSSignUpFieldsOptions defaultFields = [self defaultFields];
-    if (self = [super initWithForm:[self formForOptions:defaultFields]]) {
+    DVSSignUpFields defaultFields = [self defaultFields];
+    if (self = [super initWithForm:[self formWithFields:defaultFields]]) {
         [self setupForViews:defaultFields];
     }
     return self;
 }
 
-- (instancetype)initWithFields:(DVSSignUpFieldsOptions)fields {
-    if (self = [super initWithForm:[self formForOptions:fields]]) {
+- (instancetype)initWithFields:(DVSSignUpFields)fields {
+    if (self = [super initWithForm:[self formWithFields:fields]]) {
         [self setupForViews:fields];
     }
     return self;
 }
 
-- (void)setupForViews:(DVSSignUpFieldsOptions)fields {
+- (void)setupForViews:(DVSSignUpFields)fields {
     __weak typeof(self) weakSelf = self;
     
     if ([self shouldShow:DVSSignUpViewsNavigationSignUpButton basedOn:fields]) {
@@ -50,13 +50,13 @@
     }
 }
 
-- (DVSSignUpFieldsOptions)defaultFields {
+- (DVSSignUpFields)defaultFields {
     return DVSSignUpViewsEmailAndPassword | DVSSignUpViewsSignUpButton;
 }
 
 #pragma mark - Form initialization
 
-- (XLFormDescriptor *)formForOptions:(DVSSignUpFieldsOptions)fields {
+- (XLFormDescriptor *)formWithFields:(DVSSignUpFields)fields {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Sign Up", nil)];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Sign Up", nil)];
