@@ -21,7 +21,7 @@ static NSString * const DVSUserEmailParameter = @"email";
             return [self additionalValidationRulesForLogin];
             
         default:
-            return @[];
+            return nil;
     }
 }
 
