@@ -28,19 +28,19 @@
 - (instancetype)init {
     DVSLogInFields defaultFields = [self defaultFields];
     if (self = [super initWithForm:[self formWithFields:defaultFields]]) {
-        [self setupForViews:defaultFields];
+        [self setupForFieldsOptions:defaultFields];
     }
     return self;
 }
 
 - (instancetype)initWithFields:(DVSLogInFields)fields {
     if (self = [super initWithForm:[self formWithFields:fields]]) {
-        [self setupForViews:fields];
+        [self setupForFieldsOptions:fields];
     }
     return self;
 }
 
-- (void)setupForViews:(DVSLogInFields)fields {
+- (void)setupForFieldsOptions:(DVSLogInFields)fields {
     self.userDataSource = [DVSTemplatesViewsUserDataSource new];
     
     __weak typeof(self) weakSelf = self;

@@ -20,19 +20,19 @@
 - (instancetype)init {
     DVSPasswordReminderFields defaultFields = [self defaultFields];
     if (self = [super initWithForm:[self formWithFields:defaultFields]]) {
-        [self setupForFields:defaultFields];
+        [self setupForFieldsOptions:defaultFields];
     }
     return self;
 }
 
 - (instancetype)initWithFields:(DVSPasswordReminderFields)fields {
     if (self = [super initWithForm:[self formWithFields:fields]]) {
-        [self setupForFields:fields];
+        [self setupForFieldsOptions:fields];
     }
     return self;
 }
 
-- (void)setupForFields:(DVSPasswordReminderFields)fields {
+- (void)setupForFieldsOptions:(DVSPasswordReminderFields)fields {
     __weak typeof(self) weakSelf = self;
     
     if ([self shouldShow:DVSPasswordReminderFieldNavigationDismissButton basedOn:fields]) {
