@@ -13,10 +13,10 @@
 @property (strong, nonatomic, readonly) NSString *title;
 @property (strong, nonatomic, readonly) NSString *subtitle;
 @property (strong, nonatomic, readonly) NSString *segueIdentifier;
-@property (strong, nonatomic, readonly) NSString *selectorString;
+@property (assign, nonatomic, readonly) SEL selector;
 @property (strong, nonatomic, readonly) id target;
 
 - (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle segueName:(NSString *)segueName;
-- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target selectorString:(NSString *)selector;
+- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target selector:(SEL)selector;
 
 @end

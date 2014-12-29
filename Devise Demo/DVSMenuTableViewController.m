@@ -46,7 +46,7 @@ static NSString * const DVSDefaultCell = @"defaultCell";
     [self.dataSourceArray addObject:[[DVSMenuTableModel alloc] initWithTitle:title
                                                                     subtitle:subtitle
                                                                       target:target
-                                                              selectorString:NSStringFromSelector(selector)]];
+                                                                    selector:selector]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -77,7 +77,7 @@ static NSString * const DVSDefaultCell = @"defaultCell";
     
     DVSMenuTableModel *model = (DVSMenuTableModel *)self.dataSourceArray[indexPath.row];
     
-    if (model.selectorString) {
+    if (model.selector && model.target) {
         [self performSelectorWithModel:model];
     } else if (model.segueIdentifier) {
         [self performSegueWithModel:model];
@@ -85,11 +85,10 @@ static NSString * const DVSDefaultCell = @"defaultCell";
 }
 
 - (void)performSelectorWithModel:(DVSMenuTableModel *)model {
-    SEL selector = NSSelectorFromString(model.selectorString);
-    if (selector && model.target) {
+    if (model.selector && model.target) {
         #pragma clang diagnostic push
         #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [model.target performSelector:selector];
+        [model.target performSelector:model.selector];
         #pragma clang diagnostic pop
     }
 }

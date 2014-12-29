@@ -15,24 +15,24 @@
                       subtitle:subtitle
                      segueName:segueName
                         target:nil
-                selectorString:nil];
+                      selector:nil];
 }
 
-- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target selectorString:(NSString *)selectorString {
+- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target selector:(SEL)selector {
     return [self initWithTitle:title
                       subtitle:subtitle
                      segueName:nil
                         target:target
-                selectorString:selectorString];
+                      selector:selector];
 }
 
-- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle segueName:(NSString *)segueName target:(id)target selectorString:(NSString *)selectorString {
+- (instancetype)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle segueName:(NSString *)segueName target:(id)target selector:(SEL)selector {
     if (self = [super init]) {
         _title = title;
         _subtitle = subtitle;
         _segueIdentifier = segueName;
         _target = target;
-        _selectorString = selectorString;
+        _selector = selector;
     }
     return self;
 }
