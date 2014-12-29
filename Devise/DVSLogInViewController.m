@@ -8,9 +8,11 @@
 
 #import "DVSLogInViewController.h"
 
+#import "DVSBarButtonItem.h"
 #import "DVSLoginViewUserDataSource.h"
 #import "DVSUser+Requests.h"
 #import "XLFormRowDescriptor+Devise.h"
+#import "XLFormSectionDescriptor+Devise.h"
 
 @interface DVSLogInViewController ()
 
@@ -23,40 +25,41 @@
 #pragma mark - Initialization
 
 - (instancetype)init {
-    DVSLogInFieldsOptions defaultOptions = [self defaultViewsOptions];
-    if (self = [super initWithForm:[self formForOptions:defaultOptions]]) {
-        [self setupForViews:defaultOptions];
+    DVSLogInFieldsOptions defaultFields = [self defaultFields];
+    if (self = [super initWithForm:[self formForOptions:defaultFields]]) {
+        [self setupForViews:defaultFields];
     }
     return self;
 }
 
-- (instancetype)initWithFields:(DVSLogInFieldsOptions)viewsOptions {
-    if (self = [super initWithForm:[self formForOptions:viewsOptions]]) {
-        [self setupForViews:viewsOptions];
+- (instancetype)initWithFields:(DVSLogInFieldsOptions)fields {
+    if (self = [super initWithForm:[self formForOptions:fields]]) {
+        [self setupForViews:fields];
     }
     return self;
 }
 
-- (void)setupForViews:(DVSLogInFieldsOptions)viewsOptions {
+- (void)setupForViews:(DVSLogInFieldsOptions)fields {
     self.userDataSource = [DVSLoginViewUserDataSource new];
     
     __weak typeof(self) weakSelf = self;
     
-    if ([self shouldShow:DVSLogInViewsDismissButton basedOn:viewsOptions]) {
-        [self setupLeftNavigationBarButtonWithTitle:NSLocalizedString(@"Cancel", nil)
-                                             action:^{
-                                                 [weakSelf dismissViewControllerAnimated:YES completion:nil];
-                                             }];
+    if ([self shouldShow:DVSLogInViewsDismissButton basedOn:fields]) {
+        self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
+                                                                                 action:^(DVSBarButtonItem *sender) {
+                                                                                     [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                                                                 }];
     }
     
-    if ([self shouldShow:DVSLogInViewsNavigationLogInButton basedOn:viewsOptions]) {
-        [self setupRightNavigationBarButtonWithTitle:NSLocalizedString(@"Log In", nil) action:^{
-            [weakSelf performLogInAction];
-        }];
+    if ([self shouldShow:DVSLogInViewsNavigationLogInButton basedOn:fields]) {
+        self.navigationItem.rightBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log In", nil)
+                                                                                  action:^(DVSBarButtonItem *sender) {
+                                                                                      [weakSelf performLogInAction];
+                                                                                  }];
     }
 }
 
-- (DVSLogInFieldsOptions)defaultViewsOptions {
+- (DVSLogInFieldsOptions)defaultFields {
     return DVSLogInViewsEmailAndPassword | DVSLogInViewsLogInButton;
 }
 
@@ -68,25 +71,24 @@
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Log In", nil)];
     
     if ([self shouldShow:DVSLogInViewsEmailAndPassword basedOn:viewsOptions]) {
-        [self addEmailAndPasswordToSection:section];
+        [section dvs_addEmailAndPassword];
     }
     
     __weak typeof(self) weakSelf = self;
 
     if ([self shouldShow:DVSLogInViewsLogInButton basedOn:viewsOptions]) {
-        [self addProceedButtonToSection:section
-                                  title:NSLocalizedString(@"Log In", nil)
-                                 action:^{
-                                     [weakSelf performLogInAction];
-                                 }];
+        [section dvs_addProceedButtonWithTitle:NSLocalizedString(@"Log In", nil)
+                                        action:^(XLFormRowDescriptor *sender) {
+                                            [weakSelf performLogInAction];
+                                            [weakSelf deselectFormRow:sender];
+                                        }];
     }
     
     if ([self shouldShow:DVSLogInViewsDismissButton basedOn:DVSLogInViewsDismissButton]) {
-        [self addDismissButtonToSection:section
-                                  title:NSLocalizedString(@"Cancel", nil)
-                                 action:^{
-                                     [weakSelf dismissViewControllerAnimated:YES completion:nil];
-                                 }];
+        [section dvs_addDismissButtonWithAction:^(XLFormRowDescriptor *sender) {
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf deselectFormRow:sender];
+        }];
     }
     
     [form addFormSection:section];

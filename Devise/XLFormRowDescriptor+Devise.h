@@ -13,7 +13,7 @@
 + (XLFormRowDescriptor *)dvs_emailRowWithTag:(NSString *)tag;
 + (XLFormRowDescriptor *)dvs_passwordRowWithTag:(NSString *)tag;
 + (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color;
-+ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color selector:(SEL)selector;
++ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color action:(void (^)(XLFormRowDescriptor *))action;
 
 - (void)dvs_customizeTextWithColor:(UIColor *)color alignment:(NSTextAlignment)alignment;
 
