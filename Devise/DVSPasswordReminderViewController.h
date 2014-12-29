@@ -27,5 +27,6 @@ typedef NS_OPTIONS(NSInteger, DVSPasswordReminderFields) {
 
 - (void)passwordReminderViewControllerDidRemindPassword:(DVSPasswordReminderViewController *)controller;
 - (void)passwordReminderViewController:(DVSPasswordReminderViewController *)controller didFailWithError:(NSError *)error;
+- (void)passwordReminderViewControllerDidCancelRemindPassword:(DVSPasswordReminderViewController *)controller;
 
 @end

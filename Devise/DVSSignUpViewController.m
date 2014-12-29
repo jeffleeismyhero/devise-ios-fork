@@ -54,7 +54,7 @@
     if ([self shouldShow:DVSSignUpFieldNavigationDismissButton basedOn:fields]) {
         self.navigationItem.rightBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                                   action:^(DVSBarButtonItem *sender) {
-                                                                                      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                                                                      [weakSelf callCancelSignUpFromDelegate];
                                                                                   }];
     }
 }
@@ -85,7 +85,7 @@
     
     if ([self shouldShow:DVSSignUpFieldDismissButton basedOn:fields]) {
         [section dvs_addDismissButtonWithAction:^(XLFormRowDescriptor *sender) {
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf callCancelSignUpFromDelegate];
             [weakSelf deselectFormRow:sender];
         }];
     }
@@ -114,6 +114,14 @@
             [self.delegate signUpViewController:self didFailWithError:error];
         }
     }];
+}
+
+#pragma mark - Delegate helpers
+
+- (void)callCancelSignUpFromDelegate {
+    if ([self.delegate respondsToSelector:@selector(signUpViewControllerDidCancelSignUp:)]) {
+        [self.delegate signUpViewControllerDidCancelSignUp:self];
+    }
 }
 
 @end

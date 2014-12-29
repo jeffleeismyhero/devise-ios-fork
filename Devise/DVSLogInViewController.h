@@ -33,6 +33,7 @@ typedef NS_OPTIONS(NSInteger, DVSLogInFields) {
 
 - (void)logInViewController:(DVSLogInViewController *)controller didLogInUser:(DVSUser *)user;
 - (void)logInViewController:(DVSLogInViewController *)controller didFailWithError:(NSError *)error;
+- (void)logInViewControllerDidCancelLogIn:(DVSLogInViewController *)controller;
 
 @optional
 - (void)logInViewController:(DVSLogInViewController *)controller didFailRemindPasswordWithError:(NSError *)error;

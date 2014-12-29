@@ -51,7 +51,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 - (void)didSelectLogIn {
     
 #if ENABLE_DEVISE_CONTROLLERS
-    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] initWithFields:DVSLogInFieldEmailAndPassword | DVSLogInFieldLogInButton | DVSLogInFieldDismissButton];
+    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] initWithFields:DVSLogInFieldEmailAndPassword | DVSLogInFieldLogInButton | DVSLogInFieldDismissButton | DVSLogInFieldPasswordReminder];
     logInController.delegate = self;
     [self presentViewController:logInController animated:YES completion:nil];
 #else
@@ -90,6 +90,10 @@ DVSWorkInProgress("Need to move DVSLoginViewControllerDelegate to separate class
     [errorAlert show];
 }
 
+- (void)logInViewControllerDidCancelLogIn:(DVSLogInViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - DVSSignUpViewControllerDelegate
 
 - (void)signUpViewController:(DVSSignUpViewController *)controller didSignUpUser:(DVSUser *)user {
@@ -100,6 +104,10 @@ DVSWorkInProgress("Need to move DVSLoginViewControllerDelegate to separate class
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                     statusDescriptionsDictionary:@{ @422: NSLocalizedString(@"E-mail is already taken.", nil) }];
     [errorAlert show];
+}
+
+- (void)signUpViewControllerDidCancelSignUp:(DVSSignUpViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

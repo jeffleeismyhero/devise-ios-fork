@@ -48,7 +48,7 @@
     if ([self shouldShow:DVSLogInFieldDismissButton basedOn:fields]) {
         self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                                  action:^(DVSBarButtonItem *sender) {
-                                                                                     [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                                                                     [weakSelf callDidCancelLoginFromDelegate];
                                                                                  }];
     }
     
@@ -95,7 +95,7 @@
     
     if ([self shouldShow:DVSLogInFieldDismissButton basedOn:fields]) {
         [section dvs_addDismissButtonWithAction:^(XLFormRowDescriptor *sender) {
-            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf callDidCancelLoginFromDelegate];
             [weakSelf deselectFormRow:sender];
         }];
     }
@@ -134,9 +134,21 @@
     [self presentViewController:passwordReminder animated:YES completion:nil];
 }
 
+#pragma mark - Delegete helpers
+
+- (void)callDidCancelLoginFromDelegate {
+    if ([self.delegate respondsToSelector:@selector(logInViewControllerDidCancelLogIn:)]) {
+        [self.delegate logInViewControllerDidCancelLogIn:self];
+    }
+}
+
 #pragma mark - DVSPasswordReminderViewControllerDelegate
 
 - (void)passwordReminderViewControllerDidRemindPassword:(DVSPasswordReminderViewController *)controller {
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)passwordReminderViewControllerDidCancelRemindPassword:(DVSPasswordReminderViewController *)controller {
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 

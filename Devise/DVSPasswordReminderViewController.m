@@ -38,7 +38,7 @@
     if ([self shouldShow:DVSPasswordReminderFieldNavigationDismissButton basedOn:fields]) {
         self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                                  action:^(DVSBarButtonItem *sender) {
-                                                                                     [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                                                                     [weakSelf callDidCancelRemindPasswordFromDelegate];
                                                                                  }];
     }
 }
@@ -66,7 +66,7 @@
     if ([self shouldShow:DVSPasswordReminderFieldDismissButton basedOn:fields]) {
         [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
                                         action:^(XLFormRowDescriptor *sender) {
-                                            [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                                            [weakSelf callDidCancelRemindPasswordFromDelegate];
                                             [weakSelf deselectFormRow:sender];
                                         }];
     }
@@ -94,6 +94,14 @@
             [self.delegate passwordReminderViewController:self didFailWithError:error];
         }
     }];
+}
+
+#pragma mark - Delegete helpers
+
+- (void)callDidCancelRemindPasswordFromDelegate {
+    if ([self.delegate respondsToSelector:@selector(passwordReminderViewControllerDidCancelRemindPassword:)]) {
+        [self.delegate passwordReminderViewControllerDidCancelRemindPassword:self];
+    }
 }
 
 @end

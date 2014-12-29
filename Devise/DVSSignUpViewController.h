@@ -32,5 +32,6 @@ typedef NS_OPTIONS(NSInteger, DVSSignUpFields) {
 
 - (void)signUpViewController:(DVSSignUpViewController *)controller didSignUpUser:(DVSUser *)user;
 - (void)signUpViewController:(DVSSignUpViewController *)controller didFailWithError:(NSError *)error;
+- (void)signUpViewControllerDidCancelSignUp:(DVSSignUpViewController *)controller;
 
 @end
