@@ -22,7 +22,7 @@ typedef NS_OPTIONS(NSInteger, DVSLogInViewsOptions) {
 
 @interface DVSLogInViewController : DVSBaseViewController
 
-@property (assign, nonatomic) id<DVSLogInViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<DVSLogInViewControllerDelegate> delegate;
 
 - (instancetype)initWithViewsOptions:(DVSLogInViewsOptions)viewsOptions;
 
