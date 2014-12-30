@@ -10,8 +10,15 @@
 
 #import "DVSBarButtonItem.h"
 #import "DVSUser+Requests.h"
+#import "DVSTemplatesViewsUserDataSource.h"
 #import "XLFormRowDescriptor+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
+
+@interface DVSPasswordReminderViewController ()
+
+@property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
+
+@end
 
 @implementation DVSPasswordReminderViewController
 
@@ -33,6 +40,8 @@
 }
 
 - (void)setupForFieldsOptions:(DVSPasswordReminderFields)fields {
+    self.userDataSource = [DVSTemplatesViewsUserDataSource new];
+    
     __weak typeof(self) weakSelf = self;
     
     if ([self shouldShow:DVSPasswordReminderFieldNavigationDismissButton basedOn:fields]) {
@@ -84,6 +93,7 @@
     DVSUser *user = [DVSUser new];
     
     user.email = formValues[DVSFormEmailTag];
+    user.dataSource = self.userDataSource;
     
     [user remindPasswordWithSuccess:^{
         if ([self.delegate respondsToSelector:@selector(passwordReminderViewControllerDidRemindPassword:)]) {

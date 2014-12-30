@@ -28,6 +28,9 @@ static NSUInteger const DVSUserPasswordMinLength = 5;
         case DVSActionRegistration:
             return [self additionalValidationRulesForRegistration];
             
+        case DVSActionRemindPassword:
+            return [self additionalValidationRulesForRemindPassword];
+            
         default:
             return nil;
     }
@@ -43,6 +46,10 @@ static NSUInteger const DVSUserPasswordMinLength = 5;
     return @[[self defaultEmailValidator],
              DVSValidate(DVSUserPasswordParameter).localizedPropertyName(NSLocalizedString(DVSUserPasswordPropertyName, nil))
                                                   .minLength(DVSUserPasswordMinLength).tooShort(NSLocalizedFormatString(@"should have at least %ld characters.", DVSUserPasswordMinLength))];
+}
+
+- (NSArray *)additionalValidationRulesForRemindPassword {
+    return @[[self defaultEmailValidator]];
 }
 
 #pragma mark - Default validators
