@@ -58,6 +58,8 @@
 }
 
 - (void)setupNavigationItemsForFieldsOptions:(DVSPasswordReminderFields)fields {
+    self.navigationItem.title = NSLocalizedString(@"Remind password", nil);
+    
     __weak typeof(self) weakSelf = self;
     
     if ([DVSFieldsUtils shouldShow:DVSPasswordReminderFieldNavigationDismissButton basedOn:fields]) {

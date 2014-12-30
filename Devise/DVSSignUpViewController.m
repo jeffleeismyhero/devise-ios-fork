@@ -55,6 +55,8 @@
 }
 
 - (void)setupNavigationItemsForFieldsOptions:(DVSSignUpFields)fields {
+    self.navigationItem.title = NSLocalizedString(@"Sign Up", nil);
+    
     __weak typeof(self) weakSelf = self;
     
     if ([DVSFieldsUtils shouldShow:DVSSignUpFieldNavigationSignUpButton basedOn:fields]) {

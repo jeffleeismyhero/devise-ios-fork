@@ -9,9 +9,6 @@
 #import "DVSDemoWelcomeViewController.h"
 
 #import "DVSMacros.h"
-#import "DVSLoginViewController.h"
-#import "DVSSignUpViewController.h"
-#import "DVSPasswordReminderViewController.h"
 #import "UIAlertView+DeviseDemo.h"
 
 static NSString * const DVSRegisterSegue = @"DisplayRegisterView";
@@ -49,25 +46,21 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 #pragma mark - Menu actions
 
 - (void)didSelectLogIn {
+    DVSLogInFields logInFields = DVSLogInFieldEmailAndPassword | DVSLogInFieldLogInButton | DVSLogInFieldPasswordReminder;
+    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] initWithFields:logInFields];
     
-#if ENABLE_DEVISE_CONTROLLERS
-    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] initWithFields:DVSLogInFieldEmailAndPassword | DVSLogInFieldLogInButton | DVSLogInFieldDismissButton | DVSLogInFieldPasswordReminder];
     logInController.delegate = self;
-    [self presentViewController:logInController animated:YES completion:nil];
-#else
-    [self performSegueWithIdentifier:DVSLoginSegue sender:self];
-#endif
     
+    [self.navigationController pushViewController:logInController animated:YES];
 }
 
 - (void)didSelectRegister {
-#if ENABLE_DEVISE_CONTROLLERS
-    DVSSignUpViewController *signUpController = [[DVSSignUpViewController alloc] initWithFields:DVSSignUpFieldEmailAndPassword | DVSSignUpFieldDismissButton | DVSSignUpFieldSignUpButton];
+    DVSSignUpFields signUpFields = DVSSignUpFieldEmailAndPassword | DVSSignUpFieldSignUpButton;
+    DVSSignUpViewController *signUpController = [[DVSSignUpViewController alloc] initWithFields:signUpFields];
+    
     signUpController.delegate = self;
-    [self presentViewController:signUpController animated:YES completion:nil];
-#else
-    [self performSegueWithIdentifier:DVSRegisterSegue sender:self];
-#endif
+    
+    [self.navigationController pushViewController:signUpController animated:YES];
 }
 
 #pragma mark - DVSMenuTableViewController methods
@@ -75,8 +68,6 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 - (NSString *)defaultCellId {
     return DVSDefaultWelcomeCell;
 }
-
-DVSWorkInProgress("Need to move DVSLoginViewControllerDelegate to separate class");
 
 #pragma mark - DVSLoginViewControllerDelegate
 
@@ -87,6 +78,12 @@ DVSWorkInProgress("Need to move DVSLoginViewControllerDelegate to separate class
 - (void)logInViewController:(DVSLogInViewController *)controller didFailWithError:(NSError *)error {
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                     statusDescriptionsDictionary:@{ @401: NSLocalizedString(@"Incorrect e-mail or password.", nil) }];
+    [errorAlert show];
+}
+
+- (void)logInViewController:(DVSLogInViewController *)controller didFailRemindPasswordWithError:(NSError *)error {
+    UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                    statusDescriptionsDictionary:@{ @404: NSLocalizedString(@"Account for given e-mail does not exist.", nil) }];
     [errorAlert show];
 }
 

@@ -24,7 +24,7 @@
 #pragma mark - Form creation
 
 - (XLFormDescriptor *)formWithFields:(DVSPasswordReminderFields)fields {
-    XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Remind password", nil)];
+    XLFormDescriptor *form = [XLFormDescriptor formDescriptor];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Remind", nil)];
     

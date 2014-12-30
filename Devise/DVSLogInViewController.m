@@ -59,6 +59,8 @@
 }
 
 - (void)setupNavigationItemsForFieldsOptions:(DVSLogInFields)fields {
+    self.navigationItem.title = NSLocalizedString(@"Log In", nil);
+    
     __weak typeof(self) weakSelf = self;
     
     if ([DVSFieldsUtils shouldShow:DVSLogInFieldDismissButton basedOn:fields]) {

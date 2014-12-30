@@ -24,7 +24,7 @@
 #pragma mark - Form creation
 
 - (XLFormDescriptor *)formWithFields:(DVSSignUpFields)fields {
-    XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Sign Up", nil)];
+    XLFormDescriptor *form = [XLFormDescriptor formDescriptor];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Sign Up", nil)];
     
