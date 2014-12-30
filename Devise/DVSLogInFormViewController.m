@@ -21,7 +21,7 @@
     return self;
 }
 
-#pragma mark - Form initialization
+#pragma mark - Form creation
 
 - (XLFormDescriptor *)formWithFields:(DVSLogInFields)fields {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Log In", nil)];

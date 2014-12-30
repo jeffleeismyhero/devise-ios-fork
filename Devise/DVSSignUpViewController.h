@@ -6,21 +6,14 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "XLFormViewController.h"
+#import "DVSBaseViewController.h"
 
 #import "DVSUser.h"
-
-typedef NS_OPTIONS(NSInteger, DVSSignUpFields) {
-    DVSSignUpFieldEmailAndPassword           = 1 << 0,
-    DVSSignUpFieldSignUpButton               = 1 << 1,
-    DVSSignUpFieldDismissButton              = 1 << 2,
-    DVSSignUpFieldNavigationSignUpButton     = 1 << 3,
-    DVSSignUpFieldNavigationDismissButton    = 1 << 4
-};
+#import "DVSSignUpFields.h"
 
 @protocol DVSSignUpViewControllerDelegate;
 
-@interface DVSSignUpViewController : XLFormViewController
+@interface DVSSignUpViewController : DVSBaseViewController
 
 @property (weak, nonatomic) id<DVSSignUpViewControllerDelegate> delegate;
 

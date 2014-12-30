@@ -11,13 +11,14 @@
 #import "DVSBarButtonItem.h"
 #import "DVSFieldsUtils.h"
 #import "DVSUser+Requests.h"
+#import "DVSSignUpFormViewController.h"
 #import "DVSTemplatesViewsUserDataSource.h"
 #import "XLFormSectionDescriptor+Devise.h"
-#import "XLFormRowDescriptor+Devise.h"
 
-@interface DVSSignUpViewController ()
+@interface DVSSignUpViewController () <DVSSignUpFormViewControllerDelegate>
 
 @property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
+@property (strong, nonatomic) DVSSignUpFormViewController *formViewController;
 
 @end
 
@@ -27,22 +28,32 @@
 
 - (instancetype)init {
     DVSSignUpFields defaultFields = [self defaultFields];
-    if (self = [super initWithForm:[self formWithFields:defaultFields]]) {
-        [self setupForFieldsOptions:defaultFields];
+    if (self = [super init]) {
+        [self setupWithFields:defaultFields];
     }
     return self;
 }
 
 - (instancetype)initWithFields:(DVSSignUpFields)fields {
-    if (self = [super initWithForm:[self formWithFields:fields]]) {
-        [self setupForFieldsOptions:fields];
+    if (self = [super init]) {
+        [self setupWithFields:fields];
     }
     return self;
 }
 
-- (void)setupForFieldsOptions:(DVSSignUpFields)fields {
+- (void)setupWithFields:(DVSSignUpFields)fields {
     self.userDataSource = [DVSTemplatesViewsUserDataSource new];
-    
+    [self setupFormForFieldsOptions:fields];
+    [self setupNavigationItemsForFieldsOptions:fields];
+}
+
+- (void)setupFormForFieldsOptions:(DVSSignUpFields)fields {
+    self.formViewController = [[DVSSignUpFormViewController alloc] initWithFields:fields];
+    self.formViewController.delegate = self;
+    [self attachViewController:self.formViewController];
+}
+
+- (void)setupNavigationItemsForFieldsOptions:(DVSSignUpFields)fields {
     __weak typeof(self) weakSelf = self;
     
     if ([DVSFieldsUtils shouldShow:DVSSignUpFieldNavigationSignUpButton basedOn:fields]) {
@@ -64,41 +75,10 @@
     return DVSSignUpFieldEmailAndPassword | DVSSignUpFieldSignUpButton;
 }
 
-#pragma mark - Form initialization
-
-- (XLFormDescriptor *)formWithFields:(DVSSignUpFields)fields {
-    XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Sign Up", nil)];
-    
-    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Sign Up", nil)];
-    
-    if ([DVSFieldsUtils shouldShow:DVSSignUpFieldEmailAndPassword basedOn:fields]) {
-        [section dvs_addEmailAndPasswordTextFields];
-    }
-    
-    __weak typeof(self) weakSelf = self;
-    if ([DVSFieldsUtils shouldShow:DVSSignUpFieldSignUpButton basedOn:fields]) {
-        [section dvs_addProceedButtonWithTitle:NSLocalizedString(@"Sign Up", nil)
-                                        action:^(XLFormRowDescriptor *sender) {
-                                            [weakSelf performSignUpAction];
-                                            [weakSelf deselectFormRow:sender];
-                                        }];
-    }
-    
-    if ([DVSFieldsUtils shouldShow:DVSSignUpFieldDismissButton basedOn:fields]) {
-        [section dvs_addDismissButtonWithAction:^(XLFormRowDescriptor *sender) {
-            [weakSelf callCancelSignUpFromDelegate];
-            [weakSelf deselectFormRow:sender];
-        }];
-    }
-    
-    [form addFormSection:section];
-    return form;
-}
-
 #pragma mark - Actions
 
 - (void)performSignUpAction {
-    NSDictionary *formValues = [self formValues];
+    NSDictionary *formValues = [self.formViewController formValues];
     
     DVSUser *newUser = [DVSUser new];
     
@@ -123,6 +103,16 @@
     if ([self.delegate respondsToSelector:@selector(signUpViewControllerDidCancelSignUp:)]) {
         [self.delegate signUpViewControllerDidCancelSignUp:self];
     }
+}
+
+#pragma mark - DVSSignUpFormViewControllerDelegate
+
+- (void)signUpFormViewController:(DVSSignUpFormViewController *)controller didSelectProceedRow:(XLFormRowDescriptor *)row {
+    [self performSignUpAction];
+}
+
+- (void)signUpFormViewController:(DVSSignUpFormViewController *)controller didSelectDismissRow:(XLFormRowDescriptor *)row {
+    [self callCancelSignUpFromDelegate];
 }
 
 @end
