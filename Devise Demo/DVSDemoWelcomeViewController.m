@@ -11,8 +11,6 @@
 #import "DVSMacros.h"
 #import "UIAlertView+DeviseDemo.h"
 
-static NSString * const DVSRegisterSegue = @"DisplayRegisterView";
-static NSString * const DVSLoginSegue = @"DisplayLoginView";
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
