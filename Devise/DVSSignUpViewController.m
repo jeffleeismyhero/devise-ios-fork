@@ -13,6 +13,7 @@
 #import "DVSUser+Requests.h"
 #import "DVSSignUpFormViewController.h"
 #import "DVSTemplatesViewsUserDataSource.h"
+#import "UIViewController+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
 
 @interface DVSSignUpViewController () <DVSSignUpFormViewControllerDelegate>

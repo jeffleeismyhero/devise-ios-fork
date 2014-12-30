@@ -13,6 +13,7 @@
 #import "DVSUser+Requests.h"
 #import "DVSPasswordReminderFormViewController.h"
 #import "DVSTemplatesViewsUserDataSource.h"
+#import "UIViewController+Devise.h"
 #import "XLFormRowDescriptor+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
 

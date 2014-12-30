@@ -14,6 +14,7 @@
 #import "DVSUser+Requests.h"
 #import "DVSPasswordReminderViewController.h"
 #import "DVSLogInFormViewController.h"
+#import "UIViewController+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
 
 @interface DVSLogInViewController () <DVSLogInFormViewControllerDelegate, DVSPasswordReminderViewControllerDelegate>

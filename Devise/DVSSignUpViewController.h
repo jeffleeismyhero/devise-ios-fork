@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSBaseViewController.h"
+#import <UIKit/UIKit.h>
 
 #import "DVSUser.h"
 #import "DVSSignUpFields.h"
 
 @protocol DVSSignUpViewControllerDelegate;
 
-@interface DVSSignUpViewController : DVSBaseViewController
+@interface DVSSignUpViewController : UIViewController
 
 @property (weak, nonatomic) id<DVSSignUpViewControllerDelegate> delegate;
 
