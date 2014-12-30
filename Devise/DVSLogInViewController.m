@@ -122,6 +122,9 @@
 #pragma mark - DVSPasswordReminderViewControllerDelegate
 
 - (void)passwordReminderViewControllerDidRemindPassword:(DVSPasswordReminderViewController *)controller {
+    if ([self.delegate respondsToSelector:@selector(logInViewControllerDidRemindPassword:)]) {
+        [self.delegate logInViewControllerDidRemindPassword:self];
+    }
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -17,6 +17,8 @@ static NSString * const DVSHomeSegue = @"DisplayHomeView";
 
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
+static NSString * const DVSTitleForAlertCancelButton = @"Close";
+
 @interface DVSDemoWelcomeViewController () <DVSLogInViewControllerDelegate, DVSSignUpViewControllerDelegate>
 
 @end
@@ -79,6 +81,14 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                     statusDescriptionsDictionary:@{ @401: NSLocalizedString(@"Incorrect e-mail or password.", nil) }];
     [errorAlert show];
+}
+
+- (void)logInViewControllerDidRemindPassword:(DVSLogInViewController *)controller {
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Remind successful", nil)
+                                message:NSLocalizedString(@"You will receive e-mail with instructions how to reset your password.", nil)
+                               delegate:self
+                      cancelButtonTitle:NSLocalizedString(DVSTitleForAlertCancelButton, nil)
+                      otherButtonTitles:nil] show];
 }
 
 - (void)logInViewController:(DVSLogInViewController *)controller didFailRemindPasswordWithError:(NSError *)error {

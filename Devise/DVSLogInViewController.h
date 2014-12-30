@@ -28,6 +28,7 @@
 - (void)logInViewControllerDidCancelLogIn:(DVSLogInViewController *)controller;
 
 @optional
+- (void)logInViewControllerDidRemindPassword:(DVSLogInViewController *)controller;
 - (void)logInViewController:(DVSLogInViewController *)controller didFailRemindPasswordWithError:(NSError *)error;
 
 @end
