@@ -11,13 +11,15 @@
 #import "DVSBarButtonItem.h"
 #import "DVSFieldsUtils.h"
 #import "DVSUser+Requests.h"
+#import "DVSPasswordReminderFormViewController.h"
 #import "DVSTemplatesViewsUserDataSource.h"
 #import "XLFormRowDescriptor+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
 
-@interface DVSPasswordReminderViewController ()
+@interface DVSPasswordReminderViewController () <DVSPasswordReminderFormViewControllerDelegate>
 
 @property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
+@property (strong, nonatomic) DVSPasswordReminderFormViewController *formViewController;
 
 @end
 
@@ -27,22 +29,34 @@
 
 - (instancetype)init {
     DVSPasswordReminderFields defaultFields = [self defaultFields];
-    if (self = [super initWithForm:[self formWithFields:defaultFields]]) {
-        [self setupForFieldsOptions:defaultFields];
+    if (self = [super init]) {
+        [self setupWithFields:defaultFields];
     }
     return self;
 }
 
 - (instancetype)initWithFields:(DVSPasswordReminderFields)fields {
-    if (self = [super initWithForm:[self formWithFields:fields]]) {
-        [self setupForFieldsOptions:fields];
+    if (self = [super init]) {
+        [self setupWithFields:fields];
     }
     return self;
 }
 
-- (void)setupForFieldsOptions:(DVSPasswordReminderFields)fields {
+#pragma mark - Setup
+
+- (void)setupWithFields:(DVSPasswordReminderFields)fields {
     self.userDataSource = [DVSTemplatesViewsUserDataSource new];
-    
+    [self setupFormForFieldsOptions:fields];
+    [self setupNavigationItemsForFieldsOptions:fields];
+}
+
+- (void)setupFormForFieldsOptions:(DVSPasswordReminderFields)fields {
+    self.formViewController = [[DVSPasswordReminderFormViewController alloc] initWithFields:fields];
+    self.formViewController.delegate = self;
+    [self attachViewController:self.formViewController];
+}
+
+- (void)setupNavigationItemsForFieldsOptions:(DVSPasswordReminderFields)fields {
     __weak typeof(self) weakSelf = self;
     
     if ([DVSFieldsUtils shouldShow:DVSPasswordReminderFieldNavigationDismissButton basedOn:fields]) {
@@ -56,40 +70,11 @@
 - (DVSPasswordReminderFields)defaultFields {
    return DVSPasswordReminderFieldDismissButton;
 }
-
-#pragma mark - Form initialization
-
-- (XLFormDescriptor *)formWithFields:(DVSPasswordReminderFields)fields {
-    XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Remind password", nil)];
-    
-    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Remind", nil)];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [section dvs_addEmailTextField];
-    [section dvs_addProceedButtonWithTitle:NSLocalizedString(@"Remind", nil)
-                                    action:^(XLFormRowDescriptor *sender) {
-                                        [weakSelf performRemindAction];
-                                        [weakSelf deselectFormRow:sender];
-                                    }];
-    
-    if ([DVSFieldsUtils shouldShow:DVSPasswordReminderFieldDismissButton basedOn:fields]) {
-        [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
-                                        action:^(XLFormRowDescriptor *sender) {
-                                            [weakSelf callDidCancelRemindPasswordFromDelegate];
-                                            [weakSelf deselectFormRow:sender];
-                                        }];
-    }
-    
-    [form addFormSection:section];
-    
-    return form;
-}
                                                
 #pragma mark - Actions
 
 - (void)performRemindAction {
-    NSDictionary *formValues = [self formValues];
+    NSDictionary *formValues = [self.formViewController formValues];
     
     DVSUser *user = [DVSUser new];
     
@@ -113,6 +98,16 @@
     if ([self.delegate respondsToSelector:@selector(passwordReminderViewControllerDidCancelRemindPassword:)]) {
         [self.delegate passwordReminderViewControllerDidCancelRemindPassword:self];
     }
+}
+
+#pragma mark - DVSPasswordReminderFormViewControllerDelegate
+
+- (void)passwordReminderFormViewController:(DVSPasswordReminderFormViewController *)controller didSelectProceedRow:(XLFormRowDescriptor *)row {
+    [self performRemindAction];
+}
+
+- (void)passwordReminderFormViewController:(DVSPasswordReminderFormViewController *)controller didSelectDismissRow:(XLFormRowDescriptor *)row {
+    [self callDidCancelRemindPasswordFromDelegate];
 }
 
 @end
