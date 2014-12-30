@@ -66,7 +66,6 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
                                                                                 value:value
                                                                               secured:model.secured
                                                                          keyboardType:model.keyboardType];
-    [self.tableView reloadData];
 }
 
 - (NSString *)valueForTitle:(NSString *)title {
