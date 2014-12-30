@@ -10,10 +10,12 @@
 
 @implementation DVSBaseViewController
 
-#pragma mark - Helpers
-
-- (BOOL)shouldShow:(NSUInteger)option basedOn:(NSUInteger)value {
-    return (value & option) == option;
+- (void)attachViewController:(UIViewController *)controller {
+    [controller willMoveToParentViewController:self];
+    [self addChildViewController:controller];
+    [self.view addSubview:controller.view];
+    [self.view layoutIfNeeded];
+    [controller didMoveToParentViewController:self];
 }
 
 @end

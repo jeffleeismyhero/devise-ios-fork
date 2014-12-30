@@ -12,6 +12,7 @@ extern NSString * const DVSFormEmailTag;
 extern NSString * const DVSFormPasswordTag;
 extern NSString * const DVSFormProceedButtonTag;
 extern NSString * const DVSFormDismissButtonTag;
+extern NSString * const DVSFormPresentButtonTag;
 
 @interface XLFormSectionDescriptor (Devise)
 

@@ -9,14 +9,16 @@
 #import "DVSLogInViewController.h"
 
 #import "DVSBarButtonItem.h"
+#import "DVSFieldsUtils.h"
 #import "DVSTemplatesViewsUserDataSource.h"
 #import "DVSUser+Requests.h"
 #import "DVSPasswordReminderViewController.h"
-#import "XLFormRowDescriptor+Devise.h"
+#import "DVSLogInFormViewController.h"
 #import "XLFormSectionDescriptor+Devise.h"
 
-@interface DVSLogInViewController () <DVSPasswordReminderViewControllerDelegate>
+@interface DVSLogInViewController () <DVSLogInFormViewControllerDelegate, DVSPasswordReminderViewControllerDelegate>
 
+@property (strong, nonatomic) DVSLogInFormViewController *formViewController;
 @property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
 
 @end
@@ -27,32 +29,45 @@
 
 - (instancetype)init {
     DVSLogInFields defaultFields = [self defaultFields];
-    if (self = [super initWithForm:[self formWithFields:defaultFields]]) {
-        [self setupForFieldsOptions:defaultFields];
+    if (self = [super init]) {
+        [self setupWithFieldsOptions:defaultFields];
     }
     return self;
 }
 
 - (instancetype)initWithFields:(DVSLogInFields)fields {
-    if (self = [super initWithForm:[self formWithFields:fields]]) {
-        [self setupForFieldsOptions:fields];
+    if (self = [super init]) {
+        [self setupWithFieldsOptions:fields];
     }
     return self;
 }
 
-- (void)setupForFieldsOptions:(DVSLogInFields)fields {
+#pragma mark - Setup
+
+- (void)setupWithFieldsOptions:(DVSLogInFields)fields {
     self.userDataSource = [DVSTemplatesViewsUserDataSource new];
     
+    [self setupFormViewControllerForFieldsOptions:fields];
+    [self setupNavigationItemsForFieldsOptions:fields];
+}
+
+- (void)setupFormViewControllerForFieldsOptions:(DVSLogInFields)fields {
+    self.formViewController = [[DVSLogInFormViewController alloc] initWithFields:fields];
+    self.formViewController.delegate = self;
+    [self attachViewController:self.formViewController];
+}
+
+- (void)setupNavigationItemsForFieldsOptions:(DVSLogInFields)fields {
     __weak typeof(self) weakSelf = self;
     
-    if ([self shouldShow:DVSLogInFieldDismissButton basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSLogInFieldDismissButton basedOn:fields]) {
         self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                                  action:^(DVSBarButtonItem *sender) {
                                                                                      [weakSelf callDidCancelLoginFromDelegate];
                                                                                  }];
     }
     
-    if ([self shouldShow:DVSLogInFieldNavigationLogInButton basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSLogInFieldNavigationLogInButton basedOn:fields]) {
         self.navigationItem.rightBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log In", nil)
                                                                                   action:^(DVSBarButtonItem *sender) {
                                                                                       [weakSelf performLogInAction];
@@ -64,51 +79,10 @@
     return DVSLogInFieldEmailAndPassword | DVSLogInFieldLogInButton;
 }
 
-#pragma mark - Form initialization
-
-- (XLFormDescriptor *)formWithFields:(DVSLogInFields)fields {
-    XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"Log In", nil)];
-    
-    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Log In", nil)];
-    
-    if ([self shouldShow:DVSLogInFieldEmailAndPassword basedOn:fields]) {
-        [section dvs_addEmailAndPasswordTextFields];
-    }
-    
-    __weak typeof(self) weakSelf = self;
-
-    if ([self shouldShow:DVSLogInFieldLogInButton basedOn:fields]) {
-        [section dvs_addProceedButtonWithTitle:NSLocalizedString(@"Log In", nil)
-                                        action:^(XLFormRowDescriptor *sender) {
-                                            [weakSelf performLogInAction];
-                                            [weakSelf deselectFormRow:sender];
-                                        }];
-    }
-    
-    if ([self shouldShow:DVSLogInFieldPasswordReminder basedOn:fields]) {
-        [section dvs_addPresentButtonWithTitle:NSLocalizedString(@"Remind password", nil)
-                                        action:^(XLFormRowDescriptor *sender) {
-                                            [weakSelf performRemindPasswordAction];
-                                            [weakSelf deselectFormRow:sender];
-                                        }];
-    }
-    
-    if ([self shouldShow:DVSLogInFieldDismissButton basedOn:fields]) {
-        [section dvs_addDismissButtonWithAction:^(XLFormRowDescriptor *sender) {
-            [weakSelf callDidCancelLoginFromDelegate];
-            [weakSelf deselectFormRow:sender];
-        }];
-    }
-    
-    [form addFormSection:section];
-    
-    return form;
-}
-
 #pragma mark - Actions
 
 - (void)performLogInAction {
-    NSDictionary *formValues = [self formValues];
+    NSDictionary *formValues = [self.formViewController formValues];
     
     DVSUser *user = [DVSUser new];
     
@@ -156,6 +130,20 @@
     if ([self.delegate respondsToSelector:@selector(logInViewController:didFailRemindPasswordWithError:)]) {
         [self.delegate logInViewController:self didFailRemindPasswordWithError:error];
     }
+}
+
+#pragma mark - DVSLogInFormViewControllerDelegate
+
+- (void)logInFormViewController:(DVSLogInFormViewController *)formController didSelectProceedRow:(XLFormRowDescriptor *)row {
+    [self performLogInAction];
+}
+
+- (void)logInFormViewController:(DVSLogInFormViewController *)formController didSelectDismissRow:(XLFormRowDescriptor *)row {
+    [self callDidCancelLoginFromDelegate];
+}
+
+- (void)logInFormViewController:(DVSLogInFormViewController *)formController didSelectPresentRow:(XLFormRowDescriptor *)row {
+    [self performRemindPasswordAction];
 }
 
 @end

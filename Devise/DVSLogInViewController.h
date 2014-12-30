@@ -9,15 +9,7 @@
 #import "DVSBaseViewController.h"
 
 #import "DVSUser.h"
-
-typedef NS_OPTIONS(NSInteger, DVSLogInFields) {
-    DVSLogInFieldEmailAndPassword           = 1 << 0,
-    DVSLogInFieldLogInButton                = 1 << 1,
-    DVSLogInFieldDismissButton              = 1 << 2,
-    DVSLogInFieldNavigationLogInButton      = 1 << 3,
-    DVSLogInFieldNavigationDismissButton    = 1 << 4,
-    DVSLogInFieldPasswordReminder           = 1 << 5
-};
+#import "DVSLogInFields.h"
 
 @protocol DVSLogInViewControllerDelegate;
 

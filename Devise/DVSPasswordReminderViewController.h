@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSBaseViewController.h"
+#import "XLFormViewController.h"
 
 typedef NS_OPTIONS(NSInteger, DVSPasswordReminderFields) {
     DVSPasswordReminderFieldDismissButton              = 1 << 0,
@@ -15,7 +15,7 @@ typedef NS_OPTIONS(NSInteger, DVSPasswordReminderFields) {
 
 @protocol DVSPasswordReminderViewControllerDelegate;
 
-@interface DVSPasswordReminderViewController : DVSBaseViewController
+@interface DVSPasswordReminderViewController : XLFormViewController
 
 @property (weak, nonatomic) id<DVSPasswordReminderViewControllerDelegate> delegate;
 

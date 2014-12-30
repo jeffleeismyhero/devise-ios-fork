@@ -9,6 +9,7 @@
 #import "DVSPasswordReminderViewController.h"
 
 #import "DVSBarButtonItem.h"
+#import "DVSFieldsUtils.h"
 #import "DVSUser+Requests.h"
 #import "DVSTemplatesViewsUserDataSource.h"
 #import "XLFormRowDescriptor+Devise.h"
@@ -44,7 +45,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    if ([self shouldShow:DVSPasswordReminderFieldNavigationDismissButton basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSPasswordReminderFieldNavigationDismissButton basedOn:fields]) {
         self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                                  action:^(DVSBarButtonItem *sender) {
                                                                                      [weakSelf callDidCancelRemindPasswordFromDelegate];
@@ -72,7 +73,7 @@
                                         [weakSelf deselectFormRow:sender];
                                     }];
     
-    if ([self shouldShow:DVSPasswordReminderFieldDismissButton basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSPasswordReminderFieldDismissButton basedOn:fields]) {
         [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
                                         action:^(XLFormRowDescriptor *sender) {
                                             [weakSelf callDidCancelRemindPasswordFromDelegate];

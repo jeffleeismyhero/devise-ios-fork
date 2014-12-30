@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "XLFormViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface DVSBaseViewController : XLFormViewController
+@interface DVSBaseViewController : UIViewController
 
-- (BOOL)shouldShow:(NSUInteger)option basedOn:(NSUInteger)value;
+- (void)attachViewController:(UIViewController *)controller;
 
 @end
