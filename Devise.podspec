@@ -25,5 +25,6 @@ Pod::Spec.new do |spec|
 
   spec.dependency      'AFNetworking', '~> 2.5.0'
   spec.dependency      'UICKeyChainStore', '~> 1.1'
+  spec.dependency      'NGRValidator', '~> 0.1.0'
 
 end

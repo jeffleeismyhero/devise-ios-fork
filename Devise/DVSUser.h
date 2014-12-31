@@ -5,7 +5,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "DVSTypedefs.h"
 
 @class DVSConfiguration, DVSHTTPClient;
@@ -113,9 +112,9 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 - (NSString *)JSONKeyPathForPasswordConfirmation;
 
 /**
- *  Allows to inject own customize validation rules. Used for validation when performing an action.
+ *  Allows to inject own validation rules and customize default ones. Used for validation when performing an action.
  */
-- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action;
+- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action defaultRules:(NSArray *)defaultRules;
 
 /**
  *  Allows to inject own request parameters (key-value pairs). Used when performing an action.

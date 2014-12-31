@@ -9,7 +9,6 @@
 #import "DVSHTTPClient+User.h"
 #import "DVSUser.h"
 #import "DVSUser+Persistence.h"
-#import "DVSValidator.h"
 
 @interface DVSUser ()
 

@@ -17,7 +17,6 @@
     #import <Devise/DVSUser+Querying.h>
     #import <Devise/DVSUser+Requests.h>
     #import <Devise/DVSTypedefs.h>
-    #import <Devise/DVSValidator.h>
     #import <Devise/DVSLogInViewController.h>
     #import <Devise/DVSPasswordReminderViewController.h>
     #import <Devise/DVSSignUpViewController.h>

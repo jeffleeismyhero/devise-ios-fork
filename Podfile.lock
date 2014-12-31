@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Kiwi (2.3.1)
+  - ngrvalidator (0.1.0)
   - OHHTTPStubs (3.1.7):
     - OHHTTPStubs/Core (= 3.1.7)
   - OHHTTPStubs/Core (3.1.7)
@@ -30,6 +31,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - Kiwi (~> 2.3)
+  - NGRValidator
   - OHHTTPStubs (~> 3.1)
   - UICKeyChainStore (~> 1.1)
   - XLForm (~> 2.1)
@@ -37,6 +39,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
   Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
+  ngrvalidator: cfab5c19892a5b7cefc1e14a1d1b6be138a9acc5
   OHHTTPStubs: b571bd884ce1ebdbda850ea41674b9fbb9eba667
   UICKeyChainStore: 257d869d42527b9853ebb11d6dc3ac377b270e72
   XLForm: 7d6855fe88df37b44ea00da80cc0cf3a945cfb1b

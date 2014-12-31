@@ -8,6 +8,7 @@
 
 #import "DVSHTTPClient+User.h"
 #import "DVSUser+Requests.h"
+#import "NGRValidator.h"
 
 @implementation DVSUser (Requests)
 
@@ -15,8 +16,8 @@
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[
-        DVSValidate(@"password").required(),
-        DVSValidate(@"email").required().emailSyntax()
+        NGRValidate(@"password").required(),
+        NGRValidate(@"email").required().syntax(NGRSyntaxEmail)
     ];
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [self.httpClient logInUser:self success:success failure:failure];
@@ -31,7 +32,7 @@
 #pragma mark - Remind password
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[DVSValidate(@"email").required().emailSyntax()];
+    NSArray *rules = @[NGRValidate(@"email").required().syntax(NGRSyntaxEmail)];
     [self validateUsingRules:rules forAction:DVSActionRemindPassword success:^{
         [self.httpClient remindPasswordToUser:self success:success failure:failure];
     } failure:failure];
@@ -46,8 +47,8 @@
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[
-        DVSValidate(@"password").required(),
-        DVSValidate(@"email").required().emailSyntax()
+        NGRValidate(@"password").required(),
+        NGRValidate(@"email").required().syntax(NGRSyntaxEmail)
     ];
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [self.httpClient registerUser:self success:success failure:failure];
@@ -62,7 +63,7 @@
 #pragma mark - Change password
 
 - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[DVSValidate(@"password").required()];
+    NSArray *rules = @[NGRValidate(@"password").required()];
     [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
         [self.httpClient changePasswordOfUser:self success:success failure:failure];
     } failure:failure];
@@ -76,7 +77,7 @@
 #pragma mark - Update methods
 
 - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[DVSValidate(@"email").required().emailSyntax()];
+    NSArray *rules = @[NGRValidate(@"email").required().syntax(NGRSyntaxEmail)];
     [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
         [self.httpClient updateUser:self success:success failure:failure];
     } failure:failure];
@@ -106,44 +107,21 @@
 - (void)validateUsingRules:(NSArray *)rules forAction:(DVSActionType)action success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
 
     NSError *error;
-    BOOL validated = [DVSValidator validateModel:self error:&error usingRules:^NSArray *{
+    BOOL validated = [NGRValidator validateModel:self error:&error usingRules:^NSArray *{
 
-        if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalValidationRulesForAction:)]) {
-            NSArray *array = [self.dataSource additionalValidationRulesForAction:action];
-            return [self mergeDefaultRules:rules withCustomRules:array];
+        NSArray *customRules = [NSArray array];
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalValidationRulesForAction:defaultRules:)]) {
+            customRules = [self.dataSource additionalValidationRulesForAction:action defaultRules:rules];
         }
-        return rules;
+        return [self mergeDefaultRules:rules withCustomRules:customRules];
     }];
     validated ? success() : failure(error);
 }
 
 - (NSArray *)mergeDefaultRules:(NSArray *)defaultRules withCustomRules:(NSArray *)customRules {
-
-    NSMutableArray *resultRules = [[NSMutableArray alloc] init];
-
-    NSMutableArray *uniqueDefaultRules = [defaultRules mutableCopy];
-    [uniqueDefaultRules removeObjectsInArray:customRules];
-    [resultRules addObjectsFromArray:uniqueDefaultRules];
-
-    NSMutableArray *uniqueCustomRules = [customRules mutableCopy];
-    [uniqueCustomRules removeObjectsInArray:defaultRules];
-    [resultRules addObjectsFromArray:uniqueCustomRules];
-
-    NSMutableArray *commonCustomRules = [customRules mutableCopy];
-    [commonCustomRules removeObjectsInArray:uniqueCustomRules];
-
-    NSArray *defaultRulesKeys = [defaultRules valueForKey:@"propertyName"];
-    NSDictionary *defaultRulesDictionary = [[NSDictionary alloc] initWithObjects:defaultRules forKeys:defaultRulesKeys];
-
-    for (DVSPropertyValidator *customValidator in commonCustomRules) {
-        DVSPropertyValidator *defaultValidator = defaultRulesDictionary[customValidator.propertyName];
-        [defaultValidator.validators addObjectsFromArray:customValidator.validators];
-        defaultValidator.descriptions = customValidator.descriptions;
-        [resultRules addObject:defaultValidator];
-    }
-
-    return resultRules;
-
+    NSMutableArray *array = [NSMutableArray arrayWithArray:defaultRules];
+    [array addObjectsFromArray:customRules];
+    return [array copy];
 }
 
 @end

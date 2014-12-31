@@ -7,8 +7,8 @@
 //
 
 #import "DVSDemoUserDataSource.h"
-
 #import "DVSDemoUser.h"
+#import "NGRValidator.h"
 
 static NSString * const DVSUserPasswordParameter = @"password";
 static NSString * const DVSUserEmailParameter = @"email";
@@ -17,63 +17,58 @@ static NSString * const DVSUserEmailParameter = @"email";
 
 #pragma mark - DVSUserDataSource
 
-- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
-    switch (action) {
-        case DVSActionLogin:
-            return [self additionalValidationRulesForLogin];
+- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action defaultRules:(NSArray *)defaultRules {
+
+    for (NGRPropertyValidator *validator in defaultRules) {
+        if ([validator.property isEqualToString:DVSUserEmailParameter]) {
+            validator.localizedName(@"E-mail");
             
+        } else if ([validator.property isEqualToString:DVSUserPasswordParameter]) {
+            validator.localizedName(NSLocalizedString(@"Password", nil)).minLength(5);
+            
+            switch (action) {
+                case DVSActionLogin:
+                    validator.msgTooShort(NSLocalizedString(@"is wrong.", nil));
+                    break;
+                case DVSActionRegistration:
+                    validator.msgTooShort(NSLocalizedString(@"should have at least 5 characters.", nil));
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+    
+    switch (action) {
         case DVSActionRegistration:
             return [self additionalValidationRulesForRegistration];
             
         case DVSActionChangePassword:
             return [self additionalValidationRulesForPasswordChange];
-        
-        case DVSActionUpdate:
-        case DVSActionRemindPassword:
-            return [self additionalValidationRulesForUpdateAndRemindPassword];
+
+        default:
+            return nil;
     }
 }
 
 #pragma mark - Validators for specific actions
 
-- (NSArray *)additionalValidationRulesForLogin {
-    return @[[self defaultDemoValidatorForEmail],
-             DVSValidate(DVSUserPasswordParameter).localizedPropertyName(NSLocalizedString(@"Password", nil))
-             .minLength(5).tooShort(NSLocalizedString(@"is wrong.", nil))];
-}
-
 - (NSArray *)additionalValidationRulesForRegistration {
-    return @[[self defaultDemoValidatorForEmail],
-             [self defaultDemoValidatorForPassword],
-             DVSValidate(DVSDemoUserUsernameParameter).localizedPropertyName(NSLocalizedString(@"Username", nil))
+    return @[NGRValidate(DVSDemoUserUsernameParameter).localizedName(NSLocalizedString(@"Username", nil))
                                                       .required()
-                                                      .minLength(5).tooShort(NSLocalizedString(@"should have at least 5 characters.", nil)),
-             DVSValidate(DVSDemoUserFirstNameParameter).localizedPropertyName(NSLocalizedString(@"First name", nil))
+                                                      .minLength(5).msgTooShort(NSLocalizedString(@"should have at least 5 characters.", nil)),
+             NGRValidate(DVSDemoUserFirstNameParameter).localizedName(NSLocalizedString(@"First name", nil))
                                                        .required()
-                                                       .minLength(1).tooShort(NSLocalizedString(@"can't be empty.", nil)),
-             DVSValidate(DVSDemoUserLastNameParameter).localizedPropertyName(NSLocalizedString(@"Last name", nil))
+                                                       .minLength(1).msgTooShort(NSLocalizedString(@"can't be empty.", nil)),
+             NGRValidate(DVSDemoUserLastNameParameter).localizedName(NSLocalizedString(@"Last name", nil))
                                                       .required()
-                                                      .minLength(1).tooShort(NSLocalizedString(@"can't be empty.", nil))
+                                                      .minLength(1).msgTooShort(NSLocalizedString(@"can't be empty.", nil))
              ];
 }
 
-- (NSArray *)additionalValidationRulesForUpdateAndRemindPassword {
-    return @[[self defaultDemoValidatorForEmail]];
-}
-
 - (NSArray *)additionalValidationRulesForPasswordChange {
-    return @[DVSValidate(DVSUserPasswordParameter).localizedPropertyName(NSLocalizedString(@"New password", nil)).minLength(5).tooShort(NSLocalizedString(@"should have at least 5 characters.", nil))];
-}
-
-#pragma mark - Default demo validators
-
-- (DVSPropertyValidator *)defaultDemoValidatorForEmail {
-    return DVSValidate(DVSUserEmailParameter).localizedPropertyName(NSLocalizedString(@"E-mail", nil));
-}
-
-- (DVSPropertyValidator *)defaultDemoValidatorForPassword {
-    return DVSValidate(DVSUserPasswordParameter).localizedPropertyName(NSLocalizedString(@"Password", nil))
-                                                .minLength(5).tooShort(NSLocalizedString(@"should have at least 5 characters.", nil));
+    return @[NGRValidate(DVSUserPasswordParameter).localizedName(NSLocalizedString(@"New password", nil)).minLength(5).msgTooShort(NSLocalizedString(@"should have at least 5 characters.", nil))];
 }
 
 @end
