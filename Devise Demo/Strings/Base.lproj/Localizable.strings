@@ -31,6 +31,8 @@
 "Confirm new password" = "Confirm new password";
 "Password changed" = "Password changed";
 "Password was changed. \nNow you can login with new password." = "Password was changed. \nNow you can login with new password.";
+"Passwords do not match." = "Passwords do not match.";
+"Password confirm and current password do not match." = "Password confirm and current password do not match.";
 
 /* Password reminder view controller */
 "Remind successful" = "Remind successful";
