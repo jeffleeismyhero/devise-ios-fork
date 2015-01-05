@@ -77,7 +77,7 @@ static DVSUser *_dvs_localUser = nil;
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.identifier forKey:@"identifier"];
     [aCoder encodeObject:self.email forKey:@"email"];
-    [aCoder encodeObject:self.sessionToken forKey:@"token"];
+    [aCoder encodeObject:self.sessionToken forKey:@"sessionToken"];
     
     [[self subclassPropertyNamesToPersist] enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         id object = [self valueForKey:key];
