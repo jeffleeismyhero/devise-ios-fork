@@ -8,6 +8,9 @@
 #ifndef Devise_DVSLoginSignUpFields_h
 #define Devise_DVSLoginSignUpFields_h
 
+/**
+ * A bitmask specyfing elements which are enabled
+ */
 typedef NS_OPTIONS(NSInteger, DVSLogInSignUpFields) {
     DVSLogInSignUpFieldEmailAndPassword           = 1 << 0,
     DVSLogInSignUpFieldProceedButton              = 1 << 1,
