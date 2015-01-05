@@ -474,6 +474,15 @@ describe(@"DVSUser", ^{
         });
         
     });
+    
+    describe(@"loggin out a user", ^{
+        
+        it(@"should remove locally saved user", ^{
+            [user logout];
+            [[expectFutureValue([[user class] localUser]) shouldNotEventually] beIdenticalTo:user];
+        });
+        
+    });
 
 });
 
