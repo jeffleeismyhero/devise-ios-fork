@@ -1,0 +1,19 @@
+//
+//  Devise-Demo-Tests-Prefix.pch
+//  Devise
+//
+//  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
+//
+
+#ifndef Devise_Devise_Demo_Tests_Prefix_pch
+#define Devise_Devise_Demo_Tests_Prefix_pch
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import <Devise/Devise.h>
+
+#import <Kiwi/Kiwi.h>
+#import <Kif/Kif.h>
+
+#endif

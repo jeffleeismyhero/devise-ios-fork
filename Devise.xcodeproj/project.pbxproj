@@ -11,6 +11,9 @@
 		2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */; };
 		2151996D1A499B5C00EF5F80 /* DVSFormRowCell+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */; };
 		215575B31A40880C00BA8661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 215575B11A40880C00BA8661 /* Localizable.strings */; };
+		218E29971A5AE90C0010BF3F /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
+		218E29981A5AE90C0010BF3F /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
+		218E29A61A5AED6F0010BF3F /* DVSLogInViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */; };
 		21AFB7EA1A48416F00769C87 /* DVSFormRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E91A48416F00769C87 /* DVSFormRow.m */; };
 		21AFB7F61A48446600769C87 /* DVSFormRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F41A48446600769C87 /* DVSFormRowCell.m */; };
 		21AFB7F71A48446600769C87 /* DVSFormRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7F51A48446600769C87 /* DVSFormRowCell.xib */; };
@@ -88,6 +91,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		218E29A01A5AE91F0010BF3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AA8B3551A24DA0000166927 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AD4C6EA1A24F9A700F0AE67;
+			remoteInfo = "Devise Demo";
+		};
 		3AA8B36B1A24DA0000166927 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AA8B3551A24DA0000166927 /* Project object */;
@@ -124,6 +134,10 @@
 		2151996B1A499B5C00EF5F80 /* DVSFormRowCell+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSFormRowCell+Model.h"; sourceTree = "<group>"; };
 		2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSFormRowCell+Model.m"; sourceTree = "<group>"; };
 		215575B21A40880C00BA8661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Devise Demo Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		218E299F1A5AE90C0010BF3F /* Devise-Demo-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Devise-Demo-Tests-Info.plist"; path = "/Users/wojciechtrzasko/Projekty/devise-ios/devise-ios-my/Devise-Demo-Tests-Info.plist"; sourceTree = "<absolute>"; };
+		218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSLogInViewSpec.m; path = "Devise Demo Tests/DVSLogInViewSpec.m"; sourceTree = "<group>"; };
+		218E29A71A5AEE1E0010BF3F /* Devise-Demo-Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Devise-Demo-Tests-Prefix.pch"; sourceTree = "<group>"; };
 		21AFB7E81A48416F00769C87 /* DVSFormRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRow.h; sourceTree = "<group>"; };
 		21AFB7E91A48416F00769C87 /* DVSFormRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormRow.m; sourceTree = "<group>"; };
 		21AFB7F31A48446600769C87 /* DVSFormRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRowCell.h; sourceTree = "<group>"; };
@@ -248,6 +262,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		218E29961A5AE90C0010BF3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				218E29971A5AE90C0010BF3F /* Devise.framework in Frameworks */,
+				218E29981A5AE90C0010BF3F /* libPods-Tests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AA8B35A1A24DA0000166927 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +316,23 @@
 				215575B11A40880C00BA8661 /* Localizable.strings */,
 			);
 			name = Base.lproj;
+			sourceTree = "<group>";
+		};
+		218E29A21A5AE97C0010BF3F /* Devise Demo Tests */ = {
+			isa = PBXGroup;
+			children = (
+				218E299F1A5AE90C0010BF3F /* Devise-Demo-Tests-Info.plist */,
+				218E29A71A5AEE1E0010BF3F /* Devise-Demo-Tests-Prefix.pch */,
+			);
+			name = "Devise Demo Tests";
+			sourceTree = "<group>";
+		};
+		218E29A31A5AED1E0010BF3F /* Devise Demo Tests */ = {
+			isa = PBXGroup;
+			children = (
+				218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */,
+			);
+			name = "Devise Demo Tests";
 			sourceTree = "<group>";
 		};
 		21AFB7D31A48276E00769C87 /* UI */ = {
@@ -554,6 +594,7 @@
 				3AD4C6821A24DB1700F0AE67 /* Devise */,
 				3AD4C6851A24DB1C00F0AE67 /* Devise Tests */,
 				3AD4C71B1A24FBAB00F0AE67 /* Devise Demo */,
+				218E29A31A5AED1E0010BF3F /* Devise Demo Tests */,
 				3AD4C6861A24DBA700F0AE67 /* Supporting Files */,
 				3AA8B35F1A24DA0000166927 /* Products */,
 				E318EA28A05EB87D9168576A /* Frameworks */,
@@ -566,6 +607,7 @@
 				3AA8B35E1A24DA0000166927 /* Devise.framework */,
 				3AA8B3691A24DA0000166927 /* Devise Tests.xctest */,
 				3AD4C6EB1A24F9A700F0AE67 /* Devise Demo.app */,
+				218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -602,6 +644,7 @@
 				3AD4C7221A24FC3200F0AE67 /* Devise */,
 				3AD4C7231A24FC3A00F0AE67 /* Devise Tests */,
 				3AD4C7241A24FC4000F0AE67 /* Devise Demo */,
+				218E29A21A5AE97C0010BF3F /* Devise Demo Tests */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -787,6 +830,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		218E29891A5AE90C0010BF3F /* Devise Demo Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Devise Demo Tests" */;
+			buildPhases = (
+				218E298C1A5AE90C0010BF3F /* Check Pods Manifest.lock */,
+				218E298D1A5AE90C0010BF3F /* Touch Precompiled Header */,
+				218E298E1A5AE90C0010BF3F /* Sources */,
+				218E29961A5AE90C0010BF3F /* Frameworks */,
+				218E29991A5AE90C0010BF3F /* Resources */,
+				218E299A1A5AE90C0010BF3F /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				218E29A11A5AE91F0010BF3F /* PBXTargetDependency */,
+			);
+			name = "Devise Demo Tests";
+			productName = DeviseTests;
+			productReference = 218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3AA8B35D1A24DA0000166927 /* Devise */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AA8B3741A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise" */;
@@ -860,6 +924,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Netguru Sp. z o.o.";
 				TargetAttributes = {
+					218E29891A5AE90C0010BF3F = {
+						TestTargetID = 3AD4C6EA1A24F9A700F0AE67;
+					};
 					3AA8B35D1A24DA0000166927 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = SK8PDF7SG9;
@@ -889,11 +956,19 @@
 				3AA8B35D1A24DA0000166927 /* Devise */,
 				3AA8B3681A24DA0000166927 /* Devise Tests */,
 				3AD4C6EA1A24F9A700F0AE67 /* Devise Demo */,
+				218E29891A5AE90C0010BF3F /* Devise Demo Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		218E29991A5AE90C0010BF3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AA8B35C1A24DA0000166927 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -922,6 +997,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		218E298C1A5AE90C0010BF3F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		218E298D1A5AE90C0010BF3F /* Touch Precompiled Header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Touch Precompiled Header";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\ntouch \"$GCC_PREFIX_HEADER\"";
+		};
+		218E299A1A5AE90C0010BF3F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3AC598721A28A6320008CC22 /* Touch Precompiled Header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -1041,6 +1160,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		218E298E1A5AE90C0010BF3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				218E29A61A5AED6F0010BF3F /* DVSLogInViewSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AA8B3591A24DA0000166927 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1107,6 +1234,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		218E29A11A5AE91F0010BF3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AD4C6EA1A24F9A700F0AE67 /* Devise Demo */;
+			targetProxy = 218E29A01A5AE91F0010BF3F /* PBXContainerItemProxy */;
+		};
 		3AA8B36C1A24DA0000166927 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3AA8B35D1A24DA0000166927 /* Devise */;
@@ -1131,6 +1263,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		218E299C1A5AE90C0010BF3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Tests-Prefix.pch";
+				INFOPLIST_FILE = "Devise-Demo-Tests-Info.plist";
+				PRODUCT_NAME = "Devise Demo Tests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Devise Demo.app/Devise Demo";
+			};
+			name = Debug;
+		};
+		218E299D1A5AE90C0010BF3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Tests-Prefix.pch";
+				INFOPLIST_FILE = "Devise-Demo-Tests-Info.plist";
+				PRODUCT_NAME = "Devise Demo Tests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Devise Demo.app/Devise Demo";
+			};
+			name = Release;
+		};
 		3AA8B3721A24DA0000166927 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C6941A24EFC100F0AE67 /* Debug.xcconfig */;
@@ -1255,6 +1415,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Devise Demo Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				218E299C1A5AE90C0010BF3F /* Debug */,
+				218E299D1A5AE90C0010BF3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		3AA8B3581A24DA0000166927 /* Build configuration list for PBXProject "Devise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

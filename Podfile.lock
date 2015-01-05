@@ -20,6 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - KIF (3.1.0):
+    - KIF/XCTest (= 3.1.0)
+  - KIF/XCTest (3.1.0)
   - Kiwi (2.3.1)
   - ngrvalidator (0.1.2)
   - OHHTTPStubs (3.1.10):
@@ -30,6 +33,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - KIF
   - Kiwi (~> 2.3)
   - NGRValidator (~> 0.1.2)
   - OHHTTPStubs (~> 3.1)
@@ -38,6 +42,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  KIF: de7c7f4aea08179c65d963a3c5ec438ee6408e8c
   Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
   ngrvalidator: 2c327c4d6de08e3347b16e46bc9a8fd91d6cf522
   OHHTTPStubs: 2038e929b6abb94881000524c1cb4aba0a1bb4a2
