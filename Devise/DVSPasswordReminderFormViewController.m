@@ -2,8 +2,7 @@
 //  DVSPasswordReminderFormViewControllers.m
 //  Devise
 //
-//  Created by Wojciech Trzasko on 30.12.2014.
-//  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
+//  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
 #import "DVSPasswordReminderFormViewController.h"
@@ -16,14 +15,14 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithFields:(DVSPasswordReminderFields)fields {
-    self = [super initWithForm:[self formWithFields:fields]];
+- (instancetype)init {
+    self = [super initWithForm:[self defaultForm]];
     return self;
 }
 
 #pragma mark - Form creation
 
-- (XLFormDescriptor *)formWithFields:(DVSPasswordReminderFields)fields {
+- (XLFormDescriptor *)defaultForm {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptor];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:NSLocalizedString(@"Remind", nil)];
@@ -39,15 +38,13 @@
                                         [weakSelf deselectFormRow:sender];
                                     }];
     
-    if ([DVSFieldsUtils shouldShow:DVSPasswordReminderFieldDismissButton basedOn:fields]) {
-        [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
-                                        action:^(XLFormRowDescriptor *sender) {
-                                            if ([weakSelf.delegate respondsToSelector:@selector(passwordReminderFormViewController:didSelectDismissRow:)]) {
-                                                [weakSelf.delegate passwordReminderFormViewController:self didSelectDismissRow:sender];
-                                            }
-                                            [weakSelf deselectFormRow:sender];
-                                        }];
-    }
+    [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
+                                    action:^(XLFormRowDescriptor *sender) {
+                                        if ([weakSelf.delegate respondsToSelector:@selector(passwordReminderFormViewController:didSelectDismissRow:)]) {
+                                            [weakSelf.delegate passwordReminderFormViewController:self didSelectDismissRow:sender];
+                                        }
+                                        [weakSelf deselectFormRow:sender];
+                                    }];
     
     [form addFormSection:section];
     

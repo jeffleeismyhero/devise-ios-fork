@@ -17,11 +17,7 @@
     #import <Devise/DVSUser+Querying.h>
     #import <Devise/DVSUser+Requests.h>
     #import <Devise/DVSTypedefs.h>
-    #import <Devise/DVSLogInViewController.h>
-    #import <Devise/DVSPasswordReminderViewController.h>
-    #import <Devise/DVSSignUpViewController.h>
-    #import <Devise/DVSLogInFields.h>
-    #import <Devise/DVSPasswordReminderFields.h>
-    #import <Devise/DVSSignUpFields.h>
+    #import <Devise/DVSLoginSignUpFields.h>
+    #import <Devise/DVSLoginSignUpViewController.h>
 
 #endif

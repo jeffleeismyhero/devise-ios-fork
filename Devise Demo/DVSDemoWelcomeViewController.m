@@ -17,7 +17,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
-@interface DVSDemoWelcomeViewController () <DVSLogInViewControllerDelegate, DVSSignUpViewControllerDelegate>
+@interface DVSDemoWelcomeViewController () <DVSLogInSignUpViewControllerDelegate>
 
 @end
 
@@ -46,20 +46,19 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 #pragma mark - Menu actions
 
 - (void)didSelectLogIn {
-    DVSLogInFields logInFields = DVSLogInFieldEmailAndPassword | DVSLogInFieldLogInButton | DVSLogInFieldPasswordReminder;
-    DVSLogInViewController *logInController = [[DVSLogInViewController alloc] initWithFields:logInFields];
+    
+    DVSLogInSignUpFields logInFields = DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton | DVSLogInSignUpFieldPasswordReminder;
+    DVSLoginSignUpViewController *logInController = [[DVSLoginSignUpViewController alloc] initAsLogInWithFields:logInFields];
     
     logInController.delegate = self;
-    
     [self.navigationController pushViewController:logInController animated:YES];
 }
 
 - (void)didSelectRegister {
-    DVSSignUpFields signUpFields = DVSSignUpFieldEmailAndPassword | DVSSignUpFieldSignUpButton;
-    DVSSignUpViewController *signUpController = [[DVSSignUpViewController alloc] initWithFields:signUpFields];
+    DVSLogInSignUpFields signUpFields = DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton;
+    DVSLoginSignUpViewController *signUpController = [[DVSLoginSignUpViewController alloc] initAsSignUpWithFields:signUpFields];
     
     signUpController.delegate = self;
-    
     [self.navigationController pushViewController:signUpController animated:YES];
 }
 
@@ -69,19 +68,49 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     return DVSDefaultWelcomeCell;
 }
 
-#pragma mark - DVSLoginViewControllerDelegate
+#pragma mark - DVSLogInSignUpViewControllerDelegate
 
-- (void)logInViewController:(DVSLogInViewController *)controller didLogInUser:(DVSUser *)user {
+- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didSuccessForAction:(DVSViewControllerAction)action andUser:(DVSUser *)user {
+    switch (action) {
+        case DVSViewControllerActionLogIn:
+        case DVSViewControllerActionSignUp:
+            [self moveToHomeView];
+            break;
+            
+        case DVSViewControllerActionPasswordRemind:
+            [self handlePasswordRemind];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didFailWithError:(NSError *)error forAction:(DVSViewControllerAction)action {
+    switch (action) {
+        case DVSViewControllerActionLogIn:
+            [self handleLogInError:error];
+            break;
+            
+        case DVSViewControllerActionSignUp:
+            [self handleSignUpError:error];
+            break;
+            
+        case DVSViewControllerActionPasswordRemind:
+            [self handlePasswordRemindError:error];
+            break;
+    }
+}
+
+- (void)logInViewControllerDidCancel:(DVSLoginSignUpViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)moveToHomeView {
     [self performSegueWithIdentifier:DVSHomeSegue sender:self];
 }
 
-- (void)logInViewController:(DVSLogInViewController *)controller didFailWithError:(NSError *)error {
-    UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
-                                    statusDescriptionsDictionary:@{ @401: NSLocalizedString(@"Incorrect e-mail or password.", nil) }];
-    [errorAlert show];
-}
-
-- (void)logInViewControllerDidRemindPassword:(DVSLogInViewController *)controller {
+- (void)handlePasswordRemind {
     [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Remind successful", nil)
                                 message:NSLocalizedString(@"You will receive e-mail with instructions how to reset your password.", nil)
                                delegate:self
@@ -89,30 +118,22 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
                       otherButtonTitles:nil] show];
 }
 
-- (void)logInViewController:(DVSLogInViewController *)controller didFailRemindPasswordWithError:(NSError *)error {
+- (void)handleLogInError:(NSError *)error {
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
-                                    statusDescriptionsDictionary:@{ @404: NSLocalizedString(@"Account for given e-mail does not exist.", nil) }];
+                                    statusDescriptionsDictionary:@{ @401: NSLocalizedString(@"Incorrect e-mail or password.", nil) }];
     [errorAlert show];
 }
 
-- (void)logInViewControllerDidCancelLogIn:(DVSLogInViewController *)controller {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - DVSSignUpViewControllerDelegate
-
-- (void)signUpViewController:(DVSSignUpViewController *)controller didSignUpUser:(DVSUser *)user {
-    [self performSegueWithIdentifier:DVSHomeSegue sender:self];
-}
-
-- (void)signUpViewController:(DVSSignUpViewController *)controller didFailWithError:(NSError *)error {
+- (void)handleSignUpError:(NSError *)error {
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                     statusDescriptionsDictionary:@{ @422: NSLocalizedString(@"E-mail is already taken.", nil) }];
     [errorAlert show];
 }
 
-- (void)signUpViewControllerDidCancelSignUp:(DVSSignUpViewController *)controller {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)handlePasswordRemindError:(NSError *)error {
+    UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                    statusDescriptionsDictionary:@{ @404: NSLocalizedString(@"Account for given e-mail does not exist.", nil) }];
+    [errorAlert show];
 }
 
 @end
