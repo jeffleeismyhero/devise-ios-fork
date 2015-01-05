@@ -15,9 +15,6 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
-- (NSString *)absoluteURLStringForPath:(NSString *)path;
-- (void)executeRetriableBlock:(DVSHTTPClientRetriableBlock)retriable completion:(DVSHTTPClientCompletionBlock)completion;
-
 @end
 
 #pragma mark -
