@@ -69,4 +69,29 @@
     return [DVSConfiguration sharedConfiguration];
 }
 
+#pragma mark - Equality
+
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    DVSUser *user = (DVSUser *)object;
+    
+    BOOL haveEqualId = [self isProperty:self.identifier equalTo:user.identifier];
+    BOOL haveEqualEmail = [self isProperty:self.email equalTo:user.email];
+    BOOL haveEqualPassword = [self isProperty:self.password equalTo:user.password];
+    BOOL haveEqualSessionToken = [self isProperty:self.sessionToken equalTo:user.sessionToken];
+    
+    return haveEqualId && haveEqualEmail && haveEqualPassword && haveEqualSessionToken;
+}
+
+- (BOOL)isProperty:(NSObject *)ownedProperty equalTo:(NSObject *)property {
+    return [ownedProperty isEqual:property] || (!ownedProperty && !property);
+}
+
 @end

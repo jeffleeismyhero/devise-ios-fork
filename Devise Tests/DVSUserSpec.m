@@ -477,9 +477,55 @@ describe(@"DVSUser", ^{
     
     describe(@"loggin out a user", ^{
         
-        it(@"should remove locally saved user", ^{
-            [user logout];
-            [[expectFutureValue([[user class] localUser]) shouldNotEventually] beIdenticalTo:user];
+        context(@"when authorized", ^{
+            
+            beforeEach(^{
+                user.identifier = @"1";
+                user.email = @"john.appleseed@example.com";
+                user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
+                [[user class] setLocalUser:user];
+            });
+            
+            it(@"should remove locally saved user", ^{
+                [user logout];
+                [[expectFutureValue([[user class] localUser]) shouldNotEventually] beIdenticalTo:user];
+            });
+        });
+    });
+    
+    describe(@"serialized user", ^{
+        
+        __block DVSTestUser *decodedUser;
+        __block NSMutableData *archivedData;
+        
+        beforeEach(^{
+            user.identifier = @"1";
+            user.email = @"john.appleseed@example.com";
+            user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
+            user.name = @"John";
+            [[user class] setLocalUser:user];
+            
+            archivedData = [NSMutableData data];
+            NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:archivedData];
+            NSString *userObjectKey = @"userKey";
+            
+            [archiver encodeObject:user forKey:userObjectKey];
+            [archiver finishEncoding];
+            
+            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:[archivedData copy]];
+            decodedUser = (DVSTestUser *)[unarchiver decodeObjectOfClass:[DVSTestUser class] forKey:userObjectKey];
+        });
+        
+        it(@"should have been saved", ^{
+            [[expectFutureValue(@([archivedData length])) shouldEventually] beGreaterThan:@0];
+        });
+        
+        it(@"should equal after decode", ^{
+            [[expectFutureValue(decodedUser) shouldEventually] equal:user];
+        });
+        
+        it(@"should have additional parameter", ^{
+            [[expectFutureValue(decodedUser.name) shouldEventually] beNonNil];
         });
         
     });

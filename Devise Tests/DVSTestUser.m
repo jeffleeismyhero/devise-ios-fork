@@ -23,4 +23,8 @@ static DVSConfiguration *_dvs_testUser_configuration = nil;
     _dvs_testUser_configuration = configuration;
 }
 
+- (NSArray *)propertiesToPersistByName {
+    return @[ @"name" ];
+}
+
 @end

@@ -25,6 +25,13 @@
 @property (strong, nonatomic, readwrite) NSString *sessionToken;
 
 /**
+ *  User's name.
+ *
+ *  This property should be used for test requests with additional parameters.
+ */
+@property (strong, nonatomic) NSString *name;
+
+/**
  *  Sets the configuration object of the model.
  */
 + (void)setConfiguration:(DVSConfiguration *)configuration;
