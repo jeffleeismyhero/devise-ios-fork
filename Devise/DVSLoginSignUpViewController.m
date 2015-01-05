@@ -37,6 +37,8 @@
 }
 
 - (instancetype)initWithType:(DVSViewControllerType)type andFields:(DVSLogInSignUpFields)fields {
+    NSAssert(type != DVSViewControllerTypeUnknown, @"Unknown type is not supported.");
+    
     if (self = [super init]) {
         [self setupWithFieldsOptions:fields forType:type];
     }
