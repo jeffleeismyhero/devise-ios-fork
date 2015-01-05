@@ -15,7 +15,7 @@ inhibit_all_warnings!
 pod 'AFNetworking', '~> 2.5'
 pod 'UICKeyChainStore', '~> 1.1'
 pod 'XLForm', '~> 2.1'
-pod 'NGRValidator', '~> 0.1.0'
+pod 'NGRValidator', '~> 0.1.2'
 
 # Unit tests exclusive dependencies
 target 'Tests', exclusive: true do link_with 'Devise Tests'
