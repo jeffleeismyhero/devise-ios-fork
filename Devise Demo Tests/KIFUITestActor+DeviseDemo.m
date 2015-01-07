@@ -10,11 +10,11 @@
 @implementation KIFUITestActor (DeviseDemo)
 
 - (void)dvs_moveToSignUp {
-    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Sign Up")];
+    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Sign up")];
 }
 
 - (void)dvs_moveToLogIn {
-    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log In")];
+    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log in")];
 }
 
 @end

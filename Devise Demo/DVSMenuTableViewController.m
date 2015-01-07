@@ -71,6 +71,7 @@ static NSString * const DVSDefaultCell = @"defaultCell";
     DVSMenuTableModel *model = (DVSMenuTableModel *)self.dataSourceArray[indexPath.row];
     
     cell.textLabel.text = model.title;
+    cell.accessibilityLabel = model.accessibilityLabel;
     cell.detailTextLabel.text = model.subtitle;
     
     return cell;
