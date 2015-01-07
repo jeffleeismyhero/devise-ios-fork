@@ -15,14 +15,14 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithFields:(DVSLogInSignUpFields)fields andProceedTitle:(NSString *)proceedTitle {
-    self = [super initWithForm:[self formWithFields:fields andProceedTitle:proceedTitle]];
+- (instancetype)initWithFields:(DVSLogInSignUpFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
+    self = [super initWithForm:[self formWithFields:fields andProceedTitle:proceedTitle proceedAccessibilityLabel:accessibilityLabel]];
     return self;
 }
 
 #pragma mark - Form creation
 
-- (XLFormDescriptor *)formWithFields:(DVSLogInSignUpFields)fields andProceedTitle:(NSString *)proceedTitle {
+- (XLFormDescriptor *)formWithFields:(DVSLogInSignUpFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptor];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:proceedTitle];
@@ -35,6 +35,7 @@
     
     if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldProceedButton basedOn:fields]) {
         [section dvs_addProceedButtonWithTitle:proceedTitle
+                            accessibilityLabel:NSLocalizedString(@"Confirm log in", nil)
                                         action:^(XLFormRowDescriptor *sender) {
                                             if ([weakSelf.delegate respondsToSelector:@selector(logInSignUpFormViewController:didSelectProceedRow:)]) {
                                                 [weakSelf.delegate logInSignUpFormViewController:weakSelf didSelectProceedRow:sender];
@@ -45,6 +46,7 @@
     
     if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldPasswordReminder basedOn:fields]) {
         [section dvs_addPresentButtonWithTitle:NSLocalizedString(@"Remind password", nil)
+                            accessibilityLabel:NSLocalizedString(@"Move to password remind", nil)
                                         action:^(XLFormRowDescriptor *sender) {
                                             if ([weakSelf.delegate respondsToSelector:@selector(logInSignUpFormViewController:didSelectPresentRow:)]) {
                                                 [weakSelf.delegate logInSignUpFormViewController:weakSelf didSelectPresentRow:sender];

@@ -17,4 +17,8 @@
     [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log in")];
 }
 
+- (void)dvs_moveBackToWelcome {
+    [self tapViewWithAccessibilityLabel:@"Welcome"];
+}
+
 @end

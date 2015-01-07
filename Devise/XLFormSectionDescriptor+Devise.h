@@ -21,8 +21,8 @@ extern NSString * const DVSFormPresentButtonTag;
 - (void)dvs_addPasswordTextField;
 
 - (void)dvs_addDismissButtonWithAction:(void (^)(XLFormRowDescriptor *sender))action;
-- (void)dvs_addDismissButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *sender))action;
-- (void)dvs_addProceedButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *sender))action;
-- (void)dvs_addPresentButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *))action;
+- (void)dvs_addDismissButtonWithTitle:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel action:(void (^)(XLFormRowDescriptor *sender))action;
+- (void)dvs_addProceedButtonWithTitle:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel action:(void (^)(XLFormRowDescriptor *sender))action;
+- (void)dvs_addPresentButtonWithTitle:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel action:(void (^)(XLFormRowDescriptor *sender))action;
 
 @end

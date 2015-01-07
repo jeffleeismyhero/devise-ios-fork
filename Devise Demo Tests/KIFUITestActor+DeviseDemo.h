@@ -11,5 +11,6 @@
 
 - (void)dvs_moveToSignUp;
 - (void)dvs_moveToLogIn;
+- (void)dvs_moveBackToWelcome;
 
 @end

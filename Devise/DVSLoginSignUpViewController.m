@@ -56,7 +56,12 @@
 }
 
 - (void)setupFormViewControllerForFieldsOptions:(DVSLogInSignUpFields)fields {
-    self.formViewController = [[DVSLoginSignUpFormViewController alloc] initWithFields:fields andProceedTitle:[self localizedProceedButtonTitleForType:self.controllerType]];
+    
+    NSString *proceedTitle = [self localizedProceedButtonTitleForType:self.controllerType];
+    NSString *proceedAccessibilityTitle = [self localizedProceedButtonAccessibilityTitleForType:self.controllerType];
+    self.formViewController = [[DVSLoginSignUpFormViewController alloc] initWithFields:fields
+                                                                       andProceedTitle:proceedTitle
+                                                             proceedAccessibilityLabel:proceedAccessibilityTitle];
     self.formViewController.delegate = self;
     [self attachViewController:self.formViewController];
 }
@@ -96,6 +101,8 @@
 
 #pragma mark - Type handling
 
+DVSWorkInProgress("Move type properties to separate model class.");
+
 - (NSString *)localizedProceedButtonTitleForType:(DVSViewControllerType)type {
     switch (type) {
         case DVSViewControllerTypeLogIn:
@@ -104,6 +111,19 @@
             return NSLocalizedString(@"Sign Up", nil);
         default:
             return NSLocalizedString(@"Proceed", nil);
+    }
+}
+
+- (NSString *)localizedProceedButtonAccessibilityTitleForType:(DVSViewControllerType)type {
+    switch (type) {
+        case DVSViewControllerTypeLogIn:
+            return NSLocalizedString(@"Confirm log in", nil);
+            
+        case DVSViewControllerTypeSignUp:
+            return NSLocalizedString(@"Confirm sign up", nil);
+            
+        default:
+            return [self localizedProceedButtonTitleForType:type];
     }
 }
 

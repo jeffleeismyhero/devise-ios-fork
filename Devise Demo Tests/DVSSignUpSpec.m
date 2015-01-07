@@ -5,14 +5,16 @@
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "KIFUITestActor+DeviseDemo.h"
-
 SPEC_BEGIN(DVSSignUpSpec)
 
 describe(@"sign up screen", ^{
     
     beforeAll(^{
         [tester dvs_moveToSignUp];
+    });
+    
+    afterAll(^{
+        [tester dvs_moveBackToWelcome];
     });
     
     it(@"should do basic test", ^{

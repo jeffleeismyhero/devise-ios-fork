@@ -15,7 +15,7 @@
 
 @property (weak, nonatomic) id<DVSLoginSignUpFormViewControllerDelegate> delegate;
 
-- (instancetype)initWithFields:(DVSLogInSignUpFields)fields andProceedTitle:(NSString *)title;
+- (instancetype)initWithFields:(DVSLogInSignUpFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel;
 
 @end
 

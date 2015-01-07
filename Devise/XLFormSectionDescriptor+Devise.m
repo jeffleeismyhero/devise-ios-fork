@@ -33,26 +33,30 @@ NSString * const DVSFormPresentButtonTag = @"presentButton";
 
 - (void)dvs_addDismissButtonWithAction:(void (^)(XLFormRowDescriptor *))action {
     [self dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
+                     accessibilityLabel:NSLocalizedString(@"Cancel current action and move back", nil)
                                  action:action];
 }
 
-- (void)dvs_addDismissButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *))action {
+- (void)dvs_addDismissButtonWithTitle:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel action:(void (^)(XLFormRowDescriptor *))action {
     [self addFormRow:[XLFormRowDescriptor dvs_buttonRowWithTag:DVSFormDismissButtonTag
                                                          title:title
+                                            accessibilityLabel:accessibilityLabel
                                                          color:[UIColor redColor]
                                                         action:action]];
 }
 
-- (void)dvs_addProceedButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *))action {
+- (void)dvs_addProceedButtonWithTitle:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel action:(void (^)(XLFormRowDescriptor *))action {
     [self addFormRow:[XLFormRowDescriptor dvs_buttonRowWithTag:DVSFormProceedButtonTag
                                                          title:title
+                                            accessibilityLabel:accessibilityLabel
                                                          color:[UIColor blueColor]
                                                         action:action]];
 }
 
-- (void)dvs_addPresentButtonWithTitle:(NSString *)title action:(void (^)(XLFormRowDescriptor *))action {
+- (void)dvs_addPresentButtonWithTitle:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel action:(void (^)(XLFormRowDescriptor *))action {
     [self addFormRow:[XLFormRowDescriptor dvs_buttonRowWithTag:DVSFormPresentButtonTag
                                                          title:title
+                                            accessibilityLabel:accessibilityLabel
                                                          color:[UIColor redColor]
                                                         action:action]];
 }

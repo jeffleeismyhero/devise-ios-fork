@@ -31,6 +31,7 @@
     
     [section dvs_addEmailTextField];
     [section dvs_addProceedButtonWithTitle:NSLocalizedString(@"Remind", nil)
+                        accessibilityLabel:NSLocalizedString(@"Confirm password remind", nil)
                                     action:^(XLFormRowDescriptor *sender) {
                                         if ([weakSelf.delegate respondsToSelector:@selector(passwordReminderFormViewController:didSelectProceedRow:)]) {
                                             [weakSelf.delegate passwordReminderFormViewController:self didSelectProceedRow:sender];
@@ -39,6 +40,7 @@
                                     }];
     
     [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
+                        accessibilityLabel:NSLocalizedString(@"Cancel password remind", nil)
                                     action:^(XLFormRowDescriptor *sender) {
                                         if ([weakSelf.delegate respondsToSelector:@selector(passwordReminderFormViewController:didSelectDismissRow:)]) {
                                             [weakSelf.delegate passwordReminderFormViewController:self didSelectDismissRow:sender];

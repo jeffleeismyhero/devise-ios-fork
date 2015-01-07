@@ -12,35 +12,64 @@
 
 @implementation XLFormRowDescriptor (Devise)
 
+#pragma mark - Custom textFields
+
 + (XLFormRowDescriptor *)dvs_emailRowWithTag:(NSString *)tag {
-    return [XLFormRowDescriptor formRowDescriptorWithTag:tag
-                                                 rowType:XLFormRowDescriptorTypeEmail
-                                                   title:NSLocalizedString(@"E-mail", nil)];
+    XLFormRowDescriptor *emailRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
+                                                                          rowType:XLFormRowDescriptorTypeEmail
+                                                                            title:NSLocalizedString(@"E-mail", nil)];
+    [emailRow dvs_setAccessibilityLabel:NSLocalizedString(@"E-mail field", nil)];
+    
+    return emailRow;
 }
 
 + (XLFormRowDescriptor *)dvs_passwordRowWithTag:(NSString *)tag {
-    return [XLFormRowDescriptor formRowDescriptorWithTag:tag
-                                                 rowType:XLFormRowDescriptorTypePassword
-                                                   title:NSLocalizedString(@"Password", nil)];
+    XLFormRowDescriptor *passwordRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
+                                                                             rowType:XLFormRowDescriptorTypePassword
+                                                                               title:NSLocalizedString(@"Password", nil)];
+    [passwordRow dvs_setAccessibilityLabel:NSLocalizedString(@"Password field", nil)];
+    
+    return passwordRow;
 }
 
-+ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color {
-    return [self dvs_buttonRowWithTag:tag title:title color:color action:nil];
+#pragma mark - Custom buttons
+
++ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title accessibilityLabel:(NSString *)accessiblityLabel color:(UIColor *)color {
+    return [self dvs_buttonRowWithTag:tag title:title accessibilityLabel:accessiblityLabel color:color action:nil];
 }
 
-+ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title color:(UIColor *)color action:(void (^)(XLFormRowDescriptor *))action {
++ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title accessibilityLabel:(NSString *)accessiblityLabel color:(UIColor *)color action:(void (^)(XLFormRowDescriptor *))action {
     XLFormRowDescriptor *buttonRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
                                                                            rowType:XLFormRowDescriptorTypeButton
                                                                              title:title];
     [buttonRow dvs_customizeTextWithColor:color alignment:NSTextAlignmentCenter];
+    [buttonRow dvs_setAccessibilityLabel:accessiblityLabel];
     buttonRow.action.formBlock = action;
     
     return buttonRow;
 }
 
+#pragma mark - Private methods
+
 - (void)dvs_customizeTextWithColor:(UIColor *)color alignment:(NSTextAlignment)alignment {
     [self.cellConfig setObject:color forKey:@"textLabel.textColor"];
     [self.cellConfig setObject:@(alignment) forKey:@"textLabel.textAlignment"];
+}
+
+- (void)dvs_setAccessibilityLabel:(NSString *)accessibilityLabel {
+    if ([self.rowType isEqualToString:XLFormRowDescriptorTypeButton]) {
+        [self dvs_setAccessibilityLabel:accessibilityLabel forControllWithName:@""];
+    } else if ([self.rowType isEqualToString:XLFormRowDescriptorTypeText]
+               || [self.rowType isEqualToString:XLFormRowDescriptorTypeEmail]
+               || [self.rowType isEqualToString:XLFormRowDescriptorTypePassword]) {
+        [self dvs_setAccessibilityLabel:accessibilityLabel forControllWithName:@"textField."];
+    } else {
+        NSAssert(NO, @"Row type not supported.");
+    }
+}
+
+- (void)dvs_setAccessibilityLabel:(NSString *)accessibilityLabel forControllWithName:(NSString *)controllName {
+    [self.cellConfig setObject:accessibilityLabel forKey:[NSString stringWithFormat:@"%@accessibilityLabel", controllName]];
 }
 
 @end

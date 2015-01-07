@@ -17,6 +17,7 @@
 		218E29AA1A5D15560010BF3F /* DVSSignUpSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A91A5D15560010BF3F /* DVSSignUpSpec.m */; };
 		218E29AD1A5D196D0010BF3F /* AccessibilityLabels.strings in Resources */ = {isa = PBXBuildFile; fileRef = 218E29AB1A5D196D0010BF3F /* AccessibilityLabels.strings */; };
 		218E29B11A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29B01A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.m */; };
+		218E29B61A5D27180010BF3F /* DVSFunctionalTestsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29B31A5D26FC0010BF3F /* DVSFunctionalTestsConfig.m */; };
 		21AFB7EA1A48416F00769C87 /* DVSFormRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E91A48416F00769C87 /* DVSFormRow.m */; };
 		21AFB7F61A48446600769C87 /* DVSFormRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F41A48446600769C87 /* DVSFormRowCell.m */; };
 		21AFB7F71A48446600769C87 /* DVSFormRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7F51A48446600769C87 /* DVSFormRowCell.xib */; };
@@ -145,6 +146,7 @@
 		218E29AC1A5D196D0010BF3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/AccessibilityLabels.strings; sourceTree = "<group>"; };
 		218E29AF1A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KIFUITestActor+DeviseDemo.h"; path = "Devise Demo Tests/KIFUITestActor+DeviseDemo.h"; sourceTree = "<group>"; };
 		218E29B01A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "KIFUITestActor+DeviseDemo.m"; path = "Devise Demo Tests/KIFUITestActor+DeviseDemo.m"; sourceTree = "<group>"; };
+		218E29B31A5D26FC0010BF3F /* DVSFunctionalTestsConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSFunctionalTestsConfig.m; path = "Devise Demo Tests/DVSFunctionalTestsConfig.m"; sourceTree = "<group>"; };
 		21AFB7E81A48416F00769C87 /* DVSFormRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRow.h; sourceTree = "<group>"; };
 		21AFB7E91A48416F00769C87 /* DVSFormRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormRow.m; sourceTree = "<group>"; };
 		21AFB7F31A48446600769C87 /* DVSFormRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRowCell.h; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			children = (
 				218E29AF1A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.h */,
 				218E29B01A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.m */,
+				218E29B31A5D26FC0010BF3F /* DVSFunctionalTestsConfig.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -1186,6 +1189,7 @@
 			files = (
 				218E29AA1A5D15560010BF3F /* DVSSignUpSpec.m in Sources */,
 				218E29A61A5AED6F0010BF3F /* DVSLogInViewSpec.m in Sources */,
+				218E29B61A5D27180010BF3F /* DVSFunctionalTestsConfig.m in Sources */,
 				218E29B11A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
