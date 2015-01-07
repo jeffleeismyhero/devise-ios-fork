@@ -8,6 +8,7 @@
 
 #import "XLFormRowDescriptor+Devise.h"
 
+#import "DVSAccessibilityLabels.h"
 #import "XLForm.h"
 
 @implementation XLFormRowDescriptor (Devise)
@@ -18,7 +19,7 @@
     XLFormRowDescriptor *emailRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
                                                                           rowType:XLFormRowDescriptorTypeEmail
                                                                             title:NSLocalizedString(@"E-mail", nil)];
-    [emailRow dvs_setAccessibilityLabel:NSLocalizedString(@"E-mail field", nil)];
+    [emailRow dvs_setAccessibilityLabel:NSLocalizedString(DVSAccessibilityLabelEmailTextField, nil)];
     
     return emailRow;
 }
@@ -27,7 +28,7 @@
     XLFormRowDescriptor *passwordRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
                                                                              rowType:XLFormRowDescriptorTypePassword
                                                                                title:NSLocalizedString(@"Password", nil)];
-    [passwordRow dvs_setAccessibilityLabel:NSLocalizedString(@"Password field", nil)];
+    [passwordRow dvs_setAccessibilityLabel:NSLocalizedString(DVSAccessibilityLabelPasswordTextField, nil)];
     
     return passwordRow;
 }

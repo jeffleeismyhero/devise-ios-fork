@@ -8,6 +8,7 @@
 
 #import "XLFormSectionDescriptor+Devise.h"
 
+#import "DVSAccessibilityLabels.h"
 #import "XLFormRowDescriptor+Devise.h"
 
 NSString * const DVSFormEmailTag = @"email";
@@ -33,7 +34,7 @@ NSString * const DVSFormPresentButtonTag = @"presentButton";
 
 - (void)dvs_addDismissButtonWithAction:(void (^)(XLFormRowDescriptor *))action {
     [self dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
-                     accessibilityLabel:NSLocalizedString(@"Cancel current action and move back", nil)
+                     accessibilityLabel:NSLocalizedString(DVSAccessibilityLabelCancelButton, nil)
                                  action:action];
 }
 

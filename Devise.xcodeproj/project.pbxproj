@@ -18,6 +18,8 @@
 		218E29AD1A5D196D0010BF3F /* AccessibilityLabels.strings in Resources */ = {isa = PBXBuildFile; fileRef = 218E29AB1A5D196D0010BF3F /* AccessibilityLabels.strings */; };
 		218E29B11A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29B01A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.m */; };
 		218E29B61A5D27180010BF3F /* DVSFunctionalTestsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29B31A5D26FC0010BF3F /* DVSFunctionalTestsConfig.m */; };
+		218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */ = {isa = PBXBuildFile; fileRef = 218E29B91A5D7B310010BF3F /* DVSAccessibilityLabels.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		218E29BC1A5D7B310010BF3F /* DVSAccessibilityLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29BA1A5D7B310010BF3F /* DVSAccessibilityLabels.m */; };
 		21AFB7EA1A48416F00769C87 /* DVSFormRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E91A48416F00769C87 /* DVSFormRow.m */; };
 		21AFB7F61A48446600769C87 /* DVSFormRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F41A48446600769C87 /* DVSFormRowCell.m */; };
 		21AFB7F71A48446600769C87 /* DVSFormRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7F51A48446600769C87 /* DVSFormRowCell.xib */; };
@@ -147,6 +149,8 @@
 		218E29AF1A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KIFUITestActor+DeviseDemo.h"; path = "Devise Demo Tests/KIFUITestActor+DeviseDemo.h"; sourceTree = "<group>"; };
 		218E29B01A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "KIFUITestActor+DeviseDemo.m"; path = "Devise Demo Tests/KIFUITestActor+DeviseDemo.m"; sourceTree = "<group>"; };
 		218E29B31A5D26FC0010BF3F /* DVSFunctionalTestsConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSFunctionalTestsConfig.m; path = "Devise Demo Tests/DVSFunctionalTestsConfig.m"; sourceTree = "<group>"; };
+		218E29B91A5D7B310010BF3F /* DVSAccessibilityLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSAccessibilityLabels.h; sourceTree = "<group>"; };
+		218E29BA1A5D7B310010BF3F /* DVSAccessibilityLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSAccessibilityLabels.m; sourceTree = "<group>"; };
 		21AFB7E81A48416F00769C87 /* DVSFormRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRow.h; sourceTree = "<group>"; };
 		21AFB7E91A48416F00769C87 /* DVSFormRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormRow.m; sourceTree = "<group>"; };
 		21AFB7F31A48446600769C87 /* DVSFormRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRowCell.h; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 				21B362D61A514F5100202C94 /* Views */,
 				21B3EC951A52B35500C8C620 /* DVSFieldsUtils.h */,
 				21B3EC961A52B35500C8C620 /* DVSFieldsUtils.m */,
+				218E29B91A5D7B310010BF3F /* DVSAccessibilityLabels.h */,
+				218E29BA1A5D7B310010BF3F /* DVSAccessibilityLabels.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -831,6 +837,7 @@
 				5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */,
 				21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */,
 				21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise.h in Headers */,
+				218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
 				21B3ECAB1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
@@ -1209,6 +1216,7 @@
 				21AFB8011A48C31100769C87 /* DVSTemplatesViewsUserDataSource.m in Sources */,
 				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
 				21B3ECAC1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.m in Sources */,
+				218E29BC1A5D7B310010BF3F /* DVSAccessibilityLabels.m in Sources */,
 				3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */,
 				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
 				21B3EC981A52B35500C8C620 /* DVSFieldsUtils.m in Sources */,

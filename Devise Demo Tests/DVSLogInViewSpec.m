@@ -18,8 +18,7 @@ describe(@"DVSLogInView", ^{
     });
     
     it(@"should do basic test", ^{
-        [tester tapViewWithAccessibilityLabel:NSLocalizedString(@"E-mail field", nil)];
-        [tester tapViewWithAccessibilityLabel:NSLocalizedString(@"Confirm log in", nil)];
+        [tester tapViewWithAccessibilityLabel:NSLocalizedString(DVSAccessibilityLabelEmailTextField, nil)];
     });
     
 });

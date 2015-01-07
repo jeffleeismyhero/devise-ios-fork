@@ -7,6 +7,7 @@
 
 #import "DVSLoginSignUpViewController.h"
 
+#import "DVSAccessibilityLabels.h"
 #import "DVSBarButtonItem.h"
 #import "DVSFieldsUtils.h"
 #import "DVSTemplatesViewsUserDataSource.h"
@@ -117,10 +118,10 @@ DVSWorkInProgress("Move type properties to separate model class.");
 - (NSString *)localizedProceedButtonAccessibilityTitleForType:(DVSViewControllerType)type {
     switch (type) {
         case DVSViewControllerTypeLogIn:
-            return NSLocalizedString(@"Confirm log in", nil);
+            return NSLocalizedString(DVSAccessibilityLabelConfirmLogInButton, nil);
             
         case DVSViewControllerTypeSignUp:
-            return NSLocalizedString(@"Confirm sign up", nil);
+            return NSLocalizedString(DVSAccessibilityLabelConfirmSignUpButton, nil);
             
         default:
             return [self localizedProceedButtonTitleForType:type];

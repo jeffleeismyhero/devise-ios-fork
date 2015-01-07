@@ -7,6 +7,7 @@
 
 #import "DVSLoginSignUpFormViewController.h"
 
+#import "DVSAccessibilityLabels.h"
 #import "DVSFieldsUtils.h"
 #import "XLFormRowDescriptor+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
@@ -35,7 +36,7 @@
     
     if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldProceedButton basedOn:fields]) {
         [section dvs_addProceedButtonWithTitle:proceedTitle
-                            accessibilityLabel:NSLocalizedString(@"Confirm log in", nil)
+                            accessibilityLabel:accessibilityLabel
                                         action:^(XLFormRowDescriptor *sender) {
                                             if ([weakSelf.delegate respondsToSelector:@selector(logInSignUpFormViewController:didSelectProceedRow:)]) {
                                                 [weakSelf.delegate logInSignUpFormViewController:weakSelf didSelectProceedRow:sender];
@@ -46,7 +47,7 @@
     
     if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldPasswordReminder basedOn:fields]) {
         [section dvs_addPresentButtonWithTitle:NSLocalizedString(@"Remind password", nil)
-                            accessibilityLabel:NSLocalizedString(@"Move to password remind", nil)
+                            accessibilityLabel:NSLocalizedString(DVSAccessibilityLabelMoveToPasswordRemindButton, nil)
                                         action:^(XLFormRowDescriptor *sender) {
                                             if ([weakSelf.delegate respondsToSelector:@selector(logInSignUpFormViewController:didSelectPresentRow:)]) {
                                                 [weakSelf.delegate logInSignUpFormViewController:weakSelf didSelectPresentRow:sender];
