@@ -1,0 +1,20 @@
+//
+//  KIFUITestActor+DeviseDemo.m
+//  Devise
+//
+//  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
+//
+
+#import "KIFUITestActor+DeviseDemo.h"
+
+@implementation KIFUITestActor (DeviseDemo)
+
+- (void)dvs_moveToSignUp {
+    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Sign Up")];
+}
+
+- (void)dvs_moveToLogIn {
+    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log In")];
+}
+
+@end

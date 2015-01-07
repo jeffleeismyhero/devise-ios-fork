@@ -35,10 +35,12 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 - (void)setupDataSource {
     [self addMenuEntryWithTitle:NSLocalizedString(@"Sign up", nil)
                        subtitle:NSLocalizedString(@"Create new account", nil)
+             accessibilityLabel:DVSAccessibilityLabel(@"Sign up")
                          target:self
                          action:@selector(didSelectRegister)];
     [self addMenuEntryWithTitle:NSLocalizedString(@"Log in", nil)
                        subtitle:NSLocalizedString(@"Already registered?", nil)
+             accessibilityLabel:DVSAccessibilityLabel(@"Log in")
                          target:self
                          action:@selector(didSelectLogIn)];
 }

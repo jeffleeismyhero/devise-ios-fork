@@ -18,3 +18,5 @@
     #import <Devise/Devise.h>
 
 #endif
+
+#define DVSAccessibilityLabel(__label__) NSLocalizedStringFromTable((__label__), @"AccessibilityLabels", nil)

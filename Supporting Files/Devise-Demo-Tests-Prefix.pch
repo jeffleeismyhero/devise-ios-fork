@@ -13,7 +13,8 @@
 
 #import <Devise/Devise.h>
 
-#import <Kiwi/Kiwi.h>
-#import <Kif/Kif.h>
+#import <KIF-Kiwi/KIF-Kiwi.h>
 
 #endif
+
+#define DVSAccessibilityLabel(__label__) NSLocalizedStringFromTable((__label__), @"AccessibilityLabels", nil)

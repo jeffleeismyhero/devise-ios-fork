@@ -14,5 +14,7 @@
 
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue;
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target action:(SEL)selector;
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle accessibilityLabel:(NSString *)accessibilityLabel segue:(NSString *)segue;
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle accessibilityLabel:(NSString *)accesibilityLabel target:(id)target action:(SEL)selector;
 
 @end

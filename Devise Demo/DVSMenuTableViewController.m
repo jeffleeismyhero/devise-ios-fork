@@ -37,14 +37,24 @@ static NSString * const DVSDefaultCell = @"defaultCell";
 #pragma mark - Menu entries
 
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle segue:(NSString *)segue {
+    [self addMenuEntryWithTitle:title subtitle:subtitle accessibilityLabel:title segue:segue];
+}
+
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle accessibilityLabel:(NSString *)accessibilityLabel segue:(NSString *)segue {
     [self.dataSourceArray addObject:[[DVSMenuTableModel alloc] initWithTitle:title
                                                                     subtitle:subtitle
-                                                                   segueName:segue]];
+                                                          accessibilityLabel:accessibilityLabel
+                                                             segueIdentifier:segue]];
 }
 
 - (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle target:(id)target action:(SEL)selector {
+    [self addMenuEntryWithTitle:title subtitle:subtitle accessibilityLabel:title target:target action:selector];
+}
+
+- (void)addMenuEntryWithTitle:(NSString *)title subtitle:(NSString *)subtitle accessibilityLabel:(NSString *)accesibilityLabel target:(id)target action:(SEL)selector {
     [self.dataSourceArray addObject:[[DVSMenuTableModel alloc] initWithTitle:title
                                                                     subtitle:subtitle
+                                                          accessibilityLabel:title
                                                                       target:target
                                                                     selector:selector]];
 }
