@@ -57,11 +57,15 @@ NSString * const DVSValidPassword = @"$eCR3t";
 #pragma mark - Complex actions
 
 - (void)dvs_login {
+    id<OHHTTPStubsDescriptor> loginStub = [OHHTTPStubs dvs_stubUserLogInRequestsWithOptions:nil];
+    
     [self dvs_moveToLogIn];
     [self dvs_enterValidEmail];
     [self dvs_enterValidPassword];
     [self dvs_closeSoftwareKeyboard];
     [self dvs_tapConfirmLoginButton];
+    
+    [OHHTTPStubs removeStub:loginStub];
 }
 
 #pragma mark - Helpers

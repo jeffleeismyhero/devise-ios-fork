@@ -70,7 +70,7 @@ describe(@"sign up screen", ^{
             
         });
         
-        context(@"for password field", ^{
+        describe(@"for password field", ^{
             
             beforeEach(^{
                 [tester dvs_enterValidEmail];

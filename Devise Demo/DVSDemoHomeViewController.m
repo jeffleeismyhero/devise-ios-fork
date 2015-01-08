@@ -17,6 +17,7 @@ static NSString * const DVSPasswordChangeSegue = @"DisplayPasswordChange";
 static NSString * const DVSHomeDefaultCell = @"defaultCell";
 static NSString * const DVSTitleForAlertNoButton = @"No";
 static NSString * const DVSTitleForAlertYesButton = @"Yes";
+static NSString * const DVSTitleForAlertTitle = @"Delete";
 static NSString * const DVSTitleForDelete = @"Delete profile";
 
 @interface DVSDemoHomeViewController () <UIAlertViewDelegate>
@@ -58,7 +59,7 @@ static NSString * const DVSTitleForDelete = @"Delete profile";
 #pragma mark - Delete action
 
 - (void)handleDeleteCell {
-    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(DVSTitleForDelete, nil)
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(DVSTitleForAlertTitle, nil)
                                 message:NSLocalizedString(@"Are you sure you want to delete your profile?", nil)
                                delegate:self
                       cancelButtonTitle:NSLocalizedString(DVSTitleForAlertNoButton, nil)

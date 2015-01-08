@@ -7,7 +7,7 @@
 
 SPEC_BEGIN(DVSLogInViewSpec)
 
-describe(@"DVSLogInView", ^{
+describe(@"log in screen", ^{
     
     beforeEach(^{
         [tester dvs_moveToLogIn];
@@ -70,7 +70,7 @@ describe(@"DVSLogInView", ^{
             
         });
         
-        context(@"for password field", ^{
+        describe(@"for password field", ^{
            
             beforeEach(^{
                 [tester dvs_enterValidEmail];

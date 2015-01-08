@@ -7,7 +7,7 @@
 
 SPEC_BEGIN(DVSPasswordRemindViewSpec)
 
-describe(@"password remind", ^{
+describe(@"password remind screen", ^{
    
     beforeAll(^{
         [tester dvs_moveToLogIn];
@@ -26,7 +26,7 @@ describe(@"password remind", ^{
         [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelCancelRemindPasswordButton)];
     });
     
-    context(@"error message", ^{
+    describe(@"error message", ^{
         
         it(@"should show when e-mail field is empty", ^{
             [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmRemindPasswordButton)];
@@ -40,7 +40,7 @@ describe(@"password remind", ^{
         });
     });
     
-    context(@"success message", ^{
+    describe(@"success message", ^{
         
         it(@"should show when e-mail is valid", ^{
             [tester enterText:@"john.appleseed@example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
