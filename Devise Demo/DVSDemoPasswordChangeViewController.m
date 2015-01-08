@@ -14,7 +14,7 @@
 #import "NSError+DeviseDemo.h"
 #import "UIAlertView+DeviseDemo.h"
 
-static NSString * const DVSTitleForAlertCancelButton = @"Cancel";
+static NSString * const DVSTitleForAlertCancelButton = @"Close";
 static NSString * const DVSTitleForCurrentPasswort = @"Current password";
 static NSString * const DVSTitleForNewPassword = @"New password";
 static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
