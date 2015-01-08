@@ -10,12 +10,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
 #import <Devise/Devise.h>
+
+#import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OHHTTPStubs/OHHTTPStubsResponse+JSON.h>
 
 #import <KIF-Kiwi/KIF-Kiwi.h>
 
-#import "KIFUITestActor+DeviseDemo.h"
+#import "KIFUITestActor+DeviseDemoTests.h"
+#import "OHHTTPStubs+DeviseDemoTests.h"
 
 #endif
 

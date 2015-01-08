@@ -17,8 +17,39 @@ describe(@"sign up screen", ^{
         [tester dvs_moveBackToWelcome];
     });
     
-    it(@"should do basic test", ^{
-        [[theValue(@1) should] equal:theValue(@1)];
+    describe(@"error message", ^{
+        
+        context(@"for e-mail field", ^{
+            
+            it(@"should be shown when empty", ^{
+                
+            });
+            
+            it(@"should be shown when has wrong syntax", ^{
+                
+            });
+            
+            it(@"should not be shown when valid", ^{
+                
+            });
+            
+        });
+        
+        context(@"for password field", ^{
+            
+            it(@"should be shown when empty", ^{
+                
+            });
+            
+            it(@"should be shown when is too short", ^{
+                
+            });
+            
+            it(@"should not be shown when valid", ^{
+                
+            });
+            
+        });
     });
     
 });
