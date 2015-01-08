@@ -47,17 +47,19 @@ describe(@"DVSLogInView", ^{
                     [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
                 });
                 
-                it(@"when has wrong syntax", ^{
-                    [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
-                    [tester dvs_tapConfirmLoginButton];
-                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-                });
             });
             
-            xit(@"should not be shown when valid", ^{
-                [tester dvs_enterValidEmail];
-                [tester dvs_tapConfirmLoginButton];
-                [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+            context(@"should not be shown", ^{
+                
+                afterEach(^{
+                    [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log out")];
+                });
+                
+                it(@"should not be shown when valid", ^{
+                    [tester dvs_enterValidEmail];
+                    [tester dvs_tapConfirmLoginButton];
+                    [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                });
             });
             
         });
@@ -79,20 +81,20 @@ describe(@"DVSLogInView", ^{
                     [tester dvs_tapConfirmLoginButton];
                     [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
                 });
+            });
+            
+            context(@"should not be shown", ^{
                 
-                it(@"when is invalid", ^{
-                    [tester enterText:@"invalid_$eCR3t" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelPasswordTextField)];
+                afterEach(^{
+                    [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log out")];
+                });
+                
+                it(@"when valid", ^{
+                    [tester dvs_enterValidPassword];
                     [tester dvs_tapConfirmLoginButton];
-                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                    [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
                 });
             });
-            
-            xit(@"should not be shown when valid", ^{
-                [tester dvs_enterValidPassword];
-                [tester dvs_tapConfirmLoginButton];
-                [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-            });
-            
         });
     });
     

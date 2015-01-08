@@ -37,6 +37,7 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
                                                                                      DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ],
                                                                                      }];
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        
         return [self dvs_responseWithJSON:@{ @"user": @{
                                                      @"id": @1,
                                                      @"email": @"john.appleseed@example.com",
@@ -51,7 +52,11 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
 
 + (id<OHHTTPStubsDescriptor>)dvs_stubRequestsForPath:(NSString *)path options:(NSDictionary *)options response:(OHHTTPStubsResponseBlock)response {
     return [self stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        if (![[request.URL.path substringFromIndex:1] isEqualToString:path]) {
+        NSRange rangeOfLastSlash = [request.URL.path rangeOfString:@"/" options:NSBackwardsSearch];
+        if (rangeOfLastSlash.location == NSNotFound && ![request.URL.path isEqualToString:path]) {
+            return NO;
+        }
+        if (![[request.URL.path substringFromIndex:rangeOfLastSlash.location + 1] isEqualToString:path]) {
             return NO;
         }
         if (options[DVSHTTPStubsAllowedMethodsKey]) {

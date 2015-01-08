@@ -7,6 +7,9 @@
 
 #import "KIFUITestActor.h"
 
+extern NSString * const DVSValidEmail;
+extern NSString * const DVSValidPassword;
+
 @interface KIFUITestActor (DeviseDemoTests)
 
 #pragma mark - Basic actions
