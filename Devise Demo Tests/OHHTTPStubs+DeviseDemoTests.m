@@ -17,9 +17,8 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
 
 + (id<OHHTTPStubsDescriptor>)dvs_stubUserRegisterRequestsWithOptions:(NSDictionary *)options {
     NSString *path = DVSHTTPClientDefaultRegisterPath;
-    options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
-                                                                                     DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ],
-                                                                                     }];
+    options = [self dvs_optionsDictionaryForReceivedOptions:options
+                                             defaultOptions:@{ DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ] }];
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
         return [self dvs_responseWithJSON:@{ @"user": @{
                                                      @"id": @1,
@@ -33,9 +32,8 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
 
 + (id<OHHTTPStubsDescriptor>)dvs_stubUserLogInRequestsWithOptions:(NSDictionary *)options {
     NSString *path = DVSHTTPClientDefaultLogInPath;
-    options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
-                                                                                     DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ],
-                                                                                     }];
+    options = [self dvs_optionsDictionaryForReceivedOptions:options
+                                             defaultOptions:@{ DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ] }];
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
         
         return [self dvs_responseWithJSON:@{ @"user": @{
@@ -45,6 +43,15 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
                                                      @"createdAt": @"1970-01-01T00:00:00.000Z",
                                                      @"updatedAt": @"1970-01-01T00:00:00.000Z",
                                                      } } statusCode:200];
+    }];
+}
+
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserRemindPasswordRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultRemindPasswordPath;
+    options = [self dvs_optionsDictionaryForReceivedOptions:options
+                                             defaultOptions:@{ DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ] }];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [OHHTTPStubsResponse responseWithData:nil statusCode:204 headers:nil];
     }];
 }
 

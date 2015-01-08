@@ -41,7 +41,7 @@
                                     }];
     
     [section dvs_addDismissButtonWithTitle:NSLocalizedString(@"Cancel", nil)
-                        accessibilityLabel:NSLocalizedString(DVSAccessibilityLableCancelRemindPasswordButton, nil)
+                        accessibilityLabel:NSLocalizedString(DVSAccessibilityLabelCancelRemindPasswordButton, nil)
                                     action:^(XLFormRowDescriptor *sender) {
                                         if ([weakSelf.delegate respondsToSelector:@selector(passwordReminderFormViewController:didSelectDismissRow:)]) {
                                             [weakSelf.delegate passwordReminderFormViewController:self didSelectDismissRow:sender];

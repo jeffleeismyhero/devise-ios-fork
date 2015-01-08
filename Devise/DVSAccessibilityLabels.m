@@ -12,6 +12,6 @@ NSString * const DVSAccessibilityLabelConfirmSignUpButton = @"Confirm sign up";
 NSString * const DVSAccessibilityLabelConfirmRemindPasswordButton = @"Confirm password remind";
 NSString * const DVSAccessibilityLabelMoveToPasswordRemindButton = @"Move to password remind";
 NSString * const DVSAccessibilityLabelCancelButton = @"Cancel current action and move back";
-NSString * const DVSAccessibilityLableCancelRemindPasswordButton = @"Cancel password remind";
+NSString * const DVSAccessibilityLabelCancelRemindPasswordButton = @"Cancel password remind";
 NSString * const DVSAccessibilityLabelEmailTextField = @"E-mail field";
 NSString * const DVSAccessibilityLabelPasswordTextField = @"Password field";

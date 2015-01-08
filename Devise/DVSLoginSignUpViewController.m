@@ -131,11 +131,11 @@ DVSWorkInProgress("Move type properties to separate model class.");
 - (void)performProceedActionForType:(DVSViewControllerType)type {
     switch (type) {
         case DVSViewControllerTypeLogIn:
-            [self performLogInAction];
+            [self performLogInActionForForm:self.formViewController];
             break;
             
         case DVSViewControllerTypeSignUp:
-            [self performSignUpAction];
+            [self performSignUpActionForForm:self.formViewController];
             break;
             
         default:
@@ -145,8 +145,8 @@ DVSWorkInProgress("Move type properties to separate model class.");
 
 #pragma mark - Actions
 
-- (void)performLogInAction {
-    NSDictionary *formValues = [self.formViewController formValues];
+- (void)performLogInActionForForm:(XLFormViewController *)formViewController {
+    NSDictionary *formValues = [formViewController formValues];
     
     DVSUser *user = [DVSUser new];
     
@@ -162,8 +162,8 @@ DVSWorkInProgress("Move type properties to separate model class.");
     }];
 }
 
-- (void)performSignUpAction {
-    NSDictionary *formValues = [self.formViewController formValues];
+- (void)performSignUpActionForForm:(XLFormViewController *)formViewController {
+    NSDictionary *formValues = [formViewController formValues];
     
     DVSUser *newUser = [DVSUser new];
     
@@ -179,8 +179,8 @@ DVSWorkInProgress("Move type properties to separate model class.");
     }];
 }
 
-- (void)performRemindPasswordAction {
-    NSDictionary *formValues = [self.formViewController formValues];
+- (void)performRemindPasswordActionForForm:(XLFormViewController *)formViewController {
+    NSDictionary *formValues = [formViewController formValues];
     
     DVSUser *user = [DVSUser new];
     
@@ -230,13 +230,13 @@ DVSWorkInProgress("Move type properties to separate model class.");
 }
 
 - (void)logInSignUpFormViewController:(DVSLoginSignUpFormViewController *)formController didSelectPresentRow:(XLFormRowDescriptor *)row {
-    [self performRemindPasswordAction];
+    [self showPasswordReminder];
 }
 
 #pragma mark - DVSPasswordReminderFormViewControllerDelegate
 
 - (void)passwordReminderFormViewController:(DVSPasswordReminderFormViewController *)controller didSelectProceedRow:(XLFormRowDescriptor *)row {
-    [self performRemindPasswordAction];
+    [self performRemindPasswordActionForForm:controller];
 }
 
 - (void)passwordReminderFormViewController:(DVSPasswordReminderFormViewController *)controller didSelectDismissRow:(XLFormRowDescriptor *)row {

@@ -12,6 +12,6 @@ extern NSString * const DVSAccessibilityLabelConfirmSignUpButton;
 extern NSString * const DVSAccessibilityLabelConfirmRemindPasswordButton;
 extern NSString * const DVSAccessibilityLabelMoveToPasswordRemindButton;
 extern NSString * const DVSAccessibilityLabelCancelButton;
-extern NSString * const DVSAccessibilityLableCancelRemindPasswordButton;
+extern NSString * const DVSAccessibilityLabelCancelRemindPasswordButton;
 extern NSString * const DVSAccessibilityLabelEmailTextField;
 extern NSString * const DVSAccessibilityLabelPasswordTextField;
