@@ -9,46 +9,104 @@ SPEC_BEGIN(DVSSignUpSpec)
 
 describe(@"sign up screen", ^{
     
-    beforeAll(^{
+    beforeEach(^{
         [tester dvs_moveToSignUp];
     });
     
-    afterAll(^{
+    afterEach(^{
         [tester dvs_moveBackToWelcome];
     });
     
     describe(@"error message", ^{
         
-        context(@"for e-mail field", ^{
+        __block id<OHHTTPStubsDescriptor> stub = nil;
+        
+        beforeAll(^{
+            stub = [OHHTTPStubs dvs_stubUserRegisterRequestsWithOptions:nil];
+        });
+        
+        afterAll(^{
+            [OHHTTPStubs removeStub:stub];
+        });
+        
+        describe(@"for e-mail field", ^{
             
-            it(@"should be shown when empty", ^{
+            beforeEach(^{
+                [tester dvs_enterValidPassword];
+                [tester dvs_closeSoftwareKeyboard];
+            });
+            
+            context(@"should be shown", ^{
+                
+                afterEach(^{
+                    [tester dvs_closeErrorPopup];
+                });
+                
+                it(@"when empty", ^{
+                    [tester dvs_tapConfirmSignUpButton];
+                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                });
+                
+                it(@"when has wrong syntax", ^{
+                    [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
+                    [tester dvs_tapConfirmSignUpButton];
+                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                });
                 
             });
             
-            it(@"should be shown when has wrong syntax", ^{
+            context(@"should not be shown", ^{
                 
-            });
-            
-            it(@"should not be shown when valid", ^{
+                afterEach(^{
+                    [tester dvs_tapLogOutButton];
+                });
                 
+                it(@"should not be shown when valid", ^{
+                    [tester dvs_enterValidEmail];
+                    [tester dvs_tapConfirmSignUpButton];
+                    [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                });
             });
             
         });
         
         context(@"for password field", ^{
             
-            it(@"should be shown when empty", ^{
-                
+            beforeEach(^{
+                [tester dvs_enterValidEmail];
+                [tester dvs_closeSoftwareKeyboard];
             });
             
-            it(@"should be shown when is too short", ^{
+            context(@"should be shown", ^{
                 
+                afterEach(^{
+                    [tester dvs_closeErrorPopup];
+                });
+                
+                it(@"when empty", ^{
+                    [tester dvs_tapConfirmSignUpButton];
+                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                });
+                
+                it(@"when is too short", ^{
+                    [tester enterText:@"$ec" intoViewWithAccessibilityLabel:DVSAccessibilityLabelPasswordTextField];
+                    [tester dvs_tapConfirmSignUpButton];
+                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                });
             });
             
-            it(@"should not be shown when valid", ^{
+            context(@"should not be shown", ^{
                 
+                afterEach(^{
+                    [tester dvs_tapLogOutButton];
+                });
+                
+                it(@"when valid", ^{
+                    [tester dvs_enterValidPassword];
+                    [tester dvs_tapConfirmSignUpButton];
+                    [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                });
             });
-            
         });
     });
     

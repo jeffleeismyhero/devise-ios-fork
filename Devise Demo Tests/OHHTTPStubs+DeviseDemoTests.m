@@ -52,11 +52,9 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
 
 + (id<OHHTTPStubsDescriptor>)dvs_stubRequestsForPath:(NSString *)path options:(NSDictionary *)options response:(OHHTTPStubsResponseBlock)response {
     return [self stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-        NSRange rangeOfLastSlash = [request.URL.path rangeOfString:@"/" options:NSBackwardsSearch];
-        if (rangeOfLastSlash.location == NSNotFound && ![request.URL.path isEqualToString:path]) {
-            return NO;
-        }
-        if (![[request.URL.path substringFromIndex:rangeOfLastSlash.location + 1] isEqualToString:path]) {
+        NSString *baseUrl = [[DVSConfiguration sharedConfiguration] baseURL].absoluteString;
+        NSString *fullResourcePath = [NSString stringWithFormat:@"%@/%@", baseUrl, path];
+        if (![request.URL.absoluteString isEqualToString:fullResourcePath]) {
             return NO;
         }
         if (options[DVSHTTPStubsAllowedMethodsKey]) {

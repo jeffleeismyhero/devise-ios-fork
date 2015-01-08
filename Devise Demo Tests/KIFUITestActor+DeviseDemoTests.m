@@ -38,8 +38,16 @@ NSString * const DVSValidPassword = @"$eCR3t";
     [self enterText:DVSValidPassword intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelPasswordTextField)];
 }
 
+- (void)dvs_tapLogOutButton {
+    [self tapViewWithAccessibilityLabel:NSLocalizedString(@"Log out", nil)];
+}
+
 - (void)dvs_tapConfirmLoginButton {
     [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmLogInButton)];
+}
+
+- (void)dvs_tapConfirmSignUpButton {
+    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmSignUpButton)];
 }
 
 - (void)dvs_waitForErrorView {

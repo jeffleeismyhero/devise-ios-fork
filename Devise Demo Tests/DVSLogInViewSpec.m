@@ -47,12 +47,18 @@ describe(@"DVSLogInView", ^{
                     [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
                 });
                 
+                it(@"when has wrong syntax", ^{
+                    [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
+                    [tester dvs_tapConfirmLoginButton];
+                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
+                });
+                
             });
             
             context(@"should not be shown", ^{
                 
                 afterEach(^{
-                    [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log out")];
+                    [tester dvs_tapLogOutButton];
                 });
                 
                 it(@"should not be shown when valid", ^{
@@ -86,7 +92,7 @@ describe(@"DVSLogInView", ^{
             context(@"should not be shown", ^{
                 
                 afterEach(^{
-                    [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log out")];
+                    [tester dvs_tapLogOutButton];
                 });
                 
                 it(@"when valid", ^{
