@@ -9,11 +9,15 @@ SPEC_BEGIN(DVSPasswordRemindViewSpec)
 
 describe(@"password remind screen", ^{
    
+    __block id<OHHTTPStubsDescriptor> stub = nil;
+    
     beforeAll(^{
+        stub = [OHHTTPStubs dvs_stubUserRemindPasswordRequestsWithOptions:nil];
         [tester dvs_moveToLogIn];
     });
     
     afterAll(^{
+        [OHHTTPStubs removeStub:stub];
         [tester dvs_moveBackToWelcome];
     });
     
