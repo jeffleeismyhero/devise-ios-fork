@@ -16,25 +16,25 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithFields:(DVSLogInSignUpFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
+- (instancetype)initWithFields:(DVSAccountRetrieverFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
     self = [super initWithForm:[self formWithFields:fields andProceedTitle:proceedTitle proceedAccessibilityLabel:accessibilityLabel]];
     return self;
 }
 
 #pragma mark - Form creation
 
-- (XLFormDescriptor *)formWithFields:(DVSLogInSignUpFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
+- (XLFormDescriptor *)formWithFields:(DVSAccountRetrieverFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptor];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:proceedTitle];
     
-    if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldEmailAndPassword basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSAccountRetrieverFieldEmailAndPassword basedOn:fields]) {
         [section dvs_addEmailAndPasswordTextFields];
     }
     
     __weak typeof(self) weakSelf = self;
     
-    if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldProceedButton basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSAccountRetrieverFieldProceedButton basedOn:fields]) {
         [section dvs_addProceedButtonWithTitle:proceedTitle
                             accessibilityLabel:accessibilityLabel
                                         action:^(XLFormRowDescriptor *sender) {
@@ -45,7 +45,7 @@
                                         }];
     }
     
-    if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldPasswordReminder basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSAccountRetrieverFieldPasswordReminder basedOn:fields]) {
         [section dvs_addPresentButtonWithTitle:NSLocalizedString(@"Remind password", nil)
                             accessibilityLabel:NSLocalizedString(DVSAccessibilityLabelMoveToPasswordRemindButton, nil)
                                         action:^(XLFormRowDescriptor *sender) {
@@ -56,7 +56,7 @@
                                         }];
     }
     
-    if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldDismissButton basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSAccountRetrieverFieldDismissButton basedOn:fields]) {
         [section dvs_addDismissButtonWithAction:^(XLFormRowDescriptor *sender) {
             if ([weakSelf.delegate respondsToSelector:@selector(logInSignUpFormViewController:didSelectDismissRow:)]) {
                 [weakSelf.delegate logInSignUpFormViewController:weakSelf didSelectDismissRow:sender];

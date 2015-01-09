@@ -17,7 +17,7 @@ static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
-@interface DVSDemoWelcomeViewController () <DVSLogInSignUpViewControllerDelegate>
+@interface DVSDemoWelcomeViewController () <DVSAccountRetrieverViewControllerDelegate>
 
 @end
 
@@ -49,16 +49,16 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
 - (void)didSelectLogIn {
     
-    DVSLogInSignUpFields logInFields = DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton | DVSLogInSignUpFieldPasswordReminder;
-    DVSLoginSignUpViewController *logInController = [[DVSLoginSignUpViewController alloc] initAsLogInWithFields:logInFields];
+    DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton | DVSAccountRetrieverFieldPasswordReminder;
+    DVSAccountRetrieverViewController *logInController = [[DVSAccountRetrieverViewController alloc] initAsLogInWithFields:logInFields];
     
     logInController.delegate = self;
     [self.navigationController pushViewController:logInController animated:YES];
 }
 
 - (void)didSelectRegister {
-    DVSLogInSignUpFields signUpFields = DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton;
-    DVSLoginSignUpViewController *signUpController = [[DVSLoginSignUpViewController alloc] initAsSignUpWithFields:signUpFields];
+    DVSAccountRetrieverFields signUpFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton;
+    DVSAccountRetrieverViewController *signUpController = [[DVSAccountRetrieverViewController alloc] initAsSignUpWithFields:signUpFields];
     
     signUpController.delegate = self;
     [self.navigationController pushViewController:signUpController animated:YES];
@@ -70,16 +70,16 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     return DVSDefaultWelcomeCell;
 }
 
-#pragma mark - DVSLogInSignUpViewControllerDelegate
+#pragma mark - DVSAccountRetrieverViewControllerDelegate
 
-- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didSuccessForAction:(DVSViewControllerAction)action andUser:(DVSUser *)user {
+- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didSuccessForAction:(DVSRetrieverAction)action andUser:(DVSUser *)user {
     switch (action) {
-        case DVSViewControllerActionLogIn:
-        case DVSViewControllerActionSignUp:
+        case DVSRetrieverActionLogIn:
+        case DVSRetrieverActionSignUp:
             [self moveToHomeView];
             break;
             
-        case DVSViewControllerActionPasswordRemind:
+        case DVSRetrieverActionPasswordRemind:
             [self handlePasswordRemind];
             break;
             
@@ -88,23 +88,23 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     }
 }
 
-- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didFailWithError:(NSError *)error forAction:(DVSViewControllerAction)action {
+- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didFailWithError:(NSError *)error forAction:(DVSRetrieverAction)action {
     switch (action) {
-        case DVSViewControllerActionLogIn:
+        case DVSRetrieverActionLogIn:
             [self handleLogInError:error];
             break;
             
-        case DVSViewControllerActionSignUp:
+        case DVSRetrieverActionSignUp:
             [self handleSignUpError:error];
             break;
             
-        case DVSViewControllerActionPasswordRemind:
+        case DVSRetrieverActionPasswordRemind:
             [self handlePasswordRemindError:error];
             break;
     }
 }
 
-- (void)logInViewControllerDidCancel:(DVSLoginSignUpViewController *)controller {
+- (void)accountRetrieverViewControllerDidCancel:(DVSAccountRetrieverViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

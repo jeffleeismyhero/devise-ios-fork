@@ -18,7 +18,7 @@
     #import <Devise/DVSUser+Requests.h>
     #import <Devise/DVSTypedefs.h>
     #import <Devise/DVSLoginSignUpFields.h>
-    #import <Devise/DVSLoginSignUpViewController.h>
+    #import <Devise/DVSAccountRetrieverViewController.h>
     #import <Devise/DVSAccessibilityLabels.h>
 
 #endif

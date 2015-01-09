@@ -11,13 +11,13 @@
 /**
  * A bitmask specyfing elements which are enabled
  */
-typedef NS_OPTIONS(NSInteger, DVSLogInSignUpFields) {
-    DVSLogInSignUpFieldEmailAndPassword           = 1 << 0,
-    DVSLogInSignUpFieldProceedButton              = 1 << 1,
-    DVSLogInSignUpFieldDismissButton              = 1 << 2,
-    DVSLogInSignUpFieldNavigationProceedButton    = 1 << 3,
-    DVSLogInSignUpFieldNavigationDismissButton    = 1 << 4,
-    DVSLogInSignUpFieldPasswordReminder           = 1 << 5
+typedef NS_OPTIONS(NSInteger, DVSAccountRetrieverFields) {
+    DVSAccountRetrieverFieldEmailAndPassword           = 1 << 0,
+    DVSAccountRetrieverFieldProceedButton              = 1 << 1,
+    DVSAccountRetrieverFieldDismissButton              = 1 << 2,
+    DVSAccountRetrieverFieldNavigationProceedButton    = 1 << 3,
+    DVSAccountRetrieverFieldNavigationDismissButton    = 1 << 4,
+    DVSAccountRetrieverFieldPasswordReminder           = 1 << 5
 };
 
 #endif

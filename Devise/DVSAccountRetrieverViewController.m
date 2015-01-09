@@ -5,7 +5,7 @@
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSLoginSignUpViewController.h"
+#import "DVSAccountRetrieverViewController.h"
 
 #import "DVSAccessibilityLabels.h"
 #import "DVSBarButtonItem.h"
@@ -17,28 +17,27 @@
 #import "UIViewController+Devise.h"
 #import "XLFormSectionDescriptor+Devise.h"
 
-@interface DVSLoginSignUpViewController () <DVSLoginSignUpFormViewControllerDelegate, DVSPasswordReminderFormViewControllerDelegate>
+@interface DVSAccountRetrieverViewController () <DVSLoginSignUpFormViewControllerDelegate, DVSPasswordReminderFormViewControllerDelegate>
 
-@property (assign, nonatomic) DVSViewControllerType controllerType;
+@property (assign, nonatomic) DVSRetrieverType controllerType;
 @property (strong, nonatomic) DVSLoginSignUpFormViewController *formViewController;
 @property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
 
 @end
 
-@implementation DVSLoginSignUpViewController
+@implementation DVSAccountRetrieverViewController
 
 #pragma mark - Initialization
 
-- (instancetype)initAsLogInWithFields:(DVSLogInSignUpFields)fields {
-    return [self initWithType:DVSViewControllerTypeLogIn andFields:fields];
+- (instancetype)initAsLogInWithFields:(DVSAccountRetrieverFields)fields {
+    return [self initWithType:DVSRetrieverTypeLogIn andFields:fields];
 }
 
-- (instancetype)initAsSignUpWithFields:(DVSLogInSignUpFields)fields; {
-    return [self initWithType:DVSViewControllerTypeSignUp andFields:fields];
+- (instancetype)initAsSignUpWithFields:(DVSAccountRetrieverFields)fields; {
+    return [self initWithType:DVSRetrieverTypeSignUp andFields:fields];
 }
 
-- (instancetype)initWithType:(DVSViewControllerType)type andFields:(DVSLogInSignUpFields)fields {
-    NSAssert(type != DVSViewControllerTypeUnknown, @"Unknown type is not supported.");
+- (instancetype)initWithType:(DVSRetrieverType)type andFields:(DVSAccountRetrieverFields)fields {
     
     if (self = [super init]) {
         [self setupWithFieldsOptions:fields forType:type];
@@ -48,7 +47,7 @@
 
 #pragma mark - Setup
 
-- (void)setupWithFieldsOptions:(DVSLogInSignUpFields)fields forType:(DVSViewControllerType)type {
+- (void)setupWithFieldsOptions:(DVSAccountRetrieverFields)fields forType:(DVSRetrieverType)type {
     self.controllerType = type;
     self.userDataSource = [DVSTemplatesViewsUserDataSource new];
     
@@ -56,7 +55,7 @@
     [self setupNavigationItemsForFieldsOptions:fields];
 }
 
-- (void)setupFormViewControllerForFieldsOptions:(DVSLogInSignUpFields)fields {
+- (void)setupFormViewControllerForFieldsOptions:(DVSAccountRetrieverFields)fields {
     
     NSString *proceedTitle = [self localizedProceedButtonTitleForType:self.controllerType];
     NSString *proceedAccessibilityTitle = [self localizedProceedButtonAccessibilityTitleForType:self.controllerType];
@@ -67,20 +66,20 @@
     [self attachViewController:self.formViewController];
 }
 
-- (void)setupNavigationItemsForFieldsOptions:(DVSLogInSignUpFields)fields {
+- (void)setupNavigationItemsForFieldsOptions:(DVSAccountRetrieverFields)fields {
     NSString *title = [self localizedProceedButtonTitleForType:self.controllerType];
     self.navigationItem.title = title;
     
     __weak typeof(self) weakSelf = self;
     
-    if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldDismissButton basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSAccountRetrieverFieldDismissButton basedOn:fields]) {
         self.navigationItem.leftBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil)
                                                                                  action:^(DVSBarButtonItem *sender) {
                                                                                      [weakSelf callFromDelegateCancel];
                                                                                  }];
     }
     
-    if ([DVSFieldsUtils shouldShow:DVSLogInSignUpFieldNavigationProceedButton basedOn:fields]) {
+    if ([DVSFieldsUtils shouldShow:DVSAccountRetrieverFieldNavigationProceedButton basedOn:fields]) {
         self.navigationItem.rightBarButtonItem = [[DVSBarButtonItem alloc] initWithTitle:title
                                                                                   action:^(DVSBarButtonItem *sender) {
                                                                                       [weakSelf performProceedActionForType:self.controllerType];
@@ -88,8 +87,8 @@
     }
 }
 
-- (DVSLogInSignUpFields)defaultFields {
-    return DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton;
+- (DVSAccountRetrieverFields)defaultFields {
+    return DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton;
 }
 
 #pragma mark - Private
@@ -104,23 +103,23 @@
 
 DVSWorkInProgress("Move type properties to separate model class.");
 
-- (NSString *)localizedProceedButtonTitleForType:(DVSViewControllerType)type {
+- (NSString *)localizedProceedButtonTitleForType:(DVSRetrieverType)type {
     switch (type) {
-        case DVSViewControllerTypeLogIn:
+        case DVSRetrieverTypeLogIn:
             return NSLocalizedString(@"Log In", nil);
-        case DVSViewControllerTypeSignUp:
+        case DVSRetrieverTypeSignUp:
             return NSLocalizedString(@"Sign Up", nil);
         default:
             return NSLocalizedString(@"Proceed", nil);
     }
 }
 
-- (NSString *)localizedProceedButtonAccessibilityTitleForType:(DVSViewControllerType)type {
+- (NSString *)localizedProceedButtonAccessibilityTitleForType:(DVSRetrieverType)type {
     switch (type) {
-        case DVSViewControllerTypeLogIn:
+        case DVSRetrieverTypeLogIn:
             return NSLocalizedString(DVSAccessibilityLabelConfirmLogInButton, nil);
             
-        case DVSViewControllerTypeSignUp:
+        case DVSRetrieverTypeSignUp:
             return NSLocalizedString(DVSAccessibilityLabelConfirmSignUpButton, nil);
             
         default:
@@ -128,13 +127,13 @@ DVSWorkInProgress("Move type properties to separate model class.");
     }
 }
 
-- (void)performProceedActionForType:(DVSViewControllerType)type {
+- (void)performProceedActionForType:(DVSRetrieverType)type {
     switch (type) {
-        case DVSViewControllerTypeLogIn:
+        case DVSRetrieverTypeLogIn:
             [self performLogInActionForForm:self.formViewController];
             break;
             
-        case DVSViewControllerTypeSignUp:
+        case DVSRetrieverTypeSignUp:
             [self performSignUpActionForForm:self.formViewController];
             break;
             
@@ -156,9 +155,9 @@ DVSWorkInProgress("Move type properties to separate model class.");
     
     __weak typeof(self) weakSelf = self;
     [user loginWithSuccess:^{
-        [weakSelf callFromDelegateSuccessForAction:DVSViewControllerActionLogIn];
+        [weakSelf callFromDelegateSuccessForAction:DVSRetrieverActionLogIn];
     } failure:^(NSError *error) {
-        [weakSelf callFromDelegateFailWithError:error forAction:DVSViewControllerActionLogIn];
+        [weakSelf callFromDelegateFailWithError:error forAction:DVSRetrieverActionLogIn];
     }];
 }
 
@@ -173,9 +172,9 @@ DVSWorkInProgress("Move type properties to separate model class.");
     
     __weak typeof(self) weakSelf = self;
     [newUser registerWithSuccess:^{
-        [weakSelf callFromDelegateSuccessForAction:DVSViewControllerActionSignUp];
+        [weakSelf callFromDelegateSuccessForAction:DVSRetrieverActionSignUp];
     } failure:^(NSError *error) {
-        [weakSelf callFromDelegateFailWithError:error forAction:DVSViewControllerActionSignUp];
+        [weakSelf callFromDelegateFailWithError:error forAction:DVSRetrieverActionSignUp];
     }];
 }
 
@@ -189,33 +188,33 @@ DVSWorkInProgress("Move type properties to separate model class.");
     
     __weak typeof(self) weakSelf = self;
     [user remindPasswordWithSuccess:^{
-        [weakSelf callFromDelegateSuccessForAction:DVSViewControllerActionPasswordRemind];
+        [weakSelf callFromDelegateSuccessForAction:DVSRetrieverActionPasswordRemind];
     } failure:^(NSError *error) {
-        [weakSelf callFromDelegateFailWithError:error forAction:DVSViewControllerActionPasswordRemind];
+        [weakSelf callFromDelegateFailWithError:error forAction:DVSRetrieverActionPasswordRemind];
     }];
 }
 
 #pragma mark - Delegete helpers
 
-- (void)callFromDelegateSuccessForAction:(DVSViewControllerAction)action {
-    if ([self.delegate respondsToSelector:@selector(logInSingUpViewController:didSuccessForAction:andUser:)]) {
-        [self.delegate logInSingUpViewController:self
-                             didSuccessForAction:action
-                                         andUser:[DVSUser localUser]];
+- (void)callFromDelegateSuccessForAction:(DVSRetrieverAction)action {
+    if ([self.delegate respondsToSelector:@selector(accountRetrieverViewController:didSuccessForAction:andUser:)]) {
+        [self.delegate accountRetrieverViewController:self
+                                  didSuccessForAction:action
+                                              andUser:[DVSUser localUser]];
     }
 }
 
-- (void)callFromDelegateFailWithError:(NSError *)error forAction:(DVSViewControllerAction)action {
-    if ([self.delegate respondsToSelector:@selector(logInSingUpViewController:didFailWithError:forAction:)]) {
-        [self.delegate logInSingUpViewController:self
-                                didFailWithError:error
-                                       forAction:action];
+- (void)callFromDelegateFailWithError:(NSError *)error forAction:(DVSRetrieverAction)action {
+    if ([self.delegate respondsToSelector:@selector(accountRetrieverViewController:didFailWithError:forAction:)]) {
+        [self.delegate accountRetrieverViewController:self
+                                     didFailWithError:error
+                                            forAction:action];
     }
 }
 
 - (void)callFromDelegateCancel {
-    if ([self.delegate respondsToSelector:@selector(logInViewControllerDidCancel:)]) {
-        [self.delegate logInViewControllerDidCancel:self];
+    if ([self.delegate respondsToSelector:@selector(accountRetrieverViewControllerDidCancel:)]) {
+        [self.delegate accountRetrieverViewControllerDidCancel:self];
     }
 }
 

@@ -13,34 +13,33 @@
 /**
  *  Enumeration specyfing for what type of action view controller should be customized
  */
-typedef NS_ENUM(NSUInteger, DVSViewControllerType) {
-    DVSViewControllerTypeUnknown    = 0,
-    DVSViewControllerTypeLogIn      = 1,
-    DVSViewControllerTypeSignUp     = 2
+typedef NS_ENUM(NSUInteger, DVSRetrieverType) {
+    DVSRetrieverTypeLogIn,
+    DVSRetrieverTypeSignUp
 };
 
 
 /**
  * Enumeration specyfing what action was performed
  */
-typedef NS_ENUM(NSUInteger, DVSViewControllerAction) {
-    DVSViewControllerActionLogIn,
-    DVSViewControllerActionSignUp,
-    DVSViewControllerActionPasswordRemind
+typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
+    DVSRetrieverActionLogIn,
+    DVSRetrieverActionSignUp,
+    DVSRetrieverActionPasswordRemind
 };
 
-@protocol DVSLogInSignUpViewControllerDelegate;
+@protocol DVSAccountRetrieverViewControllerDelegate;
 
 
 /**
- * The DVSLoginSignUpViewController class presents standard interface for logging or signing up DVSUser
+ * The DVSAccountRetrieverViewController class presents standard interface for logging or signing up DVSUser
  */
-@interface DVSLoginSignUpViewController : UIViewController
+@interface DVSAccountRetrieverViewController : UIViewController
 
 /**
  * The delegate that responds to events of DVSLogInSignUpViewControllerDelegate
  */
-@property (weak, nonatomic) id<DVSLogInSignUpViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<DVSAccountRetrieverViewControllerDelegate> delegate;
 
 /**
  *  Returns an initialized instance of view controller and configured for log in action
@@ -49,7 +48,7 @@ typedef NS_ENUM(NSUInteger, DVSViewControllerAction) {
  *
  *  @return Instance of DVSLoginSignUpViewController class
  */
-- (instancetype)initAsLogInWithFields:(DVSLogInSignUpFields)fields;
+- (instancetype)initAsLogInWithFields:(DVSAccountRetrieverFields)fields;
 
 /**
  *  Returns an initialized instance of view controller and configured for sign up action
@@ -58,7 +57,7 @@ typedef NS_ENUM(NSUInteger, DVSViewControllerAction) {
  *
  *  @return Instance of DVSLoginSignUpViewController class
  */
-- (instancetype)initAsSignUpWithFields:(DVSLogInSignUpFields)fields;
+- (instancetype)initAsSignUpWithFields:(DVSAccountRetrieverFields)fields;
 
 /**
  *  Returns an initialized instance of view controller
@@ -68,14 +67,14 @@ typedef NS_ENUM(NSUInteger, DVSViewControllerAction) {
  *
  *  @return Instance of DVSLoginSignUpViewController class
  */
-- (instancetype)initWithType:(DVSViewControllerType)type andFields:(DVSLogInSignUpFields)fields;
+- (instancetype)initWithType:(DVSRetrieverType)type andFields:(DVSAccountRetrieverFields)fields NS_DESIGNATED_INITIALIZER;
 
 @end
 
 /**
- * The DVSLogInSignUpViewControllerDelegate protocol defines methods a delegate of DVSLoginSignUpViewController should implement
+ * The DVSAccountRetrieverViewControllerDelegate protocol defines methods a delegate of DVSLoginSignUpViewController should implement
  */
-@protocol DVSLogInSignUpViewControllerDelegate <NSObject>
+@protocol DVSAccountRetrieverViewControllerDelegate <NSObject>
 
 /**
  *  Sent to delegate when controller action results with success
@@ -84,7 +83,7 @@ typedef NS_ENUM(NSUInteger, DVSViewControllerAction) {
  *  @param action Type of finished action
  *  @param user DVSUser object that is result of action
  */
-- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didSuccessForAction:(DVSViewControllerAction)action andUser:(DVSUser *)user;
+- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didSuccessForAction:(DVSRetrieverAction)action andUser:(DVSUser *)user;
 
 /**
  *  Sent to delegate when controller action finishes with error
@@ -93,14 +92,14 @@ typedef NS_ENUM(NSUInteger, DVSViewControllerAction) {
  *  @param error Object that represents error
  *  @param action Type of action
  */
-- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didFailWithError:(NSError *)error forAction:(DVSViewControllerAction)action;
+- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didFailWithError:(NSError *)error forAction:(DVSRetrieverAction)action;
 
 /**
  *  Sent to delegate when user tapps dismiss button on controller screen
  *
  *  @param controller The controller that was cancelled
  */
-- (void)logInViewControllerDidCancel:(DVSLoginSignUpViewController *)controller;
+- (void)accountRetrieverViewControllerDidCancel:(DVSAccountRetrieverViewController *)controller;
 
 @end
 
