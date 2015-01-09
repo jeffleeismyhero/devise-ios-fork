@@ -14,9 +14,10 @@
 
 @implementation DVSFormRow
 
-- (instancetype)initWithTitle:(NSString *)title value:(NSString *)value secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
+- (instancetype)initWithTitle:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel value:(NSString *)value secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
     if (self = [super init]) {
         _title = title;
+        _accessibilityLabel = accessibilityLabel;
         _value = value;
         _secured = secured;
         _keyboardType = keyboardType;

@@ -36,23 +36,33 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
 
 #pragma mark - DataSource helpers
 
-- (void)addFormWithTitleToDataSource:(NSString *)title {
-    [self addFormWithTitleToDataSource:title secured:NO keyboardType:UIKeyboardTypeDefault];
+- (void)addFormWithTitleToDataSource:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel {
+    [self addFormWithTitleToDataSource:title
+                    accessibilityLabel:accessibilityLabel
+                               secured:NO
+                          keyboardType:UIKeyboardTypeDefault];
 }
 
-- (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured {
-    [self addFormWithTitleToDataSource:title secured:secured keyboardType:UIKeyboardTypeDefault];
+- (void)addFormWithTitleToDataSource:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel secured:(BOOL)secured {
+    [self addFormWithTitleToDataSource:title
+                    accessibilityLabel:accessibilityLabel
+                               secured:secured
+                          keyboardType:UIKeyboardTypeDefault];
 }
 
-- (void)addFormWithTitleToDataSource:(NSString *)title keyboardType:(UIKeyboardType)keyboardType {
-    [self addFormWithTitleToDataSource:title secured:NO keyboardType:keyboardType];
+- (void)addFormWithTitleToDataSource:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel keyboardType:(UIKeyboardType)keyboardType {
+    [self addFormWithTitleToDataSource:title
+                    accessibilityLabel:accessibilityLabel
+                               secured:NO
+                          keyboardType:keyboardType];
 }
 
-- (void)addFormWithTitleToDataSource:(NSString *)title secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
+- (void)addFormWithTitleToDataSource:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
     DVSFormRow *model = [[DVSFormRow alloc] initWithTitle:title
-                                                                          value:@""
-                                                                        secured:secured
-                                                                   keyboardType:keyboardType];
+                                       accessibilityLabel:accessibilityLabel
+                                                    value:@""
+                                                  secured:secured
+                                             keyboardType:keyboardType];
     [self.dataSourceArray addObject:model];
 }
 
@@ -63,9 +73,10 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     
     NSUInteger indexOfModel = [self.dataSourceArray indexOfObject:model];
     self.dataSourceArray[indexOfModel] = [[DVSFormRow alloc] initWithTitle:model.title
-                                                                                value:value
-                                                                              secured:model.secured
-                                                                         keyboardType:model.keyboardType];
+                                                        accessibilityLabel:model.accessibilityLabel
+                                                                     value:value
+                                                                   secured:model.secured
+                                                              keyboardType:model.keyboardType];
 }
 
 - (NSString *)valueForTitle:(NSString *)title {

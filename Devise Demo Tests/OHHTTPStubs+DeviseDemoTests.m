@@ -48,6 +48,14 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
     }];
 }
 
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserUpdateRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultUpdatePath;
+    options = [self dvs_putOptionsForReceivedOptions:options];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [self dvs_responseWithJSON:[self defaultUserResponse] statusCode:200];
+    }];
+}
+
 #pragma mark - General stubs
 
 + (id<OHHTTPStubsDescriptor>)dvs_stubRequestsForPath:(NSString *)path options:(NSDictionary *)options response:(OHHTTPStubsResponseBlock)response {
@@ -83,13 +91,20 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
 #pragma mark - Options
 
 + (NSDictionary *)dvs_postOptionsForReceivedOptions:(NSDictionary *)receivedOptions {
-    return [self dvs_optionsDictionaryForReceivedOptions:receivedOptions
-                                          defaultOptions:@{ DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ] }];
+    return [self dvs_optionsForReceivedOptions:receivedOptions andMethod:@"POST"];
 }
 
 + (NSDictionary *)dvs_deleteOptionsForReceivedOptions:(NSDictionary *)receivedOptions {
+    return [self dvs_optionsForReceivedOptions:receivedOptions andMethod:@"DELETE"];
+}
+
++ (NSDictionary *)dvs_putOptionsForReceivedOptions:(NSDictionary *)receivedOptions {
+    return [self dvs_optionsForReceivedOptions:receivedOptions andMethod:@"PUT"];
+}
+
++ (NSDictionary *)dvs_optionsForReceivedOptions:(NSDictionary *)receivedOptions andMethod:(NSString *)methodName {
     return [self dvs_optionsDictionaryForReceivedOptions:receivedOptions
-                                          defaultOptions:@{ DVSHTTPStubsAllowedMethodsKey: @[ @"DELETE" ] }];
+                                          defaultOptions:@{ DVSHTTPStubsAllowedMethodsKey: @[ methodName ] }];
 }
 
 #pragma mark - Convenience methods

@@ -15,7 +15,7 @@
 #import "UIAlertView+DeviseDemo.h"
 
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
-static NSString * const DVSTitleForCurrentPasswort = @"Current password";
+static NSString * const DVSTitleForCurrentPassword = @"Current password";
 static NSString * const DVSTitleForNewPassword = @"New password";
 static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
 
@@ -34,11 +34,14 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
     
     self.userDataSource = [DVSDemoUserDataSource new];
     
-    [self addFormWithTitleToDataSource:NSLocalizedString(DVSTitleForCurrentPasswort, nil)
+    [self addFormWithTitleToDataSource:NSLocalizedString(DVSTitleForCurrentPassword, nil)
+                    accessibilityLabel:DVSAccessibilityLabel(@"Current password field")
                                secured:YES];
     [self addFormWithTitleToDataSource:NSLocalizedString(DVSTitleForNewPassword, nil)
+                    accessibilityLabel:DVSAccessibilityLabel(@"New password field")
                                secured:YES];
     [self addFormWithTitleToDataSource:NSLocalizedString(DVSTitleForConfirmNewPassword, nil)
+                    accessibilityLabel:DVSAccessibilityLabel(@"Confirm password field")
                                secured:YES];
 }
 
@@ -51,7 +54,7 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
     
     NSString *currentPassword = localUser.password;
     
-    NSString *currentPasswordConfirm = [self valueForTitle:NSLocalizedString(DVSTitleForCurrentPasswort, nil)];
+    NSString *currentPasswordConfirm = [self valueForTitle:NSLocalizedString(DVSTitleForCurrentPassword, nil)];
     if (![currentPassword isEqualToString:currentPasswordConfirm]) {
         [[UIAlertView dvs_alertViewForError:[NSError dvs_passwordConfirmError]] show];
         return;
