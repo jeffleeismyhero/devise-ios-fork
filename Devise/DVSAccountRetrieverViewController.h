@@ -42,24 +42,6 @@ typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
 @property (weak, nonatomic) id<DVSAccountRetrieverViewControllerDelegate> delegate;
 
 /**
- *  Returns an initialized instance of view controller and configured for log in action
- *
- *  @param fields Bitmask specifying elements which are enabled in the view
- *
- *  @return Instance of DVSLoginSignUpViewController class
- */
-- (instancetype)initAsLogInWithFields:(DVSAccountRetrieverFields)fields;
-
-/**
- *  Returns an initialized instance of view controller and configured for sign up action
- *
- *  @param fields Bitmask specifying elements which are enabled in the view
- *
- *  @return Instance of DVSLoginSignUpViewController class
- */
-- (instancetype)initAsSignUpWithFields:(DVSAccountRetrieverFields)fields;
-
-/**
  *  Returns an initialized instance of view controller
  *
  *  @param type Specyfies type of
@@ -99,7 +81,7 @@ typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
  *
  *  @param controller The controller that was cancelled
  */
-- (void)accountRetrieverViewControllerDidCancel:(DVSAccountRetrieverViewController *)controller;
+- (void)accountRetrieverViewControllerDidTapDismiss:(DVSAccountRetrieverViewController *)controller;
 
 @end
 

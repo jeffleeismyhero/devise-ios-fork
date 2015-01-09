@@ -50,7 +50,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 - (void)didSelectLogIn {
     
     DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton | DVSAccountRetrieverFieldPasswordReminder;
-    DVSAccountRetrieverViewController *logInController = [[DVSAccountRetrieverViewController alloc] initAsLogInWithFields:logInFields];
+    DVSAccountRetrieverViewController *logInController = [[DVSAccountRetrieverViewController alloc] initWithType:DVSRetrieverTypeLogIn fields:logInFields];
     
     logInController.delegate = self;
     [self.navigationController pushViewController:logInController animated:YES];
@@ -58,7 +58,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
 - (void)didSelectRegister {
     DVSAccountRetrieverFields signUpFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton;
-    DVSAccountRetrieverViewController *signUpController = [[DVSAccountRetrieverViewController alloc] initAsSignUpWithFields:signUpFields];
+    DVSAccountRetrieverViewController *signUpController = [[DVSAccountRetrieverViewController alloc] initWithType:DVSRetrieverTypeSignUp fields:signUpFields];
     
     signUpController.delegate = self;
     [self.navigationController pushViewController:signUpController animated:YES];
@@ -104,7 +104,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     }
 }
 
-- (void)accountRetrieverViewControllerDidCancel:(DVSAccountRetrieverViewController *)controller {
+- (void)accountRetrieverViewControllerDidTapDismiss:(DVSAccountRetrieverViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

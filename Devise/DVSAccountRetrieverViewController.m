@@ -29,14 +29,6 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initAsLogInWithFields:(DVSAccountRetrieverFields)fields {
-    return [self initWithType:DVSRetrieverTypeLogIn fields:fields];
-}
-
-- (instancetype)initAsSignUpWithFields:(DVSAccountRetrieverFields)fields; {
-    return [self initWithType:DVSRetrieverTypeSignUp fields:fields];
-}
-
 - (instancetype)initWithType:(DVSRetrieverType)type fields:(DVSAccountRetrieverFields)fields {
     
     if (self = [super init]) {
@@ -213,8 +205,8 @@ DVSWorkInProgress("Move type properties to separate model class.");
 }
 
 - (void)callFromDelegateCancel {
-    if ([self.delegate respondsToSelector:@selector(accountRetrieverViewControllerDidCancel:)]) {
-        [self.delegate accountRetrieverViewControllerDidCancel:self];
+    if ([self.delegate respondsToSelector:@selector(accountRetrieverViewControllerDidTapDismiss:)]) {
+        [self.delegate accountRetrieverViewControllerDidTapDismiss:self];
     }
 }
 
