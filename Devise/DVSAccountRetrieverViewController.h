@@ -67,7 +67,7 @@ typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
  *
  *  @return Instance of DVSLoginSignUpViewController class
  */
-- (instancetype)initWithType:(DVSRetrieverType)type andFields:(DVSAccountRetrieverFields)fields NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithType:(DVSRetrieverType)type fields:(DVSAccountRetrieverFields)fields NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
  *  @param action Type of finished action
  *  @param user DVSUser object that is result of action
  */
-- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didSuccessForAction:(DVSRetrieverAction)action andUser:(DVSUser *)user;
+- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didSuccessForAction:(DVSRetrieverAction)action user:(DVSUser *)user;
 
 /**
  *  Sent to delegate when controller action finishes with error

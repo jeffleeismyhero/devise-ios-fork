@@ -16,14 +16,14 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithFields:(DVSAccountRetrieverFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
-    self = [super initWithForm:[self formWithFields:fields andProceedTitle:proceedTitle proceedAccessibilityLabel:accessibilityLabel]];
+- (instancetype)initWithFields:(DVSAccountRetrieverFields)fields proceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
+    self = [super initWithForm:[self formWithFields:fields proceedTitle:proceedTitle proceedAccessibilityLabel:accessibilityLabel]];
     return self;
 }
 
 #pragma mark - Form creation
 
-- (XLFormDescriptor *)formWithFields:(DVSAccountRetrieverFields)fields andProceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
+- (XLFormDescriptor *)formWithFields:(DVSAccountRetrieverFields)fields proceedTitle:(NSString *)proceedTitle proceedAccessibilityLabel:(NSString *)accessibilityLabel {
     XLFormDescriptor *form = [XLFormDescriptor formDescriptor];
     
     XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSectionWithTitle:proceedTitle];

@@ -72,7 +72,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
 #pragma mark - DVSAccountRetrieverViewControllerDelegate
 
-- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didSuccessForAction:(DVSRetrieverAction)action andUser:(DVSUser *)user {
+- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didSuccessForAction:(DVSRetrieverAction)action user:(DVSUser *)user {
     switch (action) {
         case DVSRetrieverActionLogIn:
         case DVSRetrieverActionSignUp:

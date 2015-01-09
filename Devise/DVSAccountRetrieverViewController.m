@@ -30,14 +30,14 @@
 #pragma mark - Initialization
 
 - (instancetype)initAsLogInWithFields:(DVSAccountRetrieverFields)fields {
-    return [self initWithType:DVSRetrieverTypeLogIn andFields:fields];
+    return [self initWithType:DVSRetrieverTypeLogIn fields:fields];
 }
 
 - (instancetype)initAsSignUpWithFields:(DVSAccountRetrieverFields)fields; {
-    return [self initWithType:DVSRetrieverTypeSignUp andFields:fields];
+    return [self initWithType:DVSRetrieverTypeSignUp fields:fields];
 }
 
-- (instancetype)initWithType:(DVSRetrieverType)type andFields:(DVSAccountRetrieverFields)fields {
+- (instancetype)initWithType:(DVSRetrieverType)type fields:(DVSAccountRetrieverFields)fields {
     
     if (self = [super init]) {
         [self setupWithFieldsOptions:fields forType:type];
@@ -60,7 +60,7 @@
     NSString *proceedTitle = [self localizedProceedButtonTitleForType:self.controllerType];
     NSString *proceedAccessibilityTitle = [self localizedProceedButtonAccessibilityTitleForType:self.controllerType];
     self.formViewController = [[DVSLoginSignUpFormViewController alloc] initWithFields:fields
-                                                                       andProceedTitle:proceedTitle
+                                                                       proceedTitle:proceedTitle
                                                              proceedAccessibilityLabel:proceedAccessibilityTitle];
     self.formViewController.delegate = self;
     [self attachViewController:self.formViewController];
@@ -197,10 +197,10 @@ DVSWorkInProgress("Move type properties to separate model class.");
 #pragma mark - Delegete helpers
 
 - (void)callFromDelegateSuccessForAction:(DVSRetrieverAction)action {
-    if ([self.delegate respondsToSelector:@selector(accountRetrieverViewController:didSuccessForAction:andUser:)]) {
+    if ([self.delegate respondsToSelector:@selector(accountRetrieverViewController:didSuccessForAction:user:)]) {
         [self.delegate accountRetrieverViewController:self
                                   didSuccessForAction:action
-                                              andUser:[DVSUser localUser]];
+                                                 user:[DVSUser localUser]];
     }
 }
 
