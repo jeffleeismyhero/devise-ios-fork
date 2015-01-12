@@ -7,7 +7,13 @@
 
 SPEC_BEGIN(DVSProfileEditViewSpec)
 
-describe(@"profile edit screen", ^{
+describe(@"tapping save button", ^{
+    
+    void (^tapSaveAndWaitForError)() = ^void() {
+        [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
+        [tester dvs_waitForErrorView];
+        [tester dvs_closeErrorPopup];
+    };
     
     __block id<OHHTTPStubsDescriptor> stub = nil;
     
@@ -29,63 +35,42 @@ describe(@"profile edit screen", ^{
         [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Home")];
     });
     
-    describe(@"on show", ^{
-        
-        context(@"e-mail field", ^{
-            
-            it(@"should be filled with user e-mail", ^{
-                UITextField *emailTextField = (UITextField *)[tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
-                [[emailTextField.text should] equal:DVSValidEmail];
-            });
-            
-        });
-        
-    });
-    
-    describe(@"error message for e-mail field", ^{
-        
-        context(@"should be shown", ^{
-            
-            beforeEach(^{
-                [tester clearTextFromViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
-            });
-            
-            afterEach(^{
-                [tester dvs_closeErrorPopup];
-            });
-            
-            it(@"when empty", ^{
-                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
-                [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-            });
-            
-            it(@"when has wrong syntax", ^{
-                [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
-                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
-                [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-            });
-            
-        });
-    });
-    
-    describe(@"success message", ^{
+    context(@"when email text field is empty", ^{
         
         beforeEach(^{
             [tester clearTextFromViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
         });
         
-        afterEach(^{
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Close")];
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Home")];
-        });
-        
-        it(@"should be shown when e-mail is valid", ^{
-            [tester enterText:@"john.appleseed@example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
-            [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Profile updated")];
+        it(@"should show error message", ^{
+            tapSaveAndWaitForError();
         });
     });
     
+    context(@"when email text field has invalid data", ^{
+        
+        beforeEach(^{
+            [tester clearTextFromViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
+            [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
+        });
+        
+        it(@"should show error message", ^{
+            tapSaveAndWaitForError();
+        });
+    });
+    
+    context(@"when email text field has valid data", ^{
+        
+        beforeEach(^{
+            [tester clearTextFromViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
+            [tester enterText:@"john.appleseed@example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"E-mail field")];
+        });
+        
+        it(@"should show success message", ^{
+            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
+            [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Profile updated")];
+            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Close")];
+        });
+    });
 });
 
 SPEC_END

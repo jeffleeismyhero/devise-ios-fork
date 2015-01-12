@@ -46,10 +46,6 @@
 		21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h */; };
 		21B3ECC01A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m */; };
 		21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECC11A59CCCB00C8C620 /* DVSLoginSignUpFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21E155D21A63F8D200603952 /* DVSLogInViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */; };
-		21E155D31A63F8D200603952 /* DVSSignUpSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A91A5D15560010BF3F /* DVSSignUpSpec.m */; };
-		21E155D41A63F8D200603952 /* DVSPasswordRemindViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A56B1A5EA58900D2FDD2 /* DVSPasswordRemindViewSpec.m */; };
-		21E155D51A63F8D200603952 /* DVSHomeViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5701A5EB09200D2FDD2 /* DVSHomeViewSpec.m */; };
 		21E155D61A63F8D200603952 /* DVSProfileEditViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5761A5EC85500D2FDD2 /* DVSProfileEditViewSpec.m */; };
 		21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */; };
 		21F6909F1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909E1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m */; };
@@ -1213,13 +1209,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21E155D51A63F8D200603952 /* DVSHomeViewSpec.m in Sources */,
-				21E155D21A63F8D200603952 /* DVSLogInViewSpec.m in Sources */,
 				2136A5681A5E7F2900D2FDD2 /* OHHTTPStubs+DeviseDemoTests.m in Sources */,
 				21951E4E1A601AEE006A63E7 /* DVSChangePasswordViewSpec.m in Sources */,
 				218E29B61A5D27180010BF3F /* DVSFunctionalTestsConfig.m in Sources */,
-				21E155D31A63F8D200603952 /* DVSSignUpSpec.m in Sources */,
-				21E155D41A63F8D200603952 /* DVSPasswordRemindViewSpec.m in Sources */,
 				21E155D61A63F8D200603952 /* DVSProfileEditViewSpec.m in Sources */,
 				218E29B11A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemoTests.m in Sources */,
 			);
