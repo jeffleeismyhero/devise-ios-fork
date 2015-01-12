@@ -27,6 +27,7 @@ describe(@"tapping delete button", ^{
         [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete profile")];
         [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete")];
         [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"No")];
+        [tester dvs_tapLogOutButton];
     });
     
     

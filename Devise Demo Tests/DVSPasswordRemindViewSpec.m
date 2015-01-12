@@ -60,6 +60,7 @@ describe(@"tapping remind button", ^{
         it(@"should show success message", ^{
             [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmRemindPasswordButton)];
             [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Remind successful")];
+            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Close")];
         });
         
     });
