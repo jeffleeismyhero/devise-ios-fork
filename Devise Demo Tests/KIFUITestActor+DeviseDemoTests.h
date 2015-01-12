@@ -23,6 +23,7 @@ extern NSString * const DVSValidPassword;
 - (void)dvs_tapLogOutButton;
 - (void)dvs_tapConfirmLoginButton;
 - (void)dvs_tapConfirmSignUpButton;
+- (void)dvs_waitForErrorView;
 
 #pragma mark - Complex actions
 

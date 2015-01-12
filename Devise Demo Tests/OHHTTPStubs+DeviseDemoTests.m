@@ -19,7 +19,7 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
     NSString *path = DVSHTTPClientDefaultRegisterPath;
     options = [self dvs_postOptionsForReceivedOptions:options];
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        return [self dvs_responseWithJSON:[self defaultUserResponse] statusCode:200];
+        return [self dvs_responseWithJSON:[self dvs_defaultUserResponse] statusCode:200];
     }];
 }
 
@@ -28,7 +28,7 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
     options = [self dvs_postOptionsForReceivedOptions:options];
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
         
-        return [self dvs_responseWithJSON:[self defaultUserResponse] statusCode:200];
+        return [self dvs_responseWithJSON:[self dvs_defaultUserResponse] statusCode:200];
     }];
 }
 
@@ -44,7 +44,7 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
     NSString *path = DVSHTTPClientDefaultDeletePath;
     options = [self dvs_deleteOptionsForReceivedOptions:options];
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        return [self dvs_responseWithJSON:[self defaultUserResponse] statusCode:200];
+        return [self dvs_responseWithJSON:[self dvs_defaultUserResponse] statusCode:200];
     }];
 }
 
@@ -52,7 +52,15 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
     NSString *path = DVSHTTPClientDefaultUpdatePath;
     options = [self dvs_putOptionsForReceivedOptions:options];
     return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
-        return [self dvs_responseWithJSON:[self defaultUserResponse] statusCode:200];
+        return [self dvs_responseWithJSON:[self dvs_defaultUserResponse] statusCode:200];
+    }];
+}
+
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserChangePasswordRequestsWithOptions:(NSDictionary *)options {
+    NSString *path = DVSHTTPClientDefaultChangePasswordPath;
+    options = [self dvs_putOptionsForReceivedOptions:options];
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [self dvs_responseWithJSON:[self dvs_defaultUserResponse] statusCode:200];
     }];
 }
 
@@ -76,9 +84,11 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
     }];
 }
 
+
+
 #pragma mark - Users
 
-+ (NSDictionary *)defaultUserResponse {
++ (NSDictionary *)dvs_defaultUserResponse {
     return @{ @"user": @{
                       @"id": @1,
                       @"email": @"john.appleseed@example.com",
@@ -122,9 +132,5 @@ NSString * const DVSHTTPStubsAllowedMethodsKey = @"DVSHTTPStubsAllowedMethodsKey
     }];
     return [mutableOptions copy];
 }
-
-#pragma mark - Helpers
-
-
 
 @end

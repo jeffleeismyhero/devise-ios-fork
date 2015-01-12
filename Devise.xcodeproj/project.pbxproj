@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2136A5661A5E7D3600D2FDD2 /* OHHTTPStubs+DeviseDemoTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 2136A5641A5E7D3600D2FDD2 /* OHHTTPStubs+DeviseDemoTests.h */; };
 		2136A5681A5E7F2900D2FDD2 /* OHHTTPStubs+DeviseDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5651A5E7D3600D2FDD2 /* OHHTTPStubs+DeviseDemoTests.m */; };
-		2136A5791A5FD1F100D2FDD2 /* DVSPasswordRemindViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A56B1A5EA58900D2FDD2 /* DVSPasswordRemindViewSpec.m */; };
 		215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */; };
 		2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */; };
 		2151996D1A499B5C00EF5F80 /* DVSFormRowCell+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */; };
@@ -21,10 +20,7 @@
 		218E29B61A5D27180010BF3F /* DVSFunctionalTestsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29B31A5D26FC0010BF3F /* DVSFunctionalTestsConfig.m */; };
 		218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */ = {isa = PBXBuildFile; fileRef = 218E29B91A5D7B310010BF3F /* DVSAccessibilityLabels.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		218E29BC1A5D7B310010BF3F /* DVSAccessibilityLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29BA1A5D7B310010BF3F /* DVSAccessibilityLabels.m */; };
-		21951E141A5FEDCA006A63E7 /* DVSSignUpSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A91A5D15560010BF3F /* DVSSignUpSpec.m */; };
-		21951E151A5FEDCC006A63E7 /* DVSLogInViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */; };
-		21951E161A5FEDCE006A63E7 /* DVSHomeViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5701A5EB09200D2FDD2 /* DVSHomeViewSpec.m */; };
-		21951E171A5FEDD0006A63E7 /* DVSProfileEditViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5761A5EC85500D2FDD2 /* DVSProfileEditViewSpec.m */; };
+		21951E4E1A601AEE006A63E7 /* DVSChangePasswordViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 21951E4B1A601AE2006A63E7 /* DVSChangePasswordViewSpec.m */; };
 		21AFB7EA1A48416F00769C87 /* DVSFormRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E91A48416F00769C87 /* DVSFormRow.m */; };
 		21AFB7F61A48446600769C87 /* DVSFormRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F41A48446600769C87 /* DVSFormRowCell.m */; };
 		21AFB7F71A48446600769C87 /* DVSFormRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7F51A48446600769C87 /* DVSFormRowCell.xib */; };
@@ -50,6 +46,11 @@
 		21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h */; };
 		21B3ECC01A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m */; };
 		21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECC11A59CCCB00C8C620 /* DVSLoginSignUpFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21E155D21A63F8D200603952 /* DVSLogInViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */; };
+		21E155D31A63F8D200603952 /* DVSSignUpSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A91A5D15560010BF3F /* DVSSignUpSpec.m */; };
+		21E155D41A63F8D200603952 /* DVSPasswordRemindViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A56B1A5EA58900D2FDD2 /* DVSPasswordRemindViewSpec.m */; };
+		21E155D51A63F8D200603952 /* DVSHomeViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5701A5EB09200D2FDD2 /* DVSHomeViewSpec.m */; };
+		21E155D61A63F8D200603952 /* DVSProfileEditViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5761A5EC85500D2FDD2 /* DVSProfileEditViewSpec.m */; };
 		21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */; };
 		21F6909F1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909E1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m */; };
 		3A2B04FE1A41663E00DDA453 /* DVSUser+Requests.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A2B04FC1A41663E00DDA453 /* DVSUser+Requests.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -161,6 +162,7 @@
 		218E29B31A5D26FC0010BF3F /* DVSFunctionalTestsConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSFunctionalTestsConfig.m; path = "Devise Demo Tests/DVSFunctionalTestsConfig.m"; sourceTree = "<group>"; };
 		218E29B91A5D7B310010BF3F /* DVSAccessibilityLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSAccessibilityLabels.h; sourceTree = "<group>"; };
 		218E29BA1A5D7B310010BF3F /* DVSAccessibilityLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSAccessibilityLabels.m; sourceTree = "<group>"; };
+		21951E4B1A601AE2006A63E7 /* DVSChangePasswordViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSChangePasswordViewSpec.m; path = "Devise Demo Tests/DVSChangePasswordViewSpec.m"; sourceTree = "<group>"; };
 		21AFB7E81A48416F00769C87 /* DVSFormRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRow.h; sourceTree = "<group>"; };
 		21AFB7E91A48416F00769C87 /* DVSFormRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormRow.m; sourceTree = "<group>"; };
 		21AFB7F31A48446600769C87 /* DVSFormRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRowCell.h; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				2136A56B1A5EA58900D2FDD2 /* DVSPasswordRemindViewSpec.m */,
 				2136A5701A5EB09200D2FDD2 /* DVSHomeViewSpec.m */,
 				2136A5761A5EC85500D2FDD2 /* DVSProfileEditViewSpec.m */,
+				21951E4B1A601AE2006A63E7 /* DVSChangePasswordViewSpec.m */,
 			);
 			name = "Devise Demo Tests";
 			sourceTree = "<group>";
@@ -1210,14 +1213,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E155D51A63F8D200603952 /* DVSHomeViewSpec.m in Sources */,
+				21E155D21A63F8D200603952 /* DVSLogInViewSpec.m in Sources */,
 				2136A5681A5E7F2900D2FDD2 /* OHHTTPStubs+DeviseDemoTests.m in Sources */,
-				21951E141A5FEDCA006A63E7 /* DVSSignUpSpec.m in Sources */,
+				21951E4E1A601AEE006A63E7 /* DVSChangePasswordViewSpec.m in Sources */,
 				218E29B61A5D27180010BF3F /* DVSFunctionalTestsConfig.m in Sources */,
-				21951E161A5FEDCE006A63E7 /* DVSHomeViewSpec.m in Sources */,
+				21E155D31A63F8D200603952 /* DVSSignUpSpec.m in Sources */,
+				21E155D41A63F8D200603952 /* DVSPasswordRemindViewSpec.m in Sources */,
+				21E155D61A63F8D200603952 /* DVSProfileEditViewSpec.m in Sources */,
 				218E29B11A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemoTests.m in Sources */,
-				21951E171A5FEDD0006A63E7 /* DVSProfileEditViewSpec.m in Sources */,
-				2136A5791A5FD1F100D2FDD2 /* DVSPasswordRemindViewSpec.m in Sources */,
-				21951E151A5FEDCC006A63E7 /* DVSLogInViewSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
