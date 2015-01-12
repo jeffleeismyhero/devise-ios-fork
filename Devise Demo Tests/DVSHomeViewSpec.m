@@ -7,48 +7,35 @@
 
 SPEC_BEGIN(DVSHomeViewSpec)
 
-describe(@"home screen", ^{
+describe(@"tapping delete button", ^{
     
-    describe(@"delete alert", ^{
+    __block id<OHHTTPStubsDescriptor> stub = nil;
+    
+    beforeAll(^{
+        stub = [OHHTTPStubs dvs_stubUserDeleteRequestsWithOptions:nil];
+    });
+    
+    afterAll(^{
+        [OHHTTPStubs removeStub:stub];
+    });
+    
+    beforeEach(^{
+        [tester dvs_login];
         
-        __block id<OHHTTPStubsDescriptor> stub = nil;
-        
-        beforeAll(^{
-            stub = [OHHTTPStubs dvs_stubUserDeleteRequestsWithOptions:nil];
-        });
-        
-        afterAll(^{
-            [OHHTTPStubs removeStub:stub];
-        });
-        
-        beforeEach(^{
-            [tester dvs_login];
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete profile")];
-            [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete")];
-        });
-        
-        context(@"cancel button", ^{
-            
-            it(@"should close confirm popup", ^{
-                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"No")];
-                [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete")];
-                
-            });
-            
-            afterEach(^{
-                [tester dvs_tapLogOutButton];
-            });
-            
-        });
-        
-        context(@"confirm button", ^{
-            
-            it(@"should delete profile", ^{
-                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Yes")];
-                [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Welcome")];
-            });
-            
-        });
+    });
+    
+    it(@"should show confirm popup", ^{
+        [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete profile")];
+        [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete")];
+        [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"No")];
+    });
+    
+    
+    it(@"should delete profile after confirm", ^{
+        [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete profile")];
+        [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete")];
+        [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Yes")];
+        [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Welcome")];
     });
     
 });
