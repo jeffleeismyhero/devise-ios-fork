@@ -16,18 +16,22 @@ NSString * const DVSValidPassword = @"$eCR3t";
 
 - (void)dvs_moveToSignUp {
     [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Sign up")];
+    [self waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmSignUpButton)];
 }
 
 - (void)dvs_moveToLogIn {
     [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log in")];
+    [self waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmLogInButton)];
 }
 
 - (void)dvs_moveBackToWelcome {
-    [self tapViewWithAccessibilityLabel:NSLocalizedString(@"Welcome", nil)];
+    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Welcome")];
+    [self waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Welcome")];
 }
 
 - (void)dvs_closeErrorPopup {
-    [self tapViewWithAccessibilityLabel:NSLocalizedString(@"Close", nil)];
+    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Close")];
+    [self waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
 }
 
 - (void)dvs_enterValidEmail {
