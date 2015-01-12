@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
 - (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didFailWithError:(NSError *)error forAction:(DVSRetrieverAction)action;
 
 /**
- *  Sent to delegate when user tapps dismiss button on controller screen
+ *  Sent to delegate when user did tap dismiss button on controller screen
  *
  *  @param controller The controller that was cancelled
  */
