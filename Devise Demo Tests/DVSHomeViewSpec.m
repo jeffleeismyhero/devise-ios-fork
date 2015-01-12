@@ -21,7 +21,6 @@ describe(@"tapping delete button", ^{
     
     beforeEach(^{
         [tester dvs_login];
-        
     });
     
     it(@"should show confirm popup", ^{

@@ -7,8 +7,14 @@
 
 SPEC_BEGIN(DVSPasswordRemindViewSpec)
 
-describe(@"password remind screen", ^{
+describe(@"tapping remind button", ^{
    
+    void (^tapRemindAndWaitForError)() = ^void() {
+        [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmRemindPasswordButton)];
+        [tester dvs_waitForErrorView];
+        [tester dvs_closeErrorPopup];
+    };
+    
     __block id<OHHTTPStubsDescriptor> stub = nil;
     
     beforeAll(^{
@@ -26,31 +32,36 @@ describe(@"password remind screen", ^{
     });
     
     afterEach(^{
-        [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Close")];
         [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelCancelRemindPasswordButton)];
     });
     
-    describe(@"error message", ^{
-        
-        it(@"should show when e-mail field is empty", ^{
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmRemindPasswordButton)];
-            [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-        });
-        
-        it(@"should show when e-mail field has wrong syntax", ^{
-            [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmRemindPasswordButton)];
-            [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-        });
+    it(@"should show error message when e-mail field is empty", ^{
+        tapRemindAndWaitForError();
     });
     
-    describe(@"success message", ^{
+    context(@"when e-mail text field has invalid data", ^{
         
-        it(@"should show when e-mail is valid", ^{
-            [tester enterText:@"john.appleseed@example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
+        beforeEach(^{
+            [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
+        });
+        
+        it(@"should show error message", ^{
+            tapRemindAndWaitForError();
+        });
+        
+    });
+    
+    context(@"when email text field has valid data", ^{
+        
+        beforeAll(^{
+            [tester enterText:DVSValidEmail intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
+        });
+        
+        it(@"should show success message", ^{
             [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelConfirmRemindPasswordButton)];
             [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Remind successful")];
         });
+        
     });
     
 });
