@@ -7,7 +7,23 @@
 
 SPEC_BEGIN(DVSSignUpSpec)
 
-describe(@"sign up screen", ^{
+describe(@"tapping sign up button", ^{
+    
+    void (^tapSaveAndWaitForError)() = ^void() {
+        [tester dvs_tapConfirmSignUpButton];
+        [tester dvs_waitForErrorView];
+        [tester dvs_closeErrorPopup];
+    };
+    
+    __block id<OHHTTPStubsDescriptor> stub = nil;
+    
+    beforeAll(^{
+        stub = [OHHTTPStubs dvs_stubUserRegisterRequestsWithOptions:nil];
+    });
+    
+    afterAll(^{
+        [OHHTTPStubs removeStub:stub];
+    });
     
     beforeEach(^{
         [tester dvs_moveToSignUp];
@@ -17,99 +33,69 @@ describe(@"sign up screen", ^{
         [tester dvs_moveBackToWelcome];
     });
     
-    describe(@"error message", ^{
+    context(@"when e-mail text field is empty", ^{
         
-        __block id<OHHTTPStubsDescriptor> stub = nil;
-        
-        beforeAll(^{
-            stub = [OHHTTPStubs dvs_stubUserRegisterRequestsWithOptions:nil];
+        beforeEach(^{
+            [tester dvs_enterValidPassword];
         });
         
-        afterAll(^{
-            [OHHTTPStubs removeStub:stub];
-        });
-        
-        describe(@"for e-mail field", ^{
-            
-            beforeEach(^{
-                [tester dvs_enterValidPassword];
-                [tester dvs_closeSoftwareKeyboard];
-            });
-            
-            context(@"should be shown", ^{
-                
-                afterEach(^{
-                    [tester dvs_closeErrorPopup];
-                });
-                
-                it(@"when empty", ^{
-                    [tester dvs_tapConfirmSignUpButton];
-                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-                });
-                
-                it(@"when has wrong syntax", ^{
-                    [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
-                    [tester dvs_tapConfirmSignUpButton];
-                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-                });
-                
-            });
-            
-            context(@"should not be shown", ^{
-                
-                afterEach(^{
-                    [tester dvs_tapLogOutButton];
-                });
-                
-                it(@"should not be shown when valid", ^{
-                    [tester dvs_enterValidEmail];
-                    [tester dvs_tapConfirmSignUpButton];
-                    [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-                });
-            });
-            
-        });
-        
-        describe(@"for password field", ^{
-            
-            beforeEach(^{
-                [tester dvs_enterValidEmail];
-                [tester dvs_closeSoftwareKeyboard];
-            });
-            
-            context(@"should be shown", ^{
-                
-                afterEach(^{
-                    [tester dvs_closeErrorPopup];
-                });
-                
-                it(@"when empty", ^{
-                    [tester dvs_tapConfirmSignUpButton];
-                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-                });
-                
-                it(@"when is too short", ^{
-                    [tester enterText:@"$ec" intoViewWithAccessibilityLabel:DVSAccessibilityLabelPasswordTextField];
-                    [tester dvs_tapConfirmSignUpButton];
-                    [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-                });
-            });
-            
-            context(@"should not be shown", ^{
-                
-                afterEach(^{
-                    [tester dvs_tapLogOutButton];
-                });
-                
-                it(@"when valid", ^{
-                    [tester dvs_enterValidPassword];
-                    [tester dvs_tapConfirmSignUpButton];
-                    [tester waitForAbsenceOfViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Error")];
-                });
-            });
+        it(@"should show error", ^{
+            tapSaveAndWaitForError();
         });
     });
     
+    context(@"when e-mail text field has invalid data", ^{
+        
+        beforeEach(^{
+            [tester dvs_enterValidPassword];
+            [tester enterText:@"john.appleseed.example.com" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(DVSAccessibilityLabelEmailTextField)];
+        });
+        
+        it(@"should show error message", ^{
+            tapSaveAndWaitForError();
+        });
+    });
+    
+    context(@"when password text field is empty", ^{
+        
+        beforeEach(^{
+            [tester dvs_enterValidEmail];
+        });
+        
+        it(@"should show error message", ^{
+            tapSaveAndWaitForError();
+        });
+        
+    });
+    
+    context(@"when password text field is too short", ^{
+        
+        beforeEach(^{
+            [tester dvs_enterValidEmail];
+            [tester enterText:@"$ec" intoViewWithAccessibilityLabel:DVSAccessibilityLabelPasswordTextField];
+        });
+        
+        it(@"should error message", ^{
+            tapSaveAndWaitForError();
+        });
+    });
+    
+    context(@"when e-mail and password text fields have valid data", ^{
+        
+        beforeEach(^{
+            [tester dvs_enterValidPassword];
+            [tester dvs_enterValidEmail];
+        });
+        
+        afterEach(^{
+            [tester dvs_tapLogOutButton];
+        });
+        
+        it(@"should move to home", ^{
+            [tester dvs_tapConfirmSignUpButton];
+            [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Home")];
+        });
+    });
 });
 
 SPEC_END
