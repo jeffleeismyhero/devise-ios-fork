@@ -50,6 +50,97 @@ To specify logging mode use:
 
  **devise-ios** takes care about network problems and is able to automatically retries request in case of connection issues. You can specify number and time between retries using `numberOfRetries` and `retryTresholdDuration` properties of `DVSConfiguration`.
 
+## Simple usage
+You can use predefined View controllers for login and sign up.
+
+<p align="center">
+  <img src="http://s4.postimg.org/m2p70za7h/combine_images.jpg" alt="DeviseDemo" title="DeviseDemo">
+</p>
+
+```objc
+//
+//  AppDelegate.m
+//
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //...
+    NSString *urlString = @"https://exampleurl.com";
+    DVSConfiguration *configuration = [DVSUser configuration];
+    [configuration setServerURL:[NSURL URLWithString:urlString]];
+    //...
+    return YES;
+}
+
+
+//
+//DeviseDemoViewController.m
+//
+#import "DVSLoginSignUpViewController.h"
+
+@interface DeviseDemoViewController : UIViewController <DVSLogInSignUpViewControllerDelegate>
+
+@end
+
+@implementation DeviseDemoViewController
+
+...
+
+- (void)didSelectLogIn {
+
+    DVSLogInSignUpFields logInFields = DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton | DVSLogInSignUpFieldPasswordReminder;
+    DVSLoginSignUpViewController *logInController = [[DVSLoginSignUpViewController alloc] initAsLogInWithFields:logInFields];
+
+    logInController.delegate = self;
+    [self.navigationController pushViewController:logInController animated:YES];
+}
+
+- (void)didSelectRegister {
+    DVSLogInSignUpFields signUpFields = DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton;
+    DVSLoginSignUpViewController *signUpController = [[DVSLoginSignUpViewController alloc] initAsSignUpWithFields:signUpFields];
+
+    signUpController.delegate = self;
+    [self.navigationController pushViewController:signUpController animated:YES];
+}
+
+
+
+#pragma mark - DVSLogInSignUpViewControllerDelegate
+
+- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didSuccessForAction:(DVSViewControllerAction)action andUser:(DVSUser *)user {
+    switch (action) {
+        case DVSViewControllerActionLogIn:
+        case DVSViewControllerActionSignUp:
+            [self moveToHomeView];
+            break;
+
+        case DVSViewControllerActionPasswordRemind:
+            [self handlePasswordRemind];
+            break;
+
+        default:
+            break;
+    }
+}
+
+- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didFailWithError:(NSError *)error forAction:(DVSViewControllerAction)action {
+    switch (action) {
+        case DVSViewControllerActionLogIn:
+            [self handleLogInError:error];
+            break;
+
+        case DVSViewControllerActionSignUp:
+            [self handleSignUpError:error];
+            break;
+
+        case DVSViewControllerActionPasswordRemind:
+            [self handlePasswordRemindError:error];
+            break;
+    }
+}
+
+@end
+```
+
 ## User
 The main class of **devise-ios** is `DVSUser`. Provided implementation is enough for login, registration, edition and any other feature offered by **devise-ios**. Nevertheless you can subclass `DVSUser` to customize it and change to fit your own purposes in easy way!
 
