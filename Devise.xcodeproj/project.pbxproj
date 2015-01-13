@@ -382,7 +382,7 @@
 		21AFB7D31A48276E00769C87 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				21B3ECB81A59CBB900C8C620 /* LoginSignUpViewController */,
+				21B3ECB81A59CBB900C8C620 /* AccountRetrieverViewController */,
 				21B3EC8B1A517FE700C8C620 /* DataSource */,
 				21B362D61A514F5100202C94 /* Views */,
 				21B3EC951A52B35500C8C620 /* DVSFieldsUtils.h */,
@@ -464,7 +464,7 @@
 			name = DataSource;
 			sourceTree = "<group>";
 		};
-		21B3ECB81A59CBB900C8C620 /* LoginSignUpViewController */ = {
+		21B3ECB81A59CBB900C8C620 /* AccountRetrieverViewController */ = {
 			isa = PBXGroup;
 			children = (
 				21B3ECC21A59DDAC00C8C620 /* Foms */,
@@ -472,7 +472,7 @@
 				21B3ECBA1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m */,
 				21B3ECC11A59CCCB00C8C620 /* DVSLoginSignUpFields.h */,
 			);
-			name = LoginSignUpViewController;
+			name = AccountRetrieverViewController;
 			sourceTree = "<group>";
 		};
 		21B3ECC21A59DDAC00C8C620 /* Foms */ = {

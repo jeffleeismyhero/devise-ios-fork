@@ -50,97 +50,6 @@ To specify logging mode use:
 
  **devise-ios** takes care about network problems and is able to automatically retries request in case of connection issues. You can specify number and time between retries using `numberOfRetries` and `retryTresholdDuration` properties of `DVSConfiguration`.
 
-## Simple usage
-You can use predefined View controllers for login and sign up.
-
-<p align="center">
-  <img src="http://s4.postimg.org/m2p70za7h/combine_images.jpg" alt="DeviseDemo" title="DeviseDemo">
-</p>
-
-```objc
-//
-//  AppDelegate.m
-//
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //...
-    NSString *urlString = @"https://exampleurl.com";
-    DVSConfiguration *configuration = [DVSUser configuration];
-    [configuration setServerURL:[NSURL URLWithString:urlString]];
-    //...
-    return YES;
-}
-
-
-//
-//DeviseDemoViewController.m
-//
-#import "DVSLoginSignUpViewController.h"
-
-@interface DeviseDemoViewController : UIViewController <DVSLogInSignUpViewControllerDelegate>
-
-@end
-
-@implementation DeviseDemoViewController
-
-...
-
-- (void)didSelectLogIn {
-
-    DVSLogInSignUpFields logInFields = DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton | DVSLogInSignUpFieldPasswordReminder;
-    DVSLoginSignUpViewController *logInController = [[DVSLoginSignUpViewController alloc] initAsLogInWithFields:logInFields];
-
-    logInController.delegate = self;
-    [self.navigationController pushViewController:logInController animated:YES];
-}
-
-- (void)didSelectRegister {
-    DVSLogInSignUpFields signUpFields = DVSLogInSignUpFieldEmailAndPassword | DVSLogInSignUpFieldProceedButton;
-    DVSLoginSignUpViewController *signUpController = [[DVSLoginSignUpViewController alloc] initAsSignUpWithFields:signUpFields];
-
-    signUpController.delegate = self;
-    [self.navigationController pushViewController:signUpController animated:YES];
-}
-
-
-
-#pragma mark - DVSLogInSignUpViewControllerDelegate
-
-- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didSuccessForAction:(DVSViewControllerAction)action andUser:(DVSUser *)user {
-    switch (action) {
-        case DVSViewControllerActionLogIn:
-        case DVSViewControllerActionSignUp:
-            [self moveToHomeView];
-            break;
-
-        case DVSViewControllerActionPasswordRemind:
-            [self handlePasswordRemind];
-            break;
-
-        default:
-            break;
-    }
-}
-
-- (void)logInSingUpViewController:(DVSLoginSignUpViewController *)controller didFailWithError:(NSError *)error forAction:(DVSViewControllerAction)action {
-    switch (action) {
-        case DVSViewControllerActionLogIn:
-            [self handleLogInError:error];
-            break;
-
-        case DVSViewControllerActionSignUp:
-            [self handleSignUpError:error];
-            break;
-
-        case DVSViewControllerActionPasswordRemind:
-            [self handlePasswordRemindError:error];
-            break;
-    }
-}
-
-@end
-```
-
 ## User
 The main class of **devise-ios** is `DVSUser`. Provided implementation is enough for login, registration, edition and any other feature offered by **devise-ios**. Nevertheless you can subclass `DVSUser` to customize it and change to fit your own purposes in easy way!
 
@@ -270,6 +179,48 @@ NSLog(@"%@", error.localizedDescription);
 ```
 
 Simple as that! For more conditions and messages take a look into `DVSPropertyValidator.h`
+
+## UI Components
+
+At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplify that process. Here is simple example of usage:
+
+```objc
+DVSAccountRetrieverViewController *logInController = [[DVSAccountRetrieverViewController alloc] initWithType:DVSRetrieverTypeLogIn fields:DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton];
+logInController.delegate = self;
+[self.navigationController pushViewController:logInController animated:YES];
+```
+
+Simple, right? As you can see initializer takes two parameters:`type` and `fields`. First one is defining how your view controller will act and look. If you want to perform log in action, you should pass `DVSRetrieverTypeLogIn`. Using it with `DVSAccountRetrieverViewController` will automatically configure proceed button title and tap event to perform log in request. For sign up action you can use `DVSRetrieverTypeSignUp` type.
+
+`fields` is options parameter that defines which parts of view should be. For example, if you want to use simple form with only text fields and proceed button as your log in view, you should define `fields` like:
+
+```objc
+DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton;
+```
+
+If you want to add password remind to form, just use below `fields`:
+
+```objc
+DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton | DVSAccountRetrieverFieldPasswordReminder;
+```
+
+In order to handle result of performed action, your class should override `DVSAccountRetrieverViewControllerDelegate` protocol methods:
+
+```objc
+// for success 
+- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didSuccessForAction:(DVSRetrieverAction)action user:(DVSUser *)user;
+
+// for failure
+- (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didFailWithError:(NSError *)error forAction:(DVSRetrieverAction)action;
+```
+
+In both cases view controller will return `action` variable, that defines type of finished action and can have one of values: `DVSRetrieverActionLogIn`, `DVSRetrieverActionSignUp`, `DVSRetrieverActionPasswordRemind`. Success callback additionally will return corresponded user object saved in `user`.
+
+`DVSAccountRetrieverViewController` doesn't implement autoclose feature. Developer is responsible to decide when close view. To help with this task, **devise-ios** provides additional callback in `DVSAccountRetrieverViewControllerDelegate` that is called when user tapps dismiss button:
+
+```objc
+- (void)accountRetrieverViewControllerDidTapDismiss:(DVSAccountRetrieverViewController *)controller; 
+```
 
 ## Demo
 Implements full account [lifecycle](#Features). Contains also an example with simple `DVSUser` subclassing and validation. To run demo please follow the instructions below:
