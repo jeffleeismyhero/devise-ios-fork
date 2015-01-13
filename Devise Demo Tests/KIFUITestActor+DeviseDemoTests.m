@@ -43,7 +43,8 @@ NSString * const DVSValidPassword = @"$eCR3t";
 }
 
 - (void)dvs_tapLogOutButton {
-    [self tapViewWithAccessibilityLabel:NSLocalizedString(@"Log out", nil)];
+    [self tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Log out")];
+    [self waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Welcome")];
 }
 
 - (void)dvs_tapConfirmLoginButton {
