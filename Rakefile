@@ -35,8 +35,13 @@ task "install" do
 end
 
 desc "Run the unit tests"
-task "test" do
-  xcode_run "clean test"
+task "test-unit" do
+  xcode_run "clean test", "Devise"
+end
+
+desc "Run the functional tests on demo app"
+task "test-functional" do
+  xcode_run "clean test", "Devise Demo"
 end
 
 desc "Build app and distribute"
@@ -160,19 +165,24 @@ end
 
 ################################################################################
 
-def xcodebuild_flags
+def scheme_config scheme 
   {
     "workspace" => xcode_workspace,
-    "scheme" => xcode_scheme,
+    "scheme" => scheme,
     "sdk" => xcode_sdk
-  }.map do |key, value|
+  }
+end
+
+def xcodebuild_flags hash
+  hash.map do |key, value|
     "-#{key} #{value}"
   end.join " "
 end
 
-def xcode_run action
-  sh "xcodebuild #{xcodebuild_flags} #{action} | xcpretty -c ; exit ${PIPESTATUS[0]}" rescue nil
-  report_failure "Scheme '#{xcode_scheme}' failed to '#{action}'.", $?.exitstatus unless $?.success?
+def xcode_run (action, scheme)
+  flags = xcodebuild_flags(scheme_config(scheme))
+  sh "xcodebuild #{flags} #{action} | xcpretty -c ; exit ${PIPESTATUS[0]}" rescue nil
+  report_failure "Scheme '#{scheme}' failed to '#{action}'.", $?.exitstatus unless $?.success?
 end
 
 ################################################################################

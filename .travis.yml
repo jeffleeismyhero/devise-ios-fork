@@ -24,8 +24,9 @@ env:
 
 matrix:
   include:
-    - env: RAKE_SUITE=test
+    - env: RAKE_SUITE=test-unit
     - env: RAKE_SUITE=build-and-distribute
+    - env: RAKE_SUITE=test-functional
 
   fast_finish: true
 
