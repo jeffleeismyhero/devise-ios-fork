@@ -41,7 +41,7 @@ end
 
 desc "Run the functional tests on demo app"
 task "test-functional" do
-  xcode_run "clean test", "Devise Demo"
+  xcode_run "clean test", '"Devise Demo"'
 end
 
 desc "Build app and distribute"
