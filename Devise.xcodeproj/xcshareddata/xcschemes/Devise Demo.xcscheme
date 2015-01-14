@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3AA8B35D1A24DA0000166927"
+               BuildableName = "Devise.framework"
+               BlueprintName = "Devise"
+               ReferencedContainer = "container:Devise.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "3AD4C6EA1A24F9A700F0AE67"
                BuildableName = "Devise Demo.app"
                BlueprintName = "Devise Demo"
