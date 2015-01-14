@@ -106,6 +106,8 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - Actions
+
 - (void)moveToHomeView {
     [self performSegueWithIdentifier:DVSHomeSegue sender:self];
 }
