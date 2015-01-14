@@ -183,7 +183,7 @@ Simple as that! For more conditions and messages take a look into `DVSPropertyVa
 ## UI Components
 
 <p align="center">
-  <img src="http://s29.postimg.org/oqfjjw587/IMG_1050.jpg" alt="DVSAccountRetrieverViewController" title="DVSAccountRetrieverViewController">
+  <img src="http://s7.postimg.org/donvunte3/0_sign_up.jpg" alt="Sign up view example" title="Sign up view example">
 </p>
 
 At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplify that process. Here is small example how to use it:
@@ -205,7 +205,7 @@ DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword
 And the result will be:
 
 <p align="center">
-  <img src="http://s29.postimg.org/v1kr0b6gn/IMG_1049.jpg" alt="DVSAccountRetrieverViewController" title="DVSAccountRetrieverViewController">
+  <img src="http://s7.postimg.org/fhqsizekr/1_log_in.jpg" alt="Log in view example" title="Log in view example">
 </p>
 
 If you want to add password remind to form, just use below combination:
@@ -217,7 +217,7 @@ DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword
 Result:
 
 <p align="center">
-  <img src="http://s29.postimg.org/a5ygp2a9j/IMG_1048.jpg" alt="DVSAccountRetrieverViewController" title="DVSAccountRetrieverViewController">
+  <img src="http://s7.postimg.org/z9syi9q4r/2_log_in_with_reminder.jpg" alt="Log in view with reminder example" title="Log in view with reminder example">
 </p>
 
 In order to handle result of performed action, your class should override two `DVSAccountRetrieverViewControllerDelegate` protocol methods:
