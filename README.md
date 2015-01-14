@@ -182,7 +182,7 @@ Simple as that! For more conditions and messages take a look into `DVSPropertyVa
 
 ## UI Components
 
-At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplify that process. Here is simple example of usage:
+At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplify that process. Here is small example how to use it:
 
 ```objc
 DVSAccountRetrieverViewController *logInController = [[DVSAccountRetrieverViewController alloc] initWithType:DVSRetrieverTypeLogIn fields:DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton];
@@ -192,19 +192,19 @@ logInController.delegate = self;
 
 Simple, right? As you can see initializer takes two parameters:`type` and `fields`. First one is defining how your view controller will act and look. If you want to perform log in action, you should pass `DVSRetrieverTypeLogIn`. Using it with `DVSAccountRetrieverViewController` will automatically configure proceed button title and tap event to perform log in request. For sign up action you can use `DVSRetrieverTypeSignUp` type.
 
-`fields` is options parameter that defines which parts of view should be. For example, if you want to use simple form with only text fields and proceed button as your log in view, you should define `fields` like:
+`fields` is options parameter that defines which parts of view should be visible. For example, if you want to use simple form with only text fields and proceed button as your log in view, you should define `fields` like:
 
 ```objc
 DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton;
 ```
 
-If you want to add password remind to form, just use below `fields`:
+If you want to add password remind to form, just use below combination:
 
 ```objc
 DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton | DVSAccountRetrieverFieldPasswordReminder;
 ```
 
-In order to handle result of performed action, your class should override `DVSAccountRetrieverViewControllerDelegate` protocol methods:
+In order to handle result of performed action, your class should override two `DVSAccountRetrieverViewControllerDelegate` protocol methods:
 
 ```objc
 // for success 
@@ -216,7 +216,7 @@ In order to handle result of performed action, your class should override `DVSAc
 
 In both cases view controller will return `action` variable, that defines type of finished action and can have one of values: `DVSRetrieverActionLogIn`, `DVSRetrieverActionSignUp`, `DVSRetrieverActionPasswordRemind`. Success callback additionally will return corresponded user object saved in `user`.
 
-`DVSAccountRetrieverViewController` doesn't implement autoclose feature. Developer is responsible to decide when close view. To help with this task, **devise-ios** provides additional callback in `DVSAccountRetrieverViewControllerDelegate` that is called when user tapps dismiss button:
+`DVSAccountRetrieverViewController` doesn't implement autoclose feature. Developer is responsible to decide when close view. To help with this task, **devise-ios** provides additional callback in `DVSAccountRetrieverViewControllerDelegate` that is executed when user tapps dismiss button:
 
 ```objc
 - (void)accountRetrieverViewControllerDidTapDismiss:(DVSAccountRetrieverViewController *)controller; 
