@@ -182,6 +182,10 @@ Simple as that! For more conditions and messages take a look into `DVSPropertyVa
 
 ## UI Components
 
+<p align="center">
+  <img src="http://s29.postimg.org/oqfjjw587/IMG_1050.jpg" alt="DVSAccountRetrieverViewController" title="DVSAccountRetrieverViewController">
+</p>
+
 At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplify that process. Here is small example how to use it:
 
 ```objc
@@ -198,11 +202,23 @@ Simple, right? As you can see initializer takes two parameters:`type` and `field
 DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton;
 ```
 
+And the result will be:
+
+<p align="center">
+  <img src="http://s29.postimg.org/v1kr0b6gn/IMG_1049.jpg" alt="DVSAccountRetrieverViewController" title="DVSAccountRetrieverViewController">
+</p>
+
 If you want to add password remind to form, just use below combination:
 
 ```objc
 DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton | DVSAccountRetrieverFieldPasswordReminder;
 ```
+
+Result:
+
+<p align="center">
+  <img src="http://s29.postimg.org/a5ygp2a9j/IMG_1048.jpg" alt="DVSAccountRetrieverViewController" title="DVSAccountRetrieverViewController">
+</p>
 
 In order to handle result of performed action, your class should override two `DVSAccountRetrieverViewControllerDelegate` protocol methods:
 

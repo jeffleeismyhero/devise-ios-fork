@@ -12,9 +12,7 @@
 #import "UIAlertView+DeviseDemo.h"
 
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
-
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
-
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
 @interface DVSDemoWelcomeViewController () <DVSAccountRetrieverViewControllerDelegate>
