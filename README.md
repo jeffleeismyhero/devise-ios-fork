@@ -186,7 +186,7 @@ Simple as that! For more conditions and messages take a look into `DVSPropertyVa
   <img src="http://s7.postimg.org/donvunte3/0_sign_up.jpg" alt="Sign up view example" title="Sign up view example">
 </p>
 
-At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplify that process. Here is small example how to use it:
+At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplifies that process. Here is simple example of usage:
 
 ```objc
 DVSAccountRetrieverViewController *logInController = [[DVSAccountRetrieverViewController alloc] initWithType:DVSRetrieverTypeLogIn fields:DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton];
@@ -196,7 +196,7 @@ logInController.delegate = self;
 
 Simple, right? As you can see initializer takes two parameters:`type` and `fields`. First one is defining how your view controller will act and look. If you want to perform log in action, you should pass `DVSRetrieverTypeLogIn`. Using it with `DVSAccountRetrieverViewController` will automatically configure proceed button title and tap event to perform log in request. For sign up action you can use `DVSRetrieverTypeSignUp` type.
 
-`fields` is options parameter that defines which parts of view should be visible. For example, if you want to use simple form with only text fields and proceed button as your log in view, you should define `fields` like:
+`fields` is options parameter that defines which parts of view should be visible. For example, if you want to use simple form with only text fields and proceed button, you should define `fields` like:
 
 ```objc
 DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton;
@@ -208,7 +208,7 @@ And the result will be:
   <img src="http://s7.postimg.org/fhqsizekr/1_log_in.jpg" alt="Log in view example" title="Log in view example">
 </p>
 
-If you want to add password remind to form, just use below combination:
+If you want to add a password reminder to form, just use following combination:
 
 ```objc
 DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton | DVSAccountRetrieverFieldPasswordReminder;
