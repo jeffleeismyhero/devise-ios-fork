@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
 /**
  *  Returns an initialized instance of view controller
  *
- *  @param type Specyfies which action will be triggered with proceed
+ *  @param type Type specifying what action will be launched by controller
  *  @param fields Bitmask specifying elements which are enabled in the view
  *
  *  @return Instance of DVSLoginSignUpViewController class
