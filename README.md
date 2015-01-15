@@ -182,7 +182,7 @@ Simple as that! For more conditions and messages take a look into `DVSPropertyVa
 
 ## UI Components
 
-![Sign up view example](https://github.com/netguru/devise-ios/doc/0_sign_up.jpg "Sign up view example")
+![Sign up view example](https://github.com/netguru/devise-ios/blob/master/doc/0_sign_up.jpg "Sign up view example")
 
 At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplifies that process. Here is simple example of usage:
 
@@ -202,7 +202,7 @@ DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword
 
 And the result will be:
 
-![Log in view example](https://github.com/netguru/devise-ios/doc/1_log_in.jpg "Log in view example")
+![Log in view example](https://github.com/netguru/devise-ios/blob/master/doc/1_log_in.jpg "Log in view example")
 
 If you want to add a password reminder to form, just use following combination:
 
@@ -212,7 +212,7 @@ DVSAccountRetrieverFields logInFields = DVSAccountRetrieverFieldEmailAndPassword
 
 Result:
 
-![Log in view with reminder example](https://github.com/netguru/devise-ios/doc/2_log_in_with_reminder.jpg "Log in view with reminder example")
+![Log in view with reminder example](https://github.com/netguru/devise-ios/blob/master/doc/2_log_in_with_reminder.jpg "Log in view with reminder example")
 
 In order to handle result of performed action, your class should override two `DVSAccountRetrieverViewControllerDelegate` protocol methods:
 
