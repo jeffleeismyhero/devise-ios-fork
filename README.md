@@ -48,12 +48,12 @@ To specify logging mode use:
 [[DVSConfiguration sharedConfiguration] setLoggingMode:<#DVSLoggingMode#>];
 ```
 
- **devise-ios** takes care about network problems and is able to automatically retries request in case of connection issues. You can specify number and time between retries using `numberOfRetries` and `retryTresholdDuration` properties of `DVSConfiguration`.
+ **devise-ios** takes care about network problems and is able to automatically retry requests in case of connection issues. You can specify a number and time between retries using `numberOfRetries` and `retryTresholdDuration` properties of `DVSConfiguration`.
 
 ## User
-The main class of **devise-ios** is `DVSUser`. Provided implementation is enough for login, registration, edition and any other feature offered by **devise-ios**. Nevertheless you can subclass `DVSUser` to customize it and change to fit your own purposes in easy way!
+The main class of **devise-ios** is `DVSUser`. Provided implementation is enough for login, registration, edition and any other features offered by **devise-ios**. Nevertheless you can subclass `DVSUser` to customize it and change to fit your own purposes in an easy way!
 
-Functions are pretty straightforward and self-explanatory. If you wish to provide additional parameters for every request use `WithExtraParams:(DVSExtraParamsBlock)params` function counterpart:
+Functions are pretty straightforward and self-explanatory. If you wish to provide additional parameters for every request, use `WithExtraParams:(DVSExtraParamsBlock)params` function counterpart:
 
 * User registration:
 
@@ -96,7 +96,7 @@ Functions are pretty straightforward and self-explanatory. If you wish to provid
     - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
     ```
 
-Unless you've fallen in love with blocks yet, you can still pass additional parameters using regular methods:
+If you haven't fallen in love with blocks yet, you can still pass additional parameters using regular methods:
 
 * Single parameter:
 
@@ -110,7 +110,7 @@ Unless you've fallen in love with blocks yet, you can still pass additional para
     - (void)setObjects:(NSDictionary *)objects forAction:(DVSActionType)actionType;
     ```
 
-* or via `DVSUserDataSource` protocol you have to conform:
+* or via `DVSUserDataSource` protocol you have to confirm:
 
     ```objc
     - (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;
@@ -118,7 +118,7 @@ Unless you've fallen in love with blocks yet, you can still pass additional para
 
 ## User customization
 
-Although `DVSUser` implementation is enough for basic usage, you can customize it as well. The best way to adapt `DVSUser` class to own purposes is conform `DVSUserDataSource` protocol.
+Although `DVSUser` implementation is enough for a basic usage, you can customize it as well. The best way to adapt `DVSUser` class to your own purposes is to conform `DVSUserDataSource` protocol.
 
 Changing default keys for built-in JSON fields can be achieved by:
 
@@ -128,7 +128,7 @@ Changing default keys for built-in JSON fields can be achieved by:
 - (NSString *)JSONKeyPathForPasswordConfirmation;
 ```
 
-Defining own customize validation rules used when performing a specified action:
+Defining your own customize validation rules used when performing a specified action:
 
 ```objc
 - (NSArray *)additionalValidationRulesForAction:(DVSActionType)action;
@@ -148,19 +148,19 @@ Just remember to pass property names as `NSString`.
 
 ## User model validation and messaging
 
-**devise-ios** deliver also simply validation wrapper for your purposes. If you wish to use it, conform `DVSUserDataSource` protocol and implement `additionalValidationRulesForAction:` method.
+**devise-ios** also delivers a simple validation wrapper for your purposes. If you wish to use it, conform `DVSUserDataSource` protocol and implement `additionalValidationRulesForAction:` method.
 
-Lets say subclass of `DVSUser` has additional property `NSString *registrationUsername` you want to validate during registration process to fulfill conditions:
+Let's say a subclass of `DVSUser` has an additional property `NSString *registrationUsername` thet you want to validate during registration process to fulfill conditions:
 * cannot be nil
 * length should be at least 4 signs
 * length should be at most 20 signs
 
-and display appropriate messages when validation fail:
+and display appropriate messages when validation fails:
 
 * when has less than 4 signs: "should has at least 4 signs"
 * when has more than 20 signs: "should has at most 20 signs"
 
-Moreover `registrationUsername` doesn't sound very well for user, so it should be displayed as "Username":
+Moreover `registrationUsername` doesn't sound very well for a user, so it should be displayed as a "Username":
 
 ```objc
 - (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
@@ -184,7 +184,7 @@ Simple as that! For more conditions and messages take a look into `DVSPropertyVa
 
 ![Sign up view example](https://github.com/netguru/devise-ios/blob/master/doc/0_sign_up.jpg "Sign up view example")
 
-At some point in your app you might want to prepare quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplifies that process. Here is simple example of usage:
+At some point in your app you might want to prepare a quick setup for your users and allow them to log in and sign up. **devise-ios** provides a handy view controller, called `DVSAccountRetrieverViewController`, which simplifies that process. Here is a simple example of usage:
 
 ```objc
 DVSAccountRetrieverViewController *logInController = [[DVSAccountRetrieverViewController alloc] initWithType:DVSRetrieverTypeLogIn fields:DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton];
@@ -226,7 +226,7 @@ In order to handle result of performed action, your class should override two `D
 
 In both cases view controller will return `action` variable, that defines type of finished action and can have one of values: `DVSRetrieverActionLogIn`, `DVSRetrieverActionSignUp`, `DVSRetrieverActionPasswordRemind`. Success callback additionally will return corresponded user object saved in `user`.
 
-`DVSAccountRetrieverViewController` doesn't implement autoclose feature. Developer is responsible to decide when close view. To help with this task, **devise-ios** provides additional callback in `DVSAccountRetrieverViewControllerDelegate` that is executed when user tapps dismiss button:
+`DVSAccountRetrieverViewController` doesn't implement autoclose feature. A developer is responsible for deciding when to close a view. To help with this task, **devise-ios** provides additional callback in `DVSAccountRetrieverViewControllerDelegate` that is executed when a user tapps a dismiss button:
 
 ```objc
 - (void)accountRetrieverViewControllerDidTapDismiss:(DVSAccountRetrieverViewController *)controller; 
@@ -240,7 +240,7 @@ $ git clone --recursive git@github.com:netguru/devise-ios.git
 $ pod install
 ```
 
-or if you already cloned project without `--recursive`:
+or if you already cloned the project without `--recursive`:
 
 ```bash
 $ git submodule update --init --recursive
@@ -253,7 +253,7 @@ $ pod install
 ## Contribution
 First, thank you for contributing!
 
-Here a few guidelines to follow:
+Here's a few guidelines to follow:
 
 - we follow [Ray Wenderlich Style Guide](https://github.com/raywenderlich/objective-c-style-guide).
 - write tests
@@ -264,4 +264,4 @@ Here a few guidelines to follow:
 Have a question? Please [open an issue](https://github.com/netguru/devise-ios/issues/new)!
 
 ##
-Copyright © 2014 [Netguru](https://netguru.co)
+Copyright © 2014-2015 [Netguru](https://netguru.co)
