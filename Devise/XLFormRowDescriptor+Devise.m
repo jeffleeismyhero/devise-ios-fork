@@ -59,18 +59,20 @@
 
 - (void)dvs_setAccessibilityLabel:(NSString *)accessibilityLabel {
     if ([self.rowType isEqualToString:XLFormRowDescriptorTypeButton]) {
-        [self dvs_setAccessibilityLabel:accessibilityLabel forControllWithName:@""];
+        [self dvs_setAccessibilityLabel:accessibilityLabel forKeyByComponents:@[ @"self", @"accessibilityLabel"]];
     } else if ([self.rowType isEqualToString:XLFormRowDescriptorTypeText]
                || [self.rowType isEqualToString:XLFormRowDescriptorTypeEmail]
                || [self.rowType isEqualToString:XLFormRowDescriptorTypePassword]) {
-        [self dvs_setAccessibilityLabel:accessibilityLabel forControllWithName:@"textField."];
+        [self dvs_setAccessibilityLabel:accessibilityLabel forKeyByComponents:@[ @"textField", @"accessibilityLabel"]];
     } else {
         NSAssert(NO, @"Row type not supported.");
     }
 }
 
-- (void)dvs_setAccessibilityLabel:(NSString *)accessibilityLabel forControllWithName:(NSString *)controllName {
-    [self.cellConfig setObject:accessibilityLabel forKey:[NSString stringWithFormat:@"%@accessibilityLabel", controllName]];
+- (void)dvs_setAccessibilityLabel:(NSString *)accessibilityLabel forKeyByComponents:(NSArray *)components {
+    NSString *key = [components componentsJoinedByString:@"."];
+    NSLog(@"XLFORM ROW key %@", key);
+    [self.cellConfig setObject:accessibilityLabel forKey:key];
 }
 
 @end
