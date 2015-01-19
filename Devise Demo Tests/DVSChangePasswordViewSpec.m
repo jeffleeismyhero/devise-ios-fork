@@ -61,7 +61,7 @@ describe(@"Change password screen", ^{
             
             it(@"should show error message", ^{
                 [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
-                [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"Password is required.", nil)];
+                [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"New password is required.", nil)];
                 [tester dvs_closeErrorPopup];
             });
         });

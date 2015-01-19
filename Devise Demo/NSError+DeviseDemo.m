@@ -16,7 +16,11 @@ NSString * const DVSDemoErrorDomain = @"co.netguru.lib.devise.demo.error";
 
 typedef NS_ENUM(NSInteger, DVSErrorCode) {
     DVSErrorPasswordConfirmNotMatch = 101,
-    DVSErrorNewPasswordNotMatch = 102
+    DVSErrorNewPasswordConfirmNotMatch = 102,
+    DVSErrorPasswordRequired = 103,
+    DVSErrorNewPasswordRequired = 104,
+    DVSErrorNewPasswordConfirmRequired = 105,
+    
 };
 
 + (NSError *)dvs_passwordConfirmError {
@@ -24,18 +28,23 @@ typedef NS_ENUM(NSInteger, DVSErrorCode) {
                 localizedDescription:NSLocalizedString(@"Password confirm and current password do not match.", nil)];
 }
 
++ (NSError *)dvs_newPasswordRequiredError {
+    return [NSError dvs_errorForCode:DVSErrorNewPasswordRequired
+                localizedDescription:NSLocalizedString(@"New password is required.", nil)];
+}
+
 + (NSError *)dvs_newPasswordConfirmMatchError {
-    return [self dvs_errorForCode:DVSErrorNewPasswordNotMatch
+    return [self dvs_errorForCode:DVSErrorNewPasswordRequired
              localizedDescription:NSLocalizedString(@"Passwords do not match.", nil)];
 }
 
 + (NSError *)dvs_newPasswordConfirmRequiredError {
-    return [self dvs_errorForCode:DVSErrorNewPasswordNotMatch
+    return [self dvs_errorForCode:DVSErrorNewPasswordConfirmNotMatch
              localizedDescription:NSLocalizedString(@"New password confirm is required.", nil)];
 }
 
 + (NSError *)dvs_currentPasswordRequiredError {
-    return [NSError dvs_errorForCode:DVSErrorPasswordConfirmNotMatch
+    return [NSError dvs_errorForCode:DVSErrorPasswordRequired
                 localizedDescription:NSLocalizedString(@"Current password is required.", nil)];
 }
 

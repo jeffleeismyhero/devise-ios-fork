@@ -68,6 +68,11 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
     NSString *newPassword = [self valueForTitle:NSLocalizedString(DVSTitleForNewPassword, nil)];
     NSString *newPasswordConfirm = [self valueForTitle:NSLocalizedString(DVSTitleForConfirmNewPassword, nil)];
     
+    if ([newPassword isEqualToString:@""]) {
+        [[UIAlertView dvs_alertViewForError:[NSError dvs_newPasswordRequiredError]] show];
+        return;
+    }
+    
     if ([newPasswordConfirm isEqualToString:@""]) {
         [[UIAlertView dvs_alertViewForError:[NSError dvs_newPasswordConfirmRequiredError]] show];
         return;

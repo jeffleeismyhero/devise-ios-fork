@@ -34,6 +34,7 @@
 "Passwords do not match." = "Passwords do not match.";
 "Password confirm and current password do not match." = "Password confirm and current password do not match.";
 "Current password is required." = "Current password is required.";
+"New password is required." = "New password is required.";
 "New password confirm is required." = "New password confirm is required.";
 
 /* Password reminder view controller */
