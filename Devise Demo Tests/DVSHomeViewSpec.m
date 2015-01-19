@@ -33,11 +33,17 @@ describe(@"Home screen", ^{
         });
         
         
-        it(@"should delete profile after confirm", ^{
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete profile")];
-            [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete")];
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Yes")];
-            [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Welcome")];
+        describe(@"when confirm button is tapped", ^{
+            
+            beforeEach(^{
+                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete profile")];
+                [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Delete")];
+            });
+            
+            it(@"should delete profile", ^{
+                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Yes")];
+                [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Welcome")];
+            });
         });
         
     });
