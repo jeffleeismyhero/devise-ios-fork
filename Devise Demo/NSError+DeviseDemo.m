@@ -24,9 +24,19 @@ typedef NS_ENUM(NSInteger, DVSErrorCode) {
                 localizedDescription:NSLocalizedString(@"Password confirm and current password do not match.", nil)];
 }
 
-+ (NSError *)dvs_newPasswordConfirmError {
++ (NSError *)dvs_newPasswordConfirmMatchError {
     return [self dvs_errorForCode:DVSErrorNewPasswordNotMatch
              localizedDescription:NSLocalizedString(@"Passwords do not match.", nil)];
+}
+
++ (NSError *)dvs_newPasswordConfirmRequiredError {
+    return [self dvs_errorForCode:DVSErrorNewPasswordNotMatch
+             localizedDescription:NSLocalizedString(@"New password confirm is required.", nil)];
+}
+
++ (NSError *)dvs_currentPasswordRequiredError {
+    return [NSError dvs_errorForCode:DVSErrorPasswordConfirmNotMatch
+                localizedDescription:NSLocalizedString(@"Current password is required.", nil)];
 }
 
 + (NSError *)dvs_errorForCode:(NSInteger)code localizedDescription:(NSString *)localizedDescription {

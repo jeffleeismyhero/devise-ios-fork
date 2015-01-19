@@ -11,12 +11,6 @@ describe(@"Change password screen", ^{
     
     describe(@"tapping save button", ^{
         
-        void (^tapSaveAndWaitForError)() = ^void() {
-            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
-            [tester dvs_waitForErrorView];
-            [tester dvs_closeErrorPopup];
-        };
-        
         __block id<OHHTTPStubsDescriptor> stub = nil;
         
         beforeAll(^{
@@ -40,21 +34,25 @@ describe(@"Change password screen", ^{
             [tester waitForViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Change password")];
         });
         
-        it(@"should show error message when current password field is empty", ^{
-            tapSaveAndWaitForError();
+        it(@"should show error message when current password confirm field is empty", ^{
+            [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
+            [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"Current password is required.", nil)];
+            [tester dvs_closeErrorPopup];
         });
         
-        context(@"when current password field don't match", ^{
+        context(@"when current password confirm field don't match current password", ^{
             
             beforeEach(^{
                 [tester enterText:@"$eC" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Current password field")];
             });
             
             it(@"should show error message", ^{
-                tapSaveAndWaitForError();
+                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
+                [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"Password confirm and current password do not match.", nil)];
+                [tester dvs_closeErrorPopup];
             });
         });
-        
+
         context(@"when new password is empty", ^{
             
             beforeEach(^{
@@ -62,24 +60,39 @@ describe(@"Change password screen", ^{
             });
             
             it(@"should show error message", ^{
-                tapSaveAndWaitForError();
+                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
+                [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"Password is required.", nil)];
+                [tester dvs_closeErrorPopup];
             });
         });
         
-        context(@"when provide new password", ^{
+        context(@"when new password is not confirmed", ^{
             
             beforeEach(^{
                 [tester enterText:DVSValidPassword intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Current password field")];
                 [tester enterText:@"n3w_pa$$word" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"New password field")];
             });
             
-            it(@"should show error if password not confirmed", ^{
-                tapSaveAndWaitForError();
+            it(@"should show error message", ^{
+                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
+                [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"New password confirm is required.", nil)];
+                [tester dvs_closeErrorPopup];
             });
             
-            it(@"should show error if password confirm don't match", ^{
+        });
+
+        context(@"when new password and confirm don't match", ^{
+            
+            beforeEach(^{
+                [tester enterText:DVSValidPassword intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Current password field")];
+                [tester enterText:@"n3w_pa$$word" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"New password field")];
                 [tester enterText:@"not_n3w_pa$$word" intoViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Confirm password field")];
-                tapSaveAndWaitForError();
+            });
+            
+            it(@"should show error message", ^{
+                [tester tapViewWithAccessibilityLabel:DVSAccessibilityLabel(@"Save")];
+                [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"Passwords do not match.", nil)];
+                [tester dvs_closeErrorPopup];
             });
             
         });

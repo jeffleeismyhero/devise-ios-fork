@@ -71,7 +71,6 @@
 
 - (void)dvs_setAccessibilityLabel:(NSString *)accessibilityLabel forKeyByComponents:(NSArray *)components {
     NSString *key = [components componentsJoinedByString:@"."];
-    NSLog(@"XLFORM ROW key %@", key);
     [self.cellConfig setObject:accessibilityLabel forKey:key];
 }
 

@@ -11,7 +11,9 @@
 @interface NSError (DeviseDemo)
 
 + (NSError *)dvs_passwordConfirmError;
-+ (NSError *)dvs_newPasswordConfirmError;
++ (NSError *)dvs_newPasswordConfirmMatchError;
++ (NSError *)dvs_newPasswordConfirmRequiredError;
++ (NSError *)dvs_currentPasswordRequiredError;
 
 - (NSInteger)dvs_urlStatusCode;
 
