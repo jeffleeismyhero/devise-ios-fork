@@ -148,9 +148,10 @@ Just remember to pass property names as `NSString`.
 
 ## User model validation and messaging
 
-**devise-ios** also delivers a simple validation wrapper for your purposes. If you wish to use it, conform `DVSUserDataSource` protocol and implement `additionalValidationRulesForAction:` method.
+**devise-ios** under the hood uses [NGRValidator](https://github.com/netguru/ngrvalidator) to validate data. On top of it **devise-ios** delivers a possibility to add your own validation rules. If you wish to add some of them, conform `DVSUserDataSource` protocol and implement `additionalValidationRulesForAction:` method. 
 
-Let's say a subclass of `DVSUser` has an additional property `NSString *registrationUsername` thet you want to validate during registration process to fulfill conditions:
+
+Let's say a subclass of `DVSUser` has an additional property `NSString *registrationUsername` you want to validate during registration process to fulfill conditions:
 * cannot be nil
 * length should be at least 4 signs
 * length should be at most 20 signs
@@ -165,7 +166,7 @@ Moreover `registrationUsername` doesn't sound very well for a user, so it should
 ```objc
 - (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
     if (action == DVSActionRegistration) {
-        return @[DVSValidate(@"registrationUsername").required().minLength(5).maxLength(20).tooShort(@"should has at least 4 signs.").tooLong(@"should has at most 20 signs").localizedPropertyName(@"Username")];
+        return @[NGRValidate(@"registrationUsername").required().lengthRange(5, 20).tooShort(@"should has at least 4 signs.").tooLong(@"should has at most 20 signs").localizedName(@"Username")];
     }
     return nil;
 }
@@ -178,7 +179,7 @@ NSLog(@"%@", error.localizedDescription);
 // Username should has at least 4 characters.
 ```
 
-Simple as that! For more conditions and messages take a look into `DVSPropertyValidator.h`
+Simple as that! For more info please refer to [NGRValidator](https://github.com/netguru/ngrvalidator).
 
 ## UI Components
 
