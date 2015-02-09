@@ -9,7 +9,7 @@
 #define Devise_DVSLoginSignUpFields_h
 
 /**
- * A bitmask specyfing elements which are enabled
+ * A bitmask specifying elements which are enabled
  */
 typedef NS_OPTIONS(NSInteger, DVSAccountRetrieverFields) {
     DVSAccountRetrieverFieldEmailAndPassword           = 1 << 0,

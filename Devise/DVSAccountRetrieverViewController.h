@@ -11,7 +11,7 @@
 #import "DVSUser.h"
 
 /**
- *  Enumeration specyfing for what type of action view controller should be customized
+ *  Enumeration specifying for what type of action view controller should be customized
  */
 typedef NS_ENUM(NSUInteger, DVSRetrieverType) {
     DVSRetrieverTypeLogIn,
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, DVSRetrieverType) {
 
 
 /**
- * Enumeration specyfing what action was performed
+ * Enumeration specifying what action was performed
  */
 typedef NS_ENUM(NSUInteger, DVSRetrieverAction) {
     DVSRetrieverActionLogIn,

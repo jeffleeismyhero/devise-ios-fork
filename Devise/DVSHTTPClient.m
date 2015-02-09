@@ -133,7 +133,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
             retriesCounter = 0;
         } else {
             retriesCounter++;
-            NSTimeInterval waitDuration = self.configuration.retryTresholdDuration;
+            NSTimeInterval waitDuration = self.configuration.retryThresholdDuration;
             dispatch_time_t gcdDuration = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(waitDuration * NSEC_PER_SEC));
             __weak typeof(self) weakSelf = self;
             dispatch_after(gcdDuration, dispatch_get_main_queue(), ^{

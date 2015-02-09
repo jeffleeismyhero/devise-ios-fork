@@ -17,7 +17,7 @@
 - (instancetype)initWithTitle:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel value:(NSString *)value secured:(BOOL)secured keyboardType:(UIKeyboardType)keyboardType {
     if (self = [super init]) {
         _title = title;
-        _accessibilityLabel = accessibilityLabel;
+        _fieldAccessibilityLabel = accessibilityLabel;
         _value = value;
         _secured = secured;
         _keyboardType = keyboardType;

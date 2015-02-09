@@ -12,7 +12,7 @@
 
 + (XLFormRowDescriptor *)dvs_emailRowWithTag:(NSString *)tag;
 + (XLFormRowDescriptor *)dvs_passwordRowWithTag:(NSString *)tag;
-+ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title accessibilityLabel:(NSString *)accessiblityLabel color:(UIColor *)color action:(void (^)(XLFormRowDescriptor *))action;
++ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel color:(UIColor *)color action:(void (^)(XLFormRowDescriptor *))action;
 
 - (void)dvs_customizeTextWithColor:(UIColor *)color alignment:(NSTextAlignment)alignment;
 

@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 /**
  *  The duration (in seconds) after which a next retry happens (default: 0).
  */
-@property (assign, nonatomic) NSTimeInterval retryTresholdDuration;
+@property (assign, nonatomic) NSTimeInterval retryThresholdDuration;
 
 /**
  *  Whether the network activity indicator should be visible (default: NO).

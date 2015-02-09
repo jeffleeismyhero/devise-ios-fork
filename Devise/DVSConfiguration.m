@@ -31,7 +31,7 @@
     self.keychainServiceName = @"co.netguru.lib.devise.keychain";
     self.loggingMode = DVSLoggingModeNone;
     self.numberOfRetries = 0;
-    self.retryTresholdDuration = 0.0;
+    self.retryThresholdDuration = 0.0;
     return self;
 }
 

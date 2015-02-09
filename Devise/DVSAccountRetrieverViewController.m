@@ -79,10 +79,6 @@
     }
 }
 
-- (DVSAccountRetrieverFields)defaultFields {
-    return DVSAccountRetrieverFieldEmailAndPassword | DVSAccountRetrieverFieldProceedButton;
-}
-
 #pragma mark - Private
 
 - (void)showPasswordReminder {
@@ -186,7 +182,7 @@ DVSWorkInProgress("Move type properties to separate model class.");
     }];
 }
 
-#pragma mark - Delegete helpers
+#pragma mark - Delegate helpers
 
 - (void)callFromDelegateSuccessForAction:(DVSRetrieverAction)action {
     if ([self.delegate respondsToSelector:@selector(accountRetrieverViewController:didSuccessForAction:user:)]) {

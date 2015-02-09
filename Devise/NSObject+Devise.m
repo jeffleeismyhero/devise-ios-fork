@@ -39,7 +39,6 @@
     return [self dvs_propertiesOfClass:[self class]];
 }
 
-
 - (Class)dvs_classOfPropertyNamed:(NSString *)propertyName {
 
     Class propertyClass = nil;

@@ -12,7 +12,7 @@
  *  The completion block of all http requests.
  *
  *  @param responseObject The response object of the request, if any.
- *  @param error          An error that occured, if any.
+ *  @param error          An error that occurred, if any.
  */
 typedef void (^DVSHTTPClientCompletionBlock)(id responseObject, NSError *error);
 

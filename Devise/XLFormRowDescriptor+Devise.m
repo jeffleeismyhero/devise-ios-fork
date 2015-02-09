@@ -35,12 +35,12 @@
 
 #pragma mark - Custom buttons
 
-+ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title accessibilityLabel:(NSString *)accessiblityLabel color:(UIColor *)color action:(void (^)(XLFormRowDescriptor *))action {
++ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel color:(UIColor *)color action:(void (^)(XLFormRowDescriptor *))action {
     XLFormRowDescriptor *buttonRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
                                                                            rowType:XLFormRowDescriptorTypeButton
                                                                              title:title];
     [buttonRow dvs_customizeTextWithColor:color alignment:NSTextAlignmentCenter];
-    [buttonRow dvs_setAccessibilityLabel:accessiblityLabel];
+    [buttonRow dvs_setAccessibilityLabel:accessibilityLabel];
     buttonRow.action.formBlock = action;
     
     return buttonRow;

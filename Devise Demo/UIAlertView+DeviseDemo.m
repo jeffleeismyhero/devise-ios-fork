@@ -14,9 +14,9 @@
 
 + (UIAlertView *)dvs_alertViewForError:(NSError *)error statusDescriptionsDictionary:(NSDictionary *)dictionary {
     NSInteger errorCode = [error dvs_urlStatusCode];
-    NSString *descripionForCode = dictionary[@(errorCode)];
-    if (descripionForCode) {
-        return [self dvs_alertViewForErrorLocalizedDescription:descripionForCode];
+    NSString *descriptionForCode = dictionary[@(errorCode)];
+    if (descriptionForCode) {
+        return [self dvs_alertViewForErrorLocalizedDescription:descriptionForCode];
     } else {
         return [self dvs_alertViewForError:error];
     }

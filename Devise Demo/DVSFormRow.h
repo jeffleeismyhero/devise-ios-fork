@@ -11,7 +11,7 @@
 @interface DVSFormRow : NSObject
 
 @property (strong, nonatomic, readonly) NSString *title;
-@property (strong, nonatomic, readonly) NSString *accessibilityLabel;
+@property (strong, nonatomic, readonly) NSString *fieldAccessibilityLabel;
 @property (strong, nonatomic, readonly) NSString *value;
 @property (assign, nonatomic, readonly) BOOL secured;
 @property (assign, nonatomic, readonly) UIKeyboardType keyboardType;

@@ -15,7 +15,7 @@
     self.valueTextField.text = row.value;
     self.valueTextField.secureTextEntry = row.secured;
     self.valueTextField.keyboardType = row.keyboardType;
-    self.valueTextField.accessibilityLabel = row.accessibilityLabel;
+    self.valueTextField.accessibilityLabel = row.fieldAccessibilityLabel;
 }
 
 @end
