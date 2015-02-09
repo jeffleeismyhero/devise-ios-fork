@@ -66,7 +66,7 @@ static NSString * const DVSDefaultCellId = @"defaultCell";
     
     NSUInteger indexOfModel = [self.dataSourceArray indexOfObject:model];
     self.dataSourceArray[indexOfModel] = [[DVSFormRow alloc] initWithTitle:model.title
-                                                        accessibilityLabel:model.accessibilityLabel
+                                                        accessibilityLabel:model.fieldAccessibilityLabel
                                                                      value:value
                                                                    secured:model.secured
                                                               keyboardType:model.keyboardType];
