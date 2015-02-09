@@ -47,10 +47,6 @@
     self.additionalRequestParameters = [array copy];
 }
 
-- (id)requestParameterForKey:(NSString *)key action:(DVSActionType)action {
-    return self.additionalRequestParameters[action][key];
-}
-
 - (NSDictionary *)requestParametersForAction:(DVSActionType)action {
     return self.additionalRequestParameters[action];
 }

@@ -19,8 +19,6 @@ typedef NS_ENUM(NSInteger, DVSErrorCode) {
     DVSErrorNewPasswordConfirmNotMatch = 102,
     DVSErrorPasswordRequired = 103,
     DVSErrorNewPasswordRequired = 104,
-    DVSErrorNewPasswordConfirmRequired = 105,
-    
 };
 
 + (NSError *)dvs_passwordConfirmError {

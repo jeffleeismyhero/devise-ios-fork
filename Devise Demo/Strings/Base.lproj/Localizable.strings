@@ -40,7 +40,6 @@
 /* Password reminder view controller */
 "Remind successful" = "Remind successful";
 "You will receive e-mail with instructions how to reset your password." = "You will receive e-mail with instructions how to reset your password.";
-"User for current e-mail does not exist." = "User for current e-mail does not exist.";
 
 /* Profile editor view controller */
 "E-mail address" = "E-mail address";
@@ -53,7 +52,6 @@
 "E-mail" = "E-mail";
 "First name" = "First name";
 "Last name" = "Last name";
-"Phone" = "Phone";
 "E-mail is already taken." = "E-mail is already taken.";
 
 /* Client side validation */

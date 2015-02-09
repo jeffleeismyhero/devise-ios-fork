@@ -12,7 +12,6 @@
 static NSString * const DVSUserPasswordParameter = @"password";
 static NSString * const DVSUserEmailParameter = @"email";
 
-static NSString * const DVSUserPasswordPropertyName = @"Password";
 static NSUInteger const DVSUserPasswordMinLength = 5;
 
 @implementation DVSTemplatesViewsUserDataSource

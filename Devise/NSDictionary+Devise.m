@@ -22,13 +22,4 @@
     }
 }
 
-- (NSInteger)dvs_integerValueForKey:(id)key {
-    id obj = [self objectForKey:key];
-    if ([obj respondsToSelector:@selector(integerValue)]) {
-        return [obj integerValue];
-    } else {
-        return 0;
-    }
-}
-
 @end

@@ -4,7 +4,6 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUser.h"
 #import "DVSUser+Persistence.h"

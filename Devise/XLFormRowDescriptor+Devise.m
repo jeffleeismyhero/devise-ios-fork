@@ -35,10 +35,6 @@
 
 #pragma mark - Custom buttons
 
-+ (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title accessibilityLabel:(NSString *)accessiblityLabel color:(UIColor *)color {
-    return [self dvs_buttonRowWithTag:tag title:title accessibilityLabel:accessiblityLabel color:color action:nil];
-}
-
 + (XLFormRowDescriptor *)dvs_buttonRowWithTag:(NSString *)tag title:(NSString *)title accessibilityLabel:(NSString *)accessiblityLabel color:(UIColor *)color action:(void (^)(XLFormRowDescriptor *))action {
     XLFormRowDescriptor *buttonRow = [XLFormRowDescriptor formRowDescriptorWithTag:tag
                                                                            rowType:XLFormRowDescriptorTypeButton

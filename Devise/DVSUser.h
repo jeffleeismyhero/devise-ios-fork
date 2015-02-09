@@ -57,15 +57,6 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 + (DVSConfiguration *)configuration;
 
 /**
- *  Returns a parameter for given key and action.
- *
- *  @param key        The key for requested object.
- *  @param action     The action specifying where to search for the object for the given key.
- *  @return Instance of object for given key, stored for appropriate action.
- */
-- (id)requestParameterForKey:(NSString *)key action:(DVSActionType)action;
-
-/**
  *  Returns bunch of key-value pairs for given action.
  *
  *  @param action The action for which request parameters are stored.

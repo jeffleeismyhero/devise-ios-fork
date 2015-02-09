@@ -11,7 +11,6 @@
 
 @interface DVSFormViewController : UITableViewController
 
-- (void)addFormWithTitleToDataSource:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel;
 - (void)addFormWithTitleToDataSource:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel secured:(BOOL)secured;
 - (void)addFormWithTitleToDataSource:(NSString *)title accessibilityLabel:(NSString *)accessibilityLabel keyboardType:(UIKeyboardType)keyboardType;
 

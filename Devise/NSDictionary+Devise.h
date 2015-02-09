@@ -15,9 +15,4 @@
  */
 - (NSString *)dvs_stringValueForKey:(id)key;
 
-/**
- *  Return integer value associated with key, converted to NSInteger
- */
-- (NSInteger)dvs_integerValueForKey:(id)key;
-
 @end
