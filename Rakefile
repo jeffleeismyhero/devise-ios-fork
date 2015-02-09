@@ -181,6 +181,7 @@ end
 
 def xcode_run (action, scheme)
   flags = xcodebuild_flags(scheme_config(scheme))
+  sh "killall -9 \"iOS Simulator\""
   sh "xcodebuild #{flags} #{action} | xcpretty -c ; exit ${PIPESTATUS[0]}" rescue nil
   report_failure "Scheme '#{scheme}' failed to '#{action}'.", $?.exitstatus unless $?.success?
 end
