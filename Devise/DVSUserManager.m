@@ -100,8 +100,8 @@
 #pragma mark - Delete account
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self.httpClient deleteUser:self success:^{
-        [[self class] removeLocalUser];
+    [self.httpClient deleteUser:self.user success:^{
+        DVSWorkInProgress("Should delete globally cached user? Or maybe cache user for instance of manager?");
         if (success != NULL) success();
     } failure:failure];
 }
