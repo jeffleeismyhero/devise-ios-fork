@@ -11,9 +11,20 @@
 #import "DVSUser.h"
 #import "DVSHTTPClient.h"
 
+typedef NS_ENUM(NSInteger, DVSUserManagerActionType) {
+    DVSUserManagerActionLogin,
+    DVSUserManagerActionRegistration,
+    DVSUserManagerActionRemindPassword,
+    DVSUserManagerActionChangePassword,
+    DVSUserManagerActionUpdate
+};
+
+@protocol DVSUserManagerDelegate;
+
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
+@property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 
 /**
  *  The HTTP client used by the model for networking purposes.
@@ -54,5 +65,12 @@
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 DVSWorkInProgress("Need to figure out how to handle logout.");
+
+@end
+
+@protocol DVSUserManagerDelegate <NSObject>
+
+@optional
+- (NSArray *)additionalValidationRulesForUserManager:(DVSUserManager *)manager defaultRules:(NSArray *)defaultRules action:(DVSUserManagerActionType)action;
 
 @end

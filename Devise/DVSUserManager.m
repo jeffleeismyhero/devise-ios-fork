@@ -38,10 +38,7 @@
                        NGRValidate(@"password").required(),
                        NGRValidate(@"email").required().syntax(NGRSyntaxEmail)
                        ];
-    
-    DVSWorkInProgress("Additional params will be added in delegate methods");
-    
-    [self validateUsingRules:rules forAction:DVSActionLogin success:^{
+    [self validateUsingRules:rules forAction:DVSUserManagerActionLogin success:^{
         [self.httpClient logInUser:self.user success:success failure:failure];
     } failure:failure];
 }
@@ -51,9 +48,7 @@
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[NGRValidate(@"email").required().syntax(NGRSyntaxEmail)];
     
-    DVSWorkInProgress("Additional params will be added in delegate methods");
-    
-    [self validateUsingRules:rules forAction:DVSActionRemindPassword success:^{
+    [self validateUsingRules:rules forAction:DVSUserManagerActionRemindPassword success:^{
         [self.httpClient remindPasswordToUser:self.user success:success failure:failure];
     } failure:failure];
 }
@@ -65,10 +60,7 @@
                        NGRValidate(@"password").required(),
                        NGRValidate(@"email").required().syntax(NGRSyntaxEmail)
                        ];
-    
-    DVSWorkInProgress("Additional params will be added in delegate methods");
-    
-    [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
+    [self validateUsingRules:rules forAction:DVSUserManagerActionRegistration success:^{
         [self.httpClient registerUser:self.user success:success failure:failure];
     } failure:failure];
 }
@@ -77,10 +69,7 @@
 
 - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[NGRValidate(@"password").required()];
-    
-    DVSWorkInProgress("Additional params will be added in delegate methods");
-    
-    [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
+    [self validateUsingRules:rules forAction:DVSUserManagerActionChangePassword success:^{
         [self.httpClient changePasswordOfUser:self.user success:success failure:failure];
     } failure:failure];
 }
@@ -89,10 +78,7 @@
 
 - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[NGRValidate(@"email").required().syntax(NGRSyntaxEmail)];
-    
-    DVSWorkInProgress("Additional params will be added in delegate methods");
-    
-    [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
+    [self validateUsingRules:rules forAction:DVSUserManagerActionUpdate success:^{
         [self.httpClient updateUser:self.user success:success failure:failure];
     } failure:failure];
 }
@@ -108,10 +94,16 @@
 
 #pragma mark - Validation
 
-- (void)validateUsingRules:(NSArray *)rules forAction:(DVSActionType)action success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)validateUsingRules:(NSArray *)rules forAction:(DVSUserManagerActionType)action success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSError *error;
+    __weak typeof(self) weakSelf = self;
     BOOL validated = [NGRValidator validateModel:self error:&error usingRules:^NSArray *{
-        return rules;
+        
+        NSArray *additionalRules = [NSArray array];
+        if ([weakSelf.delegate respondsToSelector:@selector(additionalValidationRulesForUserManager:defaultRules:action:)]) {
+            additionalRules = [weakSelf.delegate additionalValidationRulesForUserManager:weakSelf defaultRules:rules action:action];
+        }
+        return [self mergeDefaultRules:rules withCustomRules:additionalRules];
     }];
     validated ? success() : failure(error);
 }

@@ -490,13 +490,13 @@
 			name = Foms;
 			sourceTree = "<group>";
 		};
-		21B4BA6C1A8B8A98000E3E9A /* Manager */ = {
+		21B4BA6C1A8B8A98000E3E9A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				21B4BA6D1A8B8AD2000E3E9A /* DVSUserManager.h */,
 				21B4BA6E1A8B8AD2000E3E9A /* DVSUserManager.m */,
 			);
-			name = Manager;
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		21F6908F1A35CDCA00DE2ABA /* Model */ = {
@@ -674,7 +674,7 @@
 		3AD4C6821A24DB1700F0AE67 /* Devise */ = {
 			isa = PBXGroup;
 			children = (
-				21B4BA6C1A8B8A98000E3E9A /* Manager */,
+				21B4BA6C1A8B8A98000E3E9A /* Managers */,
 				21AFB7D31A48276E00769C87 /* UI */,
 				3AA22E191A2502FE00FE04D1 /* Configuration */,
 				3AA22E231A25110200FE04D1 /* Categories */,
