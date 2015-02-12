@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "DVSUser.h"
+#import "DVSUserJSONSerializer.h"
 #import "DVSHTTPClient.h"
 
 typedef NS_ENUM(NSInteger, DVSUserManagerActionType) {
@@ -24,6 +25,7 @@ typedef NS_ENUM(NSInteger, DVSUserManagerActionType) {
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
+@property (readonly) DVSUserJSONSerializer *serializer;
 @property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 
 /**

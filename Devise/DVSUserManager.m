@@ -114,4 +114,10 @@
     return [array copy];
 }
 
+#pragma mark - Accessors
+
+- (DVSUserJSONSerializer *)serializer {
+    return self.httpClient.userSerializer;
+}
+
 @end
