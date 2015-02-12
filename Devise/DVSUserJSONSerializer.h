@@ -12,18 +12,16 @@
 
 @interface DVSUserJSONSerializer : NSObject
 
-@property (strong, nonatomic, readonly) DVSUser *user;
-
 @property (strong, nonatomic) NSString *JSONKeyPathForEmail;
 @property (strong, nonatomic) NSString *JSONKeyPathForPassword;
 @property (strong, nonatomic) NSString *JSONKeyPathForPasswordConfirmation;
 
-- (instancetype)initWithUser:(DVSUser *)user;
+- (instancetype)init;
 
-- (NSDictionary *)registerJSON;
-- (NSDictionary *)loginJSON;
-- (NSDictionary *)remindPasswordJSON;
-- (NSDictionary *)changePasswordJSON;
-- (NSDictionary *)updateJSON;
+- (NSDictionary *)registerJSONFromUser:(DVSUser *)user;
+- (NSDictionary *)loginJSONFromUser:(DVSUser *)user;
+- (NSDictionary *)remindPasswordJSONFromUser:(DVSUser *)user;
+- (NSDictionary *)changePasswordJSONFromUser:(DVSUser *)user;
+- (NSDictionary *)updateJSONFromUser:(DVSUser *)user;
 
 @end

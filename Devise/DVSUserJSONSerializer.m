@@ -16,10 +16,8 @@
 
 @implementation DVSUserJSONSerializer
 
-- (instancetype)initWithUser:(DVSUser *)user {
+- (instancetype)init {
     if (self = [super init]) {
-        self.user = user;
-        
         // Defaults
         self.JSONKeyPathForEmail = @"email";
         self.JSONKeyPathForPassword = @"password";
@@ -30,53 +28,53 @@
 
 #pragma mark - Public Methods
 
-- (NSDictionary *)registerJSON {
+- (NSDictionary *)registerJSONFromUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-    if (self.user.email != nil) json[self.JSONKeyPathForEmail] = self.user.email;
-    if (self.user.password != nil) json[self.JSONKeyPathForPassword] = self.user.password;
+    if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
+    if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
     
     DVSWorkInProgress("Should add additional parameters for DVSActionRegistration");
 
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-- (NSDictionary *)loginJSON {
+- (NSDictionary *)loginJSONFromUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-    if (self.user.password != nil) json[self.JSONKeyPathForPassword] = self.user.password;
-    if (self.user.email != nil) json[self.JSONKeyPathForEmail] = self.user.email;
+    if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
+    if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
     
     DVSWorkInProgress("Should add additional parameters for DVSActionLogin");
     
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-- (NSDictionary *)remindPasswordJSON {
+- (NSDictionary *)remindPasswordJSONFromUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-    if (self.user.email != nil) json[self.JSONKeyPathForEmail] = self.user.email;
+    if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
     
     DVSWorkInProgress("Should add additional parameters for DVSActionRemindPassword");
 
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-- (NSDictionary *)changePasswordJSON {
+- (NSDictionary *)changePasswordJSONFromUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-    if (self.user.password != nil) json[self.JSONKeyPathForPassword] = self.user.password;
-    if (self.user.password != nil) json[self.JSONKeyPathForPasswordConfirmation] = self.user.password;
+    if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
+    if (user.password != nil) json[self.JSONKeyPathForPasswordConfirmation] = user.password;
     
     DVSWorkInProgress("Should add additional parameters for DVSActionChangePassword");
     
     return [self userDeviseLikeJSONWithJSON:json];
 }
 
-- (NSDictionary *)updateJSON {
+- (NSDictionary *)updateJSONFromUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
-    if (self.user.email != nil) json[self.JSONKeyPathForEmail] = self.user.email;
+    if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
     
     DVSWorkInProgress("Should add additional parameters for DVSActionUpdate");
     
