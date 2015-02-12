@@ -12,21 +12,13 @@
 #import "DVSUserJSONSerializer.h"
 #import "DVSHTTPClient.h"
 
-typedef NS_ENUM(NSInteger, DVSUserManagerActionType) {
-    DVSUserManagerActionLogin,
-    DVSUserManagerActionRegistration,
-    DVSUserManagerActionRemindPassword,
-    DVSUserManagerActionChangePassword,
-    DVSUserManagerActionUpdate
-};
-
-@protocol DVSUserManagerDelegate;
+@protocol DVSUserManagerDataSource;
 
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
 @property (readonly) DVSUserJSONSerializer *serializer;
-@property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
+@property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;
 
 /**
  *  The HTTP client used by the model for networking purposes.
@@ -70,9 +62,9 @@ DVSWorkInProgress("Need to figure out how to handle logout.");
 
 @end
 
-@protocol DVSUserManagerDelegate <NSObject>
+@protocol DVSUserManagerDataSource <NSObject>
 
 @optional
-- (NSArray *)additionalValidationRulesForUserManager:(DVSUserManager *)manager defaultRules:(NSArray *)defaultRules action:(DVSUserManagerActionType)action;
+- (NSArray *)additionalValidationRulesForUserManager:(DVSUserManager *)manager defaultRules:(NSArray *)defaultRules action:(DVSActionType)action;
 
 @end
