@@ -17,8 +17,7 @@
     
     if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
     if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
-    
-    DVSWorkInProgress("Should add additional parameters for DVSActionRegistration");
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionRegistration]];
     
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
@@ -28,8 +27,7 @@
     
     if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
     if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
-    
-    DVSWorkInProgress("Should add additional parameters for DVSActionLogin");
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionLogin]];
     
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
@@ -38,8 +36,7 @@
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
     if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
-    
-    DVSWorkInProgress("Should add additional parameters for DVSActionRemindPassword");
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionRemindPassword]];
     
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
@@ -49,8 +46,7 @@
     
     if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
     if (user.password != nil) json[self.JSONKeyPathForPasswordConfirmation] = user.password;
-    
-    DVSWorkInProgress("Should add additional parameters for DVSActionChangePassword");
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionChangePassword]];
     
     return [self userDeviseLikeJSONWithJSON:json];
 }
@@ -59,13 +55,21 @@
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
     if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
-    
-    DVSWorkInProgress("Should add additional parameters for DVSActionUpdate");
+    [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionUpdate]];
     
     return [self userDeviseLikeJSONWithJSON:json];
 }
 
 #pragma mark - Private Methods
+
+- (NSDictionary *)additionalParametersForAction:(DVSActionType)action {
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary new];
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalRequestParametersForAction:)]) {
+        [dictionary addEntriesFromDictionary:[self.dataSource additionalRequestParametersForAction:action]];
+    }
+    return [dictionary copy];
+}
 
 - (NSDictionary *)userDeviseLikeJSONWithJSON:(NSDictionary *)json {
     return @{@"user" : json};

@@ -10,12 +10,22 @@
 
 #import "DVSUser.h"
 
+@protocol DVSUserJSONSerializerDataSource;
+
 @interface DVSUserJSONSerializer : NSObject
 
 @property (strong, nonatomic) NSString *JSONKeyPathForEmail;
 @property (strong, nonatomic) NSString *JSONKeyPathForPassword;
 @property (strong, nonatomic) NSString *JSONKeyPathForPasswordConfirmation;
+@property (weak, nonatomic) id<DVSUserJSONSerializerDataSource> dataSource;
 
 - (instancetype)init;
+
+@end
+
+@protocol DVSUserJSONSerializerDataSource <NSObject>
+
+@optional
+- (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;;
 
 @end
