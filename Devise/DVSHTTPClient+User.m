@@ -9,6 +9,7 @@
 #import "DVSUser.h"
 #import "DVSUser+Persistence.h"
 #import "DVSUser+Querying.h"
+#import "DVSUserJSONSerializer+Serialize.h"
 #import "NSDictionary+Devise.h"
 #import "NSObject+Devise.h"
 

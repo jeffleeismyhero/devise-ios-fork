@@ -27,6 +27,8 @@
 		218E29BC1A5D7B310010BF3F /* DVSAccessibilityLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29BA1A5D7B310010BF3F /* DVSAccessibilityLabels.m */; };
 		219EB2431A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 219EB2411A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h */; };
 		219EB2441A8CB6BA00F7BCFA /* DVSUserJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 219EB2421A8CB6BA00F7BCFA /* DVSUserJSONSerializer.m */; };
+		219EB2471A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h in Headers */ = {isa = PBXBuildFile; fileRef = 219EB2451A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h */; };
+		219EB2481A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 219EB2461A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.m */; };
 		21AFB7EA1A48416F00769C87 /* DVSFormRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7E91A48416F00769C87 /* DVSFormRow.m */; };
 		21AFB7F61A48446600769C87 /* DVSFormRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F41A48446600769C87 /* DVSFormRowCell.m */; };
 		21AFB7F71A48446600769C87 /* DVSFormRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7F51A48446600769C87 /* DVSFormRowCell.xib */; };
@@ -169,6 +171,8 @@
 		21951E4B1A601AE2006A63E7 /* DVSChangePasswordViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSChangePasswordViewSpec.m; path = "Devise Demo Tests/DVSChangePasswordViewSpec.m"; sourceTree = "<group>"; };
 		219EB2411A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUserJSONSerializer.h; sourceTree = "<group>"; };
 		219EB2421A8CB6BA00F7BCFA /* DVSUserJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserJSONSerializer.m; sourceTree = "<group>"; };
+		219EB2451A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUserJSONSerializer+Serialize.h"; sourceTree = "<group>"; };
+		219EB2461A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUserJSONSerializer+Serialize.m"; sourceTree = "<group>"; };
 		21AFB7E81A48416F00769C87 /* DVSFormRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRow.h; sourceTree = "<group>"; };
 		21AFB7E91A48416F00769C87 /* DVSFormRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormRow.m; sourceTree = "<group>"; };
 		21AFB7F31A48446600769C87 /* DVSFormRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormRowCell.h; sourceTree = "<group>"; };
@@ -392,6 +396,8 @@
 			children = (
 				219EB2411A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h */,
 				219EB2421A8CB6BA00F7BCFA /* DVSUserJSONSerializer.m */,
+				219EB2451A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h */,
+				219EB2461A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.m */,
 			);
 			name = Serializers;
 			sourceTree = "<group>";
@@ -896,6 +902,7 @@
 				5EE295081A35C086009441E1 /* NSDictionary+Devise.h in Headers */,
 				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */,
 				219EB2431A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h in Headers */,
+				219EB2471A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h in Headers */,
 				3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */,
 				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
 				3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */,
@@ -1263,6 +1270,7 @@
 				21B362E21A51540200202C94 /* DVSBarButtonItem.m in Sources */,
 				3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */,
 				3A2B04FF1A41663E00DDA453 /* DVSUser+Requests.m in Sources */,
+				219EB2481A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.m in Sources */,
 				5EE295091A35C086009441E1 /* NSDictionary+Devise.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */,
 				21B3ECBC1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m in Sources */,

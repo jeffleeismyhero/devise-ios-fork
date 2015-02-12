@@ -18,10 +18,4 @@
 
 - (instancetype)init;
 
-- (NSDictionary *)registerJSONFromUser:(DVSUser *)user;
-- (NSDictionary *)loginJSONFromUser:(DVSUser *)user;
-- (NSDictionary *)remindPasswordJSONFromUser:(DVSUser *)user;
-- (NSDictionary *)changePasswordJSONFromUser:(DVSUser *)user;
-- (NSDictionary *)updateJSONFromUser:(DVSUser *)user;
-
 @end
