@@ -5,6 +5,7 @@
 //
 
 #import "DVSHTTPClient+User.h"
+#import <objc/runtime.h>
 #import "DVSUser.h"
 #import "DVSUser+Persistence.h"
 #import "DVSUser+Querying.h"
@@ -33,7 +34,8 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 
 - (void)registerUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultRegisterPath;
-    [self POST:path parameters:[user registerJSON] completion:^(id responseObject, NSError *error) {
+    NSDictionary *parameters = [self.userSerializer registerJSONFromUser:user];
+    [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
@@ -46,7 +48,8 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 
 - (void)logInUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultLogInPath;
-    [self POST:path parameters:[user loginJSON] completion:^(id responseObject, NSError *error) {
+    NSDictionary *parameters = [self.userSerializer loginJSONFromUser:user];
+    [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
@@ -60,7 +63,8 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 - (void)updateUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
     NSString *path = DVSHTTPClientDefaultUpdatePath;
-    [self PUT:path parameters:[user updateJSON] completion:^(__unused id responseObject, NSError *error) {
+    NSDictionary *parameters = [self.userSerializer updateJSONFromUser:user];
+    [self PUT:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
@@ -85,7 +89,8 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 - (void)changePasswordOfUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
     NSString *path = DVSHTTPClientDefaultChangePasswordPath;
-    [self PUT:path parameters:[user changePasswordJSON] completion:^(__unused id responseObject, NSError *error) {
+    NSDictionary *parameters = [self.userSerializer changePasswordJSONFromUser:user];
+    [self PUT:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
@@ -96,7 +101,8 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 
 - (void)remindPasswordToUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultRemindPasswordPath;
-    [self POST:path parameters:[user remindPasswordJSON] completion:^(__unused id responseObject, NSError *error) {
+    NSDictionary *parameters = [self.userSerializer remindPasswordJSONFromUser:user];
+    [self POST:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
@@ -110,6 +116,17 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 - (void)setAuthorizationToken:(NSString *)token email:(NSString *)email {
     [self setValue:token forHTTPHeaderField:@"X-User-Token"];
     [self setValue:email forHTTPHeaderField:@"X-User-Email"];
+}
+
+#pragma mark - Accessors
+
+- (DVSUserJSONSerializer *)userSerializer {
+    DVSUserJSONSerializer *serializer = (DVSUserJSONSerializer *)objc_getAssociatedObject(self, @selector(userSerializer));
+    if (!serializer) {
+        serializer = [DVSUserJSONSerializer new];
+        objc_setAssociatedObject(self, @selector(userSerializer), serializer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return serializer;
 }
 
 #pragma mark - Helper methods

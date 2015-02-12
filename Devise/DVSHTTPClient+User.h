@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 
 #import "DVSHTTPClient.h"
+#import "DVSUserJSONSerializer.h"
 #import "DVSTypedefs.h"
 
 @class DVSUser;
@@ -45,6 +46,9 @@ extern NSString * const DVSHTTPClientDefaultRemindPasswordPath;
  *  This category provides shorthand methods for performing requests related to the user resource.
  */
 @interface DVSHTTPClient (User)
+
+
+@property (strong, nonatomic, readonly) DVSUserJSONSerializer *userSerializer;
 
 /**
  *  Registers a user.
