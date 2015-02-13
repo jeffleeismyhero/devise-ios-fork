@@ -26,6 +26,7 @@
 @property (strong, nonatomic) DVSHTTPClient *httpClient;
 
 - (instancetype)initWithUser:(DVSUser *)user;
++ (instancetype)defaultManager;
 
 /**
  *  Login user asynchronously. When succeed user will be stored locally so

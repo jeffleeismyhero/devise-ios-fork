@@ -12,6 +12,7 @@
 
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
+#import "DVSPersistenceManager.h"
 
 @interface DVSUserManager ()
 
@@ -29,6 +30,12 @@
         self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
     }
     return self;
+}
+
++ (instancetype)defaultManager {
+    DVSUser *localUser = [DVSPersistenceManager sharedPersistence].localUser;
+    if (!localUser) return nil;
+    return [[DVSUserManager alloc] initWithUser:localUser];
 }
 
 #pragma mark - Logging in
