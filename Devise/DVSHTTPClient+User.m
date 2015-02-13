@@ -12,6 +12,7 @@
 #import "DVSUserJSONSerializer+Serialize.h"
 #import "NSDictionary+Devise.h"
 #import "NSObject+Devise.h"
+#import "DVSPersistenceManager.h"
 
 NSString * const DVSHTTPClientDefaultRegisterPath = @"";
 NSString * const DVSHTTPClientDefaultLogInPath = @"sign_in";
@@ -48,7 +49,13 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
+            
+#if ENABLE_PERSISTENCE_MANAGER
+            [DVSPersistenceManager sharedPersistence].localUser = user;
+#else
             [[user class] setLocalUser:user];
+#endif
+            
             if (success != NULL) success();
         }
     }];
@@ -69,7 +76,12 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
+            
+#if ENABLE_PERSISTENCE_MANAGER
+            [DVSPersistenceManager sharedPersistence].localUser = user;
+#else
             [[user class] setLocalUser:user];
+#endif
             if (success != NULL) success();
         }
     }];
@@ -102,6 +114,9 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
+#if ENABLE_PERSISTENCE_MANAGER
+            [DVSPersistenceManager sharedPersistence].localUser = nil;
+#endif
             [[user class] removeLocalUser];
             if (success != NULL) success();
         }

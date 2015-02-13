@@ -70,7 +70,7 @@ describe(@"DVSUser", ^{
 
             it(@"should save the user locally", ^{
                 [user registerWithSuccess:nil failure:nil];
-                [[expectFutureValue([[user class] localUser]) shouldEventually] beIdenticalTo:user];
+                [[expectFutureValue([[user class] localUser]) shouldEventually] equal:user];
             });
 
         });
@@ -167,7 +167,7 @@ describe(@"DVSUser", ^{
 
             it(@"should save the user locally", ^{
                 [user loginWithSuccess:nil failure:nil];
-                [[expectFutureValue([[user class] localUser]) shouldEventually] beIdenticalTo:user];
+                [[expectFutureValue([[user class] localUser]) shouldEventually] equal:user];
             });
 
         });

@@ -59,7 +59,7 @@ describe(@"DVSHTTPClient+User", ^{
 
             it(@"should save the user locally", ^{
                 [client registerUser:user success:nil failure:nil];
-                [[expectFutureValue([[user class] localUser]) shouldEventually] beIdenticalTo:user];
+                [[expectFutureValue([[user class] localUser]) shouldEventually] equal:user];
             });
 
         });
@@ -101,7 +101,7 @@ describe(@"DVSHTTPClient+User", ^{
 
             it(@"should save the user locally", ^{
                 [client logInUser:user success:nil failure:nil];
-                [[expectFutureValue([[user class] localUser]) shouldEventually] beIdenticalTo:user];
+                [[expectFutureValue([[user class] localUser]) shouldEventually] equal:user];
             });
 
         });
