@@ -94,9 +94,14 @@
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self.httpClient deleteUser:self.user success:^{
-        DVSWorkInProgress("Should delete globally cached user? Or maybe cache user for instance of manager?");
+        [DVSPersistenceManager sharedPersistence].localUser = nil;
         if (success != NULL) success();
     } failure:failure];
+}
+
+#pragma mark - Logout method
+- (void)logout {
+    [DVSPersistenceManager sharedPersistence].localUser = nil;
 }
 
 #pragma mark - Validation

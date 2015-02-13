@@ -59,7 +59,10 @@
  */
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
-DVSWorkInProgress("Need to figure out how to handle logout.");
+/**
+ *  Deletes locally stored user.
+ */
+- (void)logout;
 
 @end
 
