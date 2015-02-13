@@ -35,7 +35,14 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 
 - (void)registerUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultRegisterPath;
-    NSDictionary *parameters = [self.userSerializer registerJSONFromUser:user];
+    
+    NSDictionary *parameters = nil;
+#if ENABLE_USER_JSON_SERIALIZER
+    parameters = [self.userSerializer registerJSONFromUser:user];
+#else
+    parameters = [user registerJSON];
+#endif
+    
     [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
@@ -49,7 +56,14 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 
 - (void)logInUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultLogInPath;
-    NSDictionary *parameters = [self.userSerializer loginJSONFromUser:user];
+    
+    NSDictionary *parameters = nil;
+#if ENABLE_USER_JSON_SERIALIZER
+    parameters = [self.userSerializer loginJSONFromUser:user];
+#else
+    parameters = [user loginJSON];
+#endif
+    
     [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
@@ -64,7 +78,14 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 - (void)updateUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
     NSString *path = DVSHTTPClientDefaultUpdatePath;
-    NSDictionary *parameters = [self.userSerializer updateJSONFromUser:user];
+    
+    NSDictionary *parameters = nil;
+#if ENABLE_USER_JSON_SERIALIZER
+    parameters = [self.userSerializer updateJSONFromUser:user];
+#else
+    parameters = [user updateJSON];
+#endif
+    
     [self PUT:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
@@ -90,7 +111,14 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 - (void)changePasswordOfUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
     NSString *path = DVSHTTPClientDefaultChangePasswordPath;
-    NSDictionary *parameters = [self.userSerializer changePasswordJSONFromUser:user];
+    
+    NSDictionary *parameters = nil;
+#if ENABLE_USER_JSON_SERIALIZER
+    parameters = [self.userSerializer changePasswordJSONFromUser:user];
+#else
+    parameters = [user changePasswordJSON];
+#endif
+    
     [self PUT:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
@@ -102,7 +130,14 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 
 - (void)remindPasswordToUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultRemindPasswordPath;
-    NSDictionary *parameters = [self.userSerializer remindPasswordJSONFromUser:user];
+    
+    NSDictionary *parameters = nil;
+#if ENABLE_USER_JSON_SERIALIZER
+    parameters = [self.userSerializer remindPasswordJSONFromUser:user];
+#else
+    parameters = [user remindPasswordJSON];
+#endif
+    
     [self POST:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
