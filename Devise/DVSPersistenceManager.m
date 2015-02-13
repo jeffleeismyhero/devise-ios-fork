@@ -9,6 +9,7 @@
 #import "DVSPersistenceManager.h"
 #import <UICKeyChainStore/UICKeyChainStore.h>
 #import "DVSConfiguration.h"
+#import "DVSUser+Persistence.h"
 
 @implementation DVSPersistenceManager
 
