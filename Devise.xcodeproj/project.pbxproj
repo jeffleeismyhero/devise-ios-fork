@@ -17,6 +17,8 @@
 		215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */; };
 		2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */; };
 		2151996D1A499B5C00EF5F80 /* DVSFormRowCell+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */; };
+		2152B5311A8DF90700F24A06 /* DVSPersistenceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2152B52D1A8DF43300F24A06 /* DVSPersistenceManager.h */; };
+		2152B5321A8DF90A00F24A06 /* DVSPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2152B52E1A8DF43300F24A06 /* DVSPersistenceManager.m */; };
 		215575B31A40880C00BA8661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 215575B11A40880C00BA8661 /* Localizable.strings */; };
 		218E29971A5AE90C0010BF3F /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
 		218E29981A5AE90C0010BF3F /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
@@ -156,6 +158,8 @@
 		215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XLFormRowDescriptor+Devise.m"; sourceTree = "<group>"; };
 		2151996B1A499B5C00EF5F80 /* DVSFormRowCell+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSFormRowCell+Model.h"; sourceTree = "<group>"; };
 		2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSFormRowCell+Model.m"; sourceTree = "<group>"; };
+		2152B52D1A8DF43300F24A06 /* DVSPersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPersistenceManager.h; sourceTree = "<group>"; };
+		2152B52E1A8DF43300F24A06 /* DVSPersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPersistenceManager.m; sourceTree = "<group>"; };
 		215575B21A40880C00BA8661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Devise Demo Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E299F1A5AE90C0010BF3F /* Devise-Demo-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Devise-Demo-Tests-Info.plist"; path = "/Users/wojciechtrzasko/Projekty/devise-ios/devise-ios-my/Devise-Demo-Tests-Info.plist"; sourceTree = "<absolute>"; };
@@ -514,6 +518,8 @@
 			children = (
 				21B4BA6D1A8B8AD2000E3E9A /* DVSUserManager.h */,
 				21B4BA6E1A8B8AD2000E3E9A /* DVSUserManager.m */,
+				2152B52D1A8DF43300F24A06 /* DVSPersistenceManager.h */,
+				2152B52E1A8DF43300F24A06 /* DVSPersistenceManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -880,6 +886,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2152B5311A8DF90700F24A06 /* DVSPersistenceManager.h in Headers */,
 				21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h in Headers */,
 				5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
@@ -1281,6 +1288,7 @@
 				21B3ECAC1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.m in Sources */,
 				218E29BC1A5D7B310010BF3F /* DVSAccessibilityLabels.m in Sources */,
 				3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */,
+				2152B5321A8DF90A00F24A06 /* DVSPersistenceManager.m in Sources */,
 				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
 				21B3EC981A52B35500C8C620 /* DVSFieldsUtils.m in Sources */,
 				21B4BA701A8B8AD2000E3E9A /* DVSUserManager.m in Sources */,
