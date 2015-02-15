@@ -84,4 +84,8 @@
     return [ownedProperty isEqual:property] || (!ownedProperty && !property);
 }
 
+- (NSUInteger)hash {
+    return [self.identifier hash] ^ [self.email hash] ^ [self.sessionToken hash];
+}
+
 @end
