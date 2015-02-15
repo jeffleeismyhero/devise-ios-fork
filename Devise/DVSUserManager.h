@@ -17,7 +17,7 @@
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
-@property (readonly) DVSUserJSONSerializer *serializer;
+@property (readonly, nonatomic) DVSUserJSONSerializer *serializer;
 @property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;
 
 /**
