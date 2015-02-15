@@ -1,30 +1,37 @@
 //
-//  DVSPersistenceManager.m
+//  DVSUserPersistenceManager.m
 //  Devise
 //
 //  Created by Wojciech Trzasko on 13.02.2015.
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSPersistenceManager.h"
+#import "DVSUserPersistenceManager.h"
 #import <UICKeyChainStore/UICKeyChainStore.h>
 #import "DVSConfiguration.h"
 #import "DVSUser+Persistence.h"
 
-@implementation DVSPersistenceManager
+@interface DVSUserPersistenceManager ()
+
+@property (strong, nonatomic, readwrite) DVSConfiguration *configuration;
+
+@end
+
+@implementation DVSUserPersistenceManager
 
 @synthesize localUser = _localUser;
 
-#pragma mark - Shared instance
+#pragma mark - Lifecycle
 
-+ (instancetype)sharedPersistence {
-    static DVSPersistenceManager *sharedPersistence;
-    static dispatch_once_t token;
-    dispatch_once(&token, ^{
-        sharedPersistence = [DVSPersistenceManager new];
-    });
-    
-    return sharedPersistence;
+- (instancetype)initWithConfiguration:(DVSConfiguration *)configuration {
+    if (self = [super init]) {
+        self.configuration = configuration;
+    }
+    return self;
+}
+
++ (instancetype)defaultPersistanceManager {
+    return [[[self class] alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
 }
 
 #pragma mark - Accessors
@@ -42,21 +49,21 @@
 #pragma mark - Persistent helpers
 
 - (void)savePersistentUser:(DVSUser *)user {
-    NSString *keychainService = [DVSConfiguration sharedConfiguration].keychainServiceName;
-    NSString *keychainKey = [DVSConfiguration sharedConfiguration].resourceName;
+    NSString *keychainService = self.configuration.keychainServiceName;
+    NSString *keychainKey = self.configuration.resourceName;
     NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:user];
     [UICKeyChainStore setData:archivedData forKey:keychainKey service:keychainService];
 }
 
 - (void)removePersistentUser {
-    NSString *keychainService = [DVSConfiguration sharedConfiguration].keychainServiceName;
-    NSString *keychainKey = [DVSConfiguration sharedConfiguration].resourceName;
+    NSString *keychainService = self.configuration.keychainServiceName;
+    NSString *keychainKey = self.configuration.resourceName;
     [UICKeyChainStore removeItemForKey:keychainKey service:keychainService];
 }
 
 - (DVSUser *)persistentUser {
-    NSString *keychainService = [DVSConfiguration sharedConfiguration].keychainServiceName;
-    NSString *keychainKey = [DVSConfiguration sharedConfiguration].resourceName;
+    NSString *keychainService = self.configuration.keychainServiceName;
+    NSString *keychainKey = self.configuration.resourceName;
     NSData *archivedData = [UICKeyChainStore dataForKey:keychainKey service:keychainService];
     return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
 }

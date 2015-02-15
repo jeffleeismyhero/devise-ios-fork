@@ -12,7 +12,7 @@
 #import "DVSUserJSONSerializer+Serialize.h"
 #import "NSDictionary+Devise.h"
 #import "NSObject+Devise.h"
-#import "DVSPersistenceManager.h"
+#import "DVSUserPersistenceManager.h"
 
 NSString * const DVSHTTPClientDefaultRegisterPath = @"";
 NSString * const DVSHTTPClientDefaultLogInPath = @"sign_in";

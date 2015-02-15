@@ -1,5 +1,5 @@
 //
-//  DVSPersistenceManager.h
+//  DVSUserPersistenceManager.h
 //  Devise
 //
 //  Created by Wojciech Trzasko on 13.02.2015.
@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "DVSUser.h"
 
-@interface DVSPersistenceManager : NSObject
+@interface DVSUserPersistenceManager : NSObject
+
+@property (strong, nonatomic, readonly) DVSConfiguration *configuration;
 
 /**
  *  A locally saved user object (if any).
  */
 @property (strong, nonatomic) DVSUser *localUser;
 
-+ (instancetype)sharedPersistence;
+- (instancetype)initWithConfiguration:(DVSConfiguration *)configuration;
++ (instancetype)defaultPersistanceManager;
 
 @end

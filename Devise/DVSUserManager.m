@@ -12,11 +12,12 @@
 
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
-#import "DVSPersistenceManager.h"
+#import "DVSUserPersistenceManager.h"
 
 @interface DVSUserManager ()
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
+@property (strong, nonatomic) DVSUserPersistenceManager *persistenceManager;
 
 @end
 
@@ -25,17 +26,26 @@
 #pragma mark - Object lifecycle
 
 - (instancetype)initWithUser:(DVSUser *)user {
+    return (self = [self initWithUser:user configuration:[DVSConfiguration sharedConfiguration]]);
+}
+
+- (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration {
     if (self = [super init]) {
         self.user = user;
-        self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
+        
+        DVSConfiguration *sharedConfiguration = [DVSConfiguration sharedConfiguration];
+        self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:sharedConfiguration];
+        self.persistenceManager = [[DVSUserPersistenceManager alloc] initWithConfiguration:sharedConfiguration];
     }
     return self;
 }
 
 + (instancetype)defaultManager {
-    DVSUser *localUser = [DVSPersistenceManager sharedPersistence].localUser;
-    if (!localUser) return nil;
-    return [[DVSUserManager alloc] initWithUser:localUser];
+    DVSConfiguration *sharedConfiguration = [DVSConfiguration sharedConfiguration];
+    DVSUser *persistenceUser = [DVSUserPersistenceManager defaultPersistanceManager].localUser;
+    
+    if (!persistenceUser) return nil;
+    return [[DVSUserManager alloc] initWithUser:persistenceUser configuration:sharedConfiguration];
 }
 
 #pragma mark - Logging in
@@ -94,14 +104,14 @@
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self.httpClient deleteUser:self.user success:^{
-        [DVSPersistenceManager sharedPersistence].localUser = nil;
+        self.persistenceManager.localUser = nil;
         if (success != NULL) success();
     } failure:failure];
 }
 
 #pragma mark - Logout method
 - (void)logout {
-    [DVSPersistenceManager sharedPersistence].localUser = nil;
+    self.persistenceManager.localUser = nil;
 }
 
 #pragma mark - Validation

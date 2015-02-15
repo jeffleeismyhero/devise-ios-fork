@@ -17,7 +17,7 @@
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
-@property (readonly, nonatomic) DVSUserJSONSerializer *serializer;
+@property (nonatomic, readonly) DVSUserJSONSerializer *serializer;
 @property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;
 
 /**
@@ -26,6 +26,8 @@
 @property (strong, nonatomic) DVSHTTPClient *httpClient;
 
 - (instancetype)initWithUser:(DVSUser *)user;
+- (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration;
+
 + (instancetype)defaultManager;
 
 /**
