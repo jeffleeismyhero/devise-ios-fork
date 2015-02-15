@@ -1,5 +1,5 @@
 //
-//  DVSUserJSONSerializer+FrameworkPrivate.m
+//  DVSUserJSONSerializer+Serialize.m
 //  Devise
 //
 //  Created by Wojciech Trzasko on 12.02.2015.
@@ -12,7 +12,7 @@
 
 #pragma mark - Public Methods
 
-- (NSDictionary *)registerJSONFromUser:(DVSUser *)user {
+- (NSDictionary *)registerJSONDictionaryForUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
     if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
@@ -22,7 +22,7 @@
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-- (NSDictionary *)loginJSONFromUser:(DVSUser *)user {
+- (NSDictionary *)loginJSONDictionaryForUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
     if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
@@ -32,7 +32,7 @@
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-- (NSDictionary *)remindPasswordJSONFromUser:(DVSUser *)user {
+- (NSDictionary *)remindPasswordJSONDictionaryForUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
     if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
@@ -41,7 +41,7 @@
     return [self userDeviseLikeJSONWithJSON:[json copy]];
 }
 
-- (NSDictionary *)changePasswordJSONFromUser:(DVSUser *)user {
+- (NSDictionary *)changePasswordJSONDictionaryForUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
     if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
@@ -51,7 +51,7 @@
     return [self userDeviseLikeJSONWithJSON:json];
 }
 
-- (NSDictionary *)updateJSONFromUser:(DVSUser *)user {
+- (NSDictionary *)updateJSONDictionaryForUser:(DVSUser *)user {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     
     if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;

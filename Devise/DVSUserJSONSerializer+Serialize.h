@@ -10,10 +10,10 @@
 
 @interface DVSUserJSONSerializer (Serialize)
 
-- (NSDictionary *)registerJSONFromUser:(DVSUser *)user;
-- (NSDictionary *)loginJSONFromUser:(DVSUser *)user;
-- (NSDictionary *)remindPasswordJSONFromUser:(DVSUser *)user;
-- (NSDictionary *)changePasswordJSONFromUser:(DVSUser *)user;
-- (NSDictionary *)updateJSONFromUser:(DVSUser *)user;
+- (NSDictionary *)registerJSONDictionaryForUser:(DVSUser *)user;
+- (NSDictionary *)loginJSONDictionaryForUser:(DVSUser *)user;
+- (NSDictionary *)remindPasswordJSONDictionaryForUser:(DVSUser *)user;
+- (NSDictionary *)changePasswordJSONDictionaryForUser:(DVSUser *)user;
+- (NSDictionary *)updateJSONDictionaryForUser:(DVSUser *)user;
 
 @end
