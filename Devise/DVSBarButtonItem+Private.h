@@ -1,5 +1,5 @@
 //
-//  DVSBarButtonItem.h
+//  DVSBarButtonItem+Private.h
 //  Devise
 //
 //  Created by Wojciech Trzasko on 29.12.2014.

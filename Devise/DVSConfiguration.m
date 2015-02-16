@@ -7,7 +7,7 @@
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 
 #import "DVSConfiguration.h"
-#import "NSURL+Devise.h"
+#import "NSURL+Devise+Private.h"
 
 @implementation DVSConfiguration
 

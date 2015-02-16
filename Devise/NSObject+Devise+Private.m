@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "NSObject+Devise.h"
+#import "NSObject+Devise+Private.h"
 #import <objc/runtime.h>
 
 @implementation NSObject (Devise)

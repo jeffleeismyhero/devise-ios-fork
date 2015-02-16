@@ -1,12 +1,12 @@
 //
-//  DVSFieldsUtils.m
+//  DVSFieldsUtils+Private.m
 //  Devise
 //
 //  Created by Wojciech Trzasko on 30.12.2014.
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSFieldsUtils.h"
+#import "DVSFieldsUtils+Private.h"
 
 @implementation DVSFieldsUtils
 

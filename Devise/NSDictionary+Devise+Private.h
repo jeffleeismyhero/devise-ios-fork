@@ -1,5 +1,5 @@
 //
-//  NSDictionary+Devise.h
+//  NSDictionary+Devise+Private.h
 //  Devise
 //
 //  Created by Patryk Kaczmarek on 08.12.2014.

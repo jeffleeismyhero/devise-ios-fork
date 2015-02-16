@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "NSURL+Devise.h"
+#import "NSURL+Devise+Private.h"
 
 @implementation NSURL (Devise)
 

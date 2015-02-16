@@ -1,5 +1,5 @@
 //
-//  NSObject+Devise.h
+//  NSObject+Devise+Private.h
 //  Devise
 //
 //  Created by Patryk Kaczmarek on 15.12.2014.

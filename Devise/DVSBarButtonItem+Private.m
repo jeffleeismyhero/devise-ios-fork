@@ -1,12 +1,12 @@
 //
-//  DVSBarButtonItem.m
+//  DVSBarButtonItem+Private.m
 //  Devise
 //
 //  Created by Wojciech Trzasko on 29.12.2014.
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSBarButtonItem.h"
+#import "DVSBarButtonItem+Private.h"
 
 @interface DVSBarButtonItem ()
 

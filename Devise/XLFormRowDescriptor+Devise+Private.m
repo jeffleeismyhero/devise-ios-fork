@@ -1,12 +1,12 @@
 //
-//  XLFormRowDescriptor+Devise.m
+//  XLFormRowDescriptor+Devise+Private.m
 //  Devise
 //
 //  Created by Wojciech Trzasko on 23.12.2014.
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "XLFormRowDescriptor+Devise.h"
+#import "XLFormRowDescriptor+Devise+Private.h"
 
 #import "DVSAccessibilityLabels.h"
 #import "XLForm.h"

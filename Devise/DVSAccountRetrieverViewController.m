@@ -8,14 +8,14 @@
 #import "DVSAccountRetrieverViewController.h"
 
 #import "DVSAccessibilityLabels.h"
-#import "DVSBarButtonItem.h"
-#import "DVSFieldsUtils.h"
-#import "DVSTemplatesViewsUserDataSource.h"
+#import "DVSBarButtonItem+Private.h"
+#import "DVSFieldsUtils+Private.h"
+#import "DVSTemplatesViewsUserDataSource+Private.h"
 #import "DVSUser+Requests.h"
-#import "DVSPasswordReminderFormViewController.h"
-#import "DVSLoginSignUpFormViewController.h"
+#import "DVSPasswordReminderFormViewController+Private.h"
+#import "DVSLoginSignUpFormViewController+Private.h"
 #import "UIViewController+Devise.h"
-#import "XLFormSectionDescriptor+Devise.h"
+#import "XLFormSectionDescriptor+Devise+Private.h"
 
 @interface DVSAccountRetrieverViewController () <DVSLoginSignUpFormViewControllerDelegate, DVSPasswordReminderFormViewControllerDelegate>
 

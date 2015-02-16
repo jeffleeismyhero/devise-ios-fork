@@ -1,16 +1,16 @@
 //
-//  DVSLoginSignUpFormViewController.m
+//  DVSLoginSignUpFormViewController+Private.m
 //  Devise
 //
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSLoginSignUpFormViewController.h"
+#import "DVSLoginSignUpFormViewController+Private.h"
 
 #import "DVSAccessibilityLabels.h"
-#import "DVSFieldsUtils.h"
-#import "XLFormRowDescriptor+Devise.h"
-#import "XLFormSectionDescriptor+Devise.h"
+#import "DVSFieldsUtils+Private.h"
+#import "XLFormRowDescriptor+Devise+Private.h"
+#import "XLFormSectionDescriptor+Devise+Private.h"
 
 @implementation DVSLoginSignUpFormViewController
 

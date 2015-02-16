@@ -1,15 +1,15 @@
 //
-//  XLFormSectionDescriptor+Devise.m
+//  XLFormSectionDescriptor+Devise+Private.m
 //  Devise
 //
 //  Created by Wojciech Trzasko on 29.12.2014.
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "XLFormSectionDescriptor+Devise.h"
+#import "XLFormSectionDescriptor+Devise+Private.h"
 
 #import "DVSAccessibilityLabels.h"
-#import "XLFormRowDescriptor+Devise.h"
+#import "XLFormRowDescriptor+Devise+Private.h"
 
 NSString * const DVSFormEmailTag = @"email";
 NSString * const DVSFormPasswordTag = @"password";

@@ -1,5 +1,5 @@
 //
-//  XLFormRowDescriptor+Devise.h
+//  XLFormRowDescriptor+Devise+Private.h
 //  Devise
 //
 //  Created by Wojciech Trzasko on 23.12.2014.

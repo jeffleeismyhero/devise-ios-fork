@@ -8,7 +8,7 @@
 
 #import "DVSConfiguration.h"
 #import "DVSUser+Persistence.h"
-#import "NSObject+Devise.h"
+#import "NSObject+Devise+Private.h"
 
 @interface DVSUser ()
 

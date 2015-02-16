@@ -1,5 +1,5 @@
 //
-//  DVSFieldsUtils.h
+//  DVSFieldsUtils+Private.h
 //  Devise
 //
 //  Created by Wojciech Trzasko on 30.12.2014.

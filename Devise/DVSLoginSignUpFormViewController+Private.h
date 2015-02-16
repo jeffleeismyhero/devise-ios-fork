@@ -1,5 +1,5 @@
 //
-//  DVSLoginSignUpFormViewController.h
+//  DVSLoginSignUpFormViewController+Private.h
 //  Devise
 //
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.

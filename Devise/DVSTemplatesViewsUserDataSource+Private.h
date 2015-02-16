@@ -1,5 +1,5 @@
 //
-//  DVSLoginViewUserDataSource.h
+//  DVSLoginViewUserDataSource+Private.h
 //  Devise
 //
 //  Created by Wojciech Trzasko on 22.12.2014.

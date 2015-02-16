@@ -1,12 +1,12 @@
 //
-//  NSDictionary+Devise.m
+//  NSDictionary+Devise+Private.m
 //  Devise
 //
 //  Created by Patryk Kaczmarek on 08.12.2014.
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "NSDictionary+Devise.h"
+#import "NSDictionary+Devise+Private.h"
 
 @implementation NSDictionary (Devise)
 

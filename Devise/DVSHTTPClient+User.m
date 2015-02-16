@@ -10,8 +10,8 @@
 #import "DVSUser+Persistence.h"
 #import "DVSUser+Querying.h"
 #import "DVSUserJSONSerializer+Serialize.h"
-#import "NSDictionary+Devise.h"
-#import "NSObject+Devise.h"
+#import "NSDictionary+Devise+Private.h"
+#import "NSObject+Devise+Private.h"
 #import "DVSUserPersistenceManager.h"
 
 NSString * const DVSHTTPClientDefaultRegisterPath = @"";

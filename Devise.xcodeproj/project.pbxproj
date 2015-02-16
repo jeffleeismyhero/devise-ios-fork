@@ -12,10 +12,9 @@
 		2131238F1A6D36000057F588 /* DVSPasswordRemindViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A56B1A5EA58900D2FDD2 /* DVSPasswordRemindViewSpec.m */; };
 		213123901A6D36000057F588 /* DVSHomeViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5701A5EB09200D2FDD2 /* DVSHomeViewSpec.m */; };
 		213123911A6D36000057F588 /* DVSProfileEditViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5761A5EC85500D2FDD2 /* DVSProfileEditViewSpec.m */; };
-		2136A5661A5E7D3600D2FDD2 /* OHHTTPStubs+DeviseDemoTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 2136A5641A5E7D3600D2FDD2 /* OHHTTPStubs+DeviseDemoTests.h */; };
 		2136A5681A5E7F2900D2FDD2 /* OHHTTPStubs+DeviseDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A5651A5E7D3600D2FDD2 /* OHHTTPStubs+DeviseDemoTests.m */; };
-		215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */; };
-		2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */; };
+		215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h */; };
+		2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.m */; };
 		2151996D1A499B5C00EF5F80 /* DVSFormRowCell+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */; };
 		2152B5311A8DF90700F24A06 /* DVSUserPersistenceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2152B52D1A8DF43300F24A06 /* DVSUserPersistenceManager.h */; };
 		2152B5321A8DF90A00F24A06 /* DVSUserPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2152B52E1A8DF43300F24A06 /* DVSUserPersistenceManager.m */; };
@@ -35,26 +34,26 @@
 		21AFB7F61A48446600769C87 /* DVSFormRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F41A48446600769C87 /* DVSFormRowCell.m */; };
 		21AFB7F71A48446600769C87 /* DVSFormRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21AFB7F51A48446600769C87 /* DVSFormRowCell.xib */; };
 		21AFB7FA1A4844A800769C87 /* DVSFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7F91A4844A800769C87 /* DVSFormViewController.m */; };
-		21AFB8001A48C31100769C87 /* DVSTemplatesViewsUserDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7FE1A48C31100769C87 /* DVSTemplatesViewsUserDataSource.h */; };
-		21AFB8011A48C31100769C87 /* DVSTemplatesViewsUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7FF1A48C31100769C87 /* DVSTemplatesViewsUserDataSource.m */; };
+		21AFB8001A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AFB7FE1A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.h */; };
+		21AFB8011A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AFB7FF1A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.m */; };
 		21B1AAB21A3AF4E000578DF7 /* DVSDemoPasswordChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB11A3AF4E000578DF7 /* DVSDemoPasswordChangeViewController.m */; };
 		21B1AAB51A3B12CE00578DF7 /* NSError+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB41A3B12CE00578DF7 /* NSError+DeviseDemo.m */; };
 		21B1AAB81A3B2BF600578DF7 /* DVSDemoUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AAB71A3B2BF600578DF7 /* DVSDemoUserDataSource.m */; };
 		21B1AABD1A3EE24C00578DF7 /* DVSMenuTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B1AABC1A3EE24C00578DF7 /* DVSMenuTableModel.m */; };
-		21B362E11A51540200202C94 /* DVSBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B362DF1A51540200202C94 /* DVSBarButtonItem.h */; };
-		21B362E21A51540200202C94 /* DVSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B362E01A51540200202C94 /* DVSBarButtonItem.m */; };
-		21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B362E71A515DA500202C94 /* XLFormSectionDescriptor+Devise.h */; };
-		21B362EA1A515DA500202C94 /* XLFormSectionDescriptor+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B362E81A515DA500202C94 /* XLFormSectionDescriptor+Devise.m */; };
-		21B3EC971A52B35500C8C620 /* DVSFieldsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3EC951A52B35500C8C620 /* DVSFieldsUtils.h */; };
-		21B3EC981A52B35500C8C620 /* DVSFieldsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3EC961A52B35500C8C620 /* DVSFieldsUtils.m */; };
-		21B3ECAB1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECA91A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.h */; };
-		21B3ECAC1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECAA1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.m */; };
+		21B362E11A51540200202C94 /* DVSBarButtonItem+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B362DF1A51540200202C94 /* DVSBarButtonItem+Private.h */; };
+		21B362E21A51540200202C94 /* DVSBarButtonItem+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B362E01A51540200202C94 /* DVSBarButtonItem+Private.m */; };
+		21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B362E71A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h */; };
+		21B362EA1A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B362E81A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.m */; };
+		21B3EC971A52B35500C8C620 /* DVSFieldsUtils+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3EC951A52B35500C8C620 /* DVSFieldsUtils+Private.h */; };
+		21B3EC981A52B35500C8C620 /* DVSFieldsUtils+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3EC961A52B35500C8C620 /* DVSFieldsUtils+Private.m */; };
+		21B3ECAB1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECA91A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.h */; };
+		21B3ECAC1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECAA1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.m */; };
 		21B3ECB21A52D32100C8C620 /* UIViewController+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECB01A52D32000C8C620 /* UIViewController+Devise.h */; };
 		21B3ECB31A52D32100C8C620 /* UIViewController+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECB11A52D32100C8C620 /* UIViewController+Devise.m */; };
 		21B3ECBB1A59CC1400C8C620 /* DVSAccountRetrieverViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECB91A59CC1400C8C620 /* DVSAccountRetrieverViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21B3ECBC1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECBA1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m */; };
-		21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h */; };
-		21B3ECC01A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m */; };
+		21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h */; };
+		21B3ECC01A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.m */; };
 		21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECC11A59CCCB00C8C620 /* DVSLoginSignUpFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B4BA6D1A8B8AD2000E3E9A /* DVSUserManager.h */; };
 		21B4BA701A8B8AD2000E3E9A /* DVSUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B4BA6E1A8B8AD2000E3E9A /* DVSUserManager.m */; };
@@ -101,12 +100,12 @@
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
 		5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */; };
-		5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise.h */; };
-		5E7A9A351A3F114F0077DC43 /* NSObject+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise.m */; };
-		5EE295081A35C086009441E1 /* NSDictionary+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EE295061A35C086009441E1 /* NSDictionary+Devise.h */; };
-		5EE295091A35C086009441E1 /* NSDictionary+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE295071A35C086009441E1 /* NSDictionary+Devise.m */; };
-		5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise.h */; };
-		5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise.m */; };
+		5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */; };
+		5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */; };
+		5EE295081A35C086009441E1 /* NSDictionary+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */; };
+		5EE295091A35C086009441E1 /* NSDictionary+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */; };
+		5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */; };
+		5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */; };
 		7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -154,8 +153,8 @@
 		2136A56B1A5EA58900D2FDD2 /* DVSPasswordRemindViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSPasswordRemindViewSpec.m; path = "Devise Demo Tests/DVSPasswordRemindViewSpec.m"; sourceTree = "<group>"; };
 		2136A5701A5EB09200D2FDD2 /* DVSHomeViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSHomeViewSpec.m; path = "Devise Demo Tests/DVSHomeViewSpec.m"; sourceTree = "<group>"; };
 		2136A5761A5EC85500D2FDD2 /* DVSProfileEditViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSProfileEditViewSpec.m; path = "Devise Demo Tests/DVSProfileEditViewSpec.m"; sourceTree = "<group>"; };
-		215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XLFormRowDescriptor+Devise.h"; sourceTree = "<group>"; };
-		215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XLFormRowDescriptor+Devise.m"; sourceTree = "<group>"; };
+		215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XLFormRowDescriptor+Devise+Private.h"; sourceTree = "<group>"; };
+		215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XLFormRowDescriptor+Devise+Private.m"; sourceTree = "<group>"; };
 		2151996B1A499B5C00EF5F80 /* DVSFormRowCell+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSFormRowCell+Model.h"; sourceTree = "<group>"; };
 		2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSFormRowCell+Model.m"; sourceTree = "<group>"; };
 		2152B52D1A8DF43300F24A06 /* DVSUserPersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUserPersistenceManager.h; sourceTree = "<group>"; };
@@ -184,8 +183,8 @@
 		21AFB7F51A48446600769C87 /* DVSFormRowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVSFormRowCell.xib; sourceTree = "<group>"; };
 		21AFB7F81A4844A800769C87 /* DVSFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFormViewController.h; sourceTree = "<group>"; };
 		21AFB7F91A4844A800769C87 /* DVSFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFormViewController.m; sourceTree = "<group>"; };
-		21AFB7FE1A48C31100769C87 /* DVSTemplatesViewsUserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTemplatesViewsUserDataSource.h; sourceTree = "<group>"; };
-		21AFB7FF1A48C31100769C87 /* DVSTemplatesViewsUserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTemplatesViewsUserDataSource.m; sourceTree = "<group>"; };
+		21AFB7FE1A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSTemplatesViewsUserDataSource+Private.h"; sourceTree = "<group>"; };
+		21AFB7FF1A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSTemplatesViewsUserDataSource+Private.m"; sourceTree = "<group>"; };
 		21B1AAB01A3AF4E000578DF7 /* DVSDemoPasswordChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoPasswordChangeViewController.h; sourceTree = "<group>"; };
 		21B1AAB11A3AF4E000578DF7 /* DVSDemoPasswordChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoPasswordChangeViewController.m; sourceTree = "<group>"; };
 		21B1AAB31A3B12CE00578DF7 /* NSError+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+DeviseDemo.h"; sourceTree = "<group>"; };
@@ -194,20 +193,20 @@
 		21B1AAB71A3B2BF600578DF7 /* DVSDemoUserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUserDataSource.m; sourceTree = "<group>"; };
 		21B1AABB1A3EE24C00578DF7 /* DVSMenuTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSMenuTableModel.h; sourceTree = "<group>"; };
 		21B1AABC1A3EE24C00578DF7 /* DVSMenuTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSMenuTableModel.m; sourceTree = "<group>"; };
-		21B362DF1A51540200202C94 /* DVSBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSBarButtonItem.h; sourceTree = "<group>"; };
-		21B362E01A51540200202C94 /* DVSBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSBarButtonItem.m; sourceTree = "<group>"; };
-		21B362E71A515DA500202C94 /* XLFormSectionDescriptor+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XLFormSectionDescriptor+Devise.h"; sourceTree = "<group>"; };
-		21B362E81A515DA500202C94 /* XLFormSectionDescriptor+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XLFormSectionDescriptor+Devise.m"; sourceTree = "<group>"; };
-		21B3EC951A52B35500C8C620 /* DVSFieldsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFieldsUtils.h; sourceTree = "<group>"; };
-		21B3EC961A52B35500C8C620 /* DVSFieldsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFieldsUtils.m; sourceTree = "<group>"; };
-		21B3ECA91A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSPasswordReminderFormViewController.h; sourceTree = "<group>"; };
-		21B3ECAA1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSPasswordReminderFormViewController.m; sourceTree = "<group>"; };
+		21B362DF1A51540200202C94 /* DVSBarButtonItem+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSBarButtonItem+Private.h"; sourceTree = "<group>"; };
+		21B362E01A51540200202C94 /* DVSBarButtonItem+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSBarButtonItem+Private.m"; sourceTree = "<group>"; };
+		21B362E71A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XLFormSectionDescriptor+Devise+Private.h"; sourceTree = "<group>"; };
+		21B362E81A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XLFormSectionDescriptor+Devise+Private.m"; sourceTree = "<group>"; };
+		21B3EC951A52B35500C8C620 /* DVSFieldsUtils+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSFieldsUtils+Private.h"; sourceTree = "<group>"; };
+		21B3EC961A52B35500C8C620 /* DVSFieldsUtils+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSFieldsUtils+Private.m"; sourceTree = "<group>"; };
+		21B3ECA91A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSPasswordReminderFormViewController+Private.h"; sourceTree = "<group>"; };
+		21B3ECAA1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSPasswordReminderFormViewController+Private.m"; sourceTree = "<group>"; };
 		21B3ECB01A52D32000C8C620 /* UIViewController+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Devise.h"; sourceTree = "<group>"; };
 		21B3ECB11A52D32100C8C620 /* UIViewController+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Devise.m"; sourceTree = "<group>"; };
 		21B3ECB91A59CC1400C8C620 /* DVSAccountRetrieverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSAccountRetrieverViewController.h; sourceTree = "<group>"; };
 		21B3ECBA1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSAccountRetrieverViewController.m; sourceTree = "<group>"; };
-		21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSLoginSignUpFormViewController.h; sourceTree = "<group>"; };
-		21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSLoginSignUpFormViewController.m; sourceTree = "<group>"; };
+		21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSLoginSignUpFormViewController+Private.h"; sourceTree = "<group>"; };
+		21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSLoginSignUpFormViewController+Private.m"; sourceTree = "<group>"; };
 		21B3ECC11A59CCCB00C8C620 /* DVSLoginSignUpFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DVSLoginSignUpFields.h; sourceTree = "<group>"; };
 		21B4BA6D1A8B8AD2000E3E9A /* DVSUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUserManager.h; sourceTree = "<group>"; };
 		21B4BA6E1A8B8AD2000E3E9A /* DVSUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserManager.m; sourceTree = "<group>"; };
@@ -291,13 +290,13 @@
 		5E64C17B1A30872B00A41A88 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E7A9A2F1A3EFEFA0077DC43 /* DVSDemoUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUser.h; sourceTree = "<group>"; };
 		5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
-		5E7A9A321A3F114F0077DC43 /* NSObject+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Devise.h"; sourceTree = "<group>"; };
-		5E7A9A331A3F114F0077DC43 /* NSObject+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Devise.m"; sourceTree = "<group>"; };
+		5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Devise+Private.h"; sourceTree = "<group>"; };
+		5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Devise+Private.m"; sourceTree = "<group>"; };
 		5ED38C3D1A53538300B4F711 /* libPods-ngrvalidator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ngrvalidator.a"; path = "Pods/build/Debug-iphoneos/libPods-ngrvalidator.a"; sourceTree = "<group>"; };
-		5EE295061A35C086009441E1 /* NSDictionary+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Devise.h"; sourceTree = "<group>"; };
-		5EE295071A35C086009441E1 /* NSDictionary+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Devise.m"; sourceTree = "<group>"; };
-		5EF381D21A2756BB006875D4 /* NSURL+Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Devise.h"; sourceTree = "<group>"; };
-		5EF381D31A2756BB006875D4 /* NSURL+Devise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Devise.m"; sourceTree = "<group>"; };
+		5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Devise+Private.h"; sourceTree = "<group>"; };
+		5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Devise+Private.m"; sourceTree = "<group>"; };
+		5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Devise+Private.h"; sourceTree = "<group>"; };
+		5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Devise+Private.m"; sourceTree = "<group>"; };
 		D520EAD6431B24AD4B00819C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68076C37469F69754581011 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -412,8 +411,8 @@
 				21B3ECB81A59CBB900C8C620 /* AccountRetrieverViewController */,
 				21B3EC8B1A517FE700C8C620 /* DataSource */,
 				21B362D61A514F5100202C94 /* Views */,
-				21B3EC951A52B35500C8C620 /* DVSFieldsUtils.h */,
-				21B3EC961A52B35500C8C620 /* DVSFieldsUtils.m */,
+				21B3EC951A52B35500C8C620 /* DVSFieldsUtils+Private.h */,
+				21B3EC961A52B35500C8C620 /* DVSFieldsUtils+Private.m */,
 				218E29B91A5D7B310010BF3F /* DVSAccessibilityLabels.h */,
 				218E29BA1A5D7B310010BF3F /* DVSAccessibilityLabels.m */,
 			);
@@ -476,8 +475,8 @@
 		21B362D61A514F5100202C94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				21B362DF1A51540200202C94 /* DVSBarButtonItem.h */,
-				21B362E01A51540200202C94 /* DVSBarButtonItem.m */,
+				21B362DF1A51540200202C94 /* DVSBarButtonItem+Private.h */,
+				21B362E01A51540200202C94 /* DVSBarButtonItem+Private.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -485,8 +484,8 @@
 		21B3EC8B1A517FE700C8C620 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				21AFB7FE1A48C31100769C87 /* DVSTemplatesViewsUserDataSource.h */,
-				21AFB7FF1A48C31100769C87 /* DVSTemplatesViewsUserDataSource.m */,
+				21AFB7FE1A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.h */,
+				21AFB7FF1A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.m */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -505,10 +504,10 @@
 		21B3ECC21A59DDAC00C8C620 /* Foms */ = {
 			isa = PBXGroup;
 			children = (
-				21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h */,
-				21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m */,
-				21B3ECA91A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.h */,
-				21B3ECAA1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.m */,
+				21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h */,
+				21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.m */,
+				21B3ECA91A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.h */,
+				21B3ECAA1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.m */,
 			);
 			name = Foms;
 			sourceTree = "<group>";
@@ -597,16 +596,16 @@
 		3AA22E231A25110200FE04D1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				5EE295061A35C086009441E1 /* NSDictionary+Devise.h */,
-				5EE295071A35C086009441E1 /* NSDictionary+Devise.m */,
-				5E7A9A321A3F114F0077DC43 /* NSObject+Devise.h */,
-				5E7A9A331A3F114F0077DC43 /* NSObject+Devise.m */,
-				5EF381D21A2756BB006875D4 /* NSURL+Devise.h */,
-				5EF381D31A2756BB006875D4 /* NSURL+Devise.m */,
-				215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h */,
-				215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m */,
-				21B362E71A515DA500202C94 /* XLFormSectionDescriptor+Devise.h */,
-				21B362E81A515DA500202C94 /* XLFormSectionDescriptor+Devise.m */,
+				5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */,
+				5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */,
+				5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */,
+				5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */,
+				5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */,
+				5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */,
+				215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h */,
+				215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.m */,
+				21B362E71A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h */,
+				21B362E81A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.m */,
 				21B3ECB01A52D32000C8C620 /* UIViewController+Devise.h */,
 				21B3ECB11A52D32100C8C620 /* UIViewController+Devise.m */,
 			);
@@ -887,35 +886,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152B5311A8DF90700F24A06 /* DVSUserPersistenceManager.h in Headers */,
-				21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController.h in Headers */,
-				5E7A9A341A3F114F0077DC43 /* NSObject+Devise.h in Headers */,
+				21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h in Headers */,
+				5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
 				3A2B04FE1A41663E00DDA453 /* DVSUser+Requests.h in Headers */,
-				21B362E11A51540200202C94 /* DVSBarButtonItem.h in Headers */,
+				21B362E11A51540200202C94 /* DVSBarButtonItem+Private.h in Headers */,
 				21B3ECBB1A59CC1400C8C620 /* DVSAccountRetrieverViewController.h in Headers */,
-				5EF381D41A2756BB006875D4 /* NSURL+Devise.h in Headers */,
+				5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */,
 				21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */,
-				21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise.h in Headers */,
+				21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h in Headers */,
 				218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
-				21B3ECAB1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.h in Headers */,
+				21B3ECAB1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
 				21B3ECB21A52D32100C8C620 /* UIViewController+Devise.h in Headers */,
 				3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */,
 				3AA409F41A3F9D700046B0E4 /* DVSHTTPClient+User.h in Headers */,
-				2136A5661A5E7D3600D2FDD2 /* OHHTTPStubs+DeviseDemoTests.h in Headers */,
 				21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */,
 				3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */,
-				5EE295081A35C086009441E1 /* NSDictionary+Devise.h in Headers */,
-				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.h in Headers */,
+				5EE295081A35C086009441E1 /* NSDictionary+Devise+Private.h in Headers */,
+				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h in Headers */,
 				219EB2431A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h in Headers */,
 				219EB2471A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h in Headers */,
 				3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */,
 				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
 				3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */,
-				21B3EC971A52B35500C8C620 /* DVSFieldsUtils.h in Headers */,
+				21B3EC971A52B35500C8C620 /* DVSFieldsUtils+Private.h in Headers */,
 				3AA22E5F1A2535BC00FE04D1 /* DVSMacros.h in Headers */,
-				21AFB8001A48C31100769C87 /* DVSTemplatesViewsUserDataSource.h in Headers */,
+				21AFB8001A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1273,29 +1271,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21B362EA1A515DA500202C94 /* XLFormSectionDescriptor+Devise.m in Sources */,
-				21B362E21A51540200202C94 /* DVSBarButtonItem.m in Sources */,
+				21B362EA1A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.m in Sources */,
+				21B362E21A51540200202C94 /* DVSBarButtonItem+Private.m in Sources */,
 				3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */,
 				3A2B04FF1A41663E00DDA453 /* DVSUser+Requests.m in Sources */,
 				219EB2481A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.m in Sources */,
-				5EE295091A35C086009441E1 /* NSDictionary+Devise.m in Sources */,
-				5EF381D51A2756BB006875D4 /* NSURL+Devise.m in Sources */,
+				5EE295091A35C086009441E1 /* NSDictionary+Devise+Private.m in Sources */,
+				5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */,
 				21B3ECBC1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m in Sources */,
-				5E7A9A351A3F114F0077DC43 /* NSObject+Devise.m in Sources */,
+				5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */,
 				219EB2441A8CB6BA00F7BCFA /* DVSUserJSONSerializer.m in Sources */,
-				21AFB8011A48C31100769C87 /* DVSTemplatesViewsUserDataSource.m in Sources */,
+				21AFB8011A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.m in Sources */,
 				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
-				21B3ECAC1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController.m in Sources */,
+				21B3ECAC1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.m in Sources */,
 				218E29BC1A5D7B310010BF3F /* DVSAccessibilityLabels.m in Sources */,
 				3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */,
 				2152B5321A8DF90A00F24A06 /* DVSUserPersistenceManager.m in Sources */,
 				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
-				21B3EC981A52B35500C8C620 /* DVSFieldsUtils.m in Sources */,
+				21B3EC981A52B35500C8C620 /* DVSFieldsUtils+Private.m in Sources */,
 				21B4BA701A8B8AD2000E3E9A /* DVSUserManager.m in Sources */,
 				21B3ECB31A52D32100C8C620 /* UIViewController+Devise.m in Sources */,
 				3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */,
-				21B3ECC01A59CC9000C8C620 /* DVSLoginSignUpFormViewController.m in Sources */,
-				2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise.m in Sources */,
+				21B3ECC01A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.m in Sources */,
+				2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.m in Sources */,
 				3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
