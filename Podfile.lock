@@ -1,56 +1,56 @@
 PODS:
-  - AFNetworking (2.5.0):
-    - AFNetworking/NSURLConnection (= 2.5.0)
-    - AFNetworking/NSURLSession (= 2.5.0)
-    - AFNetworking/Reachability (= 2.5.0)
-    - AFNetworking/Security (= 2.5.0)
-    - AFNetworking/Serialization (= 2.5.0)
-    - AFNetworking/UIKit (= 2.5.0)
-  - AFNetworking/NSURLConnection (2.5.0):
+  - AFNetworking (2.5.1):
+    - AFNetworking/NSURLConnection (= 2.5.1)
+    - AFNetworking/NSURLSession (= 2.5.1)
+    - AFNetworking/Reachability (= 2.5.1)
+    - AFNetworking/Security (= 2.5.1)
+    - AFNetworking/Serialization (= 2.5.1)
+    - AFNetworking/UIKit (= 2.5.1)
+  - AFNetworking/NSURLConnection (2.5.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.0):
+  - AFNetworking/NSURLSession (2.5.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.0)
-  - AFNetworking/Security (2.5.0)
-  - AFNetworking/Serialization (2.5.0)
-  - AFNetworking/UIKit (2.5.0):
+  - AFNetworking/Reachability (2.5.1)
+  - AFNetworking/Security (2.5.1)
+  - AFNetworking/Serialization (2.5.1)
+  - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - KIF (3.1.0):
-    - KIF/XCTest (= 3.1.0)
+  - KIF (3.1.2):
+    - KIF/XCTest (= 3.1.2)
   - KIF-Kiwi (0.2.3):
     - KIF (~> 3.1.0)
     - Kiwi (~> 2.3.0)
-  - KIF/XCTest (3.1.0)
+  - KIF/XCTest (3.1.2)
   - Kiwi (2.3.1)
-  - ngrvalidator (0.1.2)
+  - ngrvalidator (0.3.0)
   - OHHTTPStubs (3.1.10):
     - OHHTTPStubs/Core (= 3.1.10)
   - OHHTTPStubs/Core (3.1.10)
-  - UICKeyChainStore (1.1.0)
+  - UICKeyChainStore (1.1.1)
   - XLForm (2.1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - KIF-Kiwi (~> 0.2)
   - Kiwi (~> 2.3)
-  - NGRValidator (~> 0.1.2)
+  - NGRValidator (~> 0.3.0)
   - OHHTTPStubs (~> 3.1)
   - UICKeyChainStore (~> 1.1)
   - XLForm (~> 2.1)
 
 SPEC CHECKSUMS:
-  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  KIF: de7c7f4aea08179c65d963a3c5ec438ee6408e8c
+  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
+  KIF: 068074b24dd455025e7f2a488ba4fb07b9ce047b
   KIF-Kiwi: e1f2a0b3151d4864470d3d8223daeb3df32a4ab8
   Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
-  ngrvalidator: 2c327c4d6de08e3347b16e46bc9a8fd91d6cf522
+  ngrvalidator: 54ba396847389858f867204e98158a45bbf2401f
   OHHTTPStubs: 2038e929b6abb94881000524c1cb4aba0a1bb4a2
-  UICKeyChainStore: 257d869d42527b9853ebb11d6dc3ac377b270e72
+  UICKeyChainStore: ea8f9851811284c6b9ff5b2133acd53342127cc3
   XLForm: 7d6855fe88df37b44ea00da80cc0cf3a945cfb1b
 
 COCOAPODS: 0.36.0.beta.2

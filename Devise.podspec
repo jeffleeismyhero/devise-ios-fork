@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
 
   spec.dependency      'AFNetworking', '~> 2.5.0'
   spec.dependency      'UICKeyChainStore', '~> 1.1'
-  spec.dependency      'NGRValidator', '~> 0.1.0'
+  spec.dependency      'NGRValidator', '~> 0.3.0'
 
   spec.public_header_files = 'Devise/Devise.h', 'DVSAccessibilityLabels.h', 'DVSAccountRetrieverViewController.h', 'Devise/DVSConfiguration.h', 'DVSHTTPClient.h', 'DVSLoginSignUpFormViewController.h', 'DVSTypedefs.h', 'DVSUser.h', 'DVSUser+Persistence.h', 'DVSUser+Querying.h', 'DVSUser+Requests.h'
 
