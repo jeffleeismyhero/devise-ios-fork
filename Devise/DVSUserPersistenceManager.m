@@ -30,10 +30,6 @@
     return self;
 }
 
-+ (instancetype)defaultPersistanceManager {
-    return [[[self class] alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
-}
-
 #pragma mark - Accessors
 
 - (DVSUser *)localUser {

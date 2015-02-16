@@ -11,14 +11,11 @@
 
 @interface DVSUserPersistenceManager : NSObject
 
-@property (strong, nonatomic, readonly) DVSConfiguration *configuration;
-
 /**
  *  A locally saved user object (if any).
  */
 @property (strong, nonatomic) DVSUser *localUser;
 
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration;
-+ (instancetype)defaultPersistanceManager;
 
 @end

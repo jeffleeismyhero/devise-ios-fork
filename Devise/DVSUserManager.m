@@ -42,7 +42,7 @@
 
 + (instancetype)defaultManager {
     DVSConfiguration *sharedConfiguration = [DVSConfiguration sharedConfiguration];
-    DVSUser *persistenceUser = [DVSUserPersistenceManager defaultPersistanceManager].localUser;
+    DVSUser *persistenceUser = [[DVSUserPersistenceManager alloc] initWithConfiguration:sharedConfiguration].localUser;
     
     if (!persistenceUser) return nil;
     return [[DVSUserManager alloc] initWithUser:persistenceUser configuration:sharedConfiguration];
