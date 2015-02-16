@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
                          'Adrian Kashivskyy' => 'adrian.kashivskyy@netguru.pl',
                          'Wojciech Trzasko' => 'wojciech.trzasko@netguru.pl'}
 
-  spec.version       = '0.1.0'
+  spec.version       = '0.1.1'
   spec.source        = { :git => 'https://github.com/netguru/devise-ios.git', :tag => spec.version.to_s }
   spec.platform      = :ios, '7.0'
 
