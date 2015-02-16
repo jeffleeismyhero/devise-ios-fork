@@ -263,6 +263,7 @@ Here's a few guidelines to follow:
 ## More Info
 
 Have a question? Please [open an issue](https://github.com/netguru/devise-ios/issues/new)!
+You can also read our blog post [announcing devise-iOS for simplified auth](https://netguru.co/blog/open-source-announcing-devise-ios).
 
 ##
 Copyright © 2014-2015 [Netguru](https://netguru.co)
