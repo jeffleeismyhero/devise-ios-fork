@@ -33,7 +33,7 @@ static NSUInteger const DVSUserPasswordMinLength = 5;
                     break;
                     
                 case DVSActionRegistration:
-                    validator.msgTooShort(NSLocalizedFormatString(@"should have at least %ld characters.", DVSUserPasswordMinLength));
+                    validator.msgTooShort([NSString stringWithFormat:@"should have at least %ld characters.", (unsigned long)DVSUserPasswordMinLength]);
                     break;
                     
                 default:

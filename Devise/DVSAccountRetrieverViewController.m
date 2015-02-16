@@ -89,8 +89,6 @@
 
 #pragma mark - Type handling
 
-DVSWorkInProgress("Move type properties to separate model class.");
-
 - (NSString *)localizedProceedButtonTitleForType:(DVSRetrieverType)type {
     switch (type) {
         case DVSRetrieverTypeLogIn:
