@@ -12,13 +12,13 @@
 #import "DVSUserJSONSerializer.h"
 #import "DVSHTTPClient.h"
 
-@protocol DVSUserManagerDataSource;
+@protocol DVSUserManagerDelegate;
 
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
 @property (nonatomic, readonly) DVSUserJSONSerializer *serializer;
-@property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;
+@property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 
 /**
  *  The HTTP client used by the model for networking purposes.
@@ -68,9 +68,9 @@
 
 @end
 
-@protocol DVSUserManagerDataSource <NSObject>
+@protocol DVSUserManagerDelegate <NSObject>
 
 @optional
-- (NSArray *)additionalValidationRulesForUserManager:(DVSUserManager *)manager defaultRules:(NSArray *)defaultRules action:(DVSActionType)action;
+- (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action;
 
 @end

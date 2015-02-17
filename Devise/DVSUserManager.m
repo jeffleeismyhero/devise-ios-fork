@@ -118,14 +118,12 @@
 
 - (void)validateUsingRules:(NSArray *)rules forAction:(DVSActionType)action success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSError *error;
-    __weak typeof(self) weakSelf = self;
     BOOL validated = [NGRValidator validateModel:self error:&error usingRules:^NSArray *{
-        
-        NSArray *additionalRules = [NSArray array];
-        if ([weakSelf.dataSource respondsToSelector:@selector(additionalValidationRulesForUserManager:defaultRules:action:)]) {
-            additionalRules = [weakSelf.dataSource additionalValidationRulesForUserManager:weakSelf defaultRules:rules action:action];
+        NSMutableArray *currenValidationRules = [NSMutableArray arrayWithArray:rules];
+        if ([self.delegate respondsToSelector:@selector(userManager:didPrepareValidationRules:forAction:)]) {
+            [self.delegate userManager:self didPrepareValidationRules:currenValidationRules forAction:action];
         }
-        return [self mergeDefaultRules:rules withCustomRules:additionalRules];
+        return [currenValidationRules copy];
     }];
     validated ? success() : failure(error);
 }
