@@ -66,7 +66,12 @@
 
 - (NSURL *)baseURL {
     if (self.serverURL == nil) return nil;
-    NSString *versionPath = [NSString stringWithFormat:@"v%lu", (unsigned long)self.apiVersion];
+    NSString *versionPath;
+    if (self.apiVersion == 0) {
+        versionPath = @"";
+    } else {
+        versionPath = [NSString stringWithFormat:@"v%lu", (unsigned long)self.apiVersion];
+    }
     NSString *resourcePath = self.resourceName;
     return [[self.serverURL URLByAppendingPathComponent:versionPath] URLByAppendingPathComponent:resourcePath];
 }

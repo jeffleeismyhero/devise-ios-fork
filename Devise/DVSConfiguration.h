@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (copy, nonatomic) NSString *keychainServiceName;
 
 /**
- *  The server-side api version (default: 1).
+ *  The server-side api version (default: 1). IMPORTANT: Set to 0 if the backend does not implement versioning.
  */
 @property (assign, nonatomic) NSUInteger apiVersion;
 
