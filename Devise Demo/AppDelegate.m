@@ -25,6 +25,7 @@
     DVSConfiguration *configuration = [DVSDemoUser configuration];
 
     [configuration setServerURL:[NSURL URLWithString:urlString]];
+    [configuration setApiVersion:0];
     [configuration setLoggingMode:DVSLoggingModeWarning];
     [configuration setShowsNetworkActivityIndicator:YES];
     
