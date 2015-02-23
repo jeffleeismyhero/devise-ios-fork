@@ -20,6 +20,7 @@ NSString * const DVSHTTPClientDefaultUpdatePath = @"";
 NSString * const DVSHTTPClientDefaultDeletePath = @"";
 NSString * const DVSHTTPClientDefaultChangePasswordPath = @"password";
 NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
+NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callback";
 
 @interface DVSUser ()
 
@@ -43,6 +44,26 @@ NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 #else
     parameters = [user registerJSON];
 #endif
+    
+    [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
+        if (error != nil) {
+            if (failure != NULL) failure(error);
+        } else {
+            [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
+            
+#if ENABLE_PERSISTENCE_MANAGER
+            [DVSPersistenceManager sharedPersistence].localUser = user;
+#else
+            [[user class] setLocalUser:user];
+#endif
+            
+            if (success != NULL) success();
+        }
+    }];
+}
+
+- (void)signInUsingFacebookUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    NSString *path = DVSHTTPClientDefaultFacebookSigningPath;
     
     [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
         if (error != nil) {

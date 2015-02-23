@@ -43,6 +43,11 @@ extern NSString * const DVSHTTPClientDefaultChangePasswordPath;
 extern NSString * const DVSHTTPClientDefaultRemindPasswordPath;
 
 /**
+ *  The default Facebook signing action path.
+ */
+extern NSString * const DVSHTTPClientDefaultFacebookSigningPath;
+
+/**
  *  This category provides shorthand methods for performing requests related to the user resource.
  */
 @interface DVSHTTPClient (User)
@@ -103,6 +108,15 @@ extern NSString * const DVSHTTPClientDefaultRemindPasswordPath;
  *  @param failure An option failure block executed when the request fails.
  */
 - (void)remindPasswordToUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
+/**
+ *  Sign in a user using Facebook.
+ *
+ *  @param user    A user which you want to sign in.
+ *  @param success An option success block executed when the request finishes.
+ *  @param failure An option failure block executed when the request fails.
+ */
+- (void)signInUsingFacebookUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Sets the authorization token and email headers.

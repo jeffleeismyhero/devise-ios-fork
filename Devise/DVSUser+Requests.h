@@ -55,6 +55,11 @@
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
+ *  Signs user asynchronously using Facebook authorization.
+ */
+- (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
+/**
  *  Changes user password asynchronously.
  */
 - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;

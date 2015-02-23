@@ -8,6 +8,7 @@
 
 #import "DVSDemoWelcomeViewController.h"
 
+#import <FacebookSDK/FacebookSDK.h>
 #import "DVSMacros.h"
 #import "UIAlertView+DeviseDemo.h"
 
@@ -36,11 +37,18 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
              accessibilityLabel:DVSAccessibilityLabel(@"Sign up")
                          target:self
                          action:@selector(didSelectRegister)];
+    
     [self addMenuEntryWithTitle:NSLocalizedString(@"Log in", nil)
                        subtitle:NSLocalizedString(@"Already registered?", nil)
              accessibilityLabel:DVSAccessibilityLabel(@"Log in")
                          target:self
                          action:@selector(didSelectLogIn)];
+    
+    [self addMenuEntryWithTitle:NSLocalizedString(@"Sign in with Facebook", nil)
+                       subtitle:nil
+             accessibilityLabel:DVSAccessibilityLabel(@"Facebook")
+                         target:self
+                         action:@selector(didSelectFacebookSigning)];
 }
 
 #pragma mark - Menu actions
@@ -60,6 +68,19 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     
     signUpController.delegate = self;
     [self.navigationController pushViewController:signUpController animated:YES];
+}
+
+- (void)didSelectFacebookSigning {
+    DVSUser *user = [DVSUser new];
+    
+    DVSWorkInProgress("Waiting for backend.");
+    
+    [user signInUsingFacebookWithSuccess:^{
+        NSLog(@"Facebook signing success");
+    } failure:^(NSError *error) {
+        NSLog(@"Facebook signing error");
+        NSLog(@"%@", [error userInfo]);
+    }];
 }
 
 #pragma mark - DVSMenuTableViewController methods

@@ -16,7 +16,7 @@
 ## Requirements
 
 - Xcode 6.0 and iOS 7.0+ SDK
-- CocoaPods 0.35.0 (use `gem install cocoapods` to grab it!)
+- CocoaPods 0.36.0.beta.2 (use `gem install cocoapods --pre` to grab it!)
 
 ## CocoaPods
 

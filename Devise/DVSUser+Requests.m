@@ -9,6 +9,7 @@
 #import "DVSHTTPClient+User.h"
 #import "DVSUser+Requests.h"
 #import "NGRValidator.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation DVSUser (Requests)
 
@@ -58,6 +59,39 @@
 - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self setRequestParameters:params() forAction:DVSActionRegistration];
     [self registerWithSuccess:success failure:failure];
+}
+
+#pragma mark - Signing in using Facebook
+
+- (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
+    FBSession *session = [[FBSession alloc] initWithPermissions:@[@"public_profile", @"email"]];
+    [FBSession setActiveSession:session];
+    
+    [session openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+            if (FBSession.activeSession.isOpen) {
+                [[FBRequest requestForMe] startWithCompletionHandler:
+                 ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+                     if (!error) {
+                         NSString *facebookUserId = user.objectID;
+                         NSString *facebookAccessToken = session.accessTokenData.accessToken;
+                         NSString *facebookEmail = [user objectForKey:@"email"];
+                         
+                         NSMutableDictionary *facebookUserJson = [NSMutableDictionary dictionary];
+                         [facebookUserJson setObject:@"facebook" forKey:@"provider"];
+                         [facebookUserJson setObject:facebookUserId forKey:@"uid"];
+                         [facebookUserJson setObject:facebookAccessToken forKey:@"oauth_token"];
+                         [facebookUserJson setObject:facebookEmail forKey:@"email"];
+                         
+                         NSDictionary *parameters = @{@"user" : facebookUserJson};
+                         
+                         [self.httpClient signInUsingFacebookUser:self parameters:parameters success:success failure:failure];
+                     } else {
+                         failure(error);
+                     }
+                 }];
+            }
+    }];
 }
 
 #pragma mark - Change password

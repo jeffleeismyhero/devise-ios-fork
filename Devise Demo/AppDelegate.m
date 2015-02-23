@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Devise.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 #import "DVSDemoUser.h"
 
@@ -22,6 +23,9 @@
     
     NSString *urlString = @"https://devise-ios-rails-example.herokuapp.com";
     
+    // For local testing purposes, you can use local rails backend from https://github.com/netguru/devise-ios-rails-example
+    // NSString *urlString = @"http://127.0.0.1:3000";
+    
     DVSConfiguration *configuration = [DVSDemoUser configuration];
 
     [configuration setServerURL:[NSURL URLWithString:urlString]];
@@ -30,6 +34,10 @@
     [configuration setShowsNetworkActivityIndicator:YES];
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 @end
