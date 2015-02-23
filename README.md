@@ -23,7 +23,7 @@
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party. To use **devise-ios** via CocoaPods write in your Podfile:
 
 ```rb
-pod 'Devise', '~> 0.1.1'
+pod 'Devise', '~> 0.1.2'
 ```
 
 ## Configuration
