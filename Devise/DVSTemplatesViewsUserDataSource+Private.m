@@ -28,14 +28,15 @@ static NSUInteger const DVSUserPasswordMinLength = 5;
             validator.minLength(DVSUserPasswordMinLength);
             
             switch (action) {
-                case DVSActionLogin:
+                case DVSActionLogin: {
                     validator.msgTooShort(NSLocalizedString(@"is wrong.", nil));
                     break;
-                    
-                case DVSActionRegistration:
-                    validator.msgTooShort(NSLocalizedFormatString(@"should have at least %ld characters.", (unsigned long)DVSUserPasswordMinLength));
+                }
+                case DVSActionRegistration: {
+                    NSString *message = [NSString stringWithFormat:NSLocalizedString(@"should have at least %ld characters.", nil),  (unsigned long)DVSUserPasswordMinLength];
+                    validator.msgTooShort(message);
                     break;
-                    
+                }
                 default:
                     break;
             }

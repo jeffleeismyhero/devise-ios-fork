@@ -66,14 +66,8 @@
 
 - (NSURL *)baseURL {
     if (self.serverURL == nil) return nil;
-    NSString *versionPath;
-    if (self.apiVersion == 0) {
-        versionPath = @"";
-    } else {
-        versionPath = [NSString stringWithFormat:@"v%lu", (unsigned long)self.apiVersion];
-    }
-    NSString *resourcePath = self.resourceName;
-    return [[self.serverURL URLByAppendingPathComponent:versionPath] URLByAppendingPathComponent:resourcePath];
+    NSString *versionPath = (self.apiVersion == 0) ? @"" : [NSString stringWithFormat:@"v%lu", (unsigned long)self.apiVersion];
+    return [[self.serverURL URLByAppendingPathComponent:versionPath] URLByAppendingPathComponent:self.resourceName];
 }
 
 - (void)setShowsNetworkActivityIndicator:(BOOL)shows {
