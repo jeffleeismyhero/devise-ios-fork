@@ -27,6 +27,7 @@ Pod::Spec.new do |spec|
   spec.dependency      'UICKeyChainStore', '~> 1.1'
   spec.dependency      'ngrvalidator', '~> 0.3.0'
   spec.dependency      'XLForm', '~> 2.1'
+  spec.dependency      'Facebook-iOS-SDK', '~> 3.23'
 
   spec.private_header_files = 'Devise/**/*Private.h'
 
