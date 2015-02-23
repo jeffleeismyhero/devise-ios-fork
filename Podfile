@@ -15,7 +15,7 @@ inhibit_all_warnings!
 pod 'AFNetworking', '~> 2.5'
 pod 'UICKeyChainStore', '~> 1.1'
 pod 'XLForm', '~> 2.1'
-pod 'NGRValidator', '~> 0.3.0'
+pod 'NGRValidator', '~> 0.4.2'
 pod 'Facebook-iOS-SDK', '~> 3.23'
 
 # Unit tests exclusive dependencies
