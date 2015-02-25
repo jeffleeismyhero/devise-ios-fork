@@ -40,7 +40,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
     
     NSDictionary *parameters = nil;
 #if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer registerJSONFromUser:user];
+    parameters = [self.userSerializer registerJSONDictionaryForUser:user];
 #else
     parameters = [user registerJSON];
 #endif
@@ -87,7 +87,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
     
     NSDictionary *parameters = nil;
 #if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer loginJSONFromUser:user];
+    parameters = [self.userSerializer loginJSONDictionaryForUser:user];
 #else
     parameters = [user loginJSON];
 #endif
@@ -114,7 +114,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
     
     NSDictionary *parameters = nil;
 #if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer updateJSONFromUser:user];
+    parameters = [self.userSerializer updateJSONDictionaryForUser:user];
 #else
     parameters = [user updateJSON];
 #endif
@@ -150,7 +150,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
     
     NSDictionary *parameters = nil;
 #if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer changePasswordJSONFromUser:user];
+    parameters = [self.userSerializer changePasswordJSONDictionaryForUser:user];
 #else
     parameters = [user changePasswordJSON];
 #endif
@@ -169,7 +169,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
     
     NSDictionary *parameters = nil;
 #if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer remindPasswordJSONFromUser:user];
+    parameters = [self.userSerializer remindPasswordJSONDictionaryForUser:user];
 #else
     parameters = [user remindPasswordJSON];
 #endif
