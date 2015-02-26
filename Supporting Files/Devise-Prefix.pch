@@ -7,7 +7,7 @@
 #import <Availability.h>
 
 #define ENABLE_USER_JSON_SERIALIZER 1
-#define ENABLE_PERSISTENCE_MANAGER 0
+#define ENABLE_PERSISTENCE_MANAGER 1
 
 #ifndef __IPHONE_3_0
     #warning "This project uses features only available in iOS SDK 3.0 and later."

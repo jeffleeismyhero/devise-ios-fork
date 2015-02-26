@@ -10,8 +10,9 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+DeviseDemo.h"
-#import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
+#import "DVSUserManager.h"
+#import "DVSUserPersistenceManager.h"
 
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 static NSString * const DVSTitleForEmail = @"E-mail address";
@@ -19,7 +20,6 @@ static NSString * const DVSTitleForEmail = @"E-mail address";
 @interface DVSDemoProfileEditorViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
-@property (strong, nonatomic) NSString *originalEmail;
 
 @end
 
@@ -36,28 +36,25 @@ static NSString * const DVSTitleForEmail = @"E-mail address";
     [self addFormWithTitleToDataSource:emailTitle
                     accessibilityLabel:DVSAccessibilityLabel(@"E-mail field")
                           keyboardType:UIKeyboardTypeEmailAddress];
-    [self setValue:[DVSDemoUser localUser].email forTitle:emailTitle];
+    [self setValue:[DVSUserPersistenceManager sharedPersistenceManager].localUser.email forTitle:emailTitle];
 }
 
 #pragma mark - UIControl events
 
 - (IBAction)saveButtonTapped:(UIBarButtonItem *)sender {
-    DVSDemoUser *localUser = [DVSDemoUser localUser];
+    [DVSUserManager defaultManager].userOriginalEmail = [DVSUserPersistenceManager sharedPersistenceManager].localUser.email;
     
-    self.originalEmail = localUser.email;
-    
-    localUser.dataSource = self.userDataSource;
-    localUser.email = [self valueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
-    
-    __weak typeof(self) weakSelf = self;
-    [localUser updateWithSuccess:^{
+    [DVSUserPersistenceManager sharedPersistenceManager].localUser.email = [self valueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
+
+    [[DVSUserManager defaultManager] updateWithSuccess:^{
+        [DVSUserManager defaultManager].userOriginalEmail = [DVSUserPersistenceManager sharedPersistenceManager].localUser.email;
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profile updated", nil)
                                     message:NSLocalizedString(@"Your profile was updated.", nil)
                                    delegate:self
                           cancelButtonTitle:NSLocalizedString(DVSTitleForAlertCancelButton, nil)
                           otherButtonTitles:nil] show];
     } failure:^(NSError *error) {
-        localUser.email = weakSelf.originalEmail;
+        [DVSUserPersistenceManager sharedPersistenceManager].localUser.email = [DVSUserManager defaultManager].userOriginalEmail;
         UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                         statusDescriptionsDictionary:@{ @422: NSLocalizedString(@"E-mail is already taken.", nil) }];
         [errorAlert show];

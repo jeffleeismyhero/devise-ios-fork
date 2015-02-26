@@ -26,6 +26,6 @@
 @protocol DVSUserJSONSerializerDataSource <NSObject>
 
 @optional
-- (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;;
+- (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;
 
 @end

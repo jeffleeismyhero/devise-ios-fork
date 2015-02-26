@@ -11,11 +11,12 @@
 #import "DVSBarButtonItem+Private.h"
 #import "DVSFieldsUtils+Private.h"
 #import "DVSTemplatesViewsUserDataSource+Private.h"
-#import "DVSUser+Requests.h"
 #import "DVSPasswordReminderFormViewController+Private.h"
 #import "DVSLoginSignUpFormViewController+Private.h"
 #import "UIViewController+Devise.h"
 #import "XLFormSectionDescriptor+Devise+Private.h"
+#import "DVSUserManager.h"
+#import "DVSUserPersistenceManager.h"
 
 @interface DVSAccountRetrieverViewController () <DVSLoginSignUpFormViewControllerDelegate, DVSPasswordReminderFormViewControllerDelegate>
 
@@ -42,6 +43,7 @@
 - (void)setupWithFieldsOptions:(DVSAccountRetrieverFields)fields forType:(DVSRetrieverType)type {
     self.controllerType = type;
     self.userDataSource = [DVSTemplatesViewsUserDataSource new];
+    [DVSUserManager defaultManager].dataSource = self.userDataSource;
     
     [self setupFormViewControllerForFieldsOptions:fields];
     [self setupNavigationItemsForFieldsOptions:fields];
@@ -133,14 +135,11 @@
 - (void)performLogInActionForForm:(XLFormViewController *)formViewController {
     NSDictionary *formValues = [formViewController formValues];
     
-    DVSUser *user = [DVSUser new];
-    
-    user.email = formValues[DVSFormEmailTag];
-    user.password = formValues[DVSFormPasswordTag];
-    user.dataSource = self.userDataSource;
+    [DVSUserManager defaultManager].user.email = formValues[DVSFormEmailTag];
+    [DVSUserManager defaultManager].user.password = formValues[DVSFormPasswordTag];
     
     __weak typeof(self) weakSelf = self;
-    [user loginWithSuccess:^{
+    [[DVSUserManager defaultManager] loginWithSuccess:^{
         [weakSelf callFromDelegateSuccessForAction:DVSRetrieverActionLogIn];
     } failure:^(NSError *error) {
         [weakSelf callFromDelegateFailWithError:error forAction:DVSRetrieverActionLogIn];
@@ -148,16 +147,14 @@
 }
 
 - (void)performSignUpActionForForm:(XLFormViewController *)formViewController {
+    
     NSDictionary *formValues = [formViewController formValues];
-    
-    DVSUser *newUser = [DVSUser new];
-    
-    newUser.email = formValues[DVSFormEmailTag];
-    newUser.password = formValues[DVSFormPasswordTag];
-    newUser.dataSource = self.userDataSource;
+
+    [DVSUserManager defaultManager].user.email = formValues[DVSFormEmailTag];
+    [DVSUserManager defaultManager].user.password = formValues[DVSFormPasswordTag];
     
     __weak typeof(self) weakSelf = self;
-    [newUser registerWithSuccess:^{
+    [[DVSUserManager defaultManager] registerWithSuccess:^{
         [weakSelf callFromDelegateSuccessForAction:DVSRetrieverActionSignUp];
     } failure:^(NSError *error) {
         [weakSelf callFromDelegateFailWithError:error forAction:DVSRetrieverActionSignUp];
@@ -167,13 +164,10 @@
 - (void)performRemindPasswordActionForForm:(XLFormViewController *)formViewController {
     NSDictionary *formValues = [formViewController formValues];
     
-    DVSUser *user = [DVSUser new];
-    
-    user.email = formValues[DVSFormEmailTag];
-    user.dataSource = self.userDataSource;
+    [DVSUserManager defaultManager].user.email = formValues[DVSFormEmailTag];
     
     __weak typeof(self) weakSelf = self;
-    [user remindPasswordWithSuccess:^{
+    [[DVSUserManager defaultManager] remindPasswordWithSuccess:^{
         [weakSelf callFromDelegateSuccessForAction:DVSRetrieverActionPasswordRemind];
     } failure:^(NSError *error) {
         [weakSelf callFromDelegateFailWithError:error forAction:DVSRetrieverActionPasswordRemind];
@@ -186,7 +180,7 @@
     if ([self.delegate respondsToSelector:@selector(accountRetrieverViewController:didSuccessForAction:user:)]) {
         [self.delegate accountRetrieverViewController:self
                                   didSuccessForAction:action
-                                                 user:[DVSUser localUser]];
+                                                 user:[DVSUserPersistenceManager sharedPersistenceManager].localUser];
     }
 }
 

@@ -9,8 +9,8 @@
 #import "DVSDemoHomeViewController.h"
 #import <Devise/Devise.h>
 
-#import "DVSDemoUser.h"
 #import "UIAlertView+DeviseDemo.h"
+#import "DVSUserManager.h"
 
 static NSString * const DVSEditProfileSegue = @"DisplayProfileEditor";
 static NSString * const DVSPasswordChangeSegue = @"DisplayPasswordChange";
@@ -73,7 +73,7 @@ static NSString * const DVSTitleForDelete = @"Delete profile";
     
     if ([buttonTitle isEqualToString:NSLocalizedString(DVSTitleForAlertYesButton, nil)]) {
         
-        [[DVSUser localUser] deleteAccountWithSuccess:^{
+        [[DVSUserManager defaultManager] deleteAccountWithSuccess:^{
             [self.navigationController popToRootViewControllerAnimated:YES];
         } failure:^(NSError *error) {
             [UIAlertView dvs_alertViewForError:error];
@@ -85,7 +85,7 @@ static NSString * const DVSTitleForDelete = @"Delete profile";
 
 - (IBAction)logoutTouched:(UIBarButtonItem *)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
-    [[DVSDemoUser localUser] logout];
+    [[DVSUserManager defaultManager] logout];
 }
 
 @end

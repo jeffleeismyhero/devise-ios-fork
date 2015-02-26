@@ -7,6 +7,7 @@
 #import "DVSHTTPClient+User.h"
 #import "DVSTestConfiguration.h"
 #import "DVSTestUser.h"
+#import "DVSUserPersistenceManager.h"
 
 SPEC_BEGIN(DVSHTTPClientUserSpec)
 
@@ -15,13 +16,19 @@ describe(@"DVSHTTPClient+User", ^{
     __block DVSHTTPClient *client = nil;
     __block DVSTestConfiguration *configuration = nil;
     __block DVSTestUser *user = nil;
+    __block DVSUserPersistenceManager *persistanceManager = nil;
 
     beforeEach(^{
         NSURL *serverURL = [NSURL URLWithString:@"http://devise-tests/"];
         configuration = [[DVSTestConfiguration alloc] initWithServerURL:serverURL appendPathComponents:NO];
         client = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
         user = [[DVSTestUser alloc] init];
-        [[user class] removeLocalUser];
+        persistanceManager = [DVSUserPersistenceManager sharedPersistenceManager];
+        [persistanceManager setLocalUser:nil];
+    });
+    
+    describe(@"persistance manager should be properly initialized", ^{
+        [[expectFutureValue(persistanceManager) shouldEventually] equal:[DVSUserPersistenceManager sharedPersistenceManager]];
     });
 
     describe(@"registering a user", ^{
@@ -59,7 +66,7 @@ describe(@"DVSHTTPClient+User", ^{
 
             it(@"should save the user locally", ^{
                 [client registerUser:user success:nil failure:nil];
-                [[expectFutureValue([[user class] localUser]) shouldEventually] equal:user];
+                [[expectFutureValue(persistanceManager.localUser) shouldEventually] equal:user];
             });
 
         });
@@ -101,7 +108,7 @@ describe(@"DVSHTTPClient+User", ^{
 
             it(@"should save the user locally", ^{
                 [client logInUser:user success:nil failure:nil];
-                [[expectFutureValue([[user class] localUser]) shouldEventually] equal:user];
+                [[expectFutureValue(persistanceManager.localUser) shouldEventually] equal:user];
             });
 
         });
@@ -126,7 +133,7 @@ describe(@"DVSHTTPClient+User", ^{
                 user.identifier = @"1";
                 user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
-                [[user class] setLocalUser:user];
+                [persistanceManager setLocalUser:user];
             });
 
             context(@"using correct data", ^{
@@ -167,7 +174,7 @@ describe(@"DVSHTTPClient+User", ^{
                 user.identifier = @"1";
                 user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
-                [[user class] setLocalUser:user];
+                [persistanceManager setLocalUser:user];
             });
 
             context(@"using correct data", ^{
@@ -182,7 +189,7 @@ describe(@"DVSHTTPClient+User", ^{
 
                 it(@"should remove the locally saved user", ^{
                     [client deleteUser:user success:nil failure:nil];
-                    [[expectFutureValue([[user class] localUser]) shouldEventually] beNil];
+                    [[expectFutureValue(persistanceManager.localUser) shouldEventually] beNil];
                 });
 
             });
@@ -209,7 +216,7 @@ describe(@"DVSHTTPClient+User", ^{
                 user.identifier = @"1";
                 user.email = @"john.appleseed@example.com";
                 user.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
-                [[user class] setLocalUser:user];
+                [persistanceManager setLocalUser:user];
             });
 
             context(@"using correct data", ^{

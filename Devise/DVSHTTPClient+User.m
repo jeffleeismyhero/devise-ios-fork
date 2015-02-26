@@ -8,11 +8,11 @@
 #import <objc/runtime.h>
 #import "DVSUser.h"
 #import "DVSUser+Persistence.h"
-#import "DVSUser+Querying.h"
 #import "DVSUserJSONSerializer+Serialize.h"
 #import "NSDictionary+Devise+Private.h"
 #import "NSObject+Devise+Private.h"
 #import "DVSUserPersistenceManager.h"
+#import "DVSUserManager.h"
 
 NSString * const DVSHTTPClientDefaultRegisterPath = @"";
 NSString * const DVSHTTPClientDefaultLogInPath = @"sign_in";
@@ -52,7 +52,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
             
 #if ENABLE_PERSISTENCE_MANAGER
-            [DVSPersistenceManager sharedPersistence].localUser = user;
+            [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
 #else
             [[user class] setLocalUser:user];
 #endif
@@ -72,7 +72,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
             
 #if ENABLE_PERSISTENCE_MANAGER
-            [DVSPersistenceManager sharedPersistence].localUser = user;
+            [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
 #else
             [[user class] setLocalUser:user];
 #endif
@@ -99,7 +99,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
             
 #if ENABLE_PERSISTENCE_MANAGER
-            [DVSPersistenceManager sharedPersistence].localUser = user;
+            [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
 #else
             [[user class] setLocalUser:user];
 #endif
@@ -109,7 +109,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
 }
 
 - (void)updateUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
+    [self setAuthorizationToken:user.sessionToken email:[DVSUserManager defaultManager].userOriginalEmail];
     NSString *path = DVSHTTPClientDefaultUpdatePath;
     
     NSDictionary *parameters = nil;
@@ -129,23 +129,22 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callb
 }
 
 - (void)deleteUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
+    [self setAuthorizationToken:user.sessionToken email:[DVSUserPersistenceManager sharedPersistenceManager].localUser.email];
     NSString *path = DVSHTTPClientDefaultDeletePath;
     [self DELETE:path parameters:nil completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
 #if ENABLE_PERSISTENCE_MANAGER
-            [DVSPersistenceManager sharedPersistence].localUser = nil;
+            [DVSUserPersistenceManager sharedPersistenceManager].localUser = nil;
 #endif
-            [[user class] removeLocalUser];
             if (success != NULL) success();
         }
     }];
 }
 
 - (void)changePasswordOfUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setAuthorizationToken:user.sessionToken email:[[user class] persistentXUserEmail]];
+    [self setAuthorizationToken:user.sessionToken email:[DVSUserPersistenceManager sharedPersistenceManager].localUser.email];
     NSString *path = DVSHTTPClientDefaultChangePasswordPath;
     
     NSDictionary *parameters = nil;

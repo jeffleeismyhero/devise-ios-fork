@@ -9,10 +9,11 @@
 #import "DVSDemoPasswordChangeViewController.h"
 #import <Devise/Devise.h>
 
-#import "DVSDemoUser.h"
 #import "DVSDemoUserDataSource.h"
 #import "NSError+DeviseDemo.h"
 #import "UIAlertView+DeviseDemo.h"
+#import "DVSUserManager.h"
+#import "DVSUserPersistenceManager.h"
 
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 static NSString * const DVSTitleForCurrentPassword = @"Current password";
@@ -48,11 +49,7 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
 #pragma mark - UIControl events
 
 - (IBAction)saveButtonTapped:(UIBarButtonItem *)sender {
-    DVSDemoUser *localUser = [DVSDemoUser localUser];
-    
-    localUser.dataSource = self.userDataSource;
-    
-    NSString *currentPassword = localUser.password;
+    NSString *currentPassword = [DVSUserPersistenceManager sharedPersistenceManager].localUser.password;
     
     NSString *currentPasswordConfirm = [self valueForTitle:NSLocalizedString(DVSTitleForCurrentPassword, nil)];
     if ([currentPasswordConfirm isEqualToString:@""]) {
@@ -83,16 +80,16 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
         return;
     }
     
-    localUser.password = newPassword;
+    [DVSUserPersistenceManager sharedPersistenceManager].localUser.password = newPassword;
     
-    [localUser changePasswordWithSuccess:^{
+    [[DVSUserManager defaultManager] changePasswordWithSuccess:^{
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Password changed", nil)
                                     message:NSLocalizedString(@"Password was changed. \nNow you can login with new password.", nil)
                                    delegate:self
                           cancelButtonTitle:NSLocalizedString(DVSTitleForAlertCancelButton, nil)
                           otherButtonTitles:nil] show];
     } failure:^(NSError *error) {
-        localUser.password = currentPassword;
+        [DVSUserPersistenceManager sharedPersistenceManager].localUser.password = currentPassword;
         [[UIAlertView dvs_alertViewForError:error] show];
     }];
 }

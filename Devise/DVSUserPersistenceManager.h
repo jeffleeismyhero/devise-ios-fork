@@ -16,6 +16,8 @@
  */
 @property (strong, nonatomic) DVSUser *localUser;
 
++ (instancetype)sharedPersistenceManager;
+
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration;
 
 @end

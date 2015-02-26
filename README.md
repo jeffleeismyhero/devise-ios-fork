@@ -50,44 +50,39 @@ To specify logging mode use:
 
  **devise-ios** takes care about network problems and is able to automatically retry requests in case of connection issues. You can specify a number and time between retries using `numberOfRetries` and `retryTresholdDuration` properties of `DVSConfiguration`.
 
-## User
-The main class of **devise-ios** is `DVSUser`. Provided implementation is enough for login, registration, edition and any other features offered by **devise-ios**. Nevertheless you can subclass `DVSUser` to customize it and change to fit your own purposes in an easy way!
+## User manager
+The main class of **devise-ios** is `DVSUserManager`. Provided implementation is enough for login, registration, edition and any other features offered by **devise-ios**.
 
-Functions are pretty straightforward and self-explanatory. If you wish to provide additional parameters for every request, use `WithExtraParams:(DVSExtraParamsBlock)params` function counterpart:
+Functions are pretty straightforward and self-explanatory.
 
 * User registration:
 
     ```objc
     - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
-    - (void)registerWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
     ```
 
 * Profile update:
 
     ```objc
     - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
-    - (void)updateWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
     ```
 
 * Signing in:
 
     ```objc
     - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
-    - (void)loginWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
     ```
 
 * Password reminder:
 
     ```objc
     - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
-    - (void)remindPasswordWithExtraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
     ```
 
 * Password update:
 
     ```objc
-    - (void)changePasswordWithNewPassword:(NSString *)newPassword success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
-    - (void)changePasswordWithNewPassword:(NSString *)newPassword extraParams:(DVSExtraParamsBlock)params success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+    - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
     ```
 
 * Account deleting:
@@ -96,49 +91,9 @@ Functions are pretty straightforward and self-explanatory. If you wish to provid
     - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
     ```
 
-If you haven't fallen in love with blocks yet, you can still pass additional parameters using regular methods:
-
-* Single parameter:
-
-    ```objc
-    - (void)setObject:(id)object forKey:(NSString *)key action:(DVSActionType)actionType;
-    ```
-
-* Multiple parameters:
-
-    ```objc
-    - (void)setObjects:(NSDictionary *)objects forAction:(DVSActionType)actionType;
-    ```
-
-* or via `DVSUserDataSource` protocol you have to confirm:
-
-    ```objc
-    - (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;
-    ```
-
 ## User customization
 
-Although `DVSUser` implementation is enough for a basic usage, you can customize it as well. The best way to adapt `DVSUser` class to your own purposes is to conform `DVSUserDataSource` protocol.
-
-Changing default keys for built-in JSON fields can be achieved by:
-
-```objc
-- (NSString *)JSONKeyPathForEmail;
-- (NSString *)JSONKeyPathForPassword;
-- (NSString *)JSONKeyPathForPasswordConfirmation;
-```
-
-Defining your own customize validation rules used when performing a specified action:
-
-```objc
-- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action;
-```
-
-And what was mentioned earlier you can inject your own request parameters via method:
-
-```objc
-- (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;
-```
+Although `DVSUser` implementation is enough for a basic usage, you can customize it as well. 
 
 If it's needed to store locally more info about `DVSUser` subclass (other than `email`, `sessionToken` and `identifier` - these are stored by default) conform `DVSUserPersisting` protocol. You can choose which properties should be persist by invoking:
 ```objc
@@ -148,7 +103,7 @@ Just remember to pass property names as `NSString`.
 
 ## User model validation and messaging
 
-**devise-ios** under the hood uses [NGRValidator](https://github.com/netguru/ngrvalidator) to validate data. On top of it **devise-ios** delivers a possibility to add your own validation rules. If you wish to add some of them, conform `DVSUserDataSource` protocol and implement `additionalValidationRulesForAction:` method. 
+**devise-ios** under the hood uses [NGRValidator](https://github.com/netguru/ngrvalidator) to validate data. On top of it **devise-ios** delivers a possibility to add your own validation rules. If you wish to add some of them, conform `DVSUserManagerDataSource` protocol and implement `additionalValidationRulesForAction:` method. 
 
 
 Let's say a subclass of `DVSUser` has an additional property `NSString *registrationUsername` you want to validate during registration process to fulfill conditions:

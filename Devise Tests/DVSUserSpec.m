@@ -10,8 +10,10 @@
 SPEC_BEGIN(DVSUserSpec)
 
 describe(@"DVSUser", ^{
+    
+    // THESE TESTS WILL BE MOVED TO DVSUserManagerSpec
 
-    context(@"when newly initialized", ^{
+    /*context(@"when newly initialized", ^{
 
         __block DVSUser *user = nil;
 
@@ -20,6 +22,7 @@ describe(@"DVSUser", ^{
         });
 
         it(@"should use a shared configuration", ^{
+            // [[[[user class] configuration] should] beIdenticalTo:[DVSConfiguration sharedConfiguration]];
             [[[[user class] configuration] should] beIdenticalTo:[DVSConfiguration sharedConfiguration]];
         });
 
@@ -528,7 +531,7 @@ describe(@"DVSUser", ^{
             [[expectFutureValue(decodedUser.name) shouldEventually] beNonNil];
         });
         
-    });
+    });*/
 
 });
 

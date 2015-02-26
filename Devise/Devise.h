@@ -14,8 +14,6 @@
     #import <Devise/DVSHTTPClient.h>
     #import <Devise/DVSUser.h>
     #import <Devise/DVSUser+Persistence.h>
-    #import <Devise/DVSUser+Querying.h>
-    #import <Devise/DVSUser+Requests.h>
     #import <Devise/DVSTypedefs.h>
     #import <Devise/DVSLoginSignUpFields.h>
     #import <Devise/DVSAccountRetrieverViewController.h>

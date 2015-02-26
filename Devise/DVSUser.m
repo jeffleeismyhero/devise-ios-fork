@@ -28,7 +28,6 @@
     self = [super init];
     if (self == nil) return nil;
     [self setUpDefaultAdditionalRequestParameters];
-    self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:[[self class] configuration]];
     return self;
 }
 

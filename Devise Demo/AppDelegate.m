@@ -10,8 +10,6 @@
 #import "Devise.h"
 #import <FacebookSDK/FacebookSDK.h>
 
-#import "DVSDemoUser.h"
-
 @interface AppDelegate ()
 
 @end
@@ -25,13 +23,11 @@
     
     // For local testing purposes, you can use local rails backend from https://github.com/netguru/devise-ios-rails-example
     // NSString *urlString = @"http://127.0.0.1:3000";
-    
-    DVSConfiguration *configuration = [DVSDemoUser configuration];
 
-    [configuration setServerURL:[NSURL URLWithString:urlString]];
-    [configuration setApiVersion:0];
-    [configuration setLoggingMode:DVSLoggingModeWarning];
-    [configuration setShowsNetworkActivityIndicator:YES];
+    [[DVSConfiguration sharedConfiguration] setServerURL:[NSURL URLWithString:urlString]];
+    [[DVSConfiguration sharedConfiguration] setApiVersion:0];
+    [[DVSConfiguration sharedConfiguration] setLoggingMode:DVSLoggingModeWarning];
+    [[DVSConfiguration sharedConfiguration] setShowsNetworkActivityIndicator:YES];
     
     return YES;
 }

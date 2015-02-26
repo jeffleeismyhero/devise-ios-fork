@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "DVSUser.h"
+#import "DVSUserManager.h"
 
-@interface DVSTemplatesViewsUserDataSource : NSObject <DVSUserDataSource>
+@interface DVSTemplatesViewsUserDataSource : NSObject <DVSUserManagerDataSource>
 
 @end

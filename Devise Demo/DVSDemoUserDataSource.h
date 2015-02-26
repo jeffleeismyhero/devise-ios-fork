@@ -8,6 +8,6 @@
 
 #import <Devise/Devise.h>
 
-@interface DVSDemoUserDataSource : NSObject <DVSUserDataSource>
+@interface DVSDemoUserDataSource : NSObject
 
 @end

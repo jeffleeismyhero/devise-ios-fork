@@ -11,6 +11,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "DVSMacros.h"
 #import "UIAlertView+DeviseDemo.h"
+#import "DVSUserManager.h"
+#import "DVSDemoUser.h"
 
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
@@ -71,16 +73,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 }
 
 - (void)didSelectFacebookSigning {
-    DVSUser *user = [DVSUser new];
-    
-    DVSWorkInProgress("Waiting for backend.");
-    
-    [user signInUsingFacebookWithSuccess:^{
-        NSLog(@"Facebook signing success");
-    } failure:^(NSError *error) {
-        NSLog(@"Facebook signing error");
-        NSLog(@"%@", [error userInfo]);
-    }];
+    // DVSWorkInProgress("Waiting for backend.");
 }
 
 #pragma mark - DVSMenuTableViewController methods

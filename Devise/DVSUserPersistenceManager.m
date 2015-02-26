@@ -23,9 +23,22 @@
 
 #pragma mark - Lifecycle
 
++ (instancetype)sharedPersistenceManager {
+    static DVSUserPersistenceManager *sharedManager = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[DVSUserPersistenceManager alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
+    });
+    
+    return sharedManager;
+}
+
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration {
     if (self = [super init]) {
         self.configuration = configuration;
+        
+        if (!_localUser) _localUser = [DVSUser new];
     }
     return self;
 }

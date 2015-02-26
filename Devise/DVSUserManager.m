@@ -17,7 +17,6 @@
 @interface DVSUserManager ()
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
-@property (strong, nonatomic) DVSUserPersistenceManager *persistenceManager;
 
 @end
 
@@ -33,19 +32,19 @@
     if (self = [super init]) {
         self.user = user;
         
-        DVSConfiguration *sharedConfiguration = [DVSConfiguration sharedConfiguration];
-        self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:sharedConfiguration];
-        self.persistenceManager = [[DVSUserPersistenceManager alloc] initWithConfiguration:sharedConfiguration];
+        self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
     }
     return self;
 }
 
 + (instancetype)defaultManager {
-    DVSConfiguration *sharedConfiguration = [DVSConfiguration sharedConfiguration];
-    DVSUser *persistenceUser = [[DVSUserPersistenceManager alloc] initWithConfiguration:sharedConfiguration].localUser;
+    static DVSUserManager *sharedMyManager = nil;
     
-    if (!persistenceUser) return nil;
-    return [[DVSUserManager alloc] initWithUser:persistenceUser configuration:sharedConfiguration];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[DVSUserManager alloc] initWithUser:[DVSUserPersistenceManager sharedPersistenceManager].localUser configuration:[DVSConfiguration sharedConfiguration]];
+    });
+    return sharedMyManager;
 }
 
 #pragma mark - Logging in
@@ -104,26 +103,34 @@
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self.httpClient deleteUser:self.user success:^{
-        self.persistenceManager.localUser = nil;
+        [DVSUserPersistenceManager sharedPersistenceManager].localUser = nil;
         if (success != NULL) success();
     } failure:failure];
 }
 
 #pragma mark - Logout method
 - (void)logout {
-    self.persistenceManager.localUser = nil;
+    [DVSUserPersistenceManager sharedPersistenceManager].localUser = nil;
 }
 
 #pragma mark - Validation
 
 - (void)validateUsingRules:(NSArray *)rules forAction:(DVSActionType)action success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSError *error;
-    BOOL validated = [NGRValidator validateModel:self error:&error usingRules:^NSArray *{
-        NSMutableArray *currenValidationRules = [NSMutableArray arrayWithArray:rules];
-        if ([self.delegate respondsToSelector:@selector(userManager:didPrepareValidationRules:forAction:)]) {
-            [self.delegate userManager:self didPrepareValidationRules:currenValidationRules forAction:action];
+
+    BOOL validated = [NGRValidator validateModel:self.user error:&error usingRules:^NSArray *{
+        
+        NSMutableArray *currentValidationRules = [NSMutableArray arrayWithArray:rules];
+        
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalValidationRulesForAction:defaultRules:)]) {
+            currentValidationRules = [NSMutableArray arrayWithArray:[currentValidationRules arrayByAddingObjectsFromArray:[self.dataSource additionalValidationRulesForAction:action defaultRules:rules]]];
         }
-        return [currenValidationRules copy];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(userManager:didPrepareValidationRules:forAction:)]) {
+            [self.delegate userManager:self didPrepareValidationRules:currentValidationRules forAction:action];
+        }
+
+        return [currentValidationRules copy];
     }];
     validated ? success() : failure(error);
 }

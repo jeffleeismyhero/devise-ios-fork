@@ -60,8 +60,6 @@
 		21E155E21A64170C00603952 /* DVSChangePasswordViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 21951E4B1A601AE2006A63E7 /* DVSChangePasswordViewSpec.m */; };
 		21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */; };
 		21F6909F1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909E1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m */; };
-		3A2B04FE1A41663E00DDA453 /* DVSUser+Requests.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A2B04FC1A41663E00DDA453 /* DVSUser+Requests.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3A2B04FF1A41663E00DDA453 /* DVSUser+Requests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2B04FD1A41663E00DDA453 /* DVSUser+Requests.m */; };
 		3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE5A21A40A40400A068E2 /* DVSTestConfiguration.m */; };
 		3A4EE5A71A40AC9E00A068E2 /* DVSTestUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE5A61A40AC9D00A068E2 /* DVSTestUser.m */; };
 		3A4EE5AB1A40B89100A068E2 /* DVSHTTPClientUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */; };
@@ -74,8 +72,6 @@
 		3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1B1A25031300FE04D1 /* DVSConfiguration.m */; };
 		3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E2D1A251B1400FE04D1 /* DVSUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E2E1A251B1400FE04D1 /* DVSUser.m */; };
-		3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */; };
 		3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E3A1A2530EA00FE04D1 /* DVSTypedefs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA22E571A25353B00FE04D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E491A25353B00FE04D1 /* AppDelegate.m */; };
 		3AA22E581A25353B00FE04D1 /* DVSDemoHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E4B1A25353B00FE04D1 /* DVSDemoHomeViewController.m */; };
@@ -214,8 +210,6 @@
 		21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSMenuTableViewController.m; sourceTree = "<group>"; };
 		21F6909D1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+DeviseDemo.h"; sourceTree = "<group>"; };
 		21F6909E1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+DeviseDemo.m"; sourceTree = "<group>"; };
-		3A2B04FC1A41663E00DDA453 /* DVSUser+Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUser+Requests.h"; sourceTree = "<group>"; };
-		3A2B04FD1A41663E00DDA453 /* DVSUser+Requests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUser+Requests.m"; sourceTree = "<group>"; };
 		3A49C2711A25D60D0041406B /* DVSUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserSpec.m; sourceTree = "<group>"; };
 		3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSHTTPClientUserSpec.m; sourceTree = "<group>"; };
 		3A4EE5A11A40A40400A068E2 /* DVSTestConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestConfiguration.h; sourceTree = "<group>"; };
@@ -233,8 +227,6 @@
 		3AA22E211A250FC300FE04D1 /* DVSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSMacros.h; sourceTree = "<group>"; };
 		3AA22E2D1A251B1400FE04D1 /* DVSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUser.h; sourceTree = "<group>"; };
 		3AA22E2E1A251B1400FE04D1 /* DVSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUser.m; sourceTree = "<group>"; };
-		3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUser+Querying.h"; sourceTree = "<group>"; };
-		3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUser+Querying.m"; sourceTree = "<group>"; };
 		3AA22E3A1A2530EA00FE04D1 /* DVSTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTypedefs.h; sourceTree = "<group>"; };
 		3AA22E481A25353B00FE04D1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3AA22E491A25353B00FE04D1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -619,10 +611,6 @@
 				3AA22E2E1A251B1400FE04D1 /* DVSUser.m */,
 				3AA631721A39A718002A64AC /* DVSUser+Persistence.h */,
 				3AA631731A39A718002A64AC /* DVSUser+Persistence.m */,
-				3AA22E361A252FD700FE04D1 /* DVSUser+Querying.h */,
-				3AA22E371A252FD700FE04D1 /* DVSUser+Querying.m */,
-				3A2B04FC1A41663E00DDA453 /* DVSUser+Requests.h */,
-				3A2B04FD1A41663E00DDA453 /* DVSUser+Requests.m */,
 			);
 			name = "User Model";
 			sourceTree = "<group>";
@@ -889,7 +877,6 @@
 				21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h in Headers */,
 				5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
-				3A2B04FE1A41663E00DDA453 /* DVSUser+Requests.h in Headers */,
 				21B362E11A51540200202C94 /* DVSBarButtonItem+Private.h in Headers */,
 				21B3ECBB1A59CC1400C8C620 /* DVSAccountRetrieverViewController.h in Headers */,
 				5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */,
@@ -908,7 +895,6 @@
 				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h in Headers */,
 				219EB2431A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h in Headers */,
 				219EB2471A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h in Headers */,
-				3AA22E381A252FD700FE04D1 /* DVSUser+Querying.h in Headers */,
 				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
 				3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */,
 				21B3EC971A52B35500C8C620 /* DVSFieldsUtils+Private.h in Headers */,
@@ -1274,7 +1260,6 @@
 				21B362EA1A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.m in Sources */,
 				21B362E21A51540200202C94 /* DVSBarButtonItem+Private.m in Sources */,
 				3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */,
-				3A2B04FF1A41663E00DDA453 /* DVSUser+Requests.m in Sources */,
 				219EB2481A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.m in Sources */,
 				5EE295091A35C086009441E1 /* NSDictionary+Devise+Private.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */,
@@ -1285,7 +1270,6 @@
 				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
 				21B3ECAC1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.m in Sources */,
 				218E29BC1A5D7B310010BF3F /* DVSAccessibilityLabels.m in Sources */,
-				3AA22E391A252FD700FE04D1 /* DVSUser+Querying.m in Sources */,
 				2152B5321A8DF90A00F24A06 /* DVSUserPersistenceManager.m in Sources */,
 				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
 				21B3EC981A52B35500C8C620 /* DVSFieldsUtils+Private.m in Sources */,

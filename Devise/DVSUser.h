@@ -8,7 +8,6 @@
 #import "DVSTypedefs.h"
 
 @class DVSConfiguration, DVSHTTPClient;
-@protocol DVSUserDataSource;
 
 typedef NS_ENUM(NSInteger, DVSActionType) {
     DVSActionLogin,
@@ -42,21 +41,6 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 @property (strong, nonatomic, readonly) NSString *sessionToken;
 
 /**
- *  User's data source.
- */
-@property (weak, nonatomic) id <DVSUserDataSource> dataSource;
-
-/**
- *  The HTTP client used by the model for networking purposes.
- */
-@property (strong, nonatomic) DVSHTTPClient *httpClient;
-
-/**
- *  The model's configuration object.
- */
-+ (DVSConfiguration *)configuration;
-
-/**
  *  Returns bunch of key-value pairs for given action.
  *
  *  @param action The action for which request parameters are stored.
@@ -80,36 +64,5 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  *  @param action     The action for which additional parameters will be added to query.
  */
 - (void)setRequestParameters:(NSDictionary *)parameters forAction:(DVSActionType)action;
-
-@end
-
-@protocol DVSUserDataSource <NSObject>
-
-@optional
-
-/**
- *  Key for email parameter used in every request containing email field (default: "email").
- */
-- (NSString *)JSONKeyPathForEmail;
-
-/**
- *  Key for password parameter used in every request containing password field (default: "password").
- */
-- (NSString *)JSONKeyPathForPassword;
-
-/**
- *  Key for passwordConfirmation parameter used in every request containing passwordConfirmation field (default: "passwordConfirmation").
- */
-- (NSString *)JSONKeyPathForPasswordConfirmation;
-
-/**
- *  Allows to inject own validation rules and customize default ones. Used for validation when performing an action.
- */
-- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action defaultRules:(NSArray *)defaultRules;
-
-/**
- *  Allows to inject own request parameters (key-value pairs). Used when performing an action.
- */
-- (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action;
 
 @end

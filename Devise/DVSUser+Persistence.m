@@ -19,42 +19,6 @@
 
 @implementation DVSUser (DVSLocalPersistence)
 
-#pragma mark - Local persistence management
-
-static DVSUser *_dvs_localUser = nil;
-
-+ (instancetype)localUser {
-    if (_dvs_localUser != nil) return _dvs_localUser;
-    return (_dvs_localUser = [self persistentUser]);
-}
-
-+ (void)setLocalUser:(DVSUser *)user {
-    [self removeLocalUser];
-    NSString *keychainService = [[self class] configuration].keychainServiceName;
-    NSString *keychainKey = [[self class] configuration].resourceName;
-    NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:user];
-    [UICKeyChainStore setData:archivedData forKey:keychainKey service:keychainService];
-    _dvs_localUser = user;
-}
-
-+ (void)removeLocalUser {
-    NSString *keychainService = [[self class] configuration].keychainServiceName;
-    NSString *keychainKey = [[self class] configuration].resourceName;
-    [UICKeyChainStore removeItemForKey:keychainKey service:keychainService];
-    _dvs_localUser = nil;
-}
-
-+ (NSString *)persistentXUserEmail {
-    return [[self persistentUser].email copy];
-}
-
-+ (DVSUser *)persistentUser {
-    NSString *keychainService = [[self class] configuration].keychainServiceName;
-    NSString *keychainKey = [[self class] configuration].resourceName;
-    NSData *archivedData = [UICKeyChainStore dataForKey:keychainKey service:keychainService];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
-}
-
 #pragma mark - Object serialization
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
