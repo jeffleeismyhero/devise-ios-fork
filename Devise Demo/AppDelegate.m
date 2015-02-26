@@ -20,9 +20,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     NSString *urlString = @"https://devise-ios-rails-example.herokuapp.com";
-    
-    // For local testing purposes, you can use local rails backend from https://github.com/netguru/devise-ios-rails-example
-    // NSString *urlString = @"http://127.0.0.1:3000";
 
     [[DVSConfiguration sharedConfiguration] setServerURL:[NSURL URLWithString:urlString]];
     [[DVSConfiguration sharedConfiguration] setApiVersion:0];

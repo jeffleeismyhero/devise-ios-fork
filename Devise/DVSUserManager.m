@@ -132,7 +132,9 @@
 
         return [currentValidationRules copy];
     }];
-    validated ? success() : failure(error);
+    if (validated) success();
+        else if (failure != NULL) failure(error);
+    
 }
 
 - (NSArray *)mergeDefaultRules:(NSArray *)defaultRules withCustomRules:(NSArray *)customRules {
