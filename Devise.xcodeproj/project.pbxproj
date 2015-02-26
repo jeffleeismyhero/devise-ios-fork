@@ -103,6 +103,7 @@
 		5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */; };
 		5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */; };
 		7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
+		E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -291,6 +292,7 @@
 		5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Devise+Private.m"; sourceTree = "<group>"; };
 		D520EAD6431B24AD4B00819C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68076C37469F69754581011 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserManagerSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -706,6 +708,7 @@
 				3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */,
 				3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */,
 				3A49C2711A25D60D0041406B /* DVSUserSpec.m */,
+				E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */,
 			);
 			path = "Devise Tests";
 			sourceTree = "<group>";
@@ -1287,6 +1290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A4EE5AB1A40B89100A068E2 /* DVSHTTPClientUserSpec.m in Sources */,
+				E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */,
 				3A4EE5AF1A40C96500A068E2 /* DVSConfigurationSpec.m in Sources */,
 				3A4EE5AC1A40C93500A068E2 /* DVSHTTPClientSpec.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */,
