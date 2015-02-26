@@ -7,9 +7,8 @@
 //
 
 #import "DVSUserManager.h"
-
 #import <ngrvalidator/NGRValidator.h>
-
+#import <FacebookSDK/FacebookSDK.h>
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceManager.h"
@@ -79,6 +78,38 @@
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [self.httpClient registerUser:self.user success:success failure:failure];
     } failure:failure];
+}
+
+#pragma mark - Signing via Facebook
+
+- (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    FBSession *session = [[FBSession alloc] initWithPermissions:@[@"public_profile", @"email"]];
+    [FBSession setActiveSession:session];
+    
+    [session openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+        if (FBSession.activeSession.isOpen) {
+            [[FBRequest requestForMe] startWithCompletionHandler:
+             ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+                 if (!error) {
+                     NSString *facebookUserId = user.objectID;
+                     NSString *facebookAccessToken = session.accessTokenData.accessToken;
+                     NSString *facebookEmail = [user objectForKey:@"email"];
+                     
+                     NSMutableDictionary *facebookUserJson = [NSMutableDictionary dictionary];
+                     [facebookUserJson setObject:@"facebook" forKey:@"provider"];
+                     [facebookUserJson setObject:facebookUserId forKey:@"uid"];
+                     [facebookUserJson setObject:facebookAccessToken forKey:@"oauth_token"];
+                     [facebookUserJson setObject:facebookEmail forKey:@"email"];
+                     
+                     NSDictionary *parameters = @{@"user" : facebookUserJson};
+                     
+                     [self.httpClient signInUsingFacebookUser:self.user parameters:parameters success:success failure:failure];
+                 } else {
+                     if (failure != NULL) failure(error);
+                 }
+             }];
+        }
+    }];
 }
 
 #pragma mark - Change password

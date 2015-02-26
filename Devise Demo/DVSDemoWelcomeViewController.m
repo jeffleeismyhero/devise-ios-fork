@@ -13,6 +13,7 @@
 #import "UIAlertView+DeviseDemo.h"
 #import "DVSUserManager.h"
 #import "DVSDemoUser.h"
+#import "Devise-Prefix.pch"
 
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
@@ -45,6 +46,13 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
              accessibilityLabel:DVSAccessibilityLabel(@"Log in")
                          target:self
                          action:@selector(didSelectLogIn)];
+#if ENABLE_FACEBOOK_LOGIN
+    [self addMenuEntryWithTitle:NSLocalizedString(@"Sign in using Facebook", nil)
+                       subtitle:NSLocalizedString(nil, nil)
+             accessibilityLabel:DVSAccessibilityLabel(@"Sign in using Facebook")
+                         target:self
+                         action:@selector(didSelectFacebookSigning)];
+#endif
 }
 
 #pragma mark - Menu actions
@@ -65,6 +73,16 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     signUpController.delegate = self;
     [self.navigationController pushViewController:signUpController animated:YES];
 }
+
+#if ENABLE_FACEBOOK_LOGIN
+- (void)didSelectFacebookSigning {
+    [[DVSUserManager defaultManager] signInUsingFacebookWithSuccess:^{
+        NSLog(@"Facebook success");
+    } failure:^(NSError *error) {
+        NSLog(@"Facebook failure");
+    }];
+}
+#endif
 
 #pragma mark - DVSMenuTableViewController methods
 

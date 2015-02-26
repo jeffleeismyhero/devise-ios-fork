@@ -50,6 +50,11 @@
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
+ *  Signs in user asynchronously via Facebook.
+ */
+- (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
+/**
  *  Changes user password asynchronously.
  */
 - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
