@@ -20,9 +20,6 @@ dependencies:
     - "Pods"
     - "Configuration"
 
-  override:
-    - bundle exec pod install
-
 checkout:
   pre:
     - curl -L https://raw.githubusercontent.com/netguru/review/master/check.rb | ruby
