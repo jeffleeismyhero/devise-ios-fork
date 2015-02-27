@@ -141,6 +141,7 @@
 
 #pragma mark - Logout method
 - (void)logout {
+    [[FBSession activeSession] closeAndClearTokenInformation];
     [DVSUserPersistenceManager sharedPersistenceManager].localUser = nil;
 }
 

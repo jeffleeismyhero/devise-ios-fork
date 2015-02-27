@@ -77,9 +77,9 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 #if ENABLE_FACEBOOK_LOGIN
 - (void)didSelectFacebookSigning {
     [[DVSUserManager defaultManager] signInUsingFacebookWithSuccess:^{
-        NSLog(@"Facebook success");
+        [self moveToHomeView];
     } failure:^(NSError *error) {
-        NSLog(@"Facebook failure");
+        [self handleSignInWithFacebookError:error];
     }];
 }
 #endif
@@ -151,6 +151,12 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 - (void)handleSignUpError:(NSError *)error {
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                     statusDescriptionsDictionary:@{ @422: NSLocalizedString(@"E-mail is already taken.", nil) }];
+    [errorAlert show];
+}
+
+- (void)handleSignInWithFacebookError:(NSError *)error {
+    UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                    statusDescriptionsDictionary:@{ @0: NSLocalizedString(@"Facebook login failed.", nil) }];
     [errorAlert show];
 }
 

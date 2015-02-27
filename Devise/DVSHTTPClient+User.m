@@ -20,7 +20,7 @@ NSString * const DVSHTTPClientDefaultUpdatePath = @"";
 NSString * const DVSHTTPClientDefaultDeletePath = @"";
 NSString * const DVSHTTPClientDefaultChangePasswordPath = @"password";
 NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
-NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook/callback";
+NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook";
 
 @interface DVSUser ()
 
