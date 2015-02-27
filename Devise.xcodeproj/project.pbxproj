@@ -909,9 +909,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		218E29891A5AE90C0010BF3F /* Devise Demo Tests */ = {
+		218E29891A5AE90C0010BF3F /* Functional Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Devise Demo Tests" */;
+			buildConfigurationList = 218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Functional Tests" */;
 			buildPhases = (
 				218E298C1A5AE90C0010BF3F /* Check Pods Manifest.lock */,
 				218E298D1A5AE90C0010BF3F /* Touch Precompiled Header */,
@@ -925,7 +925,7 @@
 			dependencies = (
 				218E29A11A5AE91F0010BF3F /* PBXTargetDependency */,
 			);
-			name = "Devise Demo Tests";
+			name = "Functional Tests";
 			productName = DeviseTests;
 			productReference = 218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -952,9 +952,9 @@
 			productReference = 3AA8B35E1A24DA0000166927 /* Devise.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3AA8B3681A24DA0000166927 /* Devise Tests */ = {
+		3AA8B3681A24DA0000166927 /* Unit Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise Tests" */;
+			buildConfigurationList = 3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
 			buildPhases = (
 				765107F6C40D4918A6DF2AD9 /* Check Pods Manifest.lock */,
 				3ACA0FCA1A28A73B00C98B59 /* Touch Precompiled Header */,
@@ -968,7 +968,7 @@
 			dependencies = (
 				3AA8B36C1A24DA0000166927 /* PBXTargetDependency */,
 			);
-			name = "Devise Tests";
+			name = "Unit Tests";
 			productName = DeviseTests;
 			productReference = 3AA8B3691A24DA0000166927 /* Devise Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1033,9 +1033,9 @@
 			projectRoot = "";
 			targets = (
 				3AA8B35D1A24DA0000166927 /* Devise */,
-				3AA8B3681A24DA0000166927 /* Devise Tests */,
+				3AA8B3681A24DA0000166927 /* Unit Tests */,
 				3AD4C6EA1A24F9A700F0AE67 /* Devise Demo */,
-				218E29891A5AE90C0010BF3F /* Devise Demo Tests */,
+				218E29891A5AE90C0010BF3F /* Functional Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1532,7 +1532,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Devise Demo Tests" */ = {
+		218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Functional Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				218E299C1A5AE90C0010BF3F /* Debug */,
@@ -1559,7 +1559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise Tests" */ = {
+		3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3AA8B3781A24DA0000166927 /* Debug */,

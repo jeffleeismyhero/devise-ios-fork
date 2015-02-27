@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3AA8B3681A24DA0000166927"
-               BuildableName = "Devise Tests.xctest"
-               BlueprintName = "Devise Tests"
+               BuildableName = "Unit Tests.xctest"
+               BlueprintName = "Unit Tests"
                ReferencedContainer = "container:Devise.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -61,8 +61,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3AA8B3681A24DA0000166927"
-               BuildableName = "Devise Tests.xctest"
-               BlueprintName = "Devise Tests"
+               BuildableName = "Unit Tests.xctest"
+               BlueprintName = "Unit Tests"
                ReferencedContainer = "container:Devise.xcodeproj">
             </BuildableReference>
          </TestableReference>
