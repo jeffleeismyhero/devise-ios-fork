@@ -17,11 +17,9 @@ machine:
 
 dependencies:
   cache_directories:
-    - Bundler
-    - Pods
-    - Configuration
-  pre:
-    - bundle exec pod setup
+    - "Pods"
+    - "Configuration"
+
   override:
     - bundle exec pod install
 

@@ -7,9 +7,9 @@
 source 'https://rubygems.org'
 
 # Development tools
-gem 'cocoapods', '~> 0.36.0.beta.2'
+gem 'cocoapods'
 
 # Continious integration tools
-gem 'rake', '~> 10.4.0'
+gem 'rake'
 gem 'shenzhen'
-gem 'xcpretty', '~> 0.1.6'
+gem 'xcpretty'
