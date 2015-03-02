@@ -98,6 +98,7 @@
 		5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */; };
 		5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */; };
 		5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */; };
+		5EAC36A91AA512F900014442 /* Devise-Demo-Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC36A81AA512F900014442 /* Devise-Demo-Tests-Info.plist */; };
 		5EE295081A35C086009441E1 /* NSDictionary+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */; };
 		5EE295091A35C086009441E1 /* NSDictionary+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */; };
 		5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */; };
@@ -158,7 +159,6 @@
 		2152B52E1A8DF43300F24A06 /* DVSUserPersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserPersistenceManager.m; sourceTree = "<group>"; };
 		215575B21A40880C00BA8661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Devise Demo Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		218E299F1A5AE90C0010BF3F /* Devise-Demo-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Devise-Demo-Tests-Info.plist"; path = "/Users/wojciechtrzasko/Projekty/devise-ios/devise-ios-my/Devise-Demo-Tests-Info.plist"; sourceTree = "<absolute>"; };
 		218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSLogInViewSpec.m; path = "Devise Demo Tests/DVSLogInViewSpec.m"; sourceTree = "<group>"; };
 		218E29A71A5AEE1E0010BF3F /* Devise-Demo-Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Devise-Demo-Tests-Prefix.pch"; sourceTree = "<group>"; };
 		218E29A91A5D15560010BF3F /* DVSSignUpSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSSignUpSpec.m; path = "Devise Demo Tests/DVSSignUpSpec.m"; sourceTree = "<group>"; };
@@ -285,6 +285,7 @@
 		5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
 		5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Devise+Private.h"; sourceTree = "<group>"; };
 		5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Devise+Private.m"; sourceTree = "<group>"; };
+		5EAC36A81AA512F900014442 /* Devise-Demo-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Devise-Demo-Tests-Info.plist"; sourceTree = "<group>"; };
 		5ED38C3D1A53538300B4F711 /* libPods-ngrvalidator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ngrvalidator.a"; path = "Pods/build/Debug-iphoneos/libPods-ngrvalidator.a"; sourceTree = "<group>"; };
 		5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Devise+Private.h"; sourceTree = "<group>"; };
 		5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Devise+Private.m"; sourceTree = "<group>"; };
@@ -356,7 +357,7 @@
 		218E29A21A5AE97C0010BF3F /* Devise Demo Tests */ = {
 			isa = PBXGroup;
 			children = (
-				218E299F1A5AE90C0010BF3F /* Devise-Demo-Tests-Info.plist */,
+				5EAC36A81AA512F900014442 /* Devise-Demo-Tests-Info.plist */,
 				218E29A71A5AEE1E0010BF3F /* Devise-Demo-Tests-Prefix.pch */,
 			);
 			name = "Devise Demo Tests";
@@ -1045,6 +1046,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EAC36A91AA512F900014442 /* Devise-Demo-Tests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1372,7 +1374,7 @@
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Tests-Prefix.pch";
-				INFOPLIST_FILE = "Devise-Demo-Tests-Info.plist";
+				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Tests-Info.plist";
 				PRODUCT_NAME = "Devise Demo Tests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Devise Demo.app/Devise Demo";
 			};
@@ -1387,7 +1389,7 @@
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Tests-Prefix.pch";
-				INFOPLIST_FILE = "Devise-Demo-Tests-Info.plist";
+				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Tests-Info.plist";
 				PRODUCT_NAME = "Devise Demo Tests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Devise Demo.app/Devise Demo";
 			};
