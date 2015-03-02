@@ -44,7 +44,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "218E29891A5AE90C0010BF3F"
                BuildableName = "Devise Demo Tests.xctest"
-               BlueprintName = "Functional Tests"
+               BlueprintName = "Devise Demo Tests"
                ReferencedContainer = "container:Devise.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -62,7 +62,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "218E29891A5AE90C0010BF3F"
                BuildableName = "Devise Demo Tests.xctest"
-               BlueprintName = "Functional Tests"
+               BlueprintName = "Devise Demo Tests"
                ReferencedContainer = "container:Devise.xcodeproj">
             </BuildableReference>
          </TestableReference>

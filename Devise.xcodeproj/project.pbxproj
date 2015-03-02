@@ -98,7 +98,6 @@
 		5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */; };
 		5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */; };
 		5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */; };
-		5EAC36A91AA512F900014442 /* Devise-Demo-Tests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC36A81AA512F900014442 /* Devise-Demo-Tests-Info.plist */; };
 		5EE295081A35C086009441E1 /* NSDictionary+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */; };
 		5EE295091A35C086009441E1 /* NSDictionary+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */; };
 		5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */; };
@@ -243,7 +242,7 @@
 		3AA631721A39A718002A64AC /* DVSUser+Persistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUser+Persistence.h"; sourceTree = "<group>"; };
 		3AA631731A39A718002A64AC /* DVSUser+Persistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUser+Persistence.m"; sourceTree = "<group>"; };
 		3AA8B35E1A24DA0000166927 /* Devise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Devise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AA8B3691A24DA0000166927 /* Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA8B3691A24DA0000166927 /* Devise Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Devise Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ABB41461A272989005B22A1 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		3AD4C6831A24DB1700F0AE67 /* Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Devise.h; sourceTree = "<group>"; };
 		3AD4C6871A24DBA700F0AE67 /* Devise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Devise-Info.plist"; sourceTree = "<group>"; };
@@ -285,7 +284,7 @@
 		5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
 		5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Devise+Private.h"; sourceTree = "<group>"; };
 		5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Devise+Private.m"; sourceTree = "<group>"; };
-		5EAC36A81AA512F900014442 /* Devise-Demo-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Devise-Demo-Tests-Info.plist"; sourceTree = "<group>"; };
+		5EAC36B01AA51EFA00014442 /* Devise-Demo-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Devise-Demo-Tests-Info.plist"; sourceTree = "<group>"; };
 		5ED38C3D1A53538300B4F711 /* libPods-ngrvalidator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ngrvalidator.a"; path = "Pods/build/Debug-iphoneos/libPods-ngrvalidator.a"; sourceTree = "<group>"; };
 		5EE295061A35C086009441E1 /* NSDictionary+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Devise+Private.h"; sourceTree = "<group>"; };
 		5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Devise+Private.m"; sourceTree = "<group>"; };
@@ -357,7 +356,7 @@
 		218E29A21A5AE97C0010BF3F /* Devise Demo Tests */ = {
 			isa = PBXGroup;
 			children = (
-				5EAC36A81AA512F900014442 /* Devise-Demo-Tests-Info.plist */,
+				5EAC36B01AA51EFA00014442 /* Devise-Demo-Tests-Info.plist */,
 				218E29A71A5AEE1E0010BF3F /* Devise-Demo-Tests-Prefix.pch */,
 			);
 			name = "Devise Demo Tests";
@@ -679,7 +678,7 @@
 			isa = PBXGroup;
 			children = (
 				3AA8B35E1A24DA0000166927 /* Devise.framework */,
-				3AA8B3691A24DA0000166927 /* Unit Tests.xctest */,
+				3AA8B3691A24DA0000166927 /* Devise Tests.xctest */,
 				3AD4C6EB1A24F9A700F0AE67 /* Devise Demo.app */,
 				218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */,
 			);
@@ -910,9 +909,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		218E29891A5AE90C0010BF3F /* Functional Tests */ = {
+		218E29891A5AE90C0010BF3F /* Devise Demo Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Functional Tests" */;
+			buildConfigurationList = 218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Devise Demo Tests" */;
 			buildPhases = (
 				218E298C1A5AE90C0010BF3F /* Check Pods Manifest.lock */,
 				218E298D1A5AE90C0010BF3F /* Touch Precompiled Header */,
@@ -926,7 +925,7 @@
 			dependencies = (
 				218E29A11A5AE91F0010BF3F /* PBXTargetDependency */,
 			);
-			name = "Functional Tests";
+			name = "Devise Demo Tests";
 			productName = DeviseTests;
 			productReference = 218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -953,9 +952,9 @@
 			productReference = 3AA8B35E1A24DA0000166927 /* Devise.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3AA8B3681A24DA0000166927 /* Unit Tests */ = {
+		3AA8B3681A24DA0000166927 /* Devise Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildConfigurationList = 3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise Tests" */;
 			buildPhases = (
 				765107F6C40D4918A6DF2AD9 /* Check Pods Manifest.lock */,
 				3ACA0FCA1A28A73B00C98B59 /* Touch Precompiled Header */,
@@ -969,9 +968,9 @@
 			dependencies = (
 				3AA8B36C1A24DA0000166927 /* PBXTargetDependency */,
 			);
-			name = "Unit Tests";
+			name = "Devise Tests";
 			productName = DeviseTests;
-			productReference = 3AA8B3691A24DA0000166927 /* Unit Tests.xctest */;
+			productReference = 3AA8B3691A24DA0000166927 /* Devise Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3AD4C6EA1A24F9A700F0AE67 /* Devise Demo */ = {
@@ -1034,9 +1033,9 @@
 			projectRoot = "";
 			targets = (
 				3AA8B35D1A24DA0000166927 /* Devise */,
-				3AA8B3681A24DA0000166927 /* Unit Tests */,
+				3AA8B3681A24DA0000166927 /* Devise Tests */,
 				3AD4C6EA1A24F9A700F0AE67 /* Devise Demo */,
-				218E29891A5AE90C0010BF3F /* Functional Tests */,
+				218E29891A5AE90C0010BF3F /* Devise Demo Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1046,7 +1045,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EAC36A91AA512F900014442 /* Devise-Demo-Tests-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1370,7 +1368,7 @@
 			baseConfigurationReference = 3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Tests-Prefix.pch";
@@ -1385,7 +1383,7 @@
 			baseConfigurationReference = 3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Tests-Prefix.pch";
@@ -1399,9 +1397,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C6941A24EFC100F0AE67 /* Debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"${SRCROOT}/Pods",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1410,10 +1414,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C6A81A24EFCC00F0AE67 /* Devise-Config.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = Devise;
 				PROVISIONING_PROFILE = "";
 			};
@@ -1423,7 +1433,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Tests-Prefix.pch";
@@ -1438,7 +1448,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App-Icon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Launch-Image";
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
@@ -1453,9 +1463,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C6961A24EFC100F0AE67 /* Release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"${SRCROOT}/Pods",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
@@ -1465,10 +1482,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C6A81A24EFCC00F0AE67 /* Devise-Config.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Info.plist";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_NAME = Devise;
 				PROVISIONING_PROFILE = "";
 			};
@@ -1478,7 +1501,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C6A91A24EFCC00F0AE67 /* Devise-Tests-Config.xcconfig */;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Tests-Prefix.pch";
@@ -1493,7 +1516,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App-Icon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Launch-Image";
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
@@ -1509,7 +1532,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Functional Tests" */ = {
+		218E299B1A5AE90C0010BF3F /* Build configuration list for PBXNativeTarget "Devise Demo Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				218E299C1A5AE90C0010BF3F /* Debug */,
@@ -1536,7 +1559,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
+		3AA8B3771A24DA0000166927 /* Build configuration list for PBXNativeTarget "Devise Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3AA8B3781A24DA0000166927 /* Debug */,

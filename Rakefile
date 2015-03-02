@@ -5,11 +5,11 @@
 #
 
 task "test-unit" do
-  run_xcode_tests "Unit Tests"
+  run_xcode_tests "Devise Tests"
 end
 
 task "test-functional" do
-  run_xcode_tests "Functional Tests"
+  run_xcode_tests "Devise Demo Tests"
 end
 
 task "build-and-distribute" do
