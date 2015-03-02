@@ -243,7 +243,7 @@
 		3AA631721A39A718002A64AC /* DVSUser+Persistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUser+Persistence.h"; sourceTree = "<group>"; };
 		3AA631731A39A718002A64AC /* DVSUser+Persistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUser+Persistence.m"; sourceTree = "<group>"; };
 		3AA8B35E1A24DA0000166927 /* Devise.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Devise.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AA8B3691A24DA0000166927 /* Devise Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Devise Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA8B3691A24DA0000166927 /* Devise Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Devise Tests.xctest"; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ABB41461A272989005B22A1 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		3AD4C6831A24DB1700F0AE67 /* Devise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Devise.h; sourceTree = "<group>"; };
 		3AD4C6871A24DBA700F0AE67 /* Devise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Devise-Info.plist"; sourceTree = "<group>"; };
@@ -1423,7 +1423,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Info.plist";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"${SRCROOT}/Pods",
+				);
 				PRODUCT_NAME = Devise;
 				PROVISIONING_PROFILE = "";
 			};
@@ -1491,7 +1495,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Info.plist";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"${SRCROOT}/Pods",
+				);
 				PRODUCT_NAME = Devise;
 				PROVISIONING_PROFILE = "";
 			};
