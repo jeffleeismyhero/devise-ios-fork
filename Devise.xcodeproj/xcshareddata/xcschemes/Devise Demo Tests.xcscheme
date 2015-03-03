@@ -76,15 +76,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "218E29891A5AE90C0010BF3F"
-            BuildableName = "Devise Demo Tests.xctest"
-            BlueprintName = "Devise Demo Tests"
-            ReferencedContainer = "container:Devise.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
