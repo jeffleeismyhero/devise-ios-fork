@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
+@import Accounts;
+@import Social;
 #import "DVSUserManager.h"
 #import <ngrvalidator/NGRValidator.h>
-#import <FacebookSDK/FacebookSDK.h>
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceManager.h"
@@ -83,31 +84,54 @@
 #pragma mark - Signing via Facebook
 
 - (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    FBSession *session = [[FBSession alloc] initWithPermissions:@[@"public_profile", @"email"]];
-    [FBSession setActiveSession:session];
-    
-    [session openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-        if (FBSession.activeSession.isOpen) {
-            [[FBRequest requestForMe] startWithCompletionHandler:
-             ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-                 if (!error) {
-                     NSString *facebookUserId = user.objectID;
-                     NSString *facebookAccessToken = session.accessTokenData.accessToken;
-                     NSString *facebookEmail = [user objectForKey:@"email"];
-                     
-                     NSMutableDictionary *facebookUserJson = [NSMutableDictionary dictionary];
-                     [facebookUserJson setObject:@"facebook" forKey:@"provider"];
-                     [facebookUserJson setObject:facebookUserId forKey:@"uid"];
-                     [facebookUserJson setObject:facebookAccessToken forKey:@"oauth_token"];
-                     [facebookUserJson setObject:facebookEmail forKey:@"email"];
-                     
-                     NSDictionary *parameters = @{@"user" : facebookUserJson};
-                     
-                     [self.httpClient signInUsingFacebookUser:self.user parameters:parameters success:success failure:failure];
-                 } else {
-                     if (failure != NULL) failure(error);
-                 }
-             }];
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    ACAccountType *facebookAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    NSDictionary *options = @{ACFacebookAppIdKey : [DVSConfiguration sharedConfiguration].facebookAppID,
+                              ACFacebookPermissionsKey : @[@"email"],
+                              ACFacebookAudienceKey:ACFacebookAudienceOnlyMe};
+ 
+    [accountStore requestAccessToAccountsWithType:facebookAccountType options:options completion:^(BOOL granted, NSError *error) {
+        if (granted) {
+            NSArray *accounts = [accountStore accountsWithAccountType:facebookAccountType];
+            NSAssert([accounts count] > 0, NSLocalizedString(@"At least one Facebook account should exist!", nil));
+            ACAccount *facebookAccount = [accounts lastObject];
+            
+            NSString *facebookAccessToken = facebookAccount.credential.oauthToken;
+            
+            SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://graph.facebook.com/me"] parameters:nil];
+            request.account = facebookAccount;
+            
+            [request performRequestWithHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (!error && ((NSHTTPURLResponse *)response).statusCode == 200) {
+                    NSError *deserializationError;
+                    NSDictionary *userData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&deserializationError];
+                    
+                    if (userData != nil && deserializationError == nil) {
+                        NSString *facebookUserID = userData[@"id"];
+                        NSString *facebookEmail = userData[@"email"];
+                        
+                        NSAssert(facebookAccessToken != nil, @"Facebook access token is nil!");
+                        NSAssert(facebookUserID != nil, @"Facebook user id is nil!");
+                        NSAssert(facebookEmail != nil, @"Facebook email is nil!");
+                        
+                        NSMutableDictionary *facebookUserJson = [NSMutableDictionary dictionary];
+                        [facebookUserJson setObject:@"facebook" forKey:@"provider"];
+                        [facebookUserJson setObject:facebookAccessToken forKey:@"oauth_token"];
+                        [facebookUserJson setObject:facebookUserID forKey:@"uid"];
+                        [facebookUserJson setObject:facebookEmail forKey:@"email"];
+                        
+                        NSDictionary *parameters = @{@"user" : facebookUserJson};
+                        
+                        [self.httpClient signInUsingFacebookUser:self.user parameters:parameters success:success failure:failure];
+                    } else {
+                        if (failure != NULL) failure(deserializationError);
+                    }
+                } else {
+                    if (failure != NULL) failure(error);
+                };
+            }];
+        } else {
+            if (failure != NULL) failure(error);
         }
     }];
 }
@@ -163,9 +187,11 @@
 
         return [currentValidationRules copy];
     }];
-    if (validated) success();
-        else if (failure != NULL) failure(error);
-    
+    if (validated) {
+        success();
+    } else if (failure != NULL) {
+        failure(error);
+    }
 }
 
 - (NSArray *)mergeDefaultRules:(NSArray *)defaultRules withCustomRules:(NSArray *)customRules {

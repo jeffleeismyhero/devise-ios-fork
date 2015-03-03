@@ -58,6 +58,11 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (copy, nonatomic) NSString *resourceName;
 
 /**
+ *  ID of the Facebook app associated with this iOS app.
+ */
+@property (copy, nonatomic) NSString *facebookAppID;
+
+/**
  *  The logging level of the framework (default: DVSLoggingModeNone).
  */
 @property (assign, nonatomic) DVSLoggingMode loggingMode;

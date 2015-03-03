@@ -20,9 +20,6 @@ PODS:
   - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Bolts (1.1.3)
-  - Facebook-iOS-SDK (3.23.0):
-    - Bolts (~> 1.0)
   - KIF (3.1.2):
     - KIF/XCTest (= 3.1.2)
   - KIF-Kiwi (0.2.3):
@@ -39,7 +36,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
-  - Facebook-iOS-SDK (~> 3.23)
   - KIF-Kiwi (~> 0.2)
   - Kiwi (~> 2.3)
   - NGRValidator (~> 0.4.2)
@@ -49,8 +45,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
-  Facebook-iOS-SDK: 3d65f685348b789e46a9aacf92bfa85b60b63755
   KIF: 068074b24dd455025e7f2a488ba4fb07b9ce047b
   KIF-Kiwi: e1f2a0b3151d4864470d3d8223daeb3df32a4ab8
   Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7

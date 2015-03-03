@@ -10,7 +10,6 @@
 #import <Devise/Devise.h>
 #import "UIAlertView+DeviseDemo.h"
 #import "DVSUserManager.h"
-#import <FacebookSDK/FacebookSDK.h>
 
 static NSString * const DVSEditProfileSegue = @"DisplayProfileEditor";
 static NSString * const DVSPasswordChangeSegue = @"DisplayPasswordChange";
@@ -85,7 +84,6 @@ static NSString * const DVSTitleForDelete = @"Delete profile";
 
 - (IBAction)logoutTouched:(UIBarButtonItem *)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
-    [[FBSession activeSession] closeAndClearTokenInformation];
     [[DVSUserManager defaultManager] logout];
 }
 

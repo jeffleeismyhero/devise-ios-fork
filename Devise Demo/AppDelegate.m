@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "Devise.h"
-#import <FacebookSDK/FacebookSDK.h>
 
 @interface AppDelegate ()
 
@@ -27,10 +26,6 @@
     [[DVSConfiguration sharedConfiguration] setShowsNetworkActivityIndicator:YES];
     
     return YES;
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 @end

@@ -8,7 +8,6 @@
 
 #import "DVSDemoWelcomeViewController.h"
 
-#import <FacebookSDK/FacebookSDK.h>
 #import "DVSMacros.h"
 #import "UIAlertView+DeviseDemo.h"
 #import "DVSUserManager.h"
@@ -156,7 +155,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
 - (void)handleSignInWithFacebookError:(NSError *)error {
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
-                                    statusDescriptionsDictionary:@{ @0: NSLocalizedString(@"Facebook login failed.", nil) }];
+                                    statusDescriptionsDictionary:@{ @0: NSLocalizedString(@"Facebook login failed. Setup your Facebook account in the system settings and try again.", nil) }];
     [errorAlert show];
 }
 

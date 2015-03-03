@@ -27,6 +27,7 @@
     if (self == nil) return nil;
     self.serverURL = serverURL;
     self.apiVersion = 1;
+    self.facebookAppID = @"1555634144720689";
     self.resourceName = @"users";
     self.keychainServiceName = @"co.netguru.lib.devise.keychain";
     self.loggingMode = DVSLoggingModeNone;

@@ -16,7 +16,6 @@ pod 'AFNetworking', '~> 2.5'
 pod 'UICKeyChainStore', '~> 1.1'
 pod 'XLForm', '~> 2.1'
 pod 'NGRValidator', '~> 0.4.2'
-pod 'Facebook-iOS-SDK', '~> 3.23'
 
 # Exclusive demo dependencies
 target 'Demo' do link_with 'Devise Demo'
