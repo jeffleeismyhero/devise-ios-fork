@@ -18,17 +18,14 @@ pod 'XLForm', '~> 2.1'
 pod 'NGRValidator', '~> 0.4.2'
 pod 'Facebook-iOS-SDK', '~> 3.23'
 
+# Exclusive demo dependencies
+target 'Demo' do link_with 'Devise Demo'
+    pod 'AFNetworking', '~> 2.5'
+end
+
 # Unit tests exclusive dependencies
 target 'Tests', exclusive: true do link_with 'Devise Tests', 'Devise Demo Tests'
   pod 'Kiwi', '~> 2.3'
   pod 'OHHTTPStubs', '~> 3.1'
   pod 'KIF-Kiwi', '~> 0.2'
-end
-
-post_install do |installer_representation|
-    installer_representation.project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-        end
-    end
 end

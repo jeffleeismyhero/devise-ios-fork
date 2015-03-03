@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DDC337CBD749F2AFAC3A43E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D520EAD6431B24AD4B00819C /* libPods.a */; };
 		2131238D1A6D36000057F588 /* DVSLogInViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */; };
 		2131238E1A6D36000057F588 /* DVSSignUpSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29A91A5D15560010BF3F /* DVSSignUpSpec.m */; };
 		2131238F1A6D36000057F588 /* DVSPasswordRemindViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2136A56B1A5EA58900D2FDD2 /* DVSPasswordRemindViewSpec.m */; };
@@ -20,7 +21,6 @@
 		2152B5321A8DF90A00F24A06 /* DVSUserPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2152B52E1A8DF43300F24A06 /* DVSUserPersistenceManager.m */; };
 		215575B31A40880C00BA8661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 215575B11A40880C00BA8661 /* Localizable.strings */; };
 		218E29971A5AE90C0010BF3F /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
-		218E29981A5AE90C0010BF3F /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
 		218E29AD1A5D196D0010BF3F /* AccessibilityLabels.strings in Resources */ = {isa = PBXBuildFile; fileRef = 218E29AB1A5D196D0010BF3F /* AccessibilityLabels.strings */; };
 		218E29B11A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29B01A5D1ACC0010BF3F /* KIFUITestActor+DeviseDemoTests.m */; };
 		218E29B61A5D27180010BF3F /* DVSFunctionalTestsConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 218E29B31A5D26FC0010BF3F /* DVSFunctionalTestsConfig.m */; };
@@ -60,6 +60,8 @@
 		21E155E21A64170C00603952 /* DVSChangePasswordViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 21951E4B1A601AE2006A63E7 /* DVSChangePasswordViewSpec.m */; };
 		21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */; };
 		21F6909F1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909E1A374B5D00DE2ABA /* UIAlertView+DeviseDemo.m */; };
+		263DE8CFBFE6A3F43B33D451 /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75CA2D7B5B7902EF6A46A067 /* libPods-Demo.a */; };
+		2FD18A028A707E439461CFE9 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
 		3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE5A21A40A40400A068E2 /* DVSTestConfiguration.m */; };
 		3A4EE5A71A40AC9E00A068E2 /* DVSTestUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE5A61A40AC9D00A068E2 /* DVSTestUser.m */; };
 		3A4EE5AB1A40B89100A068E2 /* DVSHTTPClientUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */; };
@@ -86,7 +88,6 @@
 		3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA631721A39A718002A64AC /* DVSUser+Persistence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA631731A39A718002A64AC /* DVSUser+Persistence.m */; };
 		3AA8B36A1A24DA0000166927 /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
-		3ABB41471A272989005B22A1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ABB41461A272989005B22A1 /* libPods.a */; };
 		3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AD4C6831A24DB1700F0AE67 /* Devise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 3AD4C6AA1A24F1D200F0AE67 /* Devise-Prefix.pch */; };
 		3AD4C6AE1A24F38000F0AE67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */; };
@@ -102,8 +103,8 @@
 		5EE295091A35C086009441E1 /* NSDictionary+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */; };
 		5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */; };
 		5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */; };
-		7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
 		E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */; };
+		F9F62CCA6CE309BD75097445 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D68076C37469F69754581011 /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,6 +291,7 @@
 		5EE295071A35C086009441E1 /* NSDictionary+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Devise+Private.m"; sourceTree = "<group>"; };
 		5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Devise+Private.h"; sourceTree = "<group>"; };
 		5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Devise+Private.m"; sourceTree = "<group>"; };
+		75CA2D7B5B7902EF6A46A067 /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D520EAD6431B24AD4B00819C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68076C37469F69754581011 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserManagerSpec.m; sourceTree = "<group>"; };
@@ -301,7 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				218E29971A5AE90C0010BF3F /* Devise.framework in Frameworks */,
-				218E29981A5AE90C0010BF3F /* libPods-Tests.a in Frameworks */,
+				2FD18A028A707E439461CFE9 /* libPods-Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,8 +311,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ABB41471A272989005B22A1 /* libPods.a in Frameworks */,
 				3AD4C6AE1A24F38000F0AE67 /* Foundation.framework in Frameworks */,
+				1DDC337CBD749F2AFAC3A43E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA8B36A1A24DA0000166927 /* Devise.framework in Frameworks */,
-				7243E8D52A343108BF107B69 /* libPods-Tests.a in Frameworks */,
+				F9F62CCA6CE309BD75097445 /* libPods-Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +332,7 @@
 				3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */,
 				3AD4C7141A24FA2A00F0AE67 /* Foundation.framework in Frameworks */,
 				3AD4C70F1A24FA2100F0AE67 /* Devise.framework in Frameworks */,
+				263DE8CFBFE6A3F43B33D451 /* libPods-Demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +674,7 @@
 				3AD4C6861A24DBA700F0AE67 /* Supporting Files */,
 				3AA8B35F1A24DA0000166927 /* Products */,
 				E318EA28A05EB87D9168576A /* Frameworks */,
+				E97D94DD8AA830C4E09E66F5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -865,8 +869,16 @@
 				3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */,
 				D520EAD6431B24AD4B00819C /* libPods.a */,
 				D68076C37469F69754581011 /* libPods-Tests.a */,
+				75CA2D7B5B7902EF6A46A067 /* libPods-Demo.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E97D94DD8AA830C4E09E66F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -977,11 +989,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AD4C70D1A24F9A700F0AE67 /* Build configuration list for PBXNativeTarget "Devise Demo" */;
 			buildPhases = (
+				D7A7A242C2D13B7733893E21 /* Check Pods Manifest.lock */,
 				3ACA0FCB1A28A75600C98B59 /* Touch Precompiled Header */,
 				3AD4C6E71A24F9A700F0AE67 /* Sources */,
 				3AD4C6E81A24F9A700F0AE67 /* Frameworks */,
 				3AD4C6E91A24F9A700F0AE67 /* Resources */,
 				3AD4C7131A24FA2200F0AE67 /* Embed Frameworks */,
+				61DA09381C4E8807D970C495 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1177,6 +1191,21 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbundleShortVersionString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\n[[ $bundleShortVersionString =~ ([0-9]*)(.([0-9]*))?(.([0-9]*))? ]]\nbundleVersion=$(( $bundleVersion + ${BASH_REMATCH[1]} * 10000 ))\nbundleVersion=$(( $bundleVersion + $(( ${BASH_REMATCH[3]} * 100 )) ))\nbundleVersion=$(( $bundleVersion + $(( ${BASH_REMATCH[5]} )) ))\nbundleVersionString=$(printf \"%d\" $bundleVersion)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bundleVersionString\" \"$INFOPLIST_FILE\"";
 		};
+		61DA09381C4E8807D970C495 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		765107F6C40D4918A6DF2AD9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1193,6 +1222,21 @@
 			showEnvVarsInLog = 0;
 		};
 		847B4B66C33FBA191EB27B30 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D7A7A242C2D13B7733893E21 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
