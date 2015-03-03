@@ -19,12 +19,14 @@ pod 'NGRValidator', '~> 0.4.2'
 pod 'googleplus-ios-sdk', '~> 1.7.1'
 
 # Exclusive demo dependencies
-target 'Demo' do link_with 'Devise Demo'
-    pod 'AFNetworking', '~> 2.5'
+target 'Demo' do
+  link_with 'Devise Demo'
 end
 
 # Unit tests exclusive dependencies
-target 'Tests', exclusive: true do link_with 'Devise Tests', 'Devise Demo Tests'
+target 'Tests' do
+  link_with 'Devise Tests', 'Devise Demo Tests'
+
   pod 'Kiwi', '~> 2.3'
   pod 'OHHTTPStubs', '~> 3.1'
   pod 'KIF-Kiwi', '~> 0.2'
