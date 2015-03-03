@@ -179,7 +179,7 @@ def build_and_distribute
 
   FileUtils.cd ipa_build_dir do
 
-    hockeyapp_release_number = ENV["TRAVIS_BUILD_NUMBER"]
+    hockeyapp_release_number = build_number
     hockeyapp_release_date = Time.new.strftime("%Y-%m-%d %H:%M:%S")
     hockeyapp_release_notes = "Build: #{hockeyapp_release_number}\nUploaded: #{hockeyapp_release_date}"
 
