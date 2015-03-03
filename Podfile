@@ -24,7 +24,7 @@ target 'Demo' do link_with 'Devise Demo'
 end
 
 # Unit tests exclusive dependencies
-target 'Tests', exclusive: true do link_with 'Devise Tests', 'Devise Demo Tests'
+target 'Tests' do link_with 'Devise Tests', 'Devise Demo Tests'
   pod 'Kiwi', '~> 2.3'
   pod 'OHHTTPStubs', '~> 3.1'
   pod 'KIF-Kiwi', '~> 0.2'
