@@ -4,7 +4,7 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import <AFNetworking/AFNetworking.h>
+#import "AFNetworking/AFNetworking.h"
 
 #import "DVSHTTPClient.h"
 #import "DVSConfiguration.h"

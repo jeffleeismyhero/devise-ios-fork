@@ -5,7 +5,7 @@
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import <XLForm/XLFormViewController.h>
+#import "XLForm/XLFormViewController.h"
 
 #import "DVSLoginSignUpFields.h"
 

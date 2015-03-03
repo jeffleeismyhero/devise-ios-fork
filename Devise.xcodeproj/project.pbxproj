@@ -104,6 +104,8 @@
 		9E97A5606CB024128C71793A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 091C5A854A6B0D1BE46E5AE1 /* libPods.a */; };
 		E3631EF7F9C159653DAD7470 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CDB309091D9968496393A /* libPods-Tests.a */; };
 		E3BD327D1AA5C86A00E6F7AD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD327C1AA5C86A00E6F7AD /* Social.framework */; };
+		E3BD327F1AA5FDDF00E6F7AD /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */; };
+		E3BD32811AA5FDFC00E6F7AD /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */; };
 		E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */; };
 		F94B3B7915F24D73DF3A530C /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB28F46FBA4BD2E641B4FE99 /* libPods-Demo.a */; };
 /* End PBXBuildFile section */
@@ -294,6 +296,8 @@
 		734CDB309091D9968496393A /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB28F46FBA4BD2E641B4FE99 /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3BD327C1AA5C86A00E6F7AD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
+		E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
 		E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserManagerSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -311,8 +315,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3BD32811AA5FDFC00E6F7AD /* GooglePlus.framework in Frameworks */,
 				E3BD327D1AA5C86A00E6F7AD /* Social.framework in Frameworks */,
 				3AD4C6AE1A24F38000F0AE67 /* Foundation.framework in Frameworks */,
+				E3BD327F1AA5FDDF00E6F7AD /* GoogleOpenSource.framework in Frameworks */,
 				9E97A5606CB024128C71793A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -863,6 +869,8 @@
 		E318EA28A05EB87D9168576A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */,
+				E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */,
 				E3BD327C1AA5C86A00E6F7AD /* Social.framework */,
 				5E64C17B1A30872B00A41A88 /* Security.framework */,
 				3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */,
@@ -1465,7 +1473,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -1538,7 +1546,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;

@@ -9,7 +9,7 @@
 @import Accounts;
 @import Social;
 #import "DVSUserManager.h"
-#import <ngrvalidator/NGRValidator.h>
+#import "ngrvalidator/NGRValidator.h"
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceManager.h"
