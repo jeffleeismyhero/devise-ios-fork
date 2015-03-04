@@ -9,7 +9,7 @@
 @import Accounts;
 @import Social;
 #import "DVSUserManager.h"
-#import "ngrvalidator/NGRValidator.h"
+#import <ngrvalidator/NGRValidator.h>
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceManager.h"
@@ -50,10 +50,8 @@
 #pragma mark - Logging in
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[
-                       NGRValidate(@"password").required(),
-                       NGRValidate(@"email").required().syntax(NGRSyntaxEmail)
-                       ];
+    NSArray *rules = @[[self validationRulesForPassword],
+                       [self validationRulesForEmail]];
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [self.httpClient logInUser:self.user success:success failure:failure];
     } failure:failure];
@@ -62,7 +60,7 @@
 #pragma mark - Remind password
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[NGRValidate(@"email").required().syntax(NGRSyntaxEmail)];
+    NSArray *rules = @[[self validationRulesForEmail]];
     
     [self validateUsingRules:rules forAction:DVSActionRemindPassword success:^{
         [self.httpClient remindPasswordToUser:self.user success:success failure:failure];
@@ -72,10 +70,8 @@
 #pragma mark - Registration
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[
-                       NGRValidate(@"password").required(),
-                       NGRValidate(@"email").required().syntax(NGRSyntaxEmail)
-                       ];
+    NSArray *rules = @[[self validationRulesForPassword],
+                       [self validationRulesForEmail]];
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [self.httpClient registerUser:self.user success:success failure:failure];
     } failure:failure];
@@ -139,7 +135,7 @@
 #pragma mark - Change password
 
 - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[NGRValidate(@"password").required()];
+    NSArray *rules = @[[self validationRulesForPassword]];
     [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
         [self.httpClient changePasswordOfUser:self.user success:success failure:failure];
     } failure:failure];
@@ -148,7 +144,7 @@
 #pragma mark - Update methods
 
 - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[NGRValidate(@"email").required().syntax(NGRSyntaxEmail)];
+    NSArray *rules = @[[self validationRulesForEmail]];
     [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
         [self.httpClient updateUser:self.user success:success failure:failure];
     } failure:failure];
@@ -198,6 +194,16 @@
     NSMutableArray *array = [NSMutableArray arrayWithArray:defaultRules];
     [array addObjectsFromArray:customRules];
     return [array copy];
+}
+
+#pragma mark - Validation Rules
+
+- (NGRPropertyValidator *)validationRulesForPassword {
+    return NGRValidate(@"password").required();
+}
+
+- (NGRPropertyValidator *)validationRulesForEmail {
+    return NGRValidate(@"email").required().syntax(NGRSyntaxEmail);
 }
 
 #pragma mark - Accessors
