@@ -109,7 +109,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook";
 }
 
 - (void)updateUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setAuthorizationToken:user.sessionToken email:[DVSUserManager defaultManager].userOriginalEmail];
+    [self setAuthorizationToken:user.sessionToken email:[DVSUserManager defaultManager].userPreviousEmail];
     NSString *path = DVSHTTPClientDefaultUpdatePath;
     
     NSDictionary *parameters = nil;
