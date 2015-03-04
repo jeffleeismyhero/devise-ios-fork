@@ -63,6 +63,11 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (copy, nonatomic) NSString *facebookAppID;
 
 /**
+ *  ID of the Google app associated with this iOS app.
+ */
+@property (copy, nonatomic) NSString *googleClientID;
+
+/**
  *  The logging level of the framework (default: DVSLoggingModeNone).
  */
 @property (assign, nonatomic) DVSLoggingMode loggingMode;

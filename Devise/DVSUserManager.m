@@ -8,6 +8,8 @@
 
 @import Accounts;
 @import Social;
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
 #import "DVSUserManager.h"
 #import <ngrvalidator/NGRValidator.h>
 #import "DVSConfiguration.h"

@@ -7,18 +7,21 @@
 //
 
 #import "DVSDemoWelcomeViewController.h"
-
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
 #import "DVSMacros.h"
 #import "UIAlertView+DeviseDemo.h"
 #import "DVSUserManager.h"
 #import "DVSDemoUser.h"
 #import "Devise-Prefix.pch"
+#import "DVSHTTPClient+User.h"
+#import "DVSOAuthJSONParameters.h"
 
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
-@interface DVSDemoWelcomeViewController () <DVSAccountRetrieverViewControllerDelegate>
+@interface DVSDemoWelcomeViewController () <DVSAccountRetrieverViewControllerDelegate, GPPSignInDelegate>
 
 @end
 
@@ -52,6 +55,13 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
                          target:self
                          action:@selector(didSelectFacebookSigning)];
 #endif
+#if ENABLE_GOOGLE_LOGIN
+    [self addMenuEntryWithTitle:NSLocalizedString(@"Sign in using Google", nil)
+                       subtitle:NSLocalizedString(nil, nil)
+             accessibilityLabel:DVSAccessibilityLabel(@"Sign in using Google")
+                         target:self
+                         action:@selector(didSelectGoogleSigning)];
+#endif
 }
 
 #pragma mark - Menu actions
@@ -73,7 +83,6 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     [self.navigationController pushViewController:signUpController animated:YES];
 }
 
-#if ENABLE_FACEBOOK_LOGIN
 - (void)didSelectFacebookSigning {
     [[DVSUserManager defaultManager] signInUsingFacebookWithSuccess:^{
         [self moveToHomeView];
@@ -81,7 +90,55 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
         [self handleSignInWithFacebookError:error];
     }];
 }
-#endif
+
+- (void)didSelectGoogleSigning {
+    [self setupGoogleSharedInstance];
+    [[GPPSignIn sharedInstance] authenticate];
+}
+
+#pragma mark - GPPSignInDelegate
+
+// This method is implemented here due to the possible bug in the Google+ SDK (not 100% sure, because it's closed source). Setting [DVSUserManager sharedInstance] as an SDK's delegate doesn't work (after successfully authorization in the web browser and returning to the application in AppDelegate, Google+ SDK's delegate is set to nil, so it can't notify Devise about finishing authentication).
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
+    if (error) {
+        [self handleSignInWithGoogleError:error];
+    } else {
+        GTLServicePlus *plusService = [self getGooglePlusService];
+        GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:@"me"];
+        [plusService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) {
+            if (error) {
+                [self handleSignInWithGoogleError:error];
+            } else {
+                NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderGoogle oAuthToken:auth.accessToken userID:person.identifier userEmail:[GPPSignIn sharedInstance].authentication.userEmail];
+                
+                [[DVSUserManager defaultManager].httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:parameters success:^{
+                    [self moveToHomeView];
+                } failure:^(NSError *error) {
+                    [self handleSignInWithGoogleError:error];
+                }];
+            }
+        }];
+    }
+}
+
+#pragma mark - Google+ SDK helpers
+
+- (void)setupGoogleSharedInstance {
+    [GPPSignIn sharedInstance].clientID = [DVSConfiguration sharedConfiguration].googleClientID;
+    [GPPSignIn sharedInstance].scopes = @[ kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusMe ];
+    [GPPSignIn sharedInstance].shouldFetchGoogleUserID = YES;
+    [GPPSignIn sharedInstance].shouldFetchGooglePlusUser = YES;
+    [GPPSignIn sharedInstance].shouldFetchGoogleUserEmail = YES;
+    [[GPPSignIn sharedInstance] setDelegate:self];
+}
+
+- (GTLServicePlus *)getGooglePlusService {
+    GTLServicePlus* service = [[GTLServicePlus alloc] init];
+    service.retryEnabled = YES;
+    [service setAuthorizer:[GPPSignIn sharedInstance].authentication];
+    service.apiVersion = @"v1";
+    return service;
+}
 
 #pragma mark - DVSMenuTableViewController methods
 
@@ -156,6 +213,12 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 - (void)handleSignInWithFacebookError:(NSError *)error {
     UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
                                     statusDescriptionsDictionary:@{ @0: NSLocalizedString(@"Facebook login failed. Setup your Facebook account in the system settings and try again.", nil) }];
+    [errorAlert show];
+}
+
+- (void)handleSignInWithGoogleError:(NSError *)error {
+    UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
+                                    statusDescriptionsDictionary:@{ @0: NSLocalizedString(@"Google login failed.", nil) }];
     [errorAlert show];
 }
 

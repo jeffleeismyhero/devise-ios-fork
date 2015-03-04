@@ -28,6 +28,7 @@
     self.serverURL = serverURL;
     self.apiVersion = 1;
     self.facebookAppID = @"1555634144720689";
+    self.googleClientID = @"371832272280-abhaua47e4mqckj497i3ev22vooj87cn.apps.googleusercontent.com";
     self.resourceName = @"users";
     self.keychainServiceName = @"co.netguru.lib.devise.keychain";
     self.loggingMode = DVSLoggingModeNone;

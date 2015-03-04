@@ -103,6 +103,8 @@
 		5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */; };
 		9E97A5606CB024128C71793A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 091C5A854A6B0D1BE46E5AE1 /* libPods.a */; };
 		E3631EF7F9C159653DAD7470 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CDB309091D9968496393A /* libPods-Tests.a */; };
+		E3A0D6341AA73EE500E326BC /* DVSOAuthJSONParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */; };
+		E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */; };
 		E3BD327D1AA5C86A00E6F7AD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD327C1AA5C86A00E6F7AD /* Social.framework */; };
 		E3BD327F1AA5FDDF00E6F7AD /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */; };
 		E3BD32811AA5FDFC00E6F7AD /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */; };
@@ -295,6 +297,8 @@
 		5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Devise+Private.m"; sourceTree = "<group>"; };
 		734CDB309091D9968496393A /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB28F46FBA4BD2E641B4FE99 /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSOAuthJSONParameters.h; sourceTree = "<group>"; };
+		E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSOAuthJSONParameters.m; sourceTree = "<group>"; };
 		E3BD327C1AA5C86A00E6F7AD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
@@ -634,6 +638,8 @@
 				3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */,
 				3AA409F21A3F9D700046B0E4 /* DVSHTTPClient+User.h */,
 				3AA409F31A3F9D700046B0E4 /* DVSHTTPClient+User.m */,
+				E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */,
+				E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -902,6 +908,7 @@
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
 				21B362E11A51540200202C94 /* DVSBarButtonItem+Private.h in Headers */,
 				21B3ECBB1A59CC1400C8C620 /* DVSAccountRetrieverViewController.h in Headers */,
+				E3A0D6341AA73EE500E326BC /* DVSOAuthJSONParameters.h in Headers */,
 				5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */,
 				21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */,
 				21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h in Headers */,
@@ -1328,6 +1335,7 @@
 				2152B5321A8DF90A00F24A06 /* DVSUserPersistenceManager.m in Sources */,
 				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
 				21B3EC981A52B35500C8C620 /* DVSFieldsUtils+Private.m in Sources */,
+				E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */,
 				21B4BA701A8B8AD2000E3E9A /* DVSUserManager.m in Sources */,
 				21B3ECB31A52D32100C8C620 /* UIViewController+Devise.m in Sources */,
 				3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */,
