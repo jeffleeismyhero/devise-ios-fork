@@ -106,6 +106,8 @@
 		9E97A5606CB024128C71793A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 091C5A854A6B0D1BE46E5AE1 /* libPods.a */; };
 		BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */; };
 		BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */; };
+		BF7761C61AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */; };
+		BF7761C91AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */; };
 		E3631EF7F9C159653DAD7470 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CDB309091D9968496393A /* libPods-Tests.a */; };
 		E3A0D6341AA73EE500E326BC /* DVSOAuthJSONParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */; };
 		E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */; };
@@ -306,6 +308,9 @@
 		BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserPersistenceManagerSpec.m; sourceTree = "<group>"; };
 		BF7761C21AA898D0006DBE6B /* DVSTestUserPersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserPersistenceManager.h; sourceTree = "<group>"; };
 		BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserPersistenceManager.m; sourceTree = "<group>"; };
+		BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserJSONSerializerSpec.m; sourceTree = "<group>"; };
+		BF7761C71AA8A61A006DBE6B /* DVSTestUserJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserJSONSerializer.h; sourceTree = "<group>"; };
+		BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserJSONSerializer.m; sourceTree = "<group>"; };
 		E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSOAuthJSONParameters.h; sourceTree = "<group>"; };
 		E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSOAuthJSONParameters.m; sourceTree = "<group>"; };
 		E3BD327C1AA5C86A00E6F7AD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -571,6 +576,8 @@
 				3A4EE5A61A40AC9D00A068E2 /* DVSTestUser.m */,
 				BF7761C21AA898D0006DBE6B /* DVSTestUserPersistenceManager.h */,
 				BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */,
+				BF7761C71AA8A61A006DBE6B /* DVSTestUserJSONSerializer.h */,
+				BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */,
 			);
 			name = "Test Classes";
 			sourceTree = "<group>";
@@ -740,6 +747,7 @@
 				3A49C2711A25D60D0041406B /* DVSUserSpec.m */,
 				E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */,
 				BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */,
+				BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */,
 			);
 			path = "Devise Tests";
 			sourceTree = "<group>";
@@ -1370,6 +1378,8 @@
 				3A4EE5AF1A40C96500A068E2 /* DVSConfigurationSpec.m in Sources */,
 				3A4EE5AC1A40C93500A068E2 /* DVSHTTPClientSpec.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */,
+				BF7761C61AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m in Sources */,
+				BF7761C91AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m in Sources */,
 				3A4EE5A71A40AC9E00A068E2 /* DVSTestUser.m in Sources */,
 				BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m in Sources */,
 				3AA57B6E1A41851800C54B36 /* DVSUserSpec.m in Sources */,
