@@ -6,16 +6,7 @@
 //  Copyright 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import <Kiwi/Kiwi.h>
-
-#define HC_SHORTHAND
-#import <OCHamcrest/OCHamcrest.h>
-
-#define MOCKITO_SHORTHAND
-#import <OCMockito/OCMockito.h>
-
-#import "DVSUserPersistenceManager.h"
-#import "DVSUserPersistenceManager+DVSPrivate.h"
+#import "DVSTestUserPersistenceManager.h"
 #import "UICKeyChainStore/UICKeyChainStore.h"
 
 #import "DVSTestUser.h"
@@ -25,23 +16,23 @@ SPEC_BEGIN(DVSUserPersistenceManagerSpec)
 
 describe(@"DVSUserPersistenceManager", ^{
     
-    __block DVSUserPersistenceManager *manager = nil;
+    __block DVSTestUserPersistenceManager *manager = nil;
     __block DVSTestUser *testUser = nil;
 
     beforeEach(^{
-        manager = [DVSUserPersistenceManager sharedPersistenceManager];
+        manager = [DVSTestUserPersistenceManager sharedPersistenceManager];
     });
 
     context(@"when newly initialized", ^{
         __block DVSConfiguration *testConfiguration = nil;
 
         beforeEach(^{
-            NSURL *serverURL = [NSURL URLWithString:@"http://devise-tests/"];
+            NSURL *serverURL = [NSURL URLWithString:@"http://example.com/"];
             testConfiguration = [[DVSTestConfiguration alloc] initWithServerURL:serverURL];
         });
         
         it(@"should be initilized", ^{
-            [[manager should] beIdenticalTo:[DVSUserPersistenceManager sharedPersistenceManager]];
+            [[manager should] beIdenticalTo:[DVSTestUserPersistenceManager sharedPersistenceManager]];
         });
         
         it(@"should use shared configuration", ^{
@@ -49,7 +40,7 @@ describe(@"DVSUserPersistenceManager", ^{
         });
         
         it(@"should use custom configuration", ^{
-            manager = [[DVSUserPersistenceManager alloc] initWithConfiguration:testConfiguration];
+            manager = [[DVSTestUserPersistenceManager alloc] initWithConfiguration:testConfiguration];
             [[manager.configuration should] beIdenticalTo:testConfiguration];
         });
 
@@ -70,7 +61,7 @@ describe(@"DVSUserPersistenceManager", ^{
             
             beforeEach(^{
                 manager.localUser = nil;
-                manager = [[DVSUserPersistenceManager alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
+                manager = [[DVSTestUserPersistenceManager alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
             });
             
             it(@"should have non nil user", ^{
@@ -83,7 +74,7 @@ describe(@"DVSUserPersistenceManager", ^{
             
             beforeEach(^{
                 manager.localUser = testUser;
-                manager = [[DVSUserPersistenceManager alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
+                manager = [[DVSTestUserPersistenceManager alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
 
                 DVSConfiguration *configuration = [DVSConfiguration sharedConfiguration];
                 NSData *archivedTestUser = [NSKeyedArchiver archivedDataWithRootObject:testUser];
@@ -127,19 +118,6 @@ describe(@"DVSUserPersistenceManager", ^{
         });
         
     });
-    
-    describe(@"persistent user", ^{
-        
-        context(@"", ^{
-            
-            beforeEach(^{
-                
-            });
-            
-        });
-        
-    });
-    
 });
 
 SPEC_END
