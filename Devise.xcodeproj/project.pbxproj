@@ -94,6 +94,8 @@
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
 		5BC79E65A93B3ECB2948ED9B /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CDB309091D9968496393A /* libPods-Tests.a */; };
+		5E3A98A11AA877FF00CE2F20 /* NSError+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E3A989F1AA877FF00CE2F20 /* NSError+Devise+Private.h */; };
+		5E3A98A21AA877FF00CE2F20 /* NSError+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3A98A01AA877FF00CE2F20 /* NSError+Devise+Private.m */; };
 		5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */; };
 		5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */; };
 		5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */; };
@@ -285,6 +287,8 @@
 		3AD4C7191A24FA6A00F0AE67 /* Devise-Demo-Main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Devise-Demo-Main.m"; sourceTree = "<group>"; };
 		3AD4C71A1A24FA6A00F0AE67 /* Devise-Demo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Devise-Demo-Prefix.pch"; sourceTree = "<group>"; };
 		3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Devise-Demo-Assets.xcassets"; sourceTree = "<group>"; };
+		5E3A989F1AA877FF00CE2F20 /* NSError+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Devise+Private.h"; sourceTree = "<group>"; };
+		5E3A98A01AA877FF00CE2F20 /* NSError+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Devise+Private.m"; sourceTree = "<group>"; };
 		5E64C17B1A30872B00A41A88 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E7A9A2F1A3EFEFA0077DC43 /* DVSDemoUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUser.h; sourceTree = "<group>"; };
 		5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
@@ -616,6 +620,8 @@
 				21B362E81A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.m */,
 				21B3ECB01A52D32000C8C620 /* UIViewController+Devise.h */,
 				21B3ECB11A52D32100C8C620 /* UIViewController+Devise.m */,
+				5E3A989F1AA877FF00CE2F20 /* NSError+Devise+Private.h */,
+				5E3A98A01AA877FF00CE2F20 /* NSError+Devise+Private.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -922,6 +928,7 @@
 				21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */,
 				3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */,
 				5EE295081A35C086009441E1 /* NSDictionary+Devise+Private.h in Headers */,
+				5E3A98A11AA877FF00CE2F20 /* NSError+Devise+Private.h in Headers */,
 				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h in Headers */,
 				219EB2431A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h in Headers */,
 				219EB2471A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h in Headers */,
@@ -1336,6 +1343,7 @@
 				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
 				21B3EC981A52B35500C8C620 /* DVSFieldsUtils+Private.m in Sources */,
 				E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */,
+				5E3A98A21AA877FF00CE2F20 /* NSError+Devise+Private.m in Sources */,
 				21B4BA701A8B8AD2000E3E9A /* DVSUserManager.m in Sources */,
 				21B3ECB31A52D32100C8C620 /* UIViewController+Devise.m in Sources */,
 				3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */,

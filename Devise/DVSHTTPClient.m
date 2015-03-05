@@ -8,6 +8,7 @@
 
 #import "DVSHTTPClient.h"
 #import "DVSConfiguration.h"
+#import "NSError+Devise+Private.h"
 
 typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
@@ -66,7 +67,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
         [self.sessionManager GET:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             if (retry != NULL) retry(responseObject, nil);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (retry != NULL) retry(nil, error);
+            if (retry != NULL) retry(nil, [error investigateErrorForKey:AFNetworkingOperationFailingURLResponseDataErrorKey]);
         }];
     } completion:completion];
 }
@@ -78,7 +79,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
         [self.sessionManager POST:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             if (retry != NULL) retry(responseObject, nil);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (retry != NULL) retry(nil, error);
+            if (retry != NULL) retry(nil, [error investigateErrorForKey:AFNetworkingOperationFailingURLResponseDataErrorKey]);
         }];
     } completion:completion];
 }
@@ -90,7 +91,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
         [self.sessionManager PUT:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             if (retry != NULL) retry(responseObject, nil);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (retry != NULL) retry(nil, error);
+            if (retry != NULL) retry(nil, [error investigateErrorForKey:AFNetworkingOperationFailingURLResponseDataErrorKey]);
         }];
     } completion:completion];
 }
@@ -102,7 +103,7 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
         [self.sessionManager DELETE:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
             if (retry != NULL) retry(responseObject, nil);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (retry != NULL) retry(nil, error);
+            if (retry != NULL) retry(nil, [error investigateErrorForKey:AFNetworkingOperationFailingURLResponseDataErrorKey]);
         }];
     } completion:completion];
 }
