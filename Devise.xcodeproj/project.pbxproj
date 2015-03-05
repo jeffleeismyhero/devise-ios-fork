@@ -93,6 +93,7 @@
 		3AD4C7141A24FA2A00F0AE67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */; };
 		3AD4C7161A24FA2F00F0AE67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD4C7151A24FA2F00F0AE67 /* UIKit.framework */; };
 		3AD4C7261A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */; };
+		4B123CE4BB2C6D6EB757663E /* DVSUserPersistenceManager+DVSPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1239CAC911DD80E3D37C57 /* DVSUserPersistenceManager+DVSPrivate.m */; };
 		5BC79E65A93B3ECB2948ED9B /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CDB309091D9968496393A /* libPods-Tests.a */; };
 		5E3A98A11AA877FF00CE2F20 /* NSError+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E3A989F1AA877FF00CE2F20 /* NSError+Devise+Private.h */; };
 		5E3A98A21AA877FF00CE2F20 /* NSError+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3A98A01AA877FF00CE2F20 /* NSError+Devise+Private.m */; };
@@ -104,6 +105,7 @@
 		5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */; };
 		5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */; };
 		9E97A5606CB024128C71793A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 091C5A854A6B0D1BE46E5AE1 /* libPods.a */; };
+		BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */; };
 		E3631EF7F9C159653DAD7470 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CDB309091D9968496393A /* libPods-Tests.a */; };
 		E3A0D6341AA73EE500E326BC /* DVSOAuthJSONParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */; };
 		E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */; };
@@ -289,6 +291,8 @@
 		3AD4C7251A24FC5800F0AE67 /* Devise-Demo-Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Devise-Demo-Assets.xcassets"; sourceTree = "<group>"; };
 		5E3A989F1AA877FF00CE2F20 /* NSError+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Devise+Private.h"; sourceTree = "<group>"; };
 		5E3A98A01AA877FF00CE2F20 /* NSError+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Devise+Private.m"; sourceTree = "<group>"; };
+		4B12371C78307914EFD042B3 /* DVSUserPersistenceManager+DVSPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSUserPersistenceManager+DVSPrivate.h"; sourceTree = "<group>"; };
+		4B1239CAC911DD80E3D37C57 /* DVSUserPersistenceManager+DVSPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSUserPersistenceManager+DVSPrivate.m"; sourceTree = "<group>"; };
 		5E64C17B1A30872B00A41A88 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E7A9A2F1A3EFEFA0077DC43 /* DVSDemoUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSDemoUser.h; sourceTree = "<group>"; };
 		5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 		BB28F46FBA4BD2E641B4FE99 /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSOAuthJSONParameters.h; sourceTree = "<group>"; };
 		E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSOAuthJSONParameters.m; sourceTree = "<group>"; };
+		BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserPersistenceManagerSpec.m; sourceTree = "<group>"; };
 		E3BD327C1AA5C86A00E6F7AD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
 		E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
@@ -580,6 +585,7 @@
 		3A6E03F31A263588006ECA3E /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				BF29C2AD1AA84AA600AB60C1 /* Accessors */,
 				3A4EE5A91A40ACB600A068E2 /* Test Stubs */,
 				3A4EE5A81A40ACA700A068E2 /* Test Classes */,
 			);
@@ -732,6 +738,7 @@
 				3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */,
 				3A49C2711A25D60D0041406B /* DVSUserSpec.m */,
 				E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */,
+				BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */,
 			);
 			path = "Devise Tests";
 			sourceTree = "<group>";
@@ -876,6 +883,15 @@
 			);
 			name = CocoaPods;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		BF29C2AD1AA84AA600AB60C1 /* Accessors */ = {
+			isa = PBXGroup;
+			children = (
+				4B1239CAC911DD80E3D37C57 /* DVSUserPersistenceManager+DVSPrivate.m */,
+				4B12371C78307914EFD042B3 /* DVSUserPersistenceManager+DVSPrivate.h */,
+			);
+			name = Accessors;
 			sourceTree = "<group>";
 		};
 		E318EA28A05EB87D9168576A /* Frameworks */ = {
@@ -1363,8 +1379,10 @@
 				3A4EE5AC1A40C93500A068E2 /* DVSHTTPClientSpec.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */,
 				3A4EE5A71A40AC9E00A068E2 /* DVSTestUser.m in Sources */,
+				BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m in Sources */,
 				3AA57B6E1A41851800C54B36 /* DVSUserSpec.m in Sources */,
 				3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */,
+				4B123CE4BB2C6D6EB757663E /* DVSUserPersistenceManager+DVSPrivate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
