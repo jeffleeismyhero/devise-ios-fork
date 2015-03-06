@@ -83,6 +83,16 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (assign, nonatomic) BOOL showsNetworkActivityIndicator;
 
 /**
+ *  Whether the JSON root is included in the server response (default: YES).
+ */
+@property (assign, nonatomic) BOOL rootJSONInResponse;
+
+/**
+ *  The server-side authentication token name (default: authenticationToken).
+ */
+@property (copy, nonatomic) NSString *authenticationTokenName;
+
+/**
  *  Returns a shared instance of the configuration object.
  */
 + (instancetype)sharedConfiguration;
