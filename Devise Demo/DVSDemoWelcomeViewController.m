@@ -21,7 +21,8 @@ static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
-@interface DVSDemoWelcomeViewController () <DVSAccountRetrieverViewControllerDelegate, GPPSignInDelegate>
+
+@interface DVSDemoWelcomeViewController () <DVSAccountRetrieverViewControllerDelegate>
 
 @end
 
@@ -129,7 +130,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     [GPPSignIn sharedInstance].shouldFetchGoogleUserID = YES;
     [GPPSignIn sharedInstance].shouldFetchGooglePlusUser = YES;
     [GPPSignIn sharedInstance].shouldFetchGoogleUserEmail = YES;
-    [[GPPSignIn sharedInstance] setDelegate:self];
+    [GPPSignIn sharedInstance].delegate = (id<GPPSignInDelegate>)[DVSUserManager defaultManager];
 }
 
 - (GTLServicePlus *)getGooglePlusService {
@@ -229,3 +230,4 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 }
 
 @end
+

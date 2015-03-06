@@ -17,13 +17,19 @@
 #import "DVSUserPersistenceManager.h"
 #import "DVSOAuthJSONParameters.h"
 
-@interface DVSUserManager ()
+@interface DVSUserManager () <GPPSignInDelegate>
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
 
 @end
 
 @implementation DVSUserManager
+
+#pragma mark - REMOVE
+
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
+    NSLog(@"%@ | %@", auth, error.localizedDescription);
+}
 
 #pragma mark - Object lifecycle
 
