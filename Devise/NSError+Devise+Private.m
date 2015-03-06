@@ -17,7 +17,13 @@
         
         NSError *error;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSString *value = json[@"error"][@"message"];
+        NSString *value;
+        
+        if ([json[@"error"] isKindOfClass:[NSString class]]) {
+            value = json[@"error"];
+        } else {
+            value = json[@"error"][@"message"];
+        };
         
         if (!error && value) {
             [self swizzleUserInfoDictionaryByReplacingValueForKey:NSLocalizedDescriptionKey withValue:value];
