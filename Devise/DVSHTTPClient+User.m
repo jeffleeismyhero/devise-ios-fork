@@ -13,6 +13,7 @@
 #import "NSObject+Devise+Private.h"
 #import "DVSUserPersistenceManager.h"
 #import "DVSUserManager.h"
+#import "DVSConfiguration.h"
 
 NSString * const DVSHTTPClientDefaultRegisterPath = @"";
 NSString * const DVSHTTPClientDefaultLogInPath = @"sign_in";
@@ -86,6 +87,8 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook";
     NSString *path = DVSHTTPClientDefaultLogInPath;
     
     NSDictionary *parameters = nil;
+    self.configuration = [DVSConfiguration sharedConfiguration];
+    
 #if ENABLE_USER_JSON_SERIALIZER
     parameters = [self.userSerializer loginJSONDictionaryForUser:user];
 #else
@@ -96,7 +99,11 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook";
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
-            [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
+            if (self.configuration.rootJSONInResponse) {
+                [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
+            } else {
+                [self fillUser:user withJSONRepresentation:responseObject];
+            }
             
 #if ENABLE_PERSISTENCE_MANAGER
             [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
@@ -208,9 +215,11 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook";
             [user setValue:json[key] forKey:key];
         }
     }
+    self.configuration = [DVSConfiguration sharedConfiguration];
+    
     user.identifier = [json dvs_stringValueForKey:@"id"];
     user.email = [json dvs_stringValueForKey:@"email"];
-    user.sessionToken = [json dvs_stringValueForKey:@"authenticationToken"];
+    user.sessionToken = [json dvs_stringValueForKey:self.configuration.authenticationTokenName];
 }
 
 @end
