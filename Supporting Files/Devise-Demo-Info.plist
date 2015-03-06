@@ -24,6 +24,19 @@
 	<string>0.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>co.netguru.lib.devise.demo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>co.netguru.lib.devise.demo</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>0</string>
 	<key>LSRequiresIPhoneOS</key>

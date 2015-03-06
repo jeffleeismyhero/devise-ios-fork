@@ -29,6 +29,9 @@ PODS:
   - KIF/XCTest (3.1.2)
   - Kiwi (2.3.1)
   - ngrvalidator (0.4.2)
+  - OCHamcrest (4.1.1)
+  - OCMockito (1.4.0):
+    - OCHamcrest (~> 4.0)
   - OHHTTPStubs (3.1.10):
     - OHHTTPStubs/Core (= 3.1.10)
   - OHHTTPStubs/Core (3.1.10)
@@ -41,6 +44,7 @@ DEPENDENCIES:
   - KIF-Kiwi (~> 0.2)
   - Kiwi (~> 2.3)
   - NGRValidator (~> 0.4.2)
+  - OCMockito (~> 1.4.0)
   - OHHTTPStubs (~> 3.1)
   - UICKeyChainStore (~> 1.1)
   - XLForm (~> 2.1)
@@ -52,6 +56,8 @@ SPEC CHECKSUMS:
   KIF-Kiwi: e1f2a0b3151d4864470d3d8223daeb3df32a4ab8
   Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
   ngrvalidator: 86112a6e0afdd8a5dfd0084f71344533a35577e4
+  OCHamcrest: af1c7c5ea345de69ea6c9c2958f65f3044e5c420
+  OCMockito: 991936bb775cc4c27f063d38f5e17b9161fbd21c
   OHHTTPStubs: 2038e929b6abb94881000524c1cb4aba0a1bb4a2
   UICKeyChainStore: ea8f9851811284c6b9ff5b2133acd53342127cc3
   XLForm: 7d6855fe88df37b44ea00da80cc0cf3a945cfb1b

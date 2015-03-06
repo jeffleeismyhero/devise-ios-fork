@@ -119,6 +119,15 @@ extern NSString * const DVSHTTPClientDefaultFacebookSigningPath;
 - (void)signInUsingFacebookUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
+ *  Sign in a user using Google.
+ *
+ *  @param user    A user which you want to sign in.
+ *  @param success An option success block executed when the request finishes.
+ *  @param failure An option failure block executed when the request fails.
+ */
+- (void)signInUsingGoogleUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
+/**
  *  Sets the authorization token and email headers.
  *
  *  @param token The authorization token to use.

@@ -38,7 +38,7 @@
     if (self = [super init]) {
         self.configuration = configuration;
         
-        if (!_localUser) _localUser = [DVSUser new];
+        if (!self.localUser) _localUser = [DVSUser new];
     }
     return self;
 }

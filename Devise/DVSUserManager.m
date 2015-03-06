@@ -8,19 +8,28 @@
 
 @import Accounts;
 @import Social;
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
 #import "DVSUserManager.h"
-#import "ngrvalidator/NGRValidator.h"
+#import <ngrvalidator/NGRValidator.h>
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceManager.h"
+#import "DVSOAuthJSONParameters.h"
 
-@interface DVSUserManager ()
+@interface DVSUserManager () <GPPSignInDelegate>
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
 
 @end
 
 @implementation DVSUserManager
+
+#pragma mark - REMOVE
+
+- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
+    NSLog(@"%@ | %@", auth, error.localizedDescription);
+}
 
 #pragma mark - Object lifecycle
 
@@ -50,10 +59,8 @@
 #pragma mark - Logging in
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[
-                       NGRValidate(@"password").required(),
-                       NGRValidate(@"email").required().syntax(NGRSyntaxEmail)
-                       ];
+    NSArray *rules = @[[self validationRulesForPassword],
+                       [self validationRulesForEmail]];
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [self.httpClient logInUser:self.user success:success failure:failure];
     } failure:failure];
@@ -62,7 +69,7 @@
 #pragma mark - Remind password
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[NGRValidate(@"email").required().syntax(NGRSyntaxEmail)];
+    NSArray *rules = @[[self validationRulesForEmail]];
     
     [self validateUsingRules:rules forAction:DVSActionRemindPassword success:^{
         [self.httpClient remindPasswordToUser:self.user success:success failure:failure];
@@ -72,10 +79,8 @@
 #pragma mark - Registration
 
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[
-                       NGRValidate(@"password").required(),
-                       NGRValidate(@"email").required().syntax(NGRSyntaxEmail)
-                       ];
+    NSArray *rules = @[[self validationRulesForPassword],
+                       [self validationRulesForEmail]];
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [self.httpClient registerUser:self.user success:success failure:failure];
     } failure:failure];
@@ -96,31 +101,14 @@
             NSAssert([accounts count] > 0, NSLocalizedString(@"At least one Facebook account should exist!", nil));
             ACAccount *facebookAccount = [accounts lastObject];
             
-            NSString *facebookAccessToken = facebookAccount.credential.oauthToken;
-            
             SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://graph.facebook.com/me"] parameters:nil];
             request.account = facebookAccount;
-            
             [request performRequestWithHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 if (!error && ((NSHTTPURLResponse *)response).statusCode == 200) {
                     NSError *deserializationError;
                     NSDictionary *userData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&deserializationError];
-                    
                     if (userData != nil && deserializationError == nil) {
-                        NSString *facebookUserID = userData[@"id"];
-                        NSString *facebookEmail = userData[@"email"];
-                        
-                        NSAssert(facebookAccessToken != nil, @"Facebook access token is nil!");
-                        NSAssert(facebookUserID != nil, @"Facebook user id is nil!");
-                        NSAssert(facebookEmail != nil, @"Facebook email is nil!");
-                        
-                        NSMutableDictionary *facebookUserJson = [NSMutableDictionary dictionary];
-                        [facebookUserJson setObject:@"facebook" forKey:@"provider"];
-                        [facebookUserJson setObject:facebookAccessToken forKey:@"oauth_token"];
-                        [facebookUserJson setObject:facebookUserID forKey:@"uid"];
-                        [facebookUserJson setObject:facebookEmail forKey:@"email"];
-                        
-                        NSDictionary *parameters = @{@"user" : facebookUserJson};
+                        NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderFacebook oAuthToken:facebookAccount.credential.oauthToken userID:userData[@"id"] userEmail:userData[@"email"]];
                         
                         [self.httpClient signInUsingFacebookUser:self.user parameters:parameters success:success failure:failure];
                     } else {
@@ -139,7 +127,7 @@
 #pragma mark - Change password
 
 - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[NGRValidate(@"password").required()];
+    NSArray *rules = @[[self validationRulesForPassword]];
     [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
         [self.httpClient changePasswordOfUser:self.user success:success failure:failure];
     } failure:failure];
@@ -148,7 +136,7 @@
 #pragma mark - Update methods
 
 - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSArray *rules = @[NGRValidate(@"email").required().syntax(NGRSyntaxEmail)];
+    NSArray *rules = @[[self validationRulesForEmail]];
     [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
         [self.httpClient updateUser:self.user success:success failure:failure];
     } failure:failure];
@@ -198,6 +186,16 @@
     NSMutableArray *array = [NSMutableArray arrayWithArray:defaultRules];
     [array addObjectsFromArray:customRules];
     return [array copy];
+}
+
+#pragma mark - Validation Rules
+
+- (NGRPropertyValidator *)validationRulesForPassword {
+    return NGRValidate(@"password").required();
+}
+
+- (NGRPropertyValidator *)validationRulesForEmail {
+    return NGRValidate(@"email").required().syntax(NGRSyntaxEmail);
 }
 
 #pragma mark - Accessors

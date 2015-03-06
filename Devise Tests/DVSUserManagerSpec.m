@@ -24,7 +24,7 @@ describe(@"DVSUserManagerSpec", ^{
         });
         
         it(@"should be initialized as shared manager", ^{
-            [[expectFutureValue(userManager) should] beIdenticalTo:[DVSUserManager defaultManager]];
+            [[userManager should] beIdenticalTo:[DVSUserManager defaultManager]];
         });
         
     });
@@ -82,6 +82,7 @@ describe(@"DVSUserManagerSpec", ^{
             });
             
         });
+    });
        
     describe(@"validation", ^{
             
@@ -174,6 +175,7 @@ describe(@"DVSUserManagerSpec", ^{
                 });
                     
             });
+        });
                 
         describe(@"validation", ^{
                     
@@ -438,10 +440,5 @@ describe(@"DVSUserManagerSpec", ^{
     });
         
 });
-        
-});
-    
-});
-
 
 SPEC_END

@@ -22,6 +22,7 @@ NSString * const DVSHTTPClientDefaultDeletePath = @"";
 NSString * const DVSHTTPClientDefaultChangePasswordPath = @"password";
 NSString * const DVSHTTPClientDefaultRemindPasswordPath = @"password";
 NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook";
+NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
 
 @interface DVSUser ()
 
@@ -83,6 +84,26 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook";
     }];
 }
 
+- (void)signInUsingGoogleUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    NSString *path = DVSHTTPClientDefaultGoogleSigningPath;
+    
+    [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
+        if (error != nil) {
+            if (failure != NULL) failure(error);
+        } else {
+            [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
+            
+#if ENABLE_PERSISTENCE_MANAGER
+            [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
+#else
+            [[user class] setLocalUser:user];
+#endif
+            
+            if (success != NULL) success();
+        }
+    }];
+}
+
 - (void)logInUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultLogInPath;
     
@@ -116,7 +137,7 @@ NSString * const DVSHTTPClientDefaultFacebookSigningPath = @"auth/facebook";
 }
 
 - (void)updateUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self setAuthorizationToken:user.sessionToken email:[DVSUserManager defaultManager].userOriginalEmail];
+    [self setAuthorizationToken:user.sessionToken email:[DVSUserManager defaultManager].userPreviousEmail];
     NSString *path = DVSHTTPClientDefaultUpdatePath;
     
     NSDictionary *parameters = nil;

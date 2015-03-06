@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "DVSUser.h"
 #import "DVSUserJSONSerializer.h"
 #import "DVSHTTPClient.h"
@@ -18,7 +17,7 @@
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
-@property (nonatomic, copy) NSString *userOriginalEmail;
+@property (nonatomic, copy) NSString *userPreviousEmail;
 @property (nonatomic, readonly) DVSUserJSONSerializer *serializer;
 @property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 @property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;
