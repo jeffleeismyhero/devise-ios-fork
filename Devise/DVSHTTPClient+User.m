@@ -108,8 +108,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
     NSString *path = DVSHTTPClientDefaultLogInPath;
     
     NSDictionary *parameters = nil;
-    self.configuration = [DVSConfiguration sharedConfiguration];
-    
+ 
 #if ENABLE_USER_JSON_SERIALIZER
     parameters = [self.userSerializer loginJSONDictionaryForUser:user];
 #else
