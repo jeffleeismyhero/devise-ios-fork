@@ -6,8 +6,6 @@
 
 #import <Availability.h>
 
-#define ENABLE_USER_JSON_SERIALIZER 1
-#define ENABLE_PERSISTENCE_MANAGER 1
 #define ENABLE_FACEBOOK_LOGIN 1
 #define ENABLE_GOOGLE_LOGIN 1
 

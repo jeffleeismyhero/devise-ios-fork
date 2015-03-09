@@ -46,22 +46,8 @@
     self.additionalRequestParameters = [array copy];
 }
 
-- (NSDictionary *)requestParametersForAction:(DVSActionType)action {
-    return self.additionalRequestParameters[action];
-}
-
 - (void)setRequestParameter:(id)parameter forKey:(NSString *)key action:(DVSActionType)action {
     self.additionalRequestParameters[action][key] = parameter;
-}
-
-- (void)setRequestParameters:(NSDictionary *)parameters forAction:(DVSActionType)action {
-    [self.additionalRequestParameters[action] addEntriesFromDictionary:parameters];
-}
-
-#pragma mark - Configuration
-
-+ (DVSConfiguration *)configuration {
-    return [DVSConfiguration sharedConfiguration];
 }
 
 #pragma mark - Equality
