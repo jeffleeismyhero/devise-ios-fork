@@ -48,6 +48,11 @@ extern NSString * const DVSHTTPClientDefaultRemindPasswordPath;
 extern NSString * const DVSHTTPClientDefaultFacebookSigningPath;
 
 /**
+ *  The default Google signing action path.
+ */
+extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
+
+/**
  *  This category provides shorthand methods for performing requests related to the user resource.
  */
 @interface DVSHTTPClient (User)

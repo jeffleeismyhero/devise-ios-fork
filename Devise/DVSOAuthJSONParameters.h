@@ -13,7 +13,7 @@ typedef NS_ENUM(NSUInteger, DVSOAuthProvider) {
     DVSOAuthProviderGoogle
 };
 
-@interface DVSOAuthJSONParameters : NSDictionary
+@interface DVSOAuthJSONParameters : NSObject
 
 + (NSDictionary *)dictionaryForParametersWithProvider:(DVSOAuthProvider)provider oAuthToken:(NSString *)oAuthToken userID:(NSString *)userID userEmail:(NSString *)email;
 

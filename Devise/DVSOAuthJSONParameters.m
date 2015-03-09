@@ -16,23 +16,24 @@
     NSAssert(userID != nil, @"User ID can not be nil!");
     NSAssert(email != nil, @"Email can not be nil!");
     
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    NSString *providerName = nil;
     
     switch (provider) {
         case DVSOAuthProviderFacebook:
-            [parameters setObject:@"facebook" forKey:@"provider"];
+            providerName = @"facebook";
             break;
         case DVSOAuthProviderGoogle:
-            [parameters setObject:@"google" forKey:@"provider"];
+            providerName = @"google";
             break;
         default:
             NSAssert(true, @"Proper provider is needed!");
             break;
     }
     
-    [parameters setObject:oAuthToken forKey:@"oauth_token"];
-    [parameters setObject:userID forKey:@"uid"];
-    [parameters setObject:email forKey:@"email"];
+    NSDictionary *parameters = @{ @"provider" : providerName,
+                                  @"oauth_token" : oAuthToken,
+                                  @"uid" : userID,
+                                  @"email" : email };
     
     return @{@"user" : parameters};
 }

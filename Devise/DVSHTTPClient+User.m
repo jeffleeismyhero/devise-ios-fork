@@ -40,25 +40,14 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
 - (void)registerUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultRegisterPath;
     
-    NSDictionary *parameters = nil;
-#if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer registerJSONDictionaryForUser:user];
-#else
-    parameters = [user registerJSON];
-#endif
+    NSDictionary *parameters = [self.userSerializer registerJSONDictionaryForUser:user];
     
     [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
-            
-#if ENABLE_PERSISTENCE_MANAGER
             [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
-#else
-            [[user class] setLocalUser:user];
-#endif
-            
             if (success != NULL) success();
         }
     }];
@@ -72,13 +61,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
-            
-#if ENABLE_PERSISTENCE_MANAGER
             [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
-#else
-            [[user class] setLocalUser:user];
-#endif
-            
             if (success != NULL) success();
         }
     }];
@@ -92,13 +75,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
-            
-#if ENABLE_PERSISTENCE_MANAGER
             [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
-#else
-            [[user class] setLocalUser:user];
-#endif
-            
             if (success != NULL) success();
         }
     }];
@@ -107,29 +84,14 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
 - (void)logInUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultLogInPath;
     
-    NSDictionary *parameters = nil;
- 
-#if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer loginJSONDictionaryForUser:user];
-#else
-    parameters = [user loginJSON];
-#endif
+    NSDictionary *parameters = [self.userSerializer loginJSONDictionaryForUser:user];
     
     [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
-            if (self.configuration.rootJSONInResponse) {
-                [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
-            } else {
-                [self fillUser:user withJSONRepresentation:responseObject];
-            }
-            
-#if ENABLE_PERSISTENCE_MANAGER
+            [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
             [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
-#else
-            [[user class] setLocalUser:user];
-#endif
             if (success != NULL) success();
         }
     }];
@@ -139,12 +101,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
     [self setAuthorizationToken:user.sessionToken email:[DVSUserManager defaultManager].userPreviousEmail];
     NSString *path = DVSHTTPClientDefaultUpdatePath;
     
-    NSDictionary *parameters = nil;
-#if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer updateJSONDictionaryForUser:user];
-#else
-    parameters = [user updateJSON];
-#endif
+    NSDictionary *parameters = [self.userSerializer updateJSONDictionaryForUser:user];
     
     [self PUT:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
@@ -162,9 +119,8 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
-#if ENABLE_PERSISTENCE_MANAGER
             [DVSUserPersistenceManager sharedPersistenceManager].localUser = nil;
-#endif
+
             if (success != NULL) success();
         }
     }];
@@ -174,12 +130,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
     [self setAuthorizationToken:user.sessionToken email:[DVSUserPersistenceManager sharedPersistenceManager].localUser.email];
     NSString *path = DVSHTTPClientDefaultChangePasswordPath;
     
-    NSDictionary *parameters = nil;
-#if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer changePasswordJSONDictionaryForUser:user];
-#else
-    parameters = [user changePasswordJSON];
-#endif
+    NSDictionary *parameters = [self.userSerializer changePasswordJSONDictionaryForUser:user];
     
     [self PUT:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
@@ -193,12 +144,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
 - (void)remindPasswordToUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *path = DVSHTTPClientDefaultRemindPasswordPath;
     
-    NSDictionary *parameters = nil;
-#if ENABLE_USER_JSON_SERIALIZER
-    parameters = [self.userSerializer remindPasswordJSONDictionaryForUser:user];
-#else
-    parameters = [user remindPasswordJSON];
-#endif
+    NSDictionary *parameters = [self.userSerializer remindPasswordJSONDictionaryForUser:user];
     
     [self POST:path parameters:parameters completion:^(__unused id responseObject, NSError *error) {
         if (error != nil) {
@@ -236,7 +182,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
         }
     }
     self.configuration = [DVSConfiguration sharedConfiguration];
-    
+
     user.identifier = [json dvs_stringValueForKey:@"id"];
     user.email = [json dvs_stringValueForKey:@"email"];
     user.sessionToken = [json dvs_stringValueForKey:self.configuration.authenticationTokenName];
