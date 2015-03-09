@@ -8,28 +8,21 @@
 
 @import Accounts;
 @import Social;
-#import <GooglePlus/GooglePlus.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
 #import "DVSUserManager.h"
 #import <ngrvalidator/NGRValidator.h>
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceManager.h"
 #import "DVSOAuthJSONParameters.h"
+#import "DVSGooglePlusSignInDelegate.h"
 
-@interface DVSUserManager () <GPPSignInDelegate>
+@interface DVSUserManager ()
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
 
 @end
 
 @implementation DVSUserManager
-
-#pragma mark - REMOVE
-
-- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
-    NSLog(@"%@ | %@", auth, error.localizedDescription);
-}
 
 #pragma mark - Object lifecycle
 
@@ -122,6 +115,13 @@
             if (failure != NULL) failure(error);
         }
     }];
+}
+
+#pragma mark - Signing via Google+
+
+- (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    self.googlePlusDelegate = [[DVSGooglePlusSignInDelegate alloc] init];
+    [self.googlePlusDelegate authenticateWithGoogleClientID:self.httpClient.configuration.googleClientID success:success failure:failure];
 }
 
 #pragma mark - Change password
