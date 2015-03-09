@@ -41,6 +41,14 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 @property (strong, nonatomic, readonly) NSString *sessionToken;
 
 /**
+ *  Returns bunch of key-value pairs for given action.
+ *
+ *  @param action The action for which request parameters are stored.
+ *  @return NSDictionary of parameters for given action.
+ */
+- (NSDictionary *)requestParametersForAction:(DVSActionType)action;
+
+/**
  *  Set an object for given key and action. Objects are converted to parameters and used in query.
  *
  *  @param object     The value for key.
@@ -48,5 +56,13 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
  *  @param action     The action for which additional parameter will be added to query.
  */
 - (void)setRequestParameter:(id)parameter forKey:(NSString *)key action:(DVSActionType)action;
+
+/**
+ *  Set bunch of key-value pairs for given action. Objects are converted to parameters and used when request is sending.
+ *
+ *  @param objects    NSDictionary of objects and keys stored for given action
+ *  @param action     The action for which additional parameters will be added to query.
+ */
+- (void)setRequestParameters:(NSDictionary *)parameters forAction:(DVSActionType)action;
 
 @end
