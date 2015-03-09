@@ -128,8 +128,8 @@ describe(@"DVSUserJSONSerializer", ^{
                     beforeEach(^{
                         testJSON = @{
                             @"user": @{
-                                @"password": testUser.password,
-                                @"passwordConfirmation": testUser.password
+                                @"email": testUser.email,
+                                @"password": testUser.password
                             }
                         };
                     });
