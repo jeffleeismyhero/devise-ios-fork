@@ -109,11 +109,11 @@ describe(@"DVSUserJSONSerializer", ^{
                     
                     beforeEach(^{
                         testJSON = @{
-                                     @"user": @{
-                                             @"email": testUser.email,
-                                             @"password": testUser.password
-                                             }
-                                     };
+                            @"user": @{
+                                @"email": testUser.email,
+                                @"password": testUser.password
+                            }
+                        };
                     });
                     
                     it(@"should return correct JSON", ^{
@@ -127,11 +127,11 @@ describe(@"DVSUserJSONSerializer", ^{
                     
                     beforeEach(^{
                         testJSON = @{
-                                     @"user": @{
-                                             @"email": testUser.email,
-                                             @"password": testUser.password
-                                             }
-                                     };
+                            @"user": @{
+                                @"password": testUser.password,
+                                @"passwordConfirmation": testUser.password
+                            }
+                        };
                     });
                     
                     it(@"should return correct JSON", ^{
@@ -158,11 +158,11 @@ describe(@"DVSUserJSONSerializer", ^{
                     
                     beforeEach(^{
                         testJSON = @{
-                                     @"user": @{
-                                             @"password": testUser.password,
-                                             @"passwordConfirmation": testUser.password
-                                             }
-                                     };
+                            @"user": @{
+                                @"password": testUser.password,
+                                @"passwordConfirmation": testUser.password
+                            }
+                        };
                     });
                     
                     it(@"should return correct JSON", ^{
