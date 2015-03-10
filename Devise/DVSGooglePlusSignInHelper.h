@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "DVSTypedefs.h"
 
+/**
+ *  DVSGooglePlusSignInHelper uses GPPSignIn under the hood and it needs Google+ SDK to work.
+ */
 @interface DVSGooglePlusSignInHelper : NSObject
 
 - (void)authenticateWithGoogleClientID:(NSString *)clientID success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;

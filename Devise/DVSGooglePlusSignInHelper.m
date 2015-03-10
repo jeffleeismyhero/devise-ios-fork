@@ -17,7 +17,7 @@
 
 @property (copy) DVSVoidBlock success;
 @property (copy) DVSErrorBlock failure;
-@property (copy) NSString *clientID;
+@property (copy, nonatomic) NSString *clientID;
 
 @end
 
@@ -33,6 +33,12 @@
     [[GPPSignIn sharedInstance] authenticate];
 }
 
+#pragma mark - Lifecycle
+
+- (void)dealloc {
+    [GPPSignIn sharedInstance].delegate = nil;
+}
+
 #pragma mark - Google+ SDK helpers
 
 - (void)setupGoogleSharedInstance {
@@ -43,7 +49,7 @@
     [GPPSignIn sharedInstance].shouldFetchGoogleUserEmail = YES;
 }
 
-- (GTLServicePlus *)getGooglePlusService {
+- (GTLServicePlus *)googlePlusService {
     GTLServicePlus* service = [[GTLServicePlus alloc] init];
     service.retryEnabled = YES;
     [service setAuthorizer:[GPPSignIn sharedInstance].authentication];
@@ -57,7 +63,7 @@
     if (error) {
         if (self.failure != NULL) self.failure(error);
     } else {
-        GTLServicePlus *plusService = [self getGooglePlusService];
+        GTLServicePlus *plusService = [self googlePlusService];
         GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:@"me"];
         [plusService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) {
             if (error) {
