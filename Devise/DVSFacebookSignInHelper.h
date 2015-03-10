@@ -1,5 +1,5 @@
 //
-//  DVSFacebookSignInDelegate.h
+//  DVSFacebookSignInHelper.h
 //  Devise
 //
 //  Created by Pawel Bialecki on 09.03.2015.
@@ -11,6 +11,6 @@
 
 @interface DVSFacebookSignInHelper : NSObject
 
-- (void)signInUsingFacebookWithAppID:(NSString *)facebookAppID success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)obtainLoginParametersWithAppID:(NSString *)appID completion:(DVSFacebookParametersBlock)completion;
 
 @end

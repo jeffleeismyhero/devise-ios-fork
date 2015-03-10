@@ -20,9 +20,9 @@
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
-@property (nonatomic, copy) NSString *userPreviousEmail;
+@property (copy, nonatomic) NSString *userPreviousEmail;
 @property (strong, nonatomic) DVSGooglePlusSignInHelper *googlePlusSignInHelper;
-@property (nonatomic, readonly) DVSUserJSONSerializer *serializer;
+@property (strong, nonatomic, readonly) DVSUserJSONSerializer *serializer;
 @property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 @property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;
 
