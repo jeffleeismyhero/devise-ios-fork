@@ -117,6 +117,8 @@
 		E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */; };
 		E3CA30021AADA5A000890305 /* DVSGooglePlusSignInDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30001AADA5A000890305 /* DVSGooglePlusSignInDelegate.h */; };
 		E3CA30031AADA5A000890305 /* DVSGooglePlusSignInDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30011AADA5A000890305 /* DVSGooglePlusSignInDelegate.m */; };
+		E3CA300A1AADF5BE00890305 /* DVSAccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30081AADF5BE00890305 /* DVSAccountStore.h */; };
+		E3CA300B1AADF5BE00890305 /* DVSAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30091AADF5BE00890305 /* DVSAccountStore.m */; };
 		F94B3B7915F24D73DF3A530C /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB28F46FBA4BD2E641B4FE99 /* libPods-Demo.a */; };
 /* End PBXBuildFile section */
 
@@ -321,6 +323,8 @@
 		E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserManagerSpec.m; sourceTree = "<group>"; };
 		E3CA30001AADA5A000890305 /* DVSGooglePlusSignInDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSGooglePlusSignInDelegate.h; sourceTree = "<group>"; };
 		E3CA30011AADA5A000890305 /* DVSGooglePlusSignInDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSGooglePlusSignInDelegate.m; sourceTree = "<group>"; };
+		E3CA30081AADF5BE00890305 /* DVSAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSAccountStore.h; sourceTree = "<group>"; };
+		E3CA30091AADF5BE00890305 /* DVSAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSAccountStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,6 +551,8 @@
 				2152B52E1A8DF43300F24A06 /* DVSUserPersistenceManager.m */,
 				E3CA30001AADA5A000890305 /* DVSGooglePlusSignInDelegate.h */,
 				E3CA30011AADA5A000890305 /* DVSGooglePlusSignInDelegate.m */,
+				E3CA30081AADF5BE00890305 /* DVSAccountStore.h */,
+				E3CA30091AADF5BE00890305 /* DVSAccountStore.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -944,6 +950,7 @@
 				218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
 				21B3ECAB1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.h in Headers */,
+				E3CA300A1AADF5BE00890305 /* DVSAccountStore.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
 				21B3ECB21A52D32100C8C620 /* UIViewController+Devise.h in Headers */,
 				3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */,
@@ -1357,6 +1364,7 @@
 				5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */,
 				21B3ECBC1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m in Sources */,
 				5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */,
+				E3CA300B1AADF5BE00890305 /* DVSAccountStore.m in Sources */,
 				219EB2441A8CB6BA00F7BCFA /* DVSUserJSONSerializer.m in Sources */,
 				21AFB8011A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.m in Sources */,
 				E3CA30031AADA5A000890305 /* DVSGooglePlusSignInDelegate.m in Sources */,
