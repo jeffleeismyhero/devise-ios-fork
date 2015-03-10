@@ -1,5 +1,5 @@
 //
-//  DVSGooglePlusSignInDelegate.h
+//  DVSGooglePlusSignInHelper.h
 //  Devise
 //
 //  Created by Pawel Bialecki on 09.03.2015.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DVSTypedefs.h"
 
-@interface DVSGooglePlusSignInDelegate : NSObject
+@interface DVSGooglePlusSignInHelper : NSObject
 
 - (void)authenticateWithGoogleClientID:(NSString *)clientID success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 

@@ -12,7 +12,7 @@
 #import "DVSHTTPClient.h"
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
-#import "DVSGooglePlusSignInDelegate.h"
+#import "DVSGooglePlusSignInHelper.h"
 
 @protocol DVSUserManagerDelegate;
 @protocol DVSUserManagerDataSource;
@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic, readonly) DVSUser *user;
 @property (nonatomic, copy) NSString *userPreviousEmail;
-@property (strong) DVSGooglePlusSignInDelegate *googlePlusDelegate;
+@property (strong) DVSGooglePlusSignInHelper *googlePlusSignInHelper;
 @property (nonatomic, readonly) DVSUserJSONSerializer *serializer;
 @property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 @property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;

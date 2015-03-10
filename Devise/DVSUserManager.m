@@ -6,15 +6,13 @@
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-@import Accounts;
-@import Social;
 #import "DVSUserManager.h"
 #import <ngrvalidator/NGRValidator.h>
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceManager.h"
 #import "DVSOAuthJSONParameters.h"
-#import "DVSGooglePlusSignInDelegate.h"
+#import "DVSGooglePlusSignInHelper.h"
 #import "DVSFacebookSignInHelper.h"
 
 @interface DVSUserManager ()
@@ -91,8 +89,8 @@
 #pragma mark - Signing via Google+
 
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    self.googlePlusDelegate = [[DVSGooglePlusSignInDelegate alloc] init];
-    [self.googlePlusDelegate authenticateWithGoogleClientID:self.httpClient.configuration.googleClientID success:success failure:failure];
+    self.googlePlusSignInHelper = [[DVSGooglePlusSignInHelper alloc] init];
+    [self.googlePlusSignInHelper authenticateWithGoogleClientID:self.httpClient.configuration.googleClientID success:success failure:failure];
 }
 
 #pragma mark - Change password
