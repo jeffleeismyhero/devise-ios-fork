@@ -112,8 +112,6 @@
 		E3A0D6341AA73EE500E326BC /* DVSOAuthJSONParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */; };
 		E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */; };
 		E3BD327D1AA5C86A00E6F7AD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD327C1AA5C86A00E6F7AD /* Social.framework */; };
-		E3BD327F1AA5FDDF00E6F7AD /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */; };
-		E3BD32811AA5FDFC00E6F7AD /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */; };
 		E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */; };
 		E3CA30021AADA5A000890305 /* DVSGooglePlusSignInHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30001AADA5A000890305 /* DVSGooglePlusSignInHelper.h */; };
 		E3CA30031AADA5A000890305 /* DVSGooglePlusSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30011AADA5A000890305 /* DVSGooglePlusSignInHelper.m */; };
@@ -320,8 +318,6 @@
 		E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSOAuthJSONParameters.h; sourceTree = "<group>"; };
 		E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSOAuthJSONParameters.m; sourceTree = "<group>"; };
 		E3BD327C1AA5C86A00E6F7AD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleOpenSource.framework; sourceTree = "<group>"; };
-		E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GooglePlus.framework; sourceTree = "<group>"; };
 		E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserManagerSpec.m; sourceTree = "<group>"; };
 		E3CA30001AADA5A000890305 /* DVSGooglePlusSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSGooglePlusSignInHelper.h; sourceTree = "<group>"; };
 		E3CA30011AADA5A000890305 /* DVSGooglePlusSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSGooglePlusSignInHelper.m; sourceTree = "<group>"; };
@@ -345,10 +341,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3BD32811AA5FDFC00E6F7AD /* GooglePlus.framework in Frameworks */,
-				E3BD327D1AA5C86A00E6F7AD /* Social.framework in Frameworks */,
 				3AD4C6AE1A24F38000F0AE67 /* Foundation.framework in Frameworks */,
-				E3BD327F1AA5FDDF00E6F7AD /* GoogleOpenSource.framework in Frameworks */,
+				E3BD327D1AA5C86A00E6F7AD /* Social.framework in Frameworks */,
 				9E97A5606CB024128C71793A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -915,8 +909,6 @@
 		E318EA28A05EB87D9168576A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E3BD32801AA5FDFC00E6F7AD /* GooglePlus.framework */,
-				E3BD327E1AA5FDDF00E6F7AD /* GoogleOpenSource.framework */,
 				E3BD327C1AA5C86A00E6F7AD /* Social.framework */,
 				5E64C17B1A30872B00A41A88 /* Security.framework */,
 				3AD4C6AD1A24F38000F0AE67 /* Foundation.framework */,
@@ -1073,7 +1065,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DVS;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Netguru Sp. z o.o.";
 				TargetAttributes = {
 					218E29891A5AE90C0010BF3F = {
@@ -1081,7 +1073,7 @@
 					};
 					3AA8B35D1A24DA0000166927 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = SK8PDF7SG9;
+						DevelopmentTeam = 9HJ69C5G9K;
 					};
 					3AA8B3681A24DA0000166927 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1513,13 +1505,14 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"${SRCROOT}/Pods",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1533,12 +1526,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/**",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Supporting Files/Devise-Info.plist";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Devise;
 				PROVISIONING_PROFILE = "";
@@ -1551,6 +1547,10 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Tests-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Tests-Info.plist";
@@ -1563,15 +1563,46 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C7171A24FA6A00F0AE67 /* Devise-Demo.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App-Icon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Launch-Image";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"${SRCROOT}/Pods",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-AFNetworking\"",
+					"-l\"Pods-UICKeyChainStore\"",
+					"-l\"Pods-XLForm\"",
+					"-l\"Pods-ngrvalidator\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1584,6 +1615,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1606,12 +1638,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/**",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "Supporting Files/Devise-Info.plist";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				PRODUCT_NAME = Devise;
 				PROVISIONING_PROFILE = "";
 			};
@@ -1623,6 +1658,10 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Tests-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Tests-Info.plist";
@@ -1635,6 +1674,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3AD4C7171A24FA6A00F0AE67 /* Devise-Demo.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App-Icon";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Launch-Image";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -1642,9 +1682,39 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "Supporting Files/Devise-Demo-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/Devise-Demo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"${SRCROOT}/Pods",
+				);
 				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-AFNetworking\"",
+					"-l\"Pods-UICKeyChainStore\"",
+					"-l\"Pods-XLForm\"",
+					"-l\"Pods-ngrvalidator\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

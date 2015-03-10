@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic, readonly) DVSUser *user;
 @property (nonatomic, copy) NSString *userPreviousEmail;
-@property (strong, nonatomic) NSMutableArray *googlePlusSignInHelpers;
+@property (strong, nonatomic) DVSGooglePlusSignInHelper *googlePlusSignInHelper;
 @property (nonatomic, readonly) DVSUserJSONSerializer *serializer;
 @property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 @property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;
@@ -76,6 +76,12 @@
  *  Deletes account associated with user asynchronously. When succeed removes also user related data from keychain.
  */
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
+
+/**
+ *  Handle authorization via GooglePlus callback
+ */
+- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 /**
  *  Deletes locally stored user.

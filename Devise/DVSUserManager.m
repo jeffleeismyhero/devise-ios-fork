@@ -32,7 +32,6 @@
 
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration {
     if (self = [super init]) {
-        self.googlePlusSignInHelpers = [[NSMutableArray alloc] init];
         self.user = user;
         self.facebookSignInHelper = [[DVSFacebookSignInHelper alloc] init];
         self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
@@ -89,16 +88,21 @@
 #pragma mark - Signing via Google+
 
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    DVSGooglePlusSignInHelper *googlePlusHelper = [[DVSGooglePlusSignInHelper alloc] init];
-    [self.googlePlusSignInHelpers addObject:googlePlusHelper];
-    __weak typeof(self) weakSelf = self;
-    [googlePlusHelper authenticateWithGoogleClientID:self.httpClient.configuration.googleClientID success:^{
-        [weakSelf.googlePlusSignInHelpers removeObject:googlePlusHelper];
-        if (success != NULL) success();
-    } failure:^(NSError *error) {
-        [weakSelf.googlePlusSignInHelpers removeObject:googlePlusHelper];
-        if (failure != NULL) failure(error);
-    }];
+    NSString *clientID = self.httpClient.configuration.googleClientID;
+    DVSGooglePlusSignInHelper *googlePlusHelper = [[DVSGooglePlusSignInHelper alloc] initWithClientID:clientID];
+    
+    if (!self.googlePlusSignInHelper) {
+        self.googlePlusSignInHelper = googlePlusHelper;
+        
+        __weak typeof(self) weakSelf = self;
+        [googlePlusHelper authenticateWithSignIn:[GPPSignIn sharedInstance] success:^{
+            weakSelf.googlePlusSignInHelper = nil;
+            if (success != NULL) success();
+        } failure:^(NSError *error) {
+            weakSelf.googlePlusSignInHelper = nil;
+            if (failure != NULL) failure(error);
+        }];
+    }
 }
 
 #pragma mark - Change password
@@ -117,6 +121,12 @@
     [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
         [self.httpClient updateUser:self.user success:success failure:failure];
     } failure:failure];
+}
+
+#pragma mark - Handle callback
+
+- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [self.googlePlusSignInHelper.signIn handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 #pragma mark - Delete account

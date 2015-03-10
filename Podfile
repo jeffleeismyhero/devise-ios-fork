@@ -18,6 +18,14 @@ pod 'XLForm', '~> 2.1'
 pod 'NGRValidator', '~> 0.4.2'
 pod 'googleplus-ios-sdk', '~> 1.7.1'
 
+post_install do |installer_representation|
+  installer_representation.project.targets.each do |target|
+    if target.name == 'Devise'
+      config.build_settings["FRAMEWORK_SEARCH_PATHS"] = ["$(PROJECT_DIR)/", "$(PROJECT_DIR)/Pods/**"]
+    end
+  end
+end
+
 # Exclusive demo dependencies
 target 'Demo' do
   link_with 'Devise Demo'

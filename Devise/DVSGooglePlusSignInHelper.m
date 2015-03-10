@@ -7,52 +7,79 @@
 //
 
 #import "DVSGooglePlusSignInHelper.h"
-#import <GooglePlus/GooglePlus.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
 #import "DVSOAuthJSONParameters.h"
 #import "DVSUserManager.h"
 #import "DVSHTTPClient+User.h"
 
 @interface DVSGooglePlusSignInHelper () <GPPSignInDelegate>
 
-@property (copy) DVSVoidBlock success;
-@property (copy) DVSErrorBlock failure;
+@property (copy, nonatomic) DVSVoidBlock success;
+@property (copy, nonatomic) DVSErrorBlock failure;
 @property (copy, nonatomic) NSString *clientID;
 
 @end
 
 @implementation DVSGooglePlusSignInHelper
 
+- (instancetype)initWithClientID:(NSString *)clientID {
+    self = [super init];
+    if (self) {
+        self.clientID = clientID;
+    }
+    return self;
+}
+
+- (void)dealloc {
+    self.signIn.delegate = nil;
+    self.signIn = nil;
+}
+
+#pragma mark - Public methods
+
 - (void)authenticateWithGoogleClientID:(NSString *)clientID success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     self.success = success;
     self.failure = failure;
     self.clientID = clientID;
     
-    [self setupGoogleSharedInstance];
-    [GPPSignIn sharedInstance].delegate = self;
-    [[GPPSignIn sharedInstance] authenticate];
+    self.signIn = [GPPSignIn sharedInstance];
+    [self setupGoogleSignIn:self.signIn];
+
+    [self authenticate];
 }
 
-#pragma mark - Lifecycle
+- (void)authenticateWithSignIn:(GPPSignIn *)signIn success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    self.success = success;
+    self.failure = failure;
+    self.signIn = signIn;
+    
+    [self setupGoogleSignIn:self.signIn];
+    [self authenticate];
+}
 
-- (void)dealloc {
-    [GPPSignIn sharedInstance].delegate = nil;
+#pragma mark - Private methods
+
+- (void)authenticate {    
+    if (![self.signIn trySilentAuthentication]) {
+        [self.signIn authenticate];
+    }
 }
 
 #pragma mark - Google+ SDK helpers
 
-- (void)setupGoogleSharedInstance {
-    [GPPSignIn sharedInstance].clientID = self.clientID;
-    [GPPSignIn sharedInstance].scopes = @[ kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusMe ];
-    [GPPSignIn sharedInstance].shouldFetchGoogleUserID = YES;
-    [GPPSignIn sharedInstance].shouldFetchGooglePlusUser = YES;
-    [GPPSignIn sharedInstance].shouldFetchGoogleUserEmail = YES;
+- (void)setupGoogleSignIn:(GPPSignIn *)signIn {
+    signIn.clientID = self.clientID;
+    signIn.scopes = @[ kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusMe ];
+    signIn.attemptSSO = YES;
+    signIn.shouldFetchGoogleUserID = YES;
+    signIn.shouldFetchGooglePlusUser = YES;
+    signIn.shouldFetchGoogleUserEmail = YES;
+    signIn.delegate = self;
 }
 
 - (GTLServicePlus *)googlePlusService {
     GTLServicePlus* service = [[GTLServicePlus alloc] init];
     service.retryEnabled = YES;
-    [service setAuthorizer:[GPPSignIn sharedInstance].authentication];
+    [service setAuthorizer:self.signIn.authentication];
     service.apiVersion = @"v1";
     return service;
 }

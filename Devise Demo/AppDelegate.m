@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Devise.h"
+#import "DVSUserManager.h"
 #import <GooglePlus/GooglePlus.h>
 
 @interface AppDelegate ()
@@ -30,7 +31,7 @@
 }
 
 - (BOOL)application: (UIApplication *)application openURL: (NSURL *)url sourceApplication: (NSString *)sourceApplication annotation: (id)annotation {
-    return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    return [[DVSUserManager defaultManager] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 @end
