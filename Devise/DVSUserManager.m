@@ -32,9 +32,9 @@
 
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration {
     if (self = [super init]) {
+        self.googlePlusSignInHelpers = [[NSMutableArray alloc] init];
         self.user = user;
         self.facebookSignInHelper = [[DVSFacebookSignInHelper alloc] init];
-        
         self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
     }
     return self;
@@ -89,8 +89,16 @@
 #pragma mark - Signing via Google+
 
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    self.googlePlusSignInHelper = [[DVSGooglePlusSignInHelper alloc] init];
-    [self.googlePlusSignInHelper authenticateWithGoogleClientID:self.httpClient.configuration.googleClientID success:success failure:failure];
+    DVSGooglePlusSignInHelper *googlePlusHelper = [[DVSGooglePlusSignInHelper alloc] init];
+    [self.googlePlusSignInHelpers addObject:googlePlusHelper];
+    __weak typeof(self) weakSelf = self;
+    [googlePlusHelper authenticateWithGoogleClientID:self.httpClient.configuration.googleClientID success:^{
+        [weakSelf.googlePlusSignInHelpers removeObject:googlePlusHelper];
+        if (success != NULL) success();
+    } failure:^(NSError *error) {
+        [weakSelf.googlePlusSignInHelpers removeObject:googlePlusHelper];
+        if (failure != NULL) failure(error);
+    }];
 }
 
 #pragma mark - Change password
