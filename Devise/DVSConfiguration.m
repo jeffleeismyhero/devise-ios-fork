@@ -34,6 +34,8 @@
     self.loggingMode = DVSLoggingModeNone;
     self.numberOfRetries = 0;
     self.retryThresholdDuration = 0.0;
+    self.rootJSONInResponse = YES;
+    self.authenticationTokenName = @"authenticationToken";
     return self;
 }
 

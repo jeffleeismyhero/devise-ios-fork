@@ -38,6 +38,14 @@ describe(@"DVSConfiguration", ^{
         it(@"should have a default resource name", ^{
             [[configuration.resourceName should] equal:@"users"];
         });
+        
+        it(@"should have a default authentication token name", ^{
+            [[configuration.authenticationTokenName should] equal:@"authenticationToken"];
+        });
+
+        it(@"should have default for a rooted JSON responses", ^{
+            [[theValue(configuration.rootJSONInResponse) should] beTrue];
+        });
 
     });
 

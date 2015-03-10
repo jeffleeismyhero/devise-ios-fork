@@ -13,6 +13,7 @@
 #import "NSObject+Devise+Private.h"
 #import "DVSUserPersistenceManager.h"
 #import "DVSUserManager.h"
+#import "DVSConfiguration.h"
 
 NSString * const DVSHTTPClientDefaultRegisterPath = @"";
 NSString * const DVSHTTPClientDefaultLogInPath = @"sign_in";
@@ -180,9 +181,11 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
             [user setValue:json[key] forKey:key];
         }
     }
+    self.configuration = [DVSConfiguration sharedConfiguration];
+
     user.identifier = [json dvs_stringValueForKey:@"id"];
     user.email = [json dvs_stringValueForKey:@"email"];
-    user.sessionToken = [json dvs_stringValueForKey:@"authenticationToken"];
+    user.sessionToken = [json dvs_stringValueForKey:self.configuration.authenticationTokenName];
 }
 
 @end
