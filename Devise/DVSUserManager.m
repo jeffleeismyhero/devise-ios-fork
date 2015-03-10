@@ -15,10 +15,12 @@
 #import "DVSUserPersistenceManager.h"
 #import "DVSOAuthJSONParameters.h"
 #import "DVSGooglePlusSignInDelegate.h"
+#import "DVSFacebookSignInHelper.h"
 
 @interface DVSUserManager ()
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
+@property (strong, nonatomic) DVSFacebookSignInHelper *facebookSignInHelper;
 
 @end
 
@@ -33,6 +35,7 @@
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration {
     if (self = [super init]) {
         self.user = user;
+        self.facebookSignInHelper = [[DVSFacebookSignInHelper alloc] init];
         
         self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
     }
@@ -82,39 +85,7 @@
 #pragma mark - Signing via Facebook
 
 - (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
-    ACAccountType *facebookAccountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    NSDictionary *options = @{ACFacebookAppIdKey : [DVSConfiguration sharedConfiguration].facebookAppID,
-                              ACFacebookPermissionsKey : @[@"email"],
-                              ACFacebookAudienceKey:ACFacebookAudienceOnlyMe};
- 
-    [accountStore requestAccessToAccountsWithType:facebookAccountType options:options completion:^(BOOL granted, NSError *error) {
-        if (granted) {
-            NSArray *accounts = [accountStore accountsWithAccountType:facebookAccountType];
-            NSAssert([accounts count] > 0, NSLocalizedString(@"At least one Facebook account should exist!", nil));
-            ACAccount *facebookAccount = [accounts lastObject];
-            
-            SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://graph.facebook.com/me"] parameters:nil];
-            request.account = facebookAccount;
-            [request performRequestWithHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                if (!error && ((NSHTTPURLResponse *)response).statusCode == 200) {
-                    NSError *deserializationError;
-                    NSDictionary *userData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&deserializationError];
-                    if (userData != nil && deserializationError == nil) {
-                        NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderFacebook oAuthToken:facebookAccount.credential.oauthToken userID:userData[@"id"] userEmail:userData[@"email"]];
-                        
-                        [self.httpClient signInUsingFacebookUser:self.user parameters:parameters success:success failure:failure];
-                    } else {
-                        if (failure != NULL) failure(deserializationError);
-                    }
-                } else {
-                    if (failure != NULL) failure(error);
-                };
-            }];
-        } else {
-            if (failure != NULL) failure(error);
-        }
-    }];
+    [self.facebookSignInHelper signInUsingFacebookWithAppID:self.httpClient.configuration.facebookAppID success:success failure:failure];
 }
 
 #pragma mark - Signing via Google+

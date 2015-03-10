@@ -117,6 +117,8 @@
 		E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */; };
 		E3CA30021AADA5A000890305 /* DVSGooglePlusSignInDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30001AADA5A000890305 /* DVSGooglePlusSignInDelegate.h */; };
 		E3CA30031AADA5A000890305 /* DVSGooglePlusSignInDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30011AADA5A000890305 /* DVSGooglePlusSignInDelegate.m */; };
+		E3CA30061AADC10E00890305 /* DVSFacebookSignInHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30041AADC10E00890305 /* DVSFacebookSignInHelper.h */; };
+		E3CA30071AADC10E00890305 /* DVSFacebookSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30051AADC10E00890305 /* DVSFacebookSignInHelper.m */; };
 		E3CA300A1AADF5BE00890305 /* DVSAccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30081AADF5BE00890305 /* DVSAccountStore.h */; };
 		E3CA300B1AADF5BE00890305 /* DVSAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30091AADF5BE00890305 /* DVSAccountStore.m */; };
 		F94B3B7915F24D73DF3A530C /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB28F46FBA4BD2E641B4FE99 /* libPods-Demo.a */; };
@@ -323,6 +325,8 @@
 		E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserManagerSpec.m; sourceTree = "<group>"; };
 		E3CA30001AADA5A000890305 /* DVSGooglePlusSignInDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSGooglePlusSignInDelegate.h; sourceTree = "<group>"; };
 		E3CA30011AADA5A000890305 /* DVSGooglePlusSignInDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSGooglePlusSignInDelegate.m; sourceTree = "<group>"; };
+		E3CA30041AADC10E00890305 /* DVSFacebookSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFacebookSignInHelper.h; sourceTree = "<group>"; };
+		E3CA30051AADC10E00890305 /* DVSFacebookSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFacebookSignInHelper.m; sourceTree = "<group>"; };
 		E3CA30081AADF5BE00890305 /* DVSAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSAccountStore.h; sourceTree = "<group>"; };
 		E3CA30091AADF5BE00890305 /* DVSAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSAccountStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -553,6 +557,8 @@
 				E3CA30011AADA5A000890305 /* DVSGooglePlusSignInDelegate.m */,
 				E3CA30081AADF5BE00890305 /* DVSAccountStore.h */,
 				E3CA30091AADF5BE00890305 /* DVSAccountStore.m */,
+				E3CA30041AADC10E00890305 /* DVSFacebookSignInHelper.h */,
+				E3CA30051AADC10E00890305 /* DVSFacebookSignInHelper.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -957,6 +963,7 @@
 				3AA409F41A3F9D700046B0E4 /* DVSHTTPClient+User.h in Headers */,
 				21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */,
 				3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */,
+				E3CA30061AADC10E00890305 /* DVSFacebookSignInHelper.h in Headers */,
 				5EE295081A35C086009441E1 /* NSDictionary+Devise+Private.h in Headers */,
 				5E3A98A11AA877FF00CE2F20 /* NSError+Devise+Private.h in Headers */,
 				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h in Headers */,
@@ -1360,6 +1367,7 @@
 				21B362E21A51540200202C94 /* DVSBarButtonItem+Private.m in Sources */,
 				3AA22E301A251B1400FE04D1 /* DVSUser.m in Sources */,
 				219EB2481A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.m in Sources */,
+				E3CA30071AADC10E00890305 /* DVSFacebookSignInHelper.m in Sources */,
 				5EE295091A35C086009441E1 /* NSDictionary+Devise+Private.m in Sources */,
 				5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */,
 				21B3ECBC1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m in Sources */,
