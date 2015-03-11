@@ -94,7 +94,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
     [[DVSUserManager defaultManager] signInUsingGoogleWithSuccess:^{
         [self moveToHomeView];
     } failure:^(NSError *error) {
-        [self handleSignInWithFacebookError:error];
+        [self handleSignInWithGoogleError:error];
     }];
 }
 
