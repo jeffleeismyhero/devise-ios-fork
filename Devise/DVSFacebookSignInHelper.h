@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DVSTypedefs.h"
+
+typedef void (^DVSFacebookParametersBlock)(BOOL obtained, NSDictionary *parameters, NSError *error);
 
 @interface DVSFacebookSignInHelper : NSObject
 
-- (void)obtainLoginParametersWithAppID:(NSString *)appID completion:(DVSFacebookParametersBlock)completion;
+- (void)signInUsingFacebookWithAppID:(NSString *)facebookAppID completion:(DVSFacebookParametersBlock)completion;
 
 @end

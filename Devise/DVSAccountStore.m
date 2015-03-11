@@ -28,7 +28,7 @@
     return self;
 }
 
-- (void)requestAccessWithCompletion:(ACAccountStoreRequestAccessCompletionHandler)completion {
+- (void)requestAccessWithCompletion:(DVSAccountStoreBlock)completion {
 
     NSAssert(self.accountTypeIdentifier != nil, @"accountTypeIdentifier can not be nil!");
     NSAssert(self.appIDKey != nil, @"appIDKey can not be nil!");
@@ -40,7 +40,27 @@
         ACFacebookAudienceKey : ACFacebookAudienceOnlyMe
     };
     
-    [self requestAccessToAccountsWithType:[self accountTypeWithAccountTypeIdentifier:self.accountTypeIdentifier] options:options completion:completion];
+    [self requestAccessToAccountsWithType:[self accountTypeWithAccountTypeIdentifier:self.accountTypeIdentifier] options:options completion:^(BOOL granted, NSError *error) {
+        if (granted) {
+            if (completion != NULL) completion([self facebookAccount], error);
+        } else if (completion != NULL) completion(nil, error);
+    }];
+}
+
+- (void)refreshTokenForAccount:(ACAccount *)account completion:(DVSAccountStoreBlock)completion {
+    [self renewCredentialsForAccount:account completion:^(ACAccountCredentialRenewResult renewResult, NSError *error) {
+        if (renewResult == ACAccountCredentialRenewResultRenewed) {
+            if (completion != NULL) completion([self facebookAccount], error);
+        } else if (completion != NULL) {
+            completion(nil, error);
+        }
+    }];
+}
+
+- (ACAccount *)facebookAccount {
+    NSArray *accounts = [self accountsWithAccountType:[self accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook]];
+    NSAssert([accounts count] > 0, @"At least one Facebook account should exist!");
+    return [accounts lastObject];
 }
 
 @end

@@ -8,9 +8,12 @@
 
 @import Accounts;
 
+typedef void(^DVSAccountStoreBlock)(ACAccount *account, NSError *error);
+
 @interface DVSAccountStore : ACAccountStore
 
 - (instancetype)initWithACAccountTypeIdentifier:(NSString *)accountTypeIdentifier appIDkey:(NSString *)appIDkey permissions:(NSArray *)permissions;
-- (void)requestAccessWithCompletion:(ACAccountStoreRequestAccessCompletionHandler)completion;
+- (void)requestAccessWithCompletion:(DVSAccountStoreBlock)completion;
+- (void)refreshTokenForAccount:(ACAccount *)account completion:(DVSAccountStoreBlock)completion;
 
 @end

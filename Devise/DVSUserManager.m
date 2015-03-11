@@ -82,7 +82,7 @@
 #pragma mark - Signing via Facebook
 
 - (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self.facebookSignInHelper obtainLoginParametersWithAppID:self.httpClient.configuration.facebookAppID completion:^(BOOL obtained, NSDictionary *parameters, NSError *error) {
+    [self.facebookSignInHelper signInUsingFacebookWithAppID:self.httpClient.configuration.facebookAppID completion:^(BOOL obtained, NSDictionary *parameters, NSError *error) {
         if (obtained) {
             [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:parameters success:success failure:failure];
         } else if (failure != NULL) {
