@@ -169,9 +169,14 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 }
 
 - (void)handleSignInWithFacebookError:(NSError *)error {
-    UIAlertView *errorAlert = [UIAlertView dvs_alertViewForError:error
-                                    statusDescriptionsDictionary:@{ @0: NSLocalizedString(@"Facebook login failed. Setup your Facebook account in the system settings and try again.", nil) }];
-    [errorAlert show];
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Facebook login failed.", nil)
+                                                         message:NSLocalizedString(@"Setup your Facebook account in the system settings and try again.", nil)
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [errorAlert show];
+    });
 }
 
 - (void)handleSignInWithGoogleError:(NSError *)error {
