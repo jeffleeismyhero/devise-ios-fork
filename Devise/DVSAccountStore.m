@@ -42,7 +42,9 @@
     
     [self requestAccessToAccountsWithType:[self accountTypeWithAccountTypeIdentifier:self.accountTypeIdentifier] options:options completion:^(BOOL granted, NSError *error) {
         if (granted) {
-            if (completion != NULL) completion([self facebookAccount], error);
+            [self refreshTokenForAccount:[self facebookAccount] completion:^(ACAccount *account, NSError *error) {
+                if (completion != NULL) completion(account, error);
+            }];
         } else if (completion != NULL) completion(nil, error);
     }];
 }

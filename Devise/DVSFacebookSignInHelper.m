@@ -18,7 +18,7 @@
     DVSAccountStore *store = [[DVSAccountStore alloc] initWithACAccountTypeIdentifier:ACAccountTypeIdentifierFacebook appIDkey:facebookAppID permissions:@[@"email"]];
     [store requestAccessWithCompletion:^(ACAccount *account, NSError *error) {
         if (account) {
-            [self refreshTokenWithAccountStore:store account:account completion:completion];
+            [self makeRequestWithAccount:account completion:completion];
         } else if (completion != NULL) {
             completion(NO, nil, error);
         }
@@ -26,16 +26,6 @@
 }
 
 #pragma mark - Private methods
-
-- (void)refreshTokenWithAccountStore:(DVSAccountStore *)accountStore account:(ACAccount *)account completion:(DVSFacebookParametersBlock)completion {
-    [accountStore refreshTokenForAccount:account completion:^(ACAccount *account, NSError *error) {
-        if (account) {
-            [self makeRequestWithAccount:account completion:completion];
-        } else if (completion != NULL) {
-            completion(NO, nil, error);
-        }
-    }];
-}
 
 - (void)makeRequestWithAccount:(ACAccount *)account completion:(DVSFacebookParametersBlock)completion {
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook

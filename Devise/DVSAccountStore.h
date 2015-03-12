@@ -14,6 +14,5 @@ typedef void(^DVSAccountStoreBlock)(ACAccount *account, NSError *error);
 
 - (instancetype)initWithACAccountTypeIdentifier:(NSString *)accountTypeIdentifier appIDkey:(NSString *)appIDkey permissions:(NSArray *)permissions;
 - (void)requestAccessWithCompletion:(DVSAccountStoreBlock)completion;
-- (void)refreshTokenForAccount:(ACAccount *)account completion:(DVSAccountStoreBlock)completion;
 
 @end
