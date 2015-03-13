@@ -1,5 +1,5 @@
 //
-//  DVSFacebookSignInHelper.h
+//  DVSFacebookAuthenticator.h
 //  Devise
 //
 //  Created by Pawel Bialecki on 09.03.2015.
@@ -10,7 +10,7 @@
 
 typedef void (^DVSFacebookParametersBlock)(NSDictionary *parameters, NSError *error);
 
-@interface DVSFacebookSignInHelper : NSObject
+@interface DVSFacebookAuthenticator : NSObject
 
 - (void)signInUsingFacebookWithAppID:(NSString *)facebookAppID completion:(DVSFacebookParametersBlock)completion;
 

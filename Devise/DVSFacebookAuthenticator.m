@@ -1,5 +1,5 @@
 //
-//  DVSFacebookSignInHelper.m
+//  DVSFacebookAuthenticator.m
 //  Devise
 //
 //  Created by Pawel Bialecki on 09.03.2015.
@@ -8,11 +8,11 @@
 
 @import Accounts;
 @import Social;
-#import "DVSFacebookSignInHelper.h"
+#import "DVSFacebookAuthenticator.h"
 #import "DVSOAuthJSONParameters.h"
 #import "DVSFacebookAccountStore.h"
 
-@implementation DVSFacebookSignInHelper
+@implementation DVSFacebookAuthenticator
 
 - (void)signInUsingFacebookWithAppID:(NSString *)facebookAppID completion:(DVSFacebookParametersBlock)completion {
     

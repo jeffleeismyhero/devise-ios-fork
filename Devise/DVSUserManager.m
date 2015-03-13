@@ -13,12 +13,12 @@
 #import "DVSUserPersistenceManager.h"
 #import "DVSOAuthJSONParameters.h"
 #import "DVSGooglePlusAuthenticator.h"
-#import "DVSFacebookSignInHelper.h"
+#import "DVSFacebookAuthenticator.h"
 
 @interface DVSUserManager ()
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
-@property (strong, nonatomic) DVSFacebookSignInHelper *facebookSignInHelper;
+@property (strong, nonatomic) DVSFacebookAuthenticator *facebookAuthenticator;
 
 @end
 
@@ -33,7 +33,7 @@
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration {
     if (self = [super init]) {
         self.user = user;
-        self.facebookSignInHelper = [[DVSFacebookSignInHelper alloc] init];
+        self.facebookAuthenticator = [[DVSFacebookAuthenticator alloc] init];
         self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
     }
     return self;
@@ -82,7 +82,7 @@
 #pragma mark - Signing via Facebook
 
 - (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self.facebookSignInHelper signInUsingFacebookWithAppID:self.httpClient.configuration.facebookAppID completion:^(NSDictionary *parameters, NSError *error) {
+    [self.facebookAuthenticator signInUsingFacebookWithAppID:self.httpClient.configuration.facebookAppID completion:^(NSDictionary *parameters, NSError *error) {
         if (parameters) {
             [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:parameters success:success failure:failure];
         } else if (failure != NULL) {
