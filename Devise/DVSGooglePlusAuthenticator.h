@@ -20,7 +20,16 @@
 
 - (instancetype)initWithClientID:(NSString *)clientID;
 
+/**
+ *  Authenticate user with Google client ID. Shared instance of GPSignIn object will be used
+ *  @param clientID Application's client ID
+ */
 - (void)authenticateWithGoogleClientID:(NSString *)clientID success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+
+/**
+ *  Authenticate user with provided GPPSignIn object. This method is meant to be used together with - (instancetype)initWithClientID:(NSString *)clientID, otherwise the client ID is unknown and authentication will fail.
+ *  @param signIn GPPSignIn instance.
+ */
 - (void)authenticateWithSignIn:(GPPSignIn *)signIn success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 @end

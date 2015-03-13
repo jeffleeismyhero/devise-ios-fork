@@ -15,6 +15,13 @@ typedef NS_ENUM(NSUInteger, DVSOAuthProvider) {
 
 @interface DVSOAuthJSONParameters : NSObject
 
+
+/**
+ *  Builds authorization parameters
+ *  @param provider     Type of provider for which you would like to get authorization parameters
+ *  @param oAuthToken   The authorization token
+ *  @param userID       The user ID to use
+ */
 + (NSDictionary *)dictionaryForParametersWithProvider:(DVSOAuthProvider)provider oAuthToken:(NSString *)oAuthToken userID:(NSString *)userID userEmail:(NSString *)email;
 
 @end

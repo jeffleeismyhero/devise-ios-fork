@@ -13,6 +13,10 @@ typedef void(^DVSAccountStoreBlock)(ACAccount *account, NSError *error);
 @interface DVSFacebookAccountStore : ACAccountStore
 
 - (instancetype)initWithAppIDkey:(NSString *)appIDKey permissions:(NSArray *)permissions;
+
+/**
+ * Request access to facebook account configured on the device
+ */
 - (void)requestAccessWithCompletion:(DVSAccountStoreBlock)completion;
 
 @end
