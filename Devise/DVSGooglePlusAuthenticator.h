@@ -1,5 +1,5 @@
 //
-//  DVSGooglePlusSignInHelper.h
+//  DVSGooglePlusAuthenticator.h
 //  Devise
 //
 //  Created by Pawel Bialecki on 09.03.2015.
@@ -12,9 +12,9 @@
 #import "DVSTypedefs.h"
 
 /**
- *  DVSGooglePlusSignInHelper uses GPPSignIn under the hood and it needs Google+ SDK to work.
+ *  DVSGooglePlusAuthenticator uses GPPSignIn under the hood and it needs Google+ SDK to work.
  */
-@interface DVSGooglePlusSignInHelper : NSObject
+@interface DVSGooglePlusAuthenticator : NSObject
 
 @property (strong, nonatomic) GPPSignIn *signIn;
 

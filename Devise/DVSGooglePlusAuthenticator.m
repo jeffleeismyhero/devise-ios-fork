@@ -1,17 +1,17 @@
 //
-//  DVSGooglePlusSignInHelper.m
+//  DVSGooglePlusAuthenticator.m
 //  Devise
 //
 //  Created by Pawel Bialecki on 09.03.2015.
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSGooglePlusSignInHelper.h"
+#import "DVSGooglePlusAuthenticator.h"
 #import "DVSOAuthJSONParameters.h"
 #import "DVSUserManager.h"
 #import "DVSHTTPClient+User.h"
 
-@interface DVSGooglePlusSignInHelper () <GPPSignInDelegate>
+@interface DVSGooglePlusAuthenticator () <GPPSignInDelegate>
 
 @property (copy, nonatomic) DVSVoidBlock success;
 @property (copy, nonatomic) DVSErrorBlock failure;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation DVSGooglePlusSignInHelper
+@implementation DVSGooglePlusAuthenticator
 
 - (instancetype)initWithClientID:(NSString *)clientID {
     self = [super init];

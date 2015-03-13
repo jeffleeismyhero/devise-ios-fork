@@ -12,7 +12,7 @@
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceManager.h"
 #import "DVSOAuthJSONParameters.h"
-#import "DVSGooglePlusSignInHelper.h"
+#import "DVSGooglePlusAuthenticator.h"
 #import "DVSFacebookSignInHelper.h"
 
 @interface DVSUserManager ()
@@ -95,17 +95,17 @@
 
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSString *clientID = self.httpClient.configuration.googleClientID;
-    DVSGooglePlusSignInHelper *googlePlusHelper = [[DVSGooglePlusSignInHelper alloc] initWithClientID:clientID];
+    DVSGooglePlusAuthenticator *googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] initWithClientID:clientID];
     
-    if (!self.googlePlusSignInHelper) {
-        self.googlePlusSignInHelper = googlePlusHelper;
+    if (!self.googlePlusAuthenticator) {
+        self.googlePlusAuthenticator = googlePlusAuthenticator;
         
         __weak typeof(self) weakSelf = self;
-        [googlePlusHelper authenticateWithSignIn:[GPPSignIn sharedInstance] success:^{
-            weakSelf.googlePlusSignInHelper = nil;
+        [googlePlusAuthenticator authenticateWithSignIn:[GPPSignIn sharedInstance] success:^{
+            weakSelf.googlePlusAuthenticator = nil;
             if (success != NULL) success();
         } failure:^(NSError *error) {
-            weakSelf.googlePlusSignInHelper = nil;
+            weakSelf.googlePlusAuthenticator = nil;
             if (failure != NULL) failure(error);
         }];
     }
@@ -132,7 +132,7 @@
 #pragma mark - Handle callback
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [self.googlePlusSignInHelper.signIn handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    return [self.googlePlusAuthenticator.signIn handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 #pragma mark - Delete account
