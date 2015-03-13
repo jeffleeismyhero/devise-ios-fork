@@ -25,7 +25,6 @@
     [[DVSConfiguration sharedConfiguration] setServerURL:[NSURL URLWithString:urlString]];
     [[DVSConfiguration sharedConfiguration] setApiVersion:0];
     [[DVSConfiguration sharedConfiguration] setLoggingMode:DVSLoggingModeWarning];
-    [[DVSConfiguration sharedConfiguration] setShowsNetworkActivityIndicator:YES];
     
     return YES;
 }
