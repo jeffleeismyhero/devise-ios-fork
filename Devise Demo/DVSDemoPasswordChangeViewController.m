@@ -9,7 +9,6 @@
 #import "DVSDemoPasswordChangeViewController.h"
 #import <Devise/Devise.h>
 
-#import "DVSDemoUserDataSource.h"
 #import "NSError+DeviseDemo.h"
 #import "UIAlertView+DeviseDemo.h"
 #import "DVSUserManager.h"
@@ -22,8 +21,6 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
 
 @interface DVSDemoPasswordChangeViewController () <UIAlertViewDelegate>
 
-@property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
-
 @end
 
 @implementation DVSDemoPasswordChangeViewController
@@ -32,8 +29,6 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.userDataSource = [DVSDemoUserDataSource new];
     
     [self addFormWithTitleToDataSource:NSLocalizedString(DVSTitleForCurrentPassword, nil)
                     accessibilityLabel:DVSAccessibilityLabel(@"Current password field")

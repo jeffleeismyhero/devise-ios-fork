@@ -10,7 +10,6 @@
 #import <Devise/Devise.h>
 
 #import "UIAlertView+DeviseDemo.h"
-#import "DVSDemoUserDataSource.h"
 #import "DVSUserManager.h"
 #import "DVSUserPersistenceManager.h"
 
@@ -18,8 +17,6 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 static NSString * const DVSTitleForEmail = @"E-mail address";
 
 @interface DVSDemoProfileEditorViewController () <UIAlertViewDelegate>
-
-@property (strong, nonatomic) DVSDemoUserDataSource *userDataSource;
 
 @end
 
@@ -29,8 +26,6 @@ static NSString * const DVSTitleForEmail = @"E-mail address";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.userDataSource = [DVSDemoUserDataSource new];
     
     NSString *emailTitle = NSLocalizedString(DVSTitleForEmail, nil);
     [self addFormWithTitleToDataSource:emailTitle

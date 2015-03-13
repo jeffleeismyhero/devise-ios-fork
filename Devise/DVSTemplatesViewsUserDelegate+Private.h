@@ -10,6 +10,6 @@
 
 #import "DVSUserManager.h"
 
-@interface DVSTemplatesViewsUserDataSource : NSObject <DVSUserManagerDataSource>
+@interface DVSTemplatesViewsUserDelegate : NSObject <DVSUserManagerDelegate>
 
 @end

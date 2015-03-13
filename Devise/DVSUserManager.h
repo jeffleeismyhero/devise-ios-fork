@@ -15,7 +15,6 @@
 #import "DVSGooglePlusAuthenticator.h"
 
 @protocol DVSUserManagerDelegate;
-@protocol DVSUserManagerDataSource;
 
 @interface DVSUserManager : NSObject
 
@@ -24,7 +23,6 @@
 @property (strong, nonatomic) DVSGooglePlusAuthenticator *googlePlusAuthenticator;
 @property (strong, nonatomic, readonly) DVSUserJSONSerializer *serializer;
 @property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
-@property (weak, nonatomic) id<DVSUserManagerDataSource> dataSource;
 
 /**
  *  The HTTP client used by the model for networking purposes.
@@ -94,12 +92,5 @@
 
 @optional
 - (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action;
-
-@end
-
-@protocol DVSUserManagerDataSource <NSObject>
-
-@optional
-- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action defaultRules:(NSArray *)defaultRules;
 
 @end

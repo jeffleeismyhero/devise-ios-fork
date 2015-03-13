@@ -10,7 +10,7 @@
 #import "DVSAccessibilityLabels.h"
 #import "DVSBarButtonItem+Private.h"
 #import "DVSFieldsUtils+Private.h"
-#import "DVSTemplatesViewsUserDataSource+Private.h"
+#import "DVSTemplatesViewsUserDelegate+Private.h"
 #import "DVSPasswordReminderFormViewController+Private.h"
 #import "DVSLoginSignUpFormViewController+Private.h"
 #import "UIViewController+Devise.h"
@@ -22,7 +22,7 @@
 
 @property (assign, nonatomic) DVSRetrieverType controllerType;
 @property (strong, nonatomic) DVSLoginSignUpFormViewController *formViewController;
-@property (strong, nonatomic) DVSTemplatesViewsUserDataSource *userDataSource;
+@property (strong, nonatomic) DVSTemplatesViewsUserDelegate *userDelegate;
 
 @end
 
@@ -42,8 +42,8 @@
 
 - (void)setupWithFieldsOptions:(DVSAccountRetrieverFields)fields forType:(DVSRetrieverType)type {
     self.controllerType = type;
-    self.userDataSource = [DVSTemplatesViewsUserDataSource new];
-    [DVSUserManager defaultManager].dataSource = self.userDataSource;
+    self.userDelegate = [DVSTemplatesViewsUserDelegate new];
+    [DVSUserManager defaultManager].delegate = self.userDelegate;
     
     [self setupFormViewControllerForFieldsOptions:fields];
     [self setupNavigationItemsForFieldsOptions:fields];

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSTemplatesViewsUserDataSource+Private.h"
+#import "DVSTemplatesViewsUserDelegate+Private.h"
 #import "NGRValidator.h"
 
 static NSString * const DVSUserPasswordParameter = @"password";
@@ -14,13 +14,13 @@ static NSString * const DVSUserEmailParameter = @"email";
 
 static NSUInteger const DVSUserPasswordMinLength = 5;
 
-@implementation DVSTemplatesViewsUserDataSource
+@implementation DVSTemplatesViewsUserDelegate
 
 #pragma mark - Validation for actions
 
-- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action defaultRules:(NSArray *)defaultRules {
-    
-    for (NGRPropertyValidator *validator in defaultRules) {
+- (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action {
+
+    for (NGRPropertyValidator *validator in validationRules) {
         if ([validator.property isEqualToString:DVSUserEmailParameter]) {
             validator.localizedName(@"E-mail");
             
@@ -42,7 +42,6 @@ static NSUInteger const DVSUserPasswordMinLength = 5;
             }
         }
     }
-    return nil;
 }
 
 @end

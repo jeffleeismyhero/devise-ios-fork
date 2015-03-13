@@ -158,10 +158,6 @@
         
         NSMutableArray *currentValidationRules = [NSMutableArray arrayWithArray:rules];
         
-        if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalValidationRulesForAction:defaultRules:)]) {
-            currentValidationRules = [NSMutableArray arrayWithArray:[currentValidationRules arrayByAddingObjectsFromArray:[self.dataSource additionalValidationRulesForAction:action defaultRules:rules]]];
-        }
-        
         if (self.delegate && [self.delegate respondsToSelector:@selector(userManager:didPrepareValidationRules:forAction:)]) {
             [self.delegate userManager:self didPrepareValidationRules:currentValidationRules forAction:action];
         }
