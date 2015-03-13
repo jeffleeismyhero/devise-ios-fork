@@ -74,11 +74,4 @@
     return [[self.serverURL URLByAppendingPathComponent:versionPath] URLByAppendingPathComponent:self.resourceName];
 }
 
-- (void)setShowsNetworkActivityIndicator:(BOOL)shows {
-    if (_showsNetworkActivityIndicator != shows) {
-        [AFNetworkActivityIndicatorManager sharedManager].enabled = shows;
-        _showsNetworkActivityIndicator = shows;
-    }
-}
-
 @end

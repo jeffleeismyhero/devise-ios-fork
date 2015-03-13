@@ -83,11 +83,6 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (assign, nonatomic) NSTimeInterval retryThresholdDuration;
 
 /**
- *  Whether the network activity indicator should be visible (default: NO).
- */
-@property (assign, nonatomic) BOOL showsNetworkActivityIndicator;
-
-/**
  *  Whether the JSON root is included in the server response (default: YES).
  */
 @property (assign, nonatomic) BOOL rootJSONInResponse;
