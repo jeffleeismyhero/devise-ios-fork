@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^DVSFacebookParametersBlock)(BOOL obtained, NSDictionary *parameters, NSError *error);
+typedef void (^DVSFacebookParametersBlock)(NSDictionary *parameters, NSError *error);
 
 @interface DVSFacebookSignInHelper : NSObject
 

@@ -117,8 +117,8 @@
 		E3CA30031AADA5A000890305 /* DVSGooglePlusSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30011AADA5A000890305 /* DVSGooglePlusSignInHelper.m */; };
 		E3CA30061AADC10E00890305 /* DVSFacebookSignInHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30041AADC10E00890305 /* DVSFacebookSignInHelper.h */; };
 		E3CA30071AADC10E00890305 /* DVSFacebookSignInHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30051AADC10E00890305 /* DVSFacebookSignInHelper.m */; };
-		E3CA300A1AADF5BE00890305 /* DVSAccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30081AADF5BE00890305 /* DVSAccountStore.h */; };
-		E3CA300B1AADF5BE00890305 /* DVSAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30091AADF5BE00890305 /* DVSAccountStore.m */; };
+		E3CA300A1AADF5BE00890305 /* DVSFacebookAccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = E3CA30081AADF5BE00890305 /* DVSFacebookAccountStore.h */; };
+		E3CA300B1AADF5BE00890305 /* DVSFacebookAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E3CA30091AADF5BE00890305 /* DVSFacebookAccountStore.m */; };
 		F94B3B7915F24D73DF3A530C /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB28F46FBA4BD2E641B4FE99 /* libPods-Demo.a */; };
 /* End PBXBuildFile section */
 
@@ -323,8 +323,8 @@
 		E3CA30011AADA5A000890305 /* DVSGooglePlusSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSGooglePlusSignInHelper.m; sourceTree = "<group>"; };
 		E3CA30041AADC10E00890305 /* DVSFacebookSignInHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFacebookSignInHelper.h; sourceTree = "<group>"; };
 		E3CA30051AADC10E00890305 /* DVSFacebookSignInHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFacebookSignInHelper.m; sourceTree = "<group>"; };
-		E3CA30081AADF5BE00890305 /* DVSAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSAccountStore.h; sourceTree = "<group>"; };
-		E3CA30091AADF5BE00890305 /* DVSAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSAccountStore.m; sourceTree = "<group>"; };
+		E3CA30081AADF5BE00890305 /* DVSFacebookAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSFacebookAccountStore.h; sourceTree = "<group>"; };
+		E3CA30091AADF5BE00890305 /* DVSFacebookAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFacebookAccountStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,8 +547,8 @@
 				21B4BA6E1A8B8AD2000E3E9A /* DVSUserManager.m */,
 				2152B52D1A8DF43300F24A06 /* DVSUserPersistenceManager.h */,
 				2152B52E1A8DF43300F24A06 /* DVSUserPersistenceManager.m */,
-				E3CA30081AADF5BE00890305 /* DVSAccountStore.h */,
-				E3CA30091AADF5BE00890305 /* DVSAccountStore.m */,
+				E3CA30081AADF5BE00890305 /* DVSFacebookAccountStore.h */,
+				E3CA30091AADF5BE00890305 /* DVSFacebookAccountStore.m */,
 				E3CA30041AADC10E00890305 /* DVSFacebookSignInHelper.h */,
 				E3CA30051AADC10E00890305 /* DVSFacebookSignInHelper.m */,
 				E3CA30001AADA5A000890305 /* DVSGooglePlusSignInHelper.h */,
@@ -948,7 +948,7 @@
 				218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
 				21B3ECAB1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.h in Headers */,
-				E3CA300A1AADF5BE00890305 /* DVSAccountStore.h in Headers */,
+				E3CA300A1AADF5BE00890305 /* DVSFacebookAccountStore.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
 				21B3ECB21A52D32100C8C620 /* UIViewController+Devise.h in Headers */,
 				3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */,
@@ -1073,7 +1073,7 @@
 					};
 					3AA8B35D1A24DA0000166927 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 9HJ69C5G9K;
+						DevelopmentTeam = SK8PDF7SG9;
 					};
 					3AA8B3681A24DA0000166927 = {
 						CreatedOnToolsVersion = 6.1;
@@ -1364,7 +1364,7 @@
 				5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */,
 				21B3ECBC1A59CC1400C8C620 /* DVSAccountRetrieverViewController.m in Sources */,
 				5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */,
-				E3CA300B1AADF5BE00890305 /* DVSAccountStore.m in Sources */,
+				E3CA300B1AADF5BE00890305 /* DVSFacebookAccountStore.m in Sources */,
 				219EB2441A8CB6BA00F7BCFA /* DVSUserJSONSerializer.m in Sources */,
 				21AFB8011A48C31100769C87 /* DVSTemplatesViewsUserDataSource+Private.m in Sources */,
 				E3CA30031AADA5A000890305 /* DVSGooglePlusSignInHelper.m in Sources */,
@@ -1635,7 +1635,7 @@
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -30,10 +30,12 @@
             break;
     }
     
-    NSDictionary *parameters = @{ @"provider" : providerName,
-                                  @"oauth_token" : oAuthToken,
-                                  @"uid" : userID,
-                                  @"email" : email };
+    NSDictionary *parameters = @{
+         @"provider" : providerName,
+         @"oauth_token" : oAuthToken,
+         @"uid" : userID,
+         @"email" : email
+    };
     
     return @{@"user" : parameters};
 }

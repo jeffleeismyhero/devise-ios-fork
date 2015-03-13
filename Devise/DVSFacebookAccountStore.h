@@ -10,9 +10,9 @@
 
 typedef void(^DVSAccountStoreBlock)(ACAccount *account, NSError *error);
 
-@interface DVSAccountStore : ACAccountStore
+@interface DVSFacebookAccountStore : ACAccountStore
 
-- (instancetype)initWithACAccountTypeIdentifier:(NSString *)accountTypeIdentifier appIDkey:(NSString *)appIDkey permissions:(NSArray *)permissions;
+- (instancetype)initWithAppIDkey:(NSString *)appIDKey permissions:(NSArray *)permissions;
 - (void)requestAccessWithCompletion:(DVSAccountStoreBlock)completion;
 
 @end

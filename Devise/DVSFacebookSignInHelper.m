@@ -10,17 +10,20 @@
 @import Social;
 #import "DVSFacebookSignInHelper.h"
 #import "DVSOAuthJSONParameters.h"
-#import "DVSAccountStore.h"
+#import "DVSFacebookAccountStore.h"
 
 @implementation DVSFacebookSignInHelper
 
 - (void)signInUsingFacebookWithAppID:(NSString *)facebookAppID completion:(DVSFacebookParametersBlock)completion {
-    DVSAccountStore *store = [[DVSAccountStore alloc] initWithACAccountTypeIdentifier:ACAccountTypeIdentifierFacebook appIDkey:facebookAppID permissions:@[@"email"]];
+    
+    if (completion == NULL) return;
+    
+    DVSFacebookAccountStore *store = [[DVSFacebookAccountStore alloc] initWithAppIDkey:facebookAppID permissions:@[@"email"]];
     [store requestAccessWithCompletion:^(ACAccount *account, NSError *error) {
         if (account) {
             [self makeRequestWithAccount:account completion:completion];
-        } else if (completion != NULL) {
-            completion(NO, nil, error);
+        } else {
+            completion(nil, error);
         }
     }];
 }
@@ -28,6 +31,9 @@
 #pragma mark - Private methods
 
 - (void)makeRequestWithAccount:(ACAccount *)account completion:(DVSFacebookParametersBlock)completion {
+    
+    if (completion == NULL) return;
+    
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
                                             requestMethod:SLRequestMethodGET
                                                       URL:[NSURL URLWithString:@"https://graph.facebook.com/me"]
@@ -35,26 +41,30 @@
     request.account = account;
     
     [request performRequestWithHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (!error) {
+        if (error) {
+            completion(nil, error);
+        } else {
             [self checkResponse:response data:data oAuthToken:account.credential.oauthToken completion:completion];
-        } else if (completion != NULL) {
-            completion(NO, nil, error);
         }
     }];
 }
 
 - (void)checkResponse:(NSURLResponse *)response data:(NSData *)data oAuthToken:(NSString *)oAuthToken completion:(DVSFacebookParametersBlock)completion {
+    
+    if (completion == NULL) return;
+    
     if ([self isResponseValid:response]) {
         NSError *deserializationError;
         id userData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&deserializationError];
+        
         if (deserializationError) {
-            if (completion != NULL) completion(NO, nil, deserializationError);
+            completion(nil, deserializationError);
         } else {
             NSDictionary *parameters = [self parametersFromUserData:userData oAuthToken:oAuthToken];
-            if (completion != NULL) completion(YES, parameters, nil);
+            completion(parameters, nil);
         }
-    } else if (completion != NULL) {
-        completion(NO, nil, [NSError errorWithDomain:NSURLErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Facebook response is not valid!"}]);
+    } else {
+        completion(nil, [NSError errorWithDomain:NSURLErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Facebook response is not valid!"}]);
     }
 }
 
