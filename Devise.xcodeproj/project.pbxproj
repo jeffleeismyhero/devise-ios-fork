@@ -103,6 +103,8 @@
 		5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EF381D21A2756BB006875D4 /* NSURL+Devise+Private.h */; };
 		5EF381D51A2756BB006875D4 /* NSURL+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */; };
 		9E97A5606CB024128C71793A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 091C5A854A6B0D1BE46E5AE1 /* libPods.a */; };
+		BF527C231AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF527C221AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m */; };
+		BF527C261AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF527C251AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m */; };
 		BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */; };
 		BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */; };
 		BF7761C61AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */; };
@@ -306,6 +308,9 @@
 		5EF381D31A2756BB006875D4 /* NSURL+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Devise+Private.m"; sourceTree = "<group>"; };
 		734CDB309091D9968496393A /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB28F46FBA4BD2E641B4FE99 /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF527C221AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSGooglePlusAuthenticatorSpec.m; sourceTree = "<group>"; };
+		BF527C241AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestGooglePlusAuthenticator.h; sourceTree = "<group>"; };
+		BF527C251AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestGooglePlusAuthenticator.m; sourceTree = "<group>"; };
 		BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserPersistenceManagerSpec.m; sourceTree = "<group>"; };
 		BF7761C21AA898D0006DBE6B /* DVSTestUserPersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserPersistenceManager.h; sourceTree = "<group>"; };
 		BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserPersistenceManager.m; sourceTree = "<group>"; };
@@ -559,8 +564,6 @@
 			children = (
 				5E7A9A2F1A3EFEFA0077DC43 /* DVSDemoUser.h */,
 				5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */,
-				21B1AAB61A3B2BF600578DF7 /* DVSDemoUserDataSource.h */,
-				21B1AAB71A3B2BF600578DF7 /* DVSDemoUserDataSource.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -587,6 +590,8 @@
 				BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */,
 				BF7761C71AA8A61A006DBE6B /* DVSTestUserJSONSerializer.h */,
 				BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */,
+				BF527C241AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.h */,
+				BF527C251AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m */,
 			);
 			name = "Test Classes";
 			sourceTree = "<group>";
@@ -757,6 +762,7 @@
 				E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */,
 				BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */,
 				BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */,
+				BF527C221AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m */,
 			);
 			path = "Devise Tests";
 			sourceTree = "<group>";
@@ -1390,6 +1396,7 @@
 				E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */,
 				3A4EE5AF1A40C96500A068E2 /* DVSConfigurationSpec.m in Sources */,
 				3A4EE5AC1A40C93500A068E2 /* DVSHTTPClientSpec.m in Sources */,
+				BF527C231AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m in Sources */,
 				3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */,
 				BF7761C61AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m in Sources */,
 				BF7761C91AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m in Sources */,
@@ -1397,6 +1404,7 @@
 				BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m in Sources */,
 				3AA57B6E1A41851800C54B36 /* DVSUserSpec.m in Sources */,
 				3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */,
+				BF527C261AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m in Sources */,
 				BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1410,7 +1418,6 @@
 				2151996D1A499B5C00EF5F80 /* DVSFormRowCell+Model.m in Sources */,
 				3AA22E601A25361200FE04D1 /* Devise-Demo-Main.m in Sources */,
 				3AA22E5B1A25353B00FE04D1 /* DVSDemoProfileEditorViewController.m in Sources */,
-				21B1AAB81A3B2BF600578DF7 /* DVSDemoUserDataSource.m in Sources */,
 				5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */,
 				3AA22E581A25353B00FE04D1 /* DVSDemoHomeViewController.m in Sources */,
 				21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */,
