@@ -31,9 +31,10 @@ describe(@"DVSFacebookAuthenticator", ^{
     context(@"succesful access request", ^{
         
         beforeEach(^{
-            DVSFacebookAccountStore *facStore = [[DVSFacebookAccountStore alloc] init];
-            ACAccountType *accountType = [facStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-            ACAccount *account = [[facStore accountsWithAccountType:accountType] lastObject];
+            DVSFacebookAccountStore *facebookAccountStore = [[DVSFacebookAccountStore alloc] init];
+            ACAccountType *accountType = [facebookAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+            ACAccount *account = [[ACAccount alloc] initWithAccountType:accountType];
+            
             [DVSFacebookAccountStore stub:@selector(accountForRequestAccess) andReturn:account];
         });
         
