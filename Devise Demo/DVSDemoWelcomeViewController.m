@@ -170,7 +170,7 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
 
 - (void)handleSignInWithFacebookError:(NSError *)error {
     UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Facebook login failed.", nil)
-                                                         message:NSLocalizedString(@"Setup your Facebook account in the system settings and try again.", nil)
+                                                         message:[error localizedDescription]
                                                         delegate:nil
                                                cancelButtonTitle:@"OK"
                                                otherButtonTitles:nil];
