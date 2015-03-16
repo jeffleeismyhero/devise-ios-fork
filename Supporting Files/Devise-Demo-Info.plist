@@ -30,10 +30,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>co.netguru.lib.devise.demo</string>
+			<string>$(BUNDLE_ID)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>co.netguru.lib.devise.demo</string>
+				<string>$(BUNDLE_ID)</string>
 			</array>
 		</dict>
 	</array>
