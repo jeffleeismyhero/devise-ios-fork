@@ -34,15 +34,15 @@ describe(@"DVSUserPersistence", ^{
         
         beforeEach(^{
             
-            identifier = @"!d3nT!fi3R";
+            identifier = @"Fixture Identifier";
             email = @"example@address.org";
-            sessionToken = @"t0k3n";
-            name = @"example_name";
+            sessionToken = @"Fixture Token";
+            name = @"Fixture Name";
             
             testUser = [[DVSTestUser alloc] init];
             testUser.identifier = identifier;
             testUser.email = email;
-            testUser.password = @"s3cR3t";
+            testUser.password = @"Fixture password";
             testUser.sessionToken = sessionToken;
             testUser.name = name;
             

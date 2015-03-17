@@ -18,7 +18,7 @@ SPEC_BEGIN(DVSGooglePlusAuthenticatorSpec)
 
 describe(@"DVSGooglePlusAuthenticator", ^{
 
-    __block NSString *clientID = @"f4k3cL!3nT!d";
+    NSString *clientID = @"Fixture Client ID";
     __block DVSTestGooglePlusAuthenticator *authenticator;
     
     context(@"when initilized", ^{
@@ -100,7 +100,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
                         [person stub:@selector(identifier) andReturn:anything()];
                         
                         [googlePlusService stub:@selector(executeQuery:completionHandler:) withBlock:^id(NSArray *params) {
-                            void(^completion)(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) = (id)params[1];
+                            void(^completion)(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) = params[1];
                             
                             completion(ticket, person, nil);
                             
@@ -110,7 +110,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
                         DVSHTTPClient *httpClient = [DVSUserManager defaultManager].httpClient;
                         [httpClient stub:@selector(signInUsingGoogleUser:parameters:success:failure:) withBlock:^id(NSArray *params) {
                             
-                            DVSVoidBlock successBlock = (id)params[2];
+                            DVSVoidBlock successBlock = params[2];
                             successBlock();
                             return nil;
                             
@@ -133,7 +133,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
                         generatedError = [NSError mock];
                         
                         [googlePlusService stub:@selector(executeQuery:completionHandler:) withBlock:^id(NSArray *params) {
-                            void(^completion)(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) = (id)params[1];
+                            void(^completion)(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) = params[1];
                             
                             completion(nil, nil, generatedError);
                             
@@ -266,7 +266,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
                     [person stub:@selector(identifier) andReturn:anything()];
                     
                     [googlePlusService stub:@selector(executeQuery:completionHandler:) withBlock:^id(NSArray *params) {
-                        void(^completion)(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) = (id)params[1];
+                        void(^completion)(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) = params[1];
                         
                         completion(ticket, person, nil);
                         
@@ -276,7 +276,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
                     DVSHTTPClient *httpClient = [DVSUserManager defaultManager].httpClient;
                     [httpClient stub:@selector(signInUsingGoogleUser:parameters:success:failure:) withBlock:^id(NSArray *params) {
                         
-                        DVSVoidBlock successBlock = (id)params[2];
+                        DVSVoidBlock successBlock = params[2];
                         successBlock();
                         return nil;
                         
@@ -299,7 +299,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
                     generatedError = [NSError mock];
                     
                     [googlePlusService stub:@selector(executeQuery:completionHandler:) withBlock:^id(NSArray *params) {
-                        void(^completion)(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) = (id)params[1];
+                        void(^completion)(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) = params[1];
                         
                         completion(nil, nil, generatedError);
                         

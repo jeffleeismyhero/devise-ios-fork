@@ -21,8 +21,8 @@ describe(@"DVSFacebookAccountStore", ^{
         __block NSArray *permissions = nil;
         
         beforeEach(^{
-            appIDKey = @"@pp!dk3y";
-            permissions = @[@"email"];
+            appIDKey = @"Fixture App ID";
+            permissions = @[@"Fixture Permission"];
             facebookAccountStore = [[DVSTestFacebookAccountStore alloc] initWithAppIDkey:appIDKey permissions:permissions];
             
             ACAccountType *accountType = [facebookAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
@@ -58,7 +58,7 @@ describe(@"DVSFacebookAccountStore", ^{
                 
                 beforeEach(^{
                     [facebookAccountStore stub:@selector(requestAccessToAccountsWithType:options:completion:) withBlock:^id(NSArray *params) {
-                        void(^completionHandler)(BOOL granted, NSError *error) = (id)params[2];
+                        void(^completionHandler)(BOOL granted, NSError *error) = params[2];
                         completionHandler(YES, nil);
                         return nil;
                     }];
@@ -68,7 +68,7 @@ describe(@"DVSFacebookAccountStore", ^{
                     
                     beforeEach(^{
                         [facebookAccountStore stub:@selector(renewCredentialsForAccount:completion:) withBlock:^id(NSArray *params) {
-                            ACAccountStoreCredentialRenewalHandler completionHandler = (id)params[1];
+                            ACAccountStoreCredentialRenewalHandler completionHandler = params[1];
                             completionHandler(ACAccountCredentialRenewResultRenewed, nil);
                             return nil;
                         }];
@@ -102,7 +102,7 @@ describe(@"DVSFacebookAccountStore", ^{
                         generatedError = [NSError mock];
                         
                         [facebookAccountStore stub:@selector(renewCredentialsForAccount:completion:) withBlock:^id(NSArray *params) {
-                            ACAccountStoreCredentialRenewalHandler completionHandler = (id)params[1];
+                            ACAccountStoreCredentialRenewalHandler completionHandler = params[1];
                             completionHandler(ACAccountCredentialRenewResultFailed, generatedError);
                             return nil;
                         }];
@@ -139,7 +139,7 @@ describe(@"DVSFacebookAccountStore", ^{
                     generatedError = [NSError mock];
                     
                     [facebookAccountStore stub:@selector(requestAccessToAccountsWithType:options:completion:) withBlock:^id(NSArray *params) {
-                        void(^completionHandler)(BOOL granted, NSError *error) = (id)params[2];
+                        void(^completionHandler)(BOOL granted, NSError *error) = params[2];
                         completionHandler(NO, generatedError);
                         return nil;
                     }];

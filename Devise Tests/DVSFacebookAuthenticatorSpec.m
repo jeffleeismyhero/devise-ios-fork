@@ -19,7 +19,7 @@ describe(@"DVSFacebookAuthenticator", ^{
     
     beforeEach(^{
         authenticator = [[DVSTestFacebookAuthenticator alloc] init];
-        appID = @"ex@mpl3-App-ID";
+        appID = @"Fixture App ID";
     });
     
     afterEach(^{
@@ -34,7 +34,7 @@ describe(@"DVSFacebookAuthenticator", ^{
             DVSFacebookAccountStore *facebookAccountStore = [DVSFacebookAccountStore dvs_stubFacebookAccountStore];
             
             [facebookAccountStore stub:@selector(requestAccessWithCompletion:) withBlock:^id(NSArray *params) {
-                DVSAccountStoreBlock accountBlock = (id)params[0];
+                DVSAccountStoreBlock accountBlock = params[0];
                 accountBlock(facebookAccountStore.account, nil);
                 return nil;
             }];
@@ -48,7 +48,7 @@ describe(@"DVSFacebookAuthenticator", ^{
             __block NSError *receivedError = nil;
             
             beforeEach(^{
-                mockParameters = @{@"example": @"parameter"};
+                mockParameters = @{@"Fixture Key": @"Fixture Parameter"};
             });
             
             afterEach(^{
@@ -67,7 +67,7 @@ describe(@"DVSFacebookAuthenticator", ^{
                     SLRequest *request = [SLRequest dvs_stubSLRequest];
                     
                     [request stub:@selector(performRequestWithHandler:) withBlock:^id(NSArray *params) {
-                        SLRequestHandler completionHandler = (id)params[0];
+                        SLRequestHandler completionHandler = params[0];
                         completionHandler(responseData, [NSHTTPURLResponse mock], nil);
                         return nil;
                     }];
@@ -83,7 +83,7 @@ describe(@"DVSFacebookAuthenticator", ^{
                 });
                 
                 it(@"should call completion", ^{
-                    [[theValue(completionCalled) should] equal:theValue(YES)];
+                    [[theValue(completionCalled) should] beTrue];
                 });
                 
                 it(@"should receive parameters", ^{
@@ -106,7 +106,7 @@ describe(@"DVSFacebookAuthenticator", ^{
                     SLRequest *request = [SLRequest dvs_stubSLRequest];
                     
                     [request stub:@selector(performRequestWithHandler:) withBlock:^id(NSArray *params) {
-                        SLRequestHandler completionHandler = (id)params[0];
+                        SLRequestHandler completionHandler = params[0];
                         completionHandler(responseData, [NSHTTPURLResponse mock], nil);
                         return nil;
                     }];
@@ -121,7 +121,7 @@ describe(@"DVSFacebookAuthenticator", ^{
                 });
                 
                 it(@"should call completion with error", ^{
-                    [[theValue(completionCalled) should] equal:theValue(YES)];
+                    [[theValue(completionCalled) should] beTrue];
                 });
                 
                 it(@"should receive error", ^{
@@ -143,7 +143,7 @@ describe(@"DVSFacebookAuthenticator", ^{
                 SLRequest *request = [SLRequest dvs_stubSLRequest];
                 
                 [request stub:@selector(performRequestWithHandler:) withBlock:^id(NSArray *params) {
-                    SLRequestHandler completionHandler = (id)params[0];
+                    SLRequestHandler completionHandler = params[0];
                     completionHandler(nil, nil, generatedError);
                     return nil;
                 }];
@@ -159,7 +159,7 @@ describe(@"DVSFacebookAuthenticator", ^{
             });
             
             it(@"should call completion with error", ^{
-                [[theValue(completionCalled) should] equal:theValue(YES)];
+                [[theValue(completionCalled) should] beTrue];
             });
             
             it(@"should receive error", ^{
@@ -182,7 +182,7 @@ describe(@"DVSFacebookAuthenticator", ^{
             DVSFacebookAccountStore *facebookAccountStore = [DVSFacebookAccountStore dvs_stubFacebookAccountStore];
             
             [facebookAccountStore stub:@selector(requestAccessWithCompletion:) withBlock:^id(NSArray *params) {
-                DVSAccountStoreBlock accountBlock = (id)params[0];
+                DVSAccountStoreBlock accountBlock = params[0];
                 accountBlock(nil, generatedError);
                 return nil;
             }];
@@ -200,7 +200,7 @@ describe(@"DVSFacebookAuthenticator", ^{
         });
         
         it(@"should call completion with error", ^{
-            [[theValue(completionCalled) should] equal:theValue(YES)];
+            [[theValue(completionCalled) should] beTrue];
         });
         
         it(@"should receive error", ^{
