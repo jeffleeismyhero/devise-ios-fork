@@ -37,7 +37,7 @@
 + (instancetype)dvs_stubSLRequest {
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
                                             requestMethod:SLRequestMethodGET
-                                                      URL:[NSURL URLWithString:@"https://graph.facebook.com/me"]
+                                                      URL:[NSURL URLWithString:@"http://example.org"]
                                                parameters:nil];
     
     [SLRequest stub:@selector(requestForServiceType:requestMethod:URL:parameters:) andReturn:request];

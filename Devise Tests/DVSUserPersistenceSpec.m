@@ -6,7 +6,6 @@
 //  Copyright 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import <Kiwi/Kiwi.h>
 #import "DVSTestUser.h"
 #import "DVSUser+Persistence.h"
 
