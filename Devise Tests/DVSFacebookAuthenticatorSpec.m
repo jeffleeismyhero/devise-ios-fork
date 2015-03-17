@@ -31,11 +31,14 @@ describe(@"DVSFacebookAuthenticator", ^{
     context(@"succesful access request", ^{
         
         beforeEach(^{
-            DVSFacebookAccountStore *facebookAccountStore = [[DVSFacebookAccountStore alloc] init];
-            ACAccountType *accountType = [facebookAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-            ACAccount *account = [[ACAccount alloc] initWithAccountType:accountType];
+            DVSFacebookAccountStore *facebookAccountStore = [DVSFacebookAccountStore dvs_stubFacebookAccountStore];
             
-            [DVSFacebookAccountStore stub:@selector(accountForRequestAccess) andReturn:account];
+            [facebookAccountStore stub:@selector(requestAccessWithCompletion:) withBlock:^id(NSArray *params) {
+                DVSAccountStoreBlock accountBlock = (id)params[0];
+                accountBlock(facebookAccountStore.account, nil);
+                return nil;
+            }];
+            
         });
         
         context(@"successful request response", ^{
@@ -45,22 +48,29 @@ describe(@"DVSFacebookAuthenticator", ^{
             __block NSError *receivedError = nil;
             
             beforeEach(^{
-                [SLRequest stub:@selector(urlResponse) andReturn:[NSHTTPURLResponse mock]];
+                mockParameters = @{@"example": @"parameter"};
             });
             
             afterEach(^{
+                mockParameters = nil;
+                receivedParameters = nil;
                 receivedError = nil;
             });
             
             context(@"valid response", ^{
                 
                 beforeEach(^{
-                    mockParameters = @{@"example": @"parameter"};
-                    
                     NSData *responseData = [NSJSONSerialization dataWithJSONObject:mockParameters
                                                                            options:0
                                                                              error:nil];
-                    [SLRequest stub:@selector(responseData) andReturn:responseData];
+                    
+                    SLRequest *request = [SLRequest dvs_stubSLRequest];
+                    
+                    [request stub:@selector(performRequestWithHandler:) withBlock:^id(NSArray *params) {
+                        SLRequestHandler completionHandler = (id)params[0];
+                        completionHandler(responseData, [NSHTTPURLResponse mock], nil);
+                        return nil;
+                    }];
                     
                     [authenticator stub:@selector(isResponseValid:) andReturn:theValue(YES)];
                     [authenticator stub:@selector(parametersFromUserData:oAuthToken:) andReturn:mockParameters];
@@ -89,6 +99,18 @@ describe(@"DVSFacebookAuthenticator", ^{
             context(@"invalid response", ^{
                 
                 beforeEach(^{
+                    NSData *responseData = [NSJSONSerialization dataWithJSONObject:mockParameters
+                                                                           options:0
+                                                                             error:nil];
+                    
+                    SLRequest *request = [SLRequest dvs_stubSLRequest];
+                    
+                    [request stub:@selector(performRequestWithHandler:) withBlock:^id(NSArray *params) {
+                        SLRequestHandler completionHandler = (id)params[0];
+                        completionHandler(responseData, [NSHTTPURLResponse mock], nil);
+                        return nil;
+                    }];
+
                     [authenticator stub:@selector(isResponseValid:) andReturn:theValue(NO)];
                     
                     [authenticator signInUsingFacebookWithAppID:appID completion:^(NSDictionary *parameters, NSError *error) {
@@ -117,7 +139,14 @@ describe(@"DVSFacebookAuthenticator", ^{
 
             beforeEach(^{
                 generatedError = [NSError mock];
-                [SLRequest stub:@selector(responseError) andReturn:generatedError];
+                
+                SLRequest *request = [SLRequest dvs_stubSLRequest];
+                
+                [request stub:@selector(performRequestWithHandler:) withBlock:^id(NSArray *params) {
+                    SLRequestHandler completionHandler = (id)params[0];
+                    completionHandler(nil, nil, generatedError);
+                    return nil;
+                }];
                 
                 [authenticator signInUsingFacebookWithAppID:appID completion:^(NSDictionary *parameters, NSError *error) {
                     receivedError = error;
@@ -150,8 +179,14 @@ describe(@"DVSFacebookAuthenticator", ^{
             
             generatedError = [NSError mock];
             
-            [DVSFacebookAccountStore stub:@selector(accountForRequestAccess) andReturn:nil];
-            [DVSFacebookAccountStore stub:@selector(errorForRequestAccess) andReturn:generatedError];
+            DVSFacebookAccountStore *facebookAccountStore = [DVSFacebookAccountStore dvs_stubFacebookAccountStore];
+            
+            [facebookAccountStore stub:@selector(requestAccessWithCompletion:) withBlock:^id(NSArray *params) {
+                DVSAccountStoreBlock accountBlock = (id)params[0];
+                accountBlock(nil, generatedError);
+                return nil;
+            }];
+            
             [authenticator signInUsingFacebookWithAppID:appID completion:^(NSDictionary *parameters, NSError *error) {
                 receivedError = error;
                 completionCalled = YES;

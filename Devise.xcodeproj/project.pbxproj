@@ -109,6 +109,7 @@
 		BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */; };
 		BF7761C61AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */; };
 		BF7761C91AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */; };
+		BF861D421AB72E460048ECEB /* DVSTestFacebookAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BF861D411AB72E460048ECEB /* DVSTestFacebookAccountStore.m */; };
 		BF8E921F1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E921E1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m */; };
 		BF8E92221AB6C491005160FB /* DVSTestFacebookAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E92211AB6C491005160FB /* DVSTestFacebookAuthenticator.m */; };
 		E3631EF7F9C159653DAD7470 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CDB309091D9968496393A /* libPods-Tests.a */; };
@@ -319,6 +320,8 @@
 		BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserJSONSerializerSpec.m; sourceTree = "<group>"; };
 		BF7761C71AA8A61A006DBE6B /* DVSTestUserJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserJSONSerializer.h; sourceTree = "<group>"; };
 		BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserJSONSerializer.m; sourceTree = "<group>"; };
+		BF861D401AB72E460048ECEB /* DVSTestFacebookAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestFacebookAccountStore.h; sourceTree = "<group>"; };
+		BF861D411AB72E460048ECEB /* DVSTestFacebookAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestFacebookAccountStore.m; sourceTree = "<group>"; };
 		BF8E921E1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFacebookAuthenticatorSpec.m; sourceTree = "<group>"; };
 		BF8E92201AB6C491005160FB /* DVSTestFacebookAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestFacebookAuthenticator.h; sourceTree = "<group>"; };
 		BF8E92211AB6C491005160FB /* DVSTestFacebookAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestFacebookAuthenticator.m; sourceTree = "<group>"; };
@@ -599,6 +602,8 @@
 				BF527C251AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m */,
 				BF8E92201AB6C491005160FB /* DVSTestFacebookAuthenticator.h */,
 				BF8E92211AB6C491005160FB /* DVSTestFacebookAuthenticator.m */,
+				BF861D401AB72E460048ECEB /* DVSTestFacebookAccountStore.h */,
+				BF861D411AB72E460048ECEB /* DVSTestFacebookAccountStore.m */,
 			);
 			name = "Test Classes";
 			sourceTree = "<group>";
@@ -1402,6 +1407,7 @@
 			files = (
 				3A4EE5AB1A40B89100A068E2 /* DVSHTTPClientUserSpec.m in Sources */,
 				E3C2AD011A9F54D000829D60 /* DVSUserManagerSpec.m in Sources */,
+				BF861D421AB72E460048ECEB /* DVSTestFacebookAccountStore.m in Sources */,
 				3A4EE5AF1A40C96500A068E2 /* DVSConfigurationSpec.m in Sources */,
 				3A4EE5AC1A40C93500A068E2 /* DVSHTTPClientSpec.m in Sources */,
 				BF527C231AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m in Sources */,

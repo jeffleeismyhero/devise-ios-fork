@@ -13,51 +13,35 @@
 @end
 
 
-@implementation DVSFacebookAccountStore (DeviseTests)
+@implementation DVSFacebookAccountStore (DeviseStubs)
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
-- (void)requestAccessWithCompletion:(DVSAccountStoreBlock)completion {
-    if (completion != NULL) {
-        ACAccount *account = [[self class] accountForRequestAccess];
-        NSError *error = [[self class] errorForRequestAccess];
-        completion(account, error);
-    }
-}
-#pragma clang diagnostic pop
++ (instancetype)dvs_stubFacebookAccountStore {
+    DVSFacebookAccountStore *facebookAccountStore = [[DVSFacebookAccountStore alloc] init];
+    
+    [[self class] stub:@selector(alloc) andReturn:facebookAccountStore];
+    [facebookAccountStore stub:@selector(initWithAppIDkey:permissions:) andReturn:facebookAccountStore];
+    
+    ACAccountType *accountType = [facebookAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    ACAccount *account = [[ACAccount alloc] initWithAccountType:accountType];
 
-+ (ACAccount *)accountForRequestAccess {
-    return nil;
-}
-
-+ (NSError *)errorForRequestAccess {
-    return nil;
+    [facebookAccountStore stub:@selector(account) andReturn:account];
+    
+    return facebookAccountStore;
 }
 
 @end
 
 
-@implementation SLRequest (DeviseTests)
+@implementation SLRequest (DeviseStubs)
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
-- (void)performRequestWithHandler:(SLRequestHandler)handler {
-    if (handler != NULL) {
-        handler([[self class] responseData], [[self class] urlResponse], [[self class] responseError]);
-    }
-}
-#pragma clang diagnostic pop
-
-+ (NSData *)responseData {
-    return nil;
-}
-
-+ (NSHTTPURLResponse *)urlResponse {
-    return nil;
-}
-
-+ (NSError *)responseError {
-    return nil;
++ (instancetype)dvs_stubSLRequest {
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                            requestMethod:SLRequestMethodGET
+                                                      URL:[NSURL URLWithString:@"https://graph.facebook.com/me"]
+                                               parameters:nil];
+    
+    [SLRequest stub:@selector(requestForServiceType:requestMethod:URL:parameters:) andReturn:request];
+    return request;
 }
 
 @end

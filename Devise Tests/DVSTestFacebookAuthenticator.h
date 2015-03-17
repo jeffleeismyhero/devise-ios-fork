@@ -11,7 +11,7 @@
 
 #import "DVSFacebookAuthenticator.h"
 #import "DVSOAuthJSONParameters.h"
-#import "DVSFacebookAccountStore.h"
+#import "DVSTestFacebookAccountStore.h"
 
 @interface DVSTestFacebookAuthenticator : DVSFacebookAuthenticator
 
@@ -28,26 +28,15 @@
 @end
 
 
-@interface DVSFacebookAccountStore (DeviseTests)
+@interface DVSFacebookAccountStore (DeviseStubs)
 
-// Overrides primary class implementation for test purpose
-- (void)requestAccessWithCompletion:(DVSAccountStoreBlock)completion;
-
-// These methods are meant to be stubbed
-+ (ACAccount *)accountForRequestAccess;
-+ (NSError *)errorForRequestAccess;
++ (instancetype)dvs_stubFacebookAccountStore;
 
 @end
 
 
-@interface SLRequest (DeviseTests)
+@interface SLRequest (DeviseStubs)
 
-// Overrides primary class implementation for test purpose
-- (void)performRequestWithHandler:(SLRequestHandler)handler;
-
-// These methods are meant to be stubbed
-+ (NSData *)responseData;
-+ (NSHTTPURLResponse *)urlResponse;
-+ (NSError *)responseError;
++ (instancetype)dvs_stubSLRequest;
 
 @end
