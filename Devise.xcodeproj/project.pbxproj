@@ -112,6 +112,7 @@
 		BF861D421AB72E460048ECEB /* DVSTestFacebookAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BF861D411AB72E460048ECEB /* DVSTestFacebookAccountStore.m */; };
 		BF8E921F1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E921E1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m */; };
 		BF8E92221AB6C491005160FB /* DVSTestFacebookAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8E92211AB6C491005160FB /* DVSTestFacebookAuthenticator.m */; };
+		BFC6A8D21AB7B523003BA9AF /* DVSFacebookAccountStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6A8D11AB7B523003BA9AF /* DVSFacebookAccountStoreSpec.m */; };
 		E3631EF7F9C159653DAD7470 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734CDB309091D9968496393A /* libPods-Tests.a */; };
 		E3A0D6341AA73EE500E326BC /* DVSOAuthJSONParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */; };
 		E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */; };
@@ -325,6 +326,7 @@
 		BF8E921E1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFacebookAuthenticatorSpec.m; sourceTree = "<group>"; };
 		BF8E92201AB6C491005160FB /* DVSTestFacebookAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestFacebookAuthenticator.h; sourceTree = "<group>"; };
 		BF8E92211AB6C491005160FB /* DVSTestFacebookAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestFacebookAuthenticator.m; sourceTree = "<group>"; };
+		BFC6A8D11AB7B523003BA9AF /* DVSFacebookAccountStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSFacebookAccountStoreSpec.m; sourceTree = "<group>"; };
 		E3A0D6321AA73EE500E326BC /* DVSOAuthJSONParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSOAuthJSONParameters.h; sourceTree = "<group>"; };
 		E3A0D6331AA73EE500E326BC /* DVSOAuthJSONParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSOAuthJSONParameters.m; sourceTree = "<group>"; };
 		E3BD327C1AA5C86A00E6F7AD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -776,6 +778,7 @@
 				BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */,
 				BF527C221AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m */,
 				BF8E921E1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m */,
+				BFC6A8D11AB7B523003BA9AF /* DVSFacebookAccountStoreSpec.m */,
 			);
 			path = "Devise Tests";
 			sourceTree = "<group>";
@@ -1419,6 +1422,7 @@
 				3AA57B6E1A41851800C54B36 /* DVSUserSpec.m in Sources */,
 				BF8E92221AB6C491005160FB /* DVSTestFacebookAuthenticator.m in Sources */,
 				3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */,
+				BFC6A8D21AB7B523003BA9AF /* DVSFacebookAccountStoreSpec.m in Sources */,
 				BF527C261AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m in Sources */,
 				BF8E921F1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m in Sources */,
 				BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceManager.m in Sources */,
