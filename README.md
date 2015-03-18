@@ -16,14 +16,14 @@
 ## Requirements
 
 - Xcode 6.0 and iOS 7.0+ SDK
-- CocoaPods 0.36.0.beta.2 (use `gem install cocoapods --pre` to grab it!)
+- CocoaPods 0.36.0 (use `gem install cocoapods` to grab it!)
 
 ## CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party. To use **devise-ios** via CocoaPods write in your Podfile:
 
 ```rb
-pod 'Devise', '~> 0.1.2'
+pod 'Devise', '~> 1.0.0'
 ```
 
 ## Configuration
@@ -50,6 +50,8 @@ To specify logging mode use:
 
  **devise-ios** takes care about network problems and is able to automatically retry requests in case of connection issues. You can specify a number and time between retries using `numberOfRetries` and `retryTresholdDuration` properties of `DVSConfiguration`.
 
+ Devise uses `AFNetworking` under the hood. If needed network activity indicator can be enable through `AFNetworkActivityIndicatorManager` in `AppDelegate application:didFinishLaunchingWithOptions:`.
+
 ## User manager
 The main class of **devise-ios** is `DVSUserManager`. Provided implementation is enough for login, registration, edition and any other features offered by **devise-ios**.
 
@@ -73,6 +75,27 @@ Functions are pretty straightforward and self-explanatory.
     - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
     ```
 
+* Signing in with Facebook account:
+
+    ```objc
+    - (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+    ```
+
+* Signing in with Google Plus account:
+
+    ```objc
+    - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+    ```
+
+    To handle callback from Google Plus authorization implement one of `AppDelegate` method as following:
+
+    ```objc
+    - (BOOL)application: (UIApplication *)application openURL: (NSURL *)url sourceApplication: (NSString *)sourceApplication annotation: (id)annotation {
+        return [[DVSUserManager defaultManager] handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    }
+    ```
+    This guarantees that one of passed callbacks will be invoked as authorization result.
+
 * Password reminder:
 
     ```objc
@@ -93,7 +116,7 @@ Functions are pretty straightforward and self-explanatory.
 
 ## User customization
 
-Although `DVSUser` implementation is enough for a basic usage, you can customize it as well. 
+Although `DVSUser` implementation is enough for a basic usage, you can customize it as well.
 
 If it's needed to store locally more info about `DVSUser` subclass (other than `email`, `sessionToken` and `identifier` - these are stored by default) conform `DVSUserPersisting` protocol. You can choose which properties should be persist by invoking:
 ```objc
@@ -103,7 +126,7 @@ Just remember to pass property names as `NSString`.
 
 ## User model validation and messaging
 
-**devise-ios** under the hood uses [NGRValidator](https://github.com/netguru/ngrvalidator) to validate data. On top of it **devise-ios** delivers a possibility to add your own validation rules. If you wish to add some of them, conform `DVSUserManagerDataSource` protocol and implement `additionalValidationRulesForAction:` method. 
+**devise-ios** under the hood uses [NGRValidator](https://github.com/netguru/ngrvalidator) to validate data. On top of it **devise-ios** delivers a possibility to add your own validation rules. If you wish to add some of them, conform `DVSUserManagerDelegate` protocol and implement `- (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action;` method.
 
 
 Let's say a subclass of `DVSUser` has an additional property `NSString *registrationUsername` you want to validate during registration process to fulfill conditions:
@@ -135,6 +158,8 @@ NSLog(@"%@", error.localizedDescription);
 ```
 
 Simple as that! For more info please refer to [NGRValidator](https://github.com/netguru/ngrvalidator).
+
+##
 
 ## UI Components
 
@@ -173,7 +198,7 @@ Result:
 In order to handle result of performed action, your class should override two `DVSAccountRetrieverViewControllerDelegate` protocol methods:
 
 ```objc
-// for success 
+// for success
 - (void)accountRetrieverViewController:(DVSAccountRetrieverViewController *)controller didSuccessForAction:(DVSRetrieverAction)action user:(DVSUser *)user;
 
 // for failure
@@ -185,7 +210,7 @@ In both cases view controller will return `action` variable, that defines type o
 `DVSAccountRetrieverViewController` doesn't implement autoclose feature. A developer is responsible for deciding when to close a view. To help with this task, **devise-ios** provides additional callback in `DVSAccountRetrieverViewControllerDelegate` that is executed when a user tapps a dismiss button:
 
 ```objc
-- (void)accountRetrieverViewControllerDidTapDismiss:(DVSAccountRetrieverViewController *)controller; 
+- (void)accountRetrieverViewControllerDidTapDismiss:(DVSAccountRetrieverViewController *)controller;
 ```
 
 ## Demo
