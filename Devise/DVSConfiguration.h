@@ -94,6 +94,10 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 
 /**
  *  Returns a shared instance of the configuration object.
+ *
+ *  Devise uses AFNetworking under the hood. If activity indicator should be
+ *  managed automatically enable `AFNetworkActivityIndicatorManager` 
+ *  in `AppDelegate application:didFinishLaunchingWithOptions:`
  */
 + (instancetype)sharedConfiguration;
 
