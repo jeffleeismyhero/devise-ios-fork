@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "Devise.h"
 #import "DVSUserManager.h"
-#import <GooglePlus/GooglePlus.h>
 
 @interface AppDelegate ()
 

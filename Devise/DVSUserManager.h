@@ -10,8 +10,8 @@
 #import "DVSUser.h"
 #import "DVSUserJSONSerializer.h"
 #import "DVSHTTPClient.h"
-#import <GooglePlus/GooglePlus.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
+#import "GooglePlus.h"
+#import "GoogleOpenSource.h"
 #import "DVSGooglePlusAuthenticator.h"
 
 @protocol DVSUserManagerDelegate;

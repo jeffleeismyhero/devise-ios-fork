@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GooglePlus/GooglePlus.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
+#import "GooglePlus.h"
+#import "GoogleOpenSource.h"
 #import "DVSTypedefs.h"
 
 /**
