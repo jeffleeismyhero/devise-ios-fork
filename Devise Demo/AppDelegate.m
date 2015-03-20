@@ -18,12 +18,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    NSString *urlString = @"https://devise-ios-rails-example.herokuapp.com";
 
-    [[DVSConfiguration sharedConfiguration] setServerURL:[NSURL URLWithString:urlString]];
-    [[DVSConfiguration sharedConfiguration] setApiVersion:0];
-    [[DVSConfiguration sharedConfiguration] setLoggingMode:DVSLoggingModeWarning];
+    DVSConfiguration *configuration = [DVSConfiguration sharedConfiguration];
+    [configuration setServerURL:[NSURL URLWithString:@"https://devise-ios-rails-example.herokuapp.com"]];
+    [configuration setApiVersion:0];
+    [configuration setLoggingMode:DVSLoggingModeWarning];
+    [configuration setFacebookAppID:@"1555634144720689"];
+    
+#ifdef DEBUG
+    [configuration setGoogleClientID:@"371832272280-abhaua47e4mqckj497i3ev22vooj87cn.apps.googleusercontent.com" ];
+#else
+    [configuration setGoogleClientID:@"371832272280-ick7aql3kje38ivqieavam6o7am13drf.apps.googleusercontent.com"];
+#endif
     
     return YES;
 }

@@ -7,6 +7,8 @@
 //
 
 #import <ngrvalidator/NGRValidator/NGRPropertyValidator+NSDate.h>
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
 #import "NGRPropertyValidator+NSNumber.h"
 #import "DVSTestGooglePlusAuthenticator.h"
 #import "DVSUserManager.h"

@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
 @property (strong, nonatomic) DVSFacebookAuthenticator *facebookAuthenticator;
+@property (strong, nonatomic) DVSGooglePlusAuthenticator *googlePlusAuthenticator;
 
 @end
 
@@ -27,7 +28,7 @@
 #pragma mark - Object lifecycle
 
 - (instancetype)initWithUser:(DVSUser *)user {
-    return (self = [self initWithUser:user configuration:[DVSConfiguration sharedConfiguration]]);
+    return [self initWithUser:user configuration:[DVSConfiguration sharedConfiguration]];
 }
 
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration {

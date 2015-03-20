@@ -10,18 +10,17 @@
 #import "DVSUser.h"
 #import "DVSUserJSONSerializer.h"
 #import "DVSHTTPClient.h"
-#import "GooglePlus.h"
-#import "GoogleOpenSource.h"
-#import "DVSGooglePlusAuthenticator.h"
 
 @protocol DVSUserManagerDelegate;
 
 @interface DVSUserManager : NSObject
 
 @property (strong, nonatomic, readonly) DVSUser *user;
+
 @property (copy, nonatomic) NSString *userPreviousEmail;
-@property (strong, nonatomic) DVSGooglePlusAuthenticator *googlePlusAuthenticator;
+
 @property (strong, nonatomic, readonly) DVSUserJSONSerializer *serializer;
+
 @property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 
 /**
@@ -30,6 +29,7 @@
 @property (strong, nonatomic) DVSHTTPClient *httpClient;
 
 - (instancetype)initWithUser:(DVSUser *)user;
+
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration;
 
 + (instancetype)defaultManager;

@@ -28,12 +28,10 @@ Pod::Spec.new do |spec|
   spec.dependency      'AFNetworking', '~> 2.5.0'
   spec.dependency      'UICKeyChainStore', '~> 1.1'
   spec.dependency      'ngrvalidator', '~> 0.4.2'
-  spec.dependency      'googleplus-ios-sdk', '~> 1.7.1'
   spec.dependency      'XLForm', '~> 2.1'
 
-  spec.framework     = 'GooglePlus'
-  spec.framework     = 'GoogleOpenSource'
-
+  spec.frameworks     = 'AddressBook', 'AssetsLibrary', 'Foundation', 'CoreLocation', 'CoreMotion', 'CoreGraphics', 'CoreText', 'MediaPlayer', 'Security', 'SystemConfiguration', 'UIKit'
+  spec.vendored_frameworks = 'Frameworks/GoogleOpenSource.framework', 'Frameworks/GooglePlus.framework'
   spec.private_header_files = 'Devise/**/*Private.h'
 
 end
