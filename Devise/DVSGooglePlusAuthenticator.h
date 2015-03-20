@@ -7,29 +7,35 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GooglePlus/GooglePlus.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
-#import "DVSTypedefs.h"
+
+typedef void (^DVSGoogleParametersBlock)(NSDictionary *parameters, NSError *error);
 
 /**
  *  DVSGooglePlusAuthenticator uses GPPSignIn under the hood and it needs Google+ SDK to work.
+ *  If you want to customize GPPSignIn even more, please use [GPPSignIn sharedInstance].
  */
 @interface DVSGooglePlusAuthenticator : NSObject
 
-@property (strong, nonatomic) GPPSignIn *signIn;
-
+/**
+ *  Initializes DVSGooglePlusAuthenticator for authentication with Google+ as 3rd party service.
+ *
+ *  @param clientID Application's client ID
+ *
+ *  @return Instance of DVSGooglePlusAuthenticator.
+ */
 - (instancetype)initWithClientID:(NSString *)clientID;
 
 /**
- *  Authenticate user with Google client ID. Shared instance of GPSignIn object will be used
- *  @param clientID Application's client ID
+ *  Authenticate user with Google client ID given in init method. Shared instance of GPSignIn object will be used
+ *
+ *  @param completion Block invoke when authentication will end. 
+ *                    If succeeded will return formatted parameter dictionary according do devise-ios convention. Otherwise error.
  */
-- (void)authenticateWithGoogleClientID:(NSString *)clientID success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)authenticateWithCompletion:(DVSGoogleParametersBlock)completion;
 
 /**
- *  Authenticate user with provided GPPSignIn object. This method is meant to be used together with - (instancetype)initWithClientID:(NSString *)clientID, otherwise the client ID is unknown and authentication will fail.
- *  @param signIn GPPSignIn instance.
+ *  Passes arguments to GPPSignIn handleURL:sourceApplication:annotation: method
  */
-- (void)authenticateWithSignIn:(GPPSignIn *)signIn success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end

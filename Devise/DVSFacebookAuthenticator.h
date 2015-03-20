@@ -12,7 +12,6 @@ typedef void (^DVSFacebookParametersBlock)(NSDictionary *parameters, NSError *er
 
 @interface DVSFacebookAuthenticator : NSObject
 
-
 /**
  *  Sign in using facebook app ID.
  *  @param facebookAppID Facebook application identifier

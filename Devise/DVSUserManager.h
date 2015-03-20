@@ -75,7 +75,6 @@
  */
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
-
 /**
  *  Handle authorization via GooglePlus callback
  */

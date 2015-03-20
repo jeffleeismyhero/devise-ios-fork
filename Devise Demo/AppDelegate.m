@@ -34,7 +34,7 @@
     return YES;
 }
 
-- (BOOL)application: (UIApplication *)application openURL: (NSURL *)url sourceApplication: (NSString *)sourceApplication annotation: (id)annotation {
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [[DVSUserManager defaultManager] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 

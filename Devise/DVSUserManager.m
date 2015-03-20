@@ -86,8 +86,8 @@
     [self.facebookAuthenticator signInUsingFacebookWithAppID:self.httpClient.configuration.facebookAppID completion:^(NSDictionary *parameters, NSError *error) {
         if (parameters) {
             [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:parameters success:success failure:failure];
-        } else if (failure != NULL) {
-            failure(error);
+        } else  {
+            if (failure != NULL) failure(error);
         }
     }];
 }
@@ -95,21 +95,17 @@
 #pragma mark - Signing via Google+
 
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    NSString *clientID = self.httpClient.configuration.googleClientID;
-    DVSGooglePlusAuthenticator *googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] initWithClientID:clientID];
     
-    if (!self.googlePlusAuthenticator) {
-        self.googlePlusAuthenticator = googlePlusAuthenticator;
-        
-        __weak typeof(self) weakSelf = self;
-        [googlePlusAuthenticator authenticateWithSignIn:[GPPSignIn sharedInstance] success:^{
-            weakSelf.googlePlusAuthenticator = nil;
-            if (success != NULL) success();
-        } failure:^(NSError *error) {
-            weakSelf.googlePlusAuthenticator = nil;
+    NSString *clientID = self.httpClient.configuration.googleClientID;
+    self.googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] initWithClientID:clientID];
+    
+    [self.googlePlusAuthenticator authenticateWithCompletion:^(NSDictionary *parameters, NSError *error) {
+        if (parameters) {
+            [self.httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:parameters success:success failure:failure];
+        } else {
             if (failure != NULL) failure(error);
-        }];
-    }
+        }
+    }];
 }
 
 #pragma mark - Change password
@@ -133,7 +129,7 @@
 #pragma mark - Handle callback
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [self.googlePlusAuthenticator.signIn handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    return [self.googlePlusAuthenticator handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 #pragma mark - Delete account

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "DVSUser.h"
 
+@class DVSConfiguration;
+
 @interface DVSUserPersistenceManager : NSObject
 
 /**

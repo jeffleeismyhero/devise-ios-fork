@@ -23,19 +23,6 @@ describe(@"DVSGooglePlusAuthenticator", ^{
     NSString *clientID = @"Fixture Client ID";
     __block DVSTestGooglePlusAuthenticator *authenticator;
     
-    context(@"when initilized", ^{
-        
-        beforeEach(^{
-            authenticator = [[DVSTestGooglePlusAuthenticator alloc] initWithClientID:clientID];
-        });
-        
-        it(@"should have client ID", ^{
-            NSString *authClientID = authenticator.clientID;
-            [[authClientID should] equal:clientID];
-        });
-        
-    });
-    
     context(@"authenticate with client ID", ^{
         
         beforeAll(^{
@@ -46,11 +33,6 @@ describe(@"DVSGooglePlusAuthenticator", ^{
             authenticator = nil;
         });
         
-        it(@"should have client ID", ^{
-            [authenticator authenticateWithGoogleClientID:clientID success:nil failure:nil];
-            [[authenticator.clientID should] equal:clientID];
-        });
-        
         context(@"with success and failure block", ^{
         
             __block BOOL successBlockInvoked = NO;
@@ -59,24 +41,25 @@ describe(@"DVSGooglePlusAuthenticator", ^{
             __block GTLServicePlus *googlePlusService;
 
             beforeAll(^{
-                googlePlusService = [authenticator googlePlusService];
+                googlePlusService = [authenticator googlePlusServiceWithAuthorizer:nil];
             });
 
             beforeEach(^{
-                [authenticator stub:@selector(googlePlusService) andReturn:googlePlusService];
+                [authenticator stub:@selector(googlePlusServiceWithAuthorizer:) andReturn:googlePlusService];
                 [authenticator stub:@selector(authenticate) withBlock:nil];
-
-                [authenticator authenticateWithGoogleClientID:clientID success:^{
-                    successBlockInvoked = YES;
-                } failure:^(NSError *error) {
-                    receivedError = error;
-                    failureBlockInvoked = YES;
+                
+                [authenticator authenticateWithCompletion:^(NSDictionary *parameters, NSError *error) {
+                    if (parameters) {
+                        successBlockInvoked = YES;
+                    } else {
+                        receivedError = error;
+                        failureBlockInvoked = YES;
+                    }
                 }];
             });
 
             afterEach(^{
-                authenticator.success = nil;
-                authenticator.failure = nil;
+                authenticator.completion = nil;
                 
                 successBlockInvoked = NO;
                 failureBlockInvoked = NO;
@@ -221,19 +204,21 @@ describe(@"DVSGooglePlusAuthenticator", ^{
 
         beforeAll(^{
             authenticator = [[DVSTestGooglePlusAuthenticator alloc] initWithClientID:clientID];
-            googlePlusService = [authenticator googlePlusService];
+            googlePlusService = [authenticator googlePlusServiceWithAuthorizer:nil];
             signIn = [[GPPSignIn alloc] init];
         });
         
         beforeEach(^{
-            [authenticator stub:@selector(googlePlusService) andReturn:googlePlusService];
+            [authenticator stub:@selector(googlePlusServiceWithAuthorizer:) andReturn:googlePlusService];
             [authenticator stub:@selector(authenticate) withBlock:nil];
-
-            [authenticator authenticateWithSignIn:signIn success:^{
-                successBlockInvoked = YES;
-            } failure:^(NSError *error) {
-                receivedError = error;
-                failureBlockInvoked = YES;
+            
+            [authenticator authenticateWithCompletion:^(NSDictionary *parameters, NSError *error) {
+                if (parameters) {
+                    successBlockInvoked = YES;
+                } else {
+                    receivedError = error;
+                    failureBlockInvoked = YES;
+                }
             }];
         });
         

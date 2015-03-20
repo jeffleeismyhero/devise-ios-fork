@@ -8,18 +8,18 @@
 
 #import "DVSGooglePlusAuthenticator.h"
 
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
+
 @interface DVSTestGooglePlusAuthenticator : DVSGooglePlusAuthenticator
 
-@property (copy, nonatomic, readwrite) DVSVoidBlock success;
-@property (copy, nonatomic, readwrite) DVSErrorBlock failure;
-@property (copy, nonatomic, readwrite) NSString *clientID;
+@property (copy, nonatomic, readwrite) DVSGoogleParametersBlock completion;
 
 @end
 
-
 @interface DVSGooglePlusAuthenticator (DeviseTests)
 
-- (GTLServicePlus *)googlePlusService;
+- (GTLServicePlus *)googlePlusServiceWithAuthorizer:(id <GTMFetcherAuthorizationProtocol>)authorizer;
 - (void)authenticate;
 
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error;

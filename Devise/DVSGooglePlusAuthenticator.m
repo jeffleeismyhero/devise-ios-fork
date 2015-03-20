@@ -8,14 +8,13 @@
 
 #import "DVSGooglePlusAuthenticator.h"
 #import "DVSOAuthJSONParameters.h"
-#import "DVSUserManager.h"
-#import "DVSHTTPClient+User.h"
+
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
 
 @interface DVSGooglePlusAuthenticator () <GPPSignInDelegate>
 
-@property (copy, nonatomic) DVSVoidBlock success;
-@property (copy, nonatomic) DVSErrorBlock failure;
-@property (copy, nonatomic) NSString *clientID;
+@property (copy, nonatomic) DVSGoogleParametersBlock completion;
 
 @end
 
@@ -24,88 +23,77 @@
 - (instancetype)initWithClientID:(NSString *)clientID {
     self = [super init];
     if (self) {
-        self.clientID = clientID;
+        GPPSignIn *signIn = [GPPSignIn sharedInstance];
+        signIn.clientID = clientID;
+        signIn.scopes = @[ kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusMe ];
+        signIn.attemptSSO = YES;
+        signIn.shouldFetchGoogleUserID = YES;
+        signIn.shouldFetchGooglePlusUser = YES;
+        signIn.shouldFetchGoogleUserEmail = YES;
     }
     return self;
 }
 
 - (void)dealloc {
-    self.signIn.delegate = nil;
-    self.signIn = nil;
+    [GPPSignIn sharedInstance].delegate = nil;
 }
 
 #pragma mark - Public methods
 
-- (void)authenticateWithGoogleClientID:(NSString *)clientID success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    self.success = success;
-    self.failure = failure;
-    self.clientID = clientID;
-    
-    self.signIn = [GPPSignIn sharedInstance];
-    [self setupGoogleSignIn:self.signIn];
-
+- (void)authenticateWithCompletion:(DVSGoogleParametersBlock)completion {
+    self.completion = completion;
     [self authenticate];
 }
 
-- (void)authenticateWithSignIn:(GPPSignIn *)signIn success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    self.success = success;
-    self.failure = failure;
-    self.signIn = signIn;
-    
-    [self setupGoogleSignIn:self.signIn];
-    [self authenticate];
-}
-
-#pragma mark - Private methods
-
-- (void)authenticate {    
-    if (![self.signIn trySilentAuthentication]) {
-        [self.signIn authenticate];
-    }
+- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation  {
+    return [[GPPSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 #pragma mark - Google+ SDK helpers
 
-- (void)setupGoogleSignIn:(GPPSignIn *)signIn {
-    signIn.clientID = self.clientID;
-    signIn.scopes = @[ kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusMe ];
-    signIn.attemptSSO = YES;
-    signIn.shouldFetchGoogleUserID = YES;
-    signIn.shouldFetchGooglePlusUser = YES;
-    signIn.shouldFetchGoogleUserEmail = YES;
-    signIn.delegate = self;
-}
-
-- (GTLServicePlus *)googlePlusService {
-    GTLServicePlus* service = [[GTLServicePlus alloc] init];
+- (GTLServicePlus *)googlePlusServiceWithAuthorizer:(id <GTMFetcherAuthorizationProtocol>)authorizer {
+    GTLServicePlus *service = [[GTLServicePlus alloc] init];
+    [service setAuthorizer:authorizer];
     service.retryEnabled = YES;
-    [service setAuthorizer:self.signIn.authentication];
     service.apiVersion = @"v1";
     return service;
+}
+
+- (void)authenticate {
+    [GPPSignIn sharedInstance].delegate = self;
+    if (![[GPPSignIn sharedInstance] trySilentAuthentication]) {
+        [[GPPSignIn sharedInstance] authenticate];
+    }
+}
+
+- (void)continueAuthenticationWithAuth:(GTMOAuth2Authentication *)auth {
+    
+    if (self.completion == NULL) return;
+    
+    GTLServicePlus *plusService = [self googlePlusServiceWithAuthorizer:auth];
+    GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:@"me"];
+    [plusService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) {
+        if (error) {
+            self.completion(nil, error);
+        } else {
+            NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderGoogle oAuthToken:auth.accessToken userID:person.identifier userEmail:[GPPSignIn sharedInstance].authentication.userEmail];
+            self.completion(parameters, nil);
+        }
+    }];
 }
 
 #pragma mark - GPPSignInDelegate
 
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
     if (error) {
-        if (self.failure != NULL) self.failure(error);
+        if (self.completion != NULL) self.completion(nil, error);
     } else {
-        GTLServicePlus *plusService = [self googlePlusService];
-        GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:@"me"];
-        [plusService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) {
-            if (error) {
-                if (self.failure != NULL) self.failure(error);
-            } else {
-                NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderGoogle oAuthToken:auth.accessToken userID:person.identifier userEmail:[GPPSignIn sharedInstance].authentication.userEmail];
-                
-                [[DVSUserManager defaultManager].httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:parameters success:self.success failure:self.failure];
-            }
-        }];
+        [self continueAuthenticationWithAuth:auth];
     }
 }
 
 - (void)didDisconnectWithError:(NSError *)error {
-    if (self.failure != NULL) self.failure(error);
+    if (self.completion != NULL) self.completion(nil, error);
 }
 
 @end

@@ -7,8 +7,6 @@
 #import <Foundation/Foundation.h>
 #import "DVSTypedefs.h"
 
-@class DVSConfiguration, DVSHTTPClient;
-
 typedef NS_ENUM(NSInteger, DVSActionType) {
     DVSActionLogin,
     DVSActionRegistration,
