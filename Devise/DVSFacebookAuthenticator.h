@@ -7,15 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef void (^DVSFacebookParametersBlock)(NSDictionary *parameters, NSError *error);
+#import "DVSTypedefs.h"
 
 @interface DVSFacebookAuthenticator : NSObject
 
 /**
- *  Sign in using facebook app ID.
- *  @param facebookAppID Facebook application identifier
+ *  Initializes DVSFacebookAuthenticator for authentication with facebook as 3rd party service.
+ *
+ *  @param appID Application's facebook app ID
+ *
+ *  @return Instance of DVSFacebookAuthenticator.
  */
-- (void)signInUsingFacebookWithAppID:(NSString *)facebookAppID completion:(DVSFacebookParametersBlock)completion;
+- (instancetype)initWithAppID:(NSString *)appID NS_DESIGNATED_INITIALIZER;
+
+/**
+ *  Authenticate user with app ID given in init method.
+ *
+ *  @param success Block invoked when authentication succeed. Provides formatted parameter dictionary according to devise-ios convention.
+ *  @param failure Block invoked when authentication failed. Reurns error.
+ */
+- (void)authenticateWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
 
 @end

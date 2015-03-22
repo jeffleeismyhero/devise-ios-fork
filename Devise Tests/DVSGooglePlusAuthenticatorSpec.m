@@ -48,18 +48,17 @@ describe(@"DVSGooglePlusAuthenticator", ^{
                 [authenticator stub:@selector(googlePlusServiceWithAuthorizer:) andReturn:googlePlusService];
                 [authenticator stub:@selector(authenticate) withBlock:nil];
                 
-                [authenticator authenticateWithCompletion:^(NSDictionary *parameters, NSError *error) {
-                    if (parameters) {
-                        successBlockInvoked = YES;
-                    } else {
-                        receivedError = error;
-                        failureBlockInvoked = YES;
-                    }
+                [authenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+                    successBlockInvoked = YES;
+                } failure:^(NSError *error) {
+                    receivedError = error;
+                    failureBlockInvoked = YES;
                 }];
             });
 
             afterEach(^{
-                authenticator.completion = nil;
+                authenticator.success = nil;
+                authenticator.failure = nil;
                 
                 successBlockInvoked = NO;
                 failureBlockInvoked = NO;
@@ -212,13 +211,11 @@ describe(@"DVSGooglePlusAuthenticator", ^{
             [authenticator stub:@selector(googlePlusServiceWithAuthorizer:) andReturn:googlePlusService];
             [authenticator stub:@selector(authenticate) withBlock:nil];
             
-            [authenticator authenticateWithCompletion:^(NSDictionary *parameters, NSError *error) {
-                if (parameters) {
-                    successBlockInvoked = YES;
-                } else {
-                    receivedError = error;
-                    failureBlockInvoked = YES;
-                }
+            [authenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+                successBlockInvoked = YES;
+            } failure:^(NSError *error) {
+                receivedError = error;
+                failureBlockInvoked = YES;
             }];
         });
         

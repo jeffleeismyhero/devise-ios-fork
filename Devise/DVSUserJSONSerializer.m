@@ -8,12 +8,6 @@
 
 #import "DVSUserJSONSerializer.h"
 
-@interface DVSUserJSONSerializer ()
-
-@property (strong, nonatomic, readwrite) DVSUser *user;
-
-@end
-
 @implementation DVSUserJSONSerializer
 
 - (instancetype)init {

@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef void (^DVSGoogleParametersBlock)(NSDictionary *parameters, NSError *error);
+#import "DVSTypedefs.h"
 
 /**
  *  DVSGooglePlusAuthenticator uses GPPSignIn under the hood and it needs Google+ SDK to work.
@@ -19,23 +18,23 @@ typedef void (^DVSGoogleParametersBlock)(NSDictionary *parameters, NSError *erro
 /**
  *  Initializes DVSGooglePlusAuthenticator for authentication with Google+ as 3rd party service.
  *
- *  @param clientID Application's client ID
+ *  @param clientID Application's client ID.
  *
  *  @return Instance of DVSGooglePlusAuthenticator.
  */
-- (instancetype)initWithClientID:(NSString *)clientID;
+- (instancetype)initWithClientID:(NSString *)clientID NS_DESIGNATED_INITIALIZER;
 
 /**
- *  Authenticate user with Google client ID given in init method. Shared instance of GPSignIn object will be used
+ *  Authenticate user with Google client ID given in init method. Shared instance of GPSignIn object will be used.
  *
- *  @param completion Block invoke when authentication will end. 
- *                    If succeeded will return formatted parameter dictionary according do devise-ios convention. Otherwise error.
+ *  @param success Block invoked when authentication succeed. Provides formatted parameter dictionary according to devise-ios convention.
+ *  @param failure Block invoked when authentication failed. Reurns error.
  */
-- (void)authenticateWithCompletion:(DVSGoogleParametersBlock)completion;
+- (void)authenticateWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Passes arguments to GPPSignIn handleURL:sourceApplication:annotation: method
  */
-- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
++ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end

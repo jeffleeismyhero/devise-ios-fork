@@ -18,8 +18,6 @@
 @interface DVSUserManager ()
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
-@property (strong, nonatomic) DVSFacebookAuthenticator *facebookAuthenticator;
-@property (strong, nonatomic) DVSGooglePlusAuthenticator *googlePlusAuthenticator;
 
 @end
 
@@ -32,10 +30,10 @@
 }
 
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration {
-    if (self = [super init]) {
-        self.user = user;
-        self.facebookAuthenticator = [[DVSFacebookAuthenticator alloc] init];
-        self.httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
+    self = [super init];
+    if (self) {
+        _user = user;
+        _httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
     }
     return self;
 }
@@ -83,13 +81,13 @@
 #pragma mark - Signing via Facebook
 
 - (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    [self.facebookAuthenticator signInUsingFacebookWithAppID:self.httpClient.configuration.facebookAppID completion:^(NSDictionary *parameters, NSError *error) {
-        if (parameters) {
-            [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:parameters success:success failure:failure];
-        } else  {
-            if (failure != NULL) failure(error);
-        }
-    }];
+    
+    NSString *appID = self.httpClient.configuration.facebookAppID;
+    DVSFacebookAuthenticator *facebookAuthenticator = [[DVSFacebookAuthenticator alloc] initWithAppID:appID];
+    
+    [facebookAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+        [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:dictionary success:success failure:failure];
+    } failure:failure];
 }
 
 #pragma mark - Signing via Google+
@@ -97,15 +95,11 @@
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *clientID = self.httpClient.configuration.googleClientID;
-    self.googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] initWithClientID:clientID];
+    DVSGooglePlusAuthenticator *googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] initWithClientID:clientID];
     
-    [self.googlePlusAuthenticator authenticateWithCompletion:^(NSDictionary *parameters, NSError *error) {
-        if (parameters) {
-            [self.httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:parameters success:success failure:failure];
-        } else {
-            if (failure != NULL) failure(error);
-        }
-    }];
+    [googlePlusAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+        [self.httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:dictionary success:success failure:failure];
+    } failure:failure];
 }
 
 #pragma mark - Change password
@@ -129,7 +123,7 @@
 #pragma mark - Handle callback
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [self.googlePlusAuthenticator handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    return [DVSGooglePlusAuthenticator handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 #pragma mark - Delete account

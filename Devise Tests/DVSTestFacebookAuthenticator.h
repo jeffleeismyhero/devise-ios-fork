@@ -20,9 +20,9 @@
 // Reveal private interface
 @interface DVSTestFacebookAuthenticator (DeviseTests)
 
-- (void)makeRequestWithAccount:(ACAccount *)account completion:(DVSFacebookParametersBlock)completion;
-- (void)checkResponse:(NSURLResponse *)response data:(NSData *)data oAuthToken:(NSString *)oAuthToken completion:(DVSFacebookParametersBlock)completion;
-- (NSDictionary *)parametersFromUserData:(id)userData oAuthToken:(NSString *)oAuthToken;
+- (void)makeRequestWithAccount:(ACAccount *)account success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
+- (void)checkResponse:(NSURLResponse *)response data:(NSData *)data token:(NSString *)token success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
+- (NSDictionary *)parametersFromUserData:(id)userData token:(NSString *)token;
 - (BOOL)isResponseValid:(NSURLResponse *)response;
 
 @end

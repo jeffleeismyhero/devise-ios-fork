@@ -10,5 +10,4 @@
 
 typedef void (^DVSErrorBlock)(NSError *error);
 typedef void (^DVSVoidBlock)(void);
-
-typedef NSDictionary *(^DVSExtraParamsBlock)(void);
+typedef void (^DVSDictionaryBlock)(NSDictionary *dictionary);

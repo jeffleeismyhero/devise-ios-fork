@@ -14,7 +14,8 @@
 
 @interface DVSGooglePlusAuthenticator () <GPPSignInDelegate>
 
-@property (copy, nonatomic) DVSGoogleParametersBlock completion;
+@property (copy, nonatomic) DVSErrorBlock failure;
+@property (copy, nonatomic) DVSDictionaryBlock success;
 
 @end
 
@@ -40,12 +41,14 @@
 
 #pragma mark - Public methods
 
-- (void)authenticateWithCompletion:(DVSGoogleParametersBlock)completion {
-    self.completion = completion;
+- (void)authenticateWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure {
+    
+    self.success = success;
+    self.failure = failure;
     [self authenticate];
 }
 
-- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation  {
++ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation  {
     return [[GPPSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
@@ -68,16 +71,14 @@
 
 - (void)continueAuthenticationWithAuth:(GTMOAuth2Authentication *)auth {
     
-    if (self.completion == NULL) return;
-    
     GTLServicePlus *plusService = [self googlePlusServiceWithAuthorizer:auth];
     GTLQueryPlus *query = [GTLQueryPlus queryForPeopleGetWithUserId:@"me"];
     [plusService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLPlusPerson *person, NSError *error) {
         if (error) {
-            self.completion(nil, error);
+            if (self.failure != NULL) self.failure(error);
         } else {
             NSDictionary *parameters = [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderGoogle oAuthToken:auth.accessToken userID:person.identifier userEmail:[GPPSignIn sharedInstance].authentication.userEmail];
-            self.completion(parameters, nil);
+            if (self.success != NULL) self.success(parameters);
         }
     }];
 }
@@ -86,14 +87,14 @@
 
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error {
     if (error) {
-        if (self.completion != NULL) self.completion(nil, error);
+        if (self.failure != NULL) self.failure(error);
     } else {
         [self continueAuthenticationWithAuth:auth];
     }
 }
 
 - (void)didDisconnectWithError:(NSError *)error {
-    if (self.completion != NULL) self.completion(nil, error);
+    if (self.failure != NULL) self.failure(error);
 }
 
 @end

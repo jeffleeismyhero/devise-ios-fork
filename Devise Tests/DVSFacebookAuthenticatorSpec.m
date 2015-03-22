@@ -14,18 +14,17 @@ SPEC_BEGIN(DVSFacebookAuthenticatorSpec)
 describe(@"DVSFacebookAuthenticator", ^{
     
     __block DVSTestFacebookAuthenticator *authenticator;
-    __block NSString *appID = nil;
-    __block BOOL completionCalled = NO;
+    __block BOOL success;
+    __block BOOL failure;
     
     beforeEach(^{
-        authenticator = [[DVSTestFacebookAuthenticator alloc] init];
-        appID = @"Fixture App ID";
+        authenticator = [[DVSTestFacebookAuthenticator alloc] initWithAppID:@"Fixture App ID"];
+        success = NO;
+        failure = NO;
     });
     
     afterEach(^{
         authenticator = nil;
-        appID = nil;
-        completionCalled = NO;
     });
     
     context(@"succesful access request", ^{
@@ -73,17 +72,24 @@ describe(@"DVSFacebookAuthenticator", ^{
                     }];
                     
                     [authenticator stub:@selector(isResponseValid:) andReturn:theValue(YES)];
-                    [authenticator stub:@selector(parametersFromUserData:oAuthToken:) andReturn:mockParameters];
+                    [authenticator stub:@selector(parametersFromUserData:token:) andReturn:mockParameters];
                     
-                    [authenticator signInUsingFacebookWithAppID:appID completion:^(NSDictionary *parameters, NSError *error) {
-                        receivedParameters = parameters;
+                    
+                    [authenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+                        receivedParameters = dictionary;
+                        success = YES;
+                    } failure:^(NSError *error) {
                         receivedError = error;
-                        completionCalled = YES;
+                        failure = YES;
                     }];
                 });
                 
-                it(@"should call completion", ^{
-                    [[theValue(completionCalled) should] beTrue];
+                it(@"should end with success", ^{
+                    [[theValue(success) should] beTrue];
+                });
+                
+                it(@"should not end with failure", ^{
+                    [[theValue(failure) should] beFalse];
                 });
                 
                 it(@"should receive parameters", ^{
@@ -113,15 +119,21 @@ describe(@"DVSFacebookAuthenticator", ^{
 
                     [authenticator stub:@selector(isResponseValid:) andReturn:theValue(NO)];
                     
-                    [authenticator signInUsingFacebookWithAppID:appID completion:^(NSDictionary *parameters, NSError *error) {
-                        receivedParameters = parameters;
+                    [authenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+                        receivedParameters = dictionary;
+                        success = YES;
+                    } failure:^(NSError *error) {
                         receivedError = error;
-                        completionCalled = YES;
+                        failure = YES;
                     }];
                 });
                 
-                it(@"should call completion with error", ^{
-                    [[theValue(completionCalled) should] beTrue];
+                it(@"should end with failure", ^{
+                    [[theValue(failure) should] beTrue];
+                });
+                
+                it(@"should not end with success", ^{
+                    [[theValue(success) should] beFalse];
                 });
                 
                 it(@"should receive error", ^{
@@ -148,9 +160,11 @@ describe(@"DVSFacebookAuthenticator", ^{
                     return nil;
                 }];
                 
-                [authenticator signInUsingFacebookWithAppID:appID completion:^(NSDictionary *parameters, NSError *error) {
+                [authenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+                    success = YES;
+                } failure:^(NSError *error) {
                     receivedError = error;
-                    completionCalled = YES;
+                    failure = YES;
                 }];
             });
             
@@ -158,8 +172,12 @@ describe(@"DVSFacebookAuthenticator", ^{
                 receivedError = nil;
             });
             
-            it(@"should call completion with error", ^{
-                [[theValue(completionCalled) should] beTrue];
+            it(@"should end with failure", ^{
+                [[theValue(failure) should] beTrue];
+            });
+            
+            it(@"should not end with success", ^{
+                [[theValue(success) should] beFalse];
             });
             
             it(@"should receive error", ^{
@@ -187,11 +205,12 @@ describe(@"DVSFacebookAuthenticator", ^{
                 return nil;
             }];
             
-            [authenticator signInUsingFacebookWithAppID:appID completion:^(NSDictionary *parameters, NSError *error) {
+            [authenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+                success = YES;
+            } failure:^(NSError *error) {
                 receivedError = error;
-                completionCalled = YES;
+                failure = YES;
             }];
-            
         });
         
         afterEach(^{
@@ -199,8 +218,13 @@ describe(@"DVSFacebookAuthenticator", ^{
             receivedError = nil;
         });
         
-        it(@"should call completion with error", ^{
-            [[theValue(completionCalled) should] beTrue];
+        it(@"should end with failure", ^{
+            [[theValue(failure) should] beTrue];
+        });
+        
+        
+        it(@"should not end with success", ^{
+            [[theValue(success) should] beFalse];
         });
         
         it(@"should receive error", ^{

@@ -13,7 +13,8 @@
 
 @interface DVSTestGooglePlusAuthenticator : DVSGooglePlusAuthenticator
 
-@property (copy, nonatomic, readwrite) DVSGoogleParametersBlock completion;
+@property (copy, nonatomic, readwrite) DVSDictionaryBlock success;
+@property (copy, nonatomic, readwrite) DVSErrorBlock failure;
 
 @end
 

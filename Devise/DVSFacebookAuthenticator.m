@@ -12,27 +12,39 @@
 #import "DVSOAuthJSONParameters.h"
 #import "DVSFacebookAccountStore.h"
 
+@interface DVSFacebookAuthenticator ()
+
+@property (nonatomic, strong) NSString *appID;
+
+@end
+
 @implementation DVSFacebookAuthenticator
 
-- (void)signInUsingFacebookWithAppID:(NSString *)facebookAppID completion:(DVSFacebookParametersBlock)completion {
+- (instancetype)initWithAppID:(NSString *)appID {
+    self = [super init];
+    if (self) {
+        _appID = appID;
+    }
+    return self;
+}
+
+- (void)authenticateWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure {
     
-    if (completion == NULL) return;
+    NSAssert(self.appID, @"AppID cannot be nil. Remember to initialize authenticator with initWithAppID: method");
     
-    DVSFacebookAccountStore *store = [[DVSFacebookAccountStore alloc] initWithAppIDkey:facebookAppID permissions:@[@"email"]];
+    DVSFacebookAccountStore *store = [[DVSFacebookAccountStore alloc] initWithAppIDkey:self.appID permissions:@[@"email"]];
     [store requestAccessWithCompletion:^(ACAccount *account, NSError *error) {
         if (account) {
-            [self makeRequestWithAccount:account completion:completion];
+            [self makeRequestWithAccount:account success:success failure:failure];
         } else {
-            completion(nil, error);
+            if (failure != NULL) failure(error);
         }
     }];
 }
 
 #pragma mark - Private methods
 
-- (void)makeRequestWithAccount:(ACAccount *)account completion:(DVSFacebookParametersBlock)completion {
-    
-    if (completion == NULL) return;
+- (void)makeRequestWithAccount:(ACAccount *)account success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure {
     
     SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
                                             requestMethod:SLRequestMethodGET
@@ -42,37 +54,36 @@
     
     [request performRequestWithHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
-            completion(nil, error);
+            if (failure != NULL) failure(error);
         } else {
-            [self checkResponse:response data:data oAuthToken:account.credential.oauthToken completion:completion];
+            [self checkResponse:response data:data token:account.credential.oauthToken success:success failure:failure];
         }
     }];
 }
 
-- (void)checkResponse:(NSURLResponse *)response data:(NSData *)data oAuthToken:(NSString *)oAuthToken completion:(DVSFacebookParametersBlock)completion {
-    
-    if (completion == NULL) return;
+- (void)checkResponse:(NSURLResponse *)response data:(NSData *)data token:(NSString *)token success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure  {
     
     if ([self isResponseValid:response]) {
         NSError *deserializationError;
         id userData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&deserializationError];
         
         if (deserializationError) {
-            completion(nil, deserializationError);
+            if (failure != NULL) failure(deserializationError);
         } else {
-            NSDictionary *parameters = [self parametersFromUserData:userData oAuthToken:oAuthToken];
-            completion(parameters, nil);
+            NSDictionary *parameters = [self parametersFromUserData:userData token:token];
+            if (success != NULL) success(parameters);
         }
     } else {
-        completion(nil, [NSError errorWithDomain:NSURLErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Facebook response is not valid!"}]);
+        NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"Facebook response is not valid!"}];
+        if (failure != NULL) failure(error);
     }
 }
 
 #pragma mark - Helpers
 
-- (NSDictionary *)parametersFromUserData:(id)userData oAuthToken:(NSString *)oAuthToken {
+- (NSDictionary *)parametersFromUserData:(id)userData token:(NSString *)token {
     return [DVSOAuthJSONParameters dictionaryForParametersWithProvider:DVSOAuthProviderFacebook
-                                                            oAuthToken:oAuthToken
+                                                            oAuthToken:token
                                                                 userID:userData[@"id"]
                                                              userEmail:userData[@"email"]];
 }

@@ -57,7 +57,6 @@ extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
  */
 @interface DVSHTTPClient (User)
 
-
 @property (strong, nonatomic, readonly) DVSUserJSONSerializer *userSerializer;
 
 /**

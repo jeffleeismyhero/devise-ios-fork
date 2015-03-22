@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "DVSUser.h"
 
 @protocol DVSUserJSONSerializerDataSource;
@@ -18,8 +17,6 @@
 @property (strong, nonatomic) NSString *JSONKeyPathForPassword;
 @property (strong, nonatomic) NSString *JSONKeyPathForPasswordConfirmation;
 @property (weak, nonatomic) id<DVSUserJSONSerializerDataSource> dataSource;
-
-- (instancetype)init;
 
 @end
 

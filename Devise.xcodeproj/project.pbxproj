@@ -53,7 +53,7 @@
 		21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECBD1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h */; };
 		21B3ECC01A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B3ECBE1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.m */; };
 		21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B3ECC11A59CCCB00C8C620 /* DVSLoginSignUpFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B4BA6D1A8B8AD2000E3E9A /* DVSUserManager.h */; };
+		21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B4BA6D1A8B8AD2000E3E9A /* DVSUserManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21B4BA701A8B8AD2000E3E9A /* DVSUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B4BA6E1A8B8AD2000E3E9A /* DVSUserManager.m */; };
 		21E155E21A64170C00603952 /* DVSChangePasswordViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 21951E4B1A601AE2006A63E7 /* DVSChangePasswordViewSpec.m */; };
 		21F6909B1A3711E100DE2ABA /* DVSMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F6909A1A3711E100DE2ABA /* DVSMenuTableViewController.m */; };
@@ -700,7 +700,6 @@
 		3AA22E201A250F9E00FE04D1 /* Supporting Headers */ = {
 			isa = PBXGroup;
 			children = (
-				3AD4C6831A24DB1700F0AE67 /* Devise.h */,
 				3AA22E211A250FC300FE04D1 /* DVSMacros.h */,
 				3AA22E3A1A2530EA00FE04D1 /* DVSTypedefs.h */,
 			);
@@ -813,6 +812,7 @@
 		3AD4C6821A24DB1700F0AE67 /* Devise */ = {
 			isa = PBXGroup;
 			children = (
+				3AD4C6831A24DB1700F0AE67 /* Devise.h */,
 				219EB2401A8CB6A000F7BCFA /* Serializers */,
 				21B4BA6C1A8B8A98000E3E9A /* Managers */,
 				21AFB7D31A48276E00769C87 /* UI */,
@@ -1033,6 +1033,7 @@
 				21B3ECBB1A59CC1400C8C620 /* DVSAccountRetrieverViewController.h in Headers */,
 				E3A0D6341AA73EE500E326BC /* DVSOAuthJSONParameters.h in Headers */,
 				5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */,
+				21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */,
 				21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */,
 				21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h in Headers */,
 				218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */,
@@ -1043,7 +1044,6 @@
 				21B3ECB21A52D32100C8C620 /* UIViewController+Devise.h in Headers */,
 				3AA22E2F1A251B1400FE04D1 /* DVSUser.h in Headers */,
 				3AA409F41A3F9D700046B0E4 /* DVSHTTPClient+User.h in Headers */,
-				21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */,
 				3AA631741A39A718002A64AC /* DVSUser+Persistence.h in Headers */,
 				E3CA30061AADC10E00890305 /* DVSFacebookAuthenticator.h in Headers */,
 				5EE295081A35C086009441E1 /* NSDictionary+Devise+Private.h in Headers */,
