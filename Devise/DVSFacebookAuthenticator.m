@@ -32,7 +32,7 @@
     
     NSAssert(self.appID, @"AppID cannot be nil. Remember to initialize authenticator with initWithAppID: method");
     
-    DVSFacebookAccountStore *store = [[DVSFacebookAccountStore alloc] initWithAppIDkey:self.appID permissions:@[@"email"]];
+    DVSFacebookAccountStore *store = [[DVSFacebookAccountStore alloc] initWithAppID:self.appID permissions:@[@"email"]];
     [store requestAccessWithCompletion:^(ACAccount *account, NSError *error) {
         if (account) {
             [self makeRequestWithAccount:account success:success failure:failure];

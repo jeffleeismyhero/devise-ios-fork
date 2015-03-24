@@ -16,14 +16,14 @@
 
 @implementation DVSFacebookAccountStore
 
-- (instancetype)initWithAppIDkey:(NSString *)appIDKey permissions:(NSArray *)permissions {
+- (instancetype)initWithAppID:(NSString *)appID permissions:(NSArray *)permissions {
     if (self = [super init]) {
         
-        NSAssert(appIDKey != nil, @"appIDKey can not be nil!");
-        NSAssert(permissions != nil, @"permissions can not be nil!");
+        NSAssert(appID != nil, @"Facebook appID can not be nil!");
+        NSAssert(permissions != nil, @"Facebook permissions can not be nil!");
         
         _options = @{
-          ACFacebookAppIdKey : appIDKey,
+          ACFacebookAppIdKey : appID,
           ACFacebookPermissionsKey : permissions,
           ACFacebookAudienceKey : ACFacebookAudienceOnlyMe
         };

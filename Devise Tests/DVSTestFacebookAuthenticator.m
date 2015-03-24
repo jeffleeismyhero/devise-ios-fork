@@ -19,7 +19,7 @@
     DVSFacebookAccountStore *facebookAccountStore = [[DVSFacebookAccountStore alloc] init];
     
     [[self class] stub:@selector(alloc) andReturn:facebookAccountStore];
-    [facebookAccountStore stub:@selector(initWithAppIDkey:permissions:) andReturn:facebookAccountStore];
+    [facebookAccountStore stub:@selector(initWithAppID:permissions:) andReturn:facebookAccountStore];
     
     ACAccountType *accountType = [facebookAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     ACAccount *account = [[ACAccount alloc] initWithAccountType:accountType];

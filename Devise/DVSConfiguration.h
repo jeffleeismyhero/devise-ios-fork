@@ -83,16 +83,6 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
 @property (assign, nonatomic) NSTimeInterval retryThresholdDuration;
 
 /**
- *  Whether the JSON root is included in the server response (default: YES).
- */
-@property (assign, nonatomic) BOOL rootJSONInResponse;
-
-/**
- *  The server-side authentication token name (default: authenticationToken).
- */
-@property (copy, nonatomic) NSString *authenticationTokenName;
-
-/**
  *  Returns a shared instance of the configuration object.
  *
  *  Devise uses AFNetworking under the hood. If activity indicator should be
@@ -107,7 +97,7 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
  *  @param serverURL The root URL of the server backend.
  *  @return Instance of DVSConfiguration
  */
-- (instancetype)initWithServerURL:(NSURL *)serverURL;
+- (instancetype)initWithServerURL:(NSURL *)serverURL NS_DESIGNATED_INITIALIZER;
 
 /**
  *  Logs a message with the level specified by the \c logLevel property.

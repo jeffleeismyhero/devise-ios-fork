@@ -17,13 +17,13 @@ describe(@"DVSFacebookAccountStore", ^{
     
     context(@"when initilized", ^{
         
-        __block NSString *appIDKey = nil;
+        __block NSString *appID = nil;
         __block NSArray *permissions = nil;
         
         beforeEach(^{
-            appIDKey = @"Fixture App ID";
+            appID = @"Fixture App ID";
             permissions = @[@"Fixture Permission"];
-            facebookAccountStore = [[DVSTestFacebookAccountStore alloc] initWithAppIDkey:appIDKey permissions:permissions];
+            facebookAccountStore = [[DVSTestFacebookAccountStore alloc] initWithAppID:appID permissions:permissions];
             
             ACAccountType *accountType = [facebookAccountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
             ACAccount *account = [[ACAccount alloc] initWithAccountType:accountType];
@@ -37,7 +37,7 @@ describe(@"DVSFacebookAccountStore", ^{
         
         it(@"should have options", ^{
             NSDictionary *options = @{
-              ACFacebookAppIdKey : appIDKey,
+              ACFacebookAppIdKey : appID,
               ACFacebookPermissionsKey : permissions,
               ACFacebookAudienceKey : ACFacebookAudienceOnlyMe
             };

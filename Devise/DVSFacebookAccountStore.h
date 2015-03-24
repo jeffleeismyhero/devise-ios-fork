@@ -12,7 +12,15 @@ typedef void(^DVSAccountStoreBlock)(ACAccount *account, NSError *error);
 
 @interface DVSFacebookAccountStore : ACAccountStore
 
-- (instancetype)initWithAppIDkey:(NSString *)appIDKey permissions:(NSArray *)permissions;
+/**
+ *  Designated initializer.
+ *
+ *  @param appIDKey     Facebook App ID, as it appears on the Facebook website.
+ *  @param permissions An array of of the permissions you're requesting.
+ *
+ *  @return Instance of ACAccountStore.
+ */
+- (instancetype)initWithAppID:(NSString *)appID permissions:(NSArray *)permissions NS_DESIGNATED_INITIALIZER;
 
 /**
  * Request access to facebook account configured on the device

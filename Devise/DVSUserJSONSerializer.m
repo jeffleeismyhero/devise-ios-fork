@@ -13,9 +13,10 @@
 - (instancetype)init {
     if (self = [super init]) {
         // Defaults
-        self.JSONKeyPathForEmail = @"email";
-        self.JSONKeyPathForPassword = @"password";
-        self.JSONKeyPathForPasswordConfirmation = @"passwordConfirmation";
+        _JSONKeyPathForEmail = @"email";
+        _JSONKeyPathForPassword = @"password";
+        _JSONKeyPathForPasswordConfirmation = @"passwordConfirmation";
+        _JSONKeyPathForAuthenticationToken = @"authenticationToken";
     }
     return self;
 }
