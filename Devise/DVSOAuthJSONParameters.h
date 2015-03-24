@@ -15,7 +15,6 @@ typedef NS_ENUM(NSUInteger, DVSOAuthProvider) {
 
 @interface DVSOAuthJSONParameters : NSObject
 
-
 /**
  *  Builds authorization parameters
  *  @param provider     Type of provider for which you would like to get authorization parameters

@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger, DVSLoggingMode) {
  *  Creates and returns an instance of configuration object.
  *
  *  @param serverURL The root URL of the server backend.
- *  @return Instance of DVSConfiguration
+ *  @return Instance of DVSConfiguration.
  */
 - (instancetype)initWithServerURL:(NSURL *)serverURL NS_DESIGNATED_INITIALIZER;
 

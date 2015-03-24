@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 - (NSDictionary *)requestParametersForAction:(DVSActionType)action;
 
 /**
- *  Set an object for given key and action. Objects are converted to parameters and used in query.
+ *  Sets an object for given key and action. Objects are converted to parameters and used in query.
  *
  *  @param object     The value for key.
  *  @param key        The key for value. If other value for key already exists, object will replace that value.
@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, DVSActionType) {
 - (void)setRequestParameter:(id)parameter forKey:(NSString *)key action:(DVSActionType)action;
 
 /**
- *  Set bunch of key-value pairs for given action. Objects are converted to parameters and used when request is sending.
+ *  Sets bunch of key-value pairs for given action. Objects are converted to parameters and used when request is sending.
  *
  *  @param objects    NSDictionary of objects and keys stored for given action
  *  @param action     The action for which additional parameters will be added to query.

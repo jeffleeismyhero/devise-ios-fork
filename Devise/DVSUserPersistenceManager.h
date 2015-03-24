@@ -18,12 +18,20 @@
  */
 @property (strong, nonatomic) DVSUser *localUser;
 
+/**
+ *  Creates (if neccessary) and returns persistent manager with default (shared) configuration.
+ */
 + (instancetype)sharedPersistenceManager;
 
-- (instancetype)initWithConfiguration:(DVSConfiguration *)configuration;
+/**
+ *  Default Initializer for DVSUserPersistenceManager class.
+ *
+ *  @param configuration The configuration used to initialize DVSUserPersistenceManager.
+ */
+- (instancetype)initWithConfiguration:(DVSConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
 
 /**
- *  Returns stored locally email used in HTTP X-User-Email Header Field.
+ *  Returns locally stored email used in HTTP X-User-Email Header Field.
  */
 - (NSString *)persistedUserEmail;
 
