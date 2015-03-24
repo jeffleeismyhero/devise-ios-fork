@@ -131,12 +131,4 @@ extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
  */
 - (void)signInUsingGoogleUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
-/**
- *  Sets the authorization token and email headers.
- *
- *  @param token The authorization token to use.
- *  @param email The authorization email to use.
- */
-- (void)setAuthorizationToken:(NSString *)token email:(NSString *)email;
-
 @end

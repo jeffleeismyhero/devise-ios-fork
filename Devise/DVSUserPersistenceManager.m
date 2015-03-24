@@ -38,7 +38,7 @@
     if (self = [super init]) {
         self.configuration = configuration;
         
-        if (!self.localUser) _localUser = [DVSUser new];
+        if (!self.localUser) _localUser = [[DVSUser alloc] init];
     }
     return self;
 }
@@ -75,6 +75,10 @@
     NSString *keychainKey = self.configuration.resourceName;
     NSData *archivedData = [UICKeyChainStore dataForKey:keychainKey service:keychainService];
     return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
+}
+
+- (NSString *)persistedUserEmail {
+    return [[self persistentUser].email copy];
 }
 
 

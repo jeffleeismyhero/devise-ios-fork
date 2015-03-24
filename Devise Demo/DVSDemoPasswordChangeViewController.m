@@ -84,7 +84,6 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
                           cancelButtonTitle:NSLocalizedString(DVSTitleForAlertCancelButton, nil)
                           otherButtonTitles:nil] show];
     } failure:^(NSError *error) {
-        [DVSUserPersistenceManager sharedPersistenceManager].localUser.password = currentPassword;
         [[UIAlertView dvs_alertViewForError:error] show];
     }];
 }

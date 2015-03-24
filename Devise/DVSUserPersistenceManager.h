@@ -22,4 +22,9 @@
 
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration;
 
+/**
+ *  Returns stored locally email used in HTTP X-User-Email Header Field.
+ */
+- (NSString *)persistedUserEmail;
+
 @end
