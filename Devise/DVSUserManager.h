@@ -15,12 +15,21 @@
 
 @interface DVSUserManager : NSObject
 
-@property (strong, nonatomic, readonly) DVSUser *user;
-
 @property (copy, nonatomic) NSString *userPreviousEmail;
 
+/**
+ *  User model.
+ */
+@property (strong, nonatomic, readonly) DVSUser *user;
+
+/**
+ *  JSON serializer used in forming request.
+ */
 @property (strong, nonatomic, readonly) DVSUserJSONSerializer *serializer;
 
+/**
+ *  The manager's delegate object.
+ */
 @property (weak, nonatomic) id<DVSUserManagerDelegate> delegate;
 
 /**
@@ -28,11 +37,29 @@
  */
 @property (strong, nonatomic) DVSHTTPClient *httpClient;
 
+/**
+ *  Initialized DVSUserManager with locally saved user object (if any) and default configuration.
+ */
++ (instancetype)defaultManager;
+
+/**
+ *  Initializes manager class. Use it to provide own user (other than stored locally).
+ *
+ *  @param user The model of user.
+ *
+ *  @return Instance of receiver.
+ */
 - (instancetype)initWithUser:(DVSUser *)user;
 
+/**
+ *  Default initializer for manager class. Use it to provide own user (other than stored locally) and configuration (other than sharedConfiguration).
+ *
+ *  @param user          The model of user.
+ *  @param configuration The configuration used to initialize DVSHTTPClient.
+ *
+ *  @return Instance of receiver.
+ */
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration;
-
-+ (instancetype)defaultManager;
 
 /**
  *  Login user asynchronously. When succeed user will be stored locally so
@@ -76,7 +103,7 @@
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
 
 /**
- *  Handle authorization via GooglePlus callback
+ *  Handles authorization via GooglePlus callback.
  */
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
@@ -90,6 +117,13 @@
 @protocol DVSUserManagerDelegate <NSObject>
 
 @optional
+/**
+ *  Allows delegate to modify default validation rules.
+ *
+ *  @param manager         Instance of user manager.
+ *  @param validationRules Default validation rules possible to modify.
+ *  @param action          The action for which validation rules will be attached.
+ */
 - (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action;
 
 @end
