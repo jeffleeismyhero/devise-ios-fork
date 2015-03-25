@@ -4,17 +4,11 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSConfiguration.h"
-#import "DVSHTTPClient.h"
-#import "DVSHTTPClient+User.h"
 #import "DVSUser.h"
-#import "DVSUser+Persistence.h"
 
 @interface DVSUser ()
 
 @property (strong, nonatomic) NSArray *additionalRequestParameters;
-- (void)setUpDefaultAdditionalRequestParameters;
-
 @property (strong, nonatomic, readwrite) NSString *identifier;
 @property (strong, nonatomic, readwrite) NSString *sessionToken;
 
@@ -56,12 +50,6 @@
 
 - (void)setRequestParameters:(NSDictionary *)parameters forAction:(DVSActionType)action {
     [self.additionalRequestParameters[action] addEntriesFromDictionary:parameters];
-}
-
-#pragma mark - Configuration
-
-+ (DVSConfiguration *)configuration {
-    return [DVSConfiguration sharedConfiguration];
 }
 
 #pragma mark - Equality
