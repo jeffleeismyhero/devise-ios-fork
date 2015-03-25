@@ -37,7 +37,6 @@ describe(@"DVSUserManagerSpec", ^{
         NSURL *serverURL = [NSURL URLWithString:@"http://devise-tests/"];
         testConfiguration = [[DVSTestConfiguration alloc] initWithServerURL:serverURL appendPathComponents:NO];
         
-        [[testUser class] setConfiguration:testConfiguration];
         testUser = [[DVSTestUser alloc] init];
         userManager = [[DVSTestUserManager alloc] initWithUser:testUser configuration:testConfiguration];
         persistentStore = [[DVSUserPersistenceStore alloc] initWithConfiguration:testConfiguration];

@@ -7,13 +7,10 @@
 //
 
 #import "DVSDemoWelcomeViewController.h"
-#import "DVSMacros.h"
 #import "UIAlertView+DeviseDemo.h"
-#import "DVSUserManager.h"
-#import "DVSDemoUser.h"
-#import "Devise-Prefix.pch"
-#import "DVSHTTPClient+User.h"
-#import "DVSOAuthJSONParameters.h"
+#import "DVSMacros.h"
+
+#import "Devise.h"
 
 static NSString * const DVSHomeSegue = @"DisplayHomeView";
 static NSString * const DVSDefaultWelcomeCell = @"defaultCell";

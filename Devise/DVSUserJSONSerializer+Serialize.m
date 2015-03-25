@@ -7,6 +7,7 @@
 //
 
 #import "DVSUserJSONSerializer+Serialize.h"
+#import "DVSUser.h"
 
 @implementation DVSUserJSONSerializer (Serialize)
 
@@ -64,11 +65,10 @@
 
 - (NSDictionary *)additionalParametersForAction:(DVSActionType)action {
     
-    NSMutableDictionary *dictionary = [NSMutableDictionary new];
     if (self.dataSource && [self.dataSource respondsToSelector:@selector(additionalRequestParametersForAction:)]) {
-        [dictionary addEntriesFromDictionary:[self.dataSource additionalRequestParametersForAction:action]];
+        return [self.dataSource additionalRequestParametersForAction:action];
     }
-    return [dictionary copy];
+    return nil;
 }
 
 - (NSDictionary *)userDeviseLikeJSONWithJSON:(NSDictionary *)json {

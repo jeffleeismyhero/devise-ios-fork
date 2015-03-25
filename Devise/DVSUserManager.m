@@ -170,6 +170,7 @@
 }
 
 #pragma mark - Logout method
+
 - (void)logout {
     self.persistenceStore.localUser = nil;
 }
@@ -177,8 +178,8 @@
 #pragma mark - Validation
 
 - (void)validateUsingRules:(NSArray *)rules forAction:(DVSActionType)action success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+    
     NSError *error;
-
     BOOL validated = [NGRValidator validateModel:self.user error:&error usingRules:^NSArray *{
         
         NSMutableArray *currentValidationRules = [NSMutableArray arrayWithArray:rules];

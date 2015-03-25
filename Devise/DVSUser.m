@@ -8,7 +8,6 @@
 
 @interface DVSUser ()
 
-@property (strong, nonatomic) NSArray *additionalRequestParameters;
 @property (strong, nonatomic, readwrite) NSString *identifier;
 @property (strong, nonatomic, readwrite) NSString *sessionToken;
 
@@ -18,38 +17,8 @@
 
 #pragma mark - Object lifecycle
 
-- (instancetype)init {
-    self = [super init];
-    if (self == nil) return nil;
-    [self setUpDefaultAdditionalRequestParameters];
-    return self;
-}
-
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p, id: %@, sessionToken: %@, email: %@>", NSStringFromClass([self class]), self, self.identifier, self.sessionToken, self.email];
-}
-
-#pragma mark - Additional parameters management
-
-- (void)setUpDefaultAdditionalRequestParameters {
-    NSInteger capacity = 5;
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:capacity];
-    for (int i = 0; i < capacity; i++) {
-        array[i] = [NSMutableDictionary dictionary];
-    }
-    self.additionalRequestParameters = [array copy];
-}
-
-- (NSDictionary *)requestParametersForAction:(DVSActionType)action {
-    return self.additionalRequestParameters[action];
-}
-
-- (void)setRequestParameter:(id)parameter forKey:(NSString *)key action:(DVSActionType)action {
-    self.additionalRequestParameters[action][key] = parameter;
-}
-
-- (void)setRequestParameters:(NSDictionary *)parameters forAction:(DVSActionType)action {
-    [self.additionalRequestParameters[action] addEntriesFromDictionary:parameters];
 }
 
 #pragma mark - Equality

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DVSUser.h"
+#import "DVSTypedefs.h"
 
 @protocol DVSUserJSONSerializerDataSource;
 

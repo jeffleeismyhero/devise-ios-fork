@@ -12,3 +12,11 @@ typedef void (^DVSErrorBlock)(NSError *error);
 typedef void (^DVSUserBlock)(DVSUser *user);
 typedef void (^DVSVoidBlock)(void);
 typedef void (^DVSDictionaryBlock)(NSDictionary *dictionary);
+
+typedef NS_ENUM(NSInteger, DVSActionType) {
+    DVSActionLogin,
+    DVSActionRegistration,
+    DVSActionRemindPassword,
+    DVSActionChangePassword,
+    DVSActionUpdate
+};

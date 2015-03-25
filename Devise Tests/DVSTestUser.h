@@ -31,9 +31,4 @@
  */
 @property (strong, nonatomic) NSString *name;
 
-/**
- *  Sets the configuration object of the model.
- */
-+ (void)setConfiguration:(DVSConfiguration *)configuration;
-
 @end
