@@ -61,8 +61,8 @@
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration;
 
 /**
- *  Returns fresh copy of user model (or nil if any) taken from keychain store.
- *  Notice that persistentUser can be different from user model if any changes has been made.
+ *  Returns fresh copy of user model taken from keychain store. If model doesn't exist, returns nil.
+ *  Notice that persistentUser can be different from user if any changes has been made.
  */
 - (DVSUser *)persistentUser;
 
