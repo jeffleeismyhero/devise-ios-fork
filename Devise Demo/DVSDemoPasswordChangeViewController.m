@@ -12,7 +12,6 @@
 #import "NSError+DeviseDemo.h"
 #import "UIAlertView+DeviseDemo.h"
 #import "DVSUserManager.h"
-#import "DVSUserPersistenceManager.h"
 
 static NSString * const DVSTitleForAlertCancelButton = @"Close";
 static NSString * const DVSTitleForCurrentPassword = @"Current password";

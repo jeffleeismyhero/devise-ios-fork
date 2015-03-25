@@ -7,10 +7,10 @@
 //
 
 #import <Devise/Devise.h>
-#import "DVSUserPersistenceManager.h"
+#import "DVSUserPersistenceStore.h"
 
 @interface DVSTestUserManager : DVSUserManager
 
-@property (strong, nonatomic) DVSUserPersistenceManager *persistanceManager;
+@property (strong, nonatomic) DVSUserPersistenceStore *persistentStore;
 
 @end

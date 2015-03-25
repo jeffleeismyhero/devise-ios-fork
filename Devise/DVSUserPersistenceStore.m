@@ -1,23 +1,23 @@
 //
-//  DVSUserPersistenceManager.m
+//  DVSUserPersistenceStore.m
 //  Devise
 //
 //  Created by Wojciech Trzasko on 13.02.2015.
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSUserPersistenceManager.h"
+#import "DVSUserPersistenceStore.h"
 #import "UICKeyChainStore/UICKeyChainStore.h"
 #import "DVSConfiguration.h"
 #import "DVSUser+Persistence.h"
 
-@interface DVSUserPersistenceManager ()
+@interface DVSUserPersistenceStore ()
 
 @property (strong, nonatomic, readwrite) DVSConfiguration *configuration;
 
 @end
 
-@implementation DVSUserPersistenceManager
+@implementation DVSUserPersistenceStore
 
 @synthesize localUser = _localUser;
 

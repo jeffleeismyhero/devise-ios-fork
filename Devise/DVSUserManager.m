@@ -10,7 +10,7 @@
 #import <ngrvalidator/NGRValidator.h>
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
-#import "DVSUserPersistenceManager.h"
+#import "DVSUserPersistenceStore.h"
 #import "DVSOAuthJSONParameters.h"
 #import "DVSGooglePlusAuthenticator.h"
 #import "DVSFacebookAuthenticator.h"
@@ -18,7 +18,7 @@
 @interface DVSUserManager () <DVSHTTPClientDelegate>
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
-@property (strong, nonatomic) DVSUserPersistenceManager *persistanceManager;
+@property (strong, nonatomic) DVSUserPersistenceStore *persistenceStore;
 
 @end
 
@@ -36,7 +36,7 @@
         _user = user;
         _httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
         _httpClient.delegate = self;
-        _persistanceManager = [[DVSUserPersistenceManager alloc] initWithConfiguration:configuration];
+        _persistenceStore = [[DVSUserPersistenceStore alloc] initWithConfiguration:configuration];
     }
     return self;
 }
@@ -47,13 +47,13 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedMyManager = [[DVSUserManager alloc] initWithUser:nil configuration:[DVSConfiguration sharedConfiguration]];
-        sharedMyManager.user = sharedMyManager.persistanceManager.localUser;
+        sharedMyManager.user = sharedMyManager.persistenceStore.localUser;
     });
     return sharedMyManager;
 }
 
 - (DVSUser *)persistentUser {
-    return self.persistanceManager.persistentUser;
+    return self.persistenceStore.persistentUser;
 }
 
 #pragma mark - DVSHTTPClientDelegate
@@ -70,7 +70,7 @@
     
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [self.httpClient logInUser:self.user success:^(DVSUser *user) {
-            self.persistanceManager.localUser = user;
+            self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
     } failure:failure];
@@ -94,7 +94,7 @@
     
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [self.httpClient registerUser:self.user success:^(DVSUser *user) {
-            self.persistanceManager.localUser = user;
+            self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
     } failure:failure];
@@ -109,7 +109,7 @@
     
     [facebookAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
         [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:dictionary success:^(DVSUser *user) {
-            self.persistanceManager.localUser = user;
+            self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
     } failure:failure];
@@ -124,7 +124,7 @@
     
     [googlePlusAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
         [self.httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:dictionary success:^(DVSUser *user) {
-            self.persistanceManager.localUser = user;
+            self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
     } failure:failure];
@@ -136,7 +136,7 @@
     NSArray *rules = @[[self validationRulesForPassword]];
     [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
         [self.httpClient changePasswordOfUser:self.user success:^(DVSUser *user) {
-            self.persistanceManager.localUser = user;
+            self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
     } failure:failure];
@@ -148,7 +148,7 @@
     NSArray *rules = @[[self validationRulesForEmail]];
     [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
         [self.httpClient updateUser:self.user success:^(DVSUser *user) {
-            self.persistanceManager.localUser = user;
+            self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
     } failure:failure];
@@ -164,14 +164,14 @@
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self.httpClient deleteUser:self.user success:^{
-        self.persistanceManager.localUser = nil;
+        self.persistenceStore.localUser = nil;
         if (success != NULL) success();
     } failure:failure];
 }
 
 #pragma mark - Logout method
 - (void)logout {
-    self.persistanceManager.localUser = nil;
+    self.persistenceStore.localUser = nil;
 }
 
 #pragma mark - Validation

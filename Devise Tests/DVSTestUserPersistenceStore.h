@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSUserPersistenceManager.h"
+#import "DVSUserPersistenceStore.h"
 
-@interface DVSTestUserPersistenceManager : DVSUserPersistenceManager
+@interface DVSTestUserPersistenceStore : DVSUserPersistenceStore
 
 @property (strong, nonatomic) DVSConfiguration *configuration;
 

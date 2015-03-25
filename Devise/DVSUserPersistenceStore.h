@@ -1,5 +1,5 @@
 //
-//  DVSUserPersistenceManager.h
+//  DVSUserPersistenceStore.h
 //  Devise
 //
 //  Created by Wojciech Trzasko on 13.02.2015.
@@ -11,7 +11,7 @@
 
 @class DVSConfiguration;
 
-@interface DVSUserPersistenceManager : NSObject
+@interface DVSUserPersistenceStore : NSObject
 
 /**
  *  A locally saved user object (if any).
@@ -20,14 +20,14 @@
 @property (strong, nonatomic) DVSUser *localUser;
 
 /**
- *  Default Initializer for DVSUserPersistenceManager class.
+ *  Default Initializer for DVSUserPersistenceStore class.
  *
- *  @param configuration The configuration used to initialize DVSUserPersistenceManager.
+ *  @param configuration The configuration used to initialize DVSUserPersistenceStore.
  */
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
 
 /**
- *  Returns fresh copy of user model (or nil if any) taken from keychain store.
+ *  Returns fresh copy of user model taken from keychain store. If model doesn't exist, returns nil.
  *  Notice that persistentUser can be different from localUser.
  */
 - (DVSUser *)persistentUser;

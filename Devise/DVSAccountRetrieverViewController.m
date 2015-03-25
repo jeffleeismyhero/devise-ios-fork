@@ -16,7 +16,6 @@
 #import "UIViewController+Devise.h"
 #import "XLFormSectionDescriptor+Devise+Private.h"
 #import "DVSUserManager.h"
-#import "DVSUserPersistenceManager.h"
 
 @interface DVSAccountRetrieverViewController () <DVSLoginSignUpFormViewControllerDelegate, DVSPasswordReminderFormViewControllerDelegate>
 

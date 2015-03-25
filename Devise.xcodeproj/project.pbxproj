@@ -16,8 +16,8 @@
 		215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 215199571A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h */; };
 		2151995A1A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.m */; };
 		2151996D1A499B5C00EF5F80 /* DVSFormRowCell+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */; };
-		2152B5311A8DF90700F24A06 /* DVSUserPersistenceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2152B52D1A8DF43300F24A06 /* DVSUserPersistenceManager.h */; };
-		2152B5321A8DF90A00F24A06 /* DVSUserPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2152B52E1A8DF43300F24A06 /* DVSUserPersistenceManager.m */; };
+		2152B5311A8DF90700F24A06 /* DVSUserPersistenceStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2152B52D1A8DF43300F24A06 /* DVSUserPersistenceStore.h */; };
+		2152B5321A8DF90A00F24A06 /* DVSUserPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2152B52E1A8DF43300F24A06 /* DVSUserPersistenceStore.m */; };
 		215575B31A40880C00BA8661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 215575B11A40880C00BA8661 /* Localizable.strings */; };
 		218E29971A5AE90C0010BF3F /* Devise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA8B35E1A24DA0000166927 /* Devise.framework */; };
 		218E29AD1A5D196D0010BF3F /* AccessibilityLabels.strings in Resources */ = {isa = PBXBuildFile; fileRef = 218E29AB1A5D196D0010BF3F /* AccessibilityLabels.strings */; };
@@ -131,8 +131,8 @@
 		BF1970271AB85C4B00EA3456 /* DVSUserPersistenceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1970261AB85C4B00EA3456 /* DVSUserPersistenceSpec.m */; };
 		BF527C231AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF527C221AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m */; };
 		BF527C261AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF527C251AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m */; };
-		BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */; };
-		BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */; };
+		BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceStoreSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceStoreSpec.m */; };
+		BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceStore.m */; };
 		BF7761C61AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */; };
 		BF7761C91AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */; };
 		BF861D421AB72E460048ECEB /* DVSTestFacebookAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BF861D411AB72E460048ECEB /* DVSTestFacebookAccountStore.m */; };
@@ -202,8 +202,8 @@
 		215199581A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XLFormRowDescriptor+Devise+Private.m"; sourceTree = "<group>"; };
 		2151996B1A499B5C00EF5F80 /* DVSFormRowCell+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVSFormRowCell+Model.h"; sourceTree = "<group>"; };
 		2151996C1A499B5C00EF5F80 /* DVSFormRowCell+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVSFormRowCell+Model.m"; sourceTree = "<group>"; };
-		2152B52D1A8DF43300F24A06 /* DVSUserPersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUserPersistenceManager.h; sourceTree = "<group>"; };
-		2152B52E1A8DF43300F24A06 /* DVSUserPersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserPersistenceManager.m; sourceTree = "<group>"; };
+		2152B52D1A8DF43300F24A06 /* DVSUserPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSUserPersistenceStore.h; sourceTree = "<group>"; };
+		2152B52E1A8DF43300F24A06 /* DVSUserPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserPersistenceStore.m; sourceTree = "<group>"; };
 		215575B21A40880C00BA8661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Strings/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		218E299E1A5AE90C0010BF3F /* Devise Demo Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Devise Demo Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		218E29A51A5AED6F0010BF3F /* DVSLogInViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVSLogInViewSpec.m; path = "Devise Demo Tests/DVSLogInViewSpec.m"; sourceTree = "<group>"; };
@@ -354,9 +354,9 @@
 		BF527C221AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSGooglePlusAuthenticatorSpec.m; sourceTree = "<group>"; };
 		BF527C241AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestGooglePlusAuthenticator.h; sourceTree = "<group>"; };
 		BF527C251AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestGooglePlusAuthenticator.m; sourceTree = "<group>"; };
-		BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserPersistenceManagerSpec.m; sourceTree = "<group>"; };
-		BF7761C21AA898D0006DBE6B /* DVSTestUserPersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserPersistenceManager.h; sourceTree = "<group>"; };
-		BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserPersistenceManager.m; sourceTree = "<group>"; };
+		BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceStoreSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserPersistenceStoreSpec.m; sourceTree = "<group>"; };
+		BF7761C21AA898D0006DBE6B /* DVSTestUserPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserPersistenceStore.h; sourceTree = "<group>"; };
+		BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserPersistenceStore.m; sourceTree = "<group>"; };
 		BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSUserJSONSerializerSpec.m; sourceTree = "<group>"; };
 		BF7761C71AA8A61A006DBE6B /* DVSTestUserJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserJSONSerializer.h; sourceTree = "<group>"; };
 		BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserJSONSerializer.m; sourceTree = "<group>"; };
@@ -620,8 +620,8 @@
 			children = (
 				21B4BA6D1A8B8AD2000E3E9A /* DVSUserManager.h */,
 				21B4BA6E1A8B8AD2000E3E9A /* DVSUserManager.m */,
-				2152B52D1A8DF43300F24A06 /* DVSUserPersistenceManager.h */,
-				2152B52E1A8DF43300F24A06 /* DVSUserPersistenceManager.m */,
+				2152B52D1A8DF43300F24A06 /* DVSUserPersistenceStore.h */,
+				2152B52E1A8DF43300F24A06 /* DVSUserPersistenceStore.m */,
 				E3CA30081AADF5BE00890305 /* DVSFacebookAccountStore.h */,
 				E3CA30091AADF5BE00890305 /* DVSFacebookAccountStore.m */,
 				E3CA30041AADC10E00890305 /* DVSFacebookAuthenticator.h */,
@@ -659,8 +659,8 @@
 				3A4EE5A21A40A40400A068E2 /* DVSTestConfiguration.m */,
 				3A4EE5A51A40AC9D00A068E2 /* DVSTestUser.h */,
 				3A4EE5A61A40AC9D00A068E2 /* DVSTestUser.m */,
-				BF7761C21AA898D0006DBE6B /* DVSTestUserPersistenceManager.h */,
-				BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceManager.m */,
+				BF7761C21AA898D0006DBE6B /* DVSTestUserPersistenceStore.h */,
+				BF7761C31AA898D0006DBE6B /* DVSTestUserPersistenceStore.m */,
 				BF7761C71AA8A61A006DBE6B /* DVSTestUserJSONSerializer.h */,
 				BF7761C81AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m */,
 				BF527C241AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.h */,
@@ -839,7 +839,7 @@
 				3A4EE59F1A40A10600A068E2 /* DVSHTTPClientUserSpec.m */,
 				3A49C2711A25D60D0041406B /* DVSUserSpec.m */,
 				E3C2AD001A9F54D000829D60 /* DVSUserManagerSpec.m */,
-				BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m */,
+				BF6F4D4A1AA73DF100BBD994 /* DVSUserPersistenceStoreSpec.m */,
 				BF7761C51AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m */,
 				BF527C221AB3204100A43D35 /* DVSGooglePlusAuthenticatorSpec.m */,
 				BF8E921E1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m */,
@@ -1030,7 +1030,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3CA30021AADA5A000890305 /* DVSGooglePlusAuthenticator.h in Headers */,
-				2152B5311A8DF90700F24A06 /* DVSUserPersistenceManager.h in Headers */,
+				2152B5311A8DF90700F24A06 /* DVSUserPersistenceStore.h in Headers */,
 				21B3ECBF1A59CC9000C8C620 /* DVSLoginSignUpFormViewController+Private.h in Headers */,
 				5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */,
 				3AA22E3B1A2530EA00FE04D1 /* DVSTypedefs.h in Headers */,
@@ -1466,7 +1466,7 @@
 				3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */,
 				21B3ECAC1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.m in Sources */,
 				218E29BC1A5D7B310010BF3F /* DVSAccessibilityLabels.m in Sources */,
-				2152B5321A8DF90A00F24A06 /* DVSUserPersistenceManager.m in Sources */,
+				2152B5321A8DF90A00F24A06 /* DVSUserPersistenceStore.m in Sources */,
 				3AA409F51A3F9D700046B0E4 /* DVSHTTPClient+User.m in Sources */,
 				21B3EC981A52B35500C8C620 /* DVSFieldsUtils+Private.m in Sources */,
 				E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */,
@@ -1495,7 +1495,7 @@
 				BF7761C61AA89C78006DBE6B /* DVSUserJSONSerializerSpec.m in Sources */,
 				BF7761C91AA8A61A006DBE6B /* DVSTestUserJSONSerializer.m in Sources */,
 				3A4EE5A71A40AC9E00A068E2 /* DVSTestUser.m in Sources */,
-				BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceManagerSpec.m in Sources */,
+				BF6F4D4B1AA73DF100BBD994 /* DVSUserPersistenceStoreSpec.m in Sources */,
 				3AA57B6E1A41851800C54B36 /* DVSUserSpec.m in Sources */,
 				BF8E92221AB6C491005160FB /* DVSTestFacebookAuthenticator.m in Sources */,
 				3A4EE5A31A40A40400A068E2 /* DVSTestConfiguration.m in Sources */,
@@ -1503,7 +1503,7 @@
 				BF527C261AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m in Sources */,
 				BF8E921F1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m in Sources */,
 				5E93C3C51AC2B573000BA6E6 /* DVSTestUserManager.m in Sources */,
-				BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceManager.m in Sources */,
+				BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

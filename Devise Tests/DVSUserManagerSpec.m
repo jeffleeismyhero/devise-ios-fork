@@ -7,7 +7,7 @@
 //
 
 #import "DVSTestUserManager.h"
-#import "DVSUserPersistenceManager.h"
+#import "DVSUserPersistenceStore.h"
 #import "DVSTestUser.h"
 #import "DVSTestConfiguration.h"
 
@@ -29,7 +29,7 @@ describe(@"DVSUserManagerSpec", ^{
         
     });
     
-    __block DVSUserPersistenceManager *persistanceManager = nil;
+    __block DVSUserPersistenceStore *persistentStore = nil;
     __block DVSTestUser *testUser = nil;
     __block DVSTestConfiguration *testConfiguration = nil;
     
@@ -40,9 +40,9 @@ describe(@"DVSUserManagerSpec", ^{
         [[testUser class] setConfiguration:testConfiguration];
         testUser = [[DVSTestUser alloc] init];
         userManager = [[DVSTestUserManager alloc] initWithUser:testUser configuration:testConfiguration];
-        persistanceManager = [[DVSUserPersistenceManager alloc] initWithConfiguration:testConfiguration];
+        persistentStore = [[DVSUserPersistenceStore alloc] initWithConfiguration:testConfiguration];
         
-        [userManager stub:@selector(persistanceManager) andReturn:persistanceManager];
+        [userManager stub:@selector(persistentStore) andReturn:persistentStore];
     });
     
     describe(@"registering a user", ^{
@@ -159,7 +159,7 @@ describe(@"DVSUserManagerSpec", ^{
                 testUser.identifier = @"1";
                 testUser.email = @"john.appleseed@example.com";
                 testUser.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
-                [persistanceManager setLocalUser:testUser];
+                [persistentStore setLocalUser:testUser];
             });
                 
             context(@"using correct data", ^{
@@ -235,7 +235,7 @@ describe(@"DVSUserManagerSpec", ^{
                 testUser.identifier = @"1";
                 testUser.email = @"john.appleseed@example.com";
                 testUser.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
-                [persistanceManager setLocalUser:testUser];
+                [persistentStore setLocalUser:testUser];
             });
             
             it(@"using correct data, should succeed to delete user.", ^{
@@ -269,7 +269,7 @@ describe(@"DVSUserManagerSpec", ^{
                 testUser.identifier = @"1";
                 testUser.email = @"john.appleseed@example.com";
                 testUser.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
-                [persistanceManager setLocalUser:testUser];
+                [persistentStore setLocalUser:testUser];
             });
             
             context(@"using correct data", ^{
@@ -386,7 +386,7 @@ describe(@"DVSUserManagerSpec", ^{
                 testUser.identifier = @"1";
                 testUser.email = @"john.appleseed@example.com";
                 testUser.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
-                [persistanceManager setLocalUser:testUser];
+                [persistentStore setLocalUser:testUser];
             });
             
             it(@"should remove locally saved user", ^{
@@ -406,7 +406,7 @@ describe(@"DVSUserManagerSpec", ^{
             testUser.email = @"john.appleseed@example.com";
             testUser.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
             testUser.name = @"John";
-            [persistanceManager setLocalUser:testUser];
+            [persistentStore setLocalUser:testUser];
             
             archivedData = [NSMutableData data];
             NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:archivedData];

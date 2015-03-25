@@ -1,39 +1,39 @@
 //
-//  DVSUserPersistenceManagerSpec.m
+//  DVSUserPersistenceStoreSpec.m
 //  Devise
 //
 //  Created by Radoslaw Szeja on 04/03/15.
 //  Copyright 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSTestUserPersistenceManager.h"
+#import "DVSTestUserPersistenceStore.h"
 #import "UICKeyChainStore/UICKeyChainStore.h"
 
 #import "DVSTestUser.h"
 #import "DVSTestConfiguration.h"
 
-SPEC_BEGIN(DVSUserPersistenceManagerSpec)
+SPEC_BEGIN(DVSUserPersistenceStoreSpec)
 
-describe(@"DVSUserPersistenceManager", ^{
+describe(@"DVSUserPersistenceStore", ^{
     
-    __block DVSTestUserPersistenceManager *manager = nil;
+    __block DVSTestUserPersistenceStore *persistenceStore = nil;
     __block DVSConfiguration *testConfiguration = nil;
     __block DVSTestUser *testUser = nil;
 
     beforeEach(^{
         NSURL *serverURL = [NSURL URLWithString:@"http://example.com/"];
         testConfiguration = [[DVSTestConfiguration alloc] initWithServerURL:serverURL];
-        manager = [[DVSTestUserPersistenceManager alloc] initWithConfiguration:testConfiguration];
+        persistenceStore = [[DVSTestUserPersistenceStore alloc] initWithConfiguration:testConfiguration];
     });
 
     context(@"when newly initialized", ^{
         
         it(@"should use custom configuration", ^{
-            [[manager.configuration should] beIdenticalTo:testConfiguration];
+            [[persistenceStore.configuration should] beIdenticalTo:testConfiguration];
         });
 
         it(@"should have non nil local user", ^{
-            [[manager.localUser should] beNonNil];
+            [[persistenceStore.localUser should] beNonNil];
         });
     });
     
@@ -47,21 +47,21 @@ describe(@"DVSUserPersistenceManager", ^{
         context(@"no user assigned before", ^{
             
             beforeEach(^{
-                manager.localUser = nil;
-                manager = [[DVSTestUserPersistenceManager alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
+                persistenceStore.localUser = nil;
+                persistenceStore = [[DVSTestUserPersistenceStore alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
             });
             
             it(@"should have non nil user", ^{
-                [[manager.localUser shouldNot] beNil];
-                [[manager.localUser.email should] beNil];
+                [[persistenceStore.localUser shouldNot] beNil];
+                [[persistenceStore.localUser.email should] beNil];
             });
         });
         
         context(@"read from persistence store", ^{
             
             beforeEach(^{
-                manager.localUser = testUser;
-                manager = [[DVSTestUserPersistenceManager alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
+                persistenceStore.localUser = testUser;
+                persistenceStore = [[DVSTestUserPersistenceStore alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
 
                 DVSConfiguration *configuration = [DVSConfiguration sharedConfiguration];
                 NSData *archivedTestUser = [NSKeyedArchiver archivedDataWithRootObject:testUser];
@@ -69,7 +69,7 @@ describe(@"DVSUserPersistenceManager", ^{
             });
             
             it(@"should be same as test user", ^{
-                DVSUser *user = manager.localUser;
+                DVSUser *user = persistenceStore.localUser;
                 [[user should] equal:testUser];
                 [[user.email should] equal:testUser.email];
             });
@@ -79,15 +79,15 @@ describe(@"DVSUserPersistenceManager", ^{
         context(@"new user assigned", ^{
             
             beforeEach(^{
-                manager.localUser = testUser;
+                persistenceStore.localUser = testUser;
             });
             
             it(@"should not be nil", ^{
-                [[manager.localUser shouldNot] beNil];
+                [[persistenceStore.localUser shouldNot] beNil];
             });
             
             it(@"should be same as new user", ^{
-                [[manager.localUser should] beIdenticalTo:testUser];
+                [[persistenceStore.localUser should] beIdenticalTo:testUser];
             });
             
         });
@@ -95,11 +95,11 @@ describe(@"DVSUserPersistenceManager", ^{
         context(@"nil assigned", ^{
             
             beforeEach(^{
-                manager.localUser = nil;
+                persistenceStore.localUser = nil;
             });
             
             it(@"should be nil", ^{
-                [[manager.localUser should] beNil];
+                [[persistenceStore.localUser should] beNil];
             });
             
         });
