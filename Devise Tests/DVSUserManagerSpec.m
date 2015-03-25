@@ -244,7 +244,7 @@ describe(@"DVSUserManagerSpec", ^{
                     success = YES;
                 } failure:nil];
                 [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
-                [[expectFutureValue(userManager.user) shouldEventually] beNil];
+                [[expectFutureValue(userManager.persistentUser) shouldEventually] beNil];
             });
             
         });
@@ -391,7 +391,7 @@ describe(@"DVSUserManagerSpec", ^{
             
             it(@"should remove locally saved user", ^{
                 [userManager logout];
-                [[expectFutureValue(userManager.user) should] beNil];
+                [[expectFutureValue(userManager.persistentUser) should] beNil];
             });
         });
     });
