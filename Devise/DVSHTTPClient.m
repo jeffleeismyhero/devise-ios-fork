@@ -24,27 +24,16 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 #pragma mark - Object lifecycle
 
-+ (instancetype)sharedClient {
-    static dispatch_once_t onceToken;
-    static DVSHTTPClient *sharedInstance = nil;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] initWithConfiguration:[DVSConfiguration sharedConfiguration]];
-    });
-    return sharedInstance;
-}
-
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration {
     self = [super init];
     if (self == nil) return nil;
 
-    self.configuration = configuration;
-
+    _configuration = configuration;
     self.sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];
 
     AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
     [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     self.sessionManager.requestSerializer = requestSerializer;
-    
     self.sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
 
     return self;

@@ -17,37 +17,24 @@ SPEC_BEGIN(DVSUserPersistenceManagerSpec)
 describe(@"DVSUserPersistenceManager", ^{
     
     __block DVSTestUserPersistenceManager *manager = nil;
+    __block DVSConfiguration *testConfiguration = nil;
     __block DVSTestUser *testUser = nil;
 
     beforeEach(^{
-        manager = [DVSTestUserPersistenceManager sharedPersistenceManager];
+        NSURL *serverURL = [NSURL URLWithString:@"http://example.com/"];
+        testConfiguration = [[DVSTestConfiguration alloc] initWithServerURL:serverURL];
+        manager = [[DVSTestUserPersistenceManager alloc] initWithConfiguration:testConfiguration];
     });
 
     context(@"when newly initialized", ^{
-        __block DVSConfiguration *testConfiguration = nil;
-
-        beforeEach(^{
-            NSURL *serverURL = [NSURL URLWithString:@"http://example.com/"];
-            testConfiguration = [[DVSTestConfiguration alloc] initWithServerURL:serverURL];
-        });
-        
-        it(@"should be initilized", ^{
-            [[manager should] beIdenticalTo:[DVSTestUserPersistenceManager sharedPersistenceManager]];
-        });
-        
-        it(@"should use shared configuration", ^{
-            [[manager.configuration should] beIdenticalTo:[DVSConfiguration sharedConfiguration]];
-        });
         
         it(@"should use custom configuration", ^{
-            manager = [[DVSTestUserPersistenceManager alloc] initWithConfiguration:testConfiguration];
             [[manager.configuration should] beIdenticalTo:testConfiguration];
         });
 
         it(@"should have non nil local user", ^{
             [[manager.localUser should] beNonNil];
         });
-
     });
     
     describe(@"local user", ^{

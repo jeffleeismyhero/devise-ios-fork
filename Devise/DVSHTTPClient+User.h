@@ -66,7 +66,7 @@ extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
  *  @param success An option success block executed when the request finishes.
  *  @param failure An option failure block executed when the request fails.
  */
-- (void)registerUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)registerUser:(DVSUser *)user success:(DVSUserBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Logs in a user.
@@ -75,7 +75,7 @@ extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
  *  @param success An option completion block executed when the request finishes.
  *  @param failure An option failure block executed when the request fails.
  */
-- (void)logInUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)logInUser:(DVSUser *)user success:(DVSUserBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Updates a user.
@@ -84,7 +84,7 @@ extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
  *  @param success An option completion block executed when the request finishes.
  *  @param failure An option failure block executed when the request fails.
  */
-- (void)updateUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)updateUser:(DVSUser *)user success:(DVSUserBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Deletes a user.
@@ -102,7 +102,7 @@ extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
  *  @param success An option completion block executed when the request finishes.
  *  @param failure An option failure block executed when the request fails.
  */
-- (void)changePasswordOfUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)changePasswordOfUser:(DVSUser *)user success:(DVSUserBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Reminds password to a user.
@@ -120,7 +120,7 @@ extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
  *  @param success An option success block executed when the request finishes.
  *  @param failure An option failure block executed when the request fails.
  */
-- (void)signInUsingFacebookUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)signInUsingFacebookUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSUserBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Sign in a user using Google.
@@ -129,6 +129,6 @@ extern NSString * const DVSHTTPClientDefaultGoogleSigningPath;
  *  @param success An option success block executed when the request finishes.
  *  @param failure An option failure block executed when the request fails.
  */
-- (void)signInUsingGoogleUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure;
+- (void)signInUsingGoogleUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSUserBlock)success failure:(DVSErrorBlock)failure;
 
 @end

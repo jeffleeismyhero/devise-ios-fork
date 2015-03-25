@@ -31,15 +31,14 @@ static NSString * const DVSTitleForEmail = @"E-mail address";
     [self addFormWithTitleToDataSource:emailTitle
                     accessibilityLabel:DVSAccessibilityLabel(@"E-mail field")
                           keyboardType:UIKeyboardTypeEmailAddress];
-    [self setValue:[DVSUserPersistenceManager sharedPersistenceManager].localUser.email forTitle:emailTitle];
+    [self setValue:[DVSUserManager defaultManager].user.email forTitle:emailTitle];
 }
 
 #pragma mark - UIControl events
 
 - (IBAction)saveButtonTapped:(UIBarButtonItem *)sender {
     
-    DVSUser *user = [DVSUserPersistenceManager sharedPersistenceManager].localUser;
-    user.email = [self valueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
+    [DVSUserManager defaultManager].user.email = [self valueForTitle:NSLocalizedString(DVSTitleForEmail, nil)];
 
     [[DVSUserManager defaultManager] updateWithSuccess:^{
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Profile updated", nil)

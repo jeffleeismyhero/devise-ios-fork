@@ -44,7 +44,7 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
 #pragma mark - UIControl events
 
 - (IBAction)saveButtonTapped:(UIBarButtonItem *)sender {
-    NSString *currentPassword = [DVSUserPersistenceManager sharedPersistenceManager].localUser.password;
+    NSString *currentPassword = [DVSUserManager defaultManager].user.password;
     
     NSString *currentPasswordConfirm = [self valueForTitle:NSLocalizedString(DVSTitleForCurrentPassword, nil)];
     if ([currentPasswordConfirm isEqualToString:@""]) {
@@ -75,7 +75,7 @@ static NSString * const DVSTitleForConfirmNewPassword = @"Confirm new password";
         return;
     }
     
-    [DVSUserPersistenceManager sharedPersistenceManager].localUser.password = newPassword;
+    [DVSUserManager defaultManager].user.password = newPassword;
     
     [[DVSUserManager defaultManager] changePasswordWithSuccess:^{
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Password changed", nil)

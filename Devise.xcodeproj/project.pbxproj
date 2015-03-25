@@ -64,7 +64,7 @@
 		3A4EE5AC1A40C93500A068E2 /* DVSHTTPClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1501A2E5119006827D3 /* DVSHTTPClientSpec.m */; };
 		3A4EE5AF1A40C96500A068E2 /* DVSConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1E1A2509AF00FE04D1 /* DVSConfigurationSpec.m */; };
 		3A6E03FE1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6E03FD1A263866006ECA3E /* OHHTTPStubs+DeviseTests.m */; };
-		3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A93A1461A2E2F2F006827D3 /* DVSHTTPClient.h */; };
 		3A93A1491A2E2F2F006827D3 /* DVSHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A93A1471A2E2F2F006827D3 /* DVSHTTPClient.m */; };
 		3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AA22E1A1A25031300FE04D1 /* DVSConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3AA22E1D1A25031300FE04D1 /* DVSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA22E1B1A25031300FE04D1 /* DVSConfiguration.m */; };
@@ -98,6 +98,7 @@
 		5E7A9A311A3EFEFA0077DC43 /* DVSDemoUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */; };
 		5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */; };
 		5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */; };
+		5E93C3C51AC2B573000BA6E6 /* DVSTestUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E93C3C41AC2B573000BA6E6 /* DVSTestUserManager.m */; };
 		5EBF305D1ABC2DE2001941CA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF305C1ABC2DE2001941CA /* AddressBook.framework */; };
 		5EBF305F1ABC2DE8001941CA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF305E1ABC2DE8001941CA /* AssetsLibrary.framework */; };
 		5EBF30611ABC2DF1001941CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF30601ABC2DF1001941CA /* CoreLocation.framework */; };
@@ -330,6 +331,8 @@
 		5E7A9A301A3EFEFA0077DC43 /* DVSDemoUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSDemoUser.m; sourceTree = "<group>"; };
 		5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Devise+Private.h"; sourceTree = "<group>"; };
 		5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Devise+Private.m"; sourceTree = "<group>"; };
+		5E93C3C31AC2B573000BA6E6 /* DVSTestUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserManager.h; sourceTree = "<group>"; };
+		5E93C3C41AC2B573000BA6E6 /* DVSTestUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserManager.m; sourceTree = "<group>"; };
 		5EAC36B01AA51EFA00014442 /* Devise-Demo-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Devise-Demo-Tests-Info.plist"; sourceTree = "<group>"; };
 		5EBF305C1ABC2DE2001941CA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		5EBF305E1ABC2DE8001941CA /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -666,6 +669,8 @@
 				BF8E92211AB6C491005160FB /* DVSTestFacebookAuthenticator.m */,
 				BF861D401AB72E460048ECEB /* DVSTestFacebookAccountStore.h */,
 				BF861D411AB72E460048ECEB /* DVSTestFacebookAccountStore.m */,
+				5E93C3C31AC2B573000BA6E6 /* DVSTestUserManager.h */,
+				5E93C3C41AC2B573000BA6E6 /* DVSTestUserManager.m */,
 			);
 			name = "Test Classes";
 			sourceTree = "<group>";
@@ -1034,6 +1039,7 @@
 				E3A0D6341AA73EE500E326BC /* DVSOAuthJSONParameters.h in Headers */,
 				5EF381D41A2756BB006875D4 /* NSURL+Devise+Private.h in Headers */,
 				21B4BA6F1A8B8AD2000E3E9A /* DVSUserManager.h in Headers */,
+				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
 				21B3ECC31A59E98700C8C620 /* DVSLoginSignUpFields.h in Headers */,
 				21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h in Headers */,
 				218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */,
@@ -1051,7 +1057,6 @@
 				215199591A4948EF00EF5F80 /* XLFormRowDescriptor+Devise+Private.h in Headers */,
 				219EB2431A8CB6BA00F7BCFA /* DVSUserJSONSerializer.h in Headers */,
 				219EB2471A8CCD8300F7BCFA /* DVSUserJSONSerializer+Serialize.h in Headers */,
-				3A93A1481A2E2F2F006827D3 /* DVSHTTPClient.h in Headers */,
 				3AD4C6841A24DB1700F0AE67 /* Devise.h in Headers */,
 				21B3EC971A52B35500C8C620 /* DVSFieldsUtils+Private.h in Headers */,
 				3AA22E5F1A2535BC00FE04D1 /* DVSMacros.h in Headers */,
@@ -1497,6 +1502,7 @@
 				BFC6A8D21AB7B523003BA9AF /* DVSFacebookAccountStoreSpec.m in Sources */,
 				BF527C261AB3211800A43D35 /* DVSTestGooglePlusAuthenticator.m in Sources */,
 				BF8E921F1AB6BD8D005160FB /* DVSFacebookAuthenticatorSpec.m in Sources */,
+				5E93C3C51AC2B573000BA6E6 /* DVSTestUserManager.m in Sources */,
 				BF7761C41AA898D0006DBE6B /* DVSTestUserPersistenceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

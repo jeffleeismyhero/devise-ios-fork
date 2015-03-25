@@ -15,13 +15,9 @@
 
 /**
  *  A locally saved user object (if any).
+ *  Notice that localUser will be taken only once from keychain store until will be nilled.
  */
 @property (strong, nonatomic) DVSUser *localUser;
-
-/**
- *  Creates (if neccessary) and returns persistent manager with default (shared) configuration.
- */
-+ (instancetype)sharedPersistenceManager;
 
 /**
  *  Default Initializer for DVSUserPersistenceManager class.
@@ -31,8 +27,9 @@
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
 
 /**
- *  Returns locally stored email used in HTTP X-User-Email Header Field.
+ *  Returns fresh copy of user model (or nil if any) taken from keychain store.
+ *  Notice that persistentUser can be different from localUser.
  */
-- (NSString *)persistedUserEmail;
+- (DVSUser *)persistentUser;
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "DVSUserManager.h"
+#import "DVSTestUserManager.h"
 #import "DVSUserPersistenceManager.h"
 #import "DVSTestUser.h"
 #import "DVSTestConfiguration.h"
@@ -39,8 +39,10 @@ describe(@"DVSUserManagerSpec", ^{
         
         [[testUser class] setConfiguration:testConfiguration];
         testUser = [[DVSTestUser alloc] init];
-        userManager = [[DVSUserManager alloc] initWithUser:testUser configuration:testConfiguration];
-        persistanceManager = [DVSUserPersistenceManager sharedPersistenceManager];
+        userManager = [[DVSTestUserManager alloc] initWithUser:testUser configuration:testConfiguration];
+        persistanceManager = [[DVSUserPersistenceManager alloc] initWithConfiguration:testConfiguration];
+        
+        [userManager stub:@selector(persistanceManager) andReturn:persistanceManager];
     });
     
     describe(@"registering a user", ^{
@@ -78,7 +80,7 @@ describe(@"DVSUserManagerSpec", ^{
             
             it(@"should save the user locally", ^{
                 [userManager registerWithSuccess:nil failure:nil];
-                [[expectFutureValue(persistanceManager.localUser) shouldEventually] equal:testUser];
+                [[expectFutureValue(userManager.user) shouldEventually] equal:testUser];
             });
             
         });
@@ -235,24 +237,16 @@ describe(@"DVSUserManagerSpec", ^{
                 testUser.sessionToken = @"xXx_s3ss10N_t0K3N_xXx";
                 [persistanceManager setLocalUser:testUser];
             });
-                
-            context(@"using correct data", ^{
-                    
-                it(@"should succeed", ^{
-                    __block BOOL success = NO;
-                    [userManager deleteAccountWithSuccess:^{
-                        success = YES;
-                    } failure:nil];
-                    [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
-                });
-                    
-                it(@"should remove the locally saved user", ^{
-                    [userManager deleteAccountWithSuccess:nil failure:nil];
-                    [[expectFutureValue(persistanceManager.localUser) shouldEventually] beNil];
-                });
-                    
+            
+            it(@"using correct data, should succeed to delete user.", ^{
+                __block BOOL success = NO;
+                [userManager deleteAccountWithSuccess:^{
+                    success = YES;
+                } failure:nil];
+                [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
+                [[expectFutureValue(userManager.user) shouldEventually] beNil];
             });
-                
+            
         });
             
     });
@@ -397,7 +391,7 @@ describe(@"DVSUserManagerSpec", ^{
             
             it(@"should remove locally saved user", ^{
                 [userManager logout];
-                [[expectFutureValue(persistanceManager.localUser) shouldNotEventually] beIdenticalTo:testUser];
+                [[expectFutureValue(userManager.user) should] beNil];
             });
         });
     });

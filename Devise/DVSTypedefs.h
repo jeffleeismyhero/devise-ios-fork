@@ -9,5 +9,6 @@
 @class DVSUser;
 
 typedef void (^DVSErrorBlock)(NSError *error);
+typedef void (^DVSUserBlock)(DVSUser *user);
 typedef void (^DVSVoidBlock)(void);
 typedef void (^DVSDictionaryBlock)(NSDictionary *dictionary);

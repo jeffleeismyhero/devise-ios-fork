@@ -11,7 +11,6 @@
 #import "DVSUserJSONSerializer+Serialize.h"
 #import "NSDictionary+Devise+Private.h"
 #import "NSObject+Devise+Private.h"
-#import "DVSUserPersistenceManager.h"
 #import "DVSConfiguration.h"
 
 NSString * const DVSHTTPClientDefaultRegisterPath = @"";
@@ -36,40 +35,40 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
 
 #pragma mark - Standard methods
 
-- (void)registerUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)registerUser:(DVSUser *)user success:(DVSUserBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *path = DVSHTTPClientDefaultRegisterPath;
     NSDictionary *parameters = [self.userSerializer registerJSONDictionaryForUser:user];
     [self makePostRequestWithPath:path user:user parameters:parameters success:success failure:failure];
 }
 
-- (void)logInUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)logInUser:(DVSUser *)user success:(DVSUserBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *path = DVSHTTPClientDefaultLogInPath;
     NSDictionary *parameters = [self.userSerializer loginJSONDictionaryForUser:user];
     [self makePostRequestWithPath:path user:user parameters:parameters success:success failure:failure];
 }
 
-- (void)signInUsingFacebookUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)signInUsingFacebookUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSUserBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *path = DVSHTTPClientDefaultFacebookSigningPath;
     [self makePostRequestWithPath:path user:user parameters:parameters success:success failure:failure];
 }
 
-- (void)signInUsingGoogleUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)signInUsingGoogleUser:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSUserBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *path = DVSHTTPClientDefaultGoogleSigningPath;
     [self makePostRequestWithPath:path user:user parameters:parameters success:success failure:failure];
 }
 
-- (void)updateUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)updateUser:(DVSUser *)user success:(DVSUserBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *path = DVSHTTPClientDefaultUpdatePath;
     NSDictionary *parameters = [self.userSerializer updateJSONDictionaryForUser:user];
     [self makePutRequestWithPath:path user:user parameters:parameters success:success failure:failure];
 }
 
-- (void)changePasswordOfUser:(DVSUser *)user success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)changePasswordOfUser:(DVSUser *)user success:(DVSUserBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *path = DVSHTTPClientDefaultChangePasswordPath;
     NSDictionary *parameters = [self.userSerializer changePasswordJSONDictionaryForUser:user];
@@ -85,7 +84,6 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
-            [DVSUserPersistenceManager sharedPersistenceManager].localUser = nil;
             if (success != NULL) success();
         }
     }];
@@ -109,7 +107,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
 
 - (void)setupHTTPHeaderWithAuthorizationToken:(NSString *)token {
     [self setValue:token forHTTPHeaderField:@"X-User-Token"];
-    [self setValue:[DVSUserPersistenceManager sharedPersistenceManager].persistedUserEmail forHTTPHeaderField:@"X-User-Email"];
+    [self setValue:[self.delegate emailForAuthorizationHeaderInHTTPClient:self] forHTTPHeaderField:@"X-User-Email"];
 }
 
 #pragma mark - Accessors
@@ -125,20 +123,19 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
 
 #pragma mark - Private methods
 
-- (void)makePostRequestWithPath:(NSString *)path user:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)makePostRequestWithPath:(NSString *)path user:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSUserBlock)success failure:(DVSErrorBlock)failure {
    
     [self POST:path parameters:parameters completion:^(id responseObject, NSError *error) {
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
-            [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
-            if (success != NULL) success();
+            if (success != NULL) success(user);
         }
     }];
 }
 
-- (void)makePutRequestWithPath:(NSString *)path user:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
+- (void)makePutRequestWithPath:(NSString *)path user:(DVSUser *)user parameters:(NSDictionary *)parameters success:(DVSUserBlock)success failure:(DVSErrorBlock)failure {
     
     [self setupHTTPHeaderWithAuthorizationToken:user.sessionToken];
    
@@ -147,8 +144,7 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
             if (failure != NULL) failure(error);
         } else {
             [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
-            [DVSUserPersistenceManager sharedPersistenceManager].localUser = user;
-            if (success != NULL) success();
+            if (success != NULL) success(user);
         }
     }];
 }

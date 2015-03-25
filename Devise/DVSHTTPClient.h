@@ -6,7 +6,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class DVSConfiguration;
+@class DVSConfiguration, DVSHTTPClient;
+
+@protocol DVSHTTPClientDelegate <NSObject>
+
+/**
+ *  Asks delegate for email used in authorization header.
+ */
+- (NSString *)emailForAuthorizationHeaderInHTTPClient:(DVSHTTPClient *)client;
+
+@end
 
 /**
  *  The completion block of all http requests.
@@ -22,6 +31,11 @@ typedef void (^DVSHTTPClientCompletionBlock)(id responseObject, NSError *error);
 @interface DVSHTTPClient : NSObject
 
 /**
+ *  The HTTPClient's delegate object.
+ */
+@property (weak, nonatomic) id<DVSHTTPClientDelegate> delegate;
+
+/**
 *  The configuration object used to negotiate various settings.
 */
 @property (strong, nonatomic) DVSConfiguration *configuration;
@@ -34,13 +48,6 @@ typedef void (^DVSHTTPClientCompletionBlock)(id responseObject, NSError *error);
  *  @return Instance of DVSHTTPClient class
  */
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration;
-
-/**
- *  A shared client which uses the shared configuration object by default.
- *
- *  @return Instance of DVSHTTPClient sharedInstance
- */
-+ (instancetype)sharedClient;
 
 /**
  *  Performs a GET request for a given path. The completion block's object is a deserialized response JSON.

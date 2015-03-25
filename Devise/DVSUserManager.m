@@ -15,9 +15,10 @@
 #import "DVSGooglePlusAuthenticator.h"
 #import "DVSFacebookAuthenticator.h"
 
-@interface DVSUserManager ()
+@interface DVSUserManager () <DVSHTTPClientDelegate>
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
+@property (strong, nonatomic) DVSUserPersistenceManager *persistanceManager;
 
 @end
 
@@ -34,6 +35,8 @@
     if (self) {
         _user = user;
         _httpClient = [[DVSHTTPClient alloc] initWithConfiguration:configuration];
+        _httpClient.delegate = self;
+        _persistanceManager = [[DVSUserPersistenceManager alloc] initWithConfiguration:configuration];
     }
     return self;
 }
@@ -43,9 +46,20 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedMyManager = [[DVSUserManager alloc] initWithUser:[DVSUserPersistenceManager sharedPersistenceManager].localUser configuration:[DVSConfiguration sharedConfiguration]];
+        sharedMyManager = [[DVSUserManager alloc] initWithUser:nil configuration:[DVSConfiguration sharedConfiguration]];
+        sharedMyManager.user = sharedMyManager.persistanceManager.localUser;
     });
     return sharedMyManager;
+}
+
+- (DVSUser *)persistentUser {
+    return self.persistanceManager.persistentUser;
+}
+
+#pragma mark - DVSHTTPClientDelegate
+
+- (NSString *)emailForAuthorizationHeaderInHTTPClient:(DVSHTTPClient *)client {
+    return [self persistentUser].email;
 }
 
 #pragma mark - Logging in
@@ -53,8 +67,12 @@
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[[self validationRulesForPassword],
                        [self validationRulesForEmail]];
+    
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
-        [self.httpClient logInUser:self.user success:success failure:failure];
+        [self.httpClient logInUser:self.user success:^(DVSUser *user) {
+            self.persistanceManager.localUser = user;
+            if (success != NULL) success();
+        } failure:failure];
     } failure:failure];
 }
 
@@ -73,8 +91,12 @@
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[[self validationRulesForPassword],
                        [self validationRulesForEmail]];
+    
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
-        [self.httpClient registerUser:self.user success:success failure:failure];
+        [self.httpClient registerUser:self.user success:^(DVSUser *user) {
+            self.persistanceManager.localUser = user;
+            if (success != NULL) success();
+        } failure:failure];
     } failure:failure];
 }
 
@@ -86,7 +108,10 @@
     DVSFacebookAuthenticator *facebookAuthenticator = [[DVSFacebookAuthenticator alloc] initWithAppID:appID];
     
     [facebookAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
-        [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:dictionary success:success failure:failure];
+        [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:dictionary success:^(DVSUser *user) {
+            self.persistanceManager.localUser = user;
+            if (success != NULL) success();
+        } failure:failure];
     } failure:failure];
 }
 
@@ -98,7 +123,10 @@
     DVSGooglePlusAuthenticator *googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] initWithClientID:clientID];
     
     [googlePlusAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
-        [self.httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:dictionary success:success failure:failure];
+        [self.httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:dictionary success:^(DVSUser *user) {
+            self.persistanceManager.localUser = user;
+            if (success != NULL) success();
+        } failure:failure];
     } failure:failure];
 }
 
@@ -107,7 +135,10 @@
 - (void)changePasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[[self validationRulesForPassword]];
     [self validateUsingRules:rules forAction:DVSActionChangePassword success:^{
-        [self.httpClient changePasswordOfUser:self.user success:success failure:failure];
+        [self.httpClient changePasswordOfUser:self.user success:^(DVSUser *user) {
+            self.persistanceManager.localUser = user;
+            if (success != NULL) success();
+        } failure:failure];
     } failure:failure];
 }
 
@@ -116,7 +147,10 @@
 - (void)updateWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[[self validationRulesForEmail]];
     [self validateUsingRules:rules forAction:DVSActionUpdate success:^{
-        [self.httpClient updateUser:self.user success:success failure:failure];
+        [self.httpClient updateUser:self.user success:^(DVSUser *user) {
+            self.persistanceManager.localUser = user;
+            if (success != NULL) success();
+        } failure:failure];
     } failure:failure];
 }
 
@@ -130,14 +164,14 @@
 
 - (void)deleteAccountWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     [self.httpClient deleteUser:self.user success:^{
-        [DVSUserPersistenceManager sharedPersistenceManager].localUser = nil;
+        self.persistanceManager.localUser = nil;
         if (success != NULL) success();
     } failure:failure];
 }
 
 #pragma mark - Logout method
 - (void)logout {
-    [DVSUserPersistenceManager sharedPersistenceManager].localUser = nil;
+    self.persistanceManager.localUser = nil;
 }
 
 #pragma mark - Validation

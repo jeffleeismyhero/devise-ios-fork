@@ -25,26 +25,6 @@ describe(@"DVSHTTPClient", ^{
         
     });
 
-    context(@"when using a shared instance", ^{
-
-        __block DVSHTTPClient *client = nil;
-
-        beforeEach(^{
-            client = [DVSHTTPClient sharedClient];
-        });
-
-        it(@"should provide the same instance", ^{
-            DVSHTTPClient *secondClient = [DVSHTTPClient sharedClient];
-            [[client should] beIdenticalTo:secondClient];
-        });
-
-        it(@"should use the shared configuration", ^{
-            DVSConfiguration *configuration = [DVSConfiguration sharedConfiguration];
-            [[client.configuration should] beIdenticalTo:configuration];
-        });
-
-    });
-
     __block DVSHTTPClient *client = nil;
 
     beforeEach(^{

@@ -180,7 +180,7 @@
     if ([self.delegate respondsToSelector:@selector(accountRetrieverViewController:didSuccessForAction:user:)]) {
         [self.delegate accountRetrieverViewController:self
                                   didSuccessForAction:action
-                                                 user:[DVSUserPersistenceManager sharedPersistenceManager].localUser];
+                                                 user:[DVSUserManager defaultManager].user];
     }
 }
 

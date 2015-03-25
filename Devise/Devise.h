@@ -12,7 +12,6 @@
 
     #import <Devise/DVSConfiguration.h>
     #import <Devise/DVSUserManager.h>
-    #import <Devise/DVSHTTPClient.h>
     #import <Devise/DVSUser.h>
     #import <Devise/DVSUser+Persistence.h>
     #import <Devise/DVSTypedefs.h>

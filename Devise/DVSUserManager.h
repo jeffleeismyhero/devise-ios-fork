@@ -15,10 +15,9 @@
 
 @interface DVSUserManager : NSObject
 
-@property (copy, nonatomic) NSString *userPreviousEmail;
-
 /**
- *  User model.
+ *  The model of user class associated with DVSUserManager.
+ *  DefaultManager uses user model from keychain store.
  */
 @property (strong, nonatomic, readonly) DVSUser *user;
 
@@ -54,12 +53,18 @@
 /**
  *  Default initializer for manager class. Use it to provide own user (other than stored locally) and configuration (other than sharedConfiguration).
  *
- *  @param user          The model of user.
+ *  @param user          The instance of user model class. If sublass of DVSUser class was given in any
  *  @param configuration The configuration used to initialize DVSHTTPClient.
  *
  *  @return Instance of receiver.
  */
 - (instancetype)initWithUser:(DVSUser *)user configuration:(DVSConfiguration *)configuration;
+
+/**
+ *  Returns fresh copy of user model (or nil if any) taken from keychain store.
+ *  Notice that persistentUser can be different from user model if any changes has been made.
+ */
+- (DVSUser *)persistentUser;
 
 /**
  *  Login user asynchronously. When succeed user will be stored locally so
