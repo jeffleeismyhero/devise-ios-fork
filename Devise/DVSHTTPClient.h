@@ -6,16 +6,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class DVSConfiguration, DVSHTTPClient;
-
-@protocol DVSHTTPClientDelegate <NSObject>
-
-/**
- *  Asks delegate for email used in authorization header.
- */
-- (NSString *)emailForAuthorizationHeaderInHTTPClient:(DVSHTTPClient *)client;
-
-@end
+@protocol DVSHTTPClientDelegate;
+@class DVSConfiguration;
 
 /**
  *  The completion block of all http requests.
@@ -97,5 +89,14 @@ typedef void (^DVSHTTPClientCompletionBlock)(id responseObject, NSError *error);
  *  Cancels and invalidates all requests.
  */
 - (void)cancelAllRequests;
+
+@end
+
+@protocol DVSHTTPClientDelegate <NSObject>
+
+/**
+ *  Asks delegate for email used in authorization header.
+ */
+- (NSString *)emailForAuthorizationHeaderInHTTPClient:(DVSHTTPClient *)client;
 
 @end
