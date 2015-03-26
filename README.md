@@ -12,6 +12,7 @@
 * form validation
 * profile updating
 * account deleting
+* Facebook and Google+ lightweight signing in
 
 ## Requirements
 
@@ -146,7 +147,6 @@ Moreover `registrationUsername` doesn't sound very well for a user, so it should
 - (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action {
 
     NGRPropertyValidator *validator = NGRValidate(@"registrationUsername").required().lengthRange(5, 20).msgTooShort(@"should have at least 4 signs.").msgTooLong(@"should have at most 20 signs").localizedName(@"Username");
-    
     [validationRules addObject:validator];
 }
 ```
