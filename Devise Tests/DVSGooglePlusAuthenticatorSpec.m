@@ -48,7 +48,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
                 [authenticator stub:@selector(googlePlusServiceWithAuthorizer:) andReturn:googlePlusService];
                 [authenticator stub:@selector(authenticate) withBlock:nil];
                 
-                [authenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+                [authenticator authenticateWithClientID:clientID success:^(NSDictionary *dictionary) {
                     successBlockInvoked = YES;
                 } failure:^(NSError *error) {
                     receivedError = error;
@@ -202,7 +202,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
         __block GPPSignIn *signIn = nil;
 
         beforeAll(^{
-            authenticator = [[DVSTestGooglePlusAuthenticator alloc] initWithClientID:clientID];
+            authenticator = [[DVSTestGooglePlusAuthenticator alloc] init];
             googlePlusService = [authenticator googlePlusServiceWithAuthorizer:nil];
             signIn = [[GPPSignIn alloc] init];
         });
@@ -211,7 +211,7 @@ describe(@"DVSGooglePlusAuthenticator", ^{
             [authenticator stub:@selector(googlePlusServiceWithAuthorizer:) andReturn:googlePlusService];
             [authenticator stub:@selector(authenticate) withBlock:nil];
             
-            [authenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
+            [authenticator authenticateWithClientID:clientID success:^(NSDictionary *dictionary) {
                 successBlockInvoked = YES;
             } failure:^(NSError *error) {
                 receivedError = error;

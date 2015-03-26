@@ -16,25 +16,17 @@
 @interface DVSGooglePlusAuthenticator : NSObject
 
 /**
- *  Initializes DVSGooglePlusAuthenticator for authentication with Google+ as 3rd party service.
- *
- *  @param clientID Application's client ID.
- *
- *  @return Instance of DVSGooglePlusAuthenticator.
- */
-- (instancetype)initWithClientID:(NSString *)clientID NS_DESIGNATED_INITIALIZER;
-
-/**
  *  Authenticate user with Google client ID given in init method. Shared instance of GPSignIn object will be used.
  *
+ *  @param clientID Application's client ID.
  *  @param success Block invoked when authentication succeed. Provides formatted parameter dictionary according to devise-ios convention.
  *  @param failure Block invoked when authentication failed. Reurns error.
  */
-- (void)authenticateWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
+- (void)authenticateWithClientID:(NSString *)clientID success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure;
 
 /**
  *  Passes arguments to GPPSignIn handleURL:sourceApplication:annotation: method
  */
-+ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
+- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end

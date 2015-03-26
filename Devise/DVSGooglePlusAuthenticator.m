@@ -21,11 +21,10 @@
 
 @implementation DVSGooglePlusAuthenticator
 
-- (instancetype)initWithClientID:(NSString *)clientID {
+- (instancetype)init{
     self = [super init];
     if (self) {
         GPPSignIn *signIn = [GPPSignIn sharedInstance];
-        signIn.clientID = clientID;
         signIn.scopes = @[ kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusMe ];
         signIn.attemptSSO = YES;
         signIn.shouldFetchGoogleUserID = YES;
@@ -41,14 +40,16 @@
 
 #pragma mark - Public methods
 
-- (void)authenticateWithSuccess:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure {
+- (void)authenticateWithClientID:(NSString *)clientID success:(DVSDictionaryBlock)success failure:(DVSErrorBlock)failure {
+    
+    [GPPSignIn sharedInstance].clientID = clientID;
     
     self.success = success;
     self.failure = failure;
     [self authenticate];
 }
 
-+ (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation  {
+- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation  {
     return [[GPPSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 

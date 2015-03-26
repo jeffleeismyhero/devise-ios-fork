@@ -11,7 +11,6 @@
 #import "DVSConfiguration.h"
 #import "DVSHTTPClient+User.h"
 #import "DVSUserPersistenceStore.h"
-#import "DVSOAuthJSONParameters.h"
 #import "DVSGooglePlusAuthenticator.h"
 #import "DVSFacebookAuthenticator.h"
 
@@ -19,6 +18,7 @@
 
 @property (strong, nonatomic, readwrite) DVSUser *user;
 @property (strong, nonatomic) DVSUserPersistenceStore *persistenceStore;
+@property (strong, nonatomic) DVSGooglePlusAuthenticator *googlePlusAuthenticator;
 
 @end
 
@@ -108,7 +108,7 @@
     DVSFacebookAuthenticator *facebookAuthenticator = [[DVSFacebookAuthenticator alloc] initWithAppID:appID];
     
     [facebookAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
-        [self.httpClient signInUsingFacebookUser:[DVSUserManager defaultManager].user parameters:dictionary success:^(DVSUser *user) {
+        [self.httpClient signInUsingFacebookUser:self.user parameters:dictionary success:^(DVSUser *user) {
             self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
@@ -120,10 +120,9 @@
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     
     NSString *clientID = self.httpClient.configuration.googleClientID;
-    DVSGooglePlusAuthenticator *googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] initWithClientID:clientID];
     
-    [googlePlusAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
-        [self.httpClient signInUsingGoogleUser:[DVSUserManager defaultManager].user parameters:dictionary success:^(DVSUser *user) {
+    [self.googlePlusAuthenticator authenticateWithClientID:clientID success:^(NSDictionary *dictionary) {
+        [self.httpClient signInUsingGoogleUser:self.user parameters:dictionary success:^(DVSUser *user) {
             self.persistenceStore.localUser = user;
             if (success != NULL) success();
         } failure:failure];
@@ -157,7 +156,7 @@
 #pragma mark - Handle callback
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [DVSGooglePlusAuthenticator handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    return [self.googlePlusAuthenticator handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 #pragma mark - Delete account
@@ -217,6 +216,11 @@
 
 - (DVSUserJSONSerializer *)serializer {
     return self.httpClient.userSerializer;
+}
+
+- (DVSGooglePlusAuthenticator *)googlePlusAuthenticator {
+    if (_googlePlusAuthenticator) return _googlePlusAuthenticator;
+    return (_googlePlusAuthenticator = [[DVSGooglePlusAuthenticator alloc] init]);
 }
 
 @end

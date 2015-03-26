@@ -7,11 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import "Devise.h"
-
-@interface AppDelegate ()
-
-@end
 
 @implementation AppDelegate
 
@@ -29,6 +26,8 @@
 #else
     [configuration setGoogleClientID:@"371832272280-ick7aql3kje38ivqieavam6o7am13drf.apps.googleusercontent.com"];
 #endif
+    
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     return YES;
 }
