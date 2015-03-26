@@ -92,6 +92,7 @@ Functions are pretty straightforward and self-explanatory.
     ```objc
     - (BOOL)application: (UIApplication *)application openURL: (NSURL *)url sourceApplication: (NSString *)sourceApplication annotation: (id)annotation {
         return [[DVSUserManager defaultManager] handleURL:url sourceApplication:sourceApplication annotation:annotation];
+        //or instance of other DVSUserManager used to sign in via g+.
     }
     ```
     This guarantees that one of passed callbacks will be invoked as authorization result.
@@ -118,7 +119,7 @@ Functions are pretty straightforward and self-explanatory.
 
 Although `DVSUser` implementation is enough for a basic usage, you can customize it as well.
 
-If it's needed to store locally more info about `DVSUser` subclass (other than `email`, `sessionToken` and `identifier` - these are stored by default) conform `DVSUserPersisting` protocol. You can choose which properties should be persist by invoking:
+If it's needed to persist locally more info about `DVSUser` subclass (other than `email`, `sessionToken` and `identifier` - these are stored by default) conform `DVSUserPersisting` protocol. You can choose which properties should be persist by invoking:
 ```objc
 - (NSArray *)propertiesToPersistByName;
 ```
@@ -126,7 +127,7 @@ Just remember to pass property names as `NSString`.
 
 ## User model validation and messaging
 
-**devise-ios** under the hood uses [NGRValidator](https://github.com/netguru/ngrvalidator) to validate data. On top of it **devise-ios** delivers a possibility to add your own validation rules. If you wish to add some of them, conform `DVSUserManagerDelegate` protocol and implement `- (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action;` method.
+**devise-ios** under the hood uses [NGRValidator](https://github.com/netguru/ngrvalidator) to validate data. On top of it **devise-ios** delivers a possibility to add your own or modify default validation rules. If you wish to take benefit from it, conform `DVSUserManagerDelegate` protocol and implement `- (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action;` method.
 
 
 Let's say a subclass of `DVSUser` has an additional property `NSString *registrationUsername` you want to validate during registration process to fulfill conditions:
@@ -142,11 +143,11 @@ and display appropriate messages when validation fails:
 Moreover `registrationUsername` doesn't sound very well for a user, so it should be displayed as a "Username":
 
 ```objc
-- (NSArray *)additionalValidationRulesForAction:(DVSActionType)action {
-    if (action == DVSActionRegistration) {
-        return @[NGRValidate(@"registrationUsername").required().lengthRange(5, 20).tooShort(@"should has at least 4 signs.").tooLong(@"should has at most 20 signs").localizedName(@"Username")];
-    }
-    return nil;
+- (void)userManager:(DVSUserManager *)manager didPrepareValidationRules:(NSMutableArray *)validationRules forAction:(DVSActionType)action {
+
+    NGRPropertyValidator *validator = NGRValidate(@"registrationUsername").required().lengthRange(5, 20).msgTooShort(@"should have at least 4 signs.").msgTooLong(@"should have at most 20 signs").localizedName(@"Username");
+    
+    [validationRules addObject:validator];
 }
 ```
 
@@ -154,12 +155,34 @@ When user will provide string `foo` for `registrationUsername` property, **devis
 
 ```objc
 NSLog(@"%@", error.localizedDescription);
-// Username should has at least 4 characters.
+// Username should have at least 4 characters.
 ```
 
 Simple as that! For more info please refer to [NGRValidator](https://github.com/netguru/ngrvalidator).
 
-##
+## Expanding networking
+
+All right. But you didn't create subclass of `DVSUser` only for local purposes, did you? To attach own parameters to request, please conform `DVSUserJSONSerializerDataSource` like below:
+
+```objc
+- (void)setupManager {
+    
+    TestUser *user = [[TestUser alloc] init]; //TestUser is subclass of DVSUser with "foo" property
+    
+    self.manager = [[DVSUserManager alloc] initWithUser:user]; //manager is an ivar here
+    self.manager.serializer.dataSource = self;
+}
+
+#pragma mark - DVSUserJSONSerializerDataSource
+
+- (NSDictionary *)additionalRequestParametersForAction:(DVSActionType)action {
+    //use action to distinguish type of request
+    TestUser *user = (TestUser *)self.manager.user;
+    //make sure that foo is not nil. Eg. add own validation rule in userManager:didPrepareValidationRules:forAction: method
+    return @{@"foo" : user.foo};
+}
+```
+**devise-ios** will take care of the rest.
 
 ## UI Components
 
