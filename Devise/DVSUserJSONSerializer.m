@@ -17,6 +17,7 @@
         _JSONKeyPathForPassword = @"password";
         _JSONKeyPathForPasswordConfirmation = @"passwordConfirmation";
         _JSONKeyPathForAuthenticationToken = @"authenticationToken";
+        _JSONKeyPathForRemoteRoot = @"user";
     }
     return self;
 }
