@@ -38,6 +38,10 @@ describe(@"DVSUserJSONSerializer", ^{
         it(@"should have default JSONKeyPathForPasswordConfirmation", ^{
             [[serializer.JSONKeyPathForPasswordConfirmation should] equal:@"passwordConfirmation"];
         });
+      
+        it(@"should have default JSONKeyPathForRemoteRoot", ^{
+            [[serializer.JSONKeyPathForRemoteRoot should] equal:@"user"];
+        });
         
         it(@"should have nil user", ^{
             [[serializer.user should] beNil];
