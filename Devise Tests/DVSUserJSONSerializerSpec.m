@@ -175,6 +175,48 @@ describe(@"DVSUserJSONSerializer", ^{
                     });
                     
                 });
+              
+                context(@"for login with custom remote root", ^{
+            
+                  beforeEach(^{
+                  
+                      [serializer setJSONKeyPathForRemoteRoot:@"account"];
+                      testJSON = @{
+                          @"account": @{
+                              @"email": testUser.email,
+                              @"password": testUser.password
+                          }
+                      };
+                  });
+                  
+                  it(@"should return correct JSON", ^{
+                  
+                      [[serializer.JSONKeyPathForRemoteRoot should] equal:@"account"];
+                      NSDictionary *resultJSON = [serializer loginJSONDictionaryForUser:testUser];
+                      [[resultJSON should] equal:testJSON];
+                  });
+                  
+                });
+              
+                context(@"for login without a remote root", ^{
+            
+                  beforeEach(^{
+                  
+                      [serializer setJSONKeyPathForRemoteRoot:nil];
+                      testJSON = @{
+                          @"email": testUser.email,
+                          @"password": testUser.password
+                      };
+                  });
+                  
+                  it(@"should return correct JSON", ^{
+                  
+                      [serializer.JSONKeyPathForRemoteRoot shouldBeNil];
+                      NSDictionary *resultJSON = [serializer loginJSONDictionaryForUser:testUser];
+                      [[resultJSON should] equal:@{ @"user" : testJSON }];
+                  });
+                  
+                });
                 
             });
             

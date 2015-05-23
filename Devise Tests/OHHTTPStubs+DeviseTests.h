@@ -94,5 +94,12 @@ extern NSString * const DVSHTTPStubsNumberOfFailuresKey;
  */
 + (id<OHHTTPStubsDescriptor>)dvs_stubUserRemindPasswordRequestsWithOptions:(NSDictionary *)options;
 
+/** Stubs all requests to the user log in route with specified response root.
+ *
+ *  @param options An options dictionary containing stub configuration.
+ *
+ *  @return A stub description object.
+ */
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserLogInRequestsWithOptions:(NSDictionary *)options remoteRoot:(NSString *)remoteRoot;
 
 @end

@@ -107,6 +107,29 @@ NSString * const DVSHTTPStubsNumberOfFailuresKey = @"DVSHTTPStubsNumberOfFailure
     }];
 }
 
++ (id<OHHTTPStubsDescriptor>)dvs_stubUserLogInRequestsWithOptions:(NSDictionary *)options remoteRoot:(NSString *)remoteRoot {
+    NSString *path = DVSHTTPClientDefaultLogInPath;
+    options = [self dvs_optionsDictionaryForReceivedOptions:options defaultOptions:@{
+        DVSHTTPStubsAllowedMethodsKey: @[ @"POST" ],
+    }];
+  
+    NSDictionary *jsonResponse = @{
+        @"id": @1,
+        @"email": @"john.appleseed@example.com",
+        @"authenticationToken": @"xXx_s3ss10N_t0K3N_xXx",
+        @"createdAt": @"1970-01-01T00:00:00.000Z",
+        @"updatedAt": @"1970-01-01T00:00:00.000Z",
+    };
+  
+    if ([remoteRoot length] > 0) {
+      jsonResponse = @{ remoteRoot: jsonResponse };
+    }
+  
+    return [self dvs_stubRequestsForPath:path options:options response:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        return [self dvs_responseWithJSON:jsonResponse statusCode:200];
+    }];
+}
+
 #pragma mark - General stubs
 
 + (id<OHHTTPStubsDescriptor>)dvs_stubRequestsForPath:(NSString *)path options:(NSDictionary *)options response:(OHHTTPStubsResponseBlock)response {
