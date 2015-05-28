@@ -38,6 +38,10 @@ describe(@"DVSUserJSONSerializer", ^{
         it(@"should have default JSONKeyPathForPasswordConfirmation", ^{
             [[serializer.JSONKeyPathForPasswordConfirmation should] equal:@"passwordConfirmation"];
         });
+      
+        it(@"should have default JSONKeyPathForRemoteRoot", ^{
+            [[serializer.JSONKeyPathForRemoteRoot should] equal:@"user"];
+        });
         
         it(@"should have nil user", ^{
             [[serializer.user should] beNil];
@@ -170,6 +174,48 @@ describe(@"DVSUserJSONSerializer", ^{
                         [[resultJSON should] equal:testJSON];
                     });
                     
+                });
+              
+                context(@"for login with custom remote root", ^{
+            
+                  beforeEach(^{
+                  
+                      [serializer setJSONKeyPathForRemoteRoot:@"account"];
+                      testJSON = @{
+                          @"account": @{
+                              @"email": testUser.email,
+                              @"password": testUser.password
+                          }
+                      };
+                  });
+                  
+                  it(@"should return correct JSON", ^{
+                  
+                      [[serializer.JSONKeyPathForRemoteRoot should] equal:@"account"];
+                      NSDictionary *resultJSON = [serializer loginJSONDictionaryForUser:testUser];
+                      [[resultJSON should] equal:testJSON];
+                  });
+                  
+                });
+              
+                context(@"for login without a remote root", ^{
+            
+                  beforeEach(^{
+                  
+                      [serializer setJSONKeyPathForRemoteRoot:nil];
+                      testJSON = @{
+                          @"email": testUser.email,
+                          @"password": testUser.password
+                      };
+                  });
+                  
+                  it(@"should return correct JSON", ^{
+                  
+                      [serializer.JSONKeyPathForRemoteRoot shouldBeNil];
+                      NSDictionary *resultJSON = [serializer loginJSONDictionaryForUser:testUser];
+                      [[resultJSON should] equal:@{ @"user" : testJSON }];
+                  });
+                  
                 });
                 
             });

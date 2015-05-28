@@ -128,7 +128,11 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
-            [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
+            if ([self.userSerializer.JSONKeyPathForRemoteRoot length] > 0) {
+              [self fillUser:user withJSONRepresentation:responseObject[self.userSerializer.JSONKeyPathForRemoteRoot]];
+            } else {
+              [self fillUser:user withJSONRepresentation:responseObject];
+            }
             if (success != NULL) success(user);
         }
     }];
@@ -142,7 +146,11 @@ NSString * const DVSHTTPClientDefaultGoogleSigningPath = @"auth/google";
         if (error != nil) {
             if (failure != NULL) failure(error);
         } else {
-            [self fillUser:user withJSONRepresentation:responseObject[@"user"]];
+            if ([self.userSerializer.JSONKeyPathForRemoteRoot length] > 0) {
+              [self fillUser:user withJSONRepresentation:responseObject[self.userSerializer.JSONKeyPathForRemoteRoot]];
+            } else {
+              [self fillUser:user withJSONRepresentation:responseObject];
+            }
             if (success != NULL) success(user);
         }
     }];

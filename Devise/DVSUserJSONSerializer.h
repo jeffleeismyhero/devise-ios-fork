@@ -34,6 +34,11 @@
 @property (strong, nonatomic) NSString *JSONKeyPathForAuthenticationToken;
 
 /**
+ *  The server-side JSON root key (default: user).
+ */
+@property (strong, nonatomic) NSString *JSONKeyPathForRemoteRoot;
+
+/**
  *  The serializer's delegate object. Use it to expand serializer possibilities.
  */
 @property (weak, nonatomic) id<DVSUserJSONSerializerDataSource> dataSource;

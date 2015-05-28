@@ -41,22 +41,22 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - KIF-Kiwi (~> 0.2)
   - Kiwi (~> 2.3)
-  - NGRValidator (~> 0.4.2)
+  - ngrvalidator (~> 0.4.2)
   - OCMockito (~> 1.4.0)
   - OHHTTPStubs (~> 3.1)
   - UICKeyChainStore (~> 1.1)
   - XLForm (~> 2.1)
 
 SPEC CHECKSUMS:
-  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  KIF: 068074b24dd455025e7f2a488ba4fb07b9ce047b
-  KIF-Kiwi: e1f2a0b3151d4864470d3d8223daeb3df32a4ab8
-  Kiwi: 73e1400209055ee9c8ba78c6012b6b642d0fb9f7
-  ngrvalidator: 86112a6e0afdd8a5dfd0084f71344533a35577e4
-  OCHamcrest: af1c7c5ea345de69ea6c9c2958f65f3044e5c420
-  OCMockito: 991936bb775cc4c27f063d38f5e17b9161fbd21c
-  OHHTTPStubs: e6ecc3fd4fa11b2cfb5f4823421bddc95a82913d
-  UICKeyChainStore: ea8f9851811284c6b9ff5b2133acd53342127cc3
-  XLForm: 7d6855fe88df37b44ea00da80cc0cf3a945cfb1b
+  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  KIF: e08915d78a220480599837e9a760deee64453d76
+  KIF-Kiwi: 74bdc49696f64b1bc312b30955b8472117c7fc59
+  Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
+  ngrvalidator: 037fb6825479c1c6b168e9ac1eb927e246525dcf
+  OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
+  OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
+  OHHTTPStubs: 5624a5d20d97d46d47e15a68ca8808b59ccf0512
+  UICKeyChainStore: 891bcd2fe687c92db8e648cba035c4e662ffa43e
+  XLForm: ba9e657a360a810ab1f64cc2cd6307fd99a86866
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.37.1

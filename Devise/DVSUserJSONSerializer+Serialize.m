@@ -72,7 +72,10 @@
 }
 
 - (NSDictionary *)userDeviseLikeJSONWithJSON:(NSDictionary *)json {
-    return @{@"user" : json};
+    if ([self.JSONKeyPathForRemoteRoot length] > 0) {
+      return @{ self.JSONKeyPathForRemoteRoot : json };
+    }
+    return @{ @"user" : json };
 }
 
 @end
