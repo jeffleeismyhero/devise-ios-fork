@@ -243,6 +243,87 @@ describe(@"DVSHTTPClient+User", ^{
 
     });
 
+    describe(@"logging in a user with custom root in response", ^{
+
+        __block id<OHHTTPStubsDescriptor> stub = nil;
+
+        beforeAll(^{
+            [[client userSerializer] setJSONKeyPathForRemoteRoot:@"account"];
+            stub = [OHHTTPStubs dvs_stubUserLogInRequestsWithOptions:nil remoteRoot:@"account"];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeStub:stub];
+        });
+
+        context(@"using correct data", ^{
+
+            beforeEach(^{
+                user.email = @"john.appleseed@example.com";
+                user.password = @"$eCR3t";
+            });
+
+            it(@"should succeed", ^{
+                __block BOOL success = NO;
+                [[client userSerializer] setJSONKeyPathForRemoteRoot:@"account"];
+                [client logInUser:user success:^(DVSUser *user) {
+                    success = YES;
+                } failure:nil];
+                [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
+            });
+
+            it(@"should fill the user object", ^{
+                [[client userSerializer] setJSONKeyPathForRemoteRoot:@"account"];
+                [client logInUser:user success:nil failure:nil];
+                
+                [[expectFutureValue(user.identifier) shouldEventually] beNonNil];
+                [[expectFutureValue(user.sessionToken) shouldEventually] beNonNil];
+            });
+
+        });
+
+    });
+  
+    describe(@"logging in a user with no root in response", ^{
+
+        __block id<OHHTTPStubsDescriptor> stub = nil;
+
+        beforeAll(^{
+            [[DVSUserManager defaultManager].serializer setJSONKeyPathForRemoteRoot:nil];
+            stub = [OHHTTPStubs dvs_stubUserLogInRequestsWithOptions:nil remoteRoot:nil];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeStub:stub];
+        });
+
+        context(@"using correct data", ^{
+
+            beforeEach(^{
+                user.email = @"john.appleseed@example.com";
+                user.password = @"$eCR3t";
+            });
+
+            it(@"should succeed", ^{
+                __block BOOL success = NO;
+                [[client userSerializer] setJSONKeyPathForRemoteRoot:nil];
+                [client logInUser:user success:^(DVSUser *user) {
+                    success = YES;
+                } failure:nil];
+                [[expectFutureValue(theValue(success)) shouldEventually] beTrue];
+            });
+
+            it(@"should fill the user object", ^{
+                [[client userSerializer] setJSONKeyPathForRemoteRoot:nil];
+                [client logInUser:user success:nil failure:nil];
+                [[expectFutureValue(user.identifier) shouldEventually] beNonNil];
+                [[expectFutureValue(user.sessionToken) shouldEventually] beNonNil];
+            });
+
+        });
+
+    });
+  
 });
 
 SPEC_END
