@@ -28,6 +28,6 @@ target 'Tests' do
 
   pod 'Kiwi', '~> 2.3'
   pod 'OHHTTPStubs', '~> 3.1'
-  pod 'KIF-Kiwi', '~> 0.2'
+  pod 'KIF-Kiwi', '~> 0.2.4'
   pod 'OCMockito', '~> 1.4.0'
 end
