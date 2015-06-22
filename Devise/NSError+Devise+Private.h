@@ -10,6 +10,6 @@
 
 @interface NSError (Devise)
 
-- (instancetype)investigateErrorForKey:(NSString *)key;
++ (instancetype)errorWithJSONDictionary:(NSDictionary *)json code:(NSInteger)code;
 
 @end

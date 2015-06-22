@@ -95,6 +95,8 @@
 		5E3A98A21AA877FF00CE2F20 /* NSError+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3A98A01AA877FF00CE2F20 /* NSError+Devise+Private.m */; };
 		5E7A9A341A3F114F0077DC43 /* NSObject+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */; };
 		5E7A9A351A3F114F0077DC43 /* NSObject+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */; };
+		5E92E9801B385E3E00BECBA7 /* NSURLSession+Devise+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E92E97E1B385E3E00BECBA7 /* NSURLSession+Devise+Private.h */; };
+		5E92E9811B385E3E00BECBA7 /* NSURLSession+Devise+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E92E97F1B385E3E00BECBA7 /* NSURLSession+Devise+Private.m */; };
 		5E93C3C51AC2B573000BA6E6 /* DVSTestUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E93C3C41AC2B573000BA6E6 /* DVSTestUserManager.m */; };
 		5EB7A9641AC35634006BD7C0 /* DVSTestUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A9631AC35634006BD7C0 /* DVSTestUser.m */; };
 		5EBF305D1ABC2DE2001941CA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EBF305C1ABC2DE2001941CA /* AddressBook.framework */; };
@@ -324,6 +326,8 @@
 		5E64C17B1A30872B00A41A88 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E7A9A321A3F114F0077DC43 /* NSObject+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Devise+Private.h"; sourceTree = "<group>"; };
 		5E7A9A331A3F114F0077DC43 /* NSObject+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Devise+Private.m"; sourceTree = "<group>"; };
+		5E92E97E1B385E3E00BECBA7 /* NSURLSession+Devise+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSession+Devise+Private.h"; sourceTree = "<group>"; };
+		5E92E97F1B385E3E00BECBA7 /* NSURLSession+Devise+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+Devise+Private.m"; sourceTree = "<group>"; };
 		5E93C3C31AC2B573000BA6E6 /* DVSTestUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSTestUserManager.h; sourceTree = "<group>"; };
 		5E93C3C41AC2B573000BA6E6 /* DVSTestUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSTestUserManager.m; sourceTree = "<group>"; };
 		5EAC36B01AA51EFA00014442 /* Devise-Demo-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Devise-Demo-Tests-Info.plist"; sourceTree = "<group>"; };
@@ -714,6 +718,8 @@
 				21B3ECB11A52D32100C8C620 /* UIViewController+Devise.m */,
 				5E3A989F1AA877FF00CE2F20 /* NSError+Devise+Private.h */,
 				5E3A98A01AA877FF00CE2F20 /* NSError+Devise+Private.m */,
+				5E92E97E1B385E3E00BECBA7 /* NSURLSession+Devise+Private.h */,
+				5E92E97F1B385E3E00BECBA7 /* NSURLSession+Devise+Private.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1028,6 +1034,7 @@
 				21B362E91A515DA500202C94 /* XLFormSectionDescriptor+Devise+Private.h in Headers */,
 				218E29BB1A5D7B310010BF3F /* DVSAccessibilityLabels.h in Headers */,
 				3AD4C6AB1A24F1D200F0AE67 /* Devise-Prefix.pch in Headers */,
+				5E92E9801B385E3E00BECBA7 /* NSURLSession+Devise+Private.h in Headers */,
 				21B3ECAB1A52C6BD00C8C620 /* DVSPasswordReminderFormViewController+Private.h in Headers */,
 				E3CA300A1AADF5BE00890305 /* DVSFacebookAccountStore.h in Headers */,
 				3AA22E1C1A25031300FE04D1 /* DVSConfiguration.h in Headers */,
@@ -1455,6 +1462,7 @@
 				21B3EC981A52B35500C8C620 /* DVSFieldsUtils+Private.m in Sources */,
 				E3A0D6351AA73EE500E326BC /* DVSOAuthJSONParameters.m in Sources */,
 				5E3A98A21AA877FF00CE2F20 /* NSError+Devise+Private.m in Sources */,
+				5E92E9811B385E3E00BECBA7 /* NSURLSession+Devise+Private.m in Sources */,
 				21B4BA701A8B8AD2000E3E9A /* DVSUserManager.m in Sources */,
 				21B3ECB31A52D32100C8C620 /* UIViewController+Devise.m in Sources */,
 				3AA631751A39A718002A64AC /* DVSUser+Persistence.m in Sources */,
@@ -1672,7 +1680,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
 					"-l\"Pods-UICKeyChainStore\"",
 					"-l\"Pods-XLForm\"",
 					"-l\"Pods-ngrvalidator\"",
@@ -1786,7 +1793,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
 					"-l\"Pods-UICKeyChainStore\"",
 					"-l\"Pods-XLForm\"",
 					"-l\"Pods-ngrvalidator\"",

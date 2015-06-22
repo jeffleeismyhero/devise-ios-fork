@@ -12,10 +12,9 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 
 # Framework dependencies
-pod 'AFNetworking', '~> 2.5'
 pod 'UICKeyChainStore', '~> 1.1'
 pod 'XLForm', '~> 2.1'
-pod 'ngrvalidator', '~> 0.4.2'
+pod 'ngrvalidator', '~> 1.1.0'
 
 # Exclusive demo dependencies
 target 'Demo' do

@@ -13,8 +13,7 @@
 @implementation UIAlertView (DeviseDemo)
 
 + (UIAlertView *)dvs_alertViewForError:(NSError *)error statusDescriptionsDictionary:(NSDictionary *)dictionary {
-    NSInteger errorCode = [error dvs_urlStatusCode];
-    NSString *descriptionForCode = dictionary[@(errorCode)];
+    NSString *descriptionForCode = dictionary[@(error.code)];
     if (descriptionForCode) {
         return [self dvs_alertViewForErrorLocalizedDescription:descriptionForCode];
     } else {

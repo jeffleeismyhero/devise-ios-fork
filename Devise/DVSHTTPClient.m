@@ -4,17 +4,16 @@
 //  Copyright (c) 2014 Netguru Sp. z o.o. All rights reserved.
 //
 
-#import "AFNetworking/AFNetworking.h"
-
 #import "DVSHTTPClient.h"
 #import "DVSConfiguration.h"
-#import "NSError+Devise+Private.h"
+#import "NSURLSession+Devise+Private.h"
 
 typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 @interface DVSHTTPClient ()
 
-@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
+@property (strong, nonatomic) NSURLSession *session;
+@property (strong, nonatomic) NSMutableDictionary *oAuthHTTPHeaderFields;
 
 @end
 
@@ -29,13 +28,9 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
     if (self == nil) return nil;
 
     _configuration = configuration;
-    self.sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];
-
-    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-    [requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    self.sessionManager.requestSerializer = requestSerializer;
-    self.sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
-
+    _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+    _oAuthHTTPHeaderFields = [[NSMutableDictionary alloc] init];
+    
     return self;
 }
 
@@ -50,69 +45,86 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 #pragma mark - Request management
 
 - (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
+    
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
-        NSString *actualPath = [self absoluteURLStringForPath:path];
-        [self.sessionManager GET:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (retry != NULL) retry(responseObject, nil);
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (retry != NULL) retry(nil, [error investigateErrorForKey:AFNetworkingOperationFailingURLResponseDataErrorKey]);
-        }];
+        
+        NSURLRequest *request = [self requestWithPath:path method:@"GET" JSONObject:parameters];
+        [self.session performDataTaskWithRequest:request completion:retry];
+        
     } completion:completion];
 }
 
 - (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
-        NSString *actualPath = [self absoluteURLStringForPath:path];
-        [self.sessionManager POST:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (retry != NULL) retry(responseObject, nil);
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (retry != NULL) retry(nil, [error investigateErrorForKey:AFNetworkingOperationFailingURLResponseDataErrorKey]);
-        }];
+
+        NSURLRequest *request = [self requestWithPath:path method:@"POST" JSONObject:parameters];
+        [self.session performDataTaskWithRequest:request completion:retry];
+        
     } completion:completion];
 }
 
 - (void)PUT:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
-        NSString *actualPath = [self absoluteURLStringForPath:path];
-        [self.sessionManager PUT:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (retry != NULL) retry(responseObject, nil);
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (retry != NULL) retry(nil, [error investigateErrorForKey:AFNetworkingOperationFailingURLResponseDataErrorKey]);
-        }];
+
+        NSURLRequest *request = [self requestWithPath:path method:@"PUT" JSONObject:parameters];
+        [self.session performDataTaskWithRequest:request completion:retry];
+        
     } completion:completion];
 }
 
 - (void)DELETE:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
-        NSString *actualPath = [self absoluteURLStringForPath:path];
-        [self.sessionManager DELETE:actualPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            if (retry != NULL) retry(responseObject, nil);
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (retry != NULL) retry(nil, [error investigateErrorForKey:AFNetworkingOperationFailingURLResponseDataErrorKey]);
-        }];
+        
+        NSURLRequest *request = [self requestWithPath:path method:@"DELETE" JSONObject:parameters];
+        [self.session performDataTaskWithRequest:request completion:retry];
+        
     } completion:completion];
 }
 
 - (void)cancelAllRequests {
-    for (NSURLSessionTask *task in self.sessionManager.tasks) {
-        [task cancel];
-    }
+    [self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        for (NSURLSessionTask *task in dataTasks) {
+            [task cancel];
+        }
+    }];
 }
 
 #pragma mark - Headers
 
 - (void)setValue:(NSString *)value forHTTPHeaderField:(NSString *)field {
-    [self.sessionManager.requestSerializer setValue:value forHTTPHeaderField:field];
+    value ? self.oAuthHTTPHeaderFields[field] = value : [self.oAuthHTTPHeaderFields removeObjectForKey:field];
 }
 
 #pragma mark - Helpers
 
-- (NSString *)absoluteURLStringForPath:(NSString *)path {
-    return [self.configuration.baseURL URLByAppendingPathComponent:path].absoluteString;
+- (NSURLRequest *)requestWithPath:(NSString *)path method:(NSString *)method JSONObject:(id)json {
+    
+    NSAssert(self.configuration.baseURL != nil, @"Server base URL cannot be nil.");
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[self absoluteURLForPath:path]];
+    
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    [self.oAuthHTTPHeaderFields enumerateKeysAndObjectsUsingBlock:^(NSString *field, NSString *value, BOOL *stop) {
+        [request addValue:self.oAuthHTTPHeaderFields[field] forHTTPHeaderField:field];
+    }];
+    
+    [request setHTTPMethod:method];
+    
+    if (json) {
+        NSError *error;
+        NSData *data = [NSJSONSerialization dataWithJSONObject:json options:kNilOptions error:&error];
+        if (data && !error) {
+            [request setHTTPBody:data];
+        }
+    }
+    
+    return [request copy];
+}
+
+- (NSURL *)absoluteURLForPath:(NSString *)path {
+    return [NSURL URLWithString:[self.configuration.baseURL URLByAppendingPathComponent:path].absoluteString];
 }
 
 - (void)executeRetriableBlock:(DVSHTTPClientRetriableBlock)retriable completion:(DVSHTTPClientCompletionBlock)completion {

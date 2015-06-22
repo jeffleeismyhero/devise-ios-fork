@@ -16,6 +16,4 @@
 + (NSError *)dvs_newPasswordConfirmRequiredError;
 + (NSError *)dvs_currentPasswordRequiredError;
 
-- (NSInteger)dvs_urlStatusCode;
-
 @end

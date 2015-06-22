@@ -8,8 +8,6 @@
 
 #import "NSError+DeviseDemo.h"
 
-#import <AFNetworking/AFNetworking.h>
-
 @implementation NSError (DeviseDemo)
 
 NSString * const DVSDemoErrorDomain = @"co.netguru.lib.devise.demo.error";
@@ -50,10 +48,6 @@ typedef NS_ENUM(NSInteger, DVSErrorCode) {
     return [NSError errorWithDomain:DVSDemoErrorDomain
                                code:code
                            userInfo:@{ NSLocalizedDescriptionKey: localizedDescription}];
-}
-
-- (NSInteger)dvs_urlStatusCode {
-    return [self.userInfo[AFNetworkingOperationFailingURLResponseErrorKey] statusCode];
 }
 
 @end

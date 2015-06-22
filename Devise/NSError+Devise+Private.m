@@ -10,33 +10,21 @@
 
 @implementation NSError (Devise)
 
-- (instancetype)investigateErrorForKey:(NSString *)key {
++ (instancetype)errorWithJSONDictionary:(NSDictionary *)json code:(NSInteger)code {
     
-    NSData *data = self.userInfo[key];
-    if (data && [data isKindOfClass:[NSData class]]) {
-        
-        NSError *error;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSString *value;
-        
-        if ([json[@"error"] isKindOfClass:[NSString class]]) {
-            value = json[@"error"];
-        } else {
-            value = json[@"error"][@"message"];
-        };
-        
-        if (!error && value) {
-            [self swizzleUserInfoDictionaryByReplacingValueForKey:NSLocalizedDescriptionKey withValue:value];
-        }
+    NSString *value;
+    
+    if ([json[@"error"] isKindOfClass:[NSString class]]) {
+        value = json[@"error"];
+    } else {
+        value = json[@"error"][@"message"];
     }
-    return self;
-}
-
-- (void)swizzleUserInfoDictionaryByReplacingValueForKey:(NSString *)key withValue:(NSString *)value {
     
-    NSMutableDictionary *dictionary = [self.userInfo mutableCopy];
-    dictionary[key] = value;
-    [self setValue:[dictionary copy] forKey:@"userInfo"];
+    if (!value) {
+        value = @"Unrecognized error did appear.";
+    }
+    
+    return [NSError errorWithDomain:NSURLErrorDomain code:code userInfo:@{NSLocalizedDescriptionKey: value}];
 }
 
 @end

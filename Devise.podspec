@@ -25,7 +25,6 @@ Pod::Spec.new do |spec|
   spec.source_files  = 'Devise/**/*.{h,m}'
   spec.requires_arc  = true
 
-  spec.dependency      'AFNetworking', '~> 2.5.0'
   spec.dependency      'UICKeyChainStore', '~> 1.1'
   spec.dependency      'ngrvalidator', '~> 0.4.2'
   spec.dependency      'XLForm', '~> 2.1'
