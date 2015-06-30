@@ -27,7 +27,7 @@ Pod::Spec.new do |spec|
 
   spec.dependency      'AFNetworking', '~> 2.5.0'
   spec.dependency      'UICKeyChainStore', '~> 1.1'
-  spec.dependency      'ngrvalidator', '~> 0.4.2'
+  spec.dependency      'NGRValidator', '~> 0.4.2'
   spec.dependency      'XLForm', '~> 2.1'
 
   spec.frameworks     = 'AddressBook', 'AssetsLibrary', 'Foundation', 'CoreLocation', 'CoreMotion', 'CoreGraphics', 'CoreText', 'MediaPlayer', 'Security', 'SystemConfiguration', 'UIKit'

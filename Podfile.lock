@@ -20,12 +20,12 @@ PODS:
   - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - KIF (3.1.2):
-    - KIF/XCTest (= 3.1.2)
-  - KIF-Kiwi (0.2.3):
-    - KIF (~> 3.1.0)
-    - Kiwi (~> 2.3.0)
-  - KIF/XCTest (3.1.2)
+  - KIF (3.2.3):
+    - KIF/XCTest (= 3.2.3)
+  - KIF-Kiwi (0.2.4):
+    - KIF (~> 3.0)
+    - Kiwi (~> 2.0)
+  - KIF/XCTest (3.2.3)
   - Kiwi (2.3.1)
   - ngrvalidator (0.4.2)
   - OCHamcrest (4.1.1)
@@ -39,7 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
-  - KIF-Kiwi (~> 0.2)
+  - KIF-Kiwi (~> 0.2.4)
   - Kiwi (~> 2.3)
   - ngrvalidator (~> 0.4.2)
   - OCMockito (~> 1.4.0)
@@ -49,8 +49,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
-  KIF: e08915d78a220480599837e9a760deee64453d76
-  KIF-Kiwi: 74bdc49696f64b1bc312b30955b8472117c7fc59
+  KIF: a94bffe9c97e449e44f8fa481c53243d21309e1e
+  KIF-Kiwi: fd9f800ca56db7cd98059fbd997158e76012bcaf
   Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
   ngrvalidator: 037fb6825479c1c6b168e9ac1eb927e246525dcf
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
@@ -59,4 +59,4 @@ SPEC CHECKSUMS:
   UICKeyChainStore: 891bcd2fe687c92db8e648cba035c4e662ffa43e
   XLForm: ba9e657a360a810ab1f64cc2cd6307fd99a86866
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.37.2
