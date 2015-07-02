@@ -17,14 +17,14 @@
 ## Requirements
 
 - Xcode 6.0 and iOS 7.0+ SDK
-- CocoaPods 0.36.0 (use `gem install cocoapods` to grab it!)
+- CocoaPods 0.37.2 (use `gem install cocoapods` to grab it!)
 
 ## CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party. To use **devise-ios** via CocoaPods write in your Podfile:
 
 ```rb
-pod 'Devise', '~> 1.0.0'
+pod 'Devise', '~> 1.1.0'
 ```
 
 ## Configuration

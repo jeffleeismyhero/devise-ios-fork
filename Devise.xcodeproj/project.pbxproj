@@ -1151,7 +1151,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = DVS;
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Netguru Sp. z o.o.";
 				TargetAttributes = {
 					218E29891A5AE90C0010BF3F = {
