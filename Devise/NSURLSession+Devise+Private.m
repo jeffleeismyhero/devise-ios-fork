@@ -15,17 +15,16 @@
     
     NSURLSessionDataTask *task = [self dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            
-            if (completion == NULL) {
-                return;
-            }
+        if (completion == NULL) {
+            return;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             
             if (error) {
                 completion(nil, error);
                 
             } else {
-                
                 NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
                 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:NULL];
                 
