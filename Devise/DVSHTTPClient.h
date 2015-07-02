@@ -42,15 +42,6 @@ typedef void (^DVSHTTPClientCompletionBlock)(id responseObject, NSError *error);
 - (instancetype)initWithConfiguration:(DVSConfiguration *)configuration;
 
 /**
- *  Performs a GET request for a given path. The completion block's object is a deserialized response JSON.
- *
- *  @param path       The relative path of the request.
- *  @param parameters The parameters to be included in the request.
- *  @param block      The completion block executed when the request finishes.
- */
-- (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)block;
-
-/**
  *  Performs a POST request for a given path. The completion block's object is a deserialized response JSON.
  *
  *  @param path       The relative path of the request.

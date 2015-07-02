@@ -33,12 +33,6 @@ describe(@"DVSHTTPClient", ^{
 
     context(@"provided with no configuration", ^{
 
-        it(@"should fail to perform a get request", ^{
-            [[theBlock(^{
-                [client GET:@"get" parameters:nil completion:nil];
-            }) should] raiseWithName:NSInternalInconsistencyException];
-        });
-
         it(@"should fail to perform a post request", ^{
             [[theBlock(^{
                 [client POST:@"post" parameters:nil completion:nil];
@@ -62,12 +56,6 @@ describe(@"DVSHTTPClient", ^{
                 configuration.serverURL = nil;
             });
 
-            it(@"should fail to perform a get request", ^{
-                [[theBlock(^{
-                    [client GET:@"get" parameters:nil completion:nil];
-                }) should] raiseWithName:NSInternalInconsistencyException];
-            });
-
             it(@"should fail to perform a post request", ^{
                 [[theBlock(^{
                     [client POST:@"post" parameters:nil completion:nil];
@@ -87,40 +75,6 @@ describe(@"DVSHTTPClient", ^{
                 [[theValue(configuration.numberOfRetries) should] equal:theValue(0)];
             });
 
-            it(@"should succeed to perform a single get request", ^{
-                __block id response = nil; __block NSError *error = nil;
-                [client GET:@"get" parameters:nil completion:^(id blockResponse, NSError *blockError) {
-                    response = blockResponse;
-                    error = blockError;
-                }];
-                [[expectFutureValue(response) shouldEventually] beNonNil];
-                [[expectFutureValue(error) shouldEventually] beNil];
-            });
-
-            it(@"should succeed to perform a single post request", ^{
-                __block id response = nil; __block NSError *error = nil;
-                [client GET:@"get" parameters:nil completion:^(id blockResponse, NSError *blockError) {
-                    response = blockResponse;
-                    error = blockError;
-                }];
-                [[expectFutureValue(response) shouldEventually] beNonNil];
-                [[expectFutureValue(error) shouldEventually] beNil];
-            });
-
-            it(@"should correctly deliver parameters while performing a get request", ^{
-                __block id response = nil; __block NSError *error = nil; __block id args = nil;
-                NSDictionary *parameters = @{ @"foo": @"bar", @"baz": @"qux" };
-                [client GET:@"get" parameters:parameters completion:^(id blockResponse, NSError *blockError) {
-                    response = blockResponse;
-                    error = blockError;
-                    args = blockResponse[@"args"];
-                }];
-                [[expectFutureValue(response) shouldEventually] beNonNil];
-                [[expectFutureValue(error) shouldEventually] beNil];
-                [[expectFutureValue(args) shouldEventually] haveValue:@"bar" forKey:@"foo"];
-                [[expectFutureValue(args) shouldEventually] haveValue:@"qux" forKey:@"baz"];
-            });
-
             it(@"should correctly deliver parameters while performing a post request", ^{
                 __block id response = nil; __block NSError *error = nil; __block id json = nil;
                 NSDictionary *parameters = @{ @"bar": @"foo", @"qux": @"baz" };
@@ -134,46 +88,8 @@ describe(@"DVSHTTPClient", ^{
                 [[expectFutureValue(json) shouldEventually] haveValue:@"foo" forKey:@"bar"];
                 [[expectFutureValue(json) shouldEventually] haveValue:@"baz" forKey:@"qux"];
             });
-
-            describe(@"retrying", ^{
-
-                context(@"with a positive number of retries", ^{
-
-                    __block id<OHHTTPStubsDescriptor> stub = nil;
-
-                    beforeEach(^{
-                        configuration.numberOfRetries = 2;
-                        [OHHTTPStubs dvs_stubRequestsForPath:@"get" options:@{
-                            DVSHTTPStubsNumberOfFailuresKey: @(2),
-                        } response:^OHHTTPStubsResponse *(NSURLRequest *request) {
-                            NSDictionary *json = @{ @"foo": @"bar" };
-                            return [OHHTTPStubsResponse responseWithJSONObject:json statusCode:200 headers:nil];
-                        }];
-                    });
-
-                    afterEach(^{
-                        [OHHTTPStubs dvs_resetRemainingNumberOfFailuresForPath:@"get"];
-                        [OHHTTPStubs removeStub:stub];
-                    });
-
-                    it(@"should retry until request succeeds", ^{
-                        __block id response = nil; __block NSError *error = nil;
-                        [client GET:@"get" parameters:nil completion:^(id blockResponse, NSError *blockError) {
-                            response = blockResponse;
-                            error = blockError;
-                        }];
-                        [[expectFutureValue(response) shouldEventually] beNonNil];
-                        [[expectFutureValue(error) shouldEventually] beNil];
-                        [[expectFutureValue(response) shouldEventually] haveValue:@"bar" forKey:@"foo"];
-                    });
-
-                });
-
-
-            });
-
         });
-
+        
     });
 
     // please test http client extensions in dedicated specs

@@ -44,16 +44,6 @@ typedef void (^DVSHTTPClientRetriableBlock)(DVSHTTPClientCompletionBlock block);
 
 #pragma mark - Request management
 
-- (void)GET:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
-    
-    [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
-        
-        NSURLRequest *request = [self requestWithPath:path method:@"GET" JSONObject:parameters];
-        [self.session performDataTaskWithRequest:request completion:retry];
-        
-    } completion:completion];
-}
-
 - (void)POST:(NSString *)path parameters:(NSDictionary *)parameters completion:(DVSHTTPClientCompletionBlock)completion {
     [self executeRetriableBlock:^(DVSHTTPClientCompletionBlock retry) {
 
