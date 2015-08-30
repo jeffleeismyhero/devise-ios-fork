@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc  = true
 
   spec.dependency      'UICKeyChainStore', '~> 1.1'
-  spec.dependency      'ngrvalidator', '~> 1.1.0'
+  spec.dependency      'ngrvalidator', '~> 1.2.0'
   spec.dependency      'XLForm', '~> 2.1'
 
   spec.frameworks     = 'AddressBook', 'AssetsLibrary', 'Foundation', 'CoreLocation', 'CoreMotion', 'CoreGraphics', 'CoreText', 'MediaPlayer', 'Security', 'SystemConfiguration', 'UIKit'
