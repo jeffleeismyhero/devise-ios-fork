@@ -46,13 +46,13 @@ static NSString * const DVSTitleForAlertCancelButton = @"Close";
                          action:@selector(didSelectLogIn)];
 
     [self addMenuEntryWithTitle:NSLocalizedString(@"Sign in using Facebook", nil)
-                       subtitle:NSLocalizedString(nil, nil)
+                       subtitle:nil
              accessibilityLabel:DVSAccessibilityLabel(@"Sign in using Facebook")
                          target:self
                          action:@selector(didSelectFacebookSigning)];
 
     [self addMenuEntryWithTitle:NSLocalizedString(@"Sign in using Google", nil)
-                       subtitle:NSLocalizedString(nil, nil)
+                       subtitle:nil
              accessibilityLabel:DVSAccessibilityLabel(@"Sign in using Google")
                          target:self
                          action:@selector(didSelectGoogleSigning)];
