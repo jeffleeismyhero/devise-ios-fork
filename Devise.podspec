@@ -27,7 +27,7 @@ Pod::Spec.new do |spec|
 
   spec.dependency      'UICKeyChainStore', '~> 1.1'
   spec.dependency      'ngrvalidator', '~> 1.2.0'
-  spec.dependency      'XLForm', '~> 2.1'
+  spec.dependency      'XLForm', '~> 3.0'
 
   spec.frameworks     = 'AddressBook', 'AssetsLibrary', 'Foundation', 'CoreLocation', 'CoreMotion', 'CoreGraphics', 'CoreText', 'MediaPlayer', 'Security', 'SystemConfiguration', 'UIKit'
   spec.vendored_frameworks = 'Frameworks/GoogleOpenSource.framework', 'Frameworks/GooglePlus.framework'
