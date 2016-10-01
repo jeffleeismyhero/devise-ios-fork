@@ -31,6 +31,8 @@
     
     BOOL haveEqualId = [self isProperty:self.identifier equalTo:user.identifier];
     BOOL haveEqualEmail = [self isProperty:self.email equalTo:user.email];
+    BOOL haveEqualUsername = [self isProperty:self.username equalTo:user.username];
+
     BOOL haveEqualSessionToken = [self isProperty:self.sessionToken equalTo:user.sessionToken];
     
     return haveEqualId && haveEqualEmail && haveEqualSessionToken;

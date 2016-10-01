@@ -14,6 +14,8 @@
     if (self = [super init]) {
         // Defaults
         _JSONKeyPathForEmail = @"email";
+        _JSONKeyPathForUsername = @"username";
+        _JSONKeyPathForLogin = @"login";
         _JSONKeyPathForPassword = @"password";
         _JSONKeyPathForPasswordConfirmation = @"passwordConfirmation";
         _JSONKeyPathForAuthenticationToken = @"authenticationToken";

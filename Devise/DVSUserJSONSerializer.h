@@ -18,6 +18,14 @@
  */
 @property (strong, nonatomic) NSString *JSONKeyPathForEmail;
 
+
+@property (strong, nonatomic) NSString *JSONKeyPathForUsername;
+
+
+
+@property (strong, nonatomic) NSString *JSONKeyPathForLogin;
+
+
 /**
  *  The server-side parameter name for password (default: password).
  */

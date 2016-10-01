@@ -18,6 +18,9 @@
  */
 @property (strong, nonatomic) NSString *email;
 
+
+@property (strong, nonatomic) NSString *username;
+
 /**
  *  User's password. Used only in user authentication. Will be not saved at all.
  */

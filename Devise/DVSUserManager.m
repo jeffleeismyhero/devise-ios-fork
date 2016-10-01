@@ -66,7 +66,7 @@
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[[self validationRulesForPassword],
-                       [self validationRulesForEmail]];
+                       [self validationRulesForUsername]];
     
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [self.httpClient logInUser:self.user success:^(DVSUser *user) {
@@ -211,6 +211,11 @@
 - (NGRPropertyValidator *)validationRulesForEmail {
     return NGRValidate(@"email").required().syntax(NGRSyntaxEmail);
 }
+
+- (NGRPropertyValidator *)validationRulesForUsername {
+    return NGRValidate(@"username").required();
+}
+
 
 #pragma mark - Accessors
 

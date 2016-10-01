@@ -28,6 +28,12 @@
     
     if (user.password != nil) json[self.JSONKeyPathForPassword] = user.password;
     if (user.email != nil) json[self.JSONKeyPathForEmail] = user.email;
+    if (user.username != nil) json[self.JSONKeyPathForUsername] = user.username;
+    
+    
+    if (user.email != nil) json[self.JSONKeyPathForLogin] = user.email;
+    if (user.username != nil) json[self.JSONKeyPathForLogin] = user.username;
+
     [json addEntriesFromDictionary:[self additionalParametersForAction:DVSActionLogin]];
     
     return [self userDeviseLikeJSONWithJSON:[json copy]];
