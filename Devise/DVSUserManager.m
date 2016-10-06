@@ -43,7 +43,7 @@
 
 + (instancetype)defaultManager {
     static DVSUserManager *sharedMyManager = nil;
-    
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedMyManager = [[DVSUserManager alloc] initWithUser:nil configuration:[DVSConfiguration sharedConfiguration]];
@@ -66,8 +66,8 @@
 
 - (void)loginWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[[self validationRulesForPassword],
-                       [self validationRulesForUsername]];
-    
+                       [self validationRulesForEmail]];
+
     [self validateUsingRules:rules forAction:DVSActionLogin success:^{
         [self.httpClient logInUser:self.user success:^(DVSUser *user) {
             self.persistenceStore.localUser = user;
@@ -80,7 +80,7 @@
 
 - (void)remindPasswordWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[[self validationRulesForEmail]];
-    
+
     [self validateUsingRules:rules forAction:DVSActionRemindPassword success:^{
         [self.httpClient remindPasswordToUser:self.user success:success failure:failure];
     } failure:failure];
@@ -91,7 +91,7 @@
 - (void)registerWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
     NSArray *rules = @[[self validationRulesForPassword],
                        [self validationRulesForEmail]];
-    
+
     [self validateUsingRules:rules forAction:DVSActionRegistration success:^{
         [self.httpClient registerUser:self.user success:^(DVSUser *user) {
             self.persistenceStore.localUser = user;
@@ -103,10 +103,10 @@
 #pragma mark - Signing via Facebook
 
 - (void)signInUsingFacebookWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
+
     NSString *appID = self.httpClient.configuration.facebookAppID;
     DVSFacebookAuthenticator *facebookAuthenticator = [[DVSFacebookAuthenticator alloc] initWithAppID:appID];
-    
+
     [facebookAuthenticator authenticateWithSuccess:^(NSDictionary *dictionary) {
         [self.httpClient signInUsingFacebookUser:self.user parameters:dictionary success:^(DVSUser *user) {
             self.persistenceStore.localUser = user;
@@ -118,9 +118,9 @@
 #pragma mark - Signing via Google+
 
 - (void)signInUsingGoogleWithSuccess:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
+
     NSString *clientID = self.httpClient.configuration.googleClientID;
-    
+
     [self.googlePlusAuthenticator authenticateWithClientID:clientID success:^(NSDictionary *dictionary) {
         [self.httpClient signInUsingGoogleUser:self.user parameters:dictionary success:^(DVSUser *user) {
             self.persistenceStore.localUser = user;
@@ -177,12 +177,12 @@
 #pragma mark - Validation
 
 - (void)validateUsingRules:(NSArray *)rules forAction:(DVSActionType)action success:(DVSVoidBlock)success failure:(DVSErrorBlock)failure {
-    
+
     NSError *error;
     BOOL validated = [NGRValidator validateModel:self.user error:&error delegate:nil rules:^NSArray *{
-        
+
         NSMutableArray *currentValidationRules = [NSMutableArray arrayWithArray:rules];
-        
+
         if (self.delegate && [self.delegate respondsToSelector:@selector(userManager:didPrepareValidationRules:forAction:)]) {
             [self.delegate userManager:self didPrepareValidationRules:currentValidationRules forAction:action];
         }
